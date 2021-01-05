@@ -71,6 +71,8 @@ There are four stakeholders in an open banking environment.
 - Bank
 - Merchant
 
+![Stakeholders in an open banking environment](../assets/img/key-concepts/open-banking-stakeholders.png)
+
 ####Customer 
 An end user who makes use of a payment service in the capacity of either a payer, payee, or both.
 
@@ -135,6 +137,12 @@ An entity  that provides and maintains a payment account for a payer. Examples o
 </tbody>
 </table>
 
+------------------------------------------------------------------------
+###Client registration 
+Client Registration is the process ensuring that a client is trusted before consuming the banking APIs. This is achieved by registering the client with a bank. The clients go through an in-depth verification during this process to make sure that the financial data and the applications are secured. This can be a manual or an automated process. Also known as TPP On boarding in European terminology.
+
+There are two main methods for client registration:
+![Different Approaches for Client Registration](../assets/img/key-concepts/different-approaches.png)
 ------------------------------------------------------------------------
 ###Fintech
 Fintech is another name for financial technology. It is often used to refer to a business that offers new and innovative financial services using software and modern technology.
