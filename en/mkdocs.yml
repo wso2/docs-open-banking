@@ -48,7 +48,8 @@ nav:
   - 'Home': index.md
   - 'About':
     - 'Introduction': about/introduction.md
-    - 'Key Concepts': about/key-concepts.md
+    - 'Key Concepts':
+      - 'Open Banking Concepts': about/open-banking-concepts.md
   - 'Accelerator':
     - 'Accelerator': page-not-found.md
   - 'Toolkit':
