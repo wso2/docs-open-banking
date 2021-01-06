@@ -50,7 +50,6 @@ nav:
     - 'Introduction': about/introduction.md
     - 'Key Concepts':
       - 'Open Banking': about/open-banking-concepts.md
-      - 'WSO2 Open Banking': about/wso2-open-banking-concepts.md
       - 'Security': about/security-concepts.md
   - 'Accelerator':
     - 'Accelerator': page-not-found.md
