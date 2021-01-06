@@ -49,8 +49,8 @@ nav:
   - 'About':
     - 'Introduction': about/introduction.md
     - 'Key Concepts':
-      - 'Open Banking': about/open-banking-concepts.md
-      - 'Security': about/security-concepts.md
+      - 'Open Banking Concepts': about/open-banking-concepts.md
+      - 'Security Concepts': about/security-concepts.md
   - 'Accelerator':
     - 'Accelerator': page-not-found.md
   - 'Toolkit':

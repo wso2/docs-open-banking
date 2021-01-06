@@ -232,6 +232,78 @@ For key concepts on Identity and Access Management domain, see [WSO2 Identity an
 and for key concepts on API Management domain, see [API Management documentation](https://apim.docs.wso2.com/en/next/get-started/key-concepts/).
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
+####User Types
+ We can categorise the users in an open banking environment in to the nine user types in WSO2 Open Banking environment:
+ 
+- <strong>Super Admin</strong>
+is the WSO2 Open Banking provider that hosts and manages the overall functional aspects of the open banking system. 
+Example: Bank infra/IT. A super admin is responsible for creating user roles in the system, assigning them to users, managing databases, 
+security, etc.
+ 
+- <strong>Admin</strong>
+manages the overall functional aspects of WSO2 Open Banking.
+Example: Bank IT Manager.
+ 
+- <strong>Manager</strong>
+are typically bank's decision makers and bank infrastructure staff.
+ 
+- <strong>API Creator</strong>
+is a technical role capable of understanding the technical aspects of the APIs such as interfaces, documentation, and 
+versions, and provisioning APIs. 
+The API creators use the API Store to consult ratings and feedback provided by API users. An API creator can add APIs 
+to the API Store, but cannot manage their life cycles.
+ 
+- <strong>API Publisher</strong>
+manages a set of APIs across the enterprise or business unit and controls the API lifecycle,  
+subscriptions, and monetization aspects. The API publisher is also interested in usage patterns for APIs and has access 
+to all API statistics.
+ 
+- <strong>API Consumer</strong>
+uses the API Store to discover APIs, read the documentation and forums, rate/comment on 
+the APIs, subscribe to APIs, obtain access tokens, and invoke the APIs.
+Example: TPP/ Client, App Developer, Fintech App Developer. 
+ 
+- <strong>End User</strong>
+ are the retail and corporate customers of banking services.
+ 
+- <strong>Observer</strong>
+are the regulators interested in performance and/or compliance aspects in an open banking environment. 
+ 
+- <strong>App Admin</strong>
+are the decision makers for the Third-Party/Client application.
+ 
+------------------------------------------------------------------------
+####Consent Management
+Consent management refers to the practice of prompting, collecting, and managing bank customer’s approval for collecting 
+or sharing the customer's personal information. The consent life cycle describes five phases for a consent:
+![Consent Management Lifecycle](../assets/img/key-concepts/consent-management-lifecycle.png) 
+
+- <strong>Consent Provisioning</strong>
+ 
+The TPP/ADR initiates by sending a consent request to the bank containing the bank information that it wants to access.
+ 
+- <strong>Consent Granting</strong>
+ 
+The bank customer is required to provide the consent (Yes/No) for the TPP/ADR to access the requested information. 
+ 
+- <strong>Consent Verification</strong>
+ 
+The bank verifies if the customer has approved the TPP/ADR to access the customer's bank information in order to proceed. 
+If the bank customer has denied the consent, the bank needs to have proper validations to detect it and stop the TPP/ADR 
+from invoking the banking APIs.
+ 
+- <strong>Consent Revocation</strong>
+ 
+Once a consent is granted, the bank customer has liberty to revoke the given-consent via bank UIs. It can either be done 
+by the customer themselves or by a bank representative upon customer’s request. 
+ 
+- <strong>Consent Expiration</strong>
+ 
+When the consent validity period expires, the bank has to set the consent status as expired. In order for the TPP/ADR 
+to access customer information again, the customer needs to regrant the consent.
+
+ 
+------------------------------------------------------------------------
 ###WSO2 Open Banking Accelerator
 WSO2 Open Banking Accelerator speeds up the open banking journey for a bank. It reduces the complexity configuring and  
 implementing the core open banking components such as TPP On boarding/ Client registration, Strong Customer 
