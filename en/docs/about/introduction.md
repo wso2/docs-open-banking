@@ -62,7 +62,7 @@ ensures that the security vulnerabilities are identified and mitigated as early 
 ![](../assets/img/about/introduction/secure-software-development-process.png)
 
 [WSO2 Secure Engineering Guidelines](https://wso2.com/technical-reports/wso2-secure-engineering-guidelines) provide the 
-overall security guidance during design, development and code review phases. A group of security leads review designs 
+overall security guidance during design, development, and code review phases. A group of security leads review designs 
 of new features and review the code to make sure that the engineers are adhering to the guidelines set forth. 
 Some security checks are further enforced when engineers commit the code to the WSO2 maintained code repositories. 
 
@@ -70,12 +70,12 @@ Furthermore, before a product release, there are mandatory security scans that l
 candidate in different perspectives. All the security findings are securely stored into a centralized system for future 
 reference. 
 
-This document further explains, each individual phase of this overall process, carried out in order to produce secure 
+The following topics further explain, each individual phase of this overall process, carried out in order to produce secure 
 software.
 
 ## Release Process
 
-A release candidate goes through three types of security checks, to make sure that the product is in a secure state.
+A release candidate goes through three types of security checks to make sure that the product is in a secure state.
 
 ### Static Code Analysis
 
