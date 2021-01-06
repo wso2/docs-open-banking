@@ -20,9 +20,9 @@ WSO2 Open Banking adheres to the following standards:
 
 **GDPR**
 
-GDPR is a law that is centred on user consent and gives importance to user privacy. The General Data 
-Protection Regulation (GDPR) is a legal framework formalized in the European Union (EU) in 2016 and comes into 
-effect from 28, May 2018. GDPR effectively replaces the previously used EU Data Protection Directive (DPD). 
+The General Data Protection Regulation (GDPR) is a legal framework formalized in the European Union (EU) in 2016 
+and comes into effect from 28, May 2018. This law is centred on user consent and gives importance to user privacy. 
+GDPR effectively replaces the previously used EU Data Protection Directive (DPD). 
 This is applicable to any individual living in the EU and considers the following two aspects:
 
   * Processing of personal data belonging to an individual living in the EU
