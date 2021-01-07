@@ -3,7 +3,7 @@ compromised to risks and vulnerabilities. WSO2 Open Banking implements security 
 level and this page describes the application and transport layer security concepts along with their functionality.
 
 ###Application-level security
-Application layer is the closest layer to the PSU, which also is the most vulnerable for attacks on integrity and 
+Application layer is the closest layer to the customer, which also is the most vulnerable for attacks on integrity and 
 non-repudiation of data. Application-level security helps to determine the user who can access an application/its data 
 and the tasks they can perform.
 
@@ -60,7 +60,7 @@ application using a single application access token.
 
 - <strong>User access tokens</strong>
 
-These tokens identify the end-user of an application, e.g., the end-user of a mobile application deployed on a different 
+These tokens identify the end-user of an application. For example, the end-user of a mobile application deployed on a different 
 device. 
 
 ####Grant Types
@@ -114,12 +114,12 @@ specification.
 ------------------------------------------------------------------------
 ###Transport-level Security
 Transport Layer Security (TLS) is a protocol used to secure communication over the internet. It authenticates only the 
-server while Mutual TLS (MTLS)  authenticates both the server and the TPP/ client. TLS ensures the integrity and privacy 
+server while Mutual TLS (MTLS)  authenticates both the server and the client. TLS ensures the integrity and privacy 
 between two communicating applications over the internet. MTLS ensures that traffic is secured and trusted in both 
 directions between a client and a server.
 
 ####Mutual-Transport-level Security
-In order to utilize TLS to authenticate the TPP/ client, the TLS connection between the TPP/ client and the authorisation 
+In order to utilize TLS to authenticate the client, the TLS connection between the client and the authorisation 
 server must be established or re-established with mutual X.509 certificate authentication. 
 
 MTLS is used to check if:
@@ -131,8 +131,8 @@ gateway.
 ####Certificates
 A certificate (also known as an SSL certificate or digital certificate) is an encryption tool issued by a trusted 
 certification authority (CA) that encrypts data transmitted between a client and a server. Certificates are used for 
-public-key encryption in Public Key Infrastructure (PKI). In WSO2 Open Banking a TPP must forward a certificate to the 
-ASPSP so that when the TPP sends an application access token request, the ASPSP can verify the authenticity of the 
+public-key encryption in Public Key Infrastructure (PKI). In WSO2 Open Banking a client must forward a certificate to the 
+bank so that when the client sends an application access token request, the bank can verify the authenticity of the 
 request using the shared certificate. A keystore is a repository that contains multiple certificates. 
 
 ------------------------------------------------------------------------
@@ -142,7 +142,7 @@ services in Europe. eIDAS regulation came into effect in 2016.
 
 Among electronic Identification (eID) solutions, PSD2 specification recommends Qualified Website Authentication 
 Certificate (QWAC) and Qualified Certificates for Electronic Seals (QSealC) to secure the transport layer and 
-application layer with the TPP.
+application layer with the client.
 
 
 

@@ -13,10 +13,6 @@ current requirements.
 
 There are regulations enforced by different regions to meet the open banking compliance:
 
-- Payment Service Directives by Europe Union
-- Consumer Data Right by Australia
-- Fintech Law by Mexico
-
 <strong>Payment Service Directives</strong>
 
 The Payment Services Directives provide legislation to the open banking frameworks in Europe. 
@@ -85,7 +81,7 @@ text [here](http://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32016R067
 ------------------------------------------------------------------------
 ###Open banking specifications
 Similar to regulations introduced in different regions, there are specifications to describe the implementation 
-guidelines for the open banking requirements such as TPP Onboarding/ Client Registration, Strong Customer Authentication/ 
+guidelines for the open banking requirements such as client registration, Strong Customer Authentication/ 
 Consumer Authentication, reporting, API analytics, consent management, and API security etc. Following are a list of 
 open banking specifications that have already emerged:
 
@@ -201,7 +197,7 @@ account and transaction data on their customers’ payment accounts through APIs
  
 ------------------------------------------------------------------------
 ###Client registration 
-Client Registration is the process of ensuring that a client is trusted before consuming the banking APIs. This is achieved
+Client registration is the process of ensuring that a client is trusted before consuming the banking APIs. This is achieved
 by registering the client with a bank. The clients go through an in-depth verification during this process to make sure 
 that the financial data and the applications are secured. This can be a manual or an automated process. Regional terms 
 may differ as follows:
@@ -280,7 +276,7 @@ to all API statistics.
 - <strong>API Consumer</strong>
 uses the API Store to discover APIs, read the documentation and forums, rate/comment on 
 the APIs, subscribe to APIs, obtain access tokens, and invoke the APIs.
-Example: TPP/ Client, App Developer, Fintech App Developer. 
+Example: client, App Developer, Fintech App Developer. 
  
 - <strong>End User</strong>
  are the retail and corporate customers of banking services.
@@ -289,7 +285,7 @@ Example: TPP/ Client, App Developer, Fintech App Developer.
 are the regulators interested in performance and/or compliance aspects in an open banking environment. 
  
 - <strong>App Admin</strong>
-are the decision makers for the Third-Party/Client application.
+are the decision makers for the client application.
  
 ------------------------------------------------------------------------
 ####Consent Management
@@ -299,17 +295,17 @@ or sharing the customer's personal information. The consent life cycle describes
 
 - <strong>Consent Provisioning</strong>
  
-The Client initiates by sending a consent request to the bank containing the bank information that it wants to access.
+The client application initiates by sending a consent request to the bank containing the bank information that it wants to access.
  
 - <strong>Consent Granting</strong>
  
-The bank customer is required to provide the consent (Yes/No) for the Client to access the requested information. 
+The customer is required to provide the consent (Yes/No) for the client application to access the requested information. 
  
 - <strong>Consent Verification</strong>
  
-The bank verifies if the customer has approved the Client to access the customer's bank information in order to 
+The bank verifies if the customer has approved the client to access the customer's bank information in order to 
 proceed. If the bank customer has denied the consent, the bank needs to have proper validations to detect it and stop 
-the Client from invoking the banking APIs.
+the client application from invoking the banking APIs.
  
 - <strong>Consent Revocation</strong>
  
@@ -318,13 +314,13 @@ done by the customer themselves or by a bank representative upon customer’s re
  
 - <strong>Consent Expiration</strong>
  
-When the consent validity period expires, the bank has to set the consent status as expired. In order for the Client
-to access customer information again, the customer needs to regrant the consent.
+When the consent validity period expires, the bank has to set the consent status as expired. In order for the client
+application to access customer information again, the customer needs to regrant the consent.
 
  
 ------------------------------------------------------------------------
 ###WSO2 Open Banking Accelerator
 WSO2 Open Banking Accelerator speeds up the open banking journey for a bank. It reduces the complexity of configuring and 
-implementing the core open banking components such as TPP Onboarding/Client registration, Strong Customer Authentication
+implementing the core open banking components such as client registration, Strong Customer Authentication
 /Consumer Authentication, and consent management.
 
