@@ -1,25 +1,31 @@
+Security refers to the means through which computer systems are protected from damage and disruption without being 
+compromised to risks and vulnerabilities. WSO2 Open Banking implements security at the application level and transport 
+level and this page describes the application and transport layer security concepts along with their functionality.
+
 ###Application-level security
 Application layer is the closest layer to the PSU, which also is the most vulnerable for attacks on integrity and 
-non-repudiation of data. 
+non-repudiation of data. Application-level security helps to determine the user who can access an application/its data 
+and the tasks they can perform.
 
 ####Encryption
 Encryption is the process of translating/encoding data/messages (plaintext) using an algorithm (cipher) into a secret 
 code (ciphertext) that can only be accessed by authorised entities with a secret key or a password.
 
-####Strong Customer Authentication/ Consumer Authentication
-
-<strong>Strong Customer Authentication (SCA)</strong> is the process of verifying the identity of a user when initiating 
-a payment or accessing banking information via a third-party application. SCA minimises fraudulent activities by 
-preventing identity theft. SCA requires to authenticate the user using 2 out of following 3 authentication factors:
+####Strong Customer Authentication (SCA)
+is the process of verifying the identity of a user when initiating a payment or accessing banking information via a 
+third-party application. SCA minimises fraudulent activities by preventing identity theft. According to Regulatory 
+Technical Standards (RTS) of European Banking Authority, SCA requires to authenticate the user using 2 out of following 
+3 authentication factors:
 
 ![Strong Customer Authentication Factors](../assets/img/key-concepts/strong-customer-authentication-factors.png)
 
-- Knowledge factor: This is something the user knows, e.g., password, PIN, and security question.
-- Ownership factor: This is something the user has, e.g., ATM card, identity card, mobile phone, and security token.
-- Inherence factor: This is something the user is/does, i.e., biometrics.  
+- Knowledge factor: This is something the user knows. For example, password, PIN, and security question.
+- Ownership factor: This is something the user has. For example, ATM card, identity card, mobile phone, and security token.
+- Inherence factor: This is something the user is/does. For example, biometrics.  
 
-<strong>Consumer Authentication</strong> is the term used in the Australia's Consumer Data Standards (CDS). According to 
-CDS, Consumer Authentication requirements are as follows:
+####Consumer Authentication
+is the term used in the Australia's Consumer Data Standards (CDS). According to CDS, Consumer Authentication 
+requirements are as follows:
 
 - Requires to follow the redirect approach.
 - Uses One Time Password (OTP) in Identifier -First authentication flow. 
@@ -33,17 +39,17 @@ Authorisation is the process, where an entity is granted permission to access an
 and system. In general, authorisation takes place subsequent to authentication. WSO2 Open Banking uses role-based access 
 control (RBAC) and scopes to implement authorisation:
 
-<strong>Role-based Access Control</strong>
+- <strong>Role-based Access Control</strong>
 is a type of access control that restricts access to authorised users based on their role.
 
-<strong>Scopes</strong>
-enable fine-grained access control to API resources based on user roles. When a user invoke
+- <strong>Scopes</strong>
+enable fine-grained access control to API resources based on user roles. When a user invokes
 the API, the user's OAuth2 bearer token cannot grant access to any API resource beyond its associated
 scopes. 
 
 ####Access Tokens
-An access token is a simple string that is passed as an HTTP header of a request. 
-Example: "Authorisation: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a". 
+An access token is a simple string that is passed as an HTTP header of a request. For example, 
+`Authorisation: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a`. 
 
 WSO2 Open Banking supports two types of access tokens for authentication:
 
@@ -55,18 +61,16 @@ application using a single application access token.
 - <strong>User access tokens</strong>
 
 These tokens identify the end-user of an application, e.g., the end-user of a mobile application deployed on a different 
-device.
+device. 
 
-If a token that is passed with a request is invalid, the request is discarded in the first stage of processing. Access 
-tokens work equally well for SOAP and REST calls. 
-
-------------------------------------------------------------------------
-###Grant Types
+####Grant Types
 Access tokens grant access to protected API resources. The level of access granted by each access token is determined 
 by the method (known as grant type) used to generate the access token. There are several grant types used in WSO2 Open 
 Banking:
 
-####Authorisation Code Grant
+- <strong>Authorisation Code Grant</strong>
+
+![Authorisation Code Grant Type](../assets/img/key-concepts/authorisation-code-grant-type.png)
 The client initiates the flow by directing the resource owner's user-agent to the authorisation endpoint (you can use 
 the /authorise endpoint for the authorisation code grant type of OAuth 2.0). It includes the client identifier, 
 response_type, requested scope, and a redirection URI to which the authorisation server sends the user-agent back after 
@@ -87,28 +91,44 @@ the client directs the resource owner to an authorisation server. The authorisat
 between the client and resource owner to issue an authorisation code, authenticate the resource owner and obtain 
 authorisation. As this is a redirection-based flow, the client must be capable of interacting with the resource owner's 
 user-agent (typically a Web browser) and receiving incoming requests (via redirection) from the authorisation server.
-
-![Strong Customer Authentication Factors](../assets/img/key-concepts/authorisation-code-grant-type.png)
 	
-####Client Credentials Grant
+- <strong>Client Credentials Grant</strong>
+
+![Client Credentials Grant Type](../assets/img/key-concepts/client-credentials-grant-type.png)
 Client credentials can be used when the authorisation scope is limited to the protected resources belonging to	the 
 client. Client credentials are used as an authorisation grant when the client requests access to protected resources 
 based on an authorisation previously arranged with the authorisation server. The client application requests an access 
 token from the authorisation server, authenticating the request with its client key and client secret. If the client is 
 successfully authenticated, an access token is returned. 
 
-![Strong Customer Authentication Factors](../assets/img/key-concepts/client-credentials-grant-type.png)
 
-####Refresh Token Grant
-After an access token is generated, sometimes you might have to renew the old token due to expiration or security 
-concerns. You can renew an access token using a refresh token, by issuing a REST call to the Token API with the 
-following parameters. With this grant type, the refresh token acts as credentials that are issued to the client by the 
-authorisation server. Issuing a refresh token is optional. If the authorisation server issues a refresh token, it is 
-included when issuing an access token. Refresh tokens are issued for all other grant types other than the implicit grant 
-as recommended by the OAuth 2.0 specification.  
+- <strong>Refresh Token Grant</strong>
+
+Refresh tokens are used to get a new user access token from the authentication server in order to access a specific 
+resource. The most common use case is generating a refresh token when the user access token is expired. With this grant 
+type, the refresh token acts as credentials that are issued to the client by the authorisation server. Issuing a refresh 
+token is optional. If the authorisation server issues a refresh token, it is included when issuing an access token. 
+Refresh tokens are issued for all other grant types other than the implicit grant as recommended by the OAuth 2.0 
+specification.  
 
 ------------------------------------------------------------------------
-###Certificates
+###Transport-level Security
+Transport Layer Security (TLS) is a protocol used to secure communication over the internet. It authenticates only the 
+server while Mutual TLS (MTLS)  authenticates both the server and the TPP/ client. TLS ensures the integrity and privacy 
+between two communicating applications over the internet. MTLS ensures that traffic is secured and trusted in both 
+directions between a client and a server.
+
+####Mutual-Transport-level Security
+In order to utilize TLS to authenticate the TPP/ client, the TLS connection between the TPP/ client and the authorisation 
+server must be established or re-established with mutual X.509 certificate authentication. 
+
+MTLS is used to check if:
+
+- The message context contains the transport certificate, which makes sure the MTLS handshake is successful at the 
+gateway.
+- The transport certificate bounds with both the application and user access tokens when invoking the APIs.
+
+####Certificates
 A certificate (also known as an SSL certificate or digital certificate) is an encryption tool issued by a trusted 
 certification authority (CA) that encrypts data transmitted between a client and a server. Certificates are used for 
 public-key encryption in Public Key Infrastructure (PKI). In WSO2 Open Banking a TPP must forward a certificate to the 
@@ -116,7 +136,7 @@ ASPSP so that when the TPP sends an application access token request, the ASPSP 
 request using the shared certificate. A keystore is a repository that contains multiple certificates. 
 
 ------------------------------------------------------------------------
-###Electronic Identification, Authentication & Trust Services (eIDAS)
+####Electronic Identification and Trust Services (eIDAS)
 eIDAS regulation provides unique identity schemas for individuals and businesses to access the publicly available online 
 services in Europe. eIDAS regulation came into effect in 2016.
 
@@ -124,14 +144,5 @@ Among electronic Identification (eID) solutions, PSD2 specification recommends Q
 Certificate (QWAC) and Qualified Certificates for Electronic Seals (QSealC) to secure the transport layer and 
 application layer with the TPP.
 
-------------------------------------------------------------------------
-###Transport-level Security
-Transport Layer Security (TLS) is a protocol used to secure communication over the internet. It authenticates only the 
-server while Mutual TLS (MTLS)  authenticates both the server and the TPP/ client. TLS ensures the integrity and privacy 
-between two communicating applications over the internet. MTLS ensures that traffic is secured and trusted in both directions between a client and a server.
 
-------------------------------------------------------------------------
-###Mutual-Transport-level Security
-In order to utilize TLS to authenticate the TPP/ client, the TLS connection between the TPP/ client and the authorisation server must be established or re-established with mutual X.509 certificate authentication. MTLS is used to check if:
-The message context contains the transport certificate to make sure that the MTLS handshake is successful at the gateway.
-The transport certificate bounds with the application when invoking the APIs.
+
