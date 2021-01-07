@@ -1,6 +1,6 @@
 ###Application-level security
-Application layer is the closest layer to the PSU, which also is the most vulnerable for attacks on integrity and non 
-repudiation of data. 
+Application layer is the closest layer to the PSU, which also is the most vulnerable for attacks on integrity and 
+non-repudiation of data. 
 
 ####Encryption
 Encryption is the process of translating/encoding data/messages (plaintext) using an algorithm (cipher) into a secret 
