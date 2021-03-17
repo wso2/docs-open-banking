@@ -7,7 +7,7 @@ Banking Accelerator addresses the open banking requirements in the solution:
 
 ## How WSO2 Open Banking Accelerator delivers open banking requirements
 
-1. **API consumer Onboarding** - API consumer onboarding is the process of verifying an API consumer when they register 
+1. **API Consumer Onboarding** - API consumer onboarding is the process of verifying an API consumer when they register 
 with a bank to provide services to customers. It is important since the API consumer has access to the customer's 
 financial information via their applications. The solution provides dynamic client registration for API consumers.
  
