@@ -47,10 +47,10 @@ theme:
 nav:
   - 'Home': index.md
   - 'About':
-    - 'Introduction': about/introduction.md
-    - 'Key Concepts':
-      - 'Open Banking Concepts': about/open-banking-concepts.md
-      - 'Security Concepts': about/security-concepts.md
+    - 'Open Banking': about/open-banking.md
+    - 'Open Banking Requirements':  about/open-banking-requirements.md
+    - 'Regulations and Standards': about/regulations-and-standards.md
+    - 'WSO2 Open Banking Accelerator': about/wso2-open-banking-accelerator.md
   - 'Accelerator':
     - 'Accelerator': page-not-found.md
   - 'Toolkit':
