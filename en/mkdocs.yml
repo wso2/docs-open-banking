@@ -58,7 +58,7 @@ nav:
   - 'Advanced':
     - 'Dynamic Client Registration': advanced/dynamic-client-registration.md
   - 'Develop' :
-    - 'Develop' : page-not-found.md
+    - 'Custom DCR Validator' : develop/custom-dcr-validator.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md

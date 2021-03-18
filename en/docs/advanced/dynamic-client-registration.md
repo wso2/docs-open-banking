@@ -1,7 +1,7 @@
 The Dynamic Client Registration (DCR) API provides a mechanism to dynamically register OAuth 2.0 clients with 
 authorization servers. With the use of the DCR API, the OAuth 2.0 client applications can register with banks in a 
 seamless and fully-automated process. The API consumer applications go through an in-depth verification during DCR to 
-make sure the application is authorised, and their application is secured before sharing customers’ financial data.
+make sure the application is authorized, and their application is secured before sharing customers’ financial data.
 
 The API consumer applications may send registration requests with a set of desired client metadata values. The bank 
 then provides real-time responses with a client identifier, and the client metadata values registered for the 
@@ -9,8 +9,8 @@ application. The application can then use the client ID in the registration info
 
 The bank needs to provide the DCR API from its open banking solution and WSO2  Open Banking Accelerator provides the 
 DCR capabilities with an endpoint that performs the following:
- - Validates if the API consumer application is authorised by a competent authority
- - Validates information such as the API consumer application’s role, signature algorithm, authorisation scopes, 
+ - Validates if the API consumer application is authorized by a competent authority
+ - Validates information such as the API consumer application’s role, signature algorithm, authorization scopes, 
  OAuth2.0 grant types, application type, and the request issuance time
  - Allows registered API consumer applications to access data via open banking APIs
 
@@ -36,4 +36,4 @@ application access tokens that are required to invoke the open banking APIs.
 
 
 You can customize the validations performed in the DCR process according to your specification and other requirements.
-For information, see [customise DCR validators](../develop/custom-dcr-validator.md).
+For information, see [writing a custom DCR validators](../develop/custom-dcr-validator.md).
