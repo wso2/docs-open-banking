@@ -1,7 +1,7 @@
 The Dynamic Client Registration (DCR) API provides a mechanism to dynamically register OAuth 2.0 clients with 
 authorization servers. With the use of the DCR API, the OAuth 2.0 client applications can register with banks in a 
 seamless and fully-automated process. The API consumer applications go through an in-depth verification during DCR to 
-make sure the application is authorized, and secured before sharing customers’ financial data.
+make sure the application is authorized and secured before sharing customers’ financial data.
 
 The API consumer applications may send registration requests with a set of desired client metadata values. The bank 
 then provides real-time responses with a client identifier and client metadata values registered for the 
