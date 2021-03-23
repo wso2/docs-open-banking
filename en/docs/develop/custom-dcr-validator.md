@@ -10,7 +10,6 @@ com.wso2.finance.openbanking.accelerator.identity.dcr.validation.DefaultRegistra
 ````
 This class performs the following validations, by default:
  - Validates the signature of SSA
- - Validates request signature
  - Validates whether the requested algorithms such as id token signing algorithm, request object signing algorithm, 
  token endpoint authentication signing algorithm are allowed by the banks
  - Validates whether the issuer of the jwt is the same as the software id of the SSA
@@ -36,19 +35,15 @@ methods of this class. Given below is a brief description of each method.
 ````
 
 ??? tip "Click here to see how to write validations:"
-    You have two options to write your validations:
     
-    - Option 1:
-    
-        If you are using Hibernate Validator, extend `DefaultRegistrationValidatorImpl` and `validatePost` method 
-        according to your requirements. For example, the `ExtendedRegistrationValidatiorImpl` class given below is 
-        extended from the `DefaultRegistrationValidatorImpl`.
-        
-    - Option 2:
-    
-        If you are using the getter methods, extend the `ExtendedRegistrationRequest` class and perform the validations 
-        inside the validatePost method. 
-        
+    - Extend the `DefaultRegistrationValidatorImpl` class to validate `RegistrationRequest` according to your 
+    specification requirements. Given below is the `ExtendedRegistrationValidatiorImpl` class that is extended from
+      `DefaultRegistrationValidatorImpl`.
+    - Then extend the `RegistrationRequest`. For exmple, the `ExtendedRegistrationRequest` class below is extended 
+    from `RegistrationRequest`.
+    - Use the `validatePost` method in `ExtendedRegistrationValidatiorImpl` class to validate 
+    `ExtendedRegistrationRequest`.
+          
     For example,
     ```` java
     public class ExtendedRegistrationValidatiorImpl extends DefaultRegistrationValidatorImpl {
@@ -63,7 +58,7 @@ methods of this class. Given below is a brief description of each method.
         This method catches any constraint violation and creates relevant error messages using Hibernate Validator */
         ValidationUtils.validateRequest(extendedRegistrationRequest);
     
-        /* Option 2: Using getter method
+        /* Option 2: Using the default validation approach
         
         Validate the registration request and use the method below to implement the   validation logic */
         ValidationUtils.validateIssuer(extendedRegistrationRequest.getIssuer());
@@ -144,7 +139,7 @@ methods of this class. Given below is a brief description of each method.
     ```` java
     public class CallbackUrisValidator implements ConstraintValidator < ValidateCallbackUris, Object > {
     
-      // Override initialize(T constatinAnnotation), if required
+      // Override the initialize(T constrainAnnotation) method if required
     
       // Override isValid() with the validation logic
     
@@ -211,19 +206,16 @@ methods of this class. Given below is a brief description of each method.
  }
 ````
 ??? tip "Click here to see how to write validations:"
-    You have two options to write your validations:
     
-    - Option 1:
-    
-    If you are using Hibernate Validator, extend the `DefaultRegistrationValidatorImpl` class and override the 
-    `validatePost` method. For example, the `ExtendedRegistrationValidatiorImpl` class given below is extended from the 
+    - Extend the `DefaultRegistrationValidatorImpl` class to validate `SoftwareStatementBody` according to your 
+    specification. For example, the `ExtendedRegistrationValidatiorImpl` class given below is extended from 
     `DefaultRegistrationValidatorImpl`.
-    
-    - Option 2:
-    
-    If you are using the getter methods, extend the `ExtendedSoftwareStatementBody` class and perform the validations 
-    inside the validatePost method. Use the `setSoftwareStatementPayload` method to set `SoftwareStatementBody` 
-    according to your requirement.
+    - To create a `SoftwareStatementBody` according to your specification, extend `SoftwareStatementBody`. For example, 
+    the `ExtendedSoftwareStatementBody` class given below is extended from `SoftwareStatementBody`. 
+    - Use the `validatePost` method in the `ExtendedRegistrationValidatiorImpl` class to validate 
+    `ExtendedSoftwareStatementBody`.
+    - Use the `setSoftwareStatementPayload` method to set `ExtendedSoftwareStatementBody`.
+
       
     For example,
     
@@ -246,7 +238,7 @@ methods of this class. Given below is a brief description of each method.
           throw new DCRValidationException(errors[1], errors[0]);
         }
     
-        /* Option 2: Using getter method
+        /* Option 2: Using the default validation approach
         
         Perform SSA claim validations and use the method below to implement the validation logic 
         */
@@ -354,11 +346,21 @@ methods of this class. Given below is a brief description of each method.
 
  This method creates responses for application registration, update, and retrieval requests. This gives you the 
  flexibility to customize the response to return different attributes based on your requirements. 
+ 
+```` java
+public String getRegistrationResponse(Map < String, Object > spMetaData) {
 
-??? tip "Click here to see how to write validations:"
-    - When writing custom validations, extend the `DefaultRegistrationValidatorImpl` class. For example, see the 
-    `ExtendedRegistrationValidatiorImpl` class.
-    
+  Gson gson = new Gson();
+  JsonElement jsonElement = gson.toJsonTree(spMetaData);
+  RegistrationResponse registrationResponse = gson.fromJson(jsonElement, RegistrationResponse.class);
+  return gson.toJson(registrationResponse);
+
+}
+````
+
+??? tip "Click here to see how to customize the response:"
+    - Create the response of the registration request by extending the `DefaultRegistrationValidatorImpl` class. 
+      For example, see the `ExtendedRegistrationValidatiorImpl` class given below .
     - Set `RegistrationResponse` using the `ExtendedRegistrationResponse` class and its `getRegistrationResponse` method 
     as shown below.
     
@@ -375,7 +377,9 @@ methods of this class. Given below is a brief description of each method.
       }
       
     }
+    
     ````
+    
     - To implement the ExtendedRegistrationResponse class, extend RegistrationResponse as follows:  
   
     ````
@@ -394,6 +398,7 @@ methods of this class. Given below is a brief description of each method.
     
     }
     ````
+    
 ## Configuring a custom DCR validator
 
 1. Open the `<IAM_HOME>/repository/conf/deployment.toml` file.
@@ -416,28 +421,96 @@ authentication assertion signature, request object signature, and id token signa
 algorithm = "PS256"
 ```
 
-!!! note "Configure the following mandatory parameters for DCR" 
-    - Open the `<IAM_HOME>/repository/conf/deployment.toml` file.
-    - Verify the following parameters configured and their `required` tag is set to `true`.
-        - Issuer
-        - Audience
-        - TokenEndPointAuthentication
-        - IdTokenSignedResponseAlg
-        - SoftwareStatement
-        - GrantTypes
-        
-          For example, 
-          ````xml
-          [open_banking.dcr.registration.grant_types] 
-          required = true 
-          allowed_values = ["authorization_code", "refresh_token", “client_credentials”]
-          ````
+!!! note "Configuring DCR request parameters" 
+    - According to your specification different types of values are allowed in the registration request. WSO2 Open 
+    Banking Accelerator provides the capability to configure the parameters and the values they allow.
+        - Open the `<IAM_HOME>/repository/conf/deployment.toml` file.
+        - By default, the following values are configured as mandatory parameters. To configure 
+        the allowed values for them, open the `<IAM_HOME>/repository/conf/deployment.toml` file and add the following 
+        tags.
+            
+              ````xml
+              [open_banking.dcr.registration.issuer] 
+              allowed_values = ["value1, value2, value3”]
+               
+              [open_banking.dcr.registration.audience] 
+              allowed_values = ["value1, value2, value3”]
+              
+              [open_banking.dcr.registration.token_endpoint_authentication] 
+              allowed_values = ["value1, value2, value3”]
+              
+              [open_banking.dcr.registration.id_token_signed_response_alg] 
+              allowed_values = ["value1, value2, value3”]
+              
+              [open_banking.dcr.registration.software_statement] 
+              allowed_values = ["value1, value2, value3”]
+              
+              [open_banking.dcr.registration.grant_types] 
+              allowed_values = ["value1, value2, value3”]
+              ````
       
-    - Rest of the DCR configurations are optional and by default, their `required` tag is set to `false`. For example,
-    ````xml
-    [open_banking.dcr.registration.application_type]
-    allowed_values = ["web"]
-    ````
-    
-    - Set the value of the required tag, according to your specification requirements
- 
+           - If you want to make any of the above parameters optional, add the `required` tag and set it `false`. For 
+           example:
+              ````xml
+              [open_banking.dcr.registration.issuer]
+              required = true
+              allowed_values = ["accounts", "payments"]
+              ````
+              
+    - By default, the following values are configured as optional parameters. To configure 
+    the allowed values for them:
+        - Open the `<IAM_HOME>/repository/conf/deployment.toml` file, add the relevant tags and configure the values 
+        allowed.
+         
+            ````xml
+            [open_banking.dcr.registration.scope]
+            allowed_values = ["accounts", "payments"]
+            
+            [open_banking.dcr.registration.application_type] 
+            allowed_values = ["web"]
+            
+            [open_banking.dcr.registration.response_types]  
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.callback_uris]  
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.token_endpoint_auth_signing_alg] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.software_id] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.id_token_encryption_response_alg] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.id_token_encryption_response_enc] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.request_object_signing_algorithm] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.tls_client_auth_subject_dn] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.backchannel_token_delivery_mode] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.backchannel_authentication_request_signing_alg g] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.backchannel_client_notification_endpoint] 
+            allowed_values = ["value1, value2, value3”]
+            
+            [open_banking.dcr.registration.backchannel_user_code_parameter_supported] 
+            allowed_values = ["value1, value2, value3”]
+     
+            ```` 
+        
+           - If you want to make any of the above parameters mandatory, add the `required` tag and set it `true`. 
+           For example:
+        ````xml
+        [open_banking.dcr.registration.scope]
+        required = true
+        allowed_values = ["accounts", "payments"]
+        ````
