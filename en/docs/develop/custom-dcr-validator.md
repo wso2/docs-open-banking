@@ -9,9 +9,10 @@ To implement custom validations, extend the following class.
 com.wso2.finance.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl 
 ````
 This class performs the following validations, by default:
+
  - Validates the signature of SSA
- - Validates whether the requested algorithms such as id token signing algorithm, request object signing algorithm, 
- token endpoint authentication signing algorithm are allowed by the banks
+ - Validates whether the requested algorithms such as the signing algorithms of id token, request object, and 
+ token endpoint authentication are allowed by the banks.
  - Validates whether the issuer of the jwt is the same as the software id of the SSA
 
 !!! note
@@ -39,7 +40,7 @@ methods of this class. Given below is a brief description of each method.
     - Extend the `DefaultRegistrationValidatorImpl` class to validate `RegistrationRequest` according to your 
     specification requirements. Given below is the `ExtendedRegistrationValidatiorImpl` class that is extended from
       `DefaultRegistrationValidatorImpl`.
-    - Then extend the `RegistrationRequest`. For exmple, the `ExtendedRegistrationRequest` class below is extended 
+    - Then extend the `RegistrationRequest` class. For example, the `ExtendedRegistrationRequest` class below is extended 
     from `RegistrationRequest`.
     - Use the `validatePost` method in `ExtendedRegistrationValidatiorImpl` class to validate 
     `ExtendedRegistrationRequest`.
@@ -344,7 +345,7 @@ methods of this class. Given below is a brief description of each method.
 
 ### getRegistrationResponse method
 
- This method creates responses for application registration, update, and retrieval requests. This gives you the 
+ This method creates responses for registering, updating, and retrieving application requests. This gives you the 
  flexibility to customize the response to return different attributes based on your requirements. 
  
 ```` java
@@ -359,8 +360,8 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
 ````
 
 ??? tip "Click here to see how to customize the response:"
-    - Create the response of the registration request by extending the `DefaultRegistrationValidatorImpl` class. 
-      For example, see the `ExtendedRegistrationValidatiorImpl` class given below .
+    - Create the response for the registration request by extending the `DefaultRegistrationValidatorImpl` class. 
+      For example, see the `ExtendedRegistrationValidatiorImpl` class given below.
     - Set `RegistrationResponse` using the `ExtendedRegistrationResponse` class and its `getRegistrationResponse` method 
     as shown below.
     
