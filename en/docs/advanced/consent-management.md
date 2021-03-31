@@ -50,4 +50,4 @@ WSO2 Open Banking Accelerator uses the following API endpoints to manage consent
 - **Consent Authorize - `/authorize` endpoint**  
   This endpoint can retrieve and persist consents. You can add your own steps to retrieve or persist.
 
-For more information on this, refer to [Consent Management Extensions](../develop/consent-management-extensions.md).
+For more information on this, refer to [Consent Management Extensions](../develop/consent-management-manage.md).

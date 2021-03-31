@@ -61,6 +61,10 @@ nav:
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
   - 'Develop' :
+    - 'Consent Management':
+        - 'Consent Manage': develop/consent-management-manage.md
+        - 'Consent Validate': develop/consent-management-validate.md
+        - 'Consent Authorize': develop/consent-management-authorize.md
     - 'Custom DCR Validator' : develop/custom-dcr-validator.md
   - 'References':
     - 'References': page-not-found.md
