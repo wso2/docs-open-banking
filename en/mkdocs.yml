@@ -47,14 +47,18 @@ theme:
 nav:
   - 'Home': index.md
   - 'About':
-    - 'Introduction': about/introduction.md
-    - 'Key Concepts':
-      - 'Open Banking Concepts': about/open-banking-concepts.md
-      - 'Security Concepts': about/security-concepts.md
-  - 'Accelerator':
-    - 'Accelerator': page-not-found.md
-  - 'Toolkit':
-    - 'Toolkit': page-not-found.md
+    - 'Open Banking': about/open-banking.md
+    - 'Open Banking Requirements':  about/open-banking-requirements.md
+    - 'Regulations and Standards': about/regulations-and-standards.md
+    - 'WSO2 Open Banking Accelerator': about/wso2-open-banking-accelerator.md
+  - 'Get started':
+    - 'Get started': page-not-found.md
+  - 'Install and setup':
+    - 'Install and setup': page-not-found.md
+  - 'Advanced':
+    - 'Dynamic Client Registration': advanced/dynamic-client-registration.md
+  - 'Develop' :
+    - 'Custom DCR Validator' : develop/custom-dcr-validator.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md
@@ -107,6 +111,8 @@ extra:
   nav_list:
     - Home
     - About
-    - Accelerator
-    - Toolkit
+    - Get started
+    - Install and setup
+    - Advanced
+    - Develop
     - References

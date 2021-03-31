@@ -4,7 +4,7 @@ End-user apps in WSO2 Open Banking
 
 |  Branch | Build Status |
 | :------------ |:------------- 
-| master      | [![Build Status](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-ob/badge/icon)](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-is/) |
+| master      | [![Build Status](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-ob/badge/icon)](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-open-banking/) |
 
 ## Prerequisites
 
@@ -53,13 +53,13 @@ $ python get-pip.py
 **Clone the repo**
 
 ```bash
-$ git clone https://github.com/wso2/docs-is.git
+$ git clone https://github.com/wso2/docs-open-banking.git
 ```
 
 **Install the dependencies**
 
 ```bash
-$ cd docs-is && pip install -r requirements.txt
+$ cd docs-open-banking && pip install -r requirements.txt
 ```
 
 **Run mkdocs**
