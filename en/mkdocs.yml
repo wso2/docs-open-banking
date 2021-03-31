@@ -56,7 +56,9 @@ nav:
   - 'Install and setup':
     - 'Install and setup': page-not-found.md
   - 'Advanced':
-    - 'Dynamic Client Registration': advanced/dynamic-client-registration.md
+    - 'Dynamic Client Registration':
+      - 'Introduction': advanced/dynamic-client-registration.md
+      - 'Configuration': advanced/dynamic-client-registration-configuration.md
   - 'Develop' :
     - 'Custom DCR Validator' : develop/custom-dcr-validator.md
   - 'References':
