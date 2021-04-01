@@ -66,6 +66,7 @@ nav:
         - 'Consent Validate': develop/consent-management-validate.md
         - 'Consent Authorize': develop/consent-management-authorize.md
     - 'Custom DCR Validator' : develop/custom-dcr-validator.md
+    - 'Application Management Listener' : develop/application-management-listener.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md
