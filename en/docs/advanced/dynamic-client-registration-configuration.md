@@ -10,7 +10,7 @@ name = "cdr-register"
 ```
 
 3. If you have modified the Application Listener interface, for example, adding OAuth 2.0 properties or for data 
-publishing requirements, the Application Listener invokes methods that are overridden from a class Add the following 
+publishing requirements, the Application Listener invokes methods that are overridden from a class. Add the following 
 tag with the name of the class that is extended to so.
 ``` xml
 [open_banking.dcr]

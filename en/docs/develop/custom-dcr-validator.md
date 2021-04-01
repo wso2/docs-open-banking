@@ -403,4 +403,4 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
 ## Configuring a custom DCR validator
 
 Once you implement the customized validator you need to configure it in WSO2 Open Banking Accelerator. 
-For steps to configure, refer to [Configuring Dynamic Client Registration](../advanced/dynamic-client-registration-configure.md).  
+For steps to configure, refer to [Configuring Dynamic Client Registration](../advanced/dynamic-client-registration-configuration.md).  
