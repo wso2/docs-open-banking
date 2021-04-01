@@ -60,6 +60,7 @@ nav:
     - 'Dynamic Client Registration':
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
+      - 'Tryout': advanced/dcr-try-out.md
   - 'Develop' :
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
