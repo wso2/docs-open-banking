@@ -169,14 +169,16 @@ Use this method to implement any logic that needs to be executed before applicat
 Use this method to implement any logic that needs to be executed after retrieving application details.
 
 ### doPreUpdateApplication method
-This method is executed before updating a created application. When this is executed the following methods are invoked 
-by default. If required, the default order can be changed.
+This method is executed before updating a created application.
 
-- setAuthenticators method
-- setConditionalAuthScript
-- setServiceProviderProperties method 
-- setOauthAppProperties method
-- publishData method
+By default, when this is executed it invokes the following methods in the given order. If required, the default order 
+can be changed.
+
+1. setAuthenticators method
+2. setConditionalAuthScript
+3. setServiceProviderProperties method 
+4. setOauthAppProperties method
+5. publishData method
 
 Any logic that needs to be executed before or after the default logic of the `doPreUpdateApplication` method can be 
 implemented after invoking its `super()` method.
