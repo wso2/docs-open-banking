@@ -52,7 +52,10 @@ nav:
     - 'Regulations and Standards': about/regulations-and-standards.md
     - 'WSO2 Open Banking Accelerator': about/wso2-open-banking-accelerator.md
   - 'Get started':
-    - 'Get started': page-not-found.md
+    - 'Get started': get-started/quick-start-guide.md
+    - 'Set Up Accelerators': get-started/set-up-accelerators.md
+    - 'Configure Roles and Users': get-started/configure-roles-and-users.md
+    - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
   - 'Install and setup':
     - 'Install and setup': page-not-found.md
   - 'Advanced':
