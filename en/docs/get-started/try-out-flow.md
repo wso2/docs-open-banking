@@ -1,57 +1,62 @@
 This document provides step by step instructions to invoke the Accounts Information Service API.
 
-!!! tip "Before you begin"
-    1. Sign in to the API Publisher Portal at `https:/localhost:9443/publisher` with `creator/publisher` 
-    privileges. 
+!!! note 
+    You need to deploy and subscribe an API before invoking it. For the testing purposes, you can use the sample AccountandTransaction 
+    API we have included in the pack.
+    
+    ??? tip "Click here to see how to deploy and subscribe to the sample API..."
+        1. Sign in to the API Publisher Portal at `https:/localhost:9443/publisher` with `creator/publisher` 
+        privileges. 
 
-    2. In the Homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
+        2. In the Homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
 
-    3. Select **OpenAPI File/Archive**. 
+        3. Select **OpenAPI File/Archive**. 
 
-    4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR
-    _HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.  
+        4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR
+        _HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.  
 
-    5. Click **Next**.
+        5. Click **Next**.
 
-    6. Leave the Endpoint field empty as it is and click **Create**. 
+        6. Leave the Endpoint field empty as it is and click **Create**. 
 
-    8. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
-    requests**.
+        8. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
+        requests**.
 
-    9. Click **Save**.
+        9. Click **Save**.
     
-    10.Go to **Runtime** using the left menu pane. 
+        10.Go to **Runtime** using the left menu pane. 
     
-    ![select_runtime](../assets/img/get-started/select-runtime.png)
+        ![select_runtime](../assets/img/get-started/select-runtime.png)
     
-    11.Click the edit button under **Request** -> **Message Mediation**.
+        11.Click the edit button under **Request** -> **Message Mediation**.
     
-    12.Now, select the **Custom Policy** option. ![upload_insequence](../assets/img/get-started/upload-message-mediation.png)
+        12.Now, select the **Custom Policy** option. 
     
-    13.Upload accounts-dynamic-endpoint-insequence.xml in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/
-    apis/Accounts` and click **SELECT**.
+        13.Upload the 
+        `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
+        file and click **SELECT**.
     
-    14.Scroll down and click **SAVE**. Go to **Endpoints** using the left menu pane.
+        14.Scroll down and click **SAVE**. 
+        
+        15.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/set-endpoint.png)
     
-    15.Locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/set-endpoint.png)
-    
-    16.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.
+        16.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.
 
-    17.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
+        17.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
     
-    18.Provide a description for the new revision.
+        18.Provide a description for the new revision.
     
-    19.Select `localhost` from the dropdown list. 
+        19.Select `localhost` from the dropdown list. 
     
-    20.Click **Deploy**.
+        20.Click **Deploy**.
     
-    21.Go to **Overview** using the left menu pane and click **Publish**. 
+        21.Go to **Overview** using the left menu pane and click **Publish**. 
     
-    22.Now that you have deployed the API, go to [https://localhost:9443/devportal](https://localhost:9443/devportal).
+        22.Now that you have deployed the API, go to [https://localhost:9443/devportal](https://localhost:9443/devportal).
     
-    23.Select the **AccountandTransaction V3.1** API and locate **Subcriptions**. Then, click **Subcribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
+        23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
     
-    24.Select the application from the dropdown list and click **Subscribe**.
+        24.Select the application from the dropdown list and click **Subscribe**.
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command: 
@@ -250,7 +255,7 @@ access. A sample response looks as follows:
 }
 ```
 
-2. The API consumer is now to retrieve the account information for a given `AccountId`. A sample request looks as follows:
+2. The API consumer is now able to retrieve the account information for a given `AccountId`. A sample request looks as follows:
 ```
 curl -X GET \
 https://localhost:8243/open-banking/v3.1/aisp/accounts/<ACCOUNT_ID> \
@@ -261,7 +266,7 @@ https://localhost:8243/open-banking/v3.1/aisp/accounts/<ACCOUNT_ID> \
 -H 'Content-Type: application/json; charset=UTF-8' \
 --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH>
 ```
-- The request retreives the account information for the Account ID you mentioned in the request. A sample response looks 
+- The request retrieves the account information for the Account ID you mentioned in the request. A sample response looks 
 as follows:
 ```
 {
