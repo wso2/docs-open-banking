@@ -160,13 +160,33 @@ public void setConditionalAuthScript(boolean isRegulatoryApp, LocalAndOutboundAu
 ```
 
 ### publishData method
-This method lets you publish data during application creation.
+This method lets you publish data during application creation. Given below is the method signature:
+ 
+  ``` java
+  public void publishData(Map < String, Object > spMetaData, OAuthConsumerAppDTO oAuthConsumerAppDTO) throws OpenBankingException {
+  
+  }
+  ```
 
 ### doPreCreateApplication method
 Use this method to implement any logic that needs to be executed before application creation.
+Given below is the method signature:
+ 
+  ``` java
+  public void doPreCreateApplication(boolean isRegulatoryApp, ServiceProvider serviceProvider, LocalAndOutboundAuthenticationConfig localAndOutboundAuthenticationConfig, String tenantDomain, String userName) throws OpenBankingException {
+ 
+  }
+  ```
 
 ### doPostGetApplication method
 Use this method to implement any logic that needs to be executed after retrieving application details.
+Given below is the method signature:
+ 
+  ``` java
+  public void doPostGetApplication(ServiceProvider serviceProvider, String applicationName, String tenantDomain) throws OpenBankingException {
+  
+  }
+  ```
 
 ### doPreUpdateApplication method
 This method is executed before updating a created application.
@@ -174,21 +194,40 @@ This method is executed before updating a created application.
 By default, when this is executed it invokes the following methods in the given order. If required, the default order 
 can be changed.
 
-1. setAuthenticators method
-2. setConditionalAuthScript
-3. setServiceProviderProperties method 
-4. setOauthAppProperties method
-5. publishData method
+1. `setAuthenticators` method
+2. `setConditionalAuthScript` method
+3. `setServiceProviderProperties` method 
+4. `setOauthAppProperties` method
+5. `publishData` method
 
 Any logic that needs to be executed before or after the default logic of the `doPreUpdateApplication` method can be 
-implemented after invoking its `super()` method.
+implemented after invoking its `super()` method. Given below is the method signature:
+ 
+  ``` java
+  public void doPreUpdateApplication(boolean isRegulatoryApp, OAuthConsumerAppDTO oauthApplication, ServiceProvider serviceProvider, LocalAndOutboundAuthenticationConfig localAndOutboundAuthenticationConfig, String tenantDomain, String userName) throws OpenBankingException {
+  
+  }
+  ```
 
 ### doPreDeleteApplication method
 Use this method to implement any logic that needs to be executed before application deletion.
+Given below is the method signature:
+ 
+  ``` java
+  public void doPreDeleteApplication(String applicationName, String tenantDomain, String userName) throws OpenBankingException {
+  
+  }
+  ```
 
 ### doPostDeleteApplication method
 Use this method to implement any logic that needs to be executed after application deletion. For example, 
-publishing data.
+publishing data. Given below is the method signature:
+ 
+  ``` java
+  public void doPostDeleteApplication(ServiceProvider serviceProvider, String tenantDomain, String userName) throws OpenBankingException {
+  
+  }
+  ```
 
 ## Configuring a custom Application Management Listener 
 
