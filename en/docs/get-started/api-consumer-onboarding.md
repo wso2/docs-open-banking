@@ -1,6 +1,6 @@
-## Step 1: Deploy the Dynamic Client Registration(DCR) API
+### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
-1. Sign in to the API Publisher Portal at `https:/{APIM_HOST}:9443/publisher` with `creator/publisher` 
+1. Sign in to the API Publisher Portal at [https:/localhost:9443/publisher](https:/{APIM_HOST}:9443/publisher) with `creator/publisher` 
 privileges. 
 
 2. In the Homepage, click **Import Open API**. ![import_API](../assets/img/advanced/dcr/dcr-try-out/step-2.png)
@@ -15,7 +15,7 @@ _HOME>/repository/resources/apis/DynamicClientRegistration`.
 6. Set the value for **Endpoint** as follows:
 
 ```
-https://{IS_HOST}:9446/api/openbanking/dynamic-client-registration
+https://localhost:9446/api/openbanking/dynamic-client-registration
 ``` 
 ![set_endpoint](../assets/img/advanced/dcr/dcr-try-out/step-4.png)
 
@@ -46,7 +46,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 
 - See [Configurations](dynamic-client-registration-configuration.md) to configure WSO2 Open Banking Accelerator for DCR.
 
-## Step 2: Configure IS as Key Manager
+### Step 2: Configure IS as Key Manager
 
  1. Sign in to the Admin Portal of API Manager at `https://{APIM_HOST}:9443/admin`.
  2. Go to **Key Manager** on the left main menu. ![add_Key_Manager] (../assets/img/advanced/dcr/dcr-try-out/step-9.png)
@@ -101,14 +101,15 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 
 6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/advanced/dcr/dcr-try-out/step-11.png)
 
-###Register an application
+### Step 3: Register an application
 The API allows the API consumer to request the bank to register a new application. The process is as follows:
 
 - The API consumer sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
 This SSA contains API consumer's metadata. A sample request looks as follows:
 
 ```
-curl -X POST\https://{APIM_HOST}:8243/open-banking/0.1/register \
+curl -X POST\
+https://localhost:8243/open-banking/0.1/register \
  -H 'Content-Type: application/jwt' \
  -H 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
  -d 'eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6IkR3TUtkV01tajdQV2ludm9xZlF5WFZ6eVo2USJ9.eyJpc3MiOiI3NDBDMzY4Ri1FQ0Y5LT

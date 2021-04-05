@@ -17,20 +17,20 @@ Follow the instructions to find how you can quickly set up and try out a basic f
         3. WSO2 Streaming Integrator (SI) 4.0.0
     3. Download WSO2 Open Banking Accelerator 3.0.0 and Identity Server as a Key Manager (IS KM) Connector.
         -  WSO2 Open Banking Accelerator contains the following accelerators.
-           Wso2-ob-is-accelerator-3.0.0
-           Wso2-ob-apim-accelerator-3.0.0
-           wso2-ob-bi-accelerator-3.0.0
+            - wso2-ob-is-accelerator-3.0.0
+            - wso2-ob-apim-accelerator-3.0.0
+            - wso2-ob-bi-accelerator-3.0.0
     4. Setup a database server using MySQL 8.0.23,  Microsoft SQL Server 2017, Oracle 19c, and PostgreSQL 13.0.
 
-- This document using the following placeholders to refer to the following products:
+- This document uses the following placeholders to refer to the following products:
         
 | Product | Placeholder |
 |---------|---------    |
-|wso2-ob-is-accelerator-3.0.0|{IS_HOME}|
-|wso2-ob-apim-accelerator-3.0.0|{APIM_HOME}|
-|IS Extensions|{ISKM_HOME}|
-|Open Banking Identity Server Accelerator|{OB_IS_ACCELERATOR_HOME}|
-|Open Banking API Manager Accelerator |{OB_APIM_ACCELERATOR_HOME}|
+|WS02 Identity Server|{IS_HOME}|
+|WSO2 API Manager|{APIM_HOME}|
+|WSO2 IS Extensions|{ISKM_HOME}|
+|WSO2 Open Banking Identity Server Accelerator|{OB_IS_ACCELERATOR_HOME}|
+|WSO2 Open Banking API Manager Accelerator |{OB_APIM_ACCELERATOR_HOME}|
 
 
 

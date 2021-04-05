@@ -29,6 +29,6 @@
     |Pimary|ann@gold.com|Internal/CustomerCareOfficer|
     |Pimary|tom@gold.com|Internal/approverRole|
     
- 8. Click *Finish*.
+ 8. Click **Finish**.
  
  

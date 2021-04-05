@@ -300,7 +300,7 @@ When invoking this API, use the transport certificates available [here](../../as
 
 See the following sample request:
 ```
-CURL GET \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
+curl GET \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
@@ -363,7 +363,7 @@ use the transport certificates available [here](../../assets/attachments/Transpo
 
 See the following sample request:
 ```
-CURL PUT \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
+curl PUT \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
     -H 'Content-Type: application/jwt' \
     -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN> \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
@@ -426,7 +426,7 @@ certificates available [here](../../assets/attachments/Transport_Certs.zip).
 
 See the following sample request:
 ```
-CURL DELETE \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
+curl DELETE \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
     -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN> \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
 ```
