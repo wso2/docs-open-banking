@@ -8,48 +8,44 @@ privileges.
 3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/advanced/dcr/dcr-try-out/step-3.png)
 
 4. Click **Browse File to Upload** and select the swagger definition (.yaml file) from `<APIM_HOME>/<OB_APIM_ACCELERATOR
-_HOME>/repository/resources/apis/DynamicClientRegistration`.  
+   _HOME>/repository/resources/apis/DynamicClientRegistration`.
 
 5. Click **Next**.
 
 6. Set the value for **Endpoint** as follows:
-
 ```
 https://localhost:9446/api/openbanking/dynamic-client-registration
-``` 
-![set_endpoint](../assets/img/advanced/dcr/dcr-try-out/step-4.png)
+```
+    ![set_endpoint](../assets/img/advanced/dcr/dcr-try-out/step-4.png)
 
-7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
-requests**. ![set_business_plan](../assets/img/advanced/dcr/dcr-try-out/step-5.png)
+7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited requests**.
 
-- Click **Save**.
+8. Click **Save**.
 
-- Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/advanced/dcr/dcr-try-out/step-6.png)
+9. Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/advanced/dcr/dcr-try-out/step-6.png)
 
-- Provide a description for the new revision.
+10.Provide a description for the new revision.
 
-- Select `localhost` from the dropdown list. ![select_localhost](../assets/img/advanced/dcr/dcr-try-out/step-7.png)
+11.Select `localhost` from the dropdown list. ![select_localhost](../assets/img/advanced/dcr/dcr-try-out/step-7.png)
 
-- Click **Deploy**.
+12.Click **Deploy**.
 
-- Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/advanced/dcr/dcr-try-out/step-8.png)
+13.Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/advanced/dcr/dcr-try-out/step-8.png)
 
-The deployed DCR API is now available in the Developer Portal at `https://{APIM_HOST}:9443/devportal`.
+14.The deployed DCR API is now available in the Developer Portal at `https://{APIM_HOST}:9443/devportal`.
 
-- Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
+15.Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
 `<IS_HOME>/repository/resources/security/client-truststore.jks` using the following command:
-
 ```
 keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location>
 ```
 
-- See [Configurations](dynamic-client-registration-configuration.md) to configure WSO2 Open Banking Accelerator for DCR.
-
+16.See [Configurations](dynamic-client-registration-configuration.md) to configure WSO2 Open Banking Accelerator for DCR.
 ### Step 2: Configure IS as Key Manager
 
  1. Sign in to the Admin Portal of API Manager at `https://{APIM_HOST}:9443/admin`.
- 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager] (../assets/img/advanced/dcr/dcr-try-out/step-9.png)
+ 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager](../assets/img/advanced/dcr/dcr-try-out/step-9.png)
  3. Click **Add New Key Manager** and configure Key Manager. 
     
     ??? tip "Click here to see the full list of configurations..."

@@ -2,7 +2,7 @@ WSO2 Open Banking Accelerator is a technology stack catered to speed up the impl
 You can use the WSO2 Open Banking Accelerator on top of the WSO2 Identity Server and API Manager to obtain an environment 
 for Identity Access Management and API management in open banking. 
 
-Follow the instructions to find how you can quickly set up and try out a basic flow...
+Follow the instructions to find how you can quickly set up and try out a basic flow.
 
 !!! tip "Prerequisites"
     1. Download Oracle JDK 1.8 to the local environment.
@@ -20,21 +20,21 @@ Follow the instructions to find how you can quickly set up and try out a basic f
             - wso2-ob-is-accelerator-3.0.0
             - wso2-ob-apim-accelerator-3.0.0
             - wso2-ob-bi-accelerator-3.0.0
-    4. Setup a database server using MySQL 8.0.23,  Microsoft SQL Server 2017, Oracle 19c, and PostgreSQL 13.0.
+    4. Setup a database server using any of the following:
+         - Mysql 5.7 or above
+         - Microsoft SQL Server 2017
+         - Oracle 19c
+         - PostgreSQL 13.0
+         
+        !!!note
+            We do not recommend configuring H2 database in the production environment.
 
 - This document uses the following placeholders to refer to the following products:
         
 | Product | Placeholder |
 |---------|---------    |
-|WS02 Identity Server|{IS_HOME}|
-|WSO2 API Manager|{APIM_HOME}|
-|WSO2 IS Extensions|{ISKM_HOME}|
-|WSO2 Open Banking Identity Server Accelerator|{OB_IS_ACCELERATOR_HOME}|
-|WSO2 Open Banking API Manager Accelerator |{OB_APIM_ACCELERATOR_HOME}|
-
-
-
-
-    
-
-
+|WS02 Identity Server|`<IS_HOME>`|
+|WSO2 API Manager|`<APIM_HOME>`|
+|WSO2 IS Extensions|`<ISKM_HOME>`|
+|WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
+|WSO2 Open Banking API Manager Accelerator |`<OB_APIM_ACCELERATOR_HOME>`|
