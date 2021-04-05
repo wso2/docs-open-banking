@@ -1,4 +1,4 @@
- Now you have started the servers, let’s create the users and define their permissions and  roles...
+ Now you have started the servers, let’s create the users and define their permissions and  roles.
  
  1. Sign in to the Management Console of WSO2 Identity Server at [https://localhost:9446/carbon](https://localhost:9446/carbon)
  2. Use the default super admin credentials as follows:
@@ -19,7 +19,6 @@
     |Internal|CustomerCareOfficerRole|No permissions required.|
  
  6. Click **Finish**. 
- 
  
     ![add_new_role](../assets/img/get-started/add-new-role.png)
  
