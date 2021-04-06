@@ -51,18 +51,18 @@ methods of this class. Given below is a brief description of each method.
     
       @Override
       public void validatePost(RegistrationRequest registrationRequest) throws DCRValidationException {
-    
-        ExtendedRegistrationRequest extendedRegistrationRequest = new ExtendedRegistrationRequest(registrationRequest);
-    
+       
         /* Option 1: Using Hibernate Validator
         
         This method catches any constraint violation and creates relevant error messages using Hibernate Validator */
+        
+        ExtendedRegistrationRequest extendedRegistrationRequest = new ExtendedRegistrationRequest(registrationRequest); 
         ValidationUtils.validateRequest(extendedRegistrationRequest);
     
         /* Option 2: Using the default validation approach
         
         Validate the registration request and use the method below to implement the   validation logic */
-        ValidationUtils.validateIssuer(extendedRegistrationRequest.getIssuer());
+        ValidationUtils.validateIssuer(registrationRequest.getIssuer());
     
       }
    
@@ -71,45 +71,44 @@ methods of this class. Given below is a brief description of each method.
     }
     ````
     
-    - To implement the `extendedRegistrationRequest` class, extend `RegstrationRequest` as follows:
-
-    ```` java
-    public class ExtendedRegistrationRequest extends RegistrationRequest {
-    
-      private RegistrationRequest registrationRequest;
-    
-      public ExtendedRegistrationRequest(RegistrationRequest registrationRequest) {
-    
-        this.registrationRequest = registrationRequest;
-      }
-    
-      public RegistrationRequest getRegistrationRequest() {
-    
-        return registrationRequest;
-      }
-    
-      // Override the required getters and setters as required
-      
-    }
-    ````
-    
     - If you are using Hibernate Validator:
     
-    To add class level and attribute annotations, use the `ExtendedRegistrationRequest` model class. 
-    Given below is a sample validation. Follow this approach to perform validations. 
+        - To add class level and attribute annotations, use the `ExtendedRegistrationRequest` model class.    
     
-    For example, adding class-level annotation for model class `ExtendedRegistrationRequest` to validate redirect 
-    URIs in the registration request. 
+        - To implement the `extendedRegistrationRequest` class, extend `RegstrationRequest` as follows:
 
-    ```` java
-    @ValidateCallbackUris(registrationRequestProperty = "registrationRequest", callbackUrisProperty = "redirectUris",
-      ssa = "softwareStatement", message = "Invalid callback uris:" + DCRCommonConstants.INVALID_META_DATA,
-      groups = AttributeChecks.class)
-    public class ExtendedRegistrationRequest extends RegistrationRequest {
-    
-      // Add the class implementation here
-    }
-    ````
+        ```` java
+        public class ExtendedRegistrationRequest extends RegistrationRequest {
+        
+          private RegistrationRequest registrationRequest;
+        
+          public ExtendedRegistrationRequest(RegistrationRequest registrationRequest) {
+        
+            this.registrationRequest = registrationRequest;
+          }
+        
+          public RegistrationRequest getRegistrationRequest() {
+        
+            return registrationRequest;
+          }
+        
+          // Override the required getters and setters as required
+          
+        }
+        ````
+        
+        - Given below is a sample validation. Follow this approach to perform validations. When adding class-level annotation for model class `ExtendedRegistrationRequest` to validate redirect URIs 
+        in the registration request. 
+
+        ```` java
+        @ValidateCallbackUris(registrationRequestProperty = "registrationRequest", callbackUrisProperty = "redirectUris",
+          ssa = "softwareStatement", message = "Invalid callback uris:" + DCRCommonConstants.INVALID_META_DATA,
+          groups = AttributeChecks.class)
+        public class ExtendedRegistrationRequest extends RegistrationRequest {
+        
+          // Add the class implementation here
+        }
+        ````
     
     - Annotation class for `ValidateCallbackUris`
     
@@ -177,15 +176,38 @@ methods of this class. Given below is a brief description of each method.
 ### validateGet method
 
  This method validates particular details before retrieving the registered client data. If the validations fail, 
- the method throws an exception. 
+ the method throws an exception. Given below is the method signature:
+ 
+ ``` java
+  @Override
+  public void validateGet(String clientId) throws DCRValidationException {
+ 
+  }
+ ```
 
 ###  validateDelete method
 
- This method validates particular details before deleting a registered application.
+ This method validates particular details before deleting a registered application. 
+ Given below is the method signature:
+ 
+  ``` java
+   @Override
+   public void validateDelete(String clientId) throws DCRValidationException {
+   
+   }
+  ```
 
 ### validateUpdate method
 
  This method validates the attributes sent in an update request. If the validations fail, the method throws an exception.
+ Given below is the method signature:
+ 
+  ``` java
+  @Override
+  public void validateUpdate(RegistrationRequest registrationRequest) throws DCRValidationException {
+
+  }
+  ```
  
 !!! tip
     As the registration request and update request are similar to each other. When implementing the `validateUpdate` 
@@ -208,13 +230,9 @@ methods of this class. Given below is a brief description of each method.
 ````
 ??? tip "Click here to see how to write validations:"
     
-    - Extend the `DefaultRegistrationValidatorImpl` class to validate `SoftwareStatementBody` according to your 
-    specification. For example, the `ExtendedRegistrationValidatiorImpl` class given below is extended from 
-    `DefaultRegistrationValidatorImpl`.
     - To create a `SoftwareStatementBody` according to your specification, extend `SoftwareStatementBody`. For example, 
     the `ExtendedSoftwareStatementBody` class given below is extended from `SoftwareStatementBody`. 
-    - Use the `validatePost` method in the `ExtendedRegistrationValidatiorImpl` class to validate 
-    `ExtendedSoftwareStatementBody`.
+
     - Use the `setSoftwareStatementPayload` method to set `ExtendedSoftwareStatementBody`.
 
       
@@ -222,39 +240,15 @@ methods of this class. Given below is a brief description of each method.
     
     ```` java
     public class ExtendedRegistrationValidatiorImpl extends DefaultRegistrationValidatorImpl {
-    
-      @Override
-      public void validatePost(RegistrationRequest registrationRequest) throws DCRValidationException {
-    
-        ExtendedRegistrationValidatiorImpl extendedRegistrationRequest = new ExtendedRegistrationValidatiorImpl(registrationRequest);
-    
-        /* Option 1: Using Hibernate Validator
-        
-        This method catches any constraint violation and creates relevant error messages using Hibernate Validator 
-        */
-    
-        String error = OpenBankingValidator.getInstance().getFirstViolation(extendedRegistrationRequest.getSoftwareStatementBody(), ValidationOrder.class);
-        if (error != null) {
-          String[] errors = error.split(":");
-          throw new DCRValidationException(errors[1], errors[0]);
-        }
-    
-        /* Option 2: Using the default validation approach
-        
-        Perform SSA claim validations and use the method below to implement the validation logic 
-        */
-    
-        ValidatorUtils.validateSSAIssuer(extendedRegistrationRequest.getSoftwareStatementBody().getIss());
-    
-      }
+
       @Override
       public void setSoftwareStatementPayload(RegistrationRequest registrationRequest, String decodedSSA) {
-    
+
         ExtendedSoftwareStatementBody extendedSoftwareStatementBody = new GsonBuilder().create()
           .fromJson(decodedSSA, ExtendedSoftwareStatementBody.class);
         registrationRequest.setSoftwareStatementBody(extendedSoftwareStatementBody);
       }
-    
+
     }
     ````
     
@@ -360,9 +354,8 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
 ````
 
 ??? tip "Click here to see how to customize the response:"
-    - Create the response for the registration request by extending the `DefaultRegistrationValidatorImpl` class. 
-      For example, see the `ExtendedRegistrationValidatiorImpl` class given below.
-    - Set `RegistrationResponse` using the `ExtendedRegistrationResponse` class and its `getRegistrationResponse` method 
+
+    - Set the registration response using the `ExtendedRegistrationResponse` class and its `getRegistrationResponse` method 
     as shown below.
     
     ```` java

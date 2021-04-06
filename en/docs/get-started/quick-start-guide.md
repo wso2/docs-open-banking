@@ -33,7 +33,7 @@ Follow the instructions to find how you can quickly set up and try out a basic f
         
 | Product | Placeholder |
 |---------|---------    |
-|WS02 Identity Server|`<IS_HOME>`|
+|WSO2 Identity Server|`<IS_HOME>`|
 |WSO2 API Manager|`<APIM_HOME>`|
 |WSO2 IS Extensions|`<ISKM_HOME>`|
 |WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
