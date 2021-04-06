@@ -160,7 +160,7 @@ public void setConditionalAuthScript(boolean isRegulatoryApp, LocalAndOutboundAu
 ```
 
 ### publishData method
-This method lets you publish data during application creation. Given below is the method signature:
+This method lets you publish data during the application creation. Given below is the method signature:
  
   ``` java
   public void publishData(Map < String, Object > spMetaData, OAuthConsumerAppDTO oAuthConsumerAppDTO) throws OpenBankingException {
@@ -169,7 +169,7 @@ This method lets you publish data during application creation. Given below is th
   ```
 
 ### doPreCreateApplication method
-Use this method to implement any logic that needs to be executed before application creation.
+This method lets you implement any logic that needs to be executed before the application creation.
 Given below is the method signature:
  
   ``` java
@@ -179,7 +179,7 @@ Given below is the method signature:
   ```
 
 ### doPostGetApplication method
-Use this method to implement any logic that needs to be executed after retrieving application details.
+This method lets you implement any logic that needs to be executed after retrieving application details.
 Given below is the method signature:
  
   ``` java
@@ -189,7 +189,7 @@ Given below is the method signature:
   ```
 
 ### doPreUpdateApplication method
-This method is executed before updating a created application.
+This method executes before updating a created application.
 
 By default, when this is executed it invokes the following methods in the given order. If required, the default order 
 can be changed.
@@ -210,7 +210,7 @@ implemented after invoking its `super()` method. Given below is the method signa
   ```
 
 ### doPreDeleteApplication method
-Use this method to implement any logic that needs to be executed before application deletion.
+This method lets you implement any logic that needs to be executed before the application deletion.
 Given below is the method signature:
  
   ``` java
@@ -220,7 +220,7 @@ Given below is the method signature:
   ```
 
 ### doPostDeleteApplication method
-Use this method to implement any logic that needs to be executed after application deletion. For example, 
+This method lets you implement any logic that needs to be executed after the application deletion. For example, 
 publishing data. Given below is the method signature:
  
   ``` java
