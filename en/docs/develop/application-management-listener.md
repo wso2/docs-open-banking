@@ -5,9 +5,10 @@ the methods in the `ApplicationUpdaterImpl` class to support the following funct
 
 - Setting authenticators
 - Setting a conditional authentication script
-- Publishing data during application creation, update and deletion
-- Enabling specific OAuth 2.0 properties in the created application such as ID token encryption, pkce support
-- Storing additional details regarding the application as metadata.
+- Publishing data during application creation, update, and deletion
+- Enabling specific OAuth 2.0 properties in the created application such as ID token encryption, 
+Proof Key for Code Exchange (PKCE), support
+- Storing additional details regarding the application as metadata
 
 To achieve the above, extend the following class.
 ``` java
@@ -33,7 +34,7 @@ throws OpenBankingException {
 This method lets you store any additional details about the application, as metadata. 
 
 !!! note
-    The details sent during application registration are already stored as metadata, by default.
+    By default, the details sent during the application registration are already stored as metadata.
 
 ``` java
 public void setServiceProviderProperties(boolean isRegulatoryApp, ServiceProvider serviceProvider, ServiceProviderProperty[] serviceProvideProperties)
