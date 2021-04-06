@@ -7,8 +7,8 @@ privileges.
 
 - Select **OpenAPI File/Archive**. ![select_API](../assets/img/advanced/dcr/dcr-try-out/step-3.png)
 
-- Click **Browse File to Upload** and select the swagger definition (.yaml file) from `<APIM_HOME>/<OB_APIM_ACCELERATOR
-_HOME>/repository/resources/apis/DynamicClientRegistration`.  
+- Click **Browse File to Upload** and select the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/
+DynamicClientRegistration/dcr-swagger.yaml` file.  
 
 - Click **Next**.
 
