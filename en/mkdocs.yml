@@ -69,7 +69,7 @@ nav:
       - 'Tryout': advanced/dynamic-client-registration-try-out.md
   - 'Develop' :
     - 'Open Banking Gateway' :
-        - 'Open Banking Gateway': develop/open-banking-gateway.md
+        - 'Introduction': develop/open-banking-gateway.md
         - 'Custom Request Router': develop/custom-request-router.md
         - 'Custom Gateway Executor': develop/custom-gateway-executor.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
