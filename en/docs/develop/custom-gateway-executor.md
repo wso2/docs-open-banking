@@ -23,9 +23,63 @@ com.wso2.finance.openbanking.accelerator.gateway.executor.core.OpenBankingGatewa
     The `com.wso2.finance.openbanking.accelerator.gateway-3.0.0.jar` JAR file inside the 
     `<IS_HOME>/repository/components/dropins` directory contains all the Java implementations related to gateway 
     executors.
-    
-Implement the interface methods according to your requirements:
 
+Use the following data model and implement the interface methods according to your requirements:
+
+### Data model 
+
+??? tip "Click here to see the data model associated with the `OpenBankingGatewayExecutor` interface."
+    
+    For `OBAPIRequestContext`:
+            
+    | DTO      | DTO   | Parameter  | Data Type | Description |
+    | ---------|-------| -----------|-----------|-------------|
+    |RequestContextDTO | MsgInfoDTO | headers | Map | The request headers contained in the HTTP Request |
+    |RequestContextDTO | MsgInfoDTO | payloadHandler | PayloadHandler | The object created to consume the request payload. Instead of this, you can directly use the `requestPayload` string object in `OBAPIRequestContext` and read the payload of the request|
+    |RequestContextDTO | MsgInfoDTO | resource | String | An API resource |
+    |RequestContextDTO | MsgInfoDTO | electedResource | String | An elected resource |
+    |RequestContextDTO | MsgInfoDTO | httpMethod | String | The HTTP method of the request |
+    |RequestContextDTO | MsgInfoDTO | messageId | String | A unique ID given to a particular request |
+    |RequestContextDTO | APIRequestInfoDTO | context | String | The API context given when publishing the API|
+    |RequestContextDTO | APIRequestInfoDTO | version | String | The published version of the API |
+    |RequestContextDTO | APIRequestInfoDTO | username | String | The owner of the access token |
+    |RequestContextDTO | APIRequestInfoDTO | consumerKey | String	| The client ID/Consumer Key of the API consumer application |
+    |RequestContextDTO | APIRequestInfoDTO | apiId | String | A unique ID given for the API |
+    |RequestContextDTO | X509Certificate | | X509Certificate | The Transport certificates sent with the request (if available) |
+    |contextProps	|	|	| Map		| A map of context properties. You can access and modify these in any executor |
+    |requestPayload |	|	| String	| The request payload as a string |
+    |addedHeaders	|	| 	| Map		| The headers that need to be added backend request |
+    |isError	|	| 	| Boolean	| A boolean value to indicate the error state |
+    |errors	|	| 	| List<Error>	| A list of errors found in the request (if available) |
+    |consentId	|	| 	| String	| The consent ID of the request (if available) |
+    |analyticsData	|	| 	| Map		| A map of analytics data that needs to be published to Open Banking Business Intelligence |
+    |OpenAPI	|	|	| OpenAPI	| The Open API object of the published API Swagger |
+    
+    ---
+    
+    For `OBAPIRequestContext`:
+            
+    | DTO      | DTO   | Parameter  | Data Type | Description |
+    | ---------|-------| -----------|-----------|-------------|
+    | RequestContextDTO | MsgInfoDTO | headers |Map | The request headers in the HTTP request |
+    | RequestContextDTO | MsgInfoDTO | payloadHandler | PayloadHandler | The object created to consume the request payload. `responsePayload` string object in `OBAPIRequestContext` and read the payload
+    | RequestContextDTO | MsgInfoDTO | resource |	String	| An API resource |
+    | RequestContextDTO | MsgInfoDTO | electedResource | String |	 An elected resource |
+    | RequestContextDTO | MsgInfoDTO | httpMethod	| String |  The HTTP method of the request |
+    | RequestContextDTO | MsgInfoDTO | messageId | String | A unique ID given to a particular request |
+    | RequestContextDTO | APIRequestInfoDTO |context | String | The API context given when publishing the API |
+    | RequestContextDTO | APIRequestInfoDTO |version | String | The published version of the API |
+    | RequestContextDTO | APIRequestInfoDTO |username |String | The owner of the access token |
+    | RequestContextDTO | APIRequestInfoDTO |consumerKey | String | The client ID/Consumer Key of the API consumer application |
+    | RequestContextDTO | APIRequestInfoDTO |apiId | String | A unique ID given for the API |
+    | RequestContextDTO | Status | | Code | String | The HTTP response status code | 
+    | contextProps |	|	| Map | A map of context properties. You can access and modify these in any executor|
+    | responsePayload |	|	| String |  The response payload as a string |
+    | addedHeaders |	|	| Map |  The headers that need to be added to the response (if available)|
+    | isError 	|	|	| Boolean | A boolean value to indicate the error state |
+    | errors  	|	|	| List<Error> | A list of errors found in the response |
+    | analyticsData |	|	| Map | A map of analytics data that needs to be published to Open Banking Business Intelligence |
+   
 ### preProcessRequest method
 
 This method handles the requests before API Authentication.
