@@ -7,13 +7,13 @@ requirements. You can use the executors to perform the following:
 - Intercept requests and responses before and after API authentication 
 - Modify request/response headers and payloads
 - Configure custom error messages
-- Add custom attributes, for example, data reporting  
+- Add custom attributes. For example, data reporting  
 
 For the executors, you can configure context attributes (for example, consent ID) provided by swagger definitions. 
 These context attributes are shared through a particular request/response flow. You can also define the order of 
 execution by the flow. 
 
-To build your own executor, implement the following interface.
+To build your own executor, implement the following interface:
 
 ``` java
 com.wso2.finance.openbanking.accelerator.gateway.executor.core.OpenBankingGatewayExecutor

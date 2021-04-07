@@ -1,9 +1,11 @@
 ## Writing a custom Request Router
 
 The API consumers use the open banking API for various open banking scenarios such as 
+
  - Registering their applications with Dynamic Client Registration (DCR)
  - Retrieving accounts information
- - Initiating payments on behalf of the customer
+ - Initiating payments on behalf of a customer
+ 
 These scenarios are known as API flows. The API requests associated with API flows pass through the Open Banking 
 Gateway. As different flows need different policy enforcements, a routing mechanism is required to enforce policies. 
 You can implement a router according to your requirements by extending the following class:

@@ -6,16 +6,16 @@ feature. For more information, see
 [WSO2 API Manager documentation](https://apim.docs.wso2.com/en/latest/learn/rate-limiting/advanced-topics/custom-throttling)
 
 WSO2 Open Banking API Manager Accelerator provides enhanced Custom Throttling capabilities that support open banking 
-requirements. Using this feature you can use customize attributes known as Custom Throttling Keys and use them in custom 
+requirements. Using this feature, you can use customize attributes known as Custom Throttling Keys and use them in custom 
 throttling policies.
 
-To implement Custom Throttling Keys, extend the following class.
+To implement Custom Throttling Keys, extend the following class:
 
 ``` java
 com.wso2.finance.openbanking.accelerator.gateway.throttling.ThrottleDataPublisher
 ```
 
-Given below is the method you need to implement.
+Given below is the method you need to implement:
 
 ### getCustomProperties method
 
