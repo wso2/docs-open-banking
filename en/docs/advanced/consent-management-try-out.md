@@ -1,12 +1,12 @@
-This documents provide the step by step instructions to try out consent initiation, retrieval, update, and deletion.
+This document provides the instructions to try out consent initiation, retrieval, update, and deletion.
 
 !!! tip "Prerequisites" 
-    - To initiate an authorization flow for an API,  you need to do the following:
+    - Before you try out the consent flow, you need to do the following:
         - Register an application for the API consumer.
-        - Deploy and subscribe the relevant APIs to access banking information. For example, account and payment information.
+        - Deploy and subscribe to the relevant APIs to access banking information. For example, account and payment information.
         
         !!!note
-            - For testing purposes we have included the following sample APIs in the Accelerator pack for WSO2 API Manager. 
+            - For testing purposes, we have included the following sample APIs in the Accelerator pack for WSO2 API Manager. 
                 - Dynamic Client Registration API. See [Deploy DCR API](https://ob.docs.wso2.com/en/latest/get-started/api-consumer-onboarding/#step-1-deploy-the-dynamic-client-registrationdcr-api) for instructions.
                 - Account Information Service API. See [Deploy and Subscribe sample Account and Transaction API](https://ob.docs.wso2.com/en/latest/get-started/try-out-flow/) for instructions.
                 
@@ -53,13 +53,13 @@ https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents \
     }
 }
 ```
-- The Bank sends the request to the customer stating the accounts and information that the API consumer wishes to access.
+- The bank sends the request to the customer stating the accounts and information that the API consumer wishes to access.
     
 ??? tip "Click here to see the authorization flow..."
     - The request that the bank sends to the customer is in the format of a URL as follows: 
       ```
         
-      https://{APIN_HOST}:8243/authorize/?response_type=jwt&client_id=<CLIENT_ID>&scope=accounts%20openid&redir
+      https://{APIM_HOST}:8243/authorize/?response_type=jwt&client_id=<CLIENT_ID>&scope=accounts%20openid&redir
       ect_uri=www.wso2.com&state=YWlzcDozMTQ2&request=eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4Iiwi
       YWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tlbiIsInNjb3BlIjoiY
       WNjb3VudHMgb3BlbmlkIiwiaXNzIjoiNGhaSUxBVGZQeVhsTEZxa1AzWjBPQllobUR3YSIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzI
@@ -75,16 +75,16 @@ https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents \
       ```
       - Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in the application registration.
         
-      - Upon successful authentication, the user red is redirected to the consent authorise page. Use the login 
+      - Upon successful authentication, the user is redirected to the consent authorize page. Use the login 
       credentials of a user that has a `subscriber` role. 
         
       - You can view the list of bank accounts and the information that the API consumer wishes to access.
         
-      - Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`.
+      - Upon providing consent, an authorization code is generated on the URL of the web page defined in `redirect_uri`.
  
 ### Step 2: Retrieve a consent 
 - An API consumer can retrieve a consent resource that they have created to check its status. In order to make this request, 
-the API consumer must have an access token issued by the bank using a client credentials grant.
+the API consumer must have an access token issued by the bank using the client credentials grant.
 
 ??? tip "Click here to find how to generate an application access token..."
     - Generate an application access token using the following command: 
@@ -181,7 +181,7 @@ curl GET \
 ```
 ### Step 3: Delete a consent
 - If the customer revokes a consent to data access with the API consumer, the API consumer must delete the consent resource. 
-In order to make this request, the API consumer must have an access token issued by the API consumer using a client 
+In order to make this request, the API consumer must have an access token issued by the API consumer using the client 
 credentials grant.
 
 - A sample request to delete a consent looks as follows:

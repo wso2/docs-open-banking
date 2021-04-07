@@ -116,7 +116,6 @@ This SSA contains API consumer's metadata. A sample request looks as follows:
 ```
 curl -X POST\https://{APIM_HOST}:8243/open-banking/0.1/register \
  -H 'Content-Type: application/jwt' \
- -H 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
  -d 'eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6IkR3TUtkV01tajdQV2ludm9xZlF5WFZ6eVo2USJ9.eyJpc3MiOiI3NDBDMzY4Ri1FQ0Y5LT
 REMjktQTJFQS0wNTE0QTY2QjBDRE4iLCJpYXQiOjE1NzE4MDgxNjcsImV4cCI6MjE0NzQ4MzY0NiwianRpIjoiMzc3NDdjZDFjMTA1NDU2OTlmNzU0YWRmMj
 hiNzNlMzEiLCJhdWQiOiJodHRwczovL3NlY3VyZS5hcGkuZGF0YWhvbGRlci5jb20vaXNzdWVyIiwicmVkaXJlY3RfdXJpcyI6WyJodHRwczovL3d3dy5tb2
