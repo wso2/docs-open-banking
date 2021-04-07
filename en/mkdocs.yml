@@ -72,6 +72,7 @@ nav:
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
         - 'Consent Authorize': develop/consent-management-authorize.md
+        - 'Consent Core Service': develop/consent-core-service.md
     - 'Custom DCR Validator' : develop/custom-dcr-validator.md
     - 'Application Management Listener' : develop/application-management-listener.md
   - 'References':
