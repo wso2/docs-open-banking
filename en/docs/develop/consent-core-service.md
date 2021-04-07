@@ -1,6 +1,6 @@
 ## Using Consent Core Service
 
-The Consent management [extension points](consent-management-manage.md) can invoke the Consent core service. WSO2 Open 
+The consent management [extension points](consent-management-manage.md) can invoke the Consent core service. WSO2 Open 
 Banking Accelerator handles consent creation, update, deletion, and any other consent related functionality using a 
 service named `ConsentCoreService`. This is an interface, which you can simply invoke via any WSO2 Identity Server 
 extension. The Fully Qualified Name (FQN) of `ConsentCoreService` is as follows:
@@ -10,7 +10,7 @@ com.wso2.finance.openbanking.accelerator.consent.mgt.service.ConsentCoreService
 ```
 !!! note
     The `com.wso2.finance.openbanking.accelerator.consent.service-3.0.0.jar` JAR file inside the 
-    `<IS_HOME>/repository/components/dropins` directory contains all the Java implementation related to consent 
+    `<IS_HOME>/repository/components/dropins` directory contains the Java implementation related to consent 
     management core services.
     
 According to your requirements, invoke the relevant methods of this service. Given below is a brief description of each 
@@ -20,9 +20,9 @@ method.
 
 This method lets you create a consent by performing the following:
 
- - Store any available consent attributes
- - Create an audit record for the consent creation
- - If the `isImplicitAuth` parameter is set to `true`, create an authorization resource 
+ - Stores any available consent attributes
+ - Creates an audit record for the consent creation
+ - If the `isImplicitAuth` parameter is set to `true`, creates an authorization resource 
  
 Given below is the method signature:
 
@@ -34,9 +34,9 @@ Given below is the method signature:
 
 This method lets you create an exclusive consent by performing the following:
 
- - Update existing consent statuses and deactivate their account mappings
- - Create an audit record for the consent update
- - Create a new authorizable consent
+ - Updates existing consent statuses and deactivate their account mappings
+ - Creates an audit record for the consent update
+ - Creates a new authorizable consent
 
 ``` java
 boolean createConsentFile(ConsentFile consentFileResource, String newConsentStatus, String userID,String applicableStatusToFileUpload) throws ConsentManagementException;
@@ -46,10 +46,10 @@ boolean createConsentFile(ConsentFile consentFileResource, String newConsentStat
 
 This method lets you create a consent file by performing the following:
 
-- Validate the status of the consent a per the "applicableStatusToFileUpload" parameter
-- Create the consent file
-- Update the status of the consent
-- Create audit records for necessary consent updates
+- Validates the status of the consent a per the "applicableStatusToFileUpload" parameter
+- Creates the consent file
+- Updates the status of the consent
+- Creates audit records for necessary consent updates
 
 ```
 boolean createConsentFile(ConsentFile consentFileResource, String newConsentStatus, String userID, String applicableStatusToFileUpload) throws ConsentManagementException;
@@ -59,10 +59,10 @@ boolean createConsentFile(ConsentFile consentFileResource, String newConsentStat
 
 This method lets you revoke a consent by performing the following: 
 
- - Retrieve the consent for status validation
- - Update the existing status of the consent
- - Create an audit record for the consent update
- - Update the account mapping status as inactive
+ - Retrieves the consent for status validation
+ - Updates the existing status of the consent
+ - Creates an audit record for the consent update
+ - Updates the account mapping status as inactive
 
 ``` java
 boolean revokeConsent(String consentID, String revokedConsentStatus) throws ConsentManagementException;
@@ -87,9 +87,9 @@ boolean revokeExistingApplicableConsents(String clientID, String userID, String 
 
 This method lets you retrieve a consent with or without its attributes by performing the following: 
 
-- Retrieve the consent for status validation
+- Retrieves the consent for status validation
 - Optionally retrieves consent attributes according to the value of the withConsentAttributes flag
-- Check whether the retrieved consent involves a file
+- Checks whether the retrieved consent involves a file
   
 ``` java
 ConsentResource getConsent(String consentID, boolean withConsentAttributes) throws ConsentManagementException;
