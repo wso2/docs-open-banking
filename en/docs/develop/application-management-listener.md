@@ -7,7 +7,7 @@ the methods in the `ApplicationUpdaterImpl` class to support the following funct
 - Setting a conditional authentication script
 - Publishing data during application creation, update, and deletion
 - Enabling specific OAuth 2.0 properties in the created application such as ID token encryption, 
-Proof Key for Code Exchange (PKCE), support
+Proof Key for Code Exchange (PKCE) support
 - Storing additional details regarding the application as metadata
 
 To achieve the above, extend the following class.

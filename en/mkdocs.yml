@@ -60,7 +60,9 @@ nav:
   - 'Install and setup':
     - 'Install and setup': page-not-found.md
   - 'Advanced':
-    - 'Consent Management': advanced/consent-management.md
+    - 'Consent Management':
+      - 'Introduction': advanced/consent-management.md
+      - 'Tryout': advanced/consent-management-try-out.md
     - 'Dynamic Client Registration':
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
