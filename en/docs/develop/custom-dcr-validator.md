@@ -17,7 +17,7 @@ This class performs the following validations, by default:
 
 !!! note
     The `com.wso2.finance.openbanking.accelerator.identity` JAR file inside 
-    the `<OB_IAM_ACCELERATOR>/dropins` directory contains all the Java implementation related to DCR validators. 
+    the `<IS_HOME>/repository/components/dropins` directory contains all the Java implementation related to DCR validators. 
 
 To extend the validation capabilities according to your open banking specification requirements, override relevant 
 methods of this class. Given below is a brief description of each method.
