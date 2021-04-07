@@ -77,7 +77,7 @@ boolean revokeConsent(String consentID, String revokedConsentStatus, String user
 ### revokeExistingApplicableConsents method
 
 This method lets you revoke existing consents for a given combination of `clientID`, `userID`, `consent type`, and 
-`status`. It also revokes any tokens related to the consents if the `shouldRevokeTokens` is set to `true`.
+`status` parameters. It also revokes any tokens related to the consents if the `shouldRevokeTokens` flag is set to `true`.
 
 ``` java
 boolean revokeExistingApplicableConsents(String clientID, String userID, String consentType, String applicableStatusToRevoke, String revokedConsentStatus, boolean shouldRevokeTokens) throws ConsentManagementException;
@@ -155,24 +155,24 @@ ArrayList<ConsentStatusAuditRecord> searchConsentStatusAuditRecords(String conse
 
 ### reAuthorizeExistingAuthResource method
 
-This method lets you update the account mappings in consent re authorization scenarios. 
+This method lets you update the account mappings in consent reauthorization scenarios. 
 
  - The account mappings are updated according to the additions/removals in the new authorization 
- - Update the status of a consent with a provided status 
- - Amend accounts
+ - Updates the status of a consent with a provided status 
+ - Amends accounts
 
 ``` java
 boolean reAuthorizeExistingAuthResource(String consentID, String authID, String userID, Map<String, ArrayList<String>> accountIDsMapWithPermissions, String currentConsentStatus, String newConsentStatus) throws ConsentManagementException;
 ```
 ### reAuthorizeConsentWithNewAuthResource method
 
-This method lets you update the account mappings in consent re authorization scenarios. 
+This method lets you update the account mappings in consent reauthorization scenarios. 
 
  - The account mappings are updated according to the additions/removals in the new authorization 
  - When reauthorizing with this method a new authorization resource is created
  - Existing authorizations are updated with a provided status
- - Update the status of a consent with a provided status 
- - Amend accounts
+ - Updates the status of a consent with a provided status 
+ - Amends accounts
 
 ``` java
 boolean reAuthorizeConsentWithNewAuthResource(String consentID, String userID, Map<String, ArrayList<String>> accountIDsMapWithPermissions, String currentConsentStatus, String newConsentStatus, String newExistingAuthStatus, String newAuthStatus, String newAuthType) throws ConsentManagementException;
@@ -236,7 +236,7 @@ ArrayList<DetailedConsentResource> searchDetailedConsents(ArrayList<String> cons
 ```
 ### bindUserAccountsToConsent method
 
-This method lets you bind a user and accounts to a consent.
+This method lets you bind a user and accounts to a consent. 
 
 ``` java
 boolean bindUserAccountsToConsent(ConsentResource consentResource, String userID, String authID, Map<String, ArrayList<String>> accountIDsMapWithPermissions, String newAuthStatus, String newCurrentConsentStatus) throws ConsentManagementException;
