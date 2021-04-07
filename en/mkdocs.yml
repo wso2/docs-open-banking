@@ -68,6 +68,11 @@ nav:
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
       - 'Tryout': advanced/dynamic-client-registration-try-out.md
   - 'Develop' :
+    - 'Open Banking Gateway' :
+        - 'Open Banking Gateway': develop/open-banking-gateway.md
+        - 'Custom Request Router': develop/custom-request-router.md
+        - 'Custom Gateway Executor': develop/custom-gateway-executor.md
+        - 'Custom Throttling Keys': develop/custom-throttling-keys.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
