@@ -79,6 +79,7 @@ nav:
         - 'Consent Authorize': develop/consent-management-authorize.md
         - 'Consent Core Service': develop/consent-core-service.md
     - 'Application Management Listener': develop/application-management-listener.md
+    - 'Response Type Handler': develop/response-type-handler.md
     - 'Validation Layer':
         - 'Introduction': develop/validation-layer.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md

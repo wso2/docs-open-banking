@@ -1,5 +1,5 @@
 ##Writing a Custom Request Object Validator
-Request Object contains authentication and authorization request parameters in a self-contained JWT. It is used in the 
+A Request Object contains authentication and authorization request parameters in a self-contained JWT. It is used in the 
 authorization endpoint of WSO2 Identity Server. Banks can use this authorization endpoint 
 to redirect the bank customer to authenticate and approve/deny consents before an API consumer accesses financial 
 information. 
@@ -32,20 +32,21 @@ com.wso2.finance.openbanking.accelerator.identity.auth.extensions.request.valida
     
 3. Extend `OBRequestObjectValidator` and create your own class.
 
-    1. Override the following method to validate your custom validations:
-    ``` java
-    public ValidationResponse validateOBConstraints(OBRequestObject obRequestObject, Map<String, Object> dataMap) 
-    ```
-    
-        !!!note
-            The `dataMap` parameter contains data related to scope validation at the moment. This `dataMap` parameter 
-            provides scope registered for the service provider application. Therefore, this can be used to validate 
-            the scopes given in the Request Object according to your requirement.
-    
-    2. Type cast `OBRequestObject` to your own model using the following sample:
-    ```
+###validateOBConstraints method
+This method validats the custom validations you add. Given below is the method signature:
+``` java
+public ValidationResponse validateOBConstraints(OBRequestObject obRequestObject, Map<String, Object> dataMap) 
+```
+
+!!!note
+    The `dataMap` parameter contains data related to scope validation at the moment. This `dataMap` parameter provides 
+    scope registered for the service provider application. Therefore, this can be used to validate the scopes given in 
+    the Request Object according to your requirement.      
+ 
+- Type cast `OBRequestObject` to your own model using the following sample:
+  ```
     UKRequestObject ukRequestObject = new UKRequestObject(obRequestObject);
-    ```
+  ```
    
 4. To make sure the default validations of the Request Object executes, validate your new model, which is inherited 
 from `obRequestObject` as follows:
@@ -60,7 +61,7 @@ String error = OpenBankingValidator.getInstance().getFirstViolation(yourInherite
 request_object_validator = "com.wso2.finance.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidationExtension"
 ```
 
-2. Add the class you extended to the following configuration in `<IS_HOME>/repository/conf/deployment.toml`: 
+2. Update the following configuration in `<IS_HOME>/repository/conf/deployment.toml` with your extended class: 
 ``` java 
 [open_banking.identity.extensions]
 request_object_validator = "your.extended.class"
