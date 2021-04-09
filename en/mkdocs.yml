@@ -78,8 +78,11 @@ nav:
         - 'Consent Validate': develop/consent-management-validate.md
         - 'Consent Authorize': develop/consent-management-authorize.md
         - 'Consent Core Service': develop/consent-core-service.md
-    - 'Custom DCR Validator' : develop/custom-dcr-validator.md
-    - 'Application Management Listener' : develop/application-management-listener.md
+    - 'Application Management Listener': develop/application-management-listener.md
+    - 'Validation Layer':
+        - 'Introduction': develop/validation-layer.md
+        - 'Custom Request Object Validator': develop/custom-request-object-validator.md
+        - 'Custom DCR Validator': develop/custom-request-object-validator.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md
