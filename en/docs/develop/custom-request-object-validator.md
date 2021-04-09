@@ -33,15 +33,15 @@ com.wso2.finance.openbanking.accelerator.identity.auth.extensions.request.valida
 3. Extend `OBRequestObjectValidator` and create your own class.
 
 ###validateOBConstraints method
-This method validats the custom validations you add. Given below is the method signature:
+This method performs the custom validations you add. Given below is the method signature:
 ``` java
 public ValidationResponse validateOBConstraints(OBRequestObject obRequestObject, Map<String, Object> dataMap) 
 ```
 
 !!!note
     The `dataMap` parameter contains data related to scope validation at the moment. This `dataMap` parameter provides 
-    scope registered for the service provider application. Therefore, this can be used to validate the scopes given in 
-    the Request Object according to your requirement.      
+    the scope registered for the service provider application. Therefore, this can be used to validate the scopes given 
+    in the Request Object according to your requirement.      
  
 - Type cast `OBRequestObject` to your own model using the following sample:
   ```

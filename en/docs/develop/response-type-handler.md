@@ -20,13 +20,13 @@ in the `OBResponseTypeHandler` class to support the following functions:
 
 To write a custom Response Type handler, extend the following class:
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.auth.extensions.response.handler.OBResponseTypeHandler interface
+com.wso2.finance.openbanking.accelerator.identity.auth.extensions.response.handler.OBResponseTypeHandler
 ```
 To extend the validation capabilities according to your requirements, override relevant methods of this class. Given 
 below is a brief description of each method.
 
 ###updateRefreshTokenValidityPeriod method
-This method allows you to set validity period for the refresh tokens. For example,
+This method allows you to set validity period for the refresh tokens. Given below is the method signature:
 ``` java
 public long updateRefreshTokenValidityPeriod(OAuthAuthzReqMessageContext oAuthAuthzReqMessageContext) {
 return oAuthAuthzReqMessageContext.getRefreshTokenvalidityPeriod();
