@@ -10,6 +10,7 @@ default, it consists of 3 validations:
    - `@RequiredParameter` checks if the Request Object is signed.
    - `@ValidScopeFormat` checks if the scope claim contains an OpenID Connect(OIDC) scope.
    - `@ValidAudience` checks if the audience claim matches the token endpoint URL.
+   - `@ValidSigningAlgorithm` checks if the correct signing algorithm is used.
 
 For more information on the validation layer in WSO2 Open Banking Accelerator, see [Validation Layer](../develop/validation-layer.md).
 

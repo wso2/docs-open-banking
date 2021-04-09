@@ -29,7 +29,7 @@ below is a brief description of each method.
 This method allows you to set validity period for the refresh tokens. Given below is the method signature:
 ``` java
 public long updateRefreshTokenValidityPeriod(OAuthAuthzReqMessageContext oAuthAuthzReqMessageContext) {
-return oAuthAuthzReqMessageContext.getRefreshTokenvalidityPeriod();
+return 3600();
 }
 ```
 
@@ -37,21 +37,22 @@ return oAuthAuthzReqMessageContext.getRefreshTokenvalidityPeriod();
 This method lets you set a new scope to the authorization request. See the below example to append any prefix to the scope,
 ``` java
 public String[] updateApprovedScopes(OAuthAuthzReqMessageContext oAuthAuthzReqMessageContext) {
-
-String[] scopes = oAuthAuthzReqMessageContext.getApprovedScope()
-        String sessionDataKey = oAuthAuthzReqMessageContext.getAuthorizationReqDTO().getSessionDataKey();
-                String consentID = getConsentIDFromSessionData(sessionDataKey);
-                if (consentID.isEmpty()) {
-                    log.error("Consent-ID retrieved from request object claims is empty");
-                    return scopes;
-                }
-                String consentScope = OB_CONSENT_ID_PREFIX + consentID;
-                String[] updatedScopes = (String[]) ArrayUtils.addAll(scopes, new String[]{consentScope});
-                if (log.isDebugEnabled()) {
-                    log.debug("Updated scopes: " + Arrays.toString(updatedScopes));
-                }
-                return updatedScopes;
-    }
+  String[] scopes = oAuthAuthzReqMessageContext.getApprovedScope()
+  String sessionDataKey = oAuthAuthzReqMessageContext.getAuthorizationReqDTO().getSessionDataKey();
+  String consentID = getConsentIDFromSessionData(sessionDataKey);
+  if (consentID.isEmpty()) {
+    log.error("Consent-ID retrieved from request object claims is empty");
+    return scopes;
+  }
+  String consentScope = OB_CONSENT_ID_PREFIX + consentID;
+  String[] updatedScopes = (String[]) ArrayUtils.addAll(scopes, new String[] {
+    consentScope
+  });
+  if (log.isDebugEnabled()) {
+    log.debug("Updated scopes: " + Arrays.toString(updatedScopes));
+  }
+  return updatedScopes;
+}
 ```
 
 ##Configuring a custom Response Type handler
