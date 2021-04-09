@@ -26,10 +26,10 @@ To extend the validation capabilities according to your requirements, override r
 below is a brief description of each method.
 
 ###updateRefreshTokenValidityPeriod method
-This method allows you to set validity period for the refresh tokens. Given below is the method signature:
+This method allows you to set validity period for the refresh tokens. For example:
 ``` java
 public long updateRefreshTokenValidityPeriod(OAuthAuthzReqMessageContext oAuthAuthzReqMessageContext) {
-return 3600();
+return 3600;
 }
 ```
 
