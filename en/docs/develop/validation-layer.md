@@ -8,7 +8,7 @@ Let’s see how you can use the validation layer.
 
 Decide the Java model you want to validate in your implementation. For example, 
 
-```
+``` java
 class OBRequestObject { 
      private String name;
      private Claims claims;
@@ -32,11 +32,11 @@ Add the required validation annotations. You can use the annotations in:
     Accelerator annotations are targeted in the class level. By using them,
    
     - You can pass the field path to resolve the required variable annotations.
-    - You can pass a custom error message when the constraint fails in the message parameter. 
+    - You can pass a custom error message in the message parameter when the constraint fails. 
 
 For example,
 
-```
+``` java
 class OBRequestObject { 
     @NotNull // annotation from Hibernate library
     private String name;
@@ -56,7 +56,7 @@ class Claims {
 
 Invoke the method that performs the validations from WSO2 Open Banking Accelerator. 
 
-```
+``` java
 OpenBankingValidator openbankingValidator = OpenBankingValidator.getInstance();
 String violation = openbankingValidator.getFirstViolation(requestObject);
 

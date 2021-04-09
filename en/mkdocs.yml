@@ -82,7 +82,7 @@ nav:
     - 'Validation Layer':
         - 'Introduction': develop/validation-layer.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
-        - 'Custom DCR Validator': develop/custom-request-object-validator.md
+        - 'Custom DCR Validator': develop/custom-dcr-validator.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md
