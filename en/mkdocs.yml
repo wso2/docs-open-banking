@@ -77,6 +77,7 @@ nav:
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
         - 'Consent Authorize': develop/consent-management-authorize.md
+        - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
         - 'Consent Core Service': develop/consent-core-service.md
     - 'Application Management Listener': develop/application-management-listener.md
     - 'Response Type Handler': develop/response-type-handler.md
