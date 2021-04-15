@@ -60,6 +60,13 @@ nav:
   - 'Install and setup':
     - 'Install and setup': page-not-found.md
   - 'Advanced':
+    - 'Deploy an API':
+      - 'Tryout': advanced/deploy-an-api-try-out.md
+    - 'Authorization Flow':
+      - 'Tryout': advanced/authorization-flow-try-out.md
+    - 'Token Flow':
+      - 'Tryout': advanced/token-flow-try-out.md
+    - 'Try Invoking an API':  advanced/try-invoking-api.md
     - 'Consent Management':
       - 'Introduction': advanced/consent-management.md
       - 'Tryout': advanced/consent-management-try-out.md

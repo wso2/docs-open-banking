@@ -86,7 +86,7 @@ tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redir
 "exp": <<This is epoch time of the token expiration date/time>>,
 "iat": <<This is epoch time of the token issuance date/time>>,
 "jti": "<<This is an incremental unique value>>",
-"aud": "<<This is the audience that the ID token is intended for. For example, https://<WSO2_OBIS_HOST>:8243/token>>"
+"aud": "<<This is the audience that the ID token is intended for. For example, https://{APIM_HOST}:8243/token>>"
 }
   
 <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
@@ -193,7 +193,7 @@ Update the value of the  `<CLIENT_ID>` with the value you obtained in [applicati
 - The response contains a user access token.
 
 ### Step 4: Invoke Accounts Information Service API
-1. The first step for an API consumer is to call the GET/ accounts endpoint. A sample request looks as follows:
+1. The first step for an API consumer is to call the `GET/ accounts` endpoint. A sample request looks as follows:
 ```
 curl -X GET \
 https://localhost:8243/open-banking/v3.1/aisp/accounts/' \
