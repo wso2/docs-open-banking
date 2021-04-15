@@ -1,10 +1,10 @@
-The Consent Enforcement executor ensures that the API consumer application is performing an action on a requested 
+The Consent Enforcement executor ensures that the API consumer application is performing an action on the requested 
 resource with the permission of that resource owner. In an open banking scenario, the bank customer is the resource 
-owner. They need to grant their permission so that the API consumer applications can access their bank details 
-including the resources created on behalf of them. The given permission or in other words consent is an agreement 
+owner who grants permission. Then, the API consumer applications can access their bank details including the 
+resources created on behalf of the bank customer. The given permission or in other words consent is an agreement 
 between the customer and the bank and the API consumer applications must align with this consent agreement. 
 
-Consent Enforcement is the process of validating whether the application is abiding by the above-mentioned consent. 
+**Consent Enforcement** is the process of validating whether the application is abiding by the above-mentioned consent. 
 This process identifies whether a particular request sent by an API consumer application is valid or not, based on the 
 actions that the application wants to perform on a resource. 
 
@@ -15,13 +15,13 @@ the Open Banking Accelerator by default.
 ## How Consent Enforcement Executor Works
 
 - When a request reaches the Consent Enforcement executor, the executor verifies whether a consent ID is available in 
-the request as it is mandatory for the consent enforcement process.
+the request as it is mandatory for the Consent Enforcement process.
     
     !!! note
         The Consent ID is included as a JWT claim in the JWT access tokens. In certain open banking specifications, the 
         API consumer applications can invoke an API and create a consent with the client credentials grant type. In 
         these scenarios, the Consent ID is not included in the JWT access token and those requests are omitted from the 
-        consent enforcement process. 
+        Consent Enforcement process. 
         
 - The Consent Enforcement executor generates a JWT token for requests with the Consent ID parameter. The generated JWT 
 token contains request-headers, request-payload, request-path, and a Consent ID. 
@@ -77,10 +77,10 @@ response is as follows:
          
 - Based on the response, the request either proceeds to the bank backend or sends back an error response. In certain 
 scenarios, the bank backend requires more consent information to proceed further. The Consent Validation service 
-responds with the consentInformation attribute. The Consent Enforcement executor adds this attribute as a request header 
+responds with the `consentInformation` attribute. The Consent Enforcement executor adds this attribute as a request header 
 and sends it to the bank backend. 
 
-- The Consent Validation service can modify the request payload as well and if it performs any modification it is 
+- The Consent Validation service can modify the request payload as well. If it performs any modifications, it is 
 mentioned in the response to the Consent Enforcement executor.
 
     !!! note
@@ -91,13 +91,14 @@ mentioned in the response to the Consent Enforcement executor.
 If you want to change the default WSO2 Consent Validation service and use your own consent validation service, you need 
 to configure it as follows:
 
+!!! tip 
+    If you want to use the **default WSO2 Consent Enforcement executor with a customized Consent Validation service**, make 
+    sure to adhere to the above request-response formats. 
+
 1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 2. Follow the given sample and add the tags to configure a custom Consent Validation service.
+
    ``` xml
    [open_banking.gateway.consent.validation]
    endpoint = "https://localhost:9446/api/openbanking/consent/validate"
    ```
-
-    !!! tip 
-        If you want to use the **default WSO2 Consent Enforcement executor with a customized Consent Validation service**, make 
-        sure to adhere to the above request-response formats. 
