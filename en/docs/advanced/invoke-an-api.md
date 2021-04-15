@@ -14,7 +14,7 @@ https://{APIM_HOST}:8243/open-banking/v3.1/aisp/accounts/' \
 --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
 
 ```
-- In the response, the API consumer gets the full list of accounts that the customer has authorised the API consumer to 
+- In the response, the API consumer gets the full list of accounts that the customer has authorized the API consumer to 
 access. A sample response looks as follows:
 ```
 {

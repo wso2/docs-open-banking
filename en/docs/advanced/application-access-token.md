@@ -1,9 +1,4 @@
-API consumers need to obtain an application token and a user access token before invoking an API. 
-
-###Application Access Token:
-API consumers obtain an application access token for the application that they registered before requesting authorization. 
-Authorization request contains the application access token for which, the bank customers need to allow accessing their 
-financial information.
+Before requesting authorization, API consumers obtain an application access token for the application that they registered. 
 
 1. Once you register the application, generate an application access token using the following command: 
 ```
@@ -19,7 +14,7 @@ eR3tSJbJ7J7XFKTEIUOqk6ehXZcQ9tTQDlaRHmL67y6s_XgTu_Gca3Q4ejEFQRr5JGGyzTimXdlqEfd3
 tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redirect_uri=www.wso2.com'
 ```
 - The request payload contains a client assertion in the following format:
-```
+```xml
 {
 "alg": "<<The algorithm used for signing.>>",
 "kid": "<<The thumbprint of the certificate.>>",
@@ -39,7 +34,7 @@ tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redir
 signature of the application certificate is used.>
 ```
 
-2. Upon successful token generation, you obtain a token as follows:
+2. The response contains an access token as follows:
 ```
 {
    "access_token":"aa8ce78b-d81e-3385-81b1-a9fdd1e71daf",
@@ -49,33 +44,4 @@ signature of the application certificate is used.>
    "expires_in":3600
 }
 ```
-###User Access Token:
-API consumers obtain a user access token before invoking the APIs. Once they obtain a user access token, it is sent in the 
-API invocation requests as a header parameter for the bank to authorise and allow accessing financial information of 
-banking customers.
 
-1. You can generate a user access token using the sample request given below:
-```
-curl -X POST \
-https://{APIM_HOST}:8243/token \
--H 'Cache-Control: no-cache' \
--H 'Content-Type: application/x-www-form-urlencoded' \
---cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
--d 'grant_type=authorization_code&scope=openid accounts&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:
-jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<CODE_GENERATED>client_id=
-<CLIENT_ID>'
-```
-- Make sure you update the `<CODE_GENERATED>` placeholder with the authorisation code you generate in the previous step.
-- Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](../advanced/dynamic-client-registration-try-out.md).
-- The response contains a user access token.
-   
-2. The access tokens have an expiration period, once an access token expires, you need to regenerate it. Run the 
-following cURL command to generate a new access token:
-```
-curl POST \
- https://{APIM_HOST}:8243/token \
- -H 'Content-Type: application/x-www-form-urlencoded' \
- -H 'cache-control: no-cache' \
- --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
- -d 'grant_type=refresh_token&refresh_token=<REFRESH_TOKEN>&client_id=4hZILATfPyXlLFqkP3Z0OBYhmDwa&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASEERTION>'
-```

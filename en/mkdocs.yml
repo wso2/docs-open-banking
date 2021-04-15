@@ -60,13 +60,6 @@ nav:
   - 'Install and setup':
     - 'Install and setup': page-not-found.md
   - 'Advanced':
-    - 'Deploy an API':
-      - 'Tryout': advanced/deploy-an-api-try-out.md
-    - 'Authorization Flow':
-      - 'Tryout': advanced/authorization-flow-try-out.md
-    - 'Token Flow':
-      - 'Tryout': advanced/token-flow-try-out.md
-    - 'Try Invoking an API':  advanced/try-invoking-api.md
     - 'Consent Management':
       - 'Introduction': advanced/consent-management.md
       - 'Tryout': advanced/consent-management-try-out.md
@@ -74,6 +67,12 @@ nav:
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
       - 'Tryout': advanced/dynamic-client-registration-try-out.md
+    - 'Tryout Flow':
+        - 'Publish an API': advanced/publish-an-api.md
+        - 'Obtain Application Access Token': advanced/application-access-token.md
+        - 'Authorize a consent': advanced/authorization-flow.md
+        - 'Obtain User Access Token': advanced/user-access-token.md
+        - 'Invoke an API': advanced/invoke-an-api.md
   - 'Develop' :
     - 'Open Banking Gateway' :
         - 'Introduction': develop/open-banking-gateway.md

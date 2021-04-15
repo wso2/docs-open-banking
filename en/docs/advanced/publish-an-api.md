@@ -1,18 +1,20 @@
+This document provides instructions to publish and subscribe to an API.
+
+!!!note
+    This document provides tryout instructions for the sample Account Information Service API packed in WSO2 Open 
+    Banking Accelerator. 
+    
 1. Sign in to the API Publisher Portal at `https:/{APIM_HOST}:9443/publisher` with `creator/publisher` privileges. 
 
-2. In the Homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
+2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
 
 3. Select **OpenAPI File/Archive**. 
 
-4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`. 
- 
-    !!!note
-        This document provides tryout instructions using the sample Account Information Service API packed in WSO2 Open Banking 
-        Accelerator.
+4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.
 
 5. Click **Next**.
 
-6. Leave the Endpoint field empty as it is and click **Create**. 
+6. Leave the **Endpoint** field empty as it is and click **Create**. 
 
 8. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
 requests**.
@@ -49,5 +51,9 @@ file and click **SELECT**.
 22.Now that you have deployed the API, go to `https://{APIM_HOST}:9443/devportal`.
     
 23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
+    
+!!!note
+        The name of the sample Acccount Information Service API is **AccountandTransaction V3.1**. Select the relevant API 
+        that you publish following the steps given in this document.
     
 24.Select the application from the dropdown list and click **Subscribe**.
