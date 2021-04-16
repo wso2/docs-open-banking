@@ -86,6 +86,11 @@ nav:
         - 'Consent Authorize': develop/consent-management-authorize.md
         - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
         - 'Consent Core Service': develop/consent-core-service.md
+    - 'Token Flow Customization ':
+        - 'Token Filters': develop/token-filters.md
+        - 'Grant Handlers': develop/grant-handlers.md
+        - 'Introspection Data Provider': develop/introspection-data-provider.md
+        - 'KeyID Provider': develop/keyid-provider.md
     - 'Application Management Listener': develop/application-management-listener.md
     - 'Response Type Handler': develop/response-type-handler.md
     - 'Validation Layer':
