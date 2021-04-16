@@ -1,12 +1,17 @@
 This document provides instructions to publish and subscribe to an API.
 
+!!!tip "Before you begin"
+    - Register an application for the API consumer. 
+        - For testing purposes, we have included a sample Dynamic Client Registration (DCR) 
+        API in WSO2 Open Banking Accelerator. To register an application, see [Dynamic Client Registration](../advanced/dynamic-client-registration-try-out.md).
+   
 !!!note
-    This document provides tryout instructions for the sample Account Information Service API packed in WSO2 Open 
+    This document provides tryout instructions for the sample Account Information Service API available in WSO2 Open 
     Banking Accelerator. 
     
-1. Sign in to the API Publisher Portal at `https:/{APIM_HOST}:9443/publisher` with `creator/publisher` privileges. 
+1. Sign in to the API Publisher Portal at `https://{APIM_HOST}:9443/publisher` with `creator/publisher` privileges. 
 
-2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
+2. In the homepage, go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
 
 3. Select **OpenAPI File/Archive**. 
 
@@ -36,7 +41,7 @@ file and click **SELECT**.
         
 15.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/set-endpoint.png)
     
-16.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.
+16.Select the endpoint types; **Production Endpoint/Sandbox Endpoint** and click **Save**.
 
 17.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
     
@@ -53,7 +58,8 @@ file and click **SELECT**.
 23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
     
 !!!note
-        The name of the sample Acccount Information Service API is **AccountandTransaction V3.1**. Select the relevant API 
-        that you publish following the steps given in this document.
-    
+        The name of the sample Account Information Service API is **AccountandTransaction V3.1**. Select the relevant 
+        API name according to the Swagger file you published.
+                                                                                                  
+
 24.Select the application from the dropdown list and click **Subscribe**.

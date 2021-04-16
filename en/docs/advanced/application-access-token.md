@@ -1,4 +1,4 @@
-Before requesting authorization, API consumers obtain an application access token for the application that they registered. 
+To create a consent, the API consumer applications need an Application Access Token.
 
 1. Once you register the application, generate an application access token using the following command: 
 ```
@@ -13,7 +13,7 @@ eR3tSJbJ7J7XFKTEIUOqk6ehXZcQ9tTQDlaRHmL67y6s_XgTu_Gca3Q4ejEFQRr5JGGyzTimXdlqEfd3
 -ZSAASZGYZr9F5s06qh5KHIY4rxQdr104dAalD-7pGhMwY2lwZymVlud73hCHfwq60fevra57HoVAD1hZVJ7hMf09QvlltLL6i3Gd4WzPXQ&client_asser
 tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redirect_uri=www.wso2.com'
 ```
-- The request payload contains a client assertion in the following format:
+- The request payload contains a client assertion, which is a JWT. Given below is the format of the decoded JWT payload:
 ```xml
 {
 "alg": "<<The algorithm used for signing.>>",

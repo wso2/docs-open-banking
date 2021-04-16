@@ -1,8 +1,8 @@
 !!!note
-    This document provides requests and responses for the sample Account Information Service API packed in WSO2 Open 
+    This document provides requests and responses for the sample Account Information Service API available in WSO2 Open 
     Banking Accelerator. 
 
-1. The first step for an API consumer is to call the `GET/ accounts` endpoint. A sample request looks as follows:
+1. The API consists of a `GET/ accounts` endpoint. Given below is how you can invoke that endpoint to retrieve a list of accounts:
 ```
 curl -X GET \
 https://{APIM_HOST}:8243/open-banking/v3.1/aisp/accounts/' \

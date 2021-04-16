@@ -14,7 +14,7 @@ jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<C
 <CLIENT_ID>'
 ```
 - Make sure you update all the placeholders with the appropriate values.
-    - Update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the previous step.
+    - Update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the [Authorise a Consent](../advanced/authorization-flow.md) step.
     - Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](../advanced/dynamic-client-registration-try-out.md).
 - The response contains a user access token.
 
