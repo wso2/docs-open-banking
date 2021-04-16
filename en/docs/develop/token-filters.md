@@ -9,14 +9,16 @@ com.wso2.finance.openbanking.accelerator.identity.token.DefaultTokenFilter
 ```
 
 !!! note 
-    If the WSO2 Identity Server is fronted by a load-balancer, you cannot send a certificate through the request header 
-    with the default configuration. To send the certificate as a header, disable the default functionality:
+    
+    If the WSO2 Identity Server is fronted by a load-balancer, a mutual TLS handshake needs to be ensured. Since a 
+    certificate cannot be passed through the request header with the default configuration, disable the default 
+    functionality as follows:
     
     1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     2. Set the following configuration to `false`. By default, this is set to `true`. 
     
     ``` toml
-    [[open_banking.identity]]
+    [open_banking.identity]
     client_transport_cert_as_header_enabled=false
     ```
     
@@ -60,13 +62,18 @@ This method lets you perform validations at the filter level. Given below is the
 void validate(ServletRequest request, String clientId) throws TokenFilterException, ServletException;
 ```
 
-The following validators are implemented by extending `OBIdentityFilterValidator`. If you want to customize them you 
-can extend the respective class and override the validate method, which is shown explained above.
+The following validators are implemented by extending `OBIdentityFilterValidator`. You can customize them by extending 
+the respective class and overriding the `validate` method, which is explained above.
+
+!!! note 
+    In addition to extending the below validators, you can directly extend the `OBIdentityFilterValidator` class and 
+    develop your own validators.
 
  - MTLSEnforcementValidator validator
       
-    This enforces the transport certificate is passed through the request. 
-    
+    This enforces that a certificate needs to be passed during token creation. This certificate is then bound to the 
+    access token.
+     
     ``` java
     com.wso2.finance.openbanking.accelerator.identity.token.validators.MTLSEnforcementValidator 
     ```
@@ -87,7 +94,3 @@ can extend the respective class and override the validate method, which is shown
     ``` java
     com.wso2.finance.openbanking.accelerator.identity.token.validators.SignatureAlgorithmEnforcementValidator 
     ```
-
-!!! note 
-    In addition to extending the above validators, you can directly extend the `OBIdentityFilterValidator` class and 
-    develop your own validators.
