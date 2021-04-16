@@ -1,58 +1,18 @@
-The initiated consent needs to be authorized by the bank customer for the API consumer to access their financial info.
+The initiated consent needs to be authorized by the bank customer for the API consumer to access their financial information.
 
 !!!note
     This document provides requests and responses for the sample Account Information Service API available in WSO2 Open 
     Banking Accelerator. 
 
-1. The API consumer requests the bank customer's consent to access the accounts and its information from the bank. A 
-sample request looks as follows:
-```
-curl -X POST \
-https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents \
--H 'Authorization: Bearer eyJ4NXQiOiJZMkk0WW1Rek5URmlZems0TXpVek5qQXdPRFUxWTJOaVl6SXpPVGhoTmpZM01tVm1aVEpqTWpJMFlqQTRNR1U1TUdJd09Ua3paVEV5TWpjM05tSTVZUSIsImtpZCI6IjEyMyIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJhZG1pbkB3c28yLmNvbUBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IkpFR2dyYllxaWhBdXRmeVRHYlVoaTZvQlVNUWEiLCJuYmYiOjE2MTc1NTIzNzksImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhenAiOiJKRUdncmJZcWloQXV0ZnlUR2JVaGk2b0JVTVFhIiwic2NvcGUiOiJhY2NvdW50cyBwYXltZW50cyIsImlzcyI6Imh0dHBzOlwvXC9vYjMtdGVzdHNlcnZlcjE6OTQ0Nlwvb2F1dGgyXC90b2tlbiIsImNuZiI6eyJ4NXQjUzI1NiI6ImRtaVk1ZE03cE81VzdpbjhrUmFqZkFycXlUTU9uRlcyOVdCVU5rUUlYZTgifSwiZXhwIjoxNjE3NTU1OTc5LCJpYXQiOjE2MTc1NTIzNzksImp0aSI6IjU3MTEyM2M0LTk3NTYtNDk4ZC05N2JhLTdlOGZiZjk5YmQyYyJ9.tbBfM4qFqkKwRumUDWdCPG9nDeRkx2M5Jw03FRkgPgSDazffycCXP6CQMIlJ2eK2Wn54YDe2gUlV-QHh9WybxJ8Q_ol7WPG5aGEzRKGRFrL66k08IF90YCBAZJZlyhpQo1uePQsDHSFypbS1Iw8hOfmtTHWFa7dguqSdJcXffmoRLH2p6XWA6V3VauFMsX96GugLH9FFUxbZoFMJhhPSjPDdJSY5r1za-MacZ_vaaqEUMOaYffkVsPo-aHZhdBeLA9tb9FMEmr5dQZo67d3xfPiZtV7cZojblJ_x3qDwgm-WOwh-UebfgcdE9ZsQ2Q7P7-kqVGztUGEtg0vmWa3JBA' \
--H 'Content-Type: application/json' \
---cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
--d '{
-   "Data":{
-      "Permissions": [
-       "ReadAccountsDetail",
-       "ReadTransactionsDetail",
-       "ReadBalances"
-    ],
-      "ExpirationDateTime":"2021-09-02T00:00:00+00:00",
-      "TransactionFromDateTime":"2021-01-01T00:00:00+00:00",
-      "TransactionToDateTime":"2021-03-03T00:00:00+00:00"
-   },
-   "Risk":{
-
-   }
-}'
-```
-The response contains a Consent ID. A sample response looks as follows:
-```
-{
-    "consentId": "3e31f726-b9ad-43a7-897d-fcdf5e6d8cd0",
-    "Risk": {},
-    "Data": {
-        "TransactionToDateTime": "2021-03-03T00:00:00+00:00",
-        "ExpirationDateTime": "2021-09-02T00:00:00+00:00",
-        "Permissions": [
-            "ReadAccountsDetail",
-            "ReadTransactionsDetail",
-            "ReadBalances"
-        ],
-        "TransactionFromDateTime": "2021-01-01T00:00:00+00:00"
-    }
-}
-```
-
-2. The customer is redirected to authenticate and approve/deny application-provided consents. 
-    - Make sure to update the placeholders with the appropriate values.
-    - Run the URL in a browser to prompt the invocation of the authorize API.
+1. The API consumer requests the bank customer's consent to access the accounts and its information from the bank.
 ```
 https://{APIM_HOST}:8243/authorize/?response_type={RESPONSE_TYPE}&client_id={APPLICATION_ID}&scope=accounts%20op
 enid&redirect_uri={APPLICATION_REDIRECT_URI}&state=YWlzcDozMTQ2&request={REQUEST_OBJECT}&prompt=login&nonce={REQUEST_OBJECT_NONCE}
 ```
+
+2. Make sure to update the placeholders with the appropriate values.
+    - Run the URL in a browser to prompt the invocation of the authorize API.
+
     ???tip "Click here to see how to generate a request object..."
         - Generate the request object by signing the following JSON payload using the supported algorithms. Given below is 
         a sample request object in the JWT format:

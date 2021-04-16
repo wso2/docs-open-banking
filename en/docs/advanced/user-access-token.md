@@ -18,7 +18,7 @@ jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<C
     - Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](../dynamic-client-registration-try-out.md).
 - The response contains a user access token.
 
-!!!tip``
+!!!tip
     The access tokens have an expiration period, once an access token expires, you need to regenerate it. Run the 
     following cURL command to generate a new access token:
     ```

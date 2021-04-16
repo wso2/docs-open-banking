@@ -152,7 +152,6 @@ The response contains a Consent ID. A sample response looks as follows:
 2. The bank sends the request to the customer stating the accounts and information that the API 
 consumer wishes to access. This request is in the format of a URL as follows: 
 ```
-
 https://localhost:8243/authorize/?response_type=jwt&client_id=<CLIENT_ID>&scope=accounts%20openid&redir
 ect_uri=www.wso2.com&state=YWlzcDozMTQ2&request=eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4Iiwi
 YWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tlbiIsInNjb3BlIjoiY
