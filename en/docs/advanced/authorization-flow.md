@@ -4,8 +4,8 @@ The initiated consent needs to be authorized by the bank customer for the API co
     This document provides requests and responses for the sample Account Information Service API available in WSO2 Open 
     Banking Accelerator. 
 
-1. The API consumer requests the bank customer's consent to access the accounts and its 
-information from the bank. A sample request looks as follows:
+1. The API consumer requests the bank customer's consent to access the accounts and its information from the bank. A 
+sample request looks as follows:
 ```
 curl -X POST \
 https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents \
@@ -50,7 +50,6 @@ The response contains a Consent ID. A sample response looks as follows:
     - Make sure to update the placeholders with the appropriate values.
     - Run the URL in a browser to prompt the invocation of the authorize API.
 ```
-
 https://{APIM_HOST}:8243/authorize/?response_type={RESPONSE_TYPE}&client_id={APPLICATION_ID}&scope=accounts%20op
 enid&redirect_uri={APPLICATION_REDIRECT_URI}&state=YWlzcDozMTQ2&request={REQUEST_OBJECT}&prompt=login&nonce={REQUEST_OBJECT_NONCE}
 ```

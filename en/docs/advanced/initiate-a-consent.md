@@ -1,7 +1,10 @@
-1. The API consumer needs to initiate an authorisation flow before accessing the account information of a customer. Therefore, 
-the API consumer creates a request to get the consent of the customer to access the accounts and its information from 
-the bank. A sample request looks as follows:
-    - Make sure to update the placeholders with the relevant values. Use the [Application Access](../advanced/application-access-token.md) Token you obtained.
+The API consumer requests the consent of the bank customer to access their financial information in the bank. The bank 
+sends a request to the customer stating the information that the API consumer application wishes to access. Upon the user 
+approving/denying the access, a consent is created. Using the consent, the API consumer application is now eligible to 
+access the details. 
+
+1. A sample request looks as follows:
+    - Make sure to update the placeholders with the relevant values. Use the [Application Access](../application-access-token.md) Token you obtained.
 ```
 curl -X POST \
 https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents \
