@@ -8,7 +8,7 @@ according to your requirements.
 
 ## OBKeyIDProvider
 
-To configure a KeyID calculation logic according to your open banking requirements, use the `OBKeyIDProvider` class.
+To configure a kid calculation logic according to your open banking requirements, use the `OBKeyIDProvider` class.
 
 ``` java
 com.wso2.openbanking.accelerator.identity.keyidprovider.OBKeyIDProvider;
@@ -16,7 +16,7 @@ com.wso2.openbanking.accelerator.identity.keyidprovider.OBKeyIDProvider;
 ### getKeyId method
 
 The method contains the KeyID calculation logic. You can customize it according to your requirements. Given below is 
-the method signature.
+the method signature:
 
 ``` java
 public String getKeyId(Certificate certificate, JWSAlgorithm signatureAlgorithm, String tenantDomain) throws IdentityOAuth2Exception;

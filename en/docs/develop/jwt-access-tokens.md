@@ -3,19 +3,19 @@ are digitally signed, the information is secured. The authentication and authori
 It is ideal to use JWT access tokens as API credentials because JWT access tokens can carry claims (data) that are used 
 in order to authenticate and authorize requests.
 
-WSO2 Open Banking Accelerator supports the use of JWT formatted OAuth2.0 access tokens as API credentials. For more 
-information on securing APIs using JWT Access Tokens, see 
-[WSO2 API Manager documentation](https://apim.docs.wso2.com/en/latest/learn/api-security/oauth2/access-token-types/jwt-tokens/).
+WSO2 Open Banking Accelerator supports the use of JWT access tokens as API credentials. You can use custom claims in the 
+JWT access token to cater to your requirements. In WSO2 Open Banking Accelerator, the JWT token contains the value of a 
+consent ID as a custom claim. This provides more details on a granted consent. By default, the consent ID is available 
+in the JWT token under the `consent_id` custom claim name. To change this default claim name, follow the steps below:
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+2. Add the following tags and configure the value according to your claim.
+
+    ``` toml
+    [open_banking.identity]
+    consent_id_claim_name=custom_claim_name
+    ```
 
 !!! note
-    
-    When reading the JWT claims, you can retrieve any claim and map it to the consent ID by following the given steps: 
-    
-    1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
-    2. Add the following tags and configure the value according to your claim.
-    
-        ``` toml
-        [open_banking.identity]
-        consent_id_claim_name=consent_id
-        ```
-    
+    For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/latest/learn/jwt-token-generation/#jwt-token-generation) 
+    and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/latest/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
