@@ -13,8 +13,11 @@ com.wso2.openbanking.accelerator.identity.interceptor.OBDefaultIntrospectionData
 
 This method lets you add any additional properties to the response of the introspection request. 
 
-**Do not override** the current implementation of the `getIntrospectionData` method. To make sure the current implementation 
-is intact, invoke the original implementation using the super keyword as shown below:
+!!! warning
+    Do not override the current implementation of the `getIntrospectionData` method. 
+
+To make sure the current implementation is intact, invoke the original implementation using the super keyword as shown 
+below:
 
 ``` java
 public Map < String, Object > getIntrospectionData(OAuth2TokenValidationRequestDTO oAuth2TokenValidationRequestDTO,

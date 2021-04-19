@@ -5,8 +5,9 @@ in order to authenticate and authorize requests.
 
 WSO2 Open Banking Accelerator supports the use of JWT access tokens as API credentials. You can use custom claims in the 
 JWT access token to cater to your requirements. In WSO2 Open Banking Accelerator, the JWT token contains the value of a 
-consent ID as a custom claim. This provides more details on a granted consent. By default, the consent ID is available 
-in the JWT token under the `consent_id` custom claim name. To change this default claim name, follow the steps below:
+consent ID as a custom claim. **consent ID** is a unique identifier for a granted consent. By default, the consent ID is 
+available in the JWT token under the custom claim name;`consent_id`. To change this default claim name, follow the steps 
+below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 2. Add the following tags and configure the value according to your claim.
