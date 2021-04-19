@@ -5,7 +5,7 @@ This document provides step by step instructions to invoke the Accounts Informat
     API we have included in the pack.
     
     ??? tip "Click here to see how to deploy and subscribe to the sample API..."
-        1. Sign in to the API Publisher Portal at `https:/localhost:9443/publisher` with `creator/publisher` 
+        1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
         privileges. 
 
         2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)

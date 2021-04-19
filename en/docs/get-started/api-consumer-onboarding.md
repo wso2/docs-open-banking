@@ -1,6 +1,6 @@
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
-1. Sign in to the API Publisher Portal at [https:/localhost:9443/publisher](https:/{APIM_HOST}:9443/publisher) with `creator/publisher` 
+1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
 privileges. 
 
 2. In the Homepage, click **Import Open API**. ![import_API](../assets/img/advanced/dcr/dcr-try-out/step-2.png)
@@ -32,7 +32,7 @@ https://localhost:9446/api/openbanking/dynamic-client-registration
 
 13.Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/advanced/dcr/dcr-try-out/step-8.png)
 
-14.The deployed DCR API is now available in the Developer Portal at `https://{APIM_HOST}:9443/devportal`.
+14.The deployed DCR API is now available in the Developer Portal at [https://localhost:9443/devportal](https://localhost:9443/devportal).
 
 15.Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
