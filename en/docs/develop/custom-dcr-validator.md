@@ -24,8 +24,9 @@ methods of this class. Given below is a brief description of each method.
 
 ### validatePost method
  
- This method validates the attributes sent in the registration creation request. If the validations fail,  
- the method throws an exception. 
+ This method validates the attributes sent in the registration creation request. If the validations fail, the method 
+ throws an exception. 
+ 
 ````
  public void validatePost(RegistrationRequest registrationRequest) throws DCRValidationException {
    String applicationType = registrationRequest.getApplicationType();
