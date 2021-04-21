@@ -1,5 +1,5 @@
 During the [consent authorization process](../advanced/consent-authorization-intro.md), an API consumer requests the banking 
-information that the API consumer application needs to access. Then, the bank redirect the bank user to a webpage where 
+information that the API consumer application needs to access. Then, the bank redirects the bank user to a webpage where 
 it displays the banking information that the API consumer application needs to access. This is known as the **consent page**. 
 WSO2 Open Banking Accelerator contains a default consent page, which can be customized to display consent details according 
 to your requirements. The following topics explain the page structure and extension points where you can customize.
@@ -23,7 +23,7 @@ directories:
 The consent page works with two main Servlets. 
 
 - `OBConsentServlet` retrieves the consent data from the consent service and shows the account selection details. 
-- `OBConsentConfirmServlet` shows the permission details and implements to the consent service if the user approves the consent. 
+- `OBConsentConfirmServlet` shows the permission details and writes to the consent service if the user approves the consent. 
 
 An extension is provided for you to implement the JSP implementations of these servlets. Give below are the 
 methods that can be extended:
