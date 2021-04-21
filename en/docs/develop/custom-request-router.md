@@ -11,7 +11,7 @@ Gateway. As different flows need different policy enforcements, a routing mechan
 You can implement a router according to your requirements by extending the following class:
 
 ``` java
-com.wso2.finance.openbanking.accelerator.gateway.executor.core.AbstractRequestRouter
+com.wso2.openbanking.accelerator.gateway.executor.core.AbstractRequestRouter
 ```
 Given below is a brief explanation of the methods you need to implement.
 
@@ -46,12 +46,12 @@ requests router, the router decides the flow to execute.
 [[open_banking.gateway.openbanking_gateway_executors.type]]
 name = "DCR"
 [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
+name = "com.wso2.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
 priority = 1
 [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.finance.openbanking.accelerator.gateway.executor.dcr.DCRExecutor"
+name = "com.wso2.openbanking.accelerator.gateway.executor.dcr.DCRExecutor"
 priority = 2
 [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
+name = "com.wso2.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
 priority = 1000
 ```

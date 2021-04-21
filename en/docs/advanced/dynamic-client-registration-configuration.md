@@ -14,7 +14,7 @@ publishing requirements, the Application Listener invokes methods that are overr
 tag with the name of the class that is extended to so.
 ``` xml
 [open_banking.dcr]
-applicationupdater = "com.wso2.finance.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
+applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
 ```
 
 4. Configure the names of the primary authenticator to be engaged in the authentication flow and the identity provider 
@@ -74,19 +74,19 @@ read_timeout = 3000
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 2. Find the following configuration and replace that with your extended class. By default the 
 `DefaultRegistrationValidatorImpl` class is configured as follows: 
-````xml
+```` xml
 [open_banking.dcr]
-validator = "com.wso2.finance.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
+validator = "com.wso2.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
 ````
 3. Configure the jwks endpoint that is used for validating the SSA signature. 
-```xml
+``` xml
 [open_banking.dcr]
 jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/9b5usDpbNtmxDcTzs7GzKp.jwks"
 jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/9b5usDpbNtmxDcTzs7GzKp.jwks"
 ```       
 4. Configure the algorithms that are allowed during signature validation. These algorithms are used for token endpoint 
 authentication assertion signature, request object signature, and id token signature validations.
-```xml
+``` xml
 [[open_banking.signature_validation.allowed_algorithms.algorithms]]
 algorithm = "PS256"
 ```

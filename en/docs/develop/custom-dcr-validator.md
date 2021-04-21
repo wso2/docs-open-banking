@@ -6,7 +6,7 @@ specification and other requirements.
 
 To implement custom validations, extend the following class.
 ````
-com.wso2.finance.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl 
+com.wso2.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl
 ````
 This class performs the following validations, by default:
 
@@ -16,7 +16,7 @@ This class performs the following validations, by default:
  - Validates whether the issuer of the jwt is the same as the software id of the SSA
 
 !!! note
-    The `com.wso2.finance.openbanking.accelerator.identity` JAR file inside 
+    The `com.wso2.openbanking.accelerator.identity` JAR file inside 
     the `<IS_HOME>/repository/components/dropins` directory contains all the Java implementation related to DCR validators. 
 
 To extend the validation capabilities according to your open banking specification requirements, override relevant 

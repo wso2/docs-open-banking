@@ -21,7 +21,7 @@ https://{IS_HOST}:9446/api/openbanking/consent/validate
 
 ### Interface
 ``` java
-com.wso2.finance.openbanking.accelerator.consent.extensions.validate.model.ConsentValidator
+com.wso2.openbanking.accelerator.consent.extensions.validate.model.ConsentValidator
 ```
 ### Method 
 The following method is available in the interface.
@@ -53,7 +53,7 @@ To configure the customized Consent Validate component, follow the steps below:
 2. Add the following tag and configure it with the customized component.
 ``` xml
 [open_banking.consent.validation]
-validator="com.wso2.finance.openbanking.accelerator.consent.extensions.validate.impl.DefaultConsentValidator"
+validator="com.wso2.openbanking.accelerator.consent.extensions.validate.impl.DefaultConsentValidator"
 ```
 
 3. Configure the certificate alias of Identity Server's truestore. This is used to verify the JWT of the 
