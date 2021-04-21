@@ -63,11 +63,11 @@ nav:
     - 'Consent Management':
       - 'Introduction': advanced/consent-management.md
       - 'Tryout': advanced/consent-management-try-out.md
+    - 'Consent Authorization': advanced/consent-authorization-intro.md
     - 'Dynamic Client Registration':
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
       - 'Tryout': advanced/dynamic-client-registration-try-out.md
-    - 'Consent Authorization':  advanced/authorization-flow-intro.md
     - 'Tryout Flow':
         - 'Publish an API': advanced/publish-an-api.md
         - 'Obtain Application Access Token': advanced/application-access-token.md

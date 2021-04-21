@@ -3,7 +3,7 @@ their banking information. The process is as follows:
 
 1. API consumer requests to access the banking information of a customer.
 2. Bank validates the API consumer’s request.
-3. The bank redirects the request information (containing the information the API consumer application wants to access)
+3. The bank redirects the requested information (containing the information the API consumer application wants to access)
 to the customer.
 4. The bank authenticates the customer. See below for the default login page of the consent page:
  
