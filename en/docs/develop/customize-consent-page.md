@@ -4,12 +4,9 @@ Open Banking Accelerator. A toolkit developer can create their own consent page 
 their implementations. Following topics explain where a toolkit developer can customise the consent page:
 
 ##Customise the theme of the consent page
-1. First a login page is displayed to authenticate the bank customer. See the default login page of WSO2 Open Banking Accelerator: ![consent-page-authorization-flow.png](../assets/img/develop/customizing-consent-page/login-of-consent-page.png)
-
-2. The consent webpage (consent page) containing the banking information is displayed afterwards. Below is the consent webpage designed for the sample 
-Account Information Service API available in WSO2 Open Banking Accelerator:
-
-`<Diagram>`
+The consent webpage (consent page) displays the banking information that the API consumer application needs to access. 
+Below is the consent webpage designed for the sample Account Information Service API available in WSO2 Open Banking Accelerator:
+![consent-webpage](../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
 
 If the bank wishes to customise the theme of the existing consent page, they can modify the files in the following 
 directories: 
@@ -66,8 +63,3 @@ the layout of the authentication endpoint, locate the JSP pages in the following
 |Header|`<OB_IS_ACCELERATOR_HOME>/repository/deployment/server/webapps/ob#authenticationendpoint/includes/consent_top.jsp`|
 |Body|Implementation needs to be provided by toolkit developers.|
 |Footer|`<OB_IS_ACCELERATOR_HOME>/repository/deployment/server/webapps/ob#authenticationendpoint/includes/consent_bottom.jsp`|
-
-
-
-
-

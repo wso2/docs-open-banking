@@ -87,6 +87,7 @@ nav:
         - 'Consent Authorize': develop/consent-management-authorize.md
         - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
         - 'Consent Core Service': develop/consent-core-service.md
+        - 'Customize the Consent Page': develop/customize-consent-page.md
     - 'Token Flow Customization ':
         - 'JWT Access Tokens': develop/jwt-access-tokens.md
         - 'Token Filters': develop/token-filters.md
