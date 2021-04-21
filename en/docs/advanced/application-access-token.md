@@ -3,7 +3,7 @@ To create a consent, the API consumer applications need an Application Access To
 1. Once you register the application, generate an application access token using the following command: 
 ```
 curl -X POST \
-https://{APIM_HOST}:8243/token \
+https://{IS_HOST}:9446/oauth2/token \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
 -d 'grant_type=client_credentials&scope=accounts openid&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaN
 lEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJrYkxuSkpfdVFMMlllNjh1YUNSYlBJSk9SNFVhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tl

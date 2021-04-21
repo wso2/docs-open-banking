@@ -62,7 +62,7 @@ This document provides step by step instructions to invoke the Accounts Informat
 1. Once you register the application, generate an application access token using the following command: 
 ```
 curl -X POST \
-https://localhost:8243/token \
+https://localhost:9446/oauth2/token \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
 -d 'grant_type=client_credentials&scope=accounts openid&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaN
 lEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJrYkxuSkpfdVFMMlllNjh1YUNSYlBJSk9SNFVhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tl
@@ -178,7 +178,7 @@ RpK70Dz7AiZ73ODN8Ic9XCTDwKiE5jE_hHYi7qF2QIIUubjeVgRMAjF9A18t9VQDqLt_x-dhWPXerCcO
 1. You can generate a user access token using the sample request given below:
 ```
 curl -X POST \
-https://<WSO2_OB_APIM_HOST>:8243/token \
+https://localhost:9446/oauth2/token \
 -H 'Cache-Control: no-cache' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
