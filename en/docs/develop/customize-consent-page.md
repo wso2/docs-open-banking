@@ -72,7 +72,9 @@ showing consent data to the bank customers. The information you want to pass fro
 shown in this custom JSP you have implemented. 
 
 The authentication endpoint in WSO2 Open Banking Accelerator allows the bank to customize the layout of the consent page. 
-The consent page is designed in a servlet that consists of three main JSP pages as shown in the diagram below: ![consent-page-structure](../assets/img/develop/customizing-consent-page/consent-page-structure.png)
+The consent page is designed in a servlet that consists of three main JSP pages as shown in the diagram below: 
+
+![consent-page-structure](../assets/img/develop/customizing-consent-page/consent-page-structure.png)
 
 You can also make changes to the relevant JSP pages and customize according to the open banking requirement. To customize 
 the layout of the authentication endpoint, locate the JSP pages in the following locations:
