@@ -64,6 +64,7 @@ nav:
       - 'Introduction': advanced/consent-management.md
       - 'Tryout': advanced/consent-management-try-out.md
     - 'Consent Authorization': advanced/consent-authorization-intro.md
+    - 'Authentication Tokens': advanced/authentication-tokens.md
     - 'Dynamic Client Registration':
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
