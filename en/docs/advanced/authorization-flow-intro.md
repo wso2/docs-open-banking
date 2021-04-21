@@ -9,7 +9,7 @@ to the customer.
  
     ![login-consent-page](../assets/img/develop/customizing-consent-page/login-of-consent-page.png)
     
-5. The customer can view the information before consenting or denying it. Below is a screenshot of the sample API flow:
+5. The customer can view the information before consenting or denying it. For example,
     ![information-consent-page](../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
  
 ##Consent Authorization in WSO2 Open Banking Accelerator
@@ -17,8 +17,8 @@ to the customer.
 Following components perform the consent authorization:
 
 ###Authorization endpoint
-Before the API consumer application accesses the customer's banking information,the API consumer sends an authorization 
-request to get the customer's consent for it. The authorization request contain a request object. This request object is 
+Before the API consumer application accesses the customer's banking information, the API consumer sends an authorization 
+request to get the customer's consent for it. The authorization request contains a request object. This request object is 
 a self-contained JWT, which helps banks to validate the API consumer.
 
 The method of sending the authorization request can vary as follows:
@@ -32,9 +32,10 @@ authorization URL.
 
 The API consumers push authorization details directly to the authorization server and obtain a reference. This method is also 
 known as **Pushed Authorization**. The reference is notated by the claim; `request_uri`. Thereby, it prevents:
+                                                                                         
+- Intruders from intercepting the authorization information sent in the request_object
+- Authorization request calls becoming bulky with the authorization details signed in the JWT
 
-- Intruders from intercepting the authorisation information sent in the request_object
-- Authorisation request calls becoming large with the authorisation details signed in the JWT
 and protects the confidentiality and integrity of the authorization details when passing through an API consumer application.
 
 ###Authorization web application 
