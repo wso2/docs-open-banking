@@ -49,10 +49,10 @@ api_retrieve = "api/am/devportal/v2/apis"
 api_subscribe = "api/am/devportal/v2/subscriptions/multiple"
 ```
 
-3. Configure the hostname of the API Manager for the token endpoint.
+3. Configure the hostname of Identity Server for the token endpoint.
 ``` toml
 [open_banking.dcr]
-token_endpoint = https://{APIM_HOSTNAME}:9446/oauth2/token
+token_endpoint = https://<IS_HOST>:9446/oauth2/token
 ```   
 
 4. The following configuration sets the software id as the name of the application. By default, this configuration is 
@@ -66,7 +66,7 @@ use_softwareIdForAppName = true
 set to `false`, the name of the application is set using the value of the given claim.
 ```toml
 [open_banking.dcr]
-app_name_claim = "claim_name"
+app_name_claim = "software_client_name"
 ```
 
 6. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA 
