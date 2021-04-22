@@ -1,42 +1,42 @@
-When an API consumer application is registered in the Developer Portal, the application is given a consumer-key and a 
-consumer-secret, which represents the credentials of the application that is being registered. The consumer-key becomes 
-the unique identifier of the application, similar to a user's username, and is used to authenticate the application. 
+When an API consumers register an application, the  registered application is given a consumer-key and a 
+consumer-secret. These are the credentials of the application that is being registered. The consumer-key becomes 
+the unique identifier of the application, which is similar to a username and is used to authenticate the application. 
 When an **access token** is issued for the application, it is issued against the latter mentioned consumer-key.
 
 API consumers generate access tokens and pass them in the incoming API requests. The generated access token is a simple 
-string that you need to pass as an HTTP header. For example, `"Authorization: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a."` 
+string that you need to pass as an HTTP header. For example, `"Authorization: Bearer NtBQkXoKElu0H1a1fQ0DWfo6IX4a"`. 
 
 WSO2 Open Banking Accelerator supports two types of access tokens for authentication:
 
-   - **Application Access Tokens**: Tokens to identify and authenticate an entire application. 
+   - **Application Access Tokens**: Tokens to identify and authenticate an application. 
    
    - **User Access Tokens**: Tokens to identify the final user of an application. 
 
 For more information on access tokens, see the 
 [overview of access tokens in WSO2 API Manager documentation](https://apim.docs.wso2.com/en/latest/learn/consume-api/manage-application/generate-keys/obtain-access-token/overview-of-access-tokens/).
 
-In order to cater to open banking requirements, WSO2 Open Banking Accelerator contains the following access token 
+In order to cater to any open banking requirements, WSO2 Open Banking Accelerator contains the following access token 
 features:
 
 ## Certificate bound access tokens 
 
 Certificate bound access tokens are access tokens that have a certificate attached to them. When using certificate bound 
 access tokens, you need to pass the certificate, which is bound to the token to gain access to protected resources. This 
-helps prevent several attacks on the access token by unauthorized parties. The validation for such tokens take place as 
+prevents attacks to the access tokens from unauthorized parties. The validation for such tokens take place as 
 follows:
 
    - Step 1: During the token API invocation, ensure that the transport certificate is passed as a header or in the context. 
-   This is performed by a **Token Filter** before the API hits the server.
+   This is performed by a **Token Filter** before the API hits the authorization server.
 
-   - Step 2: Bind the transport certificate to the access token via the confirmation (cnf) claim. All **Grant Handler** 
+   - Step 2: Bind the transport certificate to the access token via the confirmation (`cnf`) claim. All **Grant Handler** 
    types (`authorization_code`, `client_credentials`, and `refresh_token`) bind the transport certificate hash to the 
-   token using the cnf claim.
+   token using the `cnf` claim.
 
-   - Step 3: Return the cnf claim via an access token, the cnf claim ensures that the certificate is bound to the access 
+   - Step 3: Return the `cnf` claim via an access token, the `cnf` claim ensures that the certificate is bound to the access 
    token.
  
    - Step 4: Validate the certificate during the API invocation. The API Manager server needs to ensure that the 
-   certificate being passed during the API call is the same certificate that is bound to the token being used.
+   certificate being passed during the API call is the same certificate that is bound to the token.
 
 The diagram below explains the flow and how the Grant Handler and Token Filters engage:
 ![token_flow](../assets/img/advanced/access-tokens/token-flow.png)
@@ -46,7 +46,7 @@ The diagram below explains the flow and how the Grant Handler and Token Filters 
 A Token Filter is engaged at the Servlet container level before the request approaches the Token API. The Token Filter 
 engages the following validators:
 
-   - **MTLS enforcement validator**: This enforces that a certificate needs to be passed during token creation. This 
+   - **MTLS enforcement validator**: This enforces that a certificate needs to be passed during the token creation. This 
    certificate is then bound to the access token. 
    - **Client authenticator validator**: This validates whether the token request follows the client authentication 
    method format that was registered through Dynamic Client Registration. While ensuring that it is a registered client 
@@ -79,8 +79,8 @@ For more information, see [customizing Grant Handlers](../develop/grant-handlers
 ## Client Authentication 
 
 According to OAuth 2.0, the authorization server and the client need to establish a client authentication method that 
-meets the security requirements of the authorisation server. The client has the option of choosing the authentication 
-method. However, the ID token signing algorithm needs to be restricted for each client. The OpenID specification 
+meets the security requirements of the authorization server. The client has the option of choosing the authentication 
+method. However, the algorithm to sign the ID token needs to be restricted for each client. The OpenID specification 
 mentions a set of client authentication methods to authenticate the clients to the authorization server when using the 
 token endpoint.
 
