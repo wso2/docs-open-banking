@@ -14,7 +14,7 @@ below:
 
     ``` toml
     [open_banking.identity]
-    consent_id_claim_name=custom_claim_name
+    consent_id_claim_name="custom_claim_name"
     ```
 
 !!! note
