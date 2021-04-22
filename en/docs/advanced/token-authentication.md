@@ -1,6 +1,6 @@
-When an API consumers register an application, the  registered application is given a consumer-key and a 
-consumer-secret. These are the credentials of the application that is being registered. The consumer-key becomes 
-the unique identifier of the application, which is similar to a username and is used to authenticate the application. 
+When an API consumer registers an application, a consumer-key and a consumer-secret is given for that application. 
+These are the credentials of the application that is being registered. The consumer-key becomes 
+the unique identifier of the application, which is similar to a username that is used for authentication. 
 When an **access token** is issued for the application, it is issued against the latter mentioned consumer-key.
 
 API consumers generate access tokens and pass them in the incoming API requests. The generated access token is a simple 
@@ -15,7 +15,7 @@ WSO2 Open Banking Accelerator supports two types of access tokens for authentica
 For more information on access tokens, see the 
 [overview of access tokens in WSO2 API Manager documentation](https://apim.docs.wso2.com/en/latest/learn/consume-api/manage-application/generate-keys/obtain-access-token/overview-of-access-tokens/).
 
-In order to cater to any open banking requirements, WSO2 Open Banking Accelerator contains the following access token 
+In order to cater to any open banking requirement, WSO2 Open Banking Accelerator contains the following access token 
 features:
 
 ## Certificate bound access tokens 
