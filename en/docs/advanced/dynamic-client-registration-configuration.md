@@ -4,7 +4,7 @@
 
 2. Configure the issuer (iss) of the SSA in the following tag. If not specified, the application is considered 
 a non-regulatory application.
-``` xml
+``` toml
 [[open_banking.dcr.regulatory_issuers.iss]]
 name = "cdr-register"
 ```
@@ -12,14 +12,21 @@ name = "cdr-register"
 3. If you have modified the Application Listener interface, for example, adding OAuth 2.0 properties or for data 
 publishing requirements, the Application Listener invokes methods that are overridden from a class. Add the following 
 tag with the name of the class that is extended to so.
-``` xml
+``` toml
 [open_banking.dcr]
 applicationupdater = "com.wso2.finance.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
 ```
 
-4. Configure the names of the primary authenticator to be engaged in the authentication flow and the identity provider 
+4. The following configuration sets the software id as the name of the application. By default, this configuration is
+set to `true`.
+``` toml
+[open_banking.dcr]
+use_softwareIdForAppName = true
+```
+
+5. Configure the names of the primary authenticator to be engaged in the authentication flow and the identity provider 
 if SMS OTP is used as the secondary authentication method.
-``` xml
+``` toml
 [open_banking.sca.primaryauth]
 name = "BasicAuthenticator"
 display = "basic"
@@ -34,36 +41,49 @@ name = "SMSAuthentication"
 
 2. If you want to change the internal REST API endpoints of the API Manager configure the following tags. By default, 
 the API Manager 4.0 endpoints are configured.
-``` xml
+``` toml
 [[open_banking.dcr.apim_rest_endpoints]]
 app_creation = "api/am/devportal/v2/applications"
 key_generation = "api/am/devportal/v2/applications/application-id/map-keys"
 api_retrieve = "api/am/devportal/v2/apis"
 api_subscribe = "api/am/devportal/v2/subscriptions/multiple"
-
 ```
 
-3. Configure the hostname of the API Manager for the token endpoint.
-``` xml
+3. Configure the hostname of Identity Server for the token endpoint.
+``` toml
 [open_banking.dcr]
-token_endpoint = https://{APIM_HOSTNAME}:9446/oauth2/token
+token_endpoint = https://<IS_HOST>:9446/oauth2/token
 ```   
 
-4. Configure the names of all regulatory applications. By default, the DCR API is configured.   
-``` xml
-[[open_banking.dcr.regulatory_api]]
-api_name = "CDR-DynamicClientRegistration"
+4. The following configuration sets the software id as the name of the application. By default, this configuration is 
+set to `true`.
+```toml
+[open_banking.dcr]
+use_softwareIdForAppName = true
 ```
 
-5. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA 
+5. Configure the claim name in the SSA that mentions the software. If the `use_softwareIdForAppName` configuration is 
+set to `false`, the name of the application is set using the value of the given claim.
+```toml
+[open_banking.dcr]
+app_name_claim = "software_client_name"
+```
+
+6. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA 
 for this value.
-``` xml
+``` toml
 [open_banking.dcr]
 jwks_endpoint_name = "jwks_uri"
 ```
 
-6. Configure the time out values when validating the signature of the request.
-``` xml
+7. Configure the names of all regulatory applications. By default, the DCR API is configured.   
+``` toml
+[[open_banking.dcr.regulatory_api]]
+api_name = "CDR-DynamicClientRegistration"
+```
+
+8. Configure the time out values when validating the signature of the request.
+``` toml
 [open_banking.dcr.jwks_retriever]
 connection_timeout = 3000
 read_timeout = 3000
@@ -74,19 +94,19 @@ read_timeout = 3000
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 2. Find the following configuration and replace that with your extended class. By default the 
 `DefaultRegistrationValidatorImpl` class is configured as follows: 
-````xml
+````toml
 [open_banking.dcr]
 validator = "com.wso2.finance.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
 ````
 3. Configure the jwks endpoint that is used for validating the SSA signature. 
-```xml
+```toml
 [open_banking.dcr]
 jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/9b5usDpbNtmxDcTzs7GzKp.jwks"
 jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/9b5usDpbNtmxDcTzs7GzKp.jwks"
 ```       
 4. Configure the algorithms that are allowed during signature validation. These algorithms are used for token endpoint 
 authentication assertion signature, request object signature, and id token signature validations.
-```xml
+```toml
 [[open_banking.signature_validation.allowed_algorithms.algorithms]]
 algorithm = "PS256"
 ```
@@ -99,7 +119,7 @@ algorithm = "PS256"
         the allowed values for them, open the `<IS_HOME>/repository/conf/deployment.toml` file and add the following 
         tags.
             
-              ````xml
+              ````toml
               [open_banking.dcr.registration.issuer] 
               allowed_values = ["value1, value2, value3”]
                
@@ -121,7 +141,7 @@ algorithm = "PS256"
       
            - If you want to make any of the above parameters optional, add the `required` tag and set it `false`. For 
            example:
-              ````xml
+              ````toml
               [open_banking.dcr.registration.issuer]
               required = true
               allowed_values = ["accounts", "payments"]
@@ -132,7 +152,7 @@ algorithm = "PS256"
         - Open the `<IS_HOME>/repository/conf/deployment.toml` file, add the relevant tags and configure the values 
         allowed.
          
-            ````xml
+            ````toml
             [open_banking.dcr.registration.scope]
             allowed_values = ["accounts", "payments"]
             
@@ -179,7 +199,7 @@ algorithm = "PS256"
         
            - If you want to make any of the above parameters mandatory, add the `required` tag and set it `true`. 
            For example:
-        ````xml
+        ````toml
         [open_banking.dcr.registration.scope]
         required = true
         allowed_values = ["accounts", "payments"]

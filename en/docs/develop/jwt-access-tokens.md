@@ -10,11 +10,11 @@ available in the JWT token under the custom claim name;`consent_id`. To change t
 below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-2. Add the following tags and configure the value according to your claim.
+2. Add the following tags and configure the value according to your claim. For example,
 
     ``` toml
     [open_banking.identity]
-    consent_id_claim_name=custom_claim_name
+    consent_id_claim_name="consent_id"
     ```
 
 !!! note
