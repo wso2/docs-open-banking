@@ -2,37 +2,50 @@ To create a consent, the API consumer applications need an Application Access To
 
 1. Once you register the application, generate an application access token using the following command: 
 ```
-curl -X POST \
-https://{IS_HOST}:9446/oauth2/token \
---cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
--d 'grant_type=client_credentials&scope=accounts openid&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaN
-lEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJrYkxuSkpfdVFMMlllNjh1YUNSYlBJSk9SNFVhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tl
-biIsImlzcyI6ImtiTG5KSl91UUwyWWU2OHVhQ1JiUElKT1I0VWEiLCJleHAiOjE2Mzg3ODg0NDIsImlhdCI6MTYwMTk5Mjk2MSwianRpIjoiMTYwMTk5Mjk2
-MSJ9.kWeV242yEXvF1vTntHsjxMfFqGAGIwiXQM1QeSTMoXyYePB450UZHZaVVo4_Q4SM9--FWQYCVKa7_SDMvmGcaiHeb5UTp0rdivMvVMZ1HkaYQRopC9c
-eR3tSJbJ7J7XFKTEIUOqk6ehXZcQ9tTQDlaRHmL67y6s_XgTu_Gca3Q4ejEFQRr5JGGyzTimXdlqEfd3Lo6WD1I_s-c26tAuAJ00oGvAXOBPy0EoDFMdLDXv
--ZSAASZGYZr9F5s06qh5KHIY4rxQdr104dAalD-7pGhMwY2lwZymVlud73hCHfwq60fevra57HoVAD1hZVJ7hMf09QvlltLL6i3Gd4WzPXQ&client_asser
-tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redirect_uri=www.wso2.com'
+curl -X POST \https://<IS_HOST>:9446/oauth2/token  \
+	-H 'Content-Type: application/x-www-form-urlencoded' \
+	--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+	-d 'grant_type=client_credentials&scope=accounts 
+openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
+redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
-- The request payload contains a client assertion, which is a JWT. Given below is the format of the decoded JWT payload:
-```xml
-{
-"alg": "<<The algorithm used for signing.>>",
-"kid": "<<The thumbprint of the certificate.>>",
-"typ": "JWT"
-}
-  
-{
-"iss": "<<This is the issuer of the token. For example, client ID of your application>>",
-"sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
-"exp": <<This is epoch time of the token expiration date/time>>,
-"iat": <<This is epoch time of the token issuance date/time>>,
-"jti": "<<This is an incremental unique value>>",
-"aud": "<<This is the audience that the ID token is intended for. For example, https://{APIM_HOST}:8243/token>>"
-}
-  
-<signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
-signature of the application certificate is used.>
-```
+
+    - The client assertion looks as follows:
+
+    ``` xml tab="Client Assertion Format"
+    {
+    "alg": "<<The algorithm used for signing.>>",
+    "kid": "<<The thumbprint of the certificate.>>",
+    "typ": "JWT"
+    }
+         
+    {
+    "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
+    "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
+    "exp": <<This is epoch time of the token expiration date/time>>,
+    "iat": <<This is epoch time of the token issuance date/time>>,
+    "jti": "<<This is an incremental unique value>>",
+    "aud": "<<This is the audience that the ID token is intended for. For example, https://{IS_HOST}:9446/oauth2/token"
+    }
+         
+    <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private 
+    signature of the application certificate is used.>
+    ```
+        
+    ``` xml tab="Sample"
+    eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaNlEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiw
+    iYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiwiZXhwIjoxNjg
+    0MDk5ODEyLCJpYXQiOjE2ODQwOTk4MTMsImp0aSI6IjE2ODQwOTk4MTIifQ.EMZ2q3jciJ4MmrsH93kH_VGacrt2izbLaCBchGWiyUltdWwj3GwDMKfhpeMH
+    tThd0DszwV8LUPKZaMT3wUSoH3adY2IBC8aa2GKeb_vaQB5b0ZO6WpYQ45y_xIttAVj56d6oPli8wN4MlJoJsFPUlaxQohCLunN43BxSr-kFgeFMj7ynEsVb
+    QvuYuEiTppwTSyXltJmv70-nwpGU9UyuPCkXUsU53ShICrY0nC-3NUhY6oNpZclJP4MwG8mP4ZOvUIez_PSoP3AiaNithWhPCfLuKd68OLAReTBGdItqidsW
+    Wnn8lPVbM2FLvehukHDCJhf9-ev1pdWIiwDSVDV7uQ
+    ``` 
+        
+    - Enter the value for <REDIRECT_URI> that you entered in the registration request.
+    - To locate the value for `<CONSUMER_KEY>`,
+        - Go to `https://<APIM_HOST>:9443/devportal` and click the **Applications** tab on top.
+        - Select the application you registered and **Production Keys** > **OAuth2 Tokens**.
+        - You can view the unique value generated for `<CONSUMER_KEY>` as follows: ![view-values-for-application](../assets/img/advanced/dcr/dcr-try-out/view-the-values-for-app.png)
 
 2. The response contains an access token as follows:
 ```
