@@ -132,7 +132,6 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  - pymdownx.tabbed
 
 # Extra
 extra_css:
