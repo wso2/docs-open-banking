@@ -29,7 +29,7 @@ Follow the instructions to find how you can quickly set up and try out a basic f
         !!!note
             We do not recommend configuring H2 database in the production environment.
 
-- This document uses the following placeholders to refer to the following product:
+- This document uses the following placeholders to refer to the following products:
         
 | Product | Placeholder |
 |---------|---------    |
