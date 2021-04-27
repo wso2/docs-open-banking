@@ -69,6 +69,7 @@ nav:
       - 'Introduction': advanced/dynamic-client-registration.md
       - 'Configuration': advanced/dynamic-client-registration-configuration.md
       - 'Tryout': advanced/dynamic-client-registration-try-out.md
+    - 'Data Publishing': advanced/data-publishing.md
     - 'Tryout Flow':
         - 'Publish an API': advanced/publish-an-api.md
         - 'Obtain Application Access Token': advanced/application-access-token.md
