@@ -45,7 +45,7 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
     - To locate the value for `<CONSUMER_KEY>`,
         - Go to `https://<APIM_HOST>:9443/devportal` and click the **Applications** tab on top.
         - Select the application you registered and **Production Keys** > **OAuth2 Tokens**.
-        - You can view the unique value generated for `<CONSUMER_KEY>` as follows: ![view-values-for-application](../assets/img/advanced/dcr/dcr-try-out/view-the-values-for-app.png)
+        - You can view the unique value generated for `<CONSUMER_KEY>` as follows: ![view-values-for-application](../assets/img/learn/dcr/dcr-try-out/view-the-values-for-app.png)
 
 2. The response contains an access token as follows:
 ```

@@ -3,9 +3,9 @@
 1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
 privileges. 
 
-2. In the Homepage, click **Import Open API**. ![import_API](../assets/img/advanced/dcr/dcr-try-out/step-2.png)
+2. In the Homepage, click **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
-3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/advanced/dcr/dcr-try-out/step-3.png)
+3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 
 4. Click **Browse File to Upload** and select the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/
 DynamicClientRegistration/dcr-swagger.yaml` file.
@@ -16,21 +16,21 @@ DynamicClientRegistration/dcr-swagger.yaml` file.
 ```
 https://localhost:9446/api/openbanking/dynamic-client-registration
 ```
-    ![set_endpoint](../assets/img/advanced/dcr/dcr-try-out/step-4.png)
+    ![set_endpoint](../assets/img/learn/dcr/dcr-try-out/step-4.png)
 
 7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited requests**.
 
 8. Click **Save**.
 
-9. Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/advanced/dcr/dcr-try-out/step-6.png)
+9. Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/learn/dcr/dcr-try-out/step-6.png)
 
 10.Provide a description for the new revision.
 
-11.Select `localhost` from the dropdown list. ![select_localhost](../assets/img/advanced/dcr/dcr-try-out/step-7.png)
+11.Select `localhost` from the dropdown list. ![select_localhost](../assets/img/learn/dcr/dcr-try-out/step-7.png)
 
 12.Click **Deploy**.
 
-13.Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/advanced/dcr/dcr-try-out/step-8.png)
+13.Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/learn/dcr/dcr-try-out/step-8.png)
 
 14.The deployed DCR API is now available in the Developer Portal at [https://localhost:9443/devportal](https://localhost:9443/devportal).
 
@@ -45,7 +45,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 ### Step 2: Configure IS as Key Manager
 
  1. Sign in to the Admin Portal of API Manager at `https://<APIM_HOST>:9443/admin`.
- 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager](../assets/img/advanced/dcr/dcr-try-out/step-9.png)
+ 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager](../assets/img/learn/dcr/dcr-try-out/step-9.png)
  3. Click **Add New Key Manager** and configure Key Manager. 
     
     ??? tip "Click here to see the full list of configurations..."
@@ -89,13 +89,13 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | **Claim Mappings** | Local and remote claim mapping. | (Optional) |
     
 
-3. Go to the list of Key Managers and select **Resident Key Manager**. ![select_Resident_KM](../assets/img/advanced/dcr/dcr-try-out/step-10.png)
+3. Go to the list of Key Managers and select **Resident Key Manager**. ![select_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-10.png)
 
 4. Locate **Connector Configurations** and provide a username and a password for a user with super admin credentials.
 
 5. Click **Update**.
 
-6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/advanced/dcr/dcr-try-out/step-11.png)
+6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
 
 ### Step 3: Register an application
 The API allows the API consumer to request the bank to register a new application. The process is as follows:

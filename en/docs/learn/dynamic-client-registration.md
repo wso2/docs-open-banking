@@ -26,7 +26,7 @@ details needed for the application functionalities. It is a standard API that re
 with a client ID and registration details. The API consumer applications can use these credentials to obtain 
 application access tokens that are required to invoke the open banking APIs. 
 
-![dynamic client registration](../assets/img/advanced/dcr/dcr-flow.png)
+![dynamic client registration](../assets/img/learn/dcr/dcr-flow.png)
 
    - Before registering in the bank, the API consumer applications have to register with a regulated directory. After successful registration, they can obtain signing and transport certificates from the directory.
    - A Software Statement Assertion (SSA) is also generated for a particular application and they can download this assertion.

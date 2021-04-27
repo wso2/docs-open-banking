@@ -3,9 +3,9 @@
 - Sign in to the API Publisher Portal at `https:/<APIM_HOST>:9443/publisher` with `creator/publisher` 
 privileges. 
 
-- In the Homepage, click **Import Open API**. ![import_API](../assets/img/advanced/dcr/dcr-try-out/step-2.png)
+- In the Homepage, click **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
-- Select **OpenAPI File/Archive**. ![select_API](../assets/img/advanced/dcr/dcr-try-out/step-3.png)
+- Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 
 - Click **Browse File to Upload** and select the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/
 DynamicClientRegistration/dcr-swagger.yaml` file.  
@@ -17,22 +17,22 @@ DynamicClientRegistration/dcr-swagger.yaml` file.
 ```
 https://<IS_HOST>:9446/api/openbanking/dynamic-client-registration
 ``` 
-![set_endpoint](../assets/img/advanced/dcr/dcr-try-out/step-4.png)
+![set_endpoint](../assets/img/learn/dcr/dcr-try-out/step-4.png)
 
 - Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
-requests**. ![set_business_plan](../assets/img/advanced/dcr/dcr-try-out/step-5.png)
+requests**. ![set_business_plan](../assets/img/learn/dcr/dcr-try-out/step-5.png)
 
 - Click **Save**.
 
-- Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/advanced/dcr/dcr-try-out/step-6.png)
+- Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/learn/dcr/dcr-try-out/step-6.png)
 
 - Provide a description for the new revision.
 
-- Select `localhost` from the dropdown list. ![select_localhost](../assets/img/advanced/dcr/dcr-try-out/step-7.png)
+- Select `localhost` from the dropdown list. ![select_localhost](../assets/img/learn/dcr/dcr-try-out/step-7.png)
 
 - Click **Deploy**.
 
-- Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/advanced/dcr/dcr-try-out/step-8.png)
+- Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/learn/dcr/dcr-try-out/step-8.png)
 
 The deployed DCR API is now available in the Developer Portal at `https://<APIM_HOST>:9443/devportal`.
 
@@ -49,7 +49,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 ## Step 2: Configure IS as Key Manager
 
  1. Sign in to the Admin Portal of API Manager at `https://<APIM_HOST>:9443/admin`.
- 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager] (../assets/img/advanced/dcr/dcr-try-out/step-9.png)
+ 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager] (../assets/img/learn/dcr/dcr-try-out/step-9.png)
  3. Click **Add New Key Manager** and configure Key Manager. 
     
     ??? tip "Click here to see the full list of configurations..."
@@ -93,13 +93,13 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | **Claim Mappings** | Local and remote claim mapping. | (Optional) |
     
 
-3. Go to the list of Key Managers and select **Resident Key Manager**. ![select_Resident_KM](../assets/img/advanced/dcr/dcr-try-out/step-10.png)
+3. Go to the list of Key Managers and select **Resident Key Manager**. ![select_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-10.png)
 
 4. Locate **Connector Configurations** and provide a username and a password for a user with super admin credentials.
 
 5. Click **Update**.
 
-6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/advanced/dcr/dcr-try-out/step-11.png)
+6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
 
 ## Step 3: Tryout DCR
 
@@ -343,7 +343,7 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
         - Go to `https://<APIM_HOST>:9443/devportal` and click the **Applications** tab on top.
         - Select the application you registered and **Production Keys** > **OAuth2 Tokens**.
         - You can view the unique value generated for `<CONSUMER_KEY>` as 
-        follows: ![view-values-for-application](../assets/img/advanced/dcr/dcr-try-out/view-the-values-for-app.png)
+        follows: ![view-values-for-application](../assets/img/learn/dcr/dcr-try-out/view-the-values-for-app.png)
 
     
 ###Retrieve an application
