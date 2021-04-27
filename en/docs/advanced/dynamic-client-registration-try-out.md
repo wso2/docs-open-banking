@@ -1,6 +1,6 @@
 ## Step 1: Deploy the Dynamic Client Registration(DCR) API
 
-- Sign in to the API Publisher Portal at `https:/{APIM_HOST}:9443/publisher` with `creator/publisher` 
+- Sign in to the API Publisher Portal at `https:/<APIM_HOST>:9443/publisher` with `creator/publisher` 
 privileges. 
 
 - In the Homepage, click **Import Open API**. ![import_API](../assets/img/advanced/dcr/dcr-try-out/step-2.png)
@@ -15,7 +15,7 @@ DynamicClientRegistration/dcr-swagger.yaml` file.
 - Set the value for **Endpoint** as follows:
 
 ```
-https://{IS_HOST}:9446/api/openbanking/dynamic-client-registration
+https://<IS_HOST>:9446/api/openbanking/dynamic-client-registration
 ``` 
 ![set_endpoint](../assets/img/advanced/dcr/dcr-try-out/step-4.png)
 
@@ -34,7 +34,7 @@ requests**. ![set_business_plan](../assets/img/advanced/dcr/dcr-try-out/step-5.p
 
 - Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/advanced/dcr/dcr-try-out/step-8.png)
 
-The deployed DCR API is now available in the Developer Portal at `https://{APIM_HOST}:9443/devportal`.
+The deployed DCR API is now available in the Developer Portal at `https://<APIM_HOST>:9443/devportal`.
 
 - Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
@@ -48,7 +48,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 
 ## Step 2: Configure IS as Key Manager
 
- 1. Sign in to the Admin Portal of API Manager at `https://{APIM_HOST}:9443/admin`.
+ 1. Sign in to the Admin Portal of API Manager at `https://<APIM_HOST>:9443/admin`.
  2. Go to **Key Manager** on the left main menu. ![add_Key_Manager] (../assets/img/advanced/dcr/dcr-try-out/step-9.png)
  3. Click **Add New Key Manager** and configure Key Manager. 
     
@@ -59,16 +59,16 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | Display Name        | A name to display on the UI.          | OBKM                     |
         | Description         | The name of the authorization server. | (Optional)               |
         | Key Manager Type    | The type of the Key Manager to be selected. | Select `ObKeyManager` |
-        |Well-known-url      | The well-known URL of the authorization server (Key Manager).| https://{IS_HOST}:9446/oauth2/token/.well-known/openid-configuration |
-        | Issuer              | The issuer that consumes or validates access tokens.         | https://{IS_HOST}:9446/oauth2/token |
+        |Well-known-url      | The well-known URL of the authorization server (Key Manager).| https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration |
+        | Issuer              | The issuer that consumes or validates access tokens.         | https://<IS_HOST>:9446/oauth2/token |
         |**Key Manager Endpoints**                                                                |
-        | Client Registration Endpoint | The endpoint that verifies the identity and obtain profile information of the end-user based on the authentication performed by an authorization server.  |  https://{IS_HOST}:9446/keymanager-operations/dcr/register| 
-        | Introspection Endpoint | The endpoint that allows authorized protected resources to query the authorization server to determine the set of metadata for a given token that was presented to them by an OAuth Client. | https://{IS_HOST}:9446/oauth2/introspect |
-        | Token Endpoint      | The endpoint that issues the access tokens. | https://{IS_HOST}:9446/oauth2/token |
-        | Revoke Endpoint     | The endpoint that revokes the access tokens.| https://{IS_HOST}:9446/oauth2/revoke |
-        | Userinfo Endpoint   | The endpoint that allows clients to verify the identity of the end-user based on the authentication performed by an authorization server, as well as to obtain basic profile information about the end-user. | https://{IS_HOST}:9446/oauth2/userinfo?schema=openid |
-        | Authorize Endpoint  | The endpoint used to obtain an authorization grant from the resource owner via the user-agent redirection. | https://{IS_HOST}:9446/oauth2/authorize |
-        | Scope Management Endpoint | The endpoint used to manage the scopes. | https://{IS_HOST}:9446/api/identity/oauth2/v1.0/scopes |
+        | Client Registration Endpoint | The endpoint that verifies the identity and obtain profile information of the end-user based on the authentication performed by an authorization server.  |  https://<IS_HOST>:9446/keymanager-operations/dcr/register| 
+        | Introspection Endpoint | The endpoint that allows authorized protected resources to query the authorization server to determine the set of metadata for a given token that was presented to them by an OAuth Client. | https://<IS_HOST>:9446/oauth2/introspect |
+        | Token Endpoint      | The endpoint that issues the access tokens. | https://<IS_HOST>:9446/oauth2/token |
+        | Revoke Endpoint     | The endpoint that revokes the access tokens.| https://<IS_HOST>:9446/oauth2/revoke |
+        | Userinfo Endpoint   | The endpoint that allows clients to verify the identity of the end-user based on the authentication performed by an authorization server, as well as to obtain basic profile information about the end-user. | https://<IS_HOST>:9446/oauth2/userinfo?schema=openid |
+        | Authorize Endpoint  | The endpoint used to obtain an authorization grant from the resource owner via the user-agent redirection. | https://<IS_HOST>:9446/oauth2/authorize |
+        | Scope Management Endpoint | The endpoint used to manage the scopes. | https://<IS_HOST>:9446/api/identity/oauth2/v1.0/scopes |
         | **Connector Configurations**                        |
         | Username            | The username of an admin user who is authorized to connect to the authorization server. |  |
         | Password            | The password corresponding to the latter mentioned admin user who is authorized to connect to the authorization server. | |
@@ -78,7 +78,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | Grant Types | The supported grant types. Add multiple grant types by adding a grant type press Enter. | (Optional) |
         | **Certificates** | 
         | PEM | Either copy and paste the certificate in PEM format or upload the PEM file. | (Optional) |
-        | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | https://{IS_HOST}:9446/oauth2/jwks |
+        | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | https://<IS_HOST>:9446/oauth2/jwks |
         | **Advanced Configurations** |
         | Token Generation | This enables token generation via the authorization server. | (Mandatory) |
         | Out Of Band Provisioning | This enables the provisioning of Auth clients that have been created without the use of the Developer Portal, such as previously created Auth clients. | (Mandatory) |
@@ -114,7 +114,7 @@ The API allows the API consumer to request the bank to register a new applicatio
 This SSA contains API consumer's metadata. A sample request looks as follows:
 
 ```
-curl -X POST\https://{APIM_HOST}:8243/open-banking/0.1/register \
+curl -X POST\https://<APIM_HOST>:8243/open-banking/0.1/register \
  -H 'Content-Type: application/jwt' \
  -d 'eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6IkR3TUtkV01tajdQV2ludm9xZlF5WFZ6eVo2USJ9.eyJpc3MiOiI3NDBDMzY4Ri1FQ0Y5LT
 REMjktQTJFQS0wNTE0QTY2QjBDRE4iLCJpYXQiOjE1NzE4MDgxNjcsImV4cCI6MjE0NzQ4MzY0NiwianRpIjoiMzc3NDdjZDFjMTA1NDU2OTlmNzU0YWRmMj
@@ -166,8 +166,7 @@ The payload is a signed JWT. Its format looks as follows:
   "jti": "37747cd1c10545699f754adf28b73e31",
   "aud": "https://secure.api.dataholder.com/issuer",
   "redirect_uris": [
-    "https://www.mockcompany.com.au/redirects/redirect1",
-    "https://www.mockcompany.com.au/redirects/redirect2"
+    www.wso2.com"
   ],
   "token_endpoint_auth_signing_alg": "PS256",
   "token_endpoint_auth_method": "private_key_jwt",
@@ -225,8 +224,7 @@ The format of the SSA:
       "client_description": "A mock software product for testing SSA",
       "client_uri": "https://www.mockcompany.com.au",
       "redirect_uris": [
-        "https://www.google.com/redirects/redirect1",
-        "https://www.google.com/redirects/redirect2"
+        "www.wso2.com"
       ],
       "logo_uri": "https://www.mockcompany.com.au/logos/logo1.png",
       "tos_uri": "https://www.mockcompany.com.au/tos.html",
@@ -249,15 +247,14 @@ The format of the SSA:
 - The bank registers the application using the metadata sent in the SSA.
 
 - If an application is successfully created, the bank responds with a JSON payload describing the API consumer that the application was created. 
-The API consumer can then use the identifier (`Client ID`) to access customers' financial data on the bank's resource server. A sample response is 
+The API consumer can then use the identifier (`CONSUMER_KEY`) to access customers' financial data on the bank's resource server. A sample response is 
 given below:
 ```
 {
         "client_id": "CVY8RUWT3XVHAlRV_ZiA0dlB2Owa",
         "client_id_issued_at": "1617198228",
         "redirect_uris": [
-            "https://www.mockcompany.com.au/redirects/redirect1",
-            "https://www.mockcompany.com.au/redirects/redirect2"
+            "www.wso2.com"
         ],
         "grant_types": [
             "client_credentials",
@@ -274,7 +271,24 @@ given below:
         "scope": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
         "software_id": "740C368F-ECF9-4D29-A2EA-0514A66B0CDN",
         "token_endpoint_auth_method": "private_key_jwt",
-        "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6IkR3TUtkV01tajdQV2ludm9xZlF5WFZ6eVo2USIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjZHItcmVnaXN0ZXIiLCJpYXQiOjE1NzE4MDgxNjcsImV4cCI6MjE0NzQ4MzY0NiwianRpIjoiM2JjMjA1YTFlYmM5NDNmYmI2MjRiMTRmY2IyNDExOTYiLCJvcmdfaWQiOiIzQjBCMEE3Qi0zRTdCLTRBMkMtOTQ5Ny1FMzU3QTcxRDA3QzgiLCJvcmdfbmFtZSI6Ik1vY2sgQ29tcGFueSBJbmMuIiwiY2xpZW50X25hbWUiOiJNb2NrIFNvZnR3YXJlIiwiY2xpZW50X2Rlc2NyaXB0aW9uIjoiQSBtb2NrIHNvZnR3YXJlIHByb2R1Y3QgZm9yIHRlc3RpbmcgU1NBIiwiY2xpZW50X3VyaSI6Imh0dHBzOi8vd3d3Lm1vY2tjb21wYW55LmNvbS5hdSIsInJlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIiwiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QyIl0sImxvZ29fdXJpIjoiaHR0cHM6Ly93d3cubW9ja2NvbXBhbnkuY29tLmF1L2xvZ29zL2xvZ28xLnBuZyIsInRvc191cmkiOiJodHRwczovL3d3dy5tb2NrY29tcGFueS5jb20uYXUvdG9zLmh0bWwiLCJwb2xpY3lfdXJpIjoiaHR0cHM6Ly93d3cubW9ja2NvbXBhbnkuY29tLmF1L3BvbGljeS5odG1sIiwiandrc191cmkiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYLzliNXVzRHBiTnRteERjVHpzN0d6S3AuandrcyIsInJldm9jYXRpb25fdXJpIjoiaHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9pbWVzaDk0LzMxNzJlMmU0NTc1N2NkYTA4ZWMyNzI3ZjkwYjcyY2VkL3Jhdy9mZjBkM2VhYmU0Y2RkY2U0N2VlYzAyMjhmNTkyMTc1MjIzZGQ5MmIyL3dzbzItYXUtZGNyLWRlbW8uandrcyIsInJlY2lwaWVudF9iYXNlX3VyaSI6Imh0dHBzOi8vd3d3Lm1vY2tjb21wYW55LmNvbS5hdSIsInNvZnR3YXJlX2lkIjoiNzQwQzM2OEYtRUNGOS00RDI5LUEyRUEtMDUxNEE2NkIwQ0ROIiwic29mdHdhcmVfcm9sZXMiOiJkYXRhLXJlY2lwaWVudC1zb2Z0d2FyZS1wcm9kdWN0Iiwic2NvcGUiOiJiYW5rOmFjY291bnRzLmJhc2ljOnJlYWQgYmFuazphY2NvdW50cy5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIGJhbms6cGF5ZWVzOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgY29tbW9uOmN1c3RvbWVyLmRldGFpbDpyZWFkIGNkcjpyZWdpc3RyYXRpb24ifQ.bKtuQ9AM5ekKx1l3R36dkJi423jagZvrKflNzZjZt8vFIGgBYp10g0RTYkL4uvJPICcfo6e01tP4nMd1Z47TvHdMdAxk-1Mr6QpxJQFeVRrtI2MHPiCNrD-0b0-2l6VxN5YO-ggJq1wouhecKxR-HnHLrpoO6l9Zsrnouy4rQbznDFsQmvX2N7n-rKUnD93z_TojwLqIIECKCAZhlJpjgOMIi4bZoe4-y_1zkUS9D-VB2ZA-eftEQfsD1-aQ9mNsn-uFmWSACsaTYOMd6xmsoog5dVd29i2HEKXpiLNl02XeMRlFWUHmJvOFwerKQESFMV2evdg1gyCR5odG_8dxXg"
+        "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6IkR3TUtkV01tajdQV2ludm9xZlF5WFZ6eVo2USIsInR5cCI6IkpXVCJ9.eyJp
+c3MiOiJjZHItcmVnaXN0ZXIiLCJpYXQiOjE1NzE4MDgxNjcsImV4cCI6MjE0NzQ4MzY0NiwianRpIjoiM2JjMjA1YTFlYmM5NDNmYmI2MjRiMTRmY2IyNDEx
+OTYiLCJvcmdfaWQiOiIzQjBCMEE3Qi0zRTdCLTRBMkMtOTQ5Ny1FMzU3QTcxRDA3QzgiLCJvcmdfbmFtZSI6Ik1vY2sgQ29tcGFueSBJbmMuIiwiY2xpZW50
+X25hbWUiOiJNb2NrIFNvZnR3YXJlIiwiY2xpZW50X2Rlc2NyaXB0aW9uIjoiQSBtb2NrIHNvZnR3YXJlIHByb2R1Y3QgZm9yIHRlc3RpbmcgU1NBIiwiY2xp
+ZW50X3VyaSI6Imh0dHBzOi8vd3d3Lm1vY2tjb21wYW55LmNvbS5hdSIsInJlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVj
+dHMvcmVkaXJlY3QxIiwiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QyIl0sImxvZ29fdXJpIjoiaHR0cHM6Ly93d3cubW9ja2Nv
+bXBhbnkuY29tLmF1L2xvZ29zL2xvZ28xLnBuZyIsInRvc191cmkiOiJodHRwczovL3d3dy5tb2NrY29tcGFueS5jb20uYXUvdG9zLmh0bWwiLCJwb2xpY3lf
+dXJpIjoiaHR0cHM6Ly93d3cubW9ja2NvbXBhbnkuY29tLmF1L3BvbGljeS5odG1sIiwiandrc191cmkiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5n
+dGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYLzliNXVzRHBiTnRteERjVHpzN0d6S3AuandrcyIsInJldm9jYXRpb25fdXJpIjoiaHR0cHM6Ly9naXN0
+LmdpdGh1YnVzZXJjb250ZW50LmNvbS9pbWVzaDk0LzMxNzJlMmU0NTc1N2NkYTA4ZWMyNzI3ZjkwYjcyY2VkL3Jhdy9mZjBkM2VhYmU0Y2RkY2U0N2VlYzAy
+MjhmNTkyMTc1MjIzZGQ5MmIyL3dzbzItYXUtZGNyLWRlbW8uandrcyIsInJlY2lwaWVudF9iYXNlX3VyaSI6Imh0dHBzOi8vd3d3Lm1vY2tjb21wYW55LmNv
+bS5hdSIsInNvZnR3YXJlX2lkIjoiNzQwQzM2OEYtRUNGOS00RDI5LUEyRUEtMDUxNEE2NkIwQ0ROIiwic29mdHdhcmVfcm9sZXMiOiJkYXRhLXJlY2lwaWVu
+dC1zb2Z0d2FyZS1wcm9kdWN0Iiwic2NvcGUiOiJiYW5rOmFjY291bnRzLmJhc2ljOnJlYWQgYmFuazphY2NvdW50cy5kZXRhaWw6cmVhZCBiYW5rOnRyYW5z
+YWN0aW9uczpyZWFkIGJhbms6cGF5ZWVzOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgY29tbW9u
+OmN1c3RvbWVyLmRldGFpbDpyZWFkIGNkcjpyZWdpc3RyYXRpb24ifQ.bKtuQ9AM5ekKx1l3R36dkJi423jagZvrKflNzZjZt8vFIGgBYp10g0RTYkL4uvJPI
+Ccfo6e01tP4nMd1Z47TvHdMdAxk-1Mr6QpxJQFeVRrtI2MHPiCNrD-0b0-2l6VxN5YO-ggJq1wouhecKxR-HnHLrpoO6l9Zsrnouy4rQbznDFsQmvX2N7n-r
+KUnD93z_TojwLqIIECKCAZhlJpjgOMIi4bZoe4-y_1zkUS9D-VB2ZA-eftEQfsD1-aQ9mNsn-uFmWSACsaTYOMd6xmsoog5dVd29i2HEKXpiLNl02XeMRlFW
+UHmJvOFwerKQESFMV2evdg1gyCR5odG_8dxXg"
     }
 
 ```
@@ -282,16 +296,56 @@ given below:
 - If application creation is unsuccessful, the bank responds with an error payload. 
    
 Generate an application access token using Client Credentials grant. A sample command is given below. 
+
 ```
-curl -X POST \https://{APIM_HOST}:8243/token \
-  -H 'Cache-Control: no-cache' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-  -d 'grant_type=client_credentials&scope=openid bank:accounts.basic:read bank:transactions:read common:customer.detail:
-read&client_assertion=<CLIENT_ASSERTION_JWT>&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3
-Ajwt-bearer&redirect_uri=<APPLICATION_CALLBACK_URL>'
+curl -X POST \https://<IS_HOST>:9446/oauth2/token  \
+	-H 'Content-Type: application/x-www-form-urlencoded' \
+	--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+	-d 'grant_type=client_credentials&scope=accounts 
+openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
+redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
 
+??? example "Make sure to update the placeholders with the relevant values"
+    - The client assertion looks as follows:
+    
+        ``` xml tab="Client Assertion Format"
+        {
+        "alg": "<<The algorithm used for signing.>>",
+        "kid": "<<The thumbprint of the certificate.>>",
+        "typ": "JWT"
+        }
+         
+        {
+        "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
+        "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
+        "exp": <<This is epoch time of the token expiration date/time>>,
+        "iat": <<This is epoch time of the token issuance date/time>>,
+        "jti": "<<This is an incremental unique value>>",
+        "aud": "<<This is the audience that the ID token is intended for. For example, https://{IS_HOST}:9446/oauth2/token"
+        }
+         
+        <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private 
+        signature of the application certificate is used.>
+        ```
+        
+        ``` xml tab="Sample"
+        eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaNlEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiw
+        iYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiwiZXhwIjoxNjg
+        0MDk5ODEyLCJpYXQiOjE2ODQwOTk4MTMsImp0aSI6IjE2ODQwOTk4MTIifQ.EMZ2q3jciJ4MmrsH93kH_VGacrt2izbLaCBchGWiyUltdWwj3GwDMKfhpeMH
+        tThd0DszwV8LUPKZaMT3wUSoH3adY2IBC8aa2GKeb_vaQB5b0ZO6WpYQ45y_xIttAVj56d6oPli8wN4MlJoJsFPUlaxQohCLunN43BxSr-kFgeFMj7ynEsVb
+        QvuYuEiTppwTSyXltJmv70-nwpGU9UyuPCkXUsU53ShICrY0nC-3NUhY6oNpZclJP4MwG8mP4ZOvUIez_PSoP3AiaNithWhPCfLuKd68OLAReTBGdItqidsW
+        Wnn8lPVbM2FLvehukHDCJhf9-ev1pdWIiwDSVDV7uQ
+        ``` 
+        
+    - Enter the value for <REDIRECT_URI> that you entered in the registration request.
+    - To locate the value for `<CONSUMER_KEY>`,
+        - Go to `https://<APIM_HOST>:9443/devportal` and click the **Applications** tab on top.
+        - Select the application you registered and **Production Keys** > **OAuth2 Tokens**.
+        - You can view the unique value generated for `<CONSUMER_KEY>` as 
+        follows: ![view-values-for-application](../assets/img/advanced/dcr/dcr-try-out/view-the-values-for-app.png)
+
+    
 ###Retrieve an application
 The API allows the API consumer to retrieve the details for an application that has already been registered. 
 The request consists of one path parameter named `Client ID` that the API consumer wants to retrieve details for. 
@@ -299,7 +353,7 @@ When invoking this API, use the transport certificates available [here](../../as
 
 See the following sample request:
 ```
-curl GET \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
+curl GET \https://<APIM_HOST>:8243/open-banking/0.1/register/<CLIENT_ID> \
     -H 'Content-Type: application/json' \
     -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
@@ -362,7 +416,7 @@ use the transport certificates available [here](../../assets/attachments/Transpo
 
 See the following sample request:
 ```
-curl PUT \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
+curl PUT \https://<APIM_HOST>:8243/open-banking/0.1/register/<CLIENT_ID> \
     -H 'Content-Type: application/jwt' \
     -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN> \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
@@ -425,7 +479,7 @@ certificates available [here](../../assets/attachments/Transport_Certs.zip).
 
 See the following sample request:
 ```
-curl DELETE \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
+curl DELETE \https://<APIM_HOST>:8243/open-banking/0.1/register/<CLIENT_ID> \
     -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN> \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
 ```
@@ -435,3 +489,4 @@ curl DELETE \https://{APIM_HOST}:8243/open-banking/0.1/register/<CLIENT_ID> \
  2. If the `Client ID` is unknown, the bank responds with an `Unauthorized` status code.
     
 If the deletion is successful you will get a 204 No Content response.
+
