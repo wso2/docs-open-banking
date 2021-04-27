@@ -4,8 +4,8 @@ locate the respective root directory of the base products:
 
     | File | Directory location to place the Accelerator |
     |---------|---------    |
-    |WSO2 Identity Server|`<IS_HOME>`|
-    |WSO2 API Manager|`<APIM_HOME>`|
+    |wso2ob-is-accelerator-3.0.0.zip|`<IS_HOME>`|
+    |wso2ob-apim-accelerator-3.0.0.zip|`<APIM_HOME>`|
     
 2. Go to `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` and give the execution 
 permission to merge.sh script using the following command:
