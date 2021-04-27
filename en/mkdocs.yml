@@ -59,6 +59,7 @@ nav:
     - 'Tryout Flow': get-started/try-out-flow.md
   - 'Install and setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
+    - 'Setting up servers': install-and-setup/setting-up-servers.md
   - 'Advanced':
     - 'Consent Management':
       - 'Introduction': advanced/consent-management.md
