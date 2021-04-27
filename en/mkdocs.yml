@@ -58,7 +58,7 @@ nav:
     - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
     - 'Tryout Flow': get-started/try-out-flow.md
   - 'Install and setup':
-    - 'Install and setup': page-not-found.md
+    - 'Prerequisites': install-and-setup/prerequisites.md
   - 'Advanced':
     - 'Consent Management':
       - 'Introduction': advanced/consent-management.md

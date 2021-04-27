@@ -51,5 +51,5 @@ Following are the data elements that WSO2 API Manager publishes to WSO2 Open Ban
 |`responseMediationLatency: long`|The time taken for the response mediation. `(responseMediationTime - backendTime)`|`142`|    
 
 ###Data Summarization:
-You can write a summarization script for the data stored using Siddhi queries. For more information, see the WSO2 Streaming
+You can write a summarization script for the data stored using Siddhi Applications. For more information, see the WSO2 Streaming
 Integrator documentation on [Summarizing Data](https://ei.docs.wso2.com/en/latest/streaming-integrator/guides/summarizing-data/). 

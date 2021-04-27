@@ -52,7 +52,7 @@ api_subscribe = "api/am/devportal/v2/subscriptions/multiple"
 3. Configure the hostname of Identity Server for the token endpoint.
 ``` toml
 [open_banking.dcr]
-token_endpoint = https://<IS_HOST>:9446/oauth2/token
+token_endpoint = https://<APIM_HOST>:9443/oauth2/token
 ```   
 
 4. The following configuration sets the software id as the name of the application. By default, this configuration is 
