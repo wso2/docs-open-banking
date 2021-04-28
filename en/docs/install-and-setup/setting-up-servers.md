@@ -176,3 +176,30 @@ is equal to the hostname.
 
 5. If there is an Active Directory/LDAP configured in your deployment, add the AD certificate to the client-truststore 
 of all the servers.
+
+## Copying the deployment.toml
+
+WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the instance 
+can be applied using a single configuration file, which is the `deployment.toml` file. 
+
+1. Replace the `existing deployment.toml` file in API Manager as follows:
+
+    a. Go to the `<APIM_HOME>/repository/resources` directory.
+    
+    b. Rename `wso2am-4.0.0-deployment.toml` to `deployment.toml`.
+    
+    c. Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory and replace the existing file.
+        
+2. Replace the `existing deployment.toml` file in Identity Server as follows:
+
+    a. Go to the `<IS_HOME>/repository/resources` directory.
+    
+    b. Rename `wso2is-5.11.0-deployment.toml` to `deployment.toml`.
+    
+    c. Copy the `deployment.toml` file to the `<IS_HOME>/repository/conf` directory to replace the existing file.
+     
+3. For instructions on how to configure the deployment.toml file, see the following topics:
+
+    - [Configuring API Manager for open banking](configuring-api-manager-for-ob.md)
+    - [Configuring Identity Server for open banking](configuring-identity-server-for-ob.md)
+   
