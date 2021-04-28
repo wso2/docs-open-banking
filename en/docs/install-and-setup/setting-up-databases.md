@@ -29,14 +29,16 @@ Once you have successfully prepared the environment for the deployment, you can 
  
     - `<APIM_HOME>/repository/components/lib`  
     - `<IS_HOME>/repository/components/lib` 
-    
+
+    !!! tip 
+        By default, the `mysql-connector-java-5.1.44.jar` JDBC driver is available in these locations. 
 
 ## Configuring datasources
 
 1. The databases above have a respective datasource. Add or update the default datasource 
 configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. 
 
-    - This database to datasource mapping is as follows:
+    - Given below is the relevant datasource configuration for each database:
    
         |Database|TOML configuration|
         |--------|----------|
@@ -45,7 +47,7 @@ configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your databa
         |openbank_govdb|`[database.shared_db]`|
         |openbank_userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
 
-   - Configure the above datasources by following the sample below: 
+   - Configure the datasources by following the sample below: 
     
     ```toml
     [database.apim_db]
@@ -66,7 +68,7 @@ configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your databa
 2. Add or update the default datasource configurations in `<IS_HOME>/repository/conf/deployment.toml` with your 
 database configurations.  
 
-    - This database to datasource mapping is as follows:
+    - Given below is the relevant datasource configuration for each database:
     
     |Database|TOML configuration|
     |--------|----------|
@@ -76,7 +78,7 @@ database configurations.
     |openbank_iskm_configdb | `[database.config]` |
     |openbank_openbankingdb | `[[datasource]]` <br/> `id="WSO2OB_DB"`|
     
-   - Configure the above datasources by following the sample below: 
+   - Configure the datasources by following the sample below: 
  
     ```toml
     [database.config]
@@ -100,7 +102,9 @@ database configurations.
 ## Creating database tables
 
 To create the database tables, go to the following locations and execute the relevant database script against the 
-given database. These locations contain database scripts for all the supported database types, choose the script 
+given database. 
+
+These locations contain database scripts for all the supported database types, choose the script 
 according to your DBMS. 
 
 | Database | Script location |
