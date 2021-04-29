@@ -80,11 +80,27 @@ Example:
        	return newMap;
    }
 ```
-2. Once you add the data elements that you need for data publishing, define the stream and their attributes with the 
-priority in `<IS_HOME>/ repository/ conf/ deployment.toml` using the following format :
+2. Add the classes that you extended to enable data publishing for the authentication flow in `<IS_HOME>/ repository/ conf/ deployment.toml` using the following format:
 ```toml
 [open_banking.data_publishing]
 Auth_data_publisher = "com.wso2.finance.openbanking.accelerator.authentication.data.publisher.extension.DefaultAuthDataPublisher"
 ```
+3. Locate the following configuration in `<IS_HOME>/ repository/ conf/ deployment.toml`:
+```toml
+[[open_banking.data_publishing.thrift.stream]]
+name="AuthenticationInputStream"
+```
+4. Configure the additional attributes added with their priority of publishing under the above-mentioned configuration. 
+For example,
+```toml
+[[open_banking.data_publishing.thrift.stream.attributes]]
+name="timestamp"
+priority=6
+required=true
+type="long"
+```
+    - `required` is treated as `false` if not explicitly mentioned.
+    - `type` is treated as `string` if not explicitly mentioned.
+   
 
 

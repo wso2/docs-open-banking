@@ -22,7 +22,7 @@ throws OpenBankingException {
 ```
 
 ##Configurations
-1. Add the classes that you extended to enable data publishing for the authentication flow in <IS_HOME>/ repository/ conf/ 
+1. Add the classes that you extended to enable data publishing for the Dynamic Client Registration flow in <IS_HOME>/ repository/ conf/ 
 deployment.toml as follows:
 ```toml
 [open_banking.dcr]
