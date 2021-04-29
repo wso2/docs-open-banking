@@ -26,9 +26,9 @@ chmod +x merge.sh
     
      | File to copy | Location to  |
      |---------|---------    |
-     |`<ISKM_HOME>/dropins/wso2is.key.manager.core-1.2.5.jar`|`<IS_HOME>/repository/components/dropins`|
-     |`<ISKM_HOME>/dropins/wso2is.notification.event.handlers-1.2.5.jar`|`<IS_HOME>/repository/components/dropins`|
-     |`<ISKM_HOM>/webapps/keymanager-operations.war`|`<IS_HOME>/repository/deployment/server/webapps`|
+     |`wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar`|`<IS_HOME>/repository/components/dropins`|
+     |`wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar`|`<IS_HOME>/repository/components/dropins`|
+     |`wso2is-extensions-1.2.10/webapps/keymanager-operations.war`|`<IS_HOME>/repository/deployment/server/webapps`|
 
 ### Step 2: Start Servers
 
