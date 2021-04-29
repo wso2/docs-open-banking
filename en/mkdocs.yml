@@ -103,7 +103,9 @@ nav:
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
         - 'Custom DCR Validator': develop/custom-dcr-validator.md
     - 'Data Publishing':
-        - Authentication Flow: develop/authentication-flow-for-data-publishing.md
+        - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
+        - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
+        - 'Customizations': develop/data-publishing-customizations.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md
