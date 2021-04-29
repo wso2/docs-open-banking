@@ -184,7 +184,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
 
 1. Replace the `existing deployment.toml` file in API Manager as follows:
 
-    a. Go to the `<APIM_HOME>/repository/resources` directory.
+    a. Go to the `<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
     
     b. Rename `wso2am-4.0.0-deployment.toml` to `deployment.toml`.
     
@@ -192,7 +192,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
         
 2. Replace the `existing deployment.toml` file in Identity Server as follows:
 
-    a. Go to the `<IS_HOME>/repository/resources` directory.
+    a. Go to the `<OB_IS_ACCELERATOR_HOME>/repository/resources` directory.
     
     b. Rename `wso2is-5.11.0-deployment.toml` to `deployment.toml`.
     
@@ -200,6 +200,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
      
 3. For instructions on how to configure the deployment.toml file, see the following topics:
 
-    - [Configuring API Manager for open banking](configuring-api-manager-for-ob.md)
     - [Configuring Identity Server for open banking](configuring-identity-server-for-ob.md)
+    - [Configuring API Manager for open banking](configuring-api-manager-for-ob.md)
+
    

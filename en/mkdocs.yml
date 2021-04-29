@@ -61,6 +61,8 @@ nav:
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers': install-and-setup/setting-up-servers.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
+    - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
+    - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
   - 'Advanced':
     - 'Consent Management':
       - 'Introduction': advanced/consent-management.md
