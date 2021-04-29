@@ -59,24 +59,24 @@ nav:
     - 'Tryout Flow': get-started/try-out-flow.md
   - 'Install and setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
-  - 'Advanced':
+  - 'Learn':
     - 'Consent Management':
-      - 'Introduction': advanced/consent-management.md
-      - 'Tryout': advanced/consent-management-try-out.md
-    - 'Consent Authorization': advanced/consent-authorization-intro.md
-    - 'Token Authentication': advanced/token-authentication.md
+      - 'Introduction': learn/consent-management.md
+      - 'Tryout': learn/consent-management-try-out.md
+    - 'Consent Authorization': learn/consent-authorization-intro.md
+    - 'Token Authentication': learn/token-authentication.md
     - 'Dynamic Client Registration':
-      - 'Introduction': advanced/dynamic-client-registration.md
-      - 'Configuration': advanced/dynamic-client-registration-configuration.md
-      - 'Tryout': advanced/dynamic-client-registration-try-out.md
-    - 'Data Publishing': advanced/data-publishing.md
+      - 'Introduction': learn/dynamic-client-registration.md
+      - 'Configuration': learn/dynamic-client-registration-configuration.md
+      - 'Tryout': learn/dynamic-client-registration-try-out.md
+    - 'Data Publishing': learn/data-publishing.md
     - 'Tryout Flow':
-        - 'Publish an API': advanced/publish-an-api.md
-        - 'Obtain Application Access Token': advanced/application-access-token.md
-        - 'Initiate a consent': advanced/initiate-a-consent.md
-        - 'Authorize a consent': advanced/authorization-flow.md
-        - 'Obtain User Access Token': advanced/user-access-token.md
-        - 'Invoke an API': advanced/invoke-an-api.md
+        - 'Publish an API': learn/publish-an-api.md
+        - 'Obtain Application Access Token': learn/application-access-token.md
+        - 'Initiate a consent': learn/initiate-a-consent.md
+        - 'Authorize a consent': learn/authorization-flow.md
+        - 'Obtain User Access Token': learn/user-access-token.md
+        - 'Invoke an API': learn/invoke-an-api.md
   - 'Develop' :
     - 'Open Banking Gateway' :
         - 'Introduction': develop/open-banking-gateway.md
@@ -157,6 +157,6 @@ extra:
     - About
     - Get started
     - Install and setup
-    - Advanced
+    - Learn
     - Develop
     - References

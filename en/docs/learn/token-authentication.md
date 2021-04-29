@@ -39,7 +39,7 @@ follows:
    certificate being passed during the API call is the same certificate that is bound to the token.
 
 The diagram below explains the flow and how the Grant Handler and Token Filters engage:
-![token_flow](../assets/img/advanced/access-tokens/token-flow.png)
+![token_flow](../assets/img/learn/access-tokens/token-flow.png)
 
 ### Token Filter
 

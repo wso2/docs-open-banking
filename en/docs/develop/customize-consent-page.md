@@ -1,4 +1,4 @@
-During the [consent authorization process](../advanced/consent-authorization-intro.md), an API consumer requests the banking 
+During the [consent authorization process](../learn/consent-authorization-intro.md), an API consumer requests the banking 
 information that the API consumer application needs to access. Then, the bank redirects the bank user to a webpage where 
 it displays the banking information that the API consumer application needs to access. This is known as the **consent page**. 
 WSO2 Open Banking Accelerator contains a default consent page, which can be customized to display consent details according 
