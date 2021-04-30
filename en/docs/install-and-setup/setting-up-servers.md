@@ -84,7 +84,7 @@ directory and run the `merge.sh` script as follows:
     ./merge.sh
     ```
  
-2. To copy the accelerator files to Identity Server, go to the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` directory 
+2. To copy the accelerator files to the Identity Server, go to the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` directory 
 and run the `merge.sh` script as follows:
    
     ``` shell 
@@ -186,7 +186,7 @@ client-truststore of all the servers.
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the instance 
 can be applied using a single configuration file, which is the `deployment.toml` file. 
 
-1. Replace the `existing deployment.toml` file in API Manager as follows:
+1. Replace the `existing deployment.toml` file in the API Manager as follows:
 
     a. Go to the `<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
     
@@ -194,7 +194,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
     
     c. Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory and replace the existing file.
         
-2. Replace the `existing deployment.toml` file in Identity Server as follows:
+2. Replace the `existing deployment.toml` file in the Identity Server as follows:
 
     a. Go to the `<OB_IS_ACCELERATOR_HOME>/repository/resources` directory.
     
