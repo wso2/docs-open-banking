@@ -55,16 +55,16 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | Display Name        | A name to display on the UI.          | OBKM                     |
         | Description         | The name of the authorization server. | (Optional)               |
         | Key Manager Type    | The type of the Key Manager to be selected. | Select `ObKeyManager` |
-        |Well-known-url      | The well-known URL of the authorization server (Key Manager).| https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration |
-        | Issuer              | The issuer that consumes or validates access tokens.         | https://<IS_HOST>:9446/oauth2/token |
+        |Well-known-url      | The well-known URL of the authorization server (Key Manager).| `https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration` |
+        | Issuer              | The issuer that consumes or validates access tokens.         | `https://<IS_HOST>:9446/oauth2/token` |
         |**Key Manager Endpoints**                                                                |
-        | Client Registration Endpoint | The endpoint that verifies the identity and obtain profile information of the end-user based on the authentication performed by an authorization server.  |  https://<IS_HOST>:9446/keymanager-operations/dcr/register| 
-        | Introspection Endpoint | The endpoint that allows authorized protected resources to query the authorization server to determine the set of metadata for a given token that was presented to them by an OAuth Client. | https://<IS_HOST>:9446/oauth2/introspect |
-        | Token Endpoint      | The endpoint that issues the access tokens. | https://<IS_HOST>:9446/oauth2/token |
-        | Revoke Endpoint     | The endpoint that revokes the access tokens.| https://<IS_HOST>:9446/oauth2/revoke |
-        | Userinfo Endpoint   | The endpoint that allows clients to verify the identity of the end-user based on the authentication performed by an authorization server, as well as to obtain basic profile information about the end-user. | https://<IS_HOST>:9446/oauth2/userinfo?schema=openid |
-        | Authorize Endpoint  | The endpoint used to obtain an authorization grant from the resource owner via the user-agent redirection. | https://<IS_HOST>:9446/oauth2/authorize |
-        | Scope Management Endpoint | The endpoint used to manage the scopes. | https://<IS_HOST>:9446/api/identity/oauth2/v1.0/scopes |
+        | Client Registration Endpoint | The endpoint that verifies the identity and obtain profile information of the end-user based on the authentication performed by an authorization server.  |  `https://<IS_HOST>:9446/keymanager-operations/dcr/register`| 
+        | Introspection Endpoint | The endpoint that allows authorized protected resources to query the authorization server to determine the set of metadata for a given token that was presented to them by an OAuth Client. | `https://<IS_HOST>:9446/oauth2/introspect` |
+        | Token Endpoint      | The endpoint that issues the access tokens. | `https://<IS_HOST>:9446/oauth2/token` |
+        | Revoke Endpoint     | The endpoint that revokes the access tokens.| `https://<IS_HOST>:9446/oauth2/revoke` |
+        | Userinfo Endpoint   | The endpoint that allows clients to verify the identity of the end-user based on the authentication performed by an authorization server, as well as to obtain basic profile information about the end-user. | `https://<IS_HOST>:9446/oauth2/userinfo?schema=openid` |
+        | Authorize Endpoint  | The endpoint used to obtain an authorization grant from the resource owner via the user-agent redirection. | `https://<IS_HOST>:9446/oauth2/authorize` |
+        | Scope Management Endpoint | The endpoint used to manage the scopes. | `https://<IS_HOST>:9446/api/identity/oauth2/v1.0/scopes` |
         | **Connector Configurations**                        |
         | Username            | The username of an admin user who is authorized to connect to the authorization server. |  |
         | Password            | The password corresponding to the latter mentioned admin user who is authorized to connect to the authorization server. | |
@@ -74,7 +74,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | Grant Types | The supported grant types. Add multiple grant types by adding a grant type press Enter. | (Optional) |
         | **Certificates** | 
         | PEM | Either copy and paste the certificate in PEM format or upload the PEM file. | (Optional) |
-        | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | https://<IS_HOST>:9446/oauth2/jwks |
+        | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | `https://<IS_HOST>:9446/oauth2/jwks` |
         | **Advanced Configurations** |
         | Token Generation | This enables token generation via the authorization server. | (Mandatory) |
         | Out Of Band Provisioning | This enables the provisioning of Auth clients that have been created without the use of the Developer Portal, such as previously created Auth clients. | (Mandatory) |

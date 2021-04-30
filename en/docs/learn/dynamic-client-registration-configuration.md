@@ -49,7 +49,7 @@ api_retrieve = "api/am/devportal/v2/apis"
 api_subscribe = "api/am/devportal/v2/subscriptions/multiple"
 ```
 
-3. Configure the hostname of Identity Server for the token endpoint.
+3. Configure the hostname of the API Manager server for the token endpoint.
 ``` toml
 [open_banking.dcr]
 token_endpoint = https://<APIM_HOST>:9443/oauth2/token
