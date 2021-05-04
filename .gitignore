@@ -24,3 +24,22 @@ hs_err_pid*
 
 # IDE config files
 *.idea
+
+### Node ###
+# Logs
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# node-waf configuration
+.lock-wscript
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional REPL history
+.node_repl_history
+
+dist/
