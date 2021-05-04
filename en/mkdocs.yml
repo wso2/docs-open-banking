@@ -105,7 +105,7 @@ nav:
     - 'Data Publishing':
         - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
         - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
-        - 'Customizations': develop/data-publishing-customizations.md
+        - 'Custom Components': develop/data-publishing-custom-components.md
   - 'References':
     - 'References': page-not-found.md
   - '': page-not-found.md

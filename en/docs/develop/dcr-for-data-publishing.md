@@ -1,36 +1,36 @@
-You can enable data publishing for Dynamic Client Registration by following the steps given below:
+You can enable data publishing for Dynamic Client Registration (DCR) by following the steps given below:
 
-1. To publish the data during dynamic client registration application, extend the following class:
+To publish the data during DCR application creation, extend the following class:
 ```java
 com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl
 ```
 
 To extend the validation capabilities according to your requirements, override the relevant methods in this class. Given 
-below is a brief description of each class:
+below is a brief description of each method:
 
 ###publishData method
-This method publishes the data when creating a dynamic client registration application. For example,
+This method publishes data when creating a DCR application. For example,
 ```java
 public void publishData(Map < String, Object > spMetaData, OAuthConsumerAppDTO oAuthConsumerAppDTO)
 throws OpenBankingException {
 ```
 ###doPostDeleteApplication method
-This method publishes the data when deleting the dynamic client registration application. For example,
+This method publishes data when deleting the DCR application. For example,
 ```java
 public void doPostDeleteApplication(ServiceProvider serviceProvider, String tenantDomain, String userName)
 throws OpenBankingException {
 ```
 
-##Configurations
-1. Add the classes that you extended to enable data publishing for the Dynamic Client Registration flow in <IS_HOME>/ repository/ conf/ 
-deployment.toml as follows:
+##Configuration
+1. Add the classes that you extended to enable data publishing for the DCR flow in `<IS_HOME>/repository/conf/deployment.toml` 
+as follows:
 ```toml
 [open_banking.dcr]
-applicationupdater = "com.wso2.finance.openbanking.accelerator.identity.dcr.validation.<extended_class_name>"
+applicationupdater = "<FQN of the extended class>"
 ```
 
-2. Once you  the data elements that you need for data publishing, define the stream and their attributes with the priority 
-in <IS_HOME>/ repository/ conf/ deployment.toml using the following format:
+2. Once you add the data elements that you need for data publishing, define the stream and their attributes with the priority 
+in `<IS_HOME>/repository/conf/deployment.toml` using the following format:
 ```toml
 [[open_banking.data_publishing.thrift.stream]]
 name="streamNamex"
@@ -49,5 +49,7 @@ priority=6
 required=true
 type="long"
 ```
-    - `required` is treated as `false` if not explicitly mentioned.
-    - `type` is treated as `string` if not explicitly mentioned.
+
+    - The property, `required` is treated as `false` if not explicitly mentioned.
+    - The property, `type` is treated as `string` if not explicitly mentioned.
+    
