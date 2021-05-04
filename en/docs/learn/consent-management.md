@@ -8,7 +8,7 @@ phased lifecycle as follows:
 
 ![lifecycle of a consent](../assets/img/about/open-banking-requirements/consent-lifecycle.png)
 
-For more information on consent management lifecycle, see the [Consent Management](../about/open-banking-requirements.md#how-wso2-open-banking-accelerator-delivers-open-banking-requirements)
+For more information on consent management lifecycle, see the [Consent Management](../get-started/open-banking-requirements.md#how-wso2-open-banking-accelerator-delivers-open-banking-requirements)
 section in Open Banking Requirements.
 
 ## How to manage consents

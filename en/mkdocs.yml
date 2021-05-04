@@ -46,18 +46,18 @@ theme:
 # Navigation
 nav:
   - 'Home': index.md
-  - 'About':
-    - 'Open Banking': about/open-banking.md
-    - 'Open Banking Requirements':  about/open-banking-requirements.md
-    - 'Regulations and Standards': about/regulations-and-standards.md
-    - 'WSO2 Open Banking Accelerator': about/wso2-open-banking-accelerator.md
-  - 'Get started':
-    - 'Get started': get-started/quick-start-guide.md
-    - 'Set Up Accelerators': get-started/set-up-accelerators.md
-    - 'Configure Roles and Users': get-started/configure-roles-and-users.md
-    - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
-    - 'Tryout Flow': get-started/try-out-flow.md
-  - 'Install and setup':
+  - 'Get Started':
+    - 'Open Banking': get-started/open-banking.md
+    - 'Open Banking Requirements': get-started/open-banking-requirements.md
+    - 'Regulations and Standards': get-started/regulations-and-standards.md
+    - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
+    - 'Quick Start Guide':
+      - 'Get started': get-started/quick-start-guide.md
+      - 'Set Up Accelerators': get-started/set-up-accelerators.md
+      - 'Configure Roles and Users': get-started/configure-roles-and-users.md
+      - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
+      - 'Tryout Flow': get-started/try-out-flow.md
+  - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers': install-and-setup/setting-up-servers.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
@@ -162,9 +162,8 @@ extra:
   site_version: 3.0.0
   nav_list:
     - Home
-    - About
-    - Get started
-    - Install and setup
+    - Get Started
+    - Install and Setup
     - Learn
     - Develop
     - References
