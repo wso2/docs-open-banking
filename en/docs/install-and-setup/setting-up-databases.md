@@ -115,3 +115,24 @@ according to your DBMS.
 |openbank_userdb| `<APIM_HOME>/dbscripts `|
 |openbank_iskm_configdb| `<IS_HOME>/dbscripts `|
 |openbank_openbankingdb| `<IS_HOME>/dbscripts/open-banking/consent`|
+
+!!! note "Increase the column size of the `VALUE` column in the `SP_METADATA` table:"
+     
+     Execute the relevant SQL command against the `openbank_apimgtdb` database.
+     
+     ```sql tab='MySQL'
+     ALTER TABLE SP_METADATA MODIFY VALUE VARCHAR(4096);
+     ```
+     
+     ```sql tab='MSSQL'
+      ALTER TABLE SP_METADATA ALTER COLUMN VALUE VARCHAR(4096);
+     ```
+     
+     ```sql tab='Oracle'
+     ALTER TABLE C##OB_APIMGTDB.sp_metadata MODIFY VALUE VARCHAR2(4000);
+     ```
+     
+     ```sql tab='PostgreSQL'
+     ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
+     ```
+     
