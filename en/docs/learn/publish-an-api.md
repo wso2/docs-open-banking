@@ -11,7 +11,7 @@ This document provides instructions to publish and subscribe to an API.
     
 1. Sign in to the API Publisher Portal at `https://{APIM_HOST}:9443/publisher` with `creator/publisher` privileges. 
 
-2. In the homepage, go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
+2. In the homepage, go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/quick-start-guide/select-api.png)
 
 3. Select **OpenAPI File/Archive**. 
 
@@ -28,7 +28,7 @@ requests**.
     
 10.Go to **Runtime** using the left menu pane.
 
-![select_runtime](../assets/img/get-started/select-runtime.png)
+![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png)
     
 11.Click the edit button under **Request** -> **Message Mediation**.
     
@@ -39,7 +39,7 @@ file and click **SELECT**.
     
 14.Scroll down and click **SAVE**. 
         
-15.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/set-endpoint.png)
+15.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
 16.Select the endpoint types; **Production Endpoint/Sandbox Endpoint** and click **Save**.
 
@@ -55,7 +55,7 @@ file and click **SELECT**.
 
 22.Now that you have deployed the API, go to `https://{APIM_HOST}:9443/devportal`.
     
-23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
+23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
     
 !!!note
         The name of the sample Account Information Service API is **AccountandTransaction V3.1**. Select the relevant 

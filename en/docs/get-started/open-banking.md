@@ -12,7 +12,7 @@ service providers and newer entrants such as fintech to participate more activel
 customized user experiences for consumers. Open Banking reshapes the banking industry by encouraging networking of data 
 and innovation across various financial institutions.
 
-![conceptual evolution of ob](../assets/img/about/open-banking/conceptual-evolution-of-open-banking-globally.png)
+![conceptual evolution of ob](../assets/img/get-started/open-banking/conceptual-evolution-of-open-banking-globally.png)
 
 The **Open Innovation Concept** defined by Henry Chesbrough at Berkley promotes innovation rooted in cooperation with 
 external sources to gain a sustainable competitive advantage. This concept contradicts secrecy and siloed methods. 
@@ -39,7 +39,7 @@ Open banking enables customers to view all bank accounts in one place making it 
 They also have the benefit of making all their payments using a single third-party provider application on behalf 
 of them.
 
-![before and after open banking](../assets/img/about/open-banking/before-after-ob.png)
+![before and after open banking](../assets/img/get-started/open-banking/before-after-ob.png)
 
 ## Stakeholders in Open Banking
    

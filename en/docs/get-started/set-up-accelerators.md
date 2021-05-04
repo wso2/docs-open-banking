@@ -7,22 +7,19 @@ locate the respective root directory of the base products:
     |wso2ob-is-accelerator-3.0.0.zip|`<IS_HOME>`|
     |wso2ob-apim-accelerator-3.0.0.zip|`<APIM_HOME>`|
     
-2. Go to `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` and give the execution 
-permission to merge.sh script using the following command:
-```xml
-chmod +x merge.sh
-```
-3. Run the following command `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOM>/bin/merge.sh` and 
+2. Run the following command `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin/merge.sh` and 
 `<OB_IS_ACCELERATOR_HOME>/bin/merge.sh` scripts:
 ```
 ./merge.sh
 ```
-4. Run the configure.sh files in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
+
+3. Run the configure.sh files in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
 `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
 ```
 ./configure.sh
 ```
-5.Copy the following files to the given directory paths:
+
+4.Copy the following files to the given directory paths:
     
      | File to copy | Location to  |
      |---------|---------    |
