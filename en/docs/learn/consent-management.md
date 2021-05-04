@@ -6,7 +6,7 @@ In an open banking ecosystem, once a bank customer requests a service via an API
 time to access the customer's data, the customer needs to authorize and grant consent. These consents go through a 
 phased lifecycle as follows:
 
-![lifecycle of a consent](../assets/img/about/open-banking-requirements/consent-lifecycle.png)
+![lifecycle of a consent](../assets/img/get-started/open-banking-requirements/consent-lifecycle.png)
 
 For more information on consent management lifecycle, see the [Consent Management](../get-started/open-banking-requirements.md#how-wso2-open-banking-accelerator-delivers-open-banking-requirements)
 section in Open Banking Requirements.

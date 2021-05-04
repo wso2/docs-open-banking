@@ -3,7 +3,7 @@ API consumers. Banks need to manage and allow API consumers to provide services 
 requirements to consider when you implement an open banking architecture. This section explains how WSO2 Open 
 Banking Accelerator addresses the open banking requirements in the solution:
 
-![open banking requirements](../assets/img/about/open-banking-requirements/open-banking-requirements.png)
+![open banking requirements](../assets/img/get-started/open-banking-requirements/open-banking-requirements.png)
 
 ## How WSO2 Open Banking Accelerator delivers open banking requirements
 
@@ -20,7 +20,7 @@ fully-featured consent management module that:
     - manages the entire consent life cycle
    
     A consent goes through a phased life cycle as follows:
-   ![lifecycle of a consent](../assets/img/about/open-banking-requirements/consent-lifecycle.png)
+   ![lifecycle of a consent](../assets/img/get-started/open-banking-requirements/consent-lifecycle.png)
    
      - **Consent provision**: An API consumer application sends a consent request to the bank containing the customer’s 
      financial information that it wants to access.
@@ -41,7 +41,7 @@ fully-featured consent management module that:
 3. **Consumer Authentication** - Consumer authentication is an authentication mechanism with a layered defence. 
 When a user initiates a payment or accesses information via an API consumer application, it authenticates the user 
 using the following factors one at a time:
-   ![authentication factors](../assets/img/about/open-banking-requirements/authentication-factors.png)
+   ![authentication factors](../assets/img/get-started/open-banking-requirements/authentication-factors.png)
   
      - Knowledge	: something the user knows. For example: password.
      - Possession	: something the user owns. For example: ATM cards.

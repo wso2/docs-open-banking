@@ -9,7 +9,7 @@
         The above login credentials are for testing purposes only. It is recommended to change the login credentials in 
         a production environment.
     
- 3. Go to the Main tab on the left top corner and select **Identity** -> **Users and Roles** -> **Add**. ![add_users](../assets/img/get-started/go-to-add-users.png)
+ 3. Go to the Main tab on the left top corner and select **Identity** -> **Users and Roles** -> **Add**. ![add_users](../assets/img/get-started/quick-start-guide/go-to-add-users.png)
  4. Click **Add New Role**.
  5. Create the following user roles:   
   
@@ -20,7 +20,7 @@
  
  6. Click **Finish**. 
  
-    ![add_new_role](../assets/img/get-started/add-new-role.png)
+    ![add_new_role](../assets/img/get-started/quick-start-guide/add-new-role.png)
  
  7. Go to the Main tab on the left top corner and select **Identity** -> **Users and Roles** -> **Add**.
  8. Click **Add New User**.
@@ -32,7 +32,7 @@
     |Primary|ann@gold.com|Internal/CustomerCareOfficer|
     |Primary|tom@gold.com|Internal/approverRole|
     
- 10.Click **Finish**. ![add_new_user](../assets/img/get-started/add-new-user.png)
+ 10.Click **Finish**. ![add_new_user](../assets/img/get-started/quick-start-guide/add-new-user.png)
  
  
  
