@@ -23,7 +23,7 @@ OBDataPublisherUtil.publishData(API_LATENCY_INPUT_STREAM, API_LATENCY_STREAM_VER
 ```
 
 ###Configuration
-Once you have added the data elements that needs publish, let's configure those.
+Once you add the data elements that need to be published, configure them as follows:
 
 1. Open `<PRODUCT_HOME>/repository/conf/deployment.toml`. Select the instance (Identity Server or API Manager) accordingly.
 2. Once you add the data elements that you need for data publishing, define the stream and their attributes with the priority 
