@@ -2,7 +2,7 @@ Now you have started the servers, let’s create the users and define their perm
  
 ## Sign in to the Identity Server
  
-1. Sign in to the Management Console of WSO2 Identity Server at [https://localhost:9446/carbon](https://localhost:9446/carbon)
+1. Sign in to the Management Console of WSO2 Identity Server at `https://<IS_HOST>:9446/carbon`.
 
 2. Use the default super admin credentials as follows:
     - Username: admin@wso2.com
