@@ -59,15 +59,16 @@ priority = 1000
 ## Handling non-regulatory APIs 
 
 If you are publishing a non-regulatory API that does not require any open banking policy validations, the API needs to 
-be identified and the Request Router. Also, for non-regulatory API requests, it is not required to include any 
+be identified by the Request Router. Also, for non-regulatory API requests, it is not required to include any 
 regulatory policies.
 
 ### Identifying non-regulatory APIs 
 
 It is important to identify the non-regulatory API at the Request Router. 
 
- - If you have a few non-regulatory APIs, the easiest way to achieve this is by checking the names of the APIs.
- - Otherwise, you can define a custom Swagger property and identify APIs using that. This approach is approach available 
+ - If you have few non-regulatory APIs, the easiest way to achieve this is by checking API properties, such as the name 
+ of the API.
+ - Otherwise, you can define a custom Swagger property and identify APIs using that. This approach is available 
  in the following class:
 
     ``` java
@@ -97,8 +98,7 @@ It is important to identify the non-regulatory API at the Request Router.
     
     Therefore, if you are using the OpenAPI definition to differentiate between regulatory and non-regulatory APIs, you 
     need to do that in the request flow. Make sure to set an indicator value in the context, so the Request Router can 
-    refer to that value in the response flow. This is explained in the sample code block given above.
- 
-
+    refer to that value in the response flow. This approach is used in 
+    the [sample code block](#:~:text={The sample approach is as follows:} ) given above.
 
 
