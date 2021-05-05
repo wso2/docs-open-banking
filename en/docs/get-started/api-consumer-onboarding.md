@@ -1,9 +1,15 @@
+This page explains how to onboard API consumers using the Dynamic Client Registration API. 
+
+!!! tip "Before you begin:"
+    See the [Configurations](../learn/dynamic-client-registration-configuration.md) section and configure Dynamic Client
+    Registration.
+
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
 1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
 privileges. 
 
-2. In the Homepage, click **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
+2. In the Homepage, click **REST API** and then  select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
 3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 
@@ -18,34 +24,43 @@ https://localhost:9446/api/openbanking/dynamic-client-registration
 ```
     ![set_endpoint](../assets/img/learn/dcr/dcr-try-out/step-4.png)
 
-7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited requests**.
+7. Click **Create**. 
 
-8. Click **Save**.
+8. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited requests**. ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5.png)
 
-9. Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/learn/dcr/dcr-try-out/step-6.png)
+9. Click **Save**.
 
-10.Provide a description for the new revision.
+10. Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/learn/dcr/dcr-try-out/step-6.png)
 
-11.Select `localhost` from the dropdown list. ![select_localhost](../assets/img/learn/dcr/dcr-try-out/step-7.png)
+11.Provide a description for the new revision.
 
-12.Click **Deploy**.
+12.Select the API Gateway type, in this scenario, it is **Production and Sandbox**.
 
-13.Go to **Overview** using the left menu pane and click **Publish**. ![publish_API](../assets/img/learn/dcr/dcr-try-out/step-8.png)
+13.Select the host as `localhost` from the dropdown list. ![select_localhost](../assets/img/learn/dcr/dcr-try-out/step-7.png)
 
-14.The deployed DCR API is now available in the Developer Portal at [https://localhost:9443/devportal](https://localhost:9443/devportal).
+14.Click **Deploy**.
 
-15.Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
+15.Go to **Overview** using the left menu pane. 
+
+   ![select_overview](../assets/img/learn/dcr/dcr-try-out/step-8.png)
+ 
+16.Click **Publish**. 
+
+  ![publish_api](../assets/img/learn/dcr/dcr-try-out/step8-publish.png)
+
+17.The deployed DCR API is now available in the Developer Portal at [https://localhost:9443/devportal](https://localhost:9443/devportal).
+
+18.Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
 `<IS_HOME>/repository/resources/security/client-truststore.jks` using the following command:
 ```
-keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location>
+keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
 ```
 
-16.See [Configurations](dynamic-client-registration-configuration.md) to configure WSO2 Open Banking Accelerator for DCR.
 ### Step 2: Configure IS as Key Manager
 
- 1. Sign in to the Admin Portal of API Manager at `https://<APIM_HOST>:9443/admin`.
- 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager](../assets/img/learn/dcr/dcr-try-out/step-9.png)
+ 1. Sign in to the Admin Portal of API Manager at <https://localhost:9443/admin>.
+ 2. Go to **Key Managers** on the left main menu. ![add_Key_Manager](../assets/img/learn/dcr/dcr-try-out/step-9.png)
  3. Click **Add New Key Manager** and configure Key Manager. 
     
     ??? tip "Click here to see the full list of configurations..."
