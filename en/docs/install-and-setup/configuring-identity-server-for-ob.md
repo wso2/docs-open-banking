@@ -1,6 +1,8 @@
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the Identity 
 Server instance can be applied using a single configuration file, which is the `deployment.toml` file. 
 
+## Configuring deployment.toml
+
 Follow the steps below to configure the `deployment.toml` file and set up the default open banking flow for WSO2 
 Identity Server.
 
@@ -114,3 +116,13 @@ database server, and the JDBC driver.
     server_url = "{tcp://<SI_HOST>:7612}"	
     auth_url = "{ssl://<SI_HOST>:7612}"
     ```   
+   
+## Starting servers
+
+1. Go to the `<IS_HOME>/bin` directory using a terminal.
+
+2. Run the `wso2server.sh` script as follows:
+
+    ``` bash
+    ./wso2server.sh
+    ``` 

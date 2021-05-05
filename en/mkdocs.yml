@@ -54,7 +54,7 @@ nav:
     - 'Quick Start Guide':
       - 'Get started': get-started/quick-start-guide.md
       - 'Set Up Accelerators': get-started/set-up-accelerators.md
-      - 'Configure Roles and Users': get-started/configure-roles-and-users.md
+      - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
       - 'Tryout Flow': get-started/try-out-flow.md
   - 'Install and Setup':
@@ -63,6 +63,7 @@ nav:
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
+    - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
   - 'Learn':
     - 'Consent Management':
       - 'Introduction': learn/consent-management.md
