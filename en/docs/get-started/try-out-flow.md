@@ -8,55 +8,60 @@ This document provides step by step instructions to invoke the Accounts Informat
         1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
         privileges. 
 
-        2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
+        2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
-        3. Select **OpenAPI File/Archive**. 
+        3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 
         4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR
         _HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.  
 
         5. Click **Next**.
 
-        6. Leave the Endpoint field empty as it is and click **Create**. 
+        6. Leave the **Endpoint** field empty as it is and click **Create**. 
 
-        8. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
-        requests**.
+        7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
+        requests**.  
+        
+            ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5-tryout.png)
 
-        9. Click **Save**.
+
+        8. Click **Save**.
     
-        10.Go to **Runtime** using the left menu pane. 
+        9.Go to **Runtime** using the left menu pane.   
+        
+           ![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
     
-        ![select_runtime](../assets/img/get-started/select-runtime.png)
     
-        11.Click the edit button under **Request** -> **Message Mediation**.
+        10.Click the edit button under **Request** -> **Message Mediation**. ![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
+        
+        11.Now, select the **Custom Policy** option. 
     
-        12.Now, select the **Custom Policy** option. 
-    
-        13.Upload the 
+        12.Upload the 
         `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
         file and click **SELECT**.
     
-        14.Scroll down and click **SAVE**. 
+        13.Scroll down and click **SAVE**. 
         
-        15.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/set-endpoint.png)
+        14.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
-        16.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.
+        15.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
 
-        17.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
+        16.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
     
-        18.Provide a description for the new revision.
+        17.Provide a description for the new revision.
     
-        19.Select `localhost` from the dropdown list. 
+        18.Select `localhost` from the dropdown list. 
     
-        20.Click **Deploy**.
+        19.Click **Deploy**.
     
-        21.Go to **Overview** using the left menu pane and click **Publish**. 
+        20.Go to **Overview** using the left menu pane and click **Publish**. 
     
-        22.Now that you have deployed the API, go to [https://localhost:9443/devportal](https://localhost:9443/devportal).
+        21.Now that you have deployed the API, go to <https://localhost:9443/devportal>.
     
-        23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
+        22.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
+        Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
     
-        24.Select the application from the dropdown list and click **Subscribe**.
+        23.From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command: 
