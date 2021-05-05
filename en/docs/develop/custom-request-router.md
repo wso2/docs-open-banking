@@ -55,3 +55,50 @@ priority = 2
 name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
 priority = 1000
 ```
+
+## Handling non-regulatory APIs 
+
+If you are publishing a non-regulatory API that does not require any open banking policy validations, the API needs to 
+be identified by the Request Router. Also, for non-regulatory API requests, it is not required to include any 
+regulatory policies.
+
+### Identifying non-regulatory APIs 
+
+It is important to identify the non-regulatory API at the Request Router. 
+
+ - If you have few non-regulatory APIs, the easiest way to achieve this is by checking API properties, such as the name 
+ of the API.
+ - Otherwise, you can define a custom Swagger property and identify APIs using that. This approach is available 
+ in the following class:
+
+    ``` java
+    com.wso2.openbanking.accelerator.gateway.executor.core.DefaultRequestRouter` 
+    ```
+    The sample approach is as follows:
+
+    ``` java
+    if (requestContext.getOpenAPI().getExtensions().containsKey(GatewayConstants.REGULATORY_CUSTOM_PROP) &&
+      !Boolean.parseBoolean(requestContext.getOpenAPI()
+        .getExtensions().get(GatewayConstants.REGULATORY_CUSTOM_PROP).toString())) {
+      requestContext.addContextProperty(GatewayConstants.REGULATORY_CUSTOM_PROP, "false");
+      return EMPTY_LIST;
+    }
+    ```
+
+- The `DefaultRequestRouter` class expects a custom Swagger property named `x-wso2-regulatory-api`. 
+
+    - If the `x-wso2-regulatory-api` property is set to `true` or not specified, the Request Router assumes that is a 
+    regulatory API invocation and sets all the executors according to that. 
+        
+    - If the `x-wso2-regulatory-api` property is set to `false`, the assumption is that this is a non-regulatory API. Then 
+    the Request Router avoids engaging any executors with regulatory policies. 
+
+!!! note 
+    The response flow does not contain the **OpenAPI definition** of the requested API. 
+    
+    Therefore, if you are using the OpenAPI definition to differentiate between regulatory and non-regulatory APIs, you 
+    need to do that in the request flow. Make sure to set an indicator value in the context, so the Request Router can 
+    refer to that value in the response flow. This approach is used in 
+    the [sample code block](#:~:text={The sample approach is as follows:} ) given above.
+
+
