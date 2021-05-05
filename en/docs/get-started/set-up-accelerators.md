@@ -7,8 +7,8 @@ locate the respective root directory of the base products:
     |wso2ob-is-accelerator-3.0.0.zip|`<IS_HOME>`|
     |wso2ob-apim-accelerator-3.0.0.zip|`<APIM_HOME>`|
     
-2. Run the following command `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin/merge.sh` and 
-`<OB_IS_ACCELERATOR_HOME>/bin/merge.sh` scripts:
+2. Run the `merge.sh` script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
+`<OB_IS_ACCELERATOR_HOME>/bin` respectively:
 ```
 ./merge.sh
 ```
