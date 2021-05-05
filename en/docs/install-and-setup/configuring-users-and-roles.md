@@ -20,14 +20,14 @@ Now you have started the servers, let’s create the users and define their perm
   
     | Domain | Role| Permissions|
     |--------|--------|--------|
-    |Internal|approveRole|Admin permissions|
+    |Internal|approverRole|Admin permissions|
     |Internal|CustomerCareOfficerRole|No permissions required.|
     
-    i. Creating **approveRole**:
+    i. Creating **approverRole**:
     
-      - Select the **INTERNAL** domain and enter the role name as **approveRole**:
+      - Select the **INTERNAL** domain and enter the role name as **approverRole**:
       
-        ![enter_approver_role_details](../assets/img/get-started/quick-start-guide/enter-role-details-approve-role.png)
+        ![enter_approver_role_details](../assets/img/get-started/quick-start-guide/enter-role-details-approver-role.png)
       
       - Click **Next >**.
       
