@@ -115,7 +115,7 @@ nav:
         - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
         - 'Custom Components': develop/data-publishing-custom-components.md
   - 'References':
-    - 'References': page-not-found.md
+    - 'DCR Rest API': references/dcr-rest-api.md
   - '': page-not-found.md
 
 # Extensions
