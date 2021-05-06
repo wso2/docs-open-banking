@@ -10,7 +10,7 @@ the token response and define a data publishing logic for token related data.
 This is an authorization code grant handler.
   
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBAuthorizationCodeGrantHandler
+com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBAuthorizationCodeGrantHandler
 ```
 
 ## OBClientCredentialsGrantHandler 
@@ -18,7 +18,7 @@ com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBAuthoriz
 This is a client credentials grant handler.
 
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBClientCredentialsGrantHandler
+com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBClientCredentialsGrantHandler
 ```
 
 ## OBPasswordGrantHandler
@@ -26,7 +26,7 @@ com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBClientCr
 This is a password grant handler.
 
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBPasswordGrantHandler
+com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBPasswordGrantHandler
 ```
 
 ## OBRefreshGrantHandler
@@ -34,7 +34,7 @@ com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBPassword
 This is a refresh grant handler.
     
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.grant.type.handlers.OBRefreshGrantHandler
+com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBRefreshGrantHandler
 ```
 
 

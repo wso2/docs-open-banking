@@ -12,7 +12,7 @@ Proof Key for Code Exchange (PKCE) support
 
 To achieve the above, extend the following class.
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl
+com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl
 ```
 
 To extend the validation capabilities according to your requirements, override relevant methods of this class. 
@@ -250,5 +250,5 @@ publishing data. Given below is the method signature:
 2. Add the following tag and configure the classpath of the extended class. For example:
 ``` xml
 [open_banking.dcr]
-applicationupdater = "com.wso2.finance.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
+applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
 ```

@@ -27,7 +27,7 @@ https://{IS_HOST}:9446/api/openbanking/consent/authorize/retrieve/{session-data-
 
 ### Interface
 ``` java
-com.wso2.finance.openbanking.accelerator.consent.extensions.validate.model.ConsentRetrievalStep
+com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentRetrievalStep
 ```
 
 ### Method
@@ -70,11 +70,11 @@ order.
 
 ``` xml
 [[open_banking.consent.authorize_steps.retrieve]]
-class = "com.wso2.finance.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep1"
+class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep1"
 priority = 1
 
 [[open_banking.consent.authorize_steps.retrieve]]
-class = "com.wso2.finance.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep2"
+class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep2"
 priority = 2
 ```
 
@@ -93,7 +93,7 @@ https://{IS_HOST}:9446/api/openbanking/consent/authorize/persist/{session-data-k
 
 ### Interface
 ``` java
-com.wso2.finance.openbanking.accelerator.consent.extensions.authorize.model.ConsentPersistStep
+com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentPersistStep
 ```
 
 ### Method 
@@ -128,10 +128,10 @@ order.
 
 ``` xml
 [[open_banking.consent.authorize_steps.persist]]
-class = "com.wso2.finance.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep1"
+class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep1"
 priority = 1
 
 [[open_banking.consent.authorize_steps.persist]]
-class = "com.wso2.finance.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep2"
+class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep2"
 priority = 2
 ```

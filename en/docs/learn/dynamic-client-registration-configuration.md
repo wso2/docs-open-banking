@@ -14,7 +14,7 @@ publishing requirements, the Application Listener invokes methods that are overr
 tag with the name of the class that is extended to so.
 ``` toml
 [open_banking.dcr]
-applicationupdater = "com.wso2.finance.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
+applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
 ```
 
 4. The following configuration sets the software id as the name of the application. By default, this configuration is
@@ -96,7 +96,7 @@ read_timeout = 3000
 `DefaultRegistrationValidatorImpl` class is configured as follows: 
 ````toml
 [open_banking.dcr]
-validator = "com.wso2.finance.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
+validator = "com.wso2.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
 ````
 3. Configure the jwks endpoint that is used for validating the SSA signature. 
 ```toml

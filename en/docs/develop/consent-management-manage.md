@@ -14,7 +14,7 @@ https://{IS_HOST}:9446/api/openbanking/consent/manage/{custom-path}
 
 ### Interface
 ``` java
-com.wso2.finance.openbanking.accelerator.consent.extensions.manage.model.ConsentManageHandler
+com.wso2.openbanking.accelerator.consent.extensions.manage.model.ConsentManageHandler
 ```
 ### Methods
 The following methods are available in the interface.
@@ -62,5 +62,5 @@ To configure the customized Consent Manage component, follow the steps below:
 2. Locate the following tag and configure it with the customized component.
 ```xml 
 [open_banking.consent.manage]
-handler="com.wso2.finance.openbanking.accelerator.consent.extensions.manage.impl.DefaultConsentManageHandler"
+handler="com.wso2.openbanking.accelerator.consent.extensions.manage.impl.DefaultConsentManageHandler"
 ```

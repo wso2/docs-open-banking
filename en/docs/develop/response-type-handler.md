@@ -11,16 +11,16 @@ in the `OBResponseTypeHandler` class to support the following functions:
     ``` xml
     [[oauth.custom_response_type]]
     name = "code"
-    class = "com.wso2.finance.openbanking.accelerator.identity.auth.extensions.response.handler.OBCodeResponseTypeHandlerExtension"
+    class = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBCodeResponseTypeHandlerExtension"
     
     [[oauth.custom_response_type]]
     name = "code id_token"
-    class = "com.wso2.finance.openbanking.accelerator.identity.auth.extensions.response.handler.OBHybridResponseTypeHandlerExtension"
+    class = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBHybridResponseTypeHandlerExtension"
     ```
 
 To write a custom Response Type handler, extend the following class:
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.auth.extensions.response.handler.OBResponseTypeHandler
+com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBResponseTypeHandler
 ```
 To extend the validation capabilities according to your requirements, override relevant methods of this class. Given 
 below is a brief description of each method.

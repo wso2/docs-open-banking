@@ -16,11 +16,11 @@ execution by the flow.
 To build your own executor, implement the following interface:
 
 ``` java
-com.wso2.finance.openbanking.accelerator.gateway.executor.core.OpenBankingGatewayExecutor
+com.wso2.openbanking.accelerator.gateway.executor.core.OpenBankingGatewayExecutor
 ```
 
 !!! note
-    The `com.wso2.finance.openbanking.accelerator.gateway-3.0.0.jar` JAR file inside the 
+    The `com.wso2.openbanking.accelerator.gateway-3.0.0.jar` JAR file inside the 
     `<IS_HOME>/repository/components/dropins` directory contains all the Java implementations related to gateway 
     executors.
 
@@ -134,15 +134,15 @@ implementing any method and not return anything. Once implemented, build a JAR f
     name = "Payments"
    
     [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-    name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
+    name = "com.wso2.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
     priority = 1
    
     [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-    name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor"
+    name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor"
     priority = 2
    
     [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-    name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
+    name = "com.wso2.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
     priority = 1000
     ```
 
@@ -166,13 +166,13 @@ implementing any method and not return anything. Once implemented, build a JAR f
                [[open_banking.gateway.openbanking_gateway_executors.type]]
                name = "Accounts"
                [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-               name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
+               name = "com.wso2.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
                priority = 1
                [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-               name = "com.wso2.finance.openbanking.accelerator.gateway.executor.dcr.DCRExecutor"
+               name = "com.wso2.openbanking.accelerator.gateway.executor.dcr.DCRExecutor"
                priority = 2
                [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-               name = "com.wso2.finance.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
+               name = "com.wso2.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
                priority = 1000
                ```
            

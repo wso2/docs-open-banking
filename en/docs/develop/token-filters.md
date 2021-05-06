@@ -5,7 +5,7 @@ according to your open banking requirements. Listed below are the available Toke
 
 Customize the following class to modify the token request, response, or error handling. 
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.token.DefaultTokenFilter
+com.wso2.openbanking.accelerator.identity.token.DefaultTokenFilter
 ```
 
 !!! note 
@@ -51,7 +51,7 @@ public void handleValidationFailure(HttpServletResponse response, int status, St
 To perform validations at the filter level use the following class:
 
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.token.validators.OBIdentityFilterValidator
+com.wso2.openbanking.accelerator.identity.token.validators.OBIdentityFilterValidator
 ```
    
 ### Validate method
@@ -75,7 +75,7 @@ the respective class and overriding the `validate` method, which is explained ab
     access token.
      
     ``` java
-    com.wso2.finance.openbanking.accelerator.identity.token.validators.MTLSEnforcementValidator 
+    com.wso2.openbanking.accelerator.identity.token.validators.MTLSEnforcementValidator 
     ```
    
  - ClientAuthenticatorValidator validator
@@ -84,7 +84,7 @@ the respective class and overriding the `validate` method, which is explained ab
     Dynamic Client Registration. 
     
     ``` java
-    com.wso2.finance.openbanking.accelerator.identity.token.validators.ClientAuthenticatorValidator |  
+    com.wso2.openbanking.accelerator.identity.token.validators.ClientAuthenticatorValidator  
     ```
 
  - SignatureAlgorithmEnforcementValidator method
@@ -92,5 +92,5 @@ the respective class and overriding the `validate` method, which is explained ab
     This validates whether the client assertion is signed with the algorithm that was registered through Dynamic Client Registration. 
     
     ``` java
-    com.wso2.finance.openbanking.accelerator.identity.token.validators.SignatureAlgorithmEnforcementValidator 
+    com.wso2.openbanking.accelerator.identity.token.validators.SignatureAlgorithmEnforcementValidator 
     ```
