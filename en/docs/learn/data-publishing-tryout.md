@@ -26,7 +26,7 @@ following attributes:
     
 A sample looks as follows:
 ```toml
-open_banking.data_publishing]
+[open_banking.data_publishing]
 enable = true
 server_url = "{tcp://<WSO2_OB_BI_HOST>:7612}"
 ```
