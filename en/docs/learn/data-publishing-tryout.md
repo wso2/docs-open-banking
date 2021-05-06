@@ -32,7 +32,6 @@ enable = true
 username="$ref{super_admin.username}@carbon.super"
 password="$ref{super_admin.password}"
 server_url = "{tcp://<WSO2_OB_BI_HOST>:7612}"
-#auth_url = "{ssl://<WSO2_OB_BI_HOST>:7612}"
 ```
 
 ###Start servers
