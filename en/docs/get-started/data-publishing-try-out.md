@@ -38,9 +38,9 @@ enable = false
 2. Set up and start the Identity Server and API Manager Servers as instructed in [Set Up Accelerators](https://ob.docs.wso2.com/en/latest/get-started/set-up-accelerators/).
 
 ###Try out
-5. Register an API consumer application as instructed  in [API Consumer Onboarding](https://ob.docs.wso2.com/en/latest/get-started/api-consumer-onboarding/). 
+1. Register an API consumer application as instructed  in [API Consumer Onboarding](https://ob.docs.wso2.com/en/latest/get-started/api-consumer-onboarding/). 
 
-6. Try out the sample API flow using the instructions given in [Tryout Flow](https://ob.docs.wso2.com/en/latest/get-started/try-out-flow/).
+2. Try out the sample API flow using the instructions given in [Tryout Flow](https://ob.docs.wso2.com/en/latest/get-started/try-out-flow/).
 
 Once you try out the sample API flow, you can notice that data is published to the tables of the `openbank_ob_reporting_statsdb` 
 database. 
