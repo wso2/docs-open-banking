@@ -62,8 +62,8 @@ This validation allows banks to validate API consumers from the NCAs. This is do
 validating the transport layer certificate an API consumer has obtained. 
 
 ###Role validation 
-According to the [Open banking standard - UK](https://www.openbanking.org.uk/about-us/glossary/), API consumers have roles 
-for the serviceS they provide. The API consumer’s role is defined in the API consumer’s transport certificate (QWAC certificate 
+According to the [Open Banking Standard - UK](https://www.openbanking.org.uk/about-us/glossary/), API consumers have roles 
+for the services they provide. The API consumer’s role is defined in the API consumer’s transport certificate (QWAC certificate 
 that they obtain from an NCA), which WSO2 Open Banking Accelerator checks in the API and Dynamic Client Registration flows. 
 If the role exists in the transport certificate, WSO2 Open Banking Accelerator allows the API consumer to invoke the API.
 
