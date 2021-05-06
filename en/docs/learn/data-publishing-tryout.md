@@ -22,15 +22,12 @@ enable = true
 2. Go to `<APIM_HOME>/repository/conf/deployment.toml` and `<IS_HOME>/repository/conf/deployment.toml` to configure the 
 following attributes:
     - Enable open banking data publishing
-    - Update the username and password with a super admin user credentials
     - Update the hostname of WSO2 Open Banking Business Intelligence Accelerator. 
     
 A sample looks as follows:
 ```toml
 open_banking.data_publishing]
 enable = true
-username="$ref{super_admin.username}@carbon.super"
-password="$ref{super_admin.password}"
 server_url = "{tcp://<WSO2_OB_BI_HOST>:7612}"
 ```
 
