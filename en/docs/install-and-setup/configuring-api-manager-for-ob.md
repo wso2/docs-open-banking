@@ -101,5 +101,5 @@ database server, and the JDBC driver.
 2. Run the `wso2server.sh` script as follows:
 
     ``` bash
-    ./wso2server.sh
+    ./api-manager.sh
     ``` 
