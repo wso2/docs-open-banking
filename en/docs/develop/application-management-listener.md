@@ -250,5 +250,5 @@ publishing data. Given below is the method signature:
 2. Add the following tag and configure the classpath of the extended class. For example:
 ``` xml
 [open_banking.dcr]
-applicationupdater = applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
+applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
 ```
