@@ -76,9 +76,9 @@ Following are the roles that an API consumer can have:
  |Card-Based Payment Instrument Issuer|Issues card-based payment instruments that can be used to initiate a payment transaction from a payment account held with another payment service provider.|
 
 !!!tip
-    An API consumer can have one or more roles. For an example, if an API consumer provides application to view account 
-    information as well as to initiate a payment, the API consumers roles are **Account Information Service Provider** and
-    **Payment Initiation Services Provider**.
+    An API consumer can have one or more roles. For an example, if an API consumer provides an application to view account 
+    information as well as to initiate payments, the roles of the API consumer are **Account Information Service Provider** 
+    and **Payment Initiation Services Provider**.
      
 ###eIDAS 
 The **electronic IDentification, Authentication and trust Services (eIDAS)** regulation provides unique identity schemas for individuals and businesses to access the publicly available online 
