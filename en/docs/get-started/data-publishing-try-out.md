@@ -3,7 +3,7 @@
         - Copy and extract the accelerator zip file inside WSO2 Open Banking 3.0 in the root directory of WSO2 Streaming 
         Integrator.
         !!!note
-            Here after,
+            Hereafter,
             
             - `<SI_HOME>` refers to the root directory of WSO2 Streaming Integrator.
             - `<OB_BI_ACCELERATOR_HOME>` refers to the root directory of WSO2 Open Banking Business Intelligence Accelerator.
@@ -17,8 +17,8 @@
         ./configure.sh
         ```
 
-###Configure Data Publishing
-1. Make sure that APIM analytics is enabled in `<APIM_HOME>/repository/conf/deployment.toml`:
+###Configure
+1. Make sure that API Manager analytics is enabled in `<APIM_HOME>/repository/conf/deployment.toml`:
 ```toml
 [apim.analytics]
 enable = true
@@ -29,23 +29,16 @@ publishing as follows:
 [open_banking.data_publishing]
 enable = false
 ```
-3. Enable data publishing in Go to `<APIM_HOME>/repository/conf/deployment.toml` and update the executors for DCR and APIs. See the  example given 
-below:
-```toml
-[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.finance.openbanking.accelerator.gateway.executor.consent.ConsentEnforcementExecutor"
-priority = 2
 
-```
-
-###Try out
-4. Start the Streaming Integrator server using the following command in `<SI_HOME>/bin`:
+###Start servers
+1. Go to `<SI_HOME>/bin` and run the following command to start the Streaming Integrator server:
 ```
 ./server.sh
 ```
-5. Set up and start the Identity Server and API Manager Servers as instructed in [Set Up Accelerators](https://ob.docs.wso2.com/en/latest/get-started/set-up-accelerators/).
+2. Set up and start the Identity Server and API Manager Servers as instructed in [Set Up Accelerators](https://ob.docs.wso2.com/en/latest/get-started/set-up-accelerators/).
 
-5. Register an API consumer application as instructed  in [API Consumer Onbaording](https://ob.docs.wso2.com/en/latest/get-started/api-consumer-onboarding/). 
+###Try out
+5. Register an API consumer application as instructed  in [API Consumer Onboarding](https://ob.docs.wso2.com/en/latest/get-started/api-consumer-onboarding/). 
 
 6. Try out the sample API flow using the instructions given in [Tryout Flow](https://ob.docs.wso2.com/en/latest/get-started/try-out-flow/).
 
