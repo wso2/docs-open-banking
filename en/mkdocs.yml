@@ -75,6 +75,7 @@ nav:
       - 'Introduction': learn/dynamic-client-registration.md
       - 'Configuration': learn/dynamic-client-registration-configuration.md
       - 'Tryout': learn/dynamic-client-registration-try-out.md
+    - 'API Security': learn/api-security.md
     - 'Data Publishing':
       - 'Introduction': learn/data-publishing.md
       - 'Tryout': learn/data-publishing-tryout.md
