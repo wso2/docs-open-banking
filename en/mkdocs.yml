@@ -46,35 +46,45 @@ theme:
 # Navigation
 nav:
   - 'Home': index.md
-  - 'About':
-    - 'Open Banking': about/open-banking.md
-    - 'Open Banking Requirements':  about/open-banking-requirements.md
-    - 'Regulations and Standards': about/regulations-and-standards.md
-    - 'WSO2 Open Banking Accelerator': about/wso2-open-banking-accelerator.md
-  - 'Get started':
-    - 'Get started': get-started/quick-start-guide.md
-    - 'Set Up Accelerators': get-started/set-up-accelerators.md
-    - 'Configure Roles and Users': get-started/configure-roles-and-users.md
-    - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
-    - 'Tryout Flow': get-started/try-out-flow.md
-  - 'Install and setup':
-    - 'Install and setup': page-not-found.md
-  - 'Advanced':
+  - 'Get Started':
+    - 'Open Banking': get-started/open-banking.md
+    - 'Open Banking Requirements': get-started/open-banking-requirements.md
+    - 'Regulations and Standards': get-started/regulations-and-standards.md
+    - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
+    - 'Quick Start Guide':
+      - 'Get started': get-started/quick-start-guide.md
+      - 'Set Up Accelerators': get-started/set-up-accelerators.md
+      - 'Configure Users and Roles': get-started/configure-users-and-roles.md
+      - 'Dynamic Client Registration': get-started/dynamic-client-registation.md
+      - 'Tryout Flow': get-started/try-out-flow.md
+      - 'Data Publishing': get-started/data-publishing-try-out.md
+  - 'Install and Setup':
+    - 'Prerequisites': install-and-setup/prerequisites.md
+    - 'Setting up servers': install-and-setup/setting-up-servers.md
+    - 'Setting up databases': install-and-setup/setting-up-databases.md
+    - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
+    - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
+    - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
+  - 'Learn':
     - 'Consent Management':
-      - 'Introduction': advanced/consent-management.md
-      - 'Tryout': advanced/consent-management-try-out.md
-    - 'Consent Authorization': advanced/consent-authorization-intro.md
+      - 'Introduction': learn/consent-management.md
+      - 'Tryout': learn/consent-management-try-out.md
+    - 'Consent Authorization': learn/consent-authorization-intro.md
+    - 'Token Authentication': learn/token-authentication.md
     - 'Dynamic Client Registration':
-      - 'Introduction': advanced/dynamic-client-registration.md
-      - 'Configuration': advanced/dynamic-client-registration-configuration.md
-      - 'Tryout': advanced/dynamic-client-registration-try-out.md
+      - 'Introduction': learn/dynamic-client-registration.md
+      - 'Configuration': learn/dynamic-client-registration-configuration.md
+      - 'Tryout': learn/dynamic-client-registration-try-out.md
+    - 'Data Publishing':
+      - 'Introduction': learn/data-publishing.md
+      - 'Tryout': learn/data-publishing-tryout.md
     - 'Tryout Flow':
-        - 'Publish an API': advanced/publish-an-api.md
-        - 'Obtain Application Access Token': advanced/application-access-token.md
-        - 'Initiate a consent': advanced/initiate-a-consent.md
-        - 'Authorize a consent': advanced/authorization-flow.md
-        - 'Obtain User Access Token': advanced/user-access-token.md
-        - 'Invoke an API': advanced/invoke-an-api.md
+        - 'Publish an API': learn/publish-an-api.md
+        - 'Obtain Application Access Token': learn/application-access-token.md
+        - 'Initiate a consent': learn/initiate-a-consent.md
+        - 'Authorize a consent': learn/authorization-flow.md
+        - 'Obtain User Access Token': learn/user-access-token.md
+        - 'Invoke an API': learn/invoke-an-api.md
   - 'Develop' :
     - 'Open Banking Gateway' :
         - 'Introduction': develop/open-banking-gateway.md
@@ -87,6 +97,7 @@ nav:
         - 'Consent Authorize': develop/consent-management-authorize.md
         - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
         - 'Consent Core Service': develop/consent-core-service.md
+        - 'Customize the Consent Page': develop/customize-consent-page.md
     - 'Token Flow Customization ':
         - 'JWT Access Tokens': develop/jwt-access-tokens.md
         - 'Token Filters': develop/token-filters.md
@@ -99,8 +110,12 @@ nav:
         - 'Introduction': develop/validation-layer.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
         - 'Custom DCR Validator': develop/custom-dcr-validator.md
+    - 'Data Publishing':
+        - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
+        - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
+        - 'Custom Components': develop/data-publishing-custom-components.md
   - 'References':
-    - 'References': page-not-found.md
+    - 'DCR Rest API': references/dcr-rest-api.md
   - '': page-not-found.md
 
 # Extensions
@@ -151,9 +166,8 @@ extra:
   site_version: 3.0.0
   nav_list:
     - Home
-    - About
-    - Get started
-    - Install and setup
-    - Advanced
+    - Get Started
+    - Install and Setup
+    - Learn
     - Develop
     - References

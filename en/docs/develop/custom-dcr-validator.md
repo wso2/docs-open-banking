@@ -1,7 +1,7 @@
 ## Writing a custom DCR validator
 
 You can customize the validations performed in the 
-[Dynamic Client Registration (DCR)](../advanced/dynamic-client-registration.md) process according to your 
+[Dynamic Client Registration (DCR)](../learn/dynamic-client-registration.md) process according to your 
 specification and other requirements. 
 
 To implement custom validations, extend the following class.
@@ -397,4 +397,4 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
 ## Configuring a custom DCR validator
 
 Once you implement the customized validator you need to configure it in WSO2 Open Banking Accelerator. 
-For steps to configure, refer to [Configuring Dynamic Client Registration](../advanced/dynamic-client-registration-configuration.md).  
+For steps to configure, refer to [Configuring Dynamic Client Registration](../learn/dynamic-client-registration-configuration.md).  

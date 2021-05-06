@@ -8,55 +8,60 @@ This document provides step by step instructions to invoke the Accounts Informat
         1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
         privileges. 
 
-        2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/get-started/select-api.png)
+        2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
-        3. Select **OpenAPI File/Archive**. 
+        3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 
         4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR
         _HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.  
 
         5. Click **Next**.
 
-        6. Leave the Endpoint field empty as it is and click **Create**. 
+        6. Leave the **Endpoint** field empty as it is and click **Create**. 
 
-        8. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
-        requests**.
+        7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
+        requests**.  
+        
+            ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5-tryout.png)
 
-        9. Click **Save**.
+
+        8. Click **Save**.
     
-        10.Go to **Runtime** using the left menu pane. 
+        9.Go to **Runtime** using the left menu pane.   
+        
+           ![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
     
-        ![select_runtime](../assets/img/get-started/select-runtime.png)
     
-        11.Click the edit button under **Request** -> **Message Mediation**.
+        10.Click the edit button under **Request** -> **Message Mediation**. ![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
+        
+        11.Now, select the **Custom Policy** option. 
     
-        12.Now, select the **Custom Policy** option. 
-    
-        13.Upload the 
+        12.Upload the 
         `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
         file and click **SELECT**.
     
-        14.Scroll down and click **SAVE**. 
+        13.Scroll down and click **SAVE**. 
         
-        15.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/set-endpoint.png)
+        14.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
-        16.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.
+        15.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
 
-        17.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
+        16.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
     
-        18.Provide a description for the new revision.
+        17.Provide a description for the new revision.
     
-        19.Select `localhost` from the dropdown list. 
+        18.Select `localhost` from the dropdown list. 
     
-        20.Click **Deploy**.
+        19.Click **Deploy**.
     
-        21.Go to **Overview** using the left menu pane and click **Publish**. 
+        20.Go to **Overview** using the left menu pane and click **Publish**. 
     
-        22.Now that you have deployed the API, go to [https://localhost:9443/devportal](https://localhost:9443/devportal).
+        21.Now that you have deployed the API, go to <https://localhost:9443/devportal>.
     
-        23.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/subscribe-api.png)
+        22.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
+        Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
     
-        24.Select the application from the dropdown list and click **Subscribe**.
+        23.From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command: 
@@ -70,7 +75,7 @@ biIsImlzcyI6ImtiTG5KSl91UUwyWWU2OHVhQ1JiUElKT1I0VWEiLCJleHAiOjE2Mzg3ODg0NDIsImlh
 MSJ9.kWeV242yEXvF1vTntHsjxMfFqGAGIwiXQM1QeSTMoXyYePB450UZHZaVVo4_Q4SM9--FWQYCVKa7_SDMvmGcaiHeb5UTp0rdivMvVMZ1HkaYQRopC9c
 eR3tSJbJ7J7XFKTEIUOqk6ehXZcQ9tTQDlaRHmL67y6s_XgTu_Gca3Q4ejEFQRr5JGGyzTimXdlqEfd3Lo6WD1I_s-c26tAuAJ00oGvAXOBPy0EoDFMdLDXv
 -ZSAASZGYZr9F5s06qh5KHIY4rxQdr104dAalD-7pGhMwY2lwZymVlud73hCHfwq60fevra57HoVAD1hZVJ7hMf09QvlltLL6i3Gd4WzPXQ&client_asser
-tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redirect_uri=www.wso2.com'
+tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redirect_uri=www.wso2.com&client_id=HOUkaSby8DydnbeIhE7lycbkII8a'
 ```
 - The request payload contains a client assertion in the following format:
 ```
@@ -86,7 +91,7 @@ tion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&redir
 "exp": <<This is epoch time of the token expiration date/time>>,
 "iat": <<This is epoch time of the token issuance date/time>>,
 "jti": "<<This is an incremental unique value>>",
-"aud": "<<This is the audience that the ID token is intended for. For example, https://{APIM_HOST}:8243/token>>"
+"aud": "<<This is the audience that the ID token is intended for. For example, https://{IS_HOST}:9446/oauth2/token>>"
 }
   
 <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
@@ -166,7 +171,7 @@ ADy6Cq720CDOLOe5mqmIdKeJNTn-OBmFkcSsr00MxOYZIOqyof2c1Zxx4WEqWtQza4bb84Xji_AoHlez
 RpK70Dz7AiZ73ODN8Ic9XCTDwKiE5jE_hHYi7qF2QIIUubjeVgRMAjF9A18t9VQDqLt_x-dhWPXerCcOL4FaFrI7RGS8s_YK6fdag&prompt=login&nonce
 =n-0S6_WzA2Mj
 ```
-- Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](../get-started/api-consumer-onboarding.md).
+- Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](dynamic-client-registation.md).
 
 3. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
 
@@ -187,7 +192,7 @@ jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<C
 <CLIENT_ID>'
 ```
 - Make sure you update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the previous step.
-Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](../get-started/api-consumer-onboarding.md).
+Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](dynamic-client-registation.md).
 
 - The response contains a user access token.
 
