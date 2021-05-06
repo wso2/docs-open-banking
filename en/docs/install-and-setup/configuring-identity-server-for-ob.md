@@ -96,14 +96,23 @@ database server, and the JDBC driver.
     notification_endpoint = "https://<APIM_HOST>:9443/internal/data/v1/notify"	
     ```
 
-7. Configure the event publisher URL for adaptive authentication with the hostname of the Identity Server.
+7. Add the following to configure the `kid` value for the signing certificate and to send the client certificate as a 
+transport header:
+
+    ``` toml
+    [open_banking.identity]
+    signing_certificate_kid="123"
+    client_transport_cert_as_header_enabled = true
+    ```
+
+8. Configure the event publisher URL for adaptive authentication with the hostname of the Identity Server.
 
     ``` toml
     [authentication.adaptive.event_publisher]	
     url = "http://<IS_HOST>:8006/"
     ```
 
-8. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
+9. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
 
     - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
     Integrator.

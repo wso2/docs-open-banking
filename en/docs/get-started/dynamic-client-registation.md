@@ -53,9 +53,12 @@ https://localhost:9446/api/openbanking/dynamic-client-registration
 18.Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
 `<IS_HOME>/repository/resources/security/client-truststore.jks` using the following command:
-```
-keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
-```
+
+  ```
+  keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
+  ```
+
+19.Restart the Identity Server and API Manager instances. 
 
 ### Step 2: Configure IS as Key Manager
 
