@@ -57,6 +57,8 @@ to the client trust stores in `<APIM_HOME>/repository/resources/security/client-
 keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
 ```
 
+19. Restart the Identity Server and API Manager instances. 
+
 ### Step 2: Configure IS as Key Manager
 
  1. Sign in to the Admin Portal of API Manager at <https://localhost:9443/admin>.

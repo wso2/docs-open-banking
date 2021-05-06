@@ -171,7 +171,7 @@ ADy6Cq720CDOLOe5mqmIdKeJNTn-OBmFkcSsr00MxOYZIOqyof2c1Zxx4WEqWtQza4bb84Xji_AoHlez
 RpK70Dz7AiZ73ODN8Ic9XCTDwKiE5jE_hHYi7qF2QIIUubjeVgRMAjF9A18t9VQDqLt_x-dhWPXerCcOL4FaFrI7RGS8s_YK6fdag&prompt=login&nonce
 =n-0S6_WzA2Mj
 ```
-- Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](../get-started/api-consumer-onboarding.md).
+- Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](dynamic-client-registation.md).
 
 3. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
 
@@ -192,7 +192,7 @@ jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<C
 <CLIENT_ID>'
 ```
 - Make sure you update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the previous step.
-Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](../get-started/api-consumer-onboarding.md).
+Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](dynamic-client-registation.md).
 
 - The response contains a user access token.
 
