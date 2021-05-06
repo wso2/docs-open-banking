@@ -19,7 +19,7 @@ banking requirement:
 
 1. To implement a custom Request Object validator, extend the following class:
 ``` java
-com.wso2.finance.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidator
+com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidator
 ``` 
 
 2. Add the required validations as annotations to the model. 
@@ -59,7 +59,7 @@ String error = OpenBankingValidator.getInstance().getFirstViolation(yourInherite
 1. Make sure the following configuration exists in `<IS_HOME>/repository/conf/deployment.toml`:
 ``` java
 [oauth.oidc.extensions]
-request_object_validator = "com.wso2.finance.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidationExtension"
+request_object_validator = "com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidationExtension"
 ```
 
 2. Update the following configuration in `<IS_HOME>/repository/conf/deployment.toml` with your extended class: 

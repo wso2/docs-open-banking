@@ -12,7 +12,7 @@ throttling policies.
 To implement Custom Throttling Keys, extend the following class:
 
 ``` java
-com.wso2.finance.openbanking.accelerator.gateway.throttling.ThrottleDataPublisher
+com.wso2.openbanking.accelerator.gateway.throttling.ThrottleDataPublisher
 ```
 
 Given below is the method you need to implement:

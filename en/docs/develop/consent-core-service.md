@@ -6,10 +6,10 @@ service named `ConsentCoreService`. This is an interface, which you can simply i
 extension. The Fully Qualified Name (FQN) of `ConsentCoreService` is as follows:
 
 ``` java
-com.wso2.finance.openbanking.accelerator.consent.mgt.service.ConsentCoreService
+com.wso2.openbanking.accelerator.consent.mgt.service.ConsentCoreService
 ```
 !!! note
-    The `com.wso2.finance.openbanking.accelerator.consent.service-3.0.0.jar` JAR file inside the 
+    The `com.wso2.openbanking.accelerator.consent.service-3.0.0.jar` JAR file inside the 
     `<IS_HOME>/repository/components/dropins` directory contains the Java implementation related to consent 
     management core services.
     
