@@ -57,6 +57,7 @@ nav:
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'API Consumer Onboarding': get-started/api-consumer-onboarding.md
       - 'Tryout Flow': get-started/try-out-flow.md
+      - 'Tryout Data Publishing': get-started/data-publishing-try-out.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers': install-and-setup/setting-up-servers.md
