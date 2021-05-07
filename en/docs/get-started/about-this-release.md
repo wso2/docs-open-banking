@@ -12,33 +12,33 @@ For more information on WSO2 Open Banking Accelerator, see the [Get Started](ope
 
 ####WSO2 Open Banking Identity Server Accelerator
 
-- Generalized consent management support for common open banking use cases. For more information, see [Consent Management](learn/consent-management.md).
-- Extensibility to customize the OAuth2/OIDC [authorization](develop/consent-management-authorize.md) and [authentication](develop/jwt-access-tokens.md) 
+- Generalized consent management support for common open banking use cases. For more information, see [Consent Management](../learn/consent-management.md).
+- Extensible OAuth2/OIDC [authorization](../develop/consent-management-authorize.md) and [authentication](../develop/jwt-access-tokens.md) 
 flows to support any open banking requirement.
-- Accelerator implementation for [token endpoint](learn/token-authentication.md) validation including:
+- Accelerator implementation for [token endpoint](../learn/token-authentication.md) validation including:
 
     - Transport layer certificate enforcement. 
     - Token endpoint authentication method validation for regulatory use cases.
     
-- Mutual-TLS certificate-bound access tokens. For more information, see [Certificate-bound access tokens](learn/token-authentication/#certificate-bound-access-tokens).
+- Mutual-TLS certificate-bound access tokens. For more information, see [Certificate-bound access tokens](https://ob.docs.wso2.com/en/latest/learn/token-authentication/#certificate-bound-access-tokens).
 - Customizable Identifier first authentication.
-- [Customizable web app](develop/customize-consent-page.md) for consent approval during authentication. 
-- Extensibility for data publishing during the OAuth2/OIDC flows. For more information, see [Data Publishing](develop/authentication-flow-for-data-publishing.md).
+- [Customizable web app](../develop/customize-consent-page.md) for consent approval during authentication. 
+- Extensible data publishing during the OAuth2/OIDC flows. For more information, see [Data Publishing](../develop/authentication-flow-for-data-publishing.md).
 
 ####WSO2 Open Banking API Manager Accelerator
 
-- Generalized implementation for [common open banking use cases](learn/publish-an-api.md):
+- Generalized implementation for [common open banking use cases](../learn/publish-an-api.md):
 
     - Consent enforcement
     - eIDAS
     
-- [Executor framework](develop/custom-gateway-executor.md) to enforce different policies based on regulatory and other requirements.
-- Support adding custom functional paths for [non-regulatory](develop/custom-request-router/#identifying-non-regulatory-apis) and [regulatory](develop/custom-gateway-executor.md#Configuring a custom executor) 
+- [Executor framework](../develop/custom-gateway-executor.md) to enforce different policies based on regulatory and other requirements.
+- Supports custom functional paths for [non-regulatory](../../develop/custom-request-router/#handling-non-regulatory-apis) and [regulatory](../develop/custom-gateway-executor.md) 
 API flows such as Accounts, Payments, and 
 Dynamic Client Registration.
-- [Request router implementation](develop/custom-request-router/) to route request to specific functional paths.
-- Publish API invocation data from Gateway. For more information, see [Custom Data Publishing](develop/data-publishing-custom-components/).
-- Custom throttling keys. For more information, see [Custom Throttling Keys](develop/custom-throttling-keys/).
+- [Request router implementation](../develop/custom-request-router.md) to route request to specific functional paths.
+- Publish API invocation data from the Gateway. For more information, see [Custom Data Publishing](../develop/custom-data-publishing.md).
+- Custom throttling keys. For more information, see [Custom Throttling Keys](../develop/custom-throttling-keys.md).
 
 ####WSO2 Open Banking Business Intelligence Accelerator
 
@@ -49,7 +49,7 @@ Dynamic Client Registration.
     - Token issuance
     - API invocations
     
-For more information, see [Data Publishing](learn/data-publishing/).
+For more information, see [Data Publishing](../learn/data-publishing.md).
 
 ##What has changed in this release
 
