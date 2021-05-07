@@ -33,7 +33,7 @@ flows to support any open banking requirement.
     - eIDAS
     
 - [Executor framework](../develop/custom-gateway-executor.md) to enforce different policies based on regulatory and other requirements.
-- Support adding custom functional paths for [non-regulatory](../../develop/custom-request-router/#handling-non-regulatory-apis) and [regulatory](../develop/custom-gateway-executor.md) 
+- Supports custom functional paths for [non-regulatory](../../develop/custom-request-router/#handling-non-regulatory-apis) and [regulatory](../develop/custom-gateway-executor.md) 
 API flows such as Accounts, Payments, and 
 Dynamic Client Registration.
 - [Request router implementation](../develop/custom-request-router.md) to route request to specific functional paths.
