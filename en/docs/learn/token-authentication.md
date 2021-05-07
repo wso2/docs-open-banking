@@ -18,9 +18,9 @@ For more information on access tokens, see the
 In order to cater to any open banking requirement, WSO2 Open Banking Accelerator contains the following access token 
 features:
 
-## Certificate bound access tokens 
+## Certificate-bound access tokens 
 
-Certificate bound access tokens are access tokens that have a certificate attached to them. When using certificate bound 
+Certificate-bound access tokens are access tokens that have a certificate attached to them. When using certificate-bound 
 access tokens, you need to pass the certificate, which is bound to the token to gain access to protected resources. This 
 prevents attacks to the access tokens from unauthorized parties. The validation for such tokens take place as 
 follows:

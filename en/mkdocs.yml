@@ -51,6 +51,7 @@ nav:
     - 'Open Banking Requirements': get-started/open-banking-requirements.md
     - 'Regulations and Standards': get-started/regulations-and-standards.md
     - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
+    - 'About this Release': get-started/about-this-release.md
     - 'Quick Start Guide':
       - 'Get started': get-started/quick-start-guide.md
       - 'Set Up Accelerators': get-started/set-up-accelerators.md
