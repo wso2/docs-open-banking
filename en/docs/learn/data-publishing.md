@@ -50,6 +50,12 @@ Following are the data elements that WSO2 API Manager publishes to WSO2 Open Ban
 |`responseLatency: long`|The time duration between the request is sent and the response is received.|`3659`|
 |`responseMediationLatency: long`|The time taken for the response mediation. `(responseMediationTime - backendTime)`|`142`|    
 
+In addition to the above-mentioned data elements, you can publish data that are specific to your open banking standard. 
+For information on the additional data elements that you can publish, see [Data Publishing Extensions](../develop/authentication-flow-for-data-publishing.md).
+
+WSO2 Open Banking Accelerator has by default enabled data publishing in API gateway and authentication components. Additionally, 
+you can publish any streams using a custom component. For more information, see [Custom Data Publishing](../develop/custom-data-publishing.md).
+
 ###Data Summarization
 You can write a summarization script for the data stored using Siddhi Applications. For more information, see the WSO2 Streaming
 Integrator documentation on [Summarizing Data](https://ei.docs.wso2.com/en/latest/streaming-integrator/guides/summarizing-data/). 

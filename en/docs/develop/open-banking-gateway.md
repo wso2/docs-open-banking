@@ -10,4 +10,4 @@ scenarios. The additional features are as follows:
 - [Request Routers](custom-request-router.md)
 - [Open Banking Executors](custom-gateway-executor.md)
 - [Custom Throttling Keys](custom-throttling-keys.md)
-- Custom Data Publishing
+- [Custom Data Publishing](custom-data-publishing.md)
