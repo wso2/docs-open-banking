@@ -13,7 +13,8 @@ For more information on WSO2 Open Banking Accelerator, see the [Get Started](ope
 ####WSO2 Open Banking Identity Server Accelerator
 
 - Generalized consent management support for common open banking use cases. For more information, see [Consent Management](learn/consent-management.md).
-- Extensibility to customize the OAuth2/OIDC [authorization](develop/consent-management-authorize.md) and [authentication](develop/jwt-access-tokens.md) flows to support any open banking requirement.
+- Extensibility to customize the OAuth2/OIDC [authorization](develop/consent-management-authorize.md) and [authentication](develop/jwt-access-tokens.md) 
+flows to support any open banking requirement.
 - Accelerator implementation for [token endpoint](learn/token-authentication.md) validation including:
 
     - Transport layer certificate enforcement. 
@@ -32,7 +33,8 @@ For more information on WSO2 Open Banking Accelerator, see the [Get Started](ope
     - eIDAS
     
 - [Executor framework](develop/custom-gateway-executor.md) to enforce different policies based on regulatory and other requirements.
-- Support adding custom functional paths for [non-regulatory](develop/custom-request-router/#identifying-non-regulatory-apis) and [regulatory](develop/custom-gateway-executor.md#Configuring a custom executor) API flows such as Accounts, Payments, and 
+- Support adding custom functional paths for [non-regulatory](develop/custom-request-router/#identifying-non-regulatory-apis) and [regulatory](develop/custom-gateway-executor.md#Configuring a custom executor) 
+API flows such as Accounts, Payments, and 
 Dynamic Client Registration.
 - [Request router implementation](develop/custom-request-router/) to route request to specific functional paths.
 - Publish API invocation data from Gateway. For more information, see [Custom Data Publishing](develop/data-publishing-custom-components/).
@@ -57,18 +59,5 @@ regulatory and other open banking requirements. Some significant changes in this
 
 - Extensibility to support any open banking requirement on top of the base technology stack provided through the accelerator.
 - New WSO2 Updates tool to receive product updates in-place. 
-- Improved Consent Management dashboard for customers and Admin dashboard for bank officers to search, update, and revoke a consent.
-
-## Security vulnerability analysis
-
-Following security vulnerability analysis has been conducted and reports have been generated for the solution:
-
-- Veracode Scan Reports and Analysis:
-    - WSO2 Open Banking Identity Server Accelerator Scan Report 
-    - WSO2 Open Banking API Manager Accelerator Scan Report
-    - WSO2 Open Banking Business Intelligence Accelerator Scan Report 
- 
-- Qualys Scan Reports and Analysis: 
-    - WSO2 Open Banking Accelerator Consent Management Applications
-
-- The Open Web Application Security Project (OWASP) Dependency Tracking Analysis
+- Improved Consent Management dashboard for customers and Admin dashboard for bank officers to search, update, and revoke 
+a consent.
