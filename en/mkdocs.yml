@@ -92,6 +92,7 @@ nav:
         - 'Introduction': develop/open-banking-gateway.md
         - 'Custom Request Router': develop/custom-request-router.md
         - 'Custom Gateway Executor': develop/custom-gateway-executor.md
+        - 'Error handling in API Gateway': develop/gateway-error-handling.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
         - 'Custom Data Publishing': develop/custom-data-publishing.md
     - 'Consent Management':
