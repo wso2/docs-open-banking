@@ -15,12 +15,14 @@ Follow the instructions to find how you can quickly set up and try out a basic f
         1. WSO2 Identity Server (IS) 5.11.0 
         2. WSO2 API Manager (APIM) 4.0.0
         3. WSO2 Streaming Integrator (SI) 4.0.0
-    3. Download WSO2 Open Banking Accelerator 3.0.0 and Identity Server as a Key Manager (IS KM) Connector.
+    3. To configure the Identity Server with the API Manager, download WSO2 IS Connector from
+     [here](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip).
+    4. Download WSO2 Open Banking Accelerator 3.0.0.
         -  WSO2 Open Banking Accelerator contains the following accelerators.
             - wso2-ob-is-accelerator-3.0.0
             - wso2-ob-apim-accelerator-3.0.0
             - wso2-ob-bi-accelerator-3.0.0
-    4. Setup a database server using any of the following:
+    5. Setup a database server using any of the following:
          - Mysql 5.7 or above
          - Microsoft SQL Server 2017
          - Oracle 19c
