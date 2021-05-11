@@ -19,7 +19,7 @@ Once you have successfully prepared the environment for the deployment, you can 
     - `openbank_iskm_configdb` 
     - `openbank_openbankingdb`  
     
-2. If you are using the [Data Publishing](../advanced/data-publishing.md) feature, create the following 
+2. If you are using the [Data Publishing](../learn/data-publishing.md) feature, create the following 
     databases as well:
     
     - `openbank_ob_reporting_statsdb`
@@ -142,18 +142,18 @@ according to your DBMS.
      2. Increase the column size of the `INPUTS` column in the `AM_APPLICATION_REGISTRATION` table:
                          
          ```sql tab='MySQL'
-         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY VALUE INPUTS(7500);
+         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY INPUTS(7500);
          ```
          
          ```sql tab='MSSQL'
-          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER COLUMN VALUE INPUTS(7500);
+          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER COLUMN INPUTS VARCHAR(7500);  
          ```
          
          ```sql tab='Oracle'
-         ALTER TABLE C##OB_APIMGTDB.am_application_registration MODIFY VALUE INPUTS(4000);
+         ALTER TABLE C##OB_APIMGTDB.am_application_registration MODIFY INPUTS VARCHAR2(4000); 
          ```
          
          ```sql tab='PostgreSQL'
-         ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column VALUE type INPUTS(7500);
+         ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column INPUTS type VARCHAR(7500);
          ```              
          
