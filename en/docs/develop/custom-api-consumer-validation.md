@@ -23,13 +23,13 @@ According to your requirements, you can extend and override the methods in the `
 
 To write a custom Response Type handler, extend the following class:
 ```java
-com.wso2.openbanking.accelerator.gateway.executor.service.TPPValidationService.java
+com.wso2.openbanking.accelerator.gateway.executor.service.TPPValidationService
 ```
 
 To extend the validation capabilities according to your requirements, override relevant methods of this class. Given 
 below is a brief description of each method.
 
-####validate method
+###validate method
 
 Validates the roles and returns a boolean response as follows:
 
@@ -43,7 +43,7 @@ boolean validate(X509Certificate peerCertificate,
 throws TPPValidationException;
 ```
 
-####getCacheKey method
+###getCacheKey method
 
 Returns the cache key used for caching the responses and an ID that is unique to the API flow. Given below is the method 
 signature:
@@ -53,15 +53,16 @@ String getCacheKey(X509Certificate peerCertificate,
 throws TPPValidationException;
 ```
 
-####Configuration
+##Configuration
 
-- Open `<APIM_HOME>/repository/conf/deployment.toml` and locate the following configuration to:
-    1. Set value as `enable`.
+- Open `<APIM_HOME>/repository/conf/deployment.toml` and locate the following to configure your custom API Consumer 
+Validation class:
+    1. Set the `enabled` tag to `true`.
     2. Add the implmented class under `implementation_path`.
     
     ```toml
     [open_banking.gateway.tpp_management.tpp_validation]
-    enabled = false
+    enabled = true
     implementation_path = "<FQN of the extended class>"
     cache_expiry = 3600
     ```

@@ -1,8 +1,8 @@
-###Configuring MTLS enforcement
-You can apply the `MTLSEnforcementExecutor` executor to check if an Mutual Transport Layer Security (MTLS) certificate is 
-present in the API invocation requests:
+###Configuring MTLS Enforcement Executor
+You can apply the `MTLSEnforcementExecutor` executor to check if a Mutual Transport Layer Security (MTLS) certificate is 
+present in the API request:
 
-- Open `<APIM_HOME>/repository/conf/deployment.toml` and add the executor and set a priority as follows:
+- The relevant configuration is in the `<APIM_HOME>/repository/conf/deployment.toml` file as follows:
 ```toml
 [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
 name = "com.wso2.openbanking.accelerator.gateway.executor.impl.mtls.cert.validation.executor.MTLSEnforcementExecutor"
@@ -10,10 +10,10 @@ priority = 1
 ``` 
 
 ###Configuring certificate revocation validation
-You can apply the `MTLSCertValidationExecutor` executor to perform the Online Certificate Status Protocol (OCSP) and 
-Certificate Revocation List (CRL) certificate revocation validation in the API invocation requests:
+You can apply the `CertRevocationValidationExecutor` executor to perform the Online Certificate Status Protocol (OCSP) and 
+Certificate Revocation List (CRL) certificate revocation validation in the API request:
 
-- Open `<APIM_HOME>/repository/conf/deployment.toml` and add the executor and set a priority as follows:
+- The relevant configuration is in the `<APIM_HOME>/repository/conf/deployment.toml` file as follows:
 ```toml
 [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
 name = "com.wso2.openbanking.accelerator.gateway.executor.impl.mtls.cert.validation.executor.CertRevocationValidationExecutor"
@@ -51,7 +51,7 @@ priority = 2
     roles = "PISP"
     ```
  
-By default, external API consumer validation is enforced in two occurences:
+By default, external API consumer validation is enforced in two occurrences:
  - API-level 
  - Dynamic Client Registration (DCR))
  
