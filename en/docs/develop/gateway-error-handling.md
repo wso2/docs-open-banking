@@ -91,4 +91,4 @@ the `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences/
 ```
 
 The class mediators can handle the errors thrown only by the API Manager. The errors that the executors throw, 
-do not go through class mediators.
+do not go through the class mediators.
