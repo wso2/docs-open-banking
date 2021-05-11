@@ -22,8 +22,8 @@ executing certificate related role validations.
 
 !!! note 
 
-    The `OBDefaultErrorHandler` that is configured in the API Manager accelerator contains all the necessary error 
-    handling implementations. You can refer to the `OBDefaultErrorHandler` class as a template. 
+    The `OBDefaultErrorHandler` class that is configured in the API Manager accelerator contains all the necessary error 
+    handling implementations. You can refer to the following `OBDefaultErrorHandler` class as a template. 
         
     `com.wso2.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler`
 
@@ -75,10 +75,13 @@ Perform the following in your error handling executors.
 
 The default API management policies also face errors during policy violations. If your open banking technical 
 specification mentions a common error format, you need to follow the same format in API management related errors as well. 
-To achieve this, place a [custom mediator](https://apim.docs.wso2.com/en/4.0.0/deploy-and-publish/deploy-on-gateway/api-gateway/message-mediation/adding-a-class-mediator/#!) 
-in the `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml` file as shown below:
+To achieve this, place a [custom mediator](https://apim.docs.wso2.com/en/4.0.0/deploy-and-publish/deploy-on-gateway/api-gateway/message-mediation/adding-a-class-mediator/#!).
 
-``` xml
+For example, if your class mediator is `com.abc.bank.custom.error.formatter.ClassMediator`, add a new `class` tag and 
+update the configurations in 
+the `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml` file as follows:
+
+``` 
 <sequence
 	xmlns="http://ws.apache.org/ns/synapse" name="jsonConverter">
 	<property name="messageType" value="application/json" scope="axis2"/>
