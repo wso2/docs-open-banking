@@ -424,7 +424,7 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ###Retrieve an application
 The API allows the API consumer to retrieve the details for an application that has already been registered. 
 The request consists of one path parameter named `Client ID` that the API consumer wants to retrieve details for. 
-When invoking this API, use the transport certificates available [here](../../assets/attachments/Transport_Certs.zip).
+When invoking this API, use the transport certificates available [here](../assets/attachments/Transport_Certs.zip).
 
 See the following sample request:
 ```

@@ -80,9 +80,16 @@ database server, and the JDBC driver.
     token_endpoint = "https://<IS_HOST>:9446/oauth2/token"
     ```
 
-6. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
+6. Add the following and configure the hostname of the Identity Server.  
+
+    ``` toml
+    [open_banking.gateway]
+    consent.validation.endpoint = "https://<IS_HOST>:9446/api/openbanking/consent/validate"
+    ```
    
-    - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
+7. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
+   
+    - Enable the feature and configure the `server_url` property with the hostname of WSO2 Streaming 
     Integrator.
 
     ``` toml
@@ -91,7 +98,6 @@ database server, and the JDBC driver.
     username="$ref{super_admin.username}@carbon.super"	
     password="$ref{super_admin.password}"	
     server_url = "{tcp://<SI_HOST>:7612}"	
-    auth_url = "{ssl://<SI_HOST>:7612}"
     ```  
    
 ## Starting servers

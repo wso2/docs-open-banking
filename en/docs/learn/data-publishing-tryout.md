@@ -22,13 +22,13 @@ enable = true
 2. Go to `<APIM_HOME>/repository/conf/deployment.toml` and `<IS_HOME>/repository/conf/deployment.toml` to configure the 
 following attributes:
     - Enable open banking data publishing
-    - Update the hostname of WSO2 Open Banking Business Intelligence Accelerator. 
+    - Update the URLs with the hostname of WSO2 Streaming Integrator 
     
 A sample looks as follows:
 ```toml
 [open_banking.data_publishing]
 enable = true
-server_url = "{tcp://<WSO2_OB_BI_HOST>:7612}"
+server_url = "{tcp://<SI_HOST>:7612}"
 ```
 
 ###Start servers

@@ -20,6 +20,7 @@ locate the respective root directory of the base products:
 ```
 
 4.Copy the following files to the given directory paths:
+
  | File to copy | Location to  |
  |---------|---------    |
  |`wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar`|`<IS_HOME>/repository/components/dropins`|
