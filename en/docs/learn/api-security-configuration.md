@@ -22,11 +22,11 @@ priority = 2
 
 !!!tip
     By default, WSO2 Open Banking API Manager executes the certificate revocation validation. However, you can set a proxy
-    and to executes the certificate revocation validation. In that case, configure the proxy in `<APIM_HOME>/repository/conf/deployment.toml`
+    and to execute the certificate revocation validation. In that case, configure the proxy in `<APIM_HOME>/repository/conf/deployment.toml`
     as follows:
     ```toml
     [open_banking.gateway.certificate_management.certificate.revocation.proxy]
-    enabled = false
+    enabled = true
     host = "PROXY_HOSTNAME"
     port = 8080
     ```
@@ -35,7 +35,7 @@ priority = 2
 
 !!!note
     By default, WSO2 Open Banking Accelerator supports a sample API flow to get account information and to initiate a 
-    payemnt. Therefore, the following configuration exists in `<APIM_HOME>/repository/conf/deployment.toml` by default:
+    payment. Therefore, the following configuration exists in `<APIM_HOME>/repository/conf/deployment.toml` by default:
     ```toml
     [open_banking.gateway.tpp_management.tpp_validation]
     enabled = false
@@ -52,13 +52,14 @@ priority = 2
     ```
  
 By default, external API consumer validation is enforced in two occurrences:
- - API-level 
- - Dynamic Client Registration (DCR))
- 
-1. You can apply `APITPPValidationExecutor` to compare the roles in the transport certificate and roles in the request 
-scope:
 
-- An example given below to find how  `APITPPValidationExecutor`  was applied for the sample Accounts API in `<APIM_HOME>/repository/conf/deployment.toml`:
+- API-level 
+- Dynamic Client Registration (DCR)
+ 
+    1. You can apply the `APITPPValidationExecutor` executor to compare the roles in the transport certificate against 
+    roles in the request scope: 
+
+        - An example given below to find how  `APITPPValidationExecutor`  applies to the sample Accounts API in `<APIM_HOME>/repository/conf/deployment.toml`:
 ```toml
 [[open_banking.gateway.openbanking_gateway_executors.type]]
 name = "Accounts"
@@ -67,10 +68,10 @@ name = "com.wso2.openbanking.accelerator.gateway.executor.impl.tpp.validation.ex
 priority = 3
 ``` 
 
-2. For Dynamic Client Registration, apply `DCRTPPValidationExecutor` to validate the roles in the transport certificate 
-and roles in the API consumer's SSA.
+    2. For Dynamic Client Registration, apply `DCRTPPValidationExecutor` to validate the roles in the transport certificate against 
+    the roles in the API consumer's SSA.
 
-- The relevant configuration is in the `<APIM_HOME>/repository/conf/deployment.toml` file as follows:
+        - The relevant configuration is in the `<APIM_HOME>/repository/conf/deployment.toml` file as follows:
 ```toml
 [[open_banking.gateway.openbanking_gateway_executors.type]]
 name = "DCR"

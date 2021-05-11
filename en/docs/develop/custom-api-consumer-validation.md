@@ -1,9 +1,9 @@
-TPP validation allows banks to validate API consumers from the National Competent Authorities (NCAs). This is done by 
-validating the transport layer certificate an API consumer has obtained. 
+The **API Consumer Validation** service in WSO2 Open Banking allows banks to validate API consumers from the National 
+Competent Authorities (NCAs). This is done by validating the transport layer certificate an API consumer has obtained. 
 
 !!!note
     By default, WSO2 Open Banking Accelerator supports a sample API flow to get account information and to initiate a 
-    payemnt. Therefore, the following configuration exists in `<APIM_HOME>/repository/conf/deployment.toml` by default:
+    payment. Therefore, the following configuration exists in `<APIM_HOME>/repository/conf/deployment.toml` by default:
     ```toml
     [open_banking.gateway.tpp_management.tpp_validation]
     enabled = false
@@ -33,8 +33,8 @@ below is a brief description of each method.
 
 Validates the roles and returns a boolean response as follows:
 
-- `True` if the roles matches
-- `False` if the roles mismatches
+- If the roles match with the roles in the transport certificate, the returned value is `true`.
+- Else, the returned value is `false`.
 
 Given below is the method signature:
 ```java
@@ -58,7 +58,7 @@ throws TPPValidationException;
 - Open `<APIM_HOME>/repository/conf/deployment.toml` and locate the following to configure your custom API Consumer 
 Validation class:
     1. Set the `enabled` tag to `true`.
-    2. Add the implmented class under `implementation_path`.
+    2. Add the implemented class under `implementation_path`.
     
     ```toml
     [open_banking.gateway.tpp_management.tpp_validation]
