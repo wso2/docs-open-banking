@@ -10,6 +10,9 @@ products. Before setting up the accelerator, download and install the base produ
 - Install WSO2 API Manager 4.0.0 by following the
 [API Manager documentation](https://apim.docs.wso2.com/en/latest/install-and-setup/install/installing-the-product/installing-the-product/).
  
+- To configure the Identity Server with the API Manager, download WSO2 IS Connector from 
+[here](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip).
+
 ## Installing WSO2 Open Banking Accelerator 
 
 !!! tip "Before you begin"

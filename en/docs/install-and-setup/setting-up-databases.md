@@ -116,23 +116,44 @@ according to your DBMS.
 |openbank_iskm_configdb| `<IS_HOME>/dbscripts `|
 |openbank_openbankingdb| `<IS_HOME>/dbscripts/open-banking/consent`|
 
-!!! note "Increase the column size of the `VALUE` column in the `SP_METADATA` table:"
-     
+!!! note "Increase the column size of the following table columns:"
+
      Execute the relevant SQL command against the `openbank_apimgtdb` database.
      
-     ```sql tab='MySQL'
-     ALTER TABLE SP_METADATA MODIFY VALUE VARCHAR(4096);
-     ```
+     1. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
-     ```sql tab='MSSQL'
-      ALTER TABLE SP_METADATA ALTER COLUMN VALUE VARCHAR(4096);
-     ```
      
-     ```sql tab='Oracle'
-     ALTER TABLE C##OB_APIMGTDB.sp_metadata MODIFY VALUE VARCHAR2(4000);
-     ```
-     
-     ```sql tab='PostgreSQL'
-     ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
-     ```
-     
+         ```sql tab='MySQL'
+         ALTER TABLE SP_METADATA MODIFY VALUE VARCHAR(4096);
+         ```
+         
+         ```sql tab='MSSQL'
+          ALTER TABLE SP_METADATA ALTER COLUMN VALUE VARCHAR(4096);
+         ```
+         
+         ```sql tab='Oracle'
+         ALTER TABLE C##OB_APIMGTDB.sp_metadata MODIFY VALUE VARCHAR2(4000);
+         ```
+         
+         ```sql tab='PostgreSQL'
+         ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
+         ```  
+              
+     2. Increase the column size of the `INPUTS` column in the `AM_APPLICATION_REGISTRATION` table:
+                         
+         ```sql tab='MySQL'
+         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY VALUE INPUTS(7500);
+         ```
+         
+         ```sql tab='MSSQL'
+          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER COLUMN VALUE INPUTS(7500);
+         ```
+         
+         ```sql tab='Oracle'
+         ALTER TABLE C##OB_APIMGTDB.am_application_registration MODIFY VALUE INPUTS(4000);
+         ```
+         
+         ```sql tab='PostgreSQL'
+         ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column VALUE type INPUTS(7500);
+         ```              
+         
