@@ -19,13 +19,19 @@ products. Before setting up the accelerator, download and install the base produ
     See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is 
     compatible with your operating system.
     
-1. Log in and download Open Banking Accelerator 3.0.0 from
-<https://wso2.com/solutions/financial/open-banking>
+1. If you have an active WSO2 Open Banking subscription, contact us via [WSO2 Online Support System](https://support.wso2.com/) 
+to download Open Banking Accelerator 3.0.0.
 
     !!! note
-        You need an active WSO2 Open Banking subscription to log in and download Open Banking Accelerator.
+        If you don't have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact) 
+        for more information.
     
-2. Extract the downloaded WSO2 Open Banking Accelerator zip file. 
+2. Extract the downloaded WSO2 Open Banking Accelerator zip file. WSO2 Open Banking Accelerator contains the following 
+accelerators.
+
+    - wso2-ob-is-accelerator-3.0.0
+    - wso2-ob-apim-accelerator-3.0.0
+    - wso2-ob-bi-accelerator-3.0.0
 
 3. Go to the root directories of WSO2 Identity Server and API Manager. These root directories are the product 
 homes.
