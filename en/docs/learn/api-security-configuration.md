@@ -58,8 +58,7 @@ By default, external API consumer validation is enforced in two occurrences:
 1. You can apply `APITPPValidationExecutor` to compare the roles in the transport certificate and roles in the request 
 scope:
 
-- Open `<APIM_HOME>/repository/conf/deployment.toml` and add the executor and set a priority. See the example given below 
-to find how  `APITPPValidationExecutor`  was applied for the sample Accounts API:
+- An example given below to find how  `APITPPValidationExecutor`  was applied for the sample Accounts API in `<APIM_HOME>/repository/conf/deployment.toml`:
 ```toml
 [[open_banking.gateway.openbanking_gateway_executors.type]]
 name = "Accounts"
@@ -71,7 +70,7 @@ priority = 3
 2. For Dynamic Client Registration, apply `DCRTPPValidationExecutor` to validate the roles in the transport certificate 
 and roles in the API consumer's SSA.
 
-- Open `<APIM_HOME>/repository/conf/deployment.toml` and add the executor and set a priority as follows:
+- The relevant configuration is in the `<APIM_HOME>/repository/conf/deployment.toml` file as follows:
 ```toml
 [[open_banking.gateway.openbanking_gateway_executors.type]]
 name = "DCR"
