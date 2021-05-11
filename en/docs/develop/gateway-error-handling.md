@@ -1,4 +1,4 @@
-The WSO2 API Gateway acts as a proxy between the API consumer applications and the back-end servers in the bank. The API 
+The WSO2 API Gateway acts as a proxy between the API consumer applications and the bank back-end servers. The API 
 Gateway applies various policies to ensure the validity of API requests and their responses. This proxy applies both 
 open banking and API management related policies.
 
@@ -27,7 +27,7 @@ executing certificate related role validations.
         
     `com.wso2.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler`
 
-1. When you implement a custom executor, you can use the `isError` flag to identify policy violations. In your executor
+1. When you implement a custom executor, you can use the `isError` flag to identify policy violations. In your executor,
  at the beginning of each method, check the `isError` flag in `OBAPIRequestContext` and `OBAPIResponseContext` and act 
  accordingly. 
 
@@ -56,7 +56,7 @@ Perform the following in your error handling executors.
     a. Update the context properties of `OBAPIRequestContext`/`OBAPIResponseContext` with the error code and status code:
     
     - Set the `errorStatusCode` custom property
-    - Set the `HTTPStatusCode` that needs to be sent to the back end
+    - Set the `HTTPStatusCode` that needs to be sent to the API consumer application
     
     For example:
     
@@ -64,7 +64,7 @@ Perform the following in your error handling executors.
     obapiRequestContext.addContextProperty(GatewayConstants.ERROR_STATUS_PROP, “500”);
     ```
    
-    b. Update the custom `errorPayload` property of `OBAPIRequestContext`/`OBAPIResponseContext` with the custom error 
+    b. Update the custom `errorPayload` property of `OBAPIRequestContext`/`OBAPIResponseContext` with a custom error 
     message. For example:
     
     ``` java
