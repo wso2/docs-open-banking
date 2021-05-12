@@ -22,7 +22,7 @@ priority = 2
 
 !!!tip
     By default, WSO2 Open Banking API Manager executes the certificate revocation validation. However, you can set a proxy
-    and to execute the certificate revocation validation. In that case, configure the proxy in `<APIM_HOME>/repository/conf/deployment.toml`
+    and execute the certificate revocation validation. In that case, configure the proxy in `<APIM_HOME>/repository/conf/deployment.toml`
     as follows:
     ```toml
     [open_banking.gateway.certificate_management.certificate.revocation.proxy]
