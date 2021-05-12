@@ -76,7 +76,9 @@ nav:
       - 'Introduction': learn/dynamic-client-registration.md
       - 'Configuration': learn/dynamic-client-registration-configuration.md
       - 'Tryout': learn/dynamic-client-registration-try-out.md
-    - 'API Security': learn/api-security.md
+    - 'API Security':
+      - 'Introduction': learn/api-security.md
+      - 'Configuration': learn/api-security-configuration.md
     - 'Data Publishing':
       - 'Introduction': learn/data-publishing.md
       - 'Tryout': learn/data-publishing-tryout.md
@@ -95,6 +97,7 @@ nav:
         - 'Error handling in API Gateway': develop/gateway-error-handling.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
         - 'Custom Data Publishing': develop/custom-data-publishing.md
+        - 'Custom API Consumer Validation': develop/custom-api-consumer-validation.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
