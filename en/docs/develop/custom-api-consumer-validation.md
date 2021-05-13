@@ -21,7 +21,7 @@ Competent Authorities (NCAs). This is done by validating the transport layer cer
 
 According to your requirements, you can extend and override the methods in the `TPPValidationService` class.
 
-To write a custom Response Type handler, extend the following class:
+To write a custom API consumer validation executor, extend the following class:
 ```java
 com.wso2.openbanking.accelerator.gateway.executor.service.TPPValidationService
 ```
