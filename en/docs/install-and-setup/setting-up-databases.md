@@ -142,7 +142,7 @@ according to your DBMS.
      2. Increase the column size of the `INPUTS` column in the `AM_APPLICATION_REGISTRATION` table:
                          
          ```sql tab='MySQL'
-         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY INPUTS(7500);
+         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY INPUTS VARCHAR(7500);
          ```
          
          ```sql tab='MSSQL'

@@ -95,10 +95,10 @@ nav:
         - 'Introduction': develop/open-banking-gateway.md
         - 'Custom Request Router': develop/custom-request-router.md
         - 'Custom Gateway Executor': develop/custom-gateway-executor.md
+        - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
         - 'Error handling in API Gateway': develop/gateway-error-handling.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
         - 'Custom Data Publishing': develop/custom-data-publishing.md
-        - 'Custom API Consumer Validation': develop/custom-api-consumer-validation.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
@@ -122,7 +122,9 @@ nav:
         - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
         - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
   - 'References':
-    - 'DCR Rest API': references/dcr-rest-api.md
+    - 'Consent REST API': references/consent-rest-api.md
+    - 'DCR REST API': references/dcr-rest-api.md
+    - 'Application Info API': references/application-info-api.md
   - '': page-not-found.md
 
 # Extensions

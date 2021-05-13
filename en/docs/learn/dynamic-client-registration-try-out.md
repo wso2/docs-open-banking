@@ -292,14 +292,14 @@ The format of the SSA:
   "org_contacts": [
     {
       "name": "Technical",
-      "email": "sachinis@wso2.com",
-      "phone": "+94774274374",
+      "email": "openbankingdemo@wso2.com",
+      "phone": "+94000000000",
       "type": "Technical"
     },
     {
       "name": "Business",
-      "email": "sachinis@wso2.com",
-      "phone": "+94774274374",
+      "email": "openbankingdemo@wso2.com",
+      "phone": "+94000000000",
       "type": "Business"
     }
   ],
