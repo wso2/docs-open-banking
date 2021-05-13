@@ -119,6 +119,26 @@ html .md-typeset .superfences-tabs > label:hover {
     display: none;
 }
 
+.swagger-ui .info .url {
+	display: none;
+}
+
+.swagger-ui .info .title {
+	display: none;
+}
+
+.swagger-ui .info .info__contact {
+	display: none;
+}
+
+.swagger-ui .info .info__license {
+	display: none;
+}
+
+.swagger-ui .info .info__tos {
+    display: none;
+}
+
 .md-search__input {
     background-color: #dedede;
 }
