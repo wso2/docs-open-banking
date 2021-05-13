@@ -22,5 +22,5 @@ WSO2 Identity Server. For more information:
 to authenticate with basic authentication, such as FIDO, TOTP. See [Multi-factor Authentication](https://is.docs.wso2.com/en/latest/learn/multi-factor-authentication/).
 - Once you implement multi-factor authentication, you can configure and deploy those multiple factors in a way that the 
 Identity Service Provider can select the right factors depending on a user’s risk profile and behavior. See [Adaptive Authentication](https://is.docs.wso2.com/en/latest/learn/adaptive-authentication/).
-    - Try out adaptive authentication using the instructions given in [Configure a Service Provider for Adaptive Authentication](https://is.docs.wso2.com/en/latest/learn/configuring-a-service-provider-for-adaptive-authentication/).
-    - According to your open banking standard, you can write a custom function for adaptive authentication. See [Write a custom function for Adaptive Authentication](https://is.docs.wso2.com/en/latest/develop/writing-custom-functions-for-adaptive-authentication/).
+    - Try out adaptive authentication using the instructions given in [Configuring a Service Provider for Adaptive Authentication](https://is.docs.wso2.com/en/latest/learn/configuring-a-service-provider-for-adaptive-authentication/).
+    - According to your open banking standard, you can write a custom function for adaptive authentication. See [Writing a custom function for Adaptive Authentication](https://is.docs.wso2.com/en/latest/develop/writing-custom-functions-for-adaptive-authentication/).
