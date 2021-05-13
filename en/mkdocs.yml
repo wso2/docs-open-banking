@@ -76,6 +76,7 @@ nav:
       - 'Introduction': learn/dynamic-client-registration.md
       - 'Configuration': learn/dynamic-client-registration-configuration.md
       - 'Tryout': learn/dynamic-client-registration-try-out.md
+    - 'Consumer Authentication': learn/consumer-authentication.md
     - 'API Security':
       - 'Introduction': learn/api-security.md
       - 'Configuration': learn/api-security-configuration.md
