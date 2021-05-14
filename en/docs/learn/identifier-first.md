@@ -11,7 +11,7 @@ WSO2 Open Banking consists of an identifier-first authenticator by default. You 
 If you have not started the Identity Server and API Manager servers, follow the below instructions to configure 
 identifier-first authentication.
 
-1. Locate the following configuration in  `<IS_HOME>/repository/conf/deployment.toml` and Update the value of the `parameters.authRequestURL`  
+1. Locate the following configuration in  `<IS_HOME>/repository/conf/deployment.toml` and update the value of the `parameters.authRequestURL`  
 configuration with the host name of the Identity Server:
 ``` toml
 [[authentication.custom_authenticator]]
@@ -88,7 +88,7 @@ identifier-first authentication.
 the default one. Based on your SMS provider, fill out the SMS OTP configurations.
 
     !!!note
-        Currently, the WSO2 Identity Server supports only the following SMS providers.
+        Currently, WSO2 Identity Server supports only the following SMS providers.
             
            - Twilio
            - Nexmo
