@@ -1,12 +1,15 @@
-After a certain period, some bank customers may need to revoke the consents they granted to API consumer applications 
-to access account data. Consent Manager is an application in WSO2 Open Banking in which you can view, update, and 
-withdraw/revoke consents.
+After a certain period, bank customers may need to view, update, or revoke consents they have granted to API consumer 
+applications to access account data. **Consent Manager** is an application in WSO2 Open Banking that supports all these
+requirements and manage consents.
+
+!!! note
+    Bank officers with the `CustomerCareOfficerRole` role and bank customers can access the Consent Manager.
 
 ## Configuring Consent Manager
 
 Before you begin, configure the Consent Manager application. 
 
-1. Go to the WSO2 Identity Server Management Console.
+1. Go to the WSO2 Identity Server Management Console at
 
     `https://<IS_HOST>:9446/carbon`
 
@@ -16,7 +19,7 @@ Before you begin, configure the Consent Manager application.
 
 3. Select **Manual Configuration**.
 
-4. Enter `consentmgt` as the **Service Provider Name**.
+4. Enter `consentmgt` as **Service Provider Name**.
 
     ![register service provider](../assets/img/learn/consent-manager/register-service-provider.png)
 
@@ -49,7 +52,7 @@ Before you begin, configure the Consent Manager application.
     
 8. Scroll down and click **Add**.
 
-9. The OAuth Client Key and OAuth Client Secret are generated now. 
+9. OAuth Client Key and OAuth Client Secret are generated now. 
 
     ![oauth client key secret](../assets/img/learn/consent-manager/oauth-client-key-secret.png)    
     
@@ -82,7 +85,7 @@ Before you begin, configure the Consent Manager application.
 
 ## Using Consent Manager
 
-1. Go the Consent Manager application at:
+1. Go the Consent Manager application at
    `https://<IS_HOST>:9446/consentmgr` 
 
 2. Sign in with the credentials provided by the bank.
@@ -110,8 +113,8 @@ The three tabs are as follows:
 
     ![view consent](../assets/img/learn/consent-manager/view-consent.png)
 
-- You can view the details such as the associate API consumer application, consent granted date, consent expiry date, 
-and account numbers and permissions that you have granted.
+- You can view the details such as the associated API consumer application, consent granted date, consent expiry date, 
+account numbers, and permissions that you have granted.
 
     ![consent details](../assets/img/learn/consent-manager/consent-details.png)
 
