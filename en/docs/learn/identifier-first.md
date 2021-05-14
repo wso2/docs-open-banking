@@ -11,23 +11,21 @@ WSO2 Open Banking consists of an identifier-first authenticator by default. You 
 If you have not started the Identity Server and API Manager servers, follow the below instructions to configure 
 identifier-first authentication.
 
-1. Add the following configuration in `<IS_HOME>/repository/conf/deployment.toml` and locate the following configuration:
+1. Locate the following configuration in  `<IS_HOME>/repository/conf/deployment.toml` and Update the value of the `parameters.authRequestURL`  
+configuration with the host name of the Identity Server:
 ``` toml
 [[authentication.custom_authenticator]]
 name = "IdentifierExecutor"
 parameters.ValidateUsername = true
 parameters.throttleLimit = 3
 parameters.throttleTimePeriod = 300
-parameters.authRequestURL = "https://localhost:9446/api/identity/auth/v1.1/data/AuthRequestKey/"
+parameters.authRequestURL = "https://<IS_HOST>:9446/api/identity/auth/v1.1/data/AuthRequestKey/"
 
 [authentication.authenticator.sms_otp.parameters]
 EnableAccountLockingForFailedAttempts = true
 BackupCode = false
 TokenExpiryTime = 6
 ```
-
-    - Update `parameters.authRequestURL = "https://<IS_HOST>:<IS_PORT>/api/identity/auth/v1.1/data/AuthRequestKey/"` 
-    with the relevant hostname and port of the Identity Server.
 
 2. Add the following configuration in `<IS_HOME>/repository/conf/deployment.toml` to make the default identifier-first 
 authenticator the primary authenticator:
@@ -82,24 +80,28 @@ If you have already started the Identity Server and API Manager servers, follow 
 identifier-first authentication.
 
 ####Configuring SMS OTP authenticator
-1. Login to WSO2 Identity Server Management Console at https://<IS_HOST>:9446/carbon.
+1. Sign in to WSO2 Identity Server Management Console at `https://<IS_HOST>:9446/carbon`.
 2. On the **Main** tab, click **Home > Identity > Identity Providers > Add**. ![select-identity-providers](../assets/img/learn/identifier-first/select-identity-providers.png)
 3. Give `Identity Provider Name` as `SMSAuthentication`. ![identity-provider-name](../assets/img/learn/identifier-first/identity-provider-name.png)
 4. Expand **Federated Authenticators > SMS OTP Configuration**.
-5. Select both the **Enable** and **Default** checkboxes. This is to enable and make the SMSAuthentication authenticator 
+5. Select both the **Enable** and **Default** checkboxes. This is to enable and make the `SMSAuthentication` authenticator 
 the default one. Based on your SMS provider, fill out the SMS OTP configurations.
+
     !!!note
         Currently, the WSO2 Identity Server supports only the following SMS providers.
-            - Twilio
-            - Nexmo
-            - Clickatell
-            - Plivo
-            - Bulksms
+            
+           - Twilio
+           - Nexmo
+           - Clickatell
+           - Plivo
+           - Bulksms
     
     !!!tip "If Twilio is used as the SMS provider,"
-        1. Go to https://www.twilio.com/try-twilio and create an account.
-        2. While registering the account, verify your mobile number and click on console home https://www.twilio.com/console to get free credits (Account SID and Auth Token).
-        3. Twilio uses a POST method with headers and the text message and phone number are sent as the payload. So the fields would be as follows:
+        1. Go to [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio) and create an account.
+        2. While registering the account, verify your mobile number and click on console home [https://www.twilio.com/console](https://www.twilio.com/console) 
+        to get free credits (Account SID and Auth Token).
+        3. Twilio uses a POST method with headers and the text message and phone number are sent as the payload. So the 
+        fields would be as follows:
         
         <table>
                <tbody>
@@ -123,8 +125,8 @@ the default one. Based on your SMS provider, fill out the SMS OTP configurations
             </table>
             
         !!!note
-            If you pass the text message and the phone number in any field, you have to replace them with $ctx.num and $ctx.msg respectively.
-            E.g., Body=$ctx.msg&To=$ctx.num&From=+12345678
+            If you pass the text message and the phone number in any field, you have to replace them with `$ctx.num` and 
+            `$ctx.msg` respectively. For example, `Body=$ctx.msg&To=$ctx.num&From=+12345678`.
         
         ![configure-sms-otp](../assets/img/learn/identifier-first/configure-sms-otp.png)
         
@@ -136,7 +138,7 @@ the default one. Based on your SMS provider, fill out the SMS OTP configurations
 3. Select **Lock user accounts** and click **Update**. ![enable-account-locking](../assets/img/learn/identifier-first/enable-account-locking.png)
 
 ####Configure mobile as a mandatory claim
-1. On the **Main** tab, click **Home > Claims > List**. 
+1. On the **Main** tab, click **Home > Identity > Claims > List**. 
 
     ![select-claims](../assets/img/learn/identifier-first/select-claims.png)
 
@@ -148,7 +150,5 @@ the default one. Based on your SMS provider, fill out the SMS OTP configurations
      By default account locking for failed SMS-OTP attempts is enabled. The number of SMS-OTP attempts is set to 5. Once 
      the number of SMS-OTP attempts have been tried and failed, the user account will be locked.
      
-     You can cancel authentication flow by not continuing. Following message will pop up to get user consent to continue 
-     or cancel as follows: 
-     
-     ![pop-up-message](../assets/img/learn/identifier-first/pop-up-message.png)
+     You can cancel authentication flow by not continuing. The following message box will pop up to get user consent to continue 
+     or cancel as follows: ![pop-up-message](../assets/img/learn/identifier-first/pop-up-message.png)
