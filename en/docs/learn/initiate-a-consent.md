@@ -7,7 +7,7 @@ access the details.
     - Make sure to update the placeholders with the relevant values. Use the [Application Access Token](../application-access-token.md) you obtained.
 ```
 curl -X POST \
-https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents \
+https://<IS_HOST>:9446/oauth2/authorize? \
 -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN> \
 -H 'Content-Type: application/json' \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \

@@ -5,8 +5,7 @@ To create a consent, the API consumer applications need an Application Access To
 curl -X POST \https://<IS_HOST>:9446/oauth2/token  \
 	-H 'Content-Type: application/x-www-form-urlencoded' \
 	--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-	-d 'grant_type=client_credentials&scope=accounts 
-openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
+	-d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
 redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
 
