@@ -6,7 +6,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
     
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
-1. Sign in to the API Publisher Portal at https://<APIM_HOST>:9443/publisher with `creator/publisher` 
+1. Sign in to the API Publisher Portal at `https://<APIM_HOST>:9443/publisher` with `creator/publisher` 
 privileges. 
 
 2. In the Homepage, click **REST API** and then  select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
@@ -397,7 +397,7 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
         "exp": <<This is epoch time of the token expiration date/time>>,
         "iat": <<This is epoch time of the token issuance date/time>>,
         "jti": "<<This is an incremental unique value>>",
-        "aud": "<<This is the audience that the ID token is intended for. For example, https://{IS_HOST}:9446/oauth2/token"
+        "aud": "<<This is the audience that the ID token is intended for. For example, https:/<IS_HOST>:9446/oauth2/token"
         }
          
         <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private 

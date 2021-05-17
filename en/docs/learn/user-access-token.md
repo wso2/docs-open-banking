@@ -5,7 +5,7 @@ banking customers.
 1. You can generate a user access token using the sample request given below:
 ```
 curl -X POST \
-https://{IS_HOST}:9446/oauth2/token \
+https://<IS_HOST>:9446/oauth2/token \
 -H 'Cache-Control: no-cache' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
@@ -23,7 +23,7 @@ jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<C
     following cURL command to generate a new access token:
     ```
     curl POST \
-     https://{APIM_HOST}:8243/token \
+     https://<APIM_HOST>:8243/token \
      -H 'Content-Type: application/x-www-form-urlencoded' \
      -H 'cache-control: no-cache' \
      --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \

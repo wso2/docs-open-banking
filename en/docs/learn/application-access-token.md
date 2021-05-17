@@ -5,8 +5,7 @@ To create a consent, the API consumer applications need an Application Access To
 curl -X POST \https://<IS_HOST>:9446/oauth2/token  \
 	-H 'Content-Type: application/x-www-form-urlencoded' \
 	--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-	-d 'grant_type=client_credentials&scope=accounts 
-openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
+	-d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
 redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
 
@@ -25,7 +24,7 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
     "exp": <<This is epoch time of the token expiration date/time>>,
     "iat": <<This is epoch time of the token issuance date/time>>,
     "jti": "<<This is an incremental unique value>>",
-    "aud": "<<This is the audience that the ID token is intended for. For example, https://{IS_HOST}:9446/oauth2/token"
+    "aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token"
     }
          
     <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private 

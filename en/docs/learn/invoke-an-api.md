@@ -6,7 +6,7 @@
 accounts:
 ```
 curl -X GET \
-https://{APIM_HOST}:8243/open-banking/v3.1/aisp/accounts/' \
+https://<APIM_HOST>:8243/open-banking/v3.1/aisp/accounts/' \
 -H 'x-fapi-financial-id: open-bank' \
 -H 'Authorization: Bearer <USER_ACCESS_TOKEN>' \
 -H 'Accept: application/json' \
@@ -68,7 +68,7 @@ access. A sample response looks as follows:
 2. The API consumer is now able to retrieve the account information for a given `AccountId`. A sample request looks as follows:
 ```
 curl -X GET \
-https://{APIM_HOST}:8243/open-banking/v3.1/aisp/accounts/<ACCOUNT_ID> \
+https://<APIM_HOST>:8243/open-banking/v3.1/aisp/accounts/<ACCOUNT_ID> \
 -H 'x-fapi-financial-id: open-bank' \
 -H 'Authorization: Bearer <USER_ACCESS TOKEN>' \
 -H 'Accept: application/json' \
