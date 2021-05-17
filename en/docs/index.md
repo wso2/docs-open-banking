@@ -14,8 +14,8 @@ template: templates/single-column.html
         Accelerator to meet all legislative requirements with additional benefits beyond compliance.        
         </p>
         <p>
-        Get a head start with our Quick Start Guide or dive straight into the Learn section to understand what we offer. 
-        Explore the Develop section to discover the extensibility of the solution.
+        Get a head start with our Quick Start Guide or dive straight into the documentation to understand what we offer 
+        and to discover the extensibility.
         </p>
      </div>
     <div class="md-main .md-content " style="float:right; width: 55%; align:right;  flex-shrink: 0;min-width: 40%; max-height: 100%; max-width:50%; margin-left:10px; margin-top:20px">
