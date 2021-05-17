@@ -6,8 +6,8 @@ The initiated consent needs to be authorized by the bank customer for the API co
 
 1. The API consumer requests the bank customer's consent to access the accounts and its information from the bank.
 ```
-https://localhost:9446/oauth2/authorize?response_type={RESPONSE_TYPE}&client_id={APPLICATION_ID}&scope=accounts%20op
-enid&redirect_uri={APPLICATION_REDIRECT_URI}&state=YWlzcDozMTQ2&request={REQUEST_OBJECT}&prompt=login&nonce={REQUEST_OBJECT_NONCE}
+https://<IS_HOST>:9446/oauth2/authorize?response_type=<RESPONSE_TYPE>&client_id=<APPLICATION_ID>&scope=accounts%20op
+enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
 ```
 
 2. Make sure to update the placeholders with the appropriate values.

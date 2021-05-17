@@ -58,7 +58,7 @@ https://<IS_HOST>:9446/oauth2/authorize? \
 ??? tip "Click here to see the authorization flow..."
     - The request that the bank sends to the customer is in the format of a URL as follows: 
       ```
-      https://{IS_HOST}:9446/oauth2/authorize?response_type=code%20id_token&client_id=HOUkaSby8DydnbeIhE7lycbkII8a&redir
+      https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=HOUkaSby8DydnbeIhE7lycbkII8a&redir
       ect_uri=https://wso2.com&scope=accounts%20openid&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj&request=eyJraWQiOiJEd01LZFdN
       bWo3UFdpbnZvcWZReVhWenlaNlEiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL29iMy10ZXN0c2VydmVyMTo5NDQ2L
       29hdXRoMi90b2tlbiIsIm1heF9hZ2UiOjg2NDAwLCJjcml0IjpbImI2NCIsImh0dHA6Ly9vcGVuYmFua2luZy5vcmcudWsvaWF0IiwiaHR0cDovL29
@@ -99,7 +99,7 @@ https://<IS_HOST>:9446/oauth2/authorize? \
               }
               {
                 "max_age": 86400,
-                "aud": "<This is the audience that the ID token is intended for. e.g., https://<WSO2_OB_APIM_HOST>:8243/token>",
+                    "aud": "<This is the audience that the ID token is intended for. Example: https://<WSO2_IS_HOST>:9446/oauth2/token>",
                 "scope": "fundsconfirmation openid",
                 "iss": "<APPLICATION_ID>",
                 "claims": {
@@ -148,7 +148,7 @@ the API consumer must have an access token issued by the bank using the client c
     - Generate an application access token using the following command: 
       ```
       curl -X POST \
-      https://{IS_HOST}:9446/oauth2/token \
+      https://<IS_HOST>:9446/oauth2/token \
       --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
       -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWe
       nlaNlEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OT
@@ -191,7 +191,7 @@ the API consumer must have an access token issued by the bank using the client c
 - A sample request to retrieve a consent looks as follows:
 ```
 curl GET \
-  https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
+  https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
   -H 'x-fapi-financial-id: open-bank' \
   -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
   -H 'Accept: application/json' \
@@ -207,7 +207,7 @@ curl GET \
     },
     "Risk": {},
     "Links": {
-        "Self": "https://{IS_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID>"
+        "Self": "https://<IS_HOST>:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID>"
     },
     "Data": {
         "Status": "Authorised",
@@ -233,7 +233,7 @@ credentials grant.
 - A sample request to delete a consent looks as follows:
 ```
 curl DELETE \
-  https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
+  https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
   -H 'x-fapi-financial-id: open-bank' \
   -H 'Authorization: Bearer 0895e677-9f13-3ce3-84f4-46113f9048be' \
   -H 'Accept: application/json' \
