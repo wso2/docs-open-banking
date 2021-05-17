@@ -16,7 +16,7 @@ the API consumer creates a request to get the consent of the customer to access 
 the bank. A sample request looks as follows:
 ```
 curl -X POST \
-https://localhost:9446/oauth2/authorize? \
+https://<IS_HOST>:9446/oauth2/authorize? \
 -H 'Authorization: Bearer eyJ4NXQiOiJZMkk0WW1Rek5URmlZems0TXpVek5qQXdPRFUxWTJOaVl6SXpPVGhoTmpZM01tVm1aVEpqTWpJMFlqQTRNR1U1TUdJd09Ua3paVEV5TWpjM05tSTVZUSIsImtpZCI6IjEyMyIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJhZG1pbkB3c28yLmNvbUBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IkpFR2dyYllxaWhBdXRmeVRHYlVoaTZvQlVNUWEiLCJuYmYiOjE2MTc1NTIzNzksImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhenAiOiJKRUdncmJZcWloQXV0ZnlUR2JVaGk2b0JVTVFhIiwic2NvcGUiOiJhY2NvdW50cyBwYXltZW50cyIsImlzcyI6Imh0dHBzOlwvXC9vYjMtdGVzdHNlcnZlcjE6OTQ0Nlwvb2F1dGgyXC90b2tlbiIsImNuZiI6eyJ4NXQjUzI1NiI6ImRtaVk1ZE03cE81VzdpbjhrUmFqZkFycXlUTU9uRlcyOVdCVU5rUUlYZTgifSwiZXhwIjoxNjE3NTU1OTc5LCJpYXQiOjE2MTc1NTIzNzksImp0aSI6IjU3MTEyM2M0LTk3NTYtNDk4ZC05N2JhLTdlOGZiZjk5YmQyYyJ9.tbBfM4qFqkKwRumUDWdCPG9nDeRkx2M5Jw03FRkgPgSDazffycCXP6CQMIlJ2eK2Wn54YDe2gUlV-QHh9WybxJ8Q_ol7WPG5aGEzRKGRFrL66k08IF90YCBAZJZlyhpQo1uePQsDHSFypbS1Iw8hOfmtTHWFa7dguqSdJcXffmoRLH2p6XWA6V3VauFMsX96GugLH9FFUxbZoFMJhhPSjPDdJSY5r1za-MacZ_vaaqEUMOaYffkVsPo-aHZhdBeLA9tb9FMEmr5dQZo67d3xfPiZtV7cZojblJ_x3qDwgm-WOwh-UebfgcdE9ZsQ2Q7P7-kqVGztUGEtg0vmWa3JBA' \
 -H 'Content-Type: application/json' \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
@@ -191,7 +191,7 @@ the API consumer must have an access token issued by the bank using the client c
 - A sample request to retrieve a consent looks as follows:
 ```
 curl GET \
-  https://{AM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<consent_id> \
+  https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
   -H 'x-fapi-financial-id: open-bank' \
   -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
   -H 'Accept: application/json' \
@@ -233,7 +233,7 @@ credentials grant.
 - A sample request to delete a consent looks as follows:
 ```
 curl DELETE \
-  https://{AM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<consent_id> \
+  https://{APIM_HOST}:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
   -H 'x-fapi-financial-id: open-bank' \
   -H 'Authorization: Bearer 0895e677-9f13-3ce3-84f4-46113f9048be' \
   -H 'Accept: application/json' \
