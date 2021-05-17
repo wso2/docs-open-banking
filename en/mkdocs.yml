@@ -94,6 +94,7 @@ nav:
         - 'Obtain User Access Token': learn/user-access-token.md
         - 'Invoke an API': learn/invoke-an-api.md
   - 'Develop' :
+    - 'Develop Toolkit': develop/develop-toolkit.md
     - 'Open Banking Gateway' :
         - 'Introduction': develop/open-banking-gateway.md
         - 'Custom Request Router': develop/custom-request-router.md

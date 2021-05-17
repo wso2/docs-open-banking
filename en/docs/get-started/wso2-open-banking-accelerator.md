@@ -13,9 +13,9 @@ Accelerator to meet all legislative requirements with additional benefits beyond
 of WSO2 Identity Server and WSO2 API Manager. 
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
-management, and access authorization among numerous other features to set up an open banking solution. You can easily 
-implement a toolkit to customize the accelerator and help you comply with any regional open banking requirements. For 
-more information, see the [Learn](../learn/consent-management.md) section. 
+management, and access authorization among numerous other [features](../learn/consent-management.md) to set up an open 
+banking solution. You can easily [implement a toolkit](../develop/develop-toolkit.md) to customize the accelerator and 
+help you comply with any regional open banking standard. 
 
 Open banking provides a great opportunity for financial institutions to reinvent their legacy systems using 
 fast-developing technologies. [WSO2 Open Banking Accelerator](https://wso2.com/solutions/financial/open-banking) 
