@@ -25,5 +25,5 @@ parameter in `config.json` with the relevant file.
 
 8. Go to the `dist/` folder: A markdown file named `config-catalog.md` is created.
 9. Copy the `config-catalog.md` file to the `docs-open-banking/en/docs/references` directory.
-10. This `config-catalog.md` will be the API Manager's Configuration Catalog for WSO2 Open Banking Accelerator.
+10. This `config-catalog.md` will be the Identity Server's Configuration Catalog for WSO2 Open Banking Accelerator.
 
