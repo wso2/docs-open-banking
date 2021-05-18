@@ -22,7 +22,7 @@ The data provided to Retrieval Steps and the changes that can be done are as fol
 
 ### Endpoint
 ``` xml
-https://{IS_HOST}:9446/api/openbanking/consent/authorize/retrieve/{session-data-key}
+https://<IS_HOST>:9446/api/openbanking/consent/authorize/retrieve/{session-data-key}
 ```
 
 ### Interface
@@ -88,7 +88,7 @@ invoked, the steps to persist are also invoked and the data required for persist
 
 ### Endpoint
 ``` xml
-https://{IS_HOST}:9446/api/openbanking/consent/authorize/persist/{session-data-key}
+https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}
 ```
 
 ### Interface

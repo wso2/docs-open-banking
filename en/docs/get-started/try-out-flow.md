@@ -91,7 +91,7 @@ www.wso2.com&client_id=HOUkaSby8DydnbeIhE7lycbkII8a'
 "exp": <<This is epoch time of the token expiration date/time>>,
 "iat": <<This is epoch time of the token issuance date/time>>,
 "jti": "<<This is an incremental unique value>>",
-"aud": "<<This is the audience that the ID token is intended for. For example, https://{IS_HOST}:9446/oauth2/token>>"
+"aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
 }
   
 <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
