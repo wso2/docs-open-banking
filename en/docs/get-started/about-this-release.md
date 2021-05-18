@@ -8,6 +8,14 @@ comprises three modules:
 - **WSO2 Open Banking Business Intelligence Accelerator** runs on top of WSO2 Streaming Integrator.
 
 For more information on WSO2 Open Banking Accelerator, see the [Get Started](open-banking.md) section.
+
+!!! note
+    WSO2 provides toolkits that offer compliance to the following open banking standards:
+    
+    - Open Banking Standard - UK
+    - NextGenPSD2XS2A
+    - Consumer Data Standards - Australia
+
 ## What is new in this release
 
 ####WSO2 Open Banking Identity Server Accelerator
