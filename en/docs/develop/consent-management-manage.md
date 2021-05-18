@@ -9,7 +9,7 @@ the request. Given below is a summary of details related to this extension.
 
 ### Endpoint
 ``` xml
-https://{IS_HOST}:9446/api/openbanking/consent/manage/{custom-path}
+https://<IS_HOST>:9446/api/openbanking/consent/manage/<custom-path>
 ```
 
 ### Interface
@@ -46,7 +46,7 @@ The following table explains the data available in `ConsentManageHandler`.
 | headers   | Map<String, String>   | The request headers received in the request. |
 | payload   | Object                | The payload of the client request. This can either be a JSONObject or a JSONArray instance. |
 | queryParams   | Map               | The query parameters received in the request as a Map. |
-| requestPath   | String            | The request path to invoke the endpoint. This is the {custom-path}  part mentioned above. |
+| requestPath   | String            | The request path to invoke the endpoint. This is the `<custom-path>` part mentioned above. |
 | clientId      | String            | The client ID of the application that made the request. This application is bound to the request from the gateway insequence based on the token used. |
 | request       | HttpServletRequest    | The original HTTP servlet request. Use this to extract any other properties from the request. |
 | response      | HttpServletResponse   | The HTTP servlet response object. If required, you can make any changes to this. |

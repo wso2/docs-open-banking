@@ -16,7 +16,7 @@ Given below is a summary of details related to this extension.
 
 ### Endpoint
 ``` xml
-https://{IS_HOST}:9446/api/openbanking/consent/validate
+https://<IS_HOST>:9446/api/openbanking/consent/validate
 ```
 
 ### Interface
