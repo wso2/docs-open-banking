@@ -56,9 +56,27 @@ To configure the customized Consent Validate component, follow the steps below:
 validator="com.wso2.openbanking.accelerator.consent.extensions.validate.impl.DefaultConsentValidator"
 ```
 
-3. Configure the certificate alias of Identity Server's truestore. This is used to verify the JWT of the 
-validation request, which is sent from the gateway.
+3. Configure the certificate alias available in the truststore of Identity Server. This certificate signs the consent 
+validate JWT, which is sent from the gateway.
 ``` xml
 [open_banking.consent.validation.signature]
 alias="wso2carbon"
 ```
+
+    !!! note
+        Given below is a sample decoded JWT:
+        
+        ``` json
+        {
+           "headers":{
+              "Authorization":"Bearer eyJ4NXQiOiJNell4TW1Ga09H6WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01...kdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ",
+              "Content-Length":"265",
+              "Content-Type":"application/json"
+           },
+           "consentId":"bbacc510-91c0-4bf4-a641-e25cfa782e42",
+           "resource":"\/aisp\/statements?fromStatementDateTime=2021-05-12T12%3A24%3A50.799%2B05%3A30&toStatementDateTime=2021-05-12T12%3A24%3A50.799%2B05%3A30",
+           "context":"\/statements"
+        }
+        ```
+        
+        All header values including the bearer token is included in `header`. 
