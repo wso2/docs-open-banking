@@ -2,7 +2,8 @@
 of the user without using authentication information and uses that identity to control the authentication flow.
 
 You can implement identifier-first authentication using a custom local authenticator. For more information, see [Identifier-first Flow Handler](https://is.docs.wso2.com/en/latest/learn/identifier-first-flow-handler/#configuring-identifier-first-handler-in-the-login-flow).
-WSO2 Open Banking consists of an identifier-first authenticator by default. You can configure it in two ways:
+WSO2 Open Banking consists of an identifier-first authenticator by default. Configure Identifier-first authentication in 
+two stages as given in the below instructions:
 
 - Before server start
 - After server start
@@ -145,10 +146,3 @@ the default one. Based on your SMS provider, fill out the SMS OTP configurations
 2. Select  `http://wso2.org/claims` from the list. ![select-claim-from-list](../assets/img/learn/identifier-first/select-claim-from-list.png)
 3. Locate **Mobile** from the list and select **Edit**. ![select-mobile](../assets/img/learn/identifier-first/select-mobile.png)
 4. Select **Required** and click **Update**. ![select-required-and-update](../assets/img/learn/identifier-first/select-required-and-update.png)
-
-!!!note
-     By default account locking for failed SMS-OTP attempts is enabled. The number of SMS-OTP attempts is set to 5. Once 
-     the number of SMS-OTP attempts have been tried and failed, the user account will be locked.
-     
-     You can cancel authentication flow by not continuing. The following message box will pop up to get user consent to continue 
-     or cancel as follows: ![pop-up-message](../assets/img/learn/identifier-first/pop-up-message.png)
