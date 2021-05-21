@@ -1,5 +1,5 @@
-WSO2 Open Banking Accelerator has by default enabled data publishing in API gateway and authentication components. Additionally, 
-you can publish any streams using a custom component. For example, in Dynamic Client Registration. 
+WSO2 Open Banking Accelerator has enabled data publishing in API gateway and authentication components, by default. 
+Additionally, you can publish any streams using a custom component. For example, in Dynamic Client Registration. 
 
 Let's see how you can publish data using a custom component:
 

@@ -21,6 +21,10 @@ public void doPostDeleteApplication(ServiceProvider serviceProvider, String tena
 throws OpenBankingException {
 ```
 
+!!! tip "Publishing Access Token Data"
+    Based on the Grant Type of your token, you can use a Grant Handler and publish data related to access tokens. For 
+    more information, see [Token Data Publishing](token-data-publishing.md).
+
 ##Configuration
 1. Add the classes that you extended to enable data publishing for the DCR flow in `<IS_HOME>/repository/conf/deployment.toml` 
 as follows:

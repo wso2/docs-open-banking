@@ -104,7 +104,6 @@ nav:
         - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
         - 'Error handling in API Gateway': develop/gateway-error-handling.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
-        - 'Custom Data Publishing': develop/custom-data-publishing.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
@@ -125,8 +124,10 @@ nav:
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
         - 'Custom DCR Validator': develop/custom-dcr-validator.md
     - 'Data Publishing':
+        - 'Custom Data Publishing': develop/custom-data-publishing.md
         - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
         - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
+        - 'Token Data Publishing' : develop/token-data-publishing.md
   - 'References':
     - 'Consent REST API': references/consent-rest-api.md
     - 'DCR REST API': references/dcr-rest-api.md
