@@ -20,7 +20,7 @@ template: templates/swagger.html
 window.onload = function() {
   // Begin Swagger UI call region
   const ui = SwaggerUIBundle({
-    url: "https://raw.githubusercontent.com/wso2-enterprise/financial-open-banking/master/open-banking-accelerator/internal-apis/internal-swaggers/application-info-300.yaml?token=ADMXOTMCBVIFN2E7AMWTZXTAUYHVM",
+    url: "https://raw.githubusercontent.com/wso2/docs-open-banking/master/en/tools/internal-swaggers/application-info-300.yaml",
     dom_id: '#swagger-ui',
     deepLinking: true,
     validatorUrl: null,

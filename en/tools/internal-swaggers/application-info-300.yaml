@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  version: v3.0.0
+  title: ApplicationInfoAPI
+  description: This specifies a RESTful API for retrieving OAuth Application Information
+  contact:
+    name: WSO2
+    url: http://wso2.com/solutions/financial/open-banking/
+    email: openbankingdemo@wso2.com
+  license:
+    name: WSO2 Commercial License
+    url: https://wso2.com
+servers:
+  - url: https://{ob_km_host}:{ob_km_port}/api/openbanking/application/
+    variables:
+      ob_km_host:
+        default: localhost
+        description: Host of the Open Banking Key Manager
+      ob_km_port:
+        default: "9446"
+        description: Port of the Open Banking Key Manager
+paths:
+  /metadata/:
+    get:
+      summary: Retrieve Bulk Application Metadata
+      operationId: getBulkApplicationMetadata
+      tags:
+        - Application Information
+      parameters:
+        - in: query
+          name: clientIds
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApplicationBulkMetadataSuccess"
+        "404":
+          description: Service Provider Data Not Found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApplicationInfoError"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApplicationInfoError"
+  /metadata/{id}:
+    get:
+      summary: Retrieve Single Application Metadata
+      operationId: getSingleApplicationMetadata
+      tags:
+        - Application Information
+      parameters:
+        - name: id
+          in: path
+          description: The client id of the application
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApplicationSingleMetadataSuccess"
+        "404":
+          description: Service Provider Data Not Found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApplicationInfoError"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApplicationInfoError"
+components:
+  schemas:
+    ApplicationBulkMetadataSuccess:
+      title: Application Bulk Metadata Success Response
+      description: Defines metadata for the requested applications
+      type: object
+      properties:
+        data:
+          type: object
+          description: Key value pairs of client ids and attributes
+          additionalProperties:
+            $ref: "#/components/schemas/ApplicationMetadataResource"
+
+      required:
+        - data
+    ApplicationSingleMetadataSuccess:
+      title: Application Single Metadata Success Response
+      description: Defines metadata for a requested application
+      type: object
+      properties:
+        data:
+          $ref: "#/components/schemas/ApplicationMetadataResource"
+      required:
+        - data
+    ApplicationMetadataResource:
+      title: Application Metadata Resource
+      description: Defines a resource object for an application
+      type: object
+      properties:
+          type:
+            type: string
+            description: Object type
+          Id:
+            type: string
+            description: The OAuth client id of the application
+          metadata:
+            type: object
+            description: Key-Value pairs of application metadata
+            additionalProperties:
+              type: string
+    ApplicationInfoError:
+      title: Error Response
+      description: Defines an error object for the Application Information API
+      type: object
+      properties:
+        status:
+          type: string
+          description: The HTTP error code as a string
+        title:
+          type: string
+          description: Error summary
+        description:
+          type: string
+          description: Human readable error description

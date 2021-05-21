@@ -94,6 +94,7 @@ nav:
         - 'Authorize a consent': learn/authorization-flow.md
         - 'Obtain User Access Token': learn/user-access-token.md
         - 'Invoke an API': learn/invoke-an-api.md
+    - 'Integration': learn/integration.md
   - 'Develop' :
     - 'Develop Toolkit': develop/develop-toolkit.md
     - 'Open Banking Gateway' :
