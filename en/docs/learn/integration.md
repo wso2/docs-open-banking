@@ -1,6 +1,6 @@
 WSO2 Open Banking can be easily integrated into your current banking system. 
 
-By default, WSO2 Open Banking Accelerator contains a mock back end that acts as the bank back end server. In a 
+By default, WSO2 Open Banking Accelerator contains a mock back end that acts as the bank back-end server. In a 
 production environment, you need to set up and configure the solution with your banking system. This documentation 
 explains the integration points and APIs that your banking system needs to provide.
 
@@ -10,9 +10,9 @@ The integration capabilities of the API Manager 4.0 can help you make the bank b
 Banking. For more information, see [Developing Your First Integration Solution](https://apim.docs.wso2.com/en/4.0.0/integrate/develop/integration-development-kickstart/). 
 
 ## Consent REST API
-   
-WSO2 Open Banking Accelerator has exposed an internal [Consent REST API](../references/consent-rest-api.md). You can 
-use this as a reference when interacting with the Consent module.
+    
+When interacting with the consent module, you can use the [Consent REST API](../references/consent-rest-api.md) exposed 
+by WSO2 Open Banking Accelerator. 
 
 ## Sequence files
 
@@ -40,7 +40,7 @@ follows:
 ```
 
 - Update the placeholders with the hostname of your Identity Server and API Manager servers.
-- Replace the `/api/openbanking/backend/services/accounts/accountservice`  URL with API from your bank back end.
+- Replace the `/api/openbanking/backend/services/accounts/accountservice`  URL with the API from your bank back end.
 
 Follow the above sample and configure your sequence files to connect the bank back end to the WSO2 Open Banking solution.  
 
@@ -54,7 +54,7 @@ header is known as `Account-Request-Information`.
 The `Account-Request-Information` header is a signed JWT, which needs to be decoded by the core banking system.
 
 The core banking system will perform all required validations and build a response. This response needs to adhere to 
-your open banking technical specification. 
+the requirements in your open banking standard.
 
 ## Shareable and payable accounts 
    
@@ -65,7 +65,7 @@ different.
    
 The WSO2 Open Banking solution expects at least two APIs from the bank that return shareable and payable accounts when 
 the `user_id` is provided. The response must be in the JSON format and it will automatically load the accounts list on 
-the consent page during consent authorization flow. 
+the consent page during the consent authorization flow. 
 
 The responses of shareable and payable accounts APIs depend on your open banking specification and what you need to 
 display on the consent page. You can configure customized steps for retrieval by following the 
