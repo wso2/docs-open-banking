@@ -8,7 +8,7 @@ This method validates data in the map against the configuration you add and publ
 
 This method is included in the following class. 
 ```java
-com.wso2.openbanking.accelerator.data.publisher.common.util.OBDataPublisherUtil.java
+com.wso2.openbanking.accelerator.data.publisher.common.util.OBDataPublisherUtil
 ```
 
 - Publish date using the `publishData(String streamName, String streamVersion, Map<String, Object> analyticsData)` 

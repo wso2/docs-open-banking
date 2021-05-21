@@ -43,3 +43,6 @@ This method lets you add a data publishing logic. Given below is the method sign
 ``` java
 public void publishUserAccessTokenData(OAuth2AccessTokenRespDTO oAuth2AccessTokenRespDTO);
 ```
+
+ - Inside this method, invoke the [`publishData` method](custom-data-publishing.md#publishdata-method) in the 
+ `OBDataPublisherUtil` class to publish data. For more information, see [Custom Data Publishing](custom-data-publishing.md).
