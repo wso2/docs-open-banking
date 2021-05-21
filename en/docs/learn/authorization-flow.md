@@ -4,14 +4,16 @@ The initiated consent needs to be authorized by the bank customer for the API co
     This document provides requests and responses for the sample Account Information Service API available in WSO2 Open 
     Banking Accelerator. 
 
-1. The API consumer requests the bank customer's consent to access the accounts and its information from the bank.
+1. The bank sends the request to the customer stating the accounts and information that the API consumer wishes to 
+access. This request is in the format of a URL as follows:
 ```
 https://<IS_HOST>:9446/oauth2/authorize?response_type=<RESPONSE_TYPE>&client_id=<APPLICATION_ID>&scope=accounts%20op
 enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
 ```
 
-2. Make sure to update the placeholders with the appropriate values.
-    - Run the URL in a browser to prompt the invocation of the authorize API.
+    - Make sure to update the placeholders with appropriate values.
+
+2. Run the URL in a browser to prompt the invocation of the authorize API.
 
     ???tip "Click here to see how to generate a request object..."
         - Generate the request object by signing the following JSON payload using the supported algorithms. Given below is 
@@ -39,7 +41,7 @@ enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST
         }
         {
           "max_age": 86400,
-          "aud": "<This is the audience that the ID token is intended for. e.g., https://<WSO2_OB_APIM_HOST>:8243/token>",
+          "aud": "<This is the audience that the ID token is intended for. e.g., https://<APIM_HOST>:8243/token>",
           "scope": "fundsconfirmation openid",
           "iss": "<APPLICATION_ID>",
           "claims": {
@@ -77,18 +79,9 @@ enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST
 5. You can view the list of bank accounts and the information that the API consumer wishes to access.
 
 - Upon providing consent, an authorization code is generated on the URL of the `redirect_uri`. See the sample given below:
-    - The authorization code from the below URL is in the code parameter (code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775).
+    - The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
 ```
 https://wso2.com/#code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775&id_token=eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1
 NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5
-HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9o
-YXNoIjoiV0VQQnV2T2t2VTNNZnVqYlI0VFhaQSIsImF1ZCI6WyI0RWJRZmpSZFV2UVJxZThmNlJrMDlWb1Q5bFVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBp
-bWd0XC9nYXRld2F5Il0sInN1YiI6ImFkbWluQHdzbzIuY29tQGNhcmJvbi5zdXBlciIsImNfaGFzaCI6ImZGWjZjQUh4dUw4aWk5YzEzSXRKUUEiLCJvcGVu
-YmFua2luZ19pbnRlbnRfaWQiOiIxMzlhMTdjNS00MTQ1LTQzMDgtYWQxZS02YTJjNjM3NDUyMzUiLCJzX2hhc2giOiIxY0hpV0ExU3Y2akpzS3pINEVueTVB
-IiwiYXpwIjoiNEViUWZqUmRVdlFScWU4ZjZSazA5Vm9UOWxVYSIsImFtciI6WyJCYXNpY0F1dGhlbnRpY2F0b3IiXSwiaXNzIjoiaHR0cHM6XC9cL2xvY2Fs
-aG9zdDo4MjQzXC90b2tlbiIsImV4cCI6MTYwMjI1NDE3MCwiaWF0IjoxNjAyMjUwNTcwLCJub25jZSI6Im4tMFM2X1d6QTJNaiJ9.Ros0CEkX7hzfft0rq7e
-k1Ia-lLoSRT55DRy3nUri35IiQjHYOeY34y6HSHbdnDlW4Yw6mCkB6gZlw7O49zulKcyNUoZn7DdrnldKMhPC2z-mtGhr00x7s0dMNyfH05ZOCIr3cWU2Lqh
-KqyCyhCVP6ZbNDNultPeYQ62NxlTPRnuOi-j7jTsmqQfeiGEuHDpFm431A_6a2XnO5Wt9Awg0nQRpDzEDFD1VL7Ec1ogT3myowbg8YNjm0lQ9f_MV5P7rocG
-0RQB83hgijbjFYr9CNBuqPU0P_Oi42tWndbSbHqKgdgevuAH2A6_zk-gufJ3cvcFjoy6jFTov1VqIGpTUbA&state=YWlzcDozMTQ2&session_state=9ea
-1eb6454c3b34a3d1708affde1c25e00f931a4f936c74e2ca7f4250208aa42.sk_04ejciXBj6DnpALyYaw
+a4f936c74e2ca7f4250208aa42.sk_04ejciXBj6DnpALyYaw
 ```

@@ -109,15 +109,16 @@ signature of the application certificate is used.>
 }
 ```
 
-### Step 2: Initiate authorisation
-The API consumer needs to initiate an authorization flow before accessing the account information of a customer. 
+### Step 2: Initiate a consent
 
-1. The API consumer creates a request to get the consent of the customer to access the accounts and its 
-information from the bank. A sample request looks as follows:
+In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its 
+information from the bank. 
+
+A sample consent initiation request looks as follows:
 ```
 curl -X POST \
-https://localhost:9446/oauth2/authorize? \
--H 'Authorization: Bearer eyJ4NXQiOiJZMkk0WW1Rek5URmlZems0TXpVek5qQXdPRFUxWTJOaVl6SXpPVGhoTmpZM01tVm1aVEpqTWpJMFlqQTRNR1U1TUdJd09Ua3paVEV5TWpjM05tSTVZUSIsImtpZCI6IjEyMyIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJhZG1pbkB3c28yLmNvbUBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IkpFR2dyYllxaWhBdXRmeVRHYlVoaTZvQlVNUWEiLCJuYmYiOjE2MTc1NTIzNzksImdyYW50X3R5cGUiOiJjbGllbnRfY3JlZGVudGlhbHMiLCJhenAiOiJKRUdncmJZcWloQXV0ZnlUR2JVaGk2b0JVTVFhIiwic2NvcGUiOiJhY2NvdW50cyBwYXltZW50cyIsImlzcyI6Imh0dHBzOlwvXC9vYjMtdGVzdHNlcnZlcjE6OTQ0Nlwvb2F1dGgyXC90b2tlbiIsImNuZiI6eyJ4NXQjUzI1NiI6ImRtaVk1ZE03cE81VzdpbjhrUmFqZkFycXlUTU9uRlcyOVdCVU5rUUlYZTgifSwiZXhwIjoxNjE3NTU1OTc5LCJpYXQiOjE2MTc1NTIzNzksImp0aSI6IjU3MTEyM2M0LTk3NTYtNDk4ZC05N2JhLTdlOGZiZjk5YmQyYyJ9.tbBfM4qFqkKwRumUDWdCPG9nDeRkx2M5Jw03FRkgPgSDazffycCXP6CQMIlJ2eK2Wn54YDe2gUlV-QHh9WybxJ8Q_ol7WPG5aGEzRKGRFrL66k08IF90YCBAZJZlyhpQo1uePQsDHSFypbS1Iw8hOfmtTHWFa7dguqSdJcXffmoRLH2p6XWA6V3VauFMsX96GugLH9FFUxbZoFMJhhPSjPDdJSY5r1za-MacZ_vaaqEUMOaYffkVsPo-aHZhdBeLA9tb9FMEmr5dQZo67d3xfPiZtV7cZojblJ_x3qDwgm-WOwh-UebfgcdE9ZsQ2Q7P7-kqVGztUGEtg0vmWa3JBA' \
+https://localhost:8243/open-banking/v3.1/aisp/account-access-consents \
+-H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
 -H 'Content-Type: application/json' \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
 -d '{
@@ -154,53 +155,120 @@ The response contains a Consent ID. A sample response looks as follows:
 }
 ```
 
+### Step 3: Authorizing a consent
+
+The API consumer application redirects the bank customer to authenticate and approve/deny application-provided consents.
+
+1. Generate a request object by signing your JSON payload using the supported algorithms. 
+    
+    ???tip "Click here to see a sample request object..."
+        - Given below is a sample request object in the JWT format:
+        ```
+        eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4Iiwi
+        YWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tlbiIsInNjb3BlIjoiY
+        WNjb3VudHMgb3BlbmlkIiwiaXNzIjoiNGhaSUxBVGZQeVhsTEZxa1AzWjBPQllobUR3YSIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzI
+        jpbInVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsInVybjpvcGVuYmFua2luZzpwc2QyOmNhIl0sImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2lud
+        GVudF9pZCI6eyJ2YWx1ZSI6Ijg2YzhhMDg1LWE0NDQtNDJkNS1iZTQzLTk2OGIzNjZhNTQ2NyIsImVzc2VudGlhbCI6dHJ1ZX19LCJ1c2VyaW5mbyI6eyJvc
+        GVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fX0sI
+        nJlc3BvbnNlX3R5cGUiOiJjb2RlIGlkX3Rva2VuIiwicmVkaXJlY3RfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8iLCJzdGF0ZSI6IllXbHpjRG96T
+        VRRMiIsImV4cCI6MTYzMzU4NjQwOCwibm9uY2UiOiJuLTBTNl9XekEyTWoiLCJjbGllbnRfaWQiOiI0aFpJTEFUZlB5WGxMRnFrUDNaME9CWWhtRHdhIn0.m
+        -iCjJ76a7zDUIwRme2fP17oBcDAS9nxlt-KOSKVKZYRQ5Z534TNfRhfd0uVAcay0-eLATwNIAHQaAgM8FPcgeUeOS5ZKHBJ-0py5G5jxkkVPDwIY7lDvL6nd
+        ADy6Cq720CDOLOe5mqmIdKeJNTn-OBmFkcSsr00MxOYZIOqyof2c1Zxx4WEqWtQza4bb84Xji_AoHlezTYEGSm9OOP--uMaOMdY8GjJtjpcSWRGWmQPQFjhQ
+        RpK70Dz7AiZ73ODN8Ic9XCTDwKiE5jE_hHYi7qF2QIIUubjeVgRMAjF9A18t9VQDqLt_x-dhWPXerCcOL4FaFrI7RGS8s_YK6fdag&prompt=login&nonce
+        =n-0S6_WzA2Mj
+        ```
+        - The format of the decoded sample request object looks as follows:
+        ```
+        {
+          "kid": "<CERTIFICATE_FINGERPRINT>",
+          "alg": "<SUPPORTED_ALGORITHM>",
+          "typ": "JWT"
+        }
+        {
+          "max_age": 86400,
+          "aud": "<This is the audience that the ID token is intended for. e.g., https://<APIM_HOST>:8243/token>",
+          "scope": "fundsconfirmation openid",
+          "iss": "<APPLICATION_ID>",
+          "claims": {
+            "id_token": {
+              "acr": {
+                "values": [
+                  "urn:openbanking:psd2:sca",
+                  "urn:openbanking:psd2:ca"
+                ],
+                "essential": true
+              },
+              "openbanking_intent_id": {
+                "value": "<CONSENTID>",
+                "essential": true
+              }
+            },
+            "userinfo": {
+              "openbanking_intent_id": {
+                "value": "<CONSENTID>",
+                "essential": true
+              }
+            }
+          },
+          "response_type": "<code:Retrieves authorize code/code id_token: Retrieves authorize token and ID token>",  
+          "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
+          "state": "YWlzcDozMTQ2",
+          "exp": <EPOCH_TIME_OF_TOKEN_EXPIRATION>,
+          "nonce": "<PREVENTS_REPLAY_ATTACKS>",
+          "client_id": "<APPLICATION_ID>"
+        }
+        ```
+
 2. The bank sends the request to the customer stating the accounts and information that the API 
 consumer wishes to access. This request is in the format of a URL as follows: 
 ```
-https://localhost:8243/authorize/?response_type=jwt&client_id=<CLIENT_ID>&scope=accounts%20openid&redir
-ect_uri=www.wso2.com&state=YWlzcDozMTQ2&request=eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4Iiwi
-YWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tlbiIsInNjb3BlIjoiY
-WNjb3VudHMgb3BlbmlkIiwiaXNzIjoiNGhaSUxBVGZQeVhsTEZxa1AzWjBPQllobUR3YSIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzI
-jpbInVybjpvcGVuYmFua2luZzpwc2QyOnNjYSIsInVybjpvcGVuYmFua2luZzpwc2QyOmNhIl0sImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2lud
-GVudF9pZCI6eyJ2YWx1ZSI6Ijg2YzhhMDg1LWE0NDQtNDJkNS1iZTQzLTk2OGIzNjZhNTQ2NyIsImVzc2VudGlhbCI6dHJ1ZX19LCJ1c2VyaW5mbyI6eyJvc
-GVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fX0sI
-nJlc3BvbnNlX3R5cGUiOiJjb2RlIGlkX3Rva2VuIiwicmVkaXJlY3RfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8iLCJzdGF0ZSI6IllXbHpjRG96T
-VRRMiIsImV4cCI6MTYzMzU4NjQwOCwibm9uY2UiOiJuLTBTNl9XekEyTWoiLCJjbGllbnRfaWQiOiI0aFpJTEFUZlB5WGxMRnFrUDNaME9CWWhtRHdhIn0.m
--iCjJ76a7zDUIwRme2fP17oBcDAS9nxlt-KOSKVKZYRQ5Z534TNfRhfd0uVAcay0-eLATwNIAHQaAgM8FPcgeUeOS5ZKHBJ-0py5G5jxkkVPDwIY7lDvL6nd
-ADy6Cq720CDOLOe5mqmIdKeJNTn-OBmFkcSsr00MxOYZIOqyof2c1Zxx4WEqWtQza4bb84Xji_AoHlezTYEGSm9OOP--uMaOMdY8GjJtjpcSWRGWmQPQFjhQ
-RpK70Dz7AiZ73ODN8Ic9XCTDwKiE5jE_hHYi7qF2QIIUubjeVgRMAjF9A18t9VQDqLt_x-dhWPXerCcOL4FaFrI7RGS8s_YK6fdag&prompt=login&nonce
-=n-0S6_WzA2Mj
+https://localhost:9446/oauth2/authorize?response_type=jwt&client_id=<CLIENT_ID>&scope=accounts%20openid&redir
+ect_uri=www.wso2.com&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=n-0S6_WzA2Mj
 ```
-- Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](dynamic-client-registation.md).
+    - Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](dynamic-client-registation.md).
 
-3. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
+3. Run the URL in a browser to prompt the invocation of the authorize API.
+
+4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
 
 5. You can view the list of bank accounts and the information that the API consumer wishes to access.
 
-- Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`.
+6. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample 
+given below:
 
-### Step 3: Generate user access token
+    The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
+
+    ```
+    https://wso2.com/#code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775&id_token=eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1
+    NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5
+    a4f936c74e2ca7f4250208aa42.sk_04ejciXBj6DnpALyYaw
+    ```
+   
+### Step 4: Generate user access token
+
 1. You can generate a user access token using the sample request given below:
-```
-curl -X POST \
-https://localhost:9446/oauth2/token \
--H 'Cache-Control: no-cache' \
--H 'Content-Type: application/x-www-form-urlencoded' \
---cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
--d 'grant_type=authorization_code&scope=openid accounts&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:
-jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<CODE_GENERATED>client_id=
-<CLIENT_ID>'
-```
-- Make sure you update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the previous step.
-Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](dynamic-client-registation.md).
+    ```
+    curl -X POST \
+    https://localhost:9446/oauth2/token \
+    -H 'Cache-Control: no-cache' \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
+    -d 'grant_type=authorization_code&scope=openid accounts&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:
+    jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<CODE_GENERATED>client_id=
+    <CLIENT_ID>'
+    ```
 
-- The response contains a user access token.
+2. Make sure you update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the previous step.
 
-### Step 4: Invoke Accounts Information Service API
-1. The first step for an API consumer is to call the `GET/ accounts` endpoint. A sample request looks as follows:
+3. Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](dynamic-client-registation.md).
+
+4. The response contains a user access token.
+
+### Step 5: Invoke Accounts Information Service API
+1. The first step for an API consumer is to call the `GET/ accounts/<ACCOUNT_ID>` endpoint. A sample request looks as follows:
 ```
 curl -X GET \
-https://localhost:8243/open-banking/v3.1/aisp/accounts/' \
+https://localhost:8243/open-banking/v3.1/aisp/accounts/1' \
 -H 'x-fapi-financial-id: open-bank' \
 -H 'Authorization: Bearer <USER_ACCESS_TOKEN>' \
 -H 'Accept: application/json' \
@@ -213,49 +281,33 @@ https://localhost:8243/open-banking/v3.1/aisp/accounts/' \
 access. A sample response looks as follows:
 ```
 {
-    "Meta": {
-        "TotalPages": 1
-    },
-    "Links": {
-        "Self": "https://api.alphabank.com/open-banking/v3.0/accounts"
-    },
-    "Data": {
-        "Account": [
-            {
-                "Status": "Enabled",
-                "StatusUpdateDateTime": "2020-04-16T06:06:06+00:00",
-                "OpeningDate": "2020-01-16T06:06:06+00:00",
-                "AccountId": "30080012343456",
-                "Currency": "GBP",
-                "MaturityDate": "2025-04-16T06:06:06+00:00",
-                "AccountType": "Personal",
-                "AccountSubType": "CurrentAccount",
-                "Nickname": "Bills"
-            },
-            {
-                "Status": "Enabled",
-                "StatusUpdateDateTime": "2020-04-16T06:06:06+00:00",
-                "OpeningDate": "2020-01-16T06:06:06+00:00",
-                "AccountId": "30080098763459",
-                "Currency": "GBP",
-                "MaturityDate": "2025-04-16T06:06:06+00:00",
-                "AccountType": "Personal",
-                "AccountSubType": "CurrentAccount",
-                "Nickname": "Bills"
-            },
-            {
-                "Status": "Enabled",
-                "StatusUpdateDateTime": "2020-04-16T06:06:06+00:00",
-                "OpeningDate": "2020-01-16T06:06:06+00:00",
-                "AccountId": "30080098971337",
-                "Currency": "GBP",
-                "MaturityDate": "2025-04-16T06:06:06+00:00",
-                "AccountType": "Personal",
-                "AccountSubType": "CurrentAccount",
-                "Nickname": "Bills"
-            }
-        ]
-    }
+   "Data":{
+      "Account":[
+         {
+            "AccountId":"1",
+            "Status":"Enabled",
+            "StatusUpdateDateTime":"2020-04-16T06:06:06+00:00",
+            "Currency":"GBP",
+            "AccountType":"Personal",
+            "AccountSubType":"CurrentAccount",
+            "Nickname":"Bills",
+            "Account":[
+               {
+                  "SchemeName":"SortCodeAccountNumber",
+                  "Identification":"1",
+                  "Name":"Mr Kevin",
+                  "SecondaryIdentification":"00021"
+               }
+            ]
+         }
+      ]
+   },
+   "Links":{
+      "Self":"https://api.alphabank.com/open-banking/v3.0/accounts/1"
+   },
+   "Meta":{
+      "TotalPages":1
+   }
 }
 ```
 
