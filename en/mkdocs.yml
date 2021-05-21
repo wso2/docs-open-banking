@@ -66,7 +66,7 @@ nav:
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
     - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
-    - 'Product Observability': install-and-setup/product-observability.md
+    - 'Troublesshoting': install-and-setup/troubleshooting.md
   - 'Learn':
     - 'Consent Management':
       - 'Introduction': learn/consent-management.md
