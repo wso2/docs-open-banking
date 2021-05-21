@@ -280,7 +280,35 @@ https://localhost:8243/open-banking/v3.1/aisp/accounts/1' \
 - In the response, the API consumer gets the full list of accounts that the customer has authorized the API consumer to 
 access. A sample response looks as follows:
 ```
-
+{
+   "Data":{
+      "Account":[
+         {
+            "AccountId":"1",
+            "Status":"Enabled",
+            "StatusUpdateDateTime":"2020-04-16T06:06:06+00:00",
+            "Currency":"GBP",
+            "AccountType":"Personal",
+            "AccountSubType":"CurrentAccount",
+            "Nickname":"Bills",
+            "Account":[
+               {
+                  "SchemeName":"SortCodeAccountNumber",
+                  "Identification":"1",
+                  "Name":"Mr Kevin",
+                  "SecondaryIdentification":"00021"
+               }
+            ]
+         }
+      ]
+   },
+   "Links":{
+      "Self":"https://api.alphabank.com/open-banking/v3.0/accounts/1"
+   },
+   "Meta":{
+      "TotalPages":1
+   }
+}
 ```
 
 2. The API consumer is now able to retrieve the account information for a given `AccountId`. A sample request looks as follows:
