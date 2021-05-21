@@ -14,16 +14,16 @@ This method publishes data when creating a DCR application. For example,
 public void publishData(Map < String, Object > spMetaData, OAuthConsumerAppDTO oAuthConsumerAppDTO)
 throws OpenBankingException {
 ```
+
+ - Inside this method, invoke the [`publishData` method](custom-data-publishing.md#publishdata-method) in the 
+ `OBDataPublisherUtil` class to publish data. For more information, see [Custom Data Publishing](custom-data-publishing.md).
+
 ###doPostDeleteApplication method
 This method publishes data when deleting the DCR application. For example,
 ```java
 public void doPostDeleteApplication(ServiceProvider serviceProvider, String tenantDomain, String userName)
 throws OpenBankingException {
 ```
-
-!!! tip "Publishing Access Token Data"
-    Based on the Grant Type of your token, you can use a Grant Handler and publish data related to access tokens. For 
-    more information, see [Token Data Publishing](token-data-publishing.md).
 
 ##Configuration
 1. Add the classes that you extended to enable data publishing for the DCR flow in `<IS_HOME>/repository/conf/deployment.toml` 
