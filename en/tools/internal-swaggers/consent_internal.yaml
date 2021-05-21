@@ -1,0 +1,463 @@
+openapi: 3.0.0
+info:
+  version: v1.0
+  title: ConsentAPI
+  description: This specifies a RESTful API for making interactions with the consent module
+  contact:
+    name: WSO2
+    url: http://wso2.com/solutions/financial/open-banking/
+    email: openbankingdemo@wso2.com
+  license:
+    name: WSO2 Commercial License
+    url: https://wso2.com
+servers:
+  - url: https://{ob_km_host}:{ob_km_port}/api/openbanking/consent/
+    variables:
+      ob_km_host:
+        default: localhost
+        description: Host of the Open Banking Key Manager
+      ob_km_port:
+        default: "9446"
+        description: Port of the Open Banking Key Manager
+paths:
+  /validate:
+    post:
+      summary: Validation endpoint used for consent enforcement
+      operationId: consentValdiate
+      tags:
+        - Validate
+      requestBody:
+        description: JWT data of request being validated
+        required: true
+        content:
+          application/jwt:
+            schema:
+              $ref: "#/components/schemas/OBConsentValidateDetail"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentValidateOKResponse"
+        "400":
+          description: Required parameters unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+  /admin/search:
+    get:
+      summary: Search consent information
+      operationId: searchConsents
+      tags:
+        - Admin
+      parameters:
+        - in: query
+          name: consentIDs
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - in: query
+          name: clientIDs
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - in: query
+          name: consentTypes
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - in: query
+          name: consentStatuses
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - in: query
+          name: userIDs
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - in: query
+          name: fromTime
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: toTime
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: offset
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentSearchOKResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+  /admin/revoke:
+    delete:
+      summary: Revoke consents
+      operationId: revokeConsents
+      tags:
+        - Admin
+      parameters:
+        - in: query
+          name: consentID
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: userID
+          required: false
+          schema:
+            type: string
+      responses:
+        "204":
+          description: No content. Successful revoke
+        "400":
+          description: Required parameters unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+  /manage:
+    get:
+      summary: Get endpoint for manage
+      operationId: manageGet
+      tags:
+        - Manage
+      parameters:
+        - in: header
+          name: x-wso2-client-id
+          required: true
+          schema:
+            type: string
+      responses:
+        "500":
+          description: Internal Server Error
+
+    post:
+      summary: Post endpoint for manage
+      operationId: managePost
+      tags:
+        - Manage
+      parameters:
+        - in: header
+          name: x-wso2-client-id
+          required: true
+          schema:
+            type: string
+      responses:
+        "500":
+          description: Internal Server Error
+
+    delete:
+      summary: Delete endpoint for manage
+      operationId: manageDelete
+      tags:
+        - Manage
+      parameters:
+        - in: header
+          name: x-wso2-client-id
+          required: true
+          schema:
+            type: string
+      responses:
+        "500":
+          description: Internal Server Error
+    put:
+      summary: Put endpoint for manage
+      operationId: managePut
+      tags:
+        - Manage
+      parameters:
+        - in: header
+          name: x-wso2-client-id
+          required: true
+          schema:
+            type: string
+      responses:
+        "500":
+          description: Internal Server Error
+    patch:
+      summary: Patch endpoint for manage
+      operationId: managePatch
+      tags:
+        - Manage
+      parameters:
+        - in: header
+          name: x-wso2-client-id
+          required: true
+          schema:
+            type: string
+      responses:
+        "500":
+          description: Internal Server Error
+
+  /authorize/retrieve/{session-data-key}:
+    get:
+      summary: Retrieve data for consent page
+      operationId: authorizeRetrieve
+      tags:
+        - Authorize
+      parameters:
+        - name: session-data-key
+          in: path
+          description: The session data key of the consent page
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+  /authorize/persist/{session-data-key}:
+    patch:
+      summary: Persist user consent
+      operationId: authorizePersist
+      tags:
+        - Authorize
+      parameters:
+        - name: session-data-key
+          in: path
+          description: The session data key of the consent page (used for retrieve)
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Boolean value representing whether the user approved the consent
+        required: true
+        content:
+          application/json:
+            schema:
+              type: boolean
+      responses:
+        "302":
+          description: Post consent redirect
+        "400":
+          description: Required parameters unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OBConsentErrorCommon"
+
+components:
+  schemas:
+    OBConsentValidateDetail:
+      type: object
+      properties:
+        headers:
+          description: Object containing keys and values of request headers received to the gateway
+          type: object
+        payload:
+          description: Object containing the request payload received to the gateway
+          type: object
+        context:
+          description: String value of the request path received in the request
+          type: string
+        consentId:
+          description: The consent ID of the consent being valdiated
+          type: string
+        resource:
+          description: The context including query parameters of the request
+          type: string
+    OBConsentErrorCommon:
+      type: object
+      properties:
+        status:
+          description: Error status code
+          type: string
+        title:
+          description: Error title
+          type: string
+        description:
+          description: Error description
+          type: string
+    OBConsentValidateOKResponse:
+      type: object
+      properties:
+        isValid:
+          description: Consent validation result
+          type: string
+        modifiedPayload:
+          description: Modified payload for in flow
+          type: string
+        errorCode:
+          description: Error code to be sent
+          type: string
+        errorMessage:
+          description: Error message to be sent
+          type: string
+        httpCode:
+          description: HTTP error code
+          type: string
+    OBConsentSearchOKResponse:
+      type: object
+      properties:
+        data:
+          description: Detailed consent objects. Search results
+          type: array
+          items:
+            $ref: "#/components/schemas/OBConsentDetail"
+        meatadata:
+          $ref: "#/components/schemas/OBConsentSearchMetadata"
+    OBConsentDetail:
+      type: object
+      properties:
+        clientId:
+          description: Client ID associated with the consent
+          type: string
+        currentStatus:
+          description: Current status of the consent
+          type: string
+        createdTimestamp:
+          description: Consent created timestamp
+          type: string
+        recurringIndicator:
+          description: Recurring indicator of the consent
+          type: string
+        authorizationResources:
+          description: Authorization resources associated with the consent
+          type: array
+          items:
+            $ref: "#/components/schemas/OBConsentAuthorizationResource"
+        updatedTimestamp:
+          description: Last updated timestamp
+          type: string
+        validityPeriod:
+          description: Consent validity period
+          type: string
+        consentAttributes:
+          description: Key value pairs of consent attributes
+          type: object
+        consentId:
+          description: Consent ID
+          type: string
+        consentMappingResources:
+          description: Account mapping resources associated with the consent
+          type: array
+          items:
+            $ref: "#/components/schemas/OBConsentMappingResource"
+        consentType:
+          description: Consent type
+          type: string
+        receipt:
+          description: Consent receipt
+          type: object
+        consentFrequency:
+          description: Consent Frequency
+          type: string
+    OBConsentSearchMetadata:
+      type: object
+      properties:
+        total:
+          description: Total number of results available despite pagination
+          type: integer
+        offset:
+          description: Pagination offset of result
+          type: integer
+        count:
+          description: Count sent in current response
+          type: integer
+        limit:
+          description: Limit applied for current result
+          type: integer
+    OBConsentAuthorizationResource:
+      type: object
+      properties:
+        updatedTime:
+          description: Authorization updated time
+          type: integer
+        consentID:
+          description: Consent ID of the authorization
+          type: string
+        authorizationID:
+          description: Authorization ID
+          type: string
+        authorizationType:
+          description: Type of authorization
+          type: string
+        userID:
+          description: User ID
+          type: string
+        authorizationStatus:
+          description: Current status of the authorization
+          type: string
+    OBConsentMappingResource:
+      type: object
+      properties:
+        mappingId:
+          description: Mapping ID
+          type: string
+        mappingStatus:
+          description: Status of the mapping
+          type: string
+        accountId:
+          description: Accoung ID of the mapping resource
+          type: string
+        authorizationID:
+          description: Authorization ID associated with the mapping
+          type: string
+        permission:
+          description: Mapping permission
+          type: string
