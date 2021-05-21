@@ -3,11 +3,11 @@ sends a request to the customer stating the information that the API consumer ap
 approving/denying the access, a consent is created. Using the consent, the API consumer application is now eligible to 
 access the details. 
 
-1. A sample request looks as follows:
+1. A sample consent initiation request looks as follows:
     - Make sure to update the placeholders with the relevant values. Use the [Application Access Token](../application-access-token.md) you obtained.
 ```
 curl -X POST \
-https://<IS_HOST>:9446/oauth2/authorize? \
+https://localhost:8243/open-banking/v3.1/aisp/account-access-consents \
 -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN> \
 -H 'Content-Type: application/json' \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
