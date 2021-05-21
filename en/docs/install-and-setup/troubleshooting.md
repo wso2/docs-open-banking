@@ -1,27 +1,24 @@
-Product observability enables rapid debugging for you to process and eliminate product issues. In order to enable debugging 
-in WSO2 Open Banking, you have to configure product observability in the two components seperately:
-
-- WSO2 Identity Server
-- WSO2 API Manager
+To enable debugging in WSO2 Open Banking, you have to configure product observability in WSO2 Identity Server and WSO2 API 
+Manager. Product observability enables rapid debugging for you to process and eliminate product issues.
 
 !!!note
-    By default, product observability is not enabled as it impacts on the product's performance.
+    By default, product observability is not enabled as it impacts the product's performance.
 
 Let's explore the following topics to learn more:
 
-- Working with Product Observability
+- Working with product observability
 
-    - [Identity Server](https://apim.docs.wso2.com/en/3.1.0/administer/logging-and-monitoring/monitoring/working-with-observability/)
-    - [API Manager](https://is.docs.wso2.com/en/latest/setup/working-with-product-observability/)
+    - [Identity Server](https://is.docs.wso2.com/en/5.11.0/setup/working-with-product-observability/)
+    - [API Manager](https://apim.docs.wso2.com/en/4.0.0/administer/logging-and-monitoring/monitoring/working-with-observability/)
 
-- Monitoring Logs
+- Monitoring logs
 
-    - [Identity Server](https://apim.docs.wso2.com/en/3.1.0/administer/logging-and-monitoring/logging/setting-up-logging/)
-    - [API Manager](https://is.docs.wso2.com/en/latest/setup/monitoring-logs/)
+    - [Identity Server](https://is.docs.wso2.com/en/5.11.0/setup/monitoring-logs/)
+    - [API Manager](https://apim.docs.wso2.com/en/4.0.0/administer/logging-and-monitoring/logging/setting-up-logging/)
     
-- Monitoring TCP-Based Messages
+- Monitoring TCP-based messages
     
-    - [Identity Server](https://is.docs.wso2.com/en/latest/setup/monitoring-tcp-based-messages/)
-    - [API Manager](https://apim.docs.wso2.com/en/3.1.0/administer/logging-and-monitoring/monitoring/monitoring-tcp-based-messages/)
+    - [Identity Server](https://is.docs.wso2.com/en/5.11.0/setup/monitoring-tcp-based-messages/)
+    - [API Manager](https://apim.docs.wso2.com/en/4.0.0/administer/logging-and-monitoring/monitoring/monitoring-tcp-based-messages/)
     
-- If you are customizing the WSO2 API-M Developer Portal and Publisher Portal, see [how you can preview changes during active development](https://apim.docs.wso2.com/en/3.1.0/develop/customizations/advanced-ui-customization/#production-build-vs-development-build)
+- If you are customizing the WSO2 API Manager Developer Portal or Publisher Portal, see [how you can preview changes during active development](https://apim.docs.wso2.com/en/4.0.0/develop/customizations/advanced-ui-customization/#production-build-vs-development-build)
