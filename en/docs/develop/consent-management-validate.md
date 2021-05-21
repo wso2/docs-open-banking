@@ -56,8 +56,8 @@ To configure the customized Consent Validate component, follow the steps below:
 validator="com.wso2.openbanking.accelerator.consent.extensions.validate.impl.DefaultConsentValidator"
 ```
 
-3. Configure the certificate alias available in the truststore of Identity Server. This certificate signs the consent 
-validate JWT, which is sent from the gateway.
+3. Configure the certificate alias available in the truststore of the Identity Server. This should be the certificate that 
+is used to sign the consent validate JWT, which is sent from the gateway.
 ``` xml
 [open_banking.consent.validation.signature]
 alias="wso2carbon"

@@ -1,0 +1,379 @@
+swagger: '2.0'
+info:
+  title: Dynamic Client Registration API
+  version: v1.0
+  description: >
+    This specification defines the APIs for a TPP to submit a Software Statement
+    Assertion to an ASPSP for the purpose of creating OAuth clients that are
+    registered with ASPSP.
+  contact:
+    name: Wso2
+    url: 'http://wso2.com/solutions/financial/open-banking/'
+    email: "openbankingdemo@wso2.com"
+  license:
+    name: WSO2 Commercial License
+    url: "https://wso2.com"
+host: api.financial.wso2.com
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /register:
+    post:
+      summary: Register a client by way of a Software Statement Assertion
+      description: Endpoint will be secured by way of Mutual Authentication over TLS
+      tags:
+        - Client Registration
+      parameters:
+        - $ref: '#/parameters/ClientRegistrationRequest'
+      responses:
+        '201':
+          $ref: '#/responses/OBClientRegistrationResponse'
+        '400':
+          $ref: '#/responses/400Error'
+      x-auth-type: Application
+      x-throttling-tier: Unlimited
+      x-scope: dynamicclientregistration
+  '/register/{ClientId}':
+    get:
+      summary: Get a client by way of Client ID
+      tags:
+        - Client Registration
+      parameters:
+        - $ref: '#/parameters/ClientId'
+      responses:
+        '200':
+          $ref: '#/responses/OBClientRegistrationResponse'
+        '401':
+          $ref: '#/responses/401Error'
+        '403':
+          $ref: '#/responses/403Error'
+      security:
+        - TPPOAuth2Security: []
+      x-auth-type: Application
+      x-throttling-tier: Unlimited
+      x-scope: dynamicclientregistration
+    put:
+      summary: Update a client by way of Client ID
+      tags:
+        - Client Registration
+      parameters:
+        - $ref: '#/parameters/ClientRegistrationRequest'
+        - $ref: '#/parameters/ClientId'
+      responses:
+        '200':
+          $ref: '#/responses/OBClientRegistrationResponse'
+        '400':
+          $ref: '#/responses/400Error'
+        '401':
+          $ref: '#/responses/401Error'
+        '403':
+          $ref: '#/responses/403Error'
+      security:
+        - TPPOAuth2Security: []
+      x-auth-type: Application
+      x-throttling-tier: Unlimited
+      x-scope: dynamicclientregistration
+    delete:
+      summary: Delete a client by way of Client ID
+      tags:
+        - Client Registration
+      parameters:
+        - $ref: '#/parameters/ClientId'
+      responses:
+        '204':
+          description: Client deleted
+        '401':
+          $ref: '#/responses/401Error'
+        '403':
+          $ref: '#/responses/403Error'
+        '405':
+          $ref: '#/responses/403Error'
+      security:
+        - TPPOAuth2Security: []
+      x-auth-type: Application
+      x-throttling-tier: Unlimited
+      x-scope: dynamicclientregistration
+parameters:
+  ClientId:
+    name: ClientId
+    description: The client ID
+    in: path
+    type: string
+    required: true
+  ClientRegistrationRequest:
+    name: requestBody
+    description: A request to register a Software Statement Assertion with an ASPSP
+    in: body
+    schema:
+      $ref: '#/definitions/OBClientRegistrationRequestDetail'
+responses:
+  OBClientRegistrationResponse:
+    description: Client registration
+    schema:
+      allOf:
+        - type: object
+          properties:
+            client_id:
+              description: OAuth 2.0 client identifier string
+              type: string
+              minLength: 1
+              maxLength: 36
+            client_secret:
+              description: OAuth 2.0 client secret string
+              type: string
+              minLength: 1
+              maxLength: 36
+            client_id_issued_at:
+              description: >-
+                Time at which the client identifier was issued expressed as seconds
+                since 1970-01-01T00:00:00Z as measured in UTC
+              type: integer
+              format: int32
+              minimum: 0
+            client_secret_expires_at:
+              description: >-
+                Time at which the client secret will expire expressed as seconds since
+                1970-01-01T00:00:00Z as measured in UTC. Set to 0 if does not expire
+              type: integer
+              format: int32
+              minimum: 0
+            client_name:
+              description: Human-readable string name of the software product to be presented to the end-user during authorization
+              type: string
+              example: Mock Software
+            client_description:
+              description: Human-readable string name of the software product description to be presented to the end user during authorization
+              type: string
+              example: A mock software product
+            client_uri:
+              description: URL string of a web page providing information about the client
+              type: string
+              example: 'https://www.mockcompany.com.au'
+            org_id:
+              description: A unique identifier string assigned by the CDR Register that identifies the Accredited Data Recipient Brand
+              type: string
+              example: 3B0B0A7B-3E7B-4A2C-9497-E357A71D07C8
+            org_name:
+              description: Human-readable string name of the Accredited Data Recipient to be presented to the end user during authorization
+              example: Mock Company Inc.
+              type: string
+            redirect_uris:
+              description: 'Array of redirection URI strings for use in redirect-based flows. If used, redirect_uris MUST match or be a subset of the redirect_uris as defined in the SSA'
+              type: array
+              items:
+                type: string
+                format: uri
+              example:
+                - 'https://www.mockcompany.com.au/redirects/redirect1'
+                - 'https://www.mockcompany.com.au/redirects/redirect2'
+            logo_uri:
+              description: 'URL string that references a logo for the client. If present, the server SHOULD display this image to the end-user during approval'
+              type: string
+              example: 'https://www.mockcompany.com.au/logos/logo1.png'
+            tos_uri:
+              description: URL string that points to a human-readable terms of service document for the Software Product
+              type: string
+              example: 'https://www.mockcompany.com.au/tos.html'
+            policy_uri:
+              description: URL string that points to a human-readable policy document for the Software Product
+              type: string
+              example: 'https://www.mockcompany.com.au/policy.html'
+            jwks_uri:
+              description: 'URL string referencing the client JSON Web Key (JWK) Set [RFC7517] document, which contains the client public keys'
+              type: string
+              example: 'https://www.mockcompany.com.au/jwks'
+            revocation_uri:
+              description: URI string that references the location of the Software Product consent revocation endpoint
+              type: string
+              example: 'https://www.mockcompany.com.au/revocation'
+            recipient_base_uri:
+              description: Base URI for the Consumer Data Standard Data Recipient endpoints. This should be the base to provide reference to all other [Data Recipient Endpoints](https://consumerdatastandardsaustralia.github.io/standards/#end-points)
+              type: string
+              example: 'https://www.mockcompany.com.au'
+        - $ref: '#/definitions/OBClientRegistrationRequestDetail'
+  400Error:
+    description: Request failed due to client error
+    schema:
+      $ref: '#/definitions/RegistrationError'
+  401Error:
+    description: Request failed due to unknown or invalid Client or invalid access token
+    headers:
+      WWW-Authenticate:
+        description: 'Response header field specified in https://tools.ietf.org/html/rfc6750'
+        type: string
+        pattern: ^Bearer .*
+  403Error:
+    description: 'The client does not have permission to read, update or delete the Client'
+  405Error:
+    description: Method Not Allowed
+definitions:
+  SupportedAlgorithms:
+    type: string
+    enum:
+      - RS256
+      - PS256
+      - ES256
+  OBClientRegistrationRequestDetail:
+    type: object
+    properties:
+      iss:
+        description: Unique identifier for the TPP. Implemented as Base62 encoded GUID
+        type: string
+        pattern: '^[0-9a-zA-Z]{1,18}$'
+        minLength: 1
+        maxLength: 18
+      iat:
+        description: >-
+          The time at which the request was issued by the TPP  expressed as
+          seconds since 1970-01-01T00:00:00Z as measured in UTC
+        type: integer
+        format: int32
+      exp:
+        description: >-
+          The time at which the request expires expressed as seconds since
+          1970-01-01T00:00:00Z as measured in UTC
+        type: integer
+        format: int32
+      aud:
+        description: |
+          The audience for the request. This should be the unique identifier
+          for the ASPSP issued by the issuer of the software statement.
+          Implemented as Base62 encoded GUID
+        type: string
+        pattern: '^[0-9a-zA-Z]{1,18}$'
+        minLength: 1
+        maxLength: 18
+      jti:
+        description: Unique identifier for the JWT implemented as UUID v4
+        type: string
+        pattern: >-
+          ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+        minLength: 36
+        maxLength: 36
+      redirect_uris:
+        type: array
+        items:
+          type: string
+          format: uri
+          minLength: 1
+          maxLength: 256
+      token_endpoint_auth_method:
+        type: string
+        enum:
+          - private_key_jwt
+          - tls_client_auth
+      grant_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - client_credentials
+            - authorization_code
+            - refresh_token
+        minItems: 1
+      response_types:
+        type: array
+        items:
+          type: string
+          enum:
+            - code
+            - code id_token
+      software_id:
+        type: string
+      scope:
+        type: array
+        items:
+          type: string
+          minLength: 1
+          maxLength: 32
+      software_statement:
+        type: string
+        format: JWT
+      application_type:
+        type: string
+        enum:
+          - web
+          - mobile
+      id_token_signed_response_alg:
+        $ref: '#/definitions/SupportedAlgorithms'
+      id_token_encrypted_response_alg:
+        description: JWE `alg` algorithm with which an id_token is to be encrypted
+        type: string
+        example: RSA-OAEP
+      id_token_encrypted_response_enc:
+        description: JWE `enc` algorithm with which an id_token is to be encrypted
+        type: string
+        example: A256GCM
+      request_object_signing_alg:
+        $ref: '#/definitions/SupportedAlgorithms'
+      token_endpoint_auth_signing_alg:
+        $ref: '#/definitions/SupportedAlgorithms'
+      tls_client_auth_subject_dn:
+        type: string
+        minLength: 1
+        maxLength: 128
+      backchannel_token_delivery_mode:
+        type: string
+        enum:
+          - poll
+          - ping
+          - push
+        description: >-
+          As defined in CIBA - Registration and Discovery Metadata.
+          This value MUST be specified iff the grant_types includes
+          urn:openid:params:grant-type:ciba
+      backchannel_client_notification_endpoint:
+        type: string
+        minLength: 1
+        maxLength: 256
+        description: >-
+          As defined in CIBA - Registration and Discovery Metadata.
+          This value MUST be specified iff the grant_types includes
+          urn:openid:params:grant-type:ciba and
+          backchannel_token_delivery_mode is not poll.
+          This must be a valid HTTPS URL
+      backchannel_authentication_request_signing_alg:
+        type: string
+        enum:
+          - RS256
+          - PS256
+          - ES256
+        description: >-
+          As defined in CIBA - Registration and Discovery Metadata.
+          This value MUST be specified iff the grant_types includes
+          urn:openid:params:grant-type:ciba.
+      backchannel_user_code_parameter_supported:
+        type: boolean
+        description: >-
+          As defined in CIBA - Registration and Discovery Metadata.
+          This value MUST be specified only if the grant_types includes
+          urn:openid:params:grant-type:ciba.
+          If specified, it MUST be set to false.
+  RegistrationError:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: string
+        enum:
+          - invalid_redirect_uri
+          - invalid_client_metadata
+          - invalid_software_statement
+          - unapproved_software_statement
+      error_description:
+        type: string
+        minLength: 1
+        maxLength: 500
+securityDefinitions:
+  TPPOAuth2Security:
+    type: oauth2
+    flow: application
+    description: >-
+      TPP client credential authorisation flow with the ASPSP. No scopes defined
+      as per specification
+    tokenUrl: 'https://authserver.example/token'
