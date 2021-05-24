@@ -67,6 +67,8 @@ The WSO2 Open Banking solution expects at least two APIs from the bank that retu
 the `user_id` is provided. The response must be in the JSON format and it will automatically load the accounts list on 
 the consent page during the consent authorization flow. 
 
+![consent-page-with-accounts](../assets/img/learn/integration/list-of-accounts.png)
+
 The responses of shareable and payable accounts APIs depend on your open banking specification and what you need to 
 display on the consent page. You can configure customized steps for retrieval by following the 
 [Consent Authorize endpoint](https://ob.docs.wso2.com/en/latest/develop/consent-management-authorize/#configuration) 
