@@ -22,14 +22,14 @@ locate the respective root directory of the base products:
        This section explains how to set up the solution with a MySQL 8.0 database server. For other DBMS, see 
        [Setting up databases](../install-and-setup/setting-up-databases.md).
 
-1. Do the following configurations in these files:
-    - `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/conf/configure.properties` 
-    - `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` 
+1. Open the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
 
 2. Configure the hostnames of the API Manager and Identity Server.
 
 3. Configure databases related properties and database names.
- 
+
+4. Open the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` file and repeat step 2 and 3.
+     
 ### Step 3: Set up servers 
 1. Run the `merge.sh` script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
 `<OB_IS_ACCELERATOR_HOME>/bin` respectively:
