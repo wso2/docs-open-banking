@@ -1,9 +1,5 @@
 This page explains how to onboard API consumers using the Dynamic Client Registration API. 
 
-!!! tip "Before you begin:"
-    See the [Configurations](../learn/dynamic-client-registration-configuration.md) section and configure Dynamic Client
-    Registration.
-
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
 1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
