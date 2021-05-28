@@ -51,7 +51,97 @@ makes a request to retrieve any account information, the solution validates the 
 successful validation, consent-related information is directed to the core banking system in the form of a header. This
 header is known as `Account-Request-Information`.
    
-The `Account-Request-Information` header is a signed JWT, which needs to be decoded by the core banking system.
+The `Account-Request-Information` header is a signed JWT, which needs to be decoded by the core banking system. 
+ 
+??? Note "Click here to see the decoded format of a sample header"
+    The decoded JWT header is in JSON format and looks as follows:
+    
+    ``` json
+    {
+       "clientId":"EkpvjD6O8P8Px8RrBYJx1mMw78Ua",
+       "currentStatus":"authorized",
+       "createdTimestamp":1621616438,
+       "recurringIndicator":false,
+       "authorizationResources":[
+          {
+             "updatedTime":1621616455,
+             "consentId":"b10a4458-0354-4fde-b259-5bbd3066d445",
+             "authorizationId":"5d290705-dd5c-43f2-98a0-3afc58e1c4bc",
+             "authorizationType":"authorization",
+             "userId":"admin@wso2.com@carbon.super",
+             "authorizationStatus":"authorized"
+          }
+       ],
+       "updatedTimestamp":1621616455,
+       "validityPeriod":0,
+       "consentAttributes":{
+          
+       },
+       "consentId":"b10a4458-0354-4fde-b259-5bbd3066d445",
+       "consentMappingResources":[
+          {
+             "mappingId":"e5fe1b24-05f1-4f52-be10-55cb4b58b2a9",
+             "mappingStatus":"active",
+             "accountId":"30080012343456",
+             "authorizationId":"5d290705-dd5c-43f2-98a0-3afc58e1c4bc",
+             "permission":"30080012343456"
+          }
+       ],
+       "consentType":"accounts",
+       "receipt":{
+          "Risk":{
+             
+          },
+          "Data":{
+             "TransactionToDateTime":"2021-05-24T22:30:32.995+05:30",
+             "ExpirationDateTime":"2021-05-26T22:30:32.936+05:30",
+             "Permissions":[
+                "ReadAccountsBasic",
+                "ReadAccountsDetail",
+                "ReadBalances",
+                "ReadBeneficiariesBasic",
+                "ReadBeneficiariesDetail",
+                "ReadDirectDebits",
+                "ReadProducts",
+                "ReadStandingOrdersBasic",
+                "ReadStandingOrdersDetail",
+                "ReadTransactionsBasic",
+                "ReadTransactionsCredits",
+                "ReadTransactionsDebits",
+                "ReadTransactionsDetail",
+                "ReadStatementsBasic",
+                "ReadStatementsDetail",
+                "ReadOffers",
+                "ReadParty",
+                "ReadPartyPSU",
+                "ReadScheduledPaymentsBasic",
+                "ReadScheduledPaymentsDetail",
+                "ReadPAN"
+             ],
+             "TransactionFromDateTime":"2021-05-21T22:30:32.995+05:30"
+          }
+       },
+       "consentFrequency":0
+    }
+    ```
+    
+    Given below is a brief description of the fields in the header:
+    
+    |Field|Description|
+    |-----|-----------|
+    |clientId| The unique ID of the API consumer application.|
+    |currentStatus| The current status of the consent. |
+    |createdTimestamp|The date and time when the consent was created. | 
+    |recurringIndicator| Specifies if this is a recurring transaction. |
+    |authorizationResources| Contains details regarding the consent authorization. |
+    |updatedTimestamp| The last date and time the consent was updated. |
+    |validityPeriod| The validity period of the consent in seconds. |
+    |consentAttributes| Extra attributes related to the consent. |
+    |consentId| The unique ID of the consent that is being authorized. |
+    |consentMappingResources| The details of the accounts that the consent is bound to. |
+    |consentType| The type of the consent. For example, accounts, payments. |
+    |receipt| Details of the consent, such as expiration time, permissions. |
+    |consentFrequency| The maximum frequency for access without customer involvement per day. |
 
 The core banking system will perform all required validations and build a response. This response needs to adhere to 
 the requirements in your open banking standard.
@@ -66,6 +156,8 @@ different.
 The WSO2 Open Banking solution expects at least two APIs from the bank that return shareable and payable accounts when 
 the `user_id` is provided. The response must be in the JSON format and it will automatically load the accounts list on 
 the consent page during the consent authorization flow. 
+
+![consent-page-with-accounts](../assets/img/learn/integration/list-of-accounts.png)
 
 The responses of shareable and payable accounts APIs depend on your open banking specification and what you need to 
 display on the consent page. You can configure customized steps for retrieval by following the 
