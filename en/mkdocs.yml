@@ -53,7 +53,7 @@ nav:
     - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
     - 'About this Release': get-started/about-this-release.md
     - 'Quick Start Guide':
-      - 'Get started': get-started/quick-start-guide.md
+      - 'Get Started': get-started/quick-start-guide.md
       - 'Set Up Accelerators': get-started/set-up-accelerators.md
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'Dynamic Client Registration': get-started/dynamic-client-registation.md
