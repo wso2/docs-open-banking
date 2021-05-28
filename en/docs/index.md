@@ -86,7 +86,7 @@ template: templates/single-column.html
     		</div>
     		<!-- end card -->
     		<!-- card -->
-    		<div class="card" onclick="location.href='page-not-found';">
+    		<div class="card" onclick="location.href='learn/integration/';">
     			<div class="line"></div>
     			<div class="card-icon">
     				<i class="material-icons md-36">settings_input_component</i>
