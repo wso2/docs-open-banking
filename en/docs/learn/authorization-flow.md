@@ -18,7 +18,8 @@ enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST
     ???tip "Click here to see how to generate a request object..."
         - Generate the request object by signing the following JSON payload using the supported algorithms. Given below is 
         a sample request object in the JWT format:
-        ```
+        
+        ``` tab='Sample'
         eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4Iiwi
         YWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6ODI0My90b2tlbiIsInNjb3BlIjoiY
         WNjb3VudHMgb3BlbmlkIiwiaXNzIjoiNGhaSUxBVGZQeVhsTEZxa1AzWjBPQllobUR3YSIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzI
@@ -32,53 +33,60 @@ enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST
         RpK70Dz7AiZ73ODN8Ic9XCTDwKiE5jE_hHYi7qF2QIIUubjeVgRMAjF9A18t9VQDqLt_x-dhWPXerCcOL4FaFrI7RGS8s_YK6fdag&prompt=login&nonce
         =n-0S6_WzA2Mj
         ```
-        - The format of the decoded sample request object looks as follows:
-        ```
+        
+        ``` tab='Format'
         {
-          "kid": "<CERTIFICATE_FINGERPRINT>",
-          "alg": "<SUPPORTED_ALGORITHM>",
-          "typ": "JWT"
+        "kid": "<CERTIFICATE_FINGERPRINT>",
+        "alg": "<SUPPORTED_ALGORITHM>",
+        "typ": "JWT"
         }
         {
-          "max_age": 86400,
-          "aud": "<This is the audience that the ID token is intended for. e.g., https://<APIM_HOST>:8243/token>",
-          "scope": "fundsconfirmation openid",
-          "iss": "<APPLICATION_ID>",
-          "claims": {
-            "id_token": {
-              "acr": {
-                "values": [
-                  "urn:openbanking:psd2:sca",
-                  "urn:openbanking:psd2:ca"
-                ],
-                "essential": true
-              },
-              "openbanking_intent_id": {
-                "value": "<CONSENTID>",
-                "essential": true
-              }
+        "max_age": 86400,
+            "aud": "<This is the audience that the ID token is intended for. Example: https://<WSO2_IS_HOST>:9446/oauth2/token>",
+        "scope": "fundsconfirmation openid",
+        "iss": "<APPLICATION_ID>",
+        "claims": {
+          "id_token": {
+            "acr": {
+              "values": [
+                "urn:openbanking:psd2:sca",
+                "urn:openbanking:psd2:ca"
+              ],
+              "essential": true
             },
-            "userinfo": {
-              "openbanking_intent_id": {
-                "value": "<CONSENTID>",
-                "essential": true
-              }
+            "openbanking_intent_id": {
+              "value": "<CONSENTID>",
+              "essential": true
             }
           },
-          "response_type": "<code:Retrieves authorize code/code id_token: Retrieves authorize token and ID token>",  
-          "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
-          "state": "YWlzcDozMTQ2",
-          "exp": <EPOCH_TIME_OF_TOKEN_EXPIRATION>,
-          "nonce": "<PREVENTS_REPLAY_ATTACKS>",
-          "client_id": "<APPLICATION_ID>"
+          "userinfo": {
+            "openbanking_intent_id": {
+              "value": "<CONSENTID>",
+              "essential": true
+            }
+          }
+        },
+        "response_type": "<code:Retrieves authorize code/code id_token: Retrieves authorize token and ID token>",  
+        "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
+        "state": "YWlzcDozMTQ2",
+        "exp": <EPOCH_TIME_OF_TOKEN_EXPIRATION>,
+        "nonce": "<PREVENTS_REPLAY_ATTACKS>",
+        "client_id": "<APPLICATION_ID>"
         }
         ```
+
+
 
 3. Upon successful authentication, the user is redirected to the consent authorise page. Use the login credentials of a user that has a `subscriber` role. 
 
-5. You can view the list of bank accounts and the information that the API consumer wishes to access.
+4. You can view the list of bank accounts and the information that the API consumer wishes to access.
+    ![select accounts](../assets/img/learn/consent-manager/consent-page-select-accounts.png)   
+    
+5. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click 
+ **Confirm** to grant these permissions.
+    ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png) 
 
-- Upon providing consent, an authorization code is generated on the URL of the `redirect_uri`. See the sample given below:
+6. Upon providing consent, an authorization code is generated on the URL of the `redirect_uri`. See the sample given below:
     - The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
 ```
 https://wso2.com/#code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775&id_token=eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1

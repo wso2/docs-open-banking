@@ -3,7 +3,9 @@ applications to access account data. **Consent Manager** is an application in WS
 requirements and manage consents.
 
 !!! note
-    Bank officers with the `CustomerCareOfficerRole` role and bank customers can access the Consent Manager.
+    - Bank officers with the `CustomerCareOfficerRole` role and bank customers can access the Consent Manager.  
+    - Customer Care Officers have privileges such as Advanced Search options. For more information on user roles, see 
+    [Configuring users and roles](../install-and-setup/configuring-users-and-roles.md).
 
 ## Configuring Consent Manager
 

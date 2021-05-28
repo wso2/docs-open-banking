@@ -1,14 +1,17 @@
 !!!tip "Prerequisites"
-    1. Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
-        - Copy and extract the accelerator zip file inside WSO2 Open Banking 3.0 in the root directory of WSO2 Streaming 
-        Integrator.
+    Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
+    
+    1. Copy and extract the accelerator zip file inside WSO2 Open Banking 3.0 in the root directory of WSO2 Streaming 
+    Integrator.
+        
         !!!note
             Hereafter,
             
             - `<SI_HOME>` refers to the root directory of WSO2 Streaming Integrator.
             - `<OB_BI_ACCELERATOR_HOME>` refers to the root directory of WSO2 Open Banking Business Intelligence Accelerator.
 
-        - Run the `merge.sh` script in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
+    2. Run the `merge.sh` script in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
+    
         ```
         ./merge.sh
         ```
@@ -43,5 +46,5 @@ server_url = "{tcp://<SI_HOST>:7612}"
 
 2. Try out the sample API flow using the instructions given in [Tryout Flow](publish-an-api.md).
 
-Once you try out the sample API flow, you can notice that data is published to the tables of the `openbank_ob_reporting_statsdb` 
+3. Once you try out the sample API flow, you can notice that data is published to the tables of the `openbank_ob_reporting_statsdb` 
 database. 

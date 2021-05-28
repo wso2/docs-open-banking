@@ -9,8 +9,11 @@ to the customer.
  
     ![login-consent-page](../assets/img/develop/customizing-consent-page/login-of-consent-page.png)
     
-5. The customer can view the information before consenting or denying it. For example,
-    ![information-consent-page](../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
+5. A list of bank accounts and the information that the API consumer wishes to access are displayed.
+    ![select accounts](../assets/img/learn/consent-manager/consent-page-select-accounts.png)  
+    
+6. The customer can view the information before consenting or denying it. For example,
+    ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png) 
  
 ##Consent Authorization in WSO2 Open Banking Accelerator
 

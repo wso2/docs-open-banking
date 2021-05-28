@@ -27,9 +27,10 @@ authentication/Strong Customer Authentication via SMS OTP.
 
 After successful authentication, the customer is presented with the details of the consent where they can allow or 
 deny this request from the API consumer application to access data. Depending on the customer’s response the API 
-consumer application may or may not have access to the data. With WSO2 Open Banking Accelerator you can use one of 
-the following methods to revoke these consents granted to API 
-consumer applications. 
+consumer application may or may not have access to the data. 
+
+With the [Consent Manager](consent-manager.md) application in WSO2 Open Banking Accelerator you can use one of the 
+following methods to revoke these consents granted to API consumer applications.
  
  - A customer can revoke a consent using the Consent Manager portal 
  - A Customer Care Representative from the bank can revoke a consent on behalf of a user

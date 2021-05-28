@@ -231,9 +231,14 @@ ect_uri=www.wso2.com&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&no
 
 4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
 
-5. You can view the list of bank accounts and the information that the API consumer wishes to access.
-
-6. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample 
+5. The page displaus a list of bank accounts and the information that the API consumer wishes to access.
+    ![select accounts](../assets/img/learn/consent-manager/consent-page-select-accounts.png)   
+    
+6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click 
+ **Confirm** to grant these permissions.
+    ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png)  
+    
+7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample 
 given below:
 
     The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
