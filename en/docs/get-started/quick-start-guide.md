@@ -2,7 +2,8 @@ WSO2 Open Banking Accelerator is a technology stack catered to speed up the impl
 You can use the WSO2 Open Banking Accelerator on top of the WSO2 Identity Server and API Manager to obtain an environment 
 for Identity Access Management and API management in open banking. 
 
-Follow the instructions to find how you can quickly set up and try out a basic flow.
+This section guides you on how to set up the solution in a local environment. Follow the instructions to find how you 
+can quickly set up and try out a basic flow.
 
 !!! tip "Prerequisites"
     1. Download Oracle JDK 1.8 to the local environment.

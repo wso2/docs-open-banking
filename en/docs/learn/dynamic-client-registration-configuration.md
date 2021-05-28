@@ -70,7 +70,7 @@ app_name_claim = "software_client_name"
 ```
 
 6. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA 
-for this value.
+for this value. For example, the `software_jwks_endpoint` claim.
 ``` toml
 [open_banking.dcr]
 jwks_endpoint_name = "jwks_uri"
