@@ -18,8 +18,8 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 
     ``` xml tab="Client Assertion Format"
     {
-    "alg": "<<The algorithm used for signing.>>",
-    "kid": "<<The thumbprint of the certificate.>>",
+    "alg": "<<The algorithm used for signing>>",
+    "kid": "<<The KID value of the signing jwk set>>",
     "typ": "JWT"
     }
          

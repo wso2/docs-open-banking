@@ -71,7 +71,7 @@ flow, you can use the transport certificates available [here](../../assets/attac
     curl -X POST \
     https://localhost:9446/oauth2/token \
     --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-    -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=www.wso2.com&client_id=<CLIENT_ID>'
+    -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=www.wso2.com&client_id=<CLIENT_ID>'
     ```
    
     - The request payload contains a client assertion JWT:
@@ -83,7 +83,7 @@ flow, you can use the transport certificates available [here](../../assets/attac
     ``` json tab="Format"
     {
     "alg": "<<The algorithm used for signing.>>",
-    "kid": "<<The thumbprint of the certificate.>>",
+    "kid": "<<The KID value of the signing jwk set>>",
     "typ": "JWT"
     }
       
@@ -226,7 +226,7 @@ The API consumer application redirects the bank customer to authenticate and app
 consumer wishes to access. This request is in the format of a URL as follows: 
 
     ``` url tab="Sample"
-    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaNlEiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo5NDQ2L29hdXRoMi90b2tlbiIsIm1heF9hZ2UiOjg2NDAwLCJjcml0IjpbImI2NCIsImh0dHA6Ly9vcGVuYmFua2luZy5vcmcudWsvaWF0IiwiaHR0cDovL29wZW5iYW5raW5nLm9yZy51ay9pc3MiLCJodHRwOi8vb3BlbmJhbmtpbmcub3JnLnVrL3RhbiJdLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImV4cCI6MTk1NDcwODcxMCwiY2xhaW1zIjp7ImlkX3Rva2VuIjp7ImFjciI6eyJ2YWx1ZXMiOlsidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhIiwidXJuOm9wZW5iYW5raW5nOnBzZDI6Y2EiXSwiZXNzZW50aWFsIjp0cnVlfSwib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiYzZlMjUzYjEtMTE0OS00OTc0LWJjMWYtOTg0OTFiYWU3YmNjIiwiZXNzZW50aWFsIjp0cnVlfX0sInVzZXJpbmZvIjp7Im9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6ImM2ZTI1M2IxLTExNDktNDk3NC1iYzFmLTk4NDkxYmFlN2JjYyIsImVzc2VudGlhbCI6dHJ1ZX19fSwiaXNzIjoiTHZiU2phT0lVUG1BV1pUOGpkenl2anFDcVk4YSIsInJlc3BvbnNlX3R5cGUiOiJjb2RlIGlkX3Rva2VuIiwicmVkaXJlY3RfdXJpIjoiaHR0cHM6Ly93c28yLmNvbSIsInN0YXRlIjoiMHBOME5CVEhjdiIsIm5vbmNlIjoiakJYaE9tT0tDQiIsImNsaWVudF9pZCI6Ikx2YlNqYU9JVVBtQVdaVDhqZHp5dmpxQ3FZOGEifQ.ib-SS_3P9jT4ihedFQ55aeMMbMdPPs5yJf4qVPS0AMegSzN9bqHUTLVLG1nVEIbZuBYEldlSEB_UVk93eNVlDbl87nLSyp2tGEv8pQuglx10lHTQiWAB4ufV-BBQ8rKFC27TEktjpb9-Y-XVHyLUoSD59kn7wqzAzDYgkLVKGbqkTBZqGLfrIaM9xVRLPhT-0Ut1oMs4jPSV7dIqksOonRdgXZvZUTlByizz4skpaALUwm_x6sh13BEXADhayUB8t-6YR06MzBIc_ZOJH5nM7ahJkiq-uMQV6cc7me2g7FVt0Ym7U7kUQEx5chnTYe1jvpvl9P5wCd4qX7mbAk30TQ
+    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
     ```
    
     ``` url tab="Format"
