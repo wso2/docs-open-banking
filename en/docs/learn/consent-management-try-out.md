@@ -82,15 +82,15 @@ The bank sends the request to the customer stating the accounts and information 
           
           ``` tab='Format'
           {
-            "kid": "<CERTIFICATE_FINGERPRINT>",
+            "kid": "<The KID value of the signing jwk set>",
             "alg": "<SUPPORTED_ALGORITHM>",
             "typ": "JWT"
           }
           {
             "max_age": 86400,
-                "aud": "<This is the audience that the ID token is intended for. Example: https://<WSO2_IS_HOST>:9446/oauth2/token>",
-            "scope": "fundsconfirmation openid",
-            "iss": "<APPLICATION_ID>",
+                "aud": "<This is the audience that the ID token is intended for. Example: https://<IS_HOST>:9446/oauth2/token>",
+            "scope": "accounts openid",
+            "iss": "<CLIENT_ID>",
             "claims": {
               "id_token": {
                 "acr": {
@@ -112,20 +112,24 @@ The bank sends the request to the customer stating the accounts and information 
                 }
               }
             },
-            "response_type": "<code:Retrieves authorize code/code id_token: Retrieves authorize token and ID token>",  
+            "response_type": "code id_token",  
             "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
             "state": "YWlzcDozMTQ2",
-            "exp": <EPOCH_TIME_OF_TOKEN_EXPIRATION>,
+            "exp": <The expiration time of the request object in Epoch format>,
             "nonce": "<PREVENTS_REPLAY_ATTACKS>",
-            "client_id": "<APPLICATION_ID>"
+            "client_id": "<CLIENT_ID>"
           }
           ```
           
       2. The request that the bank sends to the customer is in the format of a URL as follows: 
              
+        ``` url tab="Sample"
+        https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
         ```
-        https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=HOUkaSby8DydnbeIhE7lycbkII8a&redir
-        ect_uri=https://wso2.com&scope=accounts%20openid&state=af0ifjsldkj&nonce=n-0S6_WzA2Mj&request=<REQUEST_OBJECT>
+       
+        ``` url tab="Format"
+        https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20op
+        enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
         ```
         
       3. Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in the application registration.
@@ -172,8 +176,8 @@ the API consumer must have an access token issued by the bank using the client c
       - The request payload contains a client assertion in the following format:
       ```
       {
-      "alg": "<<The algorithm used for signing.>>",
-      "kid": "<<The thumbprint of the certificate.>>",
+      "alg": "<<The algorithm used for signing>>",
+      "kid": "<<The KID value of the signing jwk set>>",
       "typ": "JWT"
       }
         

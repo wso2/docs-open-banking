@@ -6,12 +6,15 @@ The initiated consent needs to be authorized by the bank customer for the API co
 
 1. The bank sends the request to the customer stating the accounts and information that the API consumer wishes to 
 access. This request is in the format of a URL as follows:
-```
-https://<IS_HOST>:9446/oauth2/authorize?response_type=<RESPONSE_TYPE>&client_id=<APPLICATION_ID>&scope=accounts%20op
-enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
-```
 
-    - Make sure to update the placeholders with appropriate values.
+    ``` url tab="Sample"
+    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
+    ```
+   
+    ``` url tab="Format"
+    https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20op
+    enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
+    ```
 
 2. Run the URL in a browser to prompt the invocation of the authorize API.
 
@@ -36,15 +39,15 @@ enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST
         
         ``` tab='Format'
         {
-        "kid": "<CERTIFICATE_FINGERPRINT>",
+        "kid": "<The KID value of the signing jwk set>",
         "alg": "<SUPPORTED_ALGORITHM>",
         "typ": "JWT"
         }
         {
         "max_age": 86400,
-            "aud": "<This is the audience that the ID token is intended for. Example: https://<WSO2_IS_HOST>:9446/oauth2/token>",
-        "scope": "fundsconfirmation openid",
-        "iss": "<APPLICATION_ID>",
+            "aud": "<This is the audience that the ID token is intended for. Example: https://<IS_HOST>:9446/oauth2/token>",
+        "scope": "accounts openid",
+        "iss": "<CLIENT_ID>",
         "claims": {
           "id_token": {
             "acr": {
@@ -66,12 +69,12 @@ enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST
             }
           }
         },
-        "response_type": "<code:Retrieves authorize code/code id_token: Retrieves authorize token and ID token>",  
+        "response_type": "code id_token",  
         "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
         "state": "YWlzcDozMTQ2",
-        "exp": <EPOCH_TIME_OF_TOKEN_EXPIRATION>,
+        "exp": <The expiration time of the request object in Epoch format>,
         "nonce": "<PREVENTS_REPLAY_ATTACKS>",
-        "client_id": "<APPLICATION_ID>"
+        "client_id": "<CLIENT_ID>"
         }
         ```
 

@@ -1,6 +1,11 @@
 To create a consent, the API consumer applications need an Application Access Token.
 
 1. Once you register the application, generate an application access token using the following command: 
+
+!!! note
+    For this sample flow, you can use the transport certificates available 
+    [here](../../assets/attachments/Transport_Certs.zip). 
+    
 ```
 curl -X POST \https://<IS_HOST>:9446/oauth2/token  \
 	-H 'Content-Type: application/x-www-form-urlencoded' \
@@ -9,12 +14,12 @@ curl -X POST \https://<IS_HOST>:9446/oauth2/token  \
 redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
 
-    - The client assertion looks as follows:
+   - The client assertion looks as follows:
 
     ``` xml tab="Client Assertion Format"
     {
-    "alg": "<<The algorithm used for signing.>>",
-    "kid": "<<The thumbprint of the certificate.>>",
+    "alg": "<<The algorithm used for signing>>",
+    "kid": "<<The KID value of the signing jwk set>>",
     "typ": "JWT"
     }
          

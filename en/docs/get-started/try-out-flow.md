@@ -64,57 +64,60 @@ This document provides step by step instructions to invoke the Accounts Informat
         23.From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
 ### Step 1: Generate application access token
-1. Once you register the application, generate an application access token using the following command: 
-```
-curl -X POST \
-https://localhost:9446/oauth2/token \
---cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
--d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaN
-lEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJTNnUySGU0anl3dnl5cFQ3ZkdZRXhMU3lwUVlhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0
-aDIvdG9rZW4iLCJpc3MiOiJTNnUySGU0anl3dnl5cFQ3ZkdZRXhMU3lwUVlhIiwiZXhwIjoxNjg0MDk5ODEyLCJpYXQiOjE2MjA5Nzc1MzIsImp0aSI6IjE0
-In0.ng1msBveFsT2q7vhZcC-ijLkh1ISlNuo-oJzwKEebRtQnN6WHd0ITsu0SXPoeHsQkpPJoKOtfhdmD2mqfAkt4zP8gcc6gxxNJjCKDU0l5KJ9tZzyipbE
-EysbdyLtCnNmoylaj4H-X8Y3HqEaA_6D14TJn0MYFhOf5FEmjh6xLtSCHAlTf289udyATnSdGgofzim7poEf8MDwg-XJ8hsq88TkmwYsD4QCrDAb9IRSo2Br
-xMt1LPdHzHJAmnKmwlNuefSYMg59O3wan5VUnJSV4VA7M1oUgwURQ2qBNs8XWISjseNxB9zB028PjWERbXZidfFH2yjD-oMRNVhQ8NKyDQ&redirect_uri=
-www.wso2.com&client_id=HOUkaSby8DydnbeIhE7lycbkII8a'
-```
-- The request payload contains a client assertion in the following format:
-```
-{
-"alg": "<<The algorithm used for signing.>>",
-"kid": "<<The thumbprint of the certificate.>>",
-"typ": "JWT"
-}
-  
-{
-"iss": "<<This is the issuer of the token. For example, client ID of your application>>",
-"sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
-"exp": <<This is epoch time of the token expiration date/time>>,
-"iat": <<This is epoch time of the token issuance date/time>>,
-"jti": "<<This is an incremental unique value>>",
-"aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
-}
-  
-<signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
-signature of the application certificate is used.>
-```
+1. Once you register the application, generate an application access token using the following command. For this sample 
+flow, you can use the transport certificates available [here](../../assets/attachments/Transport_Certs.zip). 
+
+    ```
+    curl -X POST \
+    https://localhost:9446/oauth2/token \
+    --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+    -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=www.wso2.com&client_id=<CLIENT_ID>'
+    ```
+   
+    - The request payload contains a client assertion JWT:
+    
+    ``` jwt tab="Sample"
+    eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaNlEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJTNnUySGU0anl3dnl5cFQ3ZkdZRXhMU3lwUVlhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJTNnUySGU0anl3dnl5cFQ3ZkdZRXhMU3lwUVlhIiwiZXhwIjoxNjg0MDk5ODEyLCJpYXQiOjE2MjA5Nzc1MzIsImp0aSI6IjE0In0.ng1msBveFsT2q7vhZcC-ijLkh1ISlNuo-oJzwKEebRtQnN6WHd0ITsu0SXPoeHsQkpPJoKOtfhdmD2mqfAkt4zP8gcc6gxxNJjCKDU0l5KJ9tZzyipbEEysbdyLtCnNmoylaj4H-X8Y3HqEaA_6D14TJn0MYFhOf5FEmjh6xLtSCHAlTf289udyATnSdGgofzim7poEf8MDwg-XJ8hsq88TkmwYsD4QCrDAb9IRSo2BrxMt1LPdHzHJAmnKmwlNuefSYMg59O3wan5VUnJSV4VA7M1oUgwURQ2qBNs8XWISjseNxB9zB028PjWERbXZidfFH2yjD-oMRNVhQ8NKyDQ
+    ```
+   
+    ``` json tab="Format"
+    {
+    "alg": "<<The algorithm used for signing.>>",
+    "kid": "<<The KID value of the signing jwk set>>",
+    "typ": "JWT"
+    }
+      
+    {
+    "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
+    "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
+    "exp": <<This is epoch time of the token expiration date/time>>,
+    "iat": <<This is epoch time of the token issuance date/time>>,
+    "jti": "<<This is an incremental unique value>>",
+    "aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
+    }
+      
+    <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
+    signature of the application certificate is used.>
+    ```
 
 2. Upon successful token generation, you obtain a token as follows:
-```
-{
-   "access_token":"aa8ce78b-d81e-3385-81b1-a9fdd1e71daf",
-   "scope":"accounts payments  openid",
-   "id_token":"eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9oYXNoIjoiaHVBcS1GbzB0N2pFZmtiZ1A4TkJwdyIsImF1ZCI6WyJrYkxuSkpfdVFMMlllNjh1YUNSYlBJSk9SNFVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6ImFkbWluQHdzbzIuY29tQGNhcmJvbi5zdXBlciIsIm5iZiI6MTYwMTk5MzA5OCwiYXpwIjoia2JMbkpKX3VRTDJZZTY4dWFDUmJQSUpPUjRVYSIsImFtciI6WyJjbGllbnRfY3JlZGVudGlhbHMiXSwic2NvcGUiOlsiYW1fYXBwbGljYXRpb25fc2NvcGUiLCJvcGVuaWQiXSwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo4MjQzXC90b2tlbiIsImV4cCI6MTYwMTk5NjY5OCwiaWF0IjoxNjAxOTkzMDk4fQ.cGdQ-9qK5JvKW32lK_PqhyJZyRb3r_86UPRFI2hlgiScnLYD8RsXDBNalmmnHiAbfb06e69QHQnmEKa6pcSSFWor0OAuzisBb6C5V51E9vH0eCr4hIa_lBtmjvLmsSue7puRUaYcyptwiuUkwjLFb-3_cpeuzWH29Knwne6zVD8gav_FPi1ub4vkrkX8ktLZH_JQG20fim1Ai5j2Q7jcnaMIHShYnC9sLBP5usp3thFLdQEyH8KCHJK79yNKzaruUntkq9yqqO_MQvY7VevLlDEDPllniRVih0r4TICdGrgJ0Ibr4wh_xFksVhYqa2_6x71ed_K9SX3hG-6T6pBUVA",
-   "token_type":"Bearer",
-   "expires_in":3600
-}
-```
+    ```
+    {
+       "access_token":"aa8ce78b-d81e-3385-81b1-a9fdd1e71daf",
+       "scope":"accounts payments  openid",
+       "id_token":"eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9oYXNoIjoiaHVBcS1GbzB0N2pFZmtiZ1A4TkJwdyIsImF1ZCI6WyJrYkxuSkpfdVFMMlllNjh1YUNSYlBJSk9SNFVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6ImFkbWluQHdzbzIuY29tQGNhcmJvbi5zdXBlciIsIm5iZiI6MTYwMTk5MzA5OCwiYXpwIjoia2JMbkpKX3VRTDJZZTY4dWFDUmJQSUpPUjRVYSIsImFtciI6WyJjbGllbnRfY3JlZGVudGlhbHMiXSwic2NvcGUiOlsiYW1fYXBwbGljYXRpb25fc2NvcGUiLCJvcGVuaWQiXSwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo4MjQzXC90b2tlbiIsImV4cCI6MTYwMTk5NjY5OCwiaWF0IjoxNjAxOTkzMDk4fQ.cGdQ-9qK5JvKW32lK_PqhyJZyRb3r_86UPRFI2hlgiScnLYD8RsXDBNalmmnHiAbfb06e69QHQnmEKa6pcSSFWor0OAuzisBb6C5V51E9vH0eCr4hIa_lBtmjvLmsSue7puRUaYcyptwiuUkwjLFb-3_cpeuzWH29Knwne6zVD8gav_FPi1ub4vkrkX8ktLZH_JQG20fim1Ai5j2Q7jcnaMIHShYnC9sLBP5usp3thFLdQEyH8KCHJK79yNKzaruUntkq9yqqO_MQvY7VevLlDEDPllniRVih0r4TICdGrgJ0Ibr4wh_xFksVhYqa2_6x71ed_K9SX3hG-6T6pBUVA",
+       "token_type":"Bearer",
+       "expires_in":3600
+    }
+    ```
 
 ### Step 2: Initiate a consent
 
 In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its 
 information from the bank. 
 
-A sample consent initiation request looks as follows:
+A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
+available [here](../../assets/attachments/Transport_Certs.zip):
 ```
 curl -X POST \
 https://localhost:8243/open-banking/v3.1/aisp/account-access-consents \
@@ -180,15 +183,15 @@ The API consumer application redirects the bank customer to authenticate and app
         - The format of the decoded sample request object looks as follows:
         ```
         {
-          "kid": "<CERTIFICATE_FINGERPRINT>",
+          "kid": "<The KID value of the signing jwk set>",
           "alg": "<SUPPORTED_ALGORITHM>",
           "typ": "JWT"
         }
         {
           "max_age": 86400,
-          "aud": "<This is the audience that the ID token is intended for. e.g., https://<APIM_HOST>:8243/token>",
-          "scope": "fundsconfirmation openid",
-          "iss": "<APPLICATION_ID>",
+          "aud": "<This is the audience that the ID token is intended for. Example, https://<IS_HOST>:9446/oauth2/token>",
+          "scope": "accounts openid",
+          "iss": "<CLIENT_ID>",
           "claims": {
             "id_token": {
               "acr": {
@@ -210,28 +213,32 @@ The API consumer application redirects the bank customer to authenticate and app
               }
             }
           },
-          "response_type": "<code:Retrieves authorize code/code id_token: Retrieves authorize token and ID token>",  
+          "response_type": "code id_token",  
           "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
           "state": "YWlzcDozMTQ2",
-          "exp": <EPOCH_TIME_OF_TOKEN_EXPIRATION>,
+          "exp": <The expiration time of the request object in Epoch format>,
           "nonce": "<PREVENTS_REPLAY_ATTACKS>",
-          "client_id": "<APPLICATION_ID>"
+          "client_id": "<CLIENT_ID>"
         }
         ```
 
 2. The bank sends the request to the customer stating the accounts and information that the API 
 consumer wishes to access. This request is in the format of a URL as follows: 
-```
-https://localhost:9446/oauth2/authorize?response_type=jwt&client_id=<CLIENT_ID>&scope=accounts%20openid&redir
-ect_uri=www.wso2.com&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=n-0S6_WzA2Mj
-```
-    - Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in [application registration](dynamic-client-registation.md).
 
+    ``` url tab="Sample"
+    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
+    ```
+   
+    ``` url tab="Format"
+    https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20op
+    enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
+    ```
+   
 3. Run the URL in a browser to prompt the invocation of the authorize API.
 
 4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
 
-5. The page displaus a list of bank accounts and the information that the API consumer wishes to access.
+5. The page displays a list of bank accounts and the information that the API consumer wishes to access.
     ![select accounts](../assets/img/learn/consent-manager/consent-page-select-accounts.png)   
     
 6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click 
@@ -258,16 +265,12 @@ given below:
     -H 'Cache-Control: no-cache' \
     -H 'Content-Type: application/x-www-form-urlencoded' \
     --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
-    -d 'grant_type=authorization_code&scope=openid accounts&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:
-    jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=www.wso2.com&code=<CODE_GENERATED>client_id=
-    <CLIENT_ID>'
+    -d 'grant_type=authorization_code&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWenlaNlEiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJMdmJTamFPSVVQbUFXWlQ4amR6eXZqcUNxWThhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJMdmJTamFPSVVQbUFXWlQ4amR6eXZqcUNxWThhIiwiZXhwIjoxOTU0NzA4NzEwLCJpYXQiOjE2MjIxMzA0MzAsImp0aSI6IjE2MjIxMzA0MzAifQ.BVPqL47dL0N1NjCuoNh-8lSbIfrk-LyMJ1dCGqR0JNgyPmQ0726NAbGtVYzz4BWApKlMxmfdTS3vu9OX-iSk5_s21l9oovTS2KCaRo215M1S3Px5O28Cru8aIKkWgOcaLHB32X8K8nL90ge18nCJQvQ3ZyG5n8hzbw1P7KzY-t2MbeTWbXitM0ydEQLH6Pt5A5iL4cAa5PphvflJI9XIsF16YHzBnj9-ySOXPXYS2g38tBRY5hurmG96tuV4qmlN64_q43XeuPga-dUBYPun3fwe4ICS1oinnIHwioqR6bEgYEFMAou0MkotpB0dWLKbdwvAPSsP3ruMixY_2F4pqg&code=4dc73435-eee5-3486-ba3b-29b49be04f21&scope=openid%20accounts&redirect_uri=https%3A%2F%2Fwso2.com'
     ```
 
-2. Make sure you update the `<CODE_GENERATED>` placeholder with the authorization code you generate in the previous step.
+2. Make sure you update the `code` value with the authorization code you generate in the previous step.
 
-3. Update the value of the  `<CLIENT_ID>` with the value you obtained in [application registration](dynamic-client-registation.md).
-
-4. The response contains a user access token.
+3. The response contains a user access token.
 
 ### Step 5: Invoke Accounts Information Service API
 
@@ -285,8 +288,12 @@ https://localhost:8243/open-banking/v3.1/aisp/accounts/1' \
 -H 'Content-Type: application/json; charset=UTF-8'
 --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
 ```
-- The request retrieves the account information for the Account ID you mentioned in the request. A sample response looks 
-as follows:
+- The request retrieves the account information for the Account ID you mentioned in the request. 
+
+    !!! note
+        This is a sample response generated by the mock back end available in WSO2 Open Banking.
+
+    
 ```
 {
    "Data":{
