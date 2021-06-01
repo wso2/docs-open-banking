@@ -18,6 +18,39 @@
     ```
     ./configure.sh
     ```
+    4. Exchange the public certificates between servers. 
+        
+        ??? "Click here to see how it is done..."
+    
+            a. Go to the `<SI_HOME>/resources/security` directory and export the public certificate of the Streaming 
+            Integrator:
+           
+            ``` shell
+            keytool -export -alias wso2carbon -keystore wso2carbon.jks -file publickeySI.pem
+            ```
+            
+            b. Go to the `<IS_HOME>/repository/resources/security` directory and import the public certificate of the 
+            Streaming Integrator to the truststore of the Identity Server:
+            
+            ``` shell
+            keytool -import -alias wso2 -file publickeySI.pem -keystore client-truststore.jks -storepass wso2carbon
+            ```
+            
+            c. Go to the `<IS_HOME>/repository/resources/security` directory and export the public certificate of the 
+            Identity Server:
+            
+            ``` shell
+            keytool -export -alias wso2carbon -keystore wso2carbon.jks -file publickeyIAM.pem
+            ```
+            
+            d. Go to the `<SI_HOME>/resources/security` directory and import the public certificate of the Identity 
+            Server to the truststore of the Streaming Integrator:
+            
+            ``` shell
+            keytool -import -alias wso2 -file publickeyIAM.pem -keystore client-truststore.jks -storepass wso2carbon
+            ```
+            
+            e. Go to the `<APIM_HOME>/repository/resources/security` directory and repeat step b,c, and d.
 
 ###Configure
 1. Make sure that API Manager analytics is enabled in `<APIM_HOME>/repository/conf/deployment.toml`:
