@@ -63,7 +63,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 ## Step 2: Configure IS as Key Manager
 
  1. Sign in to the Admin Portal of API Manager at `https://<APIM_HOST>:9443/admin`.
- 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager] (../assets/img/learn/dcr/dcr-try-out/step-9.png)
+ 2. Go to **Key Manager** on the left main menu. ![add_Key_Manager](../assets/img/learn/dcr/dcr-try-out/step-9.png)
  3. Click **Add New Key Manager** and configure Key Manager. 
     
     ??? tip "Click here to see the full list of configurations..."
