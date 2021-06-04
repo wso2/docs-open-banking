@@ -53,36 +53,41 @@ homes.
 ## Getting WSO2 Updates
 
 The WSO2 Update tool delivers hotfixes and updates seamlessly on top of products as WSO2 Updates. They include 
-improvements that are released by WSO2. For more information, see the 
-[WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
+improvements that are released by WSO2. You need to update the base products and accelerators using the relevant script.
 
-1. Go to `<OB_APIM_ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
- 
-    ```bash tab='On Linux'
-    wso2update_linux 
-    ```
-    
-    ```bash tab='On Mac'
-    wso2update_darwin
-    ```
-    
-    ```bash tab='On Windows'
-    wso2update_windows.exe
-    ```
+1. Go to `<PRODUCT_HOME>/bin` and run the WSO2 Update tool:
 
-2. Go to `<OB_IS_ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
+    - Repeat this step for the WSO2 Identity Server, API Manager, and Stream Integrator products.
+    
+        ```bash tab='On Linux'
+        wso2update_linux 
+        ```
+        
+        ```bash tab='On Mac'
+        wso2update_darwin
+        ```
+        
+        ```bash tab='On Windows'
+        wso2update_windows.exe
+        ```
 
-    ```bash tab='On Linux'
-    wso2update_linux 
-    ```
-    
-    ```bash tab='On Mac'
-    wso2update_darwin
-    ```
-    
-    ```bash tab='On Windows'
-    wso2update_windows.exe
-    ```
+2. Go to `<ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
+
+    - Repeat this step for the WSO2 Open Banking Identity Server, API Manager, and Business Intelligence accelerators.
+
+        ```bash tab='On Linux'
+        wso2update_linux 
+        ```
+        
+        ```bash tab='On Mac'
+        wso2update_darwin
+        ```
+        
+        ```bash tab='On Windows'
+        wso2update_windows.exe
+        ```
+   
+For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
 
 ## Setting up Accelerator
 
