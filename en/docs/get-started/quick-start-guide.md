@@ -14,10 +14,10 @@ can quickly set up and try out a basic flow.
         ```
     
     2. Setup a database server using any of the following:
-         - Mysql 5.7 or above
-         - Microsoft SQL Server 2017
+         - MySQL 8.0
          - Oracle 19c
-         - PostgreSQL 13.0
+         - Microsoft SQL Server 2017
+         - PostgreSQL 13
          
         !!!note
             We do not recommend configuring H2 database in the production environment.
