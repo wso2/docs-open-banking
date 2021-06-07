@@ -8,6 +8,7 @@ extension. The Fully Qualified Name (FQN) of `ConsentCoreService` is as follows:
 ``` java
 com.wso2.openbanking.accelerator.consent.mgt.service.ConsentCoreService
 ```
+
 !!! note
     The `com.wso2.openbanking.accelerator.consent.service-3.0.0.jar` JAR file inside the 
     `<IS_HOME>/repository/components/dropins` directory contains the Java implementation related to consent 
@@ -39,7 +40,11 @@ This method lets you create an exclusive consent by performing the following:
  - Creates a new authorizable consent
 
 ``` java
-boolean createConsentFile(ConsentFile consentFileResource, String newConsentStatus, String userID,String applicableStatusToFileUpload) throws ConsentManagementException;
+DetailedConsentResource createExclusiveConsent(ConsentResource consentResource, 
+  String userID, String authStatus,
+  String authType, String applicableExistingConsentsStatus,
+  String newExistingConsentStatus, boolean isImplicitAuth)
+throws ConsentManagementException;
 ```
 
 ### createConsentFile method
