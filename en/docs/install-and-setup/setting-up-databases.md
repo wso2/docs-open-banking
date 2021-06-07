@@ -31,7 +31,15 @@ Once you have successfully prepared the environment for the deployment, you can 
     - `<IS_HOME>/repository/components/lib` 
 
     !!! tip 
-        By default, the `mysql-connector-java-5.1.44.jar` JDBC driver is available in these locations. 
+        The supported JDBC driver versions are as follows:
+        
+        | DBMS version | JDBC driver version |
+        |--------------|---------------------|
+        | MySQL 8.0 | `mysql-connector-java-5.1.44.jar` <br> By default, this file available in the above locations.  |
+        | Oracle 19c | `ojdbc10.jar` |
+        | Microsoft SQL Server 2017 | `sqljdbc41.jar` |
+        | PostgreSQL 13 | `postgresql-42.2.17.jar` |
+         
 
 ## Configuring datasources
 
@@ -49,7 +57,7 @@ configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your databa
 
    - Configure the datasources by following the sample below: 
     
-    ```toml
+    ``` toml tab="MySQL"
     [database.apim_db]
     url = "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
@@ -65,6 +73,58 @@ configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your databa
     validationInterval="30000"
     defaultAutoCommit=false
     ```
+   
+    ``` toml tab="Oracle"
+    [database.apim_db]
+    url = "jdbc:oracle:thin:openbank_apimgtdb/password@localhost:1521:root"
+    username = "openbank_apimgtdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1 FROM DUAL"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    ```
+   
+    ``` toml tab="MS SQL"
+    [database.apim_db]
+    url = "jdbc:sqlserver://localhost:1433;databaseName=openbank_apimgtdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "300"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    ```
+    
+    ``` toml tab="PostgreSQL"
+    [database.apim_db]
+    url = "jdbc:postgresql://localhost:5432/openbank_apimgtdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    ```
+      
 2. Add or update the default datasource configurations in `<IS_HOME>/repository/conf/deployment.toml` with your 
 database configurations.  
 
@@ -80,7 +140,7 @@ database configurations.
     
    - Configure the datasources by following the sample below: 
  
-    ```toml
+    ``` toml tab="MySQL"
     [database.config]
     url = "jdbc:mysql://localhost:3306/openbank_iskm_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
@@ -93,8 +153,57 @@ database configurations.
     minIdle ="5"
     testOnBorrow = true
     validationQuery="SELECT 1"
-    #Use below for oracle
-    #validationQuery="SELECT 1 FROM DUAL"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    ```
+
+    ``` toml tab="Oracle"
+    [database.config]
+    url = "jdbc:oracle:thin:openbank_iskm_configdb/password@localhost:1521:root"
+    username = "openbank_iskm_configdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    
+    [database.config.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1 FROM DUAL"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    ```
+   
+    ``` toml tab="MS SQL"
+    [database.config]
+    url = "jdbc:sqlserver://localhost:1433;databaseName=openbank_iskm_configdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    
+    [database.config.pool_options]
+    maxActive = "300"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    ```
+
+    ``` toml tab="PostgreSQL"
+    [database.config]
+    url = "jdbc:postgresql://localhost:5432/openbank_iskm_configdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    
+    [database.config.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
     validationInterval="30000"
     defaultAutoCommit=false
     ```

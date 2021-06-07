@@ -1,6 +1,7 @@
 !!!note
     This document provides requests and responses for the sample Account Information Service API available in WSO2 Open 
-    Banking Accelerator. 
+    Banking Accelerator. In a real-life open banking environment, the API consumer applications can retrieve details of 
+    accounts for which the bank customer has granted them consent.
 
 - An API consumer can now invoke the `GET/ accounts/<ACCOUNT_ID>` endpoint. A sample request looks as follows:
 ```
