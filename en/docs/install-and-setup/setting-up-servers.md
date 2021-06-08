@@ -5,13 +5,11 @@ WSO2 Open Banking Accelerator is a technology stack catered to speed up the impl
 The accelerators run on top of WSO2 Identity Server and WSO2 API Manager, which are referred to as base 
 products. Before setting up the accelerator, download and install the base products:
 
-- Install WSO2 Identity Server 5.11.0 by following the
-[Identity Server documentation](https://is.docs.wso2.com/en/5.11.0/setup/installing-the-product/).
-- Install WSO2 API Manager 4.0.0 by following the
-[API Manager documentation](https://apim.docs.wso2.com/en/latest/install-and-setup/install/installing-the-product/installing-the-product/).
- 
-- To configure the Identity Server with the API Manager, download WSO2 IS Connector from 
-[here](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip).
+- Install [WSO2 Identity Server 5.11.0](https://wso2.com/identity-and-access-management/#)
+- Install [WSO2 API Manager 4.0.0](https://wso2.com/api-manager/#)
+- Install [WSO2 Streaming Integrator 4.0.0](https://wso2.com/integration/streaming-integrator/#)
+- To configure the Identity Server with the API Manager, install 
+[WSO2 IS Connector](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
 
 ## Installing WSO2 Open Banking Accelerator 
 
@@ -33,11 +31,11 @@ accelerators.
     - wso2-ob-apim-accelerator-3.0.0
     - wso2-ob-bi-accelerator-3.0.0
 
-3. Go to the root directories of WSO2 Identity Server and API Manager. These root directories are the product 
+3. Go to the root directories of WSO2 Identity Server, API Manager and Streaming Integrator. These root directories are the product 
 homes.
  
     !!! tip
-        This documentation will refer to the product homes as `<IS_HOME>` and `<APIM_HOME>` respectively.
+        This documentation will refer to the product homes as `<IS_HOME>`,`<APIM_HOME>`, and `<SI_HOME>` respectively.
 
 4. Place the relevant accelerator zip files and extract them in their respective product homes:
 
@@ -45,10 +43,11 @@ homes.
     |----| -------------------------------------------|
     |wso2ob-is-accelerator-3.0.0.zip| `<IS_HOME>`|
     |wso2ob-apim-accelerator-3.0.0.zip| `<APIM_HOME>`|
+    |wso2-ob-bi-accelerator-3.0.0.zip| `<SI_HOME>`|
      
     !!! tip
         This documentation will refer to the above-extracted directories of the accelerators as 
-        `<OB_IS_ACCELERATOR_HOME>` and `<OB_APIM_ACCELERATOR_HOME>` respectively.
+        `<OB_IS_ACCELERATOR_HOME>`,`<OB_APIM_ACCELERATOR_HOME>`, `<OB_BI_ACCELERATOR_HOME>` respectively.
 
 ## Getting WSO2 Updates
 
@@ -112,6 +111,13 @@ and run the `merge.sh` script as follows:
     | wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar |	`<IS_HOME>/repository/components/dropins`|
     | wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar | `<IS_HOME>/repository/components/dropins` |
     | wso2is-extensions-1.2.10/webapps/keymanager-operations.war |	`<IS_HOME>/repository/deployment/server/webapps` |
+      
+4. To copy the accelerator files to the Streaming Integrator, go to the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin` 
+directory and run the `merge.sh` script as follows:
+
+    ``` shell 
+    ./merge.sh
+    ``` 
        
 ## Setting up JAVA_HOME
 
@@ -200,23 +206,35 @@ client-truststore of all the servers.
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the instance 
 can be applied using a single configuration file, which is the `deployment.toml` file. 
 
-1. Replace the `existing deployment.toml` file in the API Manager as follows:
+1. Replace the existing `deployment.toml` file in the API Manager as follows:
 
-    a. Go to the `<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
+    - Go to the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
     
-    b. Rename `wso2am-4.0.0-deployment.toml` to `deployment.toml`.
+    - Rename `wso2am-4.0.0-deployment.toml` to `deployment.toml`.
     
-    c. Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory and replace the existing file.
+    - Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory and replace the existing file.
         
-2. Replace the `existing deployment.toml` file in the Identity Server as follows:
+2. Replace the existing `deployment.toml` file in the Identity Server as follows:
 
-    a. Go to the `<OB_IS_ACCELERATOR_HOME>/repository/resources` directory.
+    - Go to the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/resources` directory.
     
-    b. Rename `wso2is-5.11.0-deployment.toml` to `deployment.toml`.
+    - Rename `wso2is-5.11.0-deployment.toml` to `deployment.toml`.
     
-    c. Copy the `deployment.toml` file to the `<IS_HOME>/repository/conf` directory to replace the existing file.
+    - Copy the `deployment.toml` file to the `<IS_HOME>/repository/conf` directory to replace the existing file.
+     
+3. Replace the existing `deployment.yaml` file in the Streaming Integrator as follows:
+
+    - Go to the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/repository/resources` directory.
+    
+    - Rename `wso2si-4.0.0-deployment.yaml` to `deployment.yaml`.
+    
+    - Copy the `deployment.yaml` file to the `<SI_HOME>/conf/server` directory to replace the existing file.
      
 3. For instructions on how to configure the deployment.toml file, see the following topics:
 
     - [Configuring Identity Server for open banking](configuring-identity-server-for-ob.md)
     - [Configuring API Manager for open banking](configuring-api-manager-for-ob.md)
+
+    !!! note
+        For instructions on configuring Streaming Integrator for open banking, see 
+        [Try out publishing data](../learn/data-publishing-tryout.md).

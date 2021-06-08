@@ -25,7 +25,7 @@ Identity Server.
 4. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
 database server, and the JDBC driver. 
 
-    Given below are sample configurations for a MySQL database. For more information, 
+    - Given below are sample configurations for a MySQL database. For other DBMS types and more information, 
     see [Setting up databases](setting-up-databases.md).
 
     ```toml tab='shared_db'
@@ -96,8 +96,10 @@ database server, and the JDBC driver.
     notification_endpoint = "https://<APIM_HOST>:9443/internal/data/v1/notify"	
     ```
 
-7. Add the following to configure the `kid` value for the signing certificate and to send the client certificate as a 
-transport header:
+7. Add and configure the following tags:
+    - `signing_certificate_kid`: Configure the `kid` value for the signing certificate of the bank. The same value is 
+    configured as `kid` of the ID Token.
+    - `client_transport_cert_as_header_enabled`: To send the client certificate as a transport header, set this to `true`.
 
     ``` toml
     [open_banking.identity]
