@@ -71,7 +71,7 @@ the following implementation steps are described explicitly:
 | C- The bank application loads for authentication (If the bank app resides in the same mobile device, or else redirect to the browser) | Required | Bank |
 | D- Display the minimum payment amount, currency, and payee account name to the customer | Required | Bank |
 | E- The bank's app-based authentication must not be more than the number of steps the customer would go through when directly accessing the bank interface | Required | Bank |
-| F- The customer needs to be directed back to the TPP’s interface displaying the confirmation of successful payment initiation. | Required | PISP |
+| F- The customer needs to be directed back to the API consumer’s interface displaying the confirmation of successful payment initiation. | Required | PISP |
 
 ## How WSO2 Open Banking supports App-to-App redirection
 
