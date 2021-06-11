@@ -80,6 +80,7 @@ nav:
       - 'Tryout': learn/dynamic-client-registration-try-out.md
     - 'Consumer Authentication':
       - 'Introduction': learn/consumer-authentication.md
+      - 'App-to-App Redirection': learn/app-to-app-redirection.md
       - 'Identifier-first Authentication': learn/identifier-first.md
     - 'API Security':
       - 'Introduction': learn/api-security.md
@@ -188,3 +189,4 @@ extra:
     - Learn
     - Develop
     - References
+  base_path: https://localhost:8000
