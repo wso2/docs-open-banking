@@ -112,11 +112,19 @@ by an authenticator that is customized to the app-based flow.
 
 3. Once the authentication is provided, a `/commonauth` request has to be made. This is processed by the authenticator 
 mentioned above. In a biometric scenario, since the verification happens in the mobile application, this request should 
-guarantee non-repudiation and client identification.  
+guarantee non-repudiation and client identification. Given below is a sample request, modify the payload according to 
+your requirements:
 
-    It is recommended to have a key pair for the mobile application. So that the response can be included with a signed 
-    JWT, which helps to identify the client with guaranteed non-repudiation.
+    ``` cURL
+    curl -X POST \
+      https://<IS_HOST>:9446/commonauth \
+      -H 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'sessionDataKey=value&username=value&password=value'
+    ```
    
+       - It is recommended to have a key pair for the mobile application. So that the response can be included with a signed 
+       JWT, which helps to identify the client with guaranteed non-repudiation.
+       
 4. Successful authentication prompts a redirection response to the consent page that contains `sessionDataKeyConsent`. 
 This value is extracted and will be used in the next step.
 
