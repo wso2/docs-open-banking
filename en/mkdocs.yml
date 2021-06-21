@@ -97,7 +97,8 @@ nav:
         - 'Invoke an API': learn/invoke-an-api.md
     - 'Integration': learn/integration.md
   - 'Develop' :
-    - 'Develop Toolkit': develop/develop-toolkit.md
+    - 'Developer Guide': develop/developer-guide.md
+    - 'Toolkit Introduction': develop/develop-toolkit.md
     - 'Open Banking Gateway' :
         - 'Introduction': develop/open-banking-gateway.md
         - 'Custom Request Router': develop/custom-request-router.md
@@ -189,4 +190,3 @@ extra:
     - Learn
     - Develop
     - References
-  base_path: https://localhost:8000
