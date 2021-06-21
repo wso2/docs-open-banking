@@ -53,14 +53,50 @@ section explains how to get started with implementing customizations and impleme
 ## Customize WSO2 Open Banking extensions 
 
 You can use WSO2 Open Banking Accelerator capabilities and customize them according to your open banking requirements. 
-For more information on implementing a toolkit for customizations, see [Introduction to Toolkit](develop-toolkit.md).
+
+Given below is a sample implementation of how to customize the 
+[Request Object Validator](custom-request-object-validator.md). Follow the sample and perform any required validations:
+
+``` java
+import com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidator;
+import com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.models.OBRequestObject;
+import com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.models.ValidationResponse;
+
+import java.util.Map;
+
+/*
+ * This is a sample class to extend the request object validations
+ * */
+public class ExtendedRequestObjectValidator extends OBRequestObjectValidator {
+
+    public ValidationResponse validateOBConstraints(OBRequestObject obRequestObject, Map<String, Object> dataMap) {
+
+        //This is a sample validation that can be performed
+        String aud = obRequestObject.getClaimsSet().getClaim("aud").toString();
+
+        if (!aud.equals("sample value")) {
+            return new ValidationResponse(false, "Incorrect aud value");
+        }
+        return new ValidationResponse(true);
+    }
+
+}
+```
+
+Once implemented, build a JAR file for the project and place it in the `<IS_HOME>/repository/components/dropins` 
+directory. See the [Configure your customizations](#configure-your-customizations) section to learn how to configure 
+this JAR file.
+
+!!! info
+    You can follow the same approach and customize the extension points in WSO2 Open Banking Accelerator. For extension 
+    points and more information on customizing, see [Introduction to Toolkit](develop-toolkit.md).
 
 ### Configure your customizations 
 
 Once you implement your customizations, follow the instructions in the respective page to configure the extended classes. 
 
 For example, to configure a custom request object validator, see the **Configuring** section in the
-[Custom Request Object Validator](custom-request-object-validator.md).
+[Custom Request Object Validator](/develop/custom-request-object-validator#configuring-a-custom-request-object-validator).
 
 ### Test your customizations 
 
@@ -93,7 +129,7 @@ You can simply debug the extended class by starting the base products in debug m
         ```
       
         ```shell tab="Sample"
-        ./api-manager.sh --debug 5005
+        ./api-manager.sh --debug 5006
         ```
 
 - When the server is starting, the following message is displayed: 
