@@ -22,7 +22,8 @@ redirected back to the API consumer's mobile application with the authentication
     The [Open Banking Implementation Entity](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/23889379/Deep+linking+for+App-to-App+redirection) 
     recommends App-to-App redirection as the preferred method of implementing SCA. Refer to the 
     [Implementing App-to-App Authorisation in OAuth2/OpenID Connect](https://openid.net/2019/10/21/guest-blog-implementing-app-to-app-authorisation-in-oauth2-openid-connect/) 
-    blog, to gain a further understanding of this flow.
+    blog, to gain a further understanding of this flow. *This link directs you to an external site and its content is 
+    not owned by WSO2.*
 
 ## Customer Experience Guidelines
     

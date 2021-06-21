@@ -6,7 +6,9 @@ section explains how to get started with implementing customizations and impleme
 1. Download and install Apache Maven. 
 
     !!! note
-        For more information on downloading and installing Maven, refer to [Apache Maven](https://maven.apache.org/download.cgi) documentation.  
+        For more information on downloading and installing Maven, refer to [Apache Maven](https://maven.apache.org/download.cgi) documentation. 
+        *This link directs you to an external site. All copyrights in its content are subject to the terms of the Apache 
+        license and are not owned by WSO2.*
 
 2. Click [here](../assets/attachments/open-banking-sample-toolkit.zip) to download a sample Maven project.
 3. Follow the sample project and create your own new Maven project.
