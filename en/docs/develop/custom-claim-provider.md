@@ -21,6 +21,26 @@ public Map < String, Object > getAdditionalClaims(OAuthAuthzReqMessageContext au
 throws IdentityOAuth2Exception;
 ```
 
+??? tip "Click here to see a sample implementation:"
+
+    Given below is a sample implementation of the `getAdditionalClaims` method. You can add the required claims to a 
+    map and return it as follows:
+    
+    ``` java
+    @Override
+    public Map < String, Object > getAdditionalClaims(OAuthAuthzReqMessageContext authAuthzReqMessageContext,
+      OAuth2AuthorizeRespDTO authorizeRespDTO)
+    throws IdentityOAuth2Exception {
+    
+      Map < String, Object > claims = new HashMap < > ();
+      //auth_time claim indicates the time when authentication occurs
+      claims.put(AUTH_TIME_CLAIM, authAuthzReqMessageContext.getCodeIssuedTime());
+    
+      return claims;
+    
+    }
+    ```
+
 ###getAdditionalClaims method - Access token response
 
 This method lets you add additional claims to the access token response. Given below is the method signature.
@@ -38,11 +58,11 @@ Once implemented, build a JAR file for your custom claim provider and place it i
 ##Configuring a custom claim provider
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-2. Add the following tags and configure your custom claim provider:
+2. Add the following tags and configure your custom claim provider using its Fully Qualified Name (FQN) :
 
 ``` toml
 [open_banking.identity.extensions]
-claim_provider=custom.claim.provider
+claim_provider=com.wso2.openbanking.accelerator.identity.claims.OBDefaultClaimProvider
 ```
 
 ##Configuring Claims for an Identity Provider
