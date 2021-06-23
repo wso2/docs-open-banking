@@ -32,14 +32,17 @@ public Map < String, Object > getAdditionalClaims(OAuthTokenReqMessageContext to
 throws IdentityOAuth2Exception;
 ```
 
+Once implemented, build a JAR file for your custom claim provider and place it in the 
+`<IS_HOME>/repository/components/dropins` directory. 
+
 ##Configuring a custom claim provider
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 2. Add the following tags and configure your custom claim provider:
 
 ``` toml
-[open_banking.identity]
-ClaimProvider=custom.claim.provider
+[open_banking.identity.extensions]
+claim_provider=custom.claim.provider
 ```
 
 ##Configuring Claims for an Identity Provider
