@@ -20,10 +20,9 @@ Once you have successfully prepared the environment for the deployment, you can 
     - `openbank_openbankingdb`  
     
 2. If you are using the [Data Publishing](../learn/data-publishing.md) feature, create the following 
-    databases as well:
+    database as well:
     
     - `openbank_ob_reporting_statsdb`
-    - `openbank_ob_reporting_summarizeddb`
 
 3. According to your DBMS, place the compatible JDBC drivers in the following directories:
  
