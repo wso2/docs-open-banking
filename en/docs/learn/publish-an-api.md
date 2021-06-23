@@ -3,7 +3,7 @@ This document provides instructions to publish and subscribe to an API.
 !!!tip "Before you begin"
     - Register an application for the API consumer. 
         - For testing purposes, we have included a sample Dynamic Client Registration (DCR) 
-        API in WSO2 Open Banking Accelerator. To register an application, see [Dynamic Client Registration](../dynamic-client-registration-try-out.md).
+        API in WSO2 Open Banking Accelerator. To register an application, see [Dynamic Client Registration](dynamic-client-registration-try-out.md).
    
 !!!note
     This document provides tryout instructions for the sample Account Information Service API available in WSO2 Open 
