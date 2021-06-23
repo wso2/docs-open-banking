@@ -97,8 +97,8 @@ nav:
         - 'Invoke an API': learn/invoke-an-api.md
     - 'Integration': learn/integration.md
   - 'Develop' :
-    - 'Developer Guide': develop/developer-guide.md
     - 'Toolkit Introduction': develop/develop-toolkit.md
+    - 'Developer Guide': develop/developer-guide.md
     - 'Open Banking Gateway' :
         - 'Introduction': develop/open-banking-gateway.md
         - 'Custom Request Router': develop/custom-request-router.md
@@ -119,6 +119,7 @@ nav:
         - 'Grant Handlers': develop/grant-handlers.md
         - 'Introspection Data Provider': develop/introspection-data-provider.md
         - 'KeyID Provider': develop/keyid-provider.md
+        - 'Custom Claim Provider': develop/custom-claim-provider.md
     - 'Authorization Flow':
         - 'Response Type Handler': develop/response-type-handler.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md

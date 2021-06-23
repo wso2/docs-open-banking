@@ -18,10 +18,10 @@ else
   echo -e "\nValid carbon product path.\n";
 fi
 
-find "${PRODUCT_HOME}"/repository/components/dropins -name "com.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} \;
-find "${PRODUCT_HOME}"/repository/components/lib -name "com.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} \;
-find "${PRODUCT_HOME}"/repository/components/plugins -name "com.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} \;
+find "${PRODUCT_HOME}"/repository/components/dropins -name "com.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} -Dpackaging=jar \;
+find "${PRODUCT_HOME}"/repository/components/lib -name "com.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} -Dpackaging=jar  \;
+find "${PRODUCT_HOME}"/repository/components/plugins -name "com.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} -Dpackaging=jar  \;
 
-find "${PRODUCT_HOME}"/repository/components/dropins -name "org.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} \;
-find "${PRODUCT_HOME}"/repository/components/lib -name "org.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} \;
-find "${PRODUCT_HOME}"/repository/components/plugins -name "org.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} \;
+find "${PRODUCT_HOME}"/repository/components/dropins -name "org.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} -Dpackaging=jar  \;
+find "${PRODUCT_HOME}"/repository/components/lib -name "org.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} -Dpackaging=jar  \;
+find "${PRODUCT_HOME}"/repository/components/plugins -name "org.wso2.*" -exec mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile={} -Dpackaging=jar \;
