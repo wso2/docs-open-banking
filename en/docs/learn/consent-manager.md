@@ -21,7 +21,7 @@ Before you begin, configure the Consent Manager application.
 
 3. Select **Manual Configuration**.
 
-4. Enter `consentmgt` as **Service Provider Name**.
+4. Enter `consentmgr` as **Service Provider Name**.
 
     ![register service provider](../assets/img/learn/consent-manager/register-service-provider.png)
 
