@@ -1,7 +1,7 @@
 !!!tip "Prerequisites"
     Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
     
-    1. Copy and extract the accelerator zip file inside WSO2 Open Banking 3.0 in the root directory of WSO2 Streaming 
+    1. Copy and extract the `wso2-obbi-accelerator-3.0.0.zip` accelerator file in the root directory of WSO2 Streaming 
     Integrator.
     
         !!!note
@@ -70,7 +70,7 @@ enable = true
 ```
 ./server.sh
 ```
-2. Set up and start the Identity Server and API Manager Servers as instructed in [Set Up Accelerators](set-up-accelerators.md).
+2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up servers](../install-and-setup/setting-up-servers.md).
 
 ###Try out
 1. Register an API consumer application as instructed  in [Dynamic Client Registration](dynamic-client-registation.md). 
