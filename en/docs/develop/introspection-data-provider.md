@@ -24,7 +24,7 @@ public Map < String, Object > getIntrospectionData(OAuth2TokenValidationRequestD
   OAuth2IntrospectionResponseDTO oAuth2IntrospectionResponseDTO)
 throws IdentityOAuth2Exception {
 
-  super.getIntrospectionData(oAuth2TokenValidationRequestDTO, oAuth2IntrospectionResponseDTO);
+  super.getKeyId(certificate, signatureAlgorithm, tenantDomain);
 
 }
 ```
