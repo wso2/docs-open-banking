@@ -20,8 +20,8 @@ This method contains the pairwise subject calculation logic. You can customize i
 below is the method signature:
 
 ``` java
-getSubjectClaim(OAuthTokenReqMessageContext tokenReqMessageContext,
-                                OAuth2AccessTokenRespDTO tokenRespDTO,
+getSubjectClaim(OAuthAuthzReqMessageContext authzReqMessageContext,
+                                OAuth2AuthorizeRespDTO authorizeRespDTO,
                                 String clientId,
                                 String spTenantDomain,
                                 AuthenticatedUser authorizedUser) throws IdentityOAuth2Exception;
