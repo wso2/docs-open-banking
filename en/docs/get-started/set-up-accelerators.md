@@ -6,13 +6,13 @@ locate the respective root directory of the base products:
 
 | File | Directory location to place the Accelerator |
 |---------|---------    |
-|wso2ob-is-accelerator-3.0.0.zip|`<IS_HOME>`|
-|wso2ob-apim-accelerator-3.0.0.zip|`<APIM_HOME>`|
+|`wso2-obiam-accelerator-3.0.0.zip`|`<IS_HOME>`|
+|`wso2-obam-accelerator-3.0.0.zip`|`<APIM_HOME>`|
 
 ### Step 2: Configure database scripts
 
 !!! note 
-    WSO2 Open Banking Accelerator is [compatible](prerequisites.md#compatibility) with the following DBMSs:
+    WSO2 Open Banking Accelerator is [compatible](../install-and-setup/prerequisites.md#compatibility) with the following DBMSs:
     
      - MySQL 8.0
      - Oracle 19c

@@ -27,9 +27,9 @@ to download Open Banking Accelerator 3.0.0.
 2. Extract the downloaded WSO2 Open Banking Accelerator zip file. WSO2 Open Banking Accelerator contains the following 
 accelerators.
 
-    - wso2-ob-is-accelerator-3.0.0
-    - wso2-ob-apim-accelerator-3.0.0
-    - wso2-ob-bi-accelerator-3.0.0
+    - wso2-obiam-accelerator-3.0.0
+    - wso2-obam-accelerator-3.0.0
+    - wso2-obbi-accelerator-3.0.0
 
 3. Go to the root directories of WSO2 Identity Server, API Manager and Streaming Integrator. These root directories are the product 
 homes.
@@ -41,9 +41,9 @@ homes.
 
     |File| Directory location to place the Accelerator|
     |----| -------------------------------------------|
-    |wso2ob-is-accelerator-3.0.0.zip| `<IS_HOME>`|
-    |wso2ob-apim-accelerator-3.0.0.zip| `<APIM_HOME>`|
-    |wso2-ob-bi-accelerator-3.0.0.zip| `<SI_HOME>`|
+    |wso2-obiam-accelerator-3.0.0| `<IS_HOME>`|
+    |wso2-obam-accelerator-3.0.0.zip| `<APIM_HOME>`|
+    |wso2-obbi-accelerator-3.0.0.zip| `<SI_HOME>`|
      
     !!! tip
         This documentation will refer to the above-extracted directories of the accelerators as 
@@ -108,9 +108,9 @@ and run the `merge.sh` script as follows:
 
     | File to copy | Copy to |
     | -------------| ------- |
-    | wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar |	`<IS_HOME>/repository/components/dropins`|
-    | wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar | `<IS_HOME>/repository/components/dropins` |
-    | wso2is-extensions-1.2.10/webapps/keymanager-operations.war |	`<IS_HOME>/repository/deployment/server/webapps` |
+    | `wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar` |	`<IS_HOME>/repository/components/dropins`|
+    | `wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar` | `<IS_HOME>/repository/components/dropins` |
+    | `wso2is-extensions-1.2.10/webapps/keymanager-operations.war` | `<IS_HOME>/repository/deployment/server/webapps` |
       
 4. To copy the accelerator files to the Streaming Integrator, go to the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin` 
 directory and run the `merge.sh` script as follows:

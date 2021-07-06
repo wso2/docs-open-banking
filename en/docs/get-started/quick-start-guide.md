@@ -43,9 +43,9 @@ can quickly set up and try out a basic flow.
               
 2. WSO2 Open Banking Accelerator contains the following accelerators.
    
-    - wso2-ob-is-accelerator-3.0.0
-    - wso2-ob-apim-accelerator-3.0.0
-    - wso2-ob-bi-accelerator-3.0.0
+    - wso2-obiam-accelerator-3.0.0
+    - wso2-obam-accelerator-3.0.0
+    - wso2-obbi-accelerator-3.0.0
             
 3. This document uses the following placeholders to refer to the following products:
         
