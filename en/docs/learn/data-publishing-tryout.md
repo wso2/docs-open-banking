@@ -73,7 +73,7 @@ server_url = "{tcp://<SI_HOST>:7612}"
 ```
 ./server.sh
 ```
-2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up Servers](setting-up-servers.md).
+2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up servers](../install-and-setup/setting-up-servers.md).
 
 ###Try out
 1. Register an API consumer application as instructed  in [Dynamic Client Registration Tryout](dynamic-client-registration-try-out.md). 

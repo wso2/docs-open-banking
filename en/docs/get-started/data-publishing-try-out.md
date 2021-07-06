@@ -70,7 +70,7 @@ enable = true
 ```
 ./server.sh
 ```
-2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up servers](../install-and-setup/setting-up-servers.md).
+2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up servers](set-up-accelerators.md).
 
 ###Try out
 1. Register an API consumer application as instructed  in [Dynamic Client Registration](dynamic-client-registation.md). 
