@@ -89,7 +89,7 @@ the layout of the authentication endpoint, locate the JSP pages in the following
 If you want to add a custom implementation for `OBAuthServletInterface`, you can configure it as follows:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-2. Follow the given sample and configure your custom `OBAuthServlet` implementation.
+2. Follow the given sample and configure your custom `OBAuthServletInterface` implementation.
 
    ``` toml
    [open_banking.identity.authentication_webapp]
