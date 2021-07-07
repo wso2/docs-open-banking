@@ -84,3 +84,16 @@ the layout of the authentication endpoint, locate the JSP pages in the following
 |Header|`<IS_HOME>/repository/deployment/server/webapps/ob#authenticationendpoint/includes/consent_top.jsp`|
 |Body| Varies according to your implementation.|
 |Footer|`<IS_HOME>/repository/deployment/server/webapps/ob#authenticationendpoint/includes/consent_bottom.jsp`|
+
+## Configuration               
+If you want to add a custom implementation for OBAuthServletInterface, you need 
+to configure it as follows:
+
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+2. Follow the given sample and add the tags to configure a custom Auth Servlet implementation.
+
+   ``` xml
+   [open_banking.identity.authentication_webapp]
+   servlet_extension = "com.wso2.openbanking.accelerator.authentication.webapp.impl.OBDefaultAuthServletImpl"
+   ```
