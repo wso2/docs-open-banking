@@ -30,7 +30,7 @@ methods that can be extended:
 
 Implement the methods from the following class:
 ```java
-com.wso2.openbanking.accelerator.authentication.webapp.OBAuthServletInterface
+com.wso2.openbanking.accelerator.consent.extensions.authservlet.model.OBAuthServletInterface
 ```
 
 Given below are the methods that can be extended:
