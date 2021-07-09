@@ -1,0 +1,3 @@
+[user_store]
+type = "database_unique_id"
+class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"

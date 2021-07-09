@@ -1,0 +1,6 @@
+[apim.key_manager.configuration]
+ServerURL = "https://localhost:9446${carbon.context}services/"
+Username = "${admin.username}"
+Password = "${admin.password}"
+TokenURL = "https://localhost:${https.nio.port}/token"
+RevokeURL = "https://localhost:${https.nio.port}/revoke"

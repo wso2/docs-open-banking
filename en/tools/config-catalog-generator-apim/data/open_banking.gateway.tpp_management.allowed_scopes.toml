@@ -1,0 +1,6 @@
+[[open_banking.gateway.tpp_management.allowed_scopes]]
+name = "accounts"
+roles = "AISP, PISP"
+[[open_banking.gateway.tpp_management.allowed_scopes]]
+name = "payments"
+roles = "PISP"

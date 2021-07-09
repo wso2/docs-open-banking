@@ -1,0 +1,5 @@
+[apim.analytics]
+enable = true
+config_endpoint = "https://analytics-event-auth.st.choreo.dev/auth/v1"
+auth_token = ""
+properties.'publisher.reporter.class' = "com.wso2.openbanking.accelerator.gateway.reporter.OBAnalyticsMetricReporter"

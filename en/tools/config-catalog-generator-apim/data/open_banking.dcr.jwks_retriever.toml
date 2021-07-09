@@ -1,0 +1,3 @@
+#[open_banking.dcr.jwks_retriever]
+#connection_timeout = 3000
+#read_timeout = 3000

@@ -1,0 +1,2 @@
+[open_banking.gateway.certificate_management.certificate]
+cache_expiry = 3600
