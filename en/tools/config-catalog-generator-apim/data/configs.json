@@ -1,32 +1,2047 @@
 {
     "configs" : [
         {
-            "title": "Connecting to the primary data store",
+            "title": "Server",
             "options": [
                 {
                     "name": "server",
                     "required": true,
-                    "description": "You can count on it.This toml header groups the parameters that define the server node details.",
+                    "description": "This includes configurations required for deploying an API Manager server node.",
                     "params": [
                         {
                             "name": "hostname",
                             "type": "string",
                             "required": true,
                             "default": "\"localhost\"",
-                            "possible": "\"127.0.0.1\",\"localhost\",\"<any-ip-address>\"",
-                            "description": "The hostname of the WSO2 EI server instance."
+                            "possible": "\"localhost\",\"127.0.0.1\",\"<any-ip-address>\",\"<any-hostname>\"",
+                            "description": "The hostname of the machine hosting the API Manager instance."
                         },
                         {
                             "name": "node_ip",
                             "type": "string",
                             "required": true,
-                            "default": "\"127.0.0.1\"",
-                            "description": "The IP address of the server node."
+                            "default": "127.0.0.1",
+                            "description": "The IP address of the machine hosting the API Manager instance."
+                        },
+                        {
+                            "name": "offset",
+                            "type": "integer",
+                            "required": false,
+                            "default": "0",
+                            "description": "Port offset allows you to run multiple WSO2 products, multiple instances of a WSO2 product, or multiple WSO2 product clusters on the same server or virtual machine (VM). Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9443 and the port offset is 1, the effective HTTP port will be 9444. Therefore, for each additional WSO2 product instance, set the port offset to a unique value so that they can all run on the same server without any port conflicts."
+                        },
+                        {
+                            "name": "mode",
+                            "type": "string",
+                            "required": true,
+                            "default": "single",
+                            "possible": "single,ha",
+                            "description": "Defines the type of deployment, whether it is a single node deployment, or a High Availability (HA) cluster."
+                        },
+                        {
+                            "name": "base_path",
+                            "type": "string",
+                            "required": true,
+                            "default": "${carbon.protocol}://${carbon.host}:${carbon.management.port}",
+                            "description": "Defines the base path URL to access the server."
+                        },
+                        {
+                            "name": "discard_empty_caches ",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Set this property to true, in order to discard empty caches."
+                        },
+                        {
+                            "name": "server_role",
+                            "type": "string",
+                            "required": true,
+                            "default": "default",
+                            "possible": "\"default\",\"api-devportal\",\"api-key-manager\",\"api-publisher\",\"gateway-worker\",\"traffic-manager\"",
+                            "description": "The profile name of the API Manager instance."
                         }
                     ]
                 }
             ],
-            "exampleFile": "sample.toml"
+            "exampleFile": "server.toml"
+        },
+        {
+            "title": "Super admin",
+            "options": [
+                {
+                    "name": "super_admin",
+                    "required": true,
+                    "description": "This includes the configurations related to the super admin user.",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "admin@wso2.com",
+                            "description": "The username of the super admin user."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2123",
+                            "description": "The password of the super admin user."
+                        },
+                        {
+                            "name": "create_admin_account",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Set this to true, to create a new user with the super admin details given."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "super_admin.toml"
+        },
+        {
+            "title": "User management database",
+            "options": [
+                {
+                    "name": "realm_manager",
+                    "required": true,
+                    "description": "This includes the datasource configurations for the user management database.",
+                    "params": [
+                        {
+                            "name": "data_source",
+                            "type": "string",
+                            "required": true,
+                            "default": "WSO2UM_DB",
+                            "description": "The datasource used by user manager."
+                        }
+                    ]
+
+                }
+            ],
+            "exampleFile": "realm_manager.toml"
+        },
+        {
+            "title": "User store",
+            "options": [
+                {
+                    "name": "user_store",
+                    "required": true,
+                    "description": "This includes the configurations related to the user store.",
+                    "params": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "required": true,
+                            "default": "database_unique_id",
+                            "description": "Configure the type of the user store."
+                        },
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager",
+                            "description": "Configure the user store manager class. The default primary user store configuration is for JDBC user stores."
+                        }
+                    ]
+
+                }
+            ],
+            "exampleFile": "user_store.toml"
+        },
+        {
+            "title": "User store properties",
+            "options": [
+                {
+                    "name": "user_store.properties",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "UsernameJavaRegEx",
+                            "type": "string",
+                            "required": true,
+                            "default": "a-zA-Z0-9@._-{3,30}$",
+                            "description": "A regular expression to validate usernames. By default, strings have a length of 5 to 30. Only non-empty characters are allowed. You can provide ranges of alphabets, numbers and also ranges of ASCII values in the RegEx properties."
+                        },
+                        {
+                            "name": "UsernameJavaScriptRegEx",
+                            "type": "string",
+                            "required": true,
+                            "default": "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$",
+                            "description": "The regular expression used by the front-end components for username validation."
+                        },
+                        {
+                            "name": "SCIMEnabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "This is to configure whether user store is supported for SCIM provisioning."
+                        },
+                        {
+                            "name": "IsBulkImportSupported",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "This is to configure whether user store is supported for bulk imports."
+                        },
+                        {
+                            "name": "LeadingOrTrailingSpaceAllowedInUserName",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "This is to configure whether the username can contain leading or trailing spaces."
+                        },
+                        {
+                            "name": "UsernameWithEmailJavaScriptRegEx",
+                            "type": "string",
+                            "required": true,
+                            "default": "^[\\S]{3,30}$",
+                            "description": "A regular expression to validate usernames that contain an email address. By default, strings have a length of 3 to 30. Only non-empty characters are allowed. You can provide ranges of alphabets, numbers and also ranges of ASCII values in the RegEx properties."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "user_store.properties.toml"
+        },
+        {
+            "title": "Authorization manager",
+            "options": [
+                {
+                    "name": "authorization_manager",
+                    "required": true,
+                    "description": "This includes the configurations related to the authorization manager.",
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                             "required": true,
+                            "default": "org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager",
+                            "description": "The Authorization Manager for your the server."
+                        }
+                    ]
+
+                }
+            ],
+            "exampleFile": "authorization_manager.toml"
+        },
+        {
+            "title": "Authorization manager properties",
+            "options": [
+                {
+                    "name": "authorization_manager.properties",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "AdminRoleManagementPermissions",
+                            "type": "string",
+                             "required": true,
+                            "default": "/permission",
+                            "description": "Sets the registry path where the authorization information (role-based permissions) are stored. "
+                        },
+                        {
+                            "name": "AuthorizationCacheEnabled",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "To enable authorization cache."
+                        },
+                        {
+                            "name": "GetAllRolesOfUserEnabled",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Enable this if there are any performance issues in the production environment. Enabling this property affects the performance when the user logs in. This depends on the users, roles and permission stats."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authorization_manager.properties.toml"
+        },
+        {
+            "title": "Shared database configurations",
+            "options": [
+                {
+                    "name": "database.shared_db",
+                    "required": true,
+                    "description": "Configurations related to the databases shared between nodes.",
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                             "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_govdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                             "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.shared_db.toml"
+        },
+        {
+            "title": "Shared database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.shared_db.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                             "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait ",
+                            "type": "string",
+                             "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                             "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                             "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+
+                        },
+                        {
+                            "name": "validationInterval",
+                            "type": "string",
+                             "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.shared_db.pool_options.toml"
+        },
+        {
+            "title": "API Manager database configurations",
+            "options": [
+                {
+                    "name": "database.apim_db",
+                    "required": true,
+                    "description": "Database configurations related to API Manager.",
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                             "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_apimgtdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                             "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.apim_db.toml"
+        },
+        {
+            "title": "API Manager database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.apim_db.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                             "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait ",
+                            "type": "string",
+                             "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                             "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                             "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {
+                            "name": "validationInterval",
+                            "type": "string",
+                             "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.apim_db.pool_options.toml"
+        },
+        {
+            "title": "API Manager config registry database",
+            "options": [
+                {
+                    "name": "database.config",
+                    "required": true,
+                    "description": "Configurations related to the API Manager config registry database.",
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                             "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_am_configdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_am_configdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                             "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.config.toml"
+        },
+        {
+            "title": "Config registry database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.config.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                             "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait ",
+                            "type": "string",
+                             "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                             "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                             "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {"name": "validationInterval",
+                            "type": "string",
+                             "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.config.pool_options.toml"
+        },
+        {
+            "title": "User Manager datasource",
+            "options": [
+                {
+                    "name": "datasource",
+                    "required": true,
+                    "description": "Configurations related to the user manager datasource.",
+                    "params": [
+                        {"name": "id",
+                            "type": "string",
+                             "required": true,
+                            "default": "WSO2UM_DB",
+                            "description": "The datasource used by user manager."
+                        },
+                        {
+                            "name": "url",
+                            "type": "string",
+                             "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_userdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                             "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        },
+                        {
+                            "name": "jmx_enable",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Use this paramater to enable JMX for the database connection."
+                        },
+                        {
+                            "name": "pool_options.maxActive",
+                            "type": "string",
+                             "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.maxWait",
+                            "type": "string",
+                             "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.minIdle",
+                            "type": "string",
+                             "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.testOnBorrow ",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.validationQuery",
+                            "type": "string",
+                             "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {
+                            "name": "pool_options.validationInterval",
+                            "type": "string",
+                             "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.defaultAutoCommit",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "datasource.toml"
+        },
+        {
+            "title": "Tenant management",
+            "options": [
+                {
+                    "name": "tenant_mgt",
+                    "required": true,
+                    "description": "Configurations related to tenant users.",
+                    "params": [
+                        {
+                            "name": "enable_email_domain",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable email login for tenant users."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "tenant_mgt.toml"
+        },
+        {
+            "title": "Keystore TLS",
+            "options": [
+                {
+                    "name": "keystore.tls",
+                    "required": true,
+                    "description": "Configurations related to the keystore that contains the TLS certificate.",
+                    "params": [
+                        {
+                            "name": "file_name",
+                            "type": "string",
+                             "required": true,
+                            "default": "wso2carbon.jks",
+                            "description": "The filename of the Transport Layer Security (TLS) keystore."
+                        },
+                        {
+                            "name": "type",
+                            "type": "string",
+                             "required": true,
+                            "default": "JKS",
+                            "possible": "TRUE",
+                            "description": "The type of the keystore file."
+                        },
+                        {"name": "password",
+                            "type": "string",
+                             "required": true,
+                            "default": "wso2carbon",
+                            "description": "The password of the keystore file."
+                        },
+                        {
+                            "name": "alias",
+                            "type": "string",
+                             "required": true,
+                            "default": "wso2carbon",
+                            "description": "The alias of the keystore file."
+                        },
+                        {"name": "key_password",
+                            "type": "string",
+                             "required": true,
+                            "default": "wso2carbon",
+                            "description": "The password of the private key."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "keystore.tls.toml"
+        },
+        {
+            "title": "Primary keystore",
+            "options": [
+                {
+                    "name": "keystore.primary",
+                    "required": false,
+                    "description": "Configurations related to the primary keystore. Primary Keystore is used for signing and encrypting data that is externally exposed.",
+                    "params": [
+                        {"name": "file_name",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon.jks",
+                            "description": "The filename of the primary keystore."
+                        },
+                        {
+                            "name": "type",
+                            "type": "string",
+                             "required": false,
+                            "default": "JKS",
+                            "description": "The type of the primary keystore file."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon",
+                            "description": "The password of the keystore file."
+                        },
+                        {
+                            "name": "alias",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon",
+                            "description": "The alias of the primary keystore file."
+                        },
+                        {
+                            "name": "key_password",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon",
+                            "description": "The password of the private key."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "keystore.primary.toml"
+        },
+        {
+            "title": "Internal keystore",
+            "options": [
+                {
+                    "name": "keystore.internal",
+                    "required": false,
+                    "description": "Configurations related to the internal keystore. Internal Keystore is used for encrypting internal critical data including passwords and other confidential information in configuration files.",
+                    "params": [
+                        {"name": "file_name",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon.jks",
+                            "description": "The filename of the primary keystore."
+                        },
+                        {
+                            "name": "type",
+                            "type": "string",
+                             "required": false,
+                            "default": "JKS",
+                            "description": "The type of the primary keystore file."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon",
+                            "description": "The password of the keystore file."
+                        },
+                        {
+                            "name": "alias",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon",
+                            "description": "The alias of the primary keystore file."
+                        },
+                        {
+                            "name": "key_password",
+                            "type": "string",
+                             "required": false,
+                            "default": "wso2carbon",
+                            "description": "The password of the private key."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "keystore.internal.toml"
+        },
+        {
+            "title": "API Manager Gateway environment configurations",
+            "options": [
+                {
+                    "name": "apim.gateway.environment",
+                    "required": true,
+                    "description": "Configuring the gateways used by API Manager.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                             "required": true,
+                            "default": "Production and Sandbox",
+                            "description": "The name of the gateways used by the API Manager. Use any preferrred value."
+                        },
+                        {
+                            "name": "type",
+                            "type": "string",
+                             "required": true,
+                            "default": "hybrid",
+                            "description": "Type of the gateway."
+                        },
+                        {
+                            "name": "display_in_api_console",
+                            "type": "boolean",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Displays the environment under 'Try it' in the API Developer Portal, in the API console."
+                        },
+                        {
+                            "name": "description",
+                            "type": "string",
+                             "required": true,
+                            "default": "This is a hybrid gateway that handles both production and sandbox token traffic.",
+                            "description": "Describe the function of the gateway."
+                        },
+                        {
+                            "name": "show_as_token_endpoint_url",
+                            "type": "string",
+                             "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "This is used to construct the sample cURL request in the API Developer Portal."
+                        },
+                        {
+                            "name": "service_url",
+                            "type": "string",
+                             "required": true,
+                            "default": "https://localhost:${mgt.transport.https.port}/services/",
+                            "description": "APIs will be published using this URL"
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                             "required": true,
+                            "default": "${admin.username}",
+                            "description": "The credentials used to publish APIs."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                             "required": true,
+                            "default": "${admin.password}",
+                            "description": "The credentials used to publish APIs."
+                        },
+                        {
+                            "name": "ws_endpoint",
+                            "type": "string",
+                             "required": true,
+                            "default": "ws://localhost:9099",
+                            "description": "The WebSocket (WS) endpoint."
+                        },
+                        {
+                            "name": "wss_endpoint",
+                            "type": "string",
+                             "required": true,
+                            "default": "wss://localhost:8099",
+                            "description": "The WebSocket Secure (WSS) endpoint."
+                        },
+                        {
+                            "name": "http_endpoint",
+                            "type": "string",
+                             "required": true,
+                            "default": "http://localhost:${http.nio.port}",
+                            "description": "The Hypertext Transfer Protocol (HTTP) endpoint."
+                        },
+                        {
+                            "name": "https_endpoint",
+                            "type": "string",
+                             "required": true,
+                            "default": "https://localhost:${https.nio.port}",
+                            "description": "The Hypertext Transfer Protocol Secure (HTTPS) endpoint."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.gateway.environment.toml"
+        },
+        {
+            "title": "Configure the Gateway environment",
+            "options": [
+                {
+                    "name": "apim.sync_runtime_artifacts.gateway",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "skip_list.sequences",
+                            "type": "string",
+                             "required": true,
+                            "default": "[\"jsonConverter.xml\"]",
+                            "description": "The list of artifacts to skip during runtime. "
+                        },
+                        {
+                            "name": "gateway_labels",
+                            "type": "string",
+                             "required": true,
+                            "default": "[\"Default\"]"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.sync_runtime_artifacts.gateway.toml"
+        },
+        {
+            "title": "Gateway token cache",
+            "options": [
+                {
+                    "name": "apim.cache.gateway_token",
+                    "required": false,
+                    "description": "Configurations related to Gateway token cache.",
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                             "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable the gateway token cache. WSO2 recommends to enable this feature by default. The token validation request checks with the cached value."
+                        },
+                        {
+                            "name": "expiry_time",
+                            "type": "string",
+                             "required": false,
+                            "default": "900s",
+                            "description": "Set the cache expiry time in seconds. Recommended value is 900 seconds."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.gateway_token.toml"
+        },
+        {
+            "title": "Gateway cache resource",
+            "options": [
+                {
+                    "name": "apim.cache.resource",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                             "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable the gateway resource cache."
+                        },
+                        {
+                            "name": "expiry_time",
+                            "type": "string",
+                             "required": false,
+                            "default": "900s",
+                            "description": "Set the cache expiry time in seconds. Recommended value is 900 seconds."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.resource.toml"
+        },
+        {
+            "title": "Keymanager token cache¶",
+            "options": [
+                {
+                    "name": "apim.cache.km_token",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable the Key Manager token cache. The token validation request checks with the value cached at the Key Manager. At any given time you should only have one cache enabled, which is either the Key Manager cache or the API Gateway cache. WSO2 does not recommend using both caches at the same time."
+                        },
+                        {
+                            "name": "expiry_time",
+                            "type": "string",
+                            "required": false,
+                            "default": "15m",
+                            "description": "Set the cache expiry time in minutes."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.km_token.toml"
+        },
+        {
+            "title": "Cache recent APIs",
+            "options": [
+                {
+                    "name": "apim.cache.recent_apis",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Enable cache for recently added apis in the API Developer Portal. This expires in 15 minutes by default."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.recent_apis.toml"
+        },
+        {
+            "title": "Cache scopes",
+            "options": [
+                {
+                    "name": "apim.cache.scopes",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable cache for scopes. This expires in 15 minutes by default."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.scopes.toml"
+        },
+        {
+            "title": "Cache publisher roles",
+            "options": [
+                {
+                    "name": "apim.cache.publisher_roles",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable cache for publisher roles. Expires in 15 minutes by default"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.publisher_roles.toml"
+        },
+        {
+            "title": "Cache JWT claims",
+            "options": [
+                {
+                    "name": "apim.cache.jwt_claim",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable JWT claim cache. The user's claims used to create the JWT are cached."
+                        },
+                        {
+                            "name": "expiry_time",
+                            "type": "string",
+                            "required": false,
+                            "default": "15m",
+                            "description": "Set the cache expiry time. Would be same as the JWT expiry time."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.jwt_claim.toml"
+        },
+        {
+            "title": "Cache tags",
+            "options": [
+                {
+                    "name": "apim.cache.tags",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "expiry_time",
+                            "type": "string",
+                            "required": false,
+                            "default": "2m",
+                            "description": "Set when the tag cache expires. This option is disabled when not defined."
+
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cache.tags.toml"
+        },
+        {
+            "title": "API Manager Analytics configurations",
+            "options": [
+                {
+                    "name": "apim.analytics",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Use this to enable data publishing in the API Manager."
+                        },
+                        {
+                            "name": "config_endpoint",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://analytics-event-auth.st.choreo.dev/auth/v1"
+                        },
+                        {
+                            "name": "auth_token",
+                            "type": "string",
+                            "required": "TRUE"
+                        },
+                        {
+                            "name": "properties.'publisher.reporter.class'",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.gateway.reporter.OBAnalyticsMetricReporter",
+                            "description": "A mandatory config for OB analytics. Defines the metric reporter implementation of WSO2 Open Banking."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.analytics.toml"
+        },
+        {
+            "title": "API Manager - Key Manager configurations",
+            "options": [
+                {
+                    "name": "apim.key_manager",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "service_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:9446${carbon.context}services/",
+                            "description": "The URL that offers services of the Key Manager."
+                        },
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "required": true,
+                            "default": "WSO2-IS"
+                        },
+                        {
+                            "name": "key_manager_client_impl",
+                            "type": "string",
+                            "required": true,
+                            "default": "org.wso2.carbon.apimgt.impl.AMDefaultKeyManagerImpl"
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": false,
+                            "default": "$ref{super_admin.username}",
+                            "description": "Credentials of the super admin user in the Key Manager node."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": false,
+                            "default": "$ref{super_admin.password}",
+                            "description": "Credentials of the super admin user, in the Key Manager node."
+                        },
+                        {
+                            "name": "pool.init_idle_capacity",
+                            "type": "string",
+                            "required": false,
+                            "default": "50",
+                            "description": "The minimum number of clients created, to connect to the key manager."
+                        },
+                        {
+                            "name": "pool.max_idle",
+                            "type": "string",
+                            "required": false,
+                            "default": "100",
+                            "description": "The maximum number of clients created, to connect to the key manager."
+                        },
+                        {
+                            "name": "key_validation_handler_type",
+                            "type": "string",
+                            "required": false,
+                            "default": "default",
+                            "possible": "default, custom",
+                            "description": "If the type is set to `custom`, then provide the `key_validation_handler_impl` value."
+                        },
+                        {
+                            "name": "key_validation_handler_impl",
+                            "type": "string",
+                            "required": false,
+                            "default": "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler",
+                            "description": "Provide a custom key validation handler implementation. To do this, set `key_validation_handler_type` to `custom`."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.key_manager.toml"
+        },
+        {
+            "title": "API Manager - Key Manager URLs",
+            "options": [
+                {
+                    "name": "apim.key_manager.configuration",
+                    "required": true,
+                    "description": "Configure URLs related to the Key Manager server.",
+                    "params": [
+                        {
+                            "name": "ServerURL",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:9446${carbon.context}services/"
+                        },
+                        {
+                            "name": "Username",
+                            "type": "string",
+                            "required": true,
+                            "default": "${admin.username}"
+                        },
+                        {
+                            "name": "Password",
+                            "type": "string",
+                            "required": true,
+                            "default": "${admin.password}"
+                        },
+                        {
+                            "name": "TokenURL",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:${https.nio.port}/token"
+                        },
+                        {
+                            "name": "RevokeURL",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:${https.nio.port}/revoke"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.key_manager.configuration.toml"
+        },
+        {
+            "title": "OAuth configurations",
+            "options": [
+                {
+                    "name": "apim.oauth_config",
+                    "required": true,
+                    "description": "Contains OAuth related configurations.",
+                    "params": [
+                        {
+                            "name": "enable_outbound_auth_header",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "If TRUE, sends Auth header to the backend as received from the client."
+                        },
+                        {
+                            "name": "white_listed_scopes",
+                            "type": "string",
+                            "required": true,
+                            "default": "[\"^device_.*\", \"openid\", \"^OB_.*\", \"^TIME_.*\"]",
+                            "description": "To skip role validation for a scope in an API's request, add the scope to the white list."
+                        },
+                        {
+                            "name": "auth_header",
+                            "type": "string",
+                            "required": false,
+                            "default": "Authorization",
+                            "description": "A valid authorization header for OAuth configurations."
+                        },
+                        {
+                            "name": "revoke_endpoint",
+                            "type": "string",
+                            "required": false,
+                            "default": "https://localhost:${https.nio.port}/revoke",
+                            "description": "The token revocation endpoint used in the API Developer Portal"
+                        },
+                        {
+                            "name": "enable_token_encryption",
+                            "type": "string",
+                            "required": false,
+                            "default": "FALSE",
+                            "description": "If set to TRUE, the token stored in the database will be encrypted/decrypted when reading and storing. Fore more information, see [Extension Points for OAuth](https://is.docs.wso2.com/en/5.11.0/learn/extension-points-for-oauth/#extension-points-for-oauth)."
+                        },
+                        {
+                            "name": "enable_token_hashing",
+                            "type": "string",
+                            "required": false,
+                            "default": "FALSE",
+                            "description": "Set to TRUE to enable hashing. For more information, see [Setting Up OAuth Token Hashing](https://is.docs.wso2.com/en/5.11.0/learn/setting-up-oauth-token-hashing/)."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.oauth_config.toml"
+        },
+        {
+            "title": "Developer Portal configurations",
+            "options": [
+                {
+                    "name": "apim.devportal",
+                    "required": true,
+                    "description": "Configurations related to the API Developer Portal.",
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": false,
+                            "default": "https://localhost:${mgt.transport.https.port}/devportal",
+                            "possible": "true,false",
+                            "description": "The public API Developer Portal URL"
+                        },
+                        {
+                            "name": "enable_application_sharing",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Enable application sharing according to the claims."
+                        },
+                        {
+                            "name": "application_sharing_type",
+                            "type": "string",
+                            "required": false,
+                            "default": "default",
+                            "possible": "true,false",
+                            "description": "Use the `application_sharing_impl` as the default implementation."
+                        },
+                        {
+                            "name": "application_sharing_impl",
+                            "type": "string",
+                            "required": false,
+                            "default": "org.wso2.carbon.apimgt.impl.SAMLGroupIDExtractorImpl",
+                            "possible": "true,false",
+                            "description": "Need to define if the application_sharing_type is custom. If both application_sharing_type and application_sharing_impl is defined, take value from application_sharing_impl."
+                        },
+                        {
+                            "name": "display_multiple_versions",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "If TRUE, displays all API versions under the API listing."
+                        },
+                        {
+                            "name": "display_deprecated_apis",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "If TRUE displays all the deprecated APIs under the API listing."
+                        },
+                        {
+                            "name": "enable_comments",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "To enable adding comments on the API."
+                        },
+                        {
+                            "name": "enable_ratings",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "To enable rating the API with a star-based rating."
+                        },
+                        {
+                            "name": "enable_forum",
+                            "type": "string",
+                            "required": false,
+                            "default": "TRUE"
+                        },
+                        {
+                            "name": "enable_anonymous_mode",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "If set to TRUE, can access the Developer Portal anonymously."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.devportal.toml"
+        },
+        {
+            "title": "CORS configurations",
+            "options": [
+                {
+                    "name": "apim.cors",
+                    "required": true,
+                    "description": "Configures CORS headers on the Publisher and the Gateway.",
+                    "params": [
+                    {
+                        "name": "allow_origins",
+                        "type": "string",
+                        "required": false,
+                        "default": "*",
+                        "possible": "",
+                        "description": "Denotes \"Access-Control-Allow-Origin\" response header. Specify an origin to share the response with."
+                    },
+                    {
+                        "name": "allow_methods",
+                        "type": "string",
+                        "required": false,
+                        "default": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                        "possible": "",
+                        "description": "Configures the methods allowed by the access control."
+                    },
+                    {
+                        "name": "allow_headers",
+                        "type": "string",
+                        "required": false,
+                        "default": "authorization,Access-Control-Allow-Origin,Content-Type,SOAPAction",
+                        "possible": "",
+                        "description": "Configures the type of headers allowed by the access control."
+                    },
+                    {
+                        "name": "allow_credentials",
+                        "type": "string",
+                        "required": false,
+                        "default": "FALSE",
+                        "possible": "",
+                        "description": "Specifying this header to true means that the server allows cookies (or other user credentials) to be included on cross-origin requests.\n\n It is false by default and if you set it to true then make sure that the Access-Control-Allow-Origin header does not contain the wildcard (*)"
+                    }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.cors.toml"
+        },
+        {
+            "title": "Throttling configurations",
+            "options": [
+                {
+                    "name": "apim.throttling",
+                    "required": true,
+                    "description": "Configurations related to API Manager traffic control.",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "admin@wso2.com@carbon.supe"
+                        },
+                        {
+                            "name": "enable_data_publishing",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable publishing of request and throttling data."
+                        },
+                        {
+                            "name": "enable_policy_deploy",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable deploying of throttling policies."
+                        },
+                        {
+                            "name": "enable_blacklist_condition",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable blocking conditions from the admin portal."
+                        },
+                        {
+                            "name": "enable_persistence",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable persisting current counter state of the Traffic Manager."
+                        },
+                        {
+                            "name": "throttle_decision_endpoints",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "[\"tcp:\/\/localhost:5672\",\"tcp:\/\/localhost:5672\"]",
+                            "description": "Define a set of JMS connection as an array."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "apim.throttling.toml"
+        },
+        {
+            "title": "Consent validation service",
+            "options": [
+                {
+                    "name": "open_banking.gateway.consent.validation",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "endpoint",
+                            "type": "string",
+                            "required": false,
+                            "default": "https://localhost:9446/api/openbanking/consent/validate",
+                            "description": "Configure a custom Consent Validation service."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.consent.validation.toml"
+        },
+        {
+            "title": "Dynamic Client Registration",
+            "options": [
+                {
+                    "name": "open_banking.dcr",
+                    "required": true,
+                    "description": "Configurations related to Dynamic Client Registration.",
+                    "params": [
+                        {
+                            "name": "jwks_endpoint_name",
+                            "type": "string",
+                            "required": false,
+                            "description": "Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA for this value. "
+                        },
+                        {
+                            "name": "app_name_claim",
+                            "type": "string",
+                            "required": false,
+                            "description": "Configure the claim name in the SSA that mentions the software. If the use_softwareIdForAppName configuration is set to false, the name of the application is set using the value of the given claim."
+                        },
+                        {
+                            "name": "token_endpoint",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://<APIM_HOST>:9443/oauth2/token",
+                            "description": "Hostname of the API Manager server for the token endpoint."
+                        },
+                        {
+                            "name": "use_softwareIdForAppName",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "description": "To set the software id as the name of the application. By default, this configuration is set to true."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.toml"
+        },
+        {
+            "title":  "DCR - JWKS endpoint connection timeout",
+            "options": [
+                {
+                    "name": "open_banking.dcr.jwks_retriever",
+                    "required": false,
+                    "description": "Configure the timeout values when validating the signature of the request.",
+                    "params": [
+                        {
+                            "name": "connection_timeout",
+                            "type": "string",
+                            "required": false,
+                            "default": "3000",
+                            "description": "The time out values when validating the signature of the request."
+                        },
+                        {
+                            "name": "read_timeout",
+                            "type": "string",
+                            "required": false,
+                            "default": "3000",
+                            "description": "The time out values when validating the signature of the request."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.jwks_retriever.toml"
+        }, {
+            "title": "DCR - Regulatory APIs configurations",
+            "options": [
+                {
+                    "name": "open_banking.dcr.regulatory_api",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "api_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "CDR-DynamicClientRegistration",
+                            "description": "The regulatory APIs, which should be subscribed by DCR applications."
+                        },
+                        {
+                            "name": "roles",
+                            "type": "string",
+                            "required": true,
+                            "default": "AISP,PISP",
+                            "description": "The roles in the SSA that the API consumer application will be playing."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.regulatory_api.toml"
+        },
+        {
+            "title": "API Manager internal REST APIs",
+            "options": [
+                {
+                    "name": "open_banking.dcr.apim_rest_endpoints",
+                    "required": false,
+                    "description": "If you want to change the internal REST API endpoints of the API Manager configure the following tags. By default, the API Manager 4.0 endpoints are configured.",
+                    "params": [
+                        {
+                            "name": "app_creation",
+                            "type": "string",
+                            "required": false,
+                            "default": "api/am/devportal/v2/applications"
+                        },
+                        {
+                            "name": "key_generation",
+                            "type": "string",
+                            "required": false,
+                            "default": "api/am/devportal/v2/applications/application-id/map-keys"
+                        },
+                        {
+                            "name": "api_retrieve",
+                            "type": "string",
+                            "required": false,
+                            "default": "api/am/devportal/v2/apis"
+                        },
+                        {
+                            "name": "api_subscribe",
+                            "type": "string",
+                            "required": false,
+                            "default": "api/am/devportal/v2/subscriptions/multiple"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.apim_rest_endpoints.toml"
+        },
+        {
+            "title": "Data publishing configurations",
+            "options": [
+                {
+                    "name": "open_banking.data_publishing",
+                    "required": true,
+                    "description": "Configurations related to the data publishing in API Manager.",
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "description": "To enable the data publishing feature."
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{super_admin.username}@carbon.super",
+                            "description": "Credentials to access WSO2 Streaming Integrator."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{super_admin.password}",
+                            "description": "Credentials to access WSO2 Streaming Integrator."
+                        },
+                        {
+                            "name": "server_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "{tcp://<SI_HOST>:7612}",
+                            "description": "The TCP port of Open Banking Business Intelligence Worker."
+                        },
+                        {
+                            "name": "auth_url",
+                            "type": "string",
+                            "required": false,
+                            "default": "{tcp://<SI_HOST>:7612}",
+                            "description": "The SSL authentication URL of Open Banking Business Intelligence Worker . This is an optional configuration."
+                        },
+                        {
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "default": "Thrift",
+                            "possible": "Thrift",
+                            "description": "The protocol used to publish Open Banking data."
+                        },
+                        {
+                            "name": "pool_size",
+                            "type": "string",
+                            "required": true,
+                            "default": "10",
+                            "description": "Defines the maximum amount of instances that can reside in the pool."
+                        },
+                        {
+                            "name": "queue_size",
+                            "type": "string",
+                            "required": true,
+                            "default": "32768"
+                        },
+                        {
+                            "name": "worker_thread_count",
+                            "type": "string",
+                            "required": true,
+                            "default": "10"
+                        },
+                        {
+                            "name": "pool_wait_time_Ms",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Defines the maximum waiting time to retrieve an instance from the pool."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.data_publishing.toml"
+        },
+        {
+            "title": "Data publishing stream",
+            "options": [
+                {
+                    "name": "open_banking.data_publishing.thrift.stream",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "description": "Define a stream for publishing data."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.data_publishing.thrift.stream.toml"
+        },
+        {
+            "title": "Data publishing attributes",
+            "options": [
+                {
+                    "name": "open_banking.data_publishing.thrift.stream.attributes",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "description": "Define an attribute for publishing data."
+                        },
+                        {
+                            "name": "priority",
+                            "type": "string",
+                            "required": false,
+                            "description": "Define the priority for a data publishing attribute."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.data_publishing.thrift.stream.attributes.toml"
+        },
+        {
+            "title": "Gateway Executors",
+            "options": [
+                {
+                    "name": "open_banking.gateway.openbanking_gateway_executors.type",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "Default",
+                            "possible": "Default, DCR, Accounts, Payments",
+                            "description": "The Gateway Executors will engage for the configured API flow."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.openbanking_gateway_executors.type.toml"
+        },
+        {
+            "title": "Gateway Executor configurations",
+            "options": [
+                {
+                    "name": "open_banking.gateway.openbanking_gateway_executors.type.executors",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "possible": "For example, \\\"com.wso2.openbanking.accelerator.gateway.executor.impl.tpp.validation.executor.DCRTPPValidationExecutor\\\",\\\"com.wso2.openbanking.accelerator.gateway.executor.impl.mtls.cert.validation.executor.MTLSEnforcementExecutor\\\",\\\"com.wso2.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor\\\",\\\"com.wso2.openbanking.accelerator.gateway.executor.impl.mtls.cert.validation.executor.CertRevocationValidationExecutor\\\"",
+                            "description": "Configure Gateway Executors for a particular API flow."
+                        },
+                        {
+                            "name": "priority",
+                            "type": "string",
+                            "required": true,
+                            "description": "Set the priority of the executor."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "openbanking_gateway_executors.type.executors.toml"
+        },
+        {
+            "title": "Gateway certificate management",
+            "options": [
+                {
+                    "name": "open_banking.gateway.certificate_management.certificate",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "cache_expiry",
+                            "type": "integer",
+                            "required": true,
+                            "default": "3600",
+                            "description": "Set the cache expiry time."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.certificate_management.certificate.toml"
+        },
+        {
+            "title": "Certificate revocation validation",
+            "options": [
+                {
+                    "name": "open_banking.gateway.certificate_management.certificate.revocation",
+                    "required": true,
+                    "description": "Configurations related to certificate revocation validation",
+                    "params": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "description": "To enable certificate revocation validation, set the value to true. "
+                        },
+                        {
+                            "name": "retry_count",
+                            "type": "integer",
+                            "required": true,
+                            "default": "3"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.certificate_management.certificate.revocation.toml"
+        },
+        {
+            "title": "Certificate revocation validation - proxy",
+            "options": [
+                {
+                    "name": "open_banking.gateway.certificate_management.certificate.revocation.proxy",
+                    "required": true,
+                    "description": "Configurations related to the proxy that performs certificate revocation vlaidation.",
+                    "params": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "description": "By default, WSO2 Open Banking API Manager executes the certificate revocation validation. However, you can set a proxy and execute the certificate revocation validation. In that case, set the value to true."
+                        },
+                        {
+                            "name": "host",
+                            "type": "string",
+                            "required": true,
+                            "default": "PROXY_HOSTNAME",
+                            "description": "The certificate revocation validations will happen via this proxy host."
+                        },
+                        {"name": "port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "8080",
+                            "description": "The certificate revocation validations will happen via this proxy port."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.certificate_management.certificate.revocation.proxy.toml"
+        },
+        {
+            "title": "API consumer validation configurations",
+            "options": [
+                {
+                    "name": "open_banking.gateway.tpp_management.tpp_validation",
+                    "required": true,
+                    "description": "Configurations related to the validation of API consumer applications.",
+                    "params": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "description": "Configure a custom API Consumer Validation Executor."
+                        },
+                        {
+                            "name": "implementation_path",
+                            "type": "string",
+                            "required": false,
+                            "default": "",
+                            "description": "The FQN of your custom API Consumer Validation Executor."
+                        },
+                        {
+                            "name": "cache_expiry",
+                            "type": "string",
+                            "required": true,
+                            "default": "3600",
+                            "description": "The expiry duration of cache."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.tpp_management.tpp_validation.toml"
+        },
+        {
+            "title": "API consumer role validation",
+            "options": [
+                {
+                    "name": "open_banking.gateway.tpp_management.psd2_role_validation",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Set this to true, to compare the PSD2 roles against the certificate of API consumer applications."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.tpp_management.psd2_role_validation.toml"
+        },
+        {
+            "title": "Allowed scopes for API consumer applications",
+            "options": [
+                {
+                    "name": "open_banking.gateway.tpp_management.allowed_scopes",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "possible": "accounts, payments",
+                            "description": "Defines an allowed scope for API consumer applications."
+                        },
+                        {
+                            "name": "roles",
+                            "type": "string",
+                            "required": true,
+                            "possible": "AISP, PISP",
+                            "description": "The roles of API consumer applications are matched against these roles."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.gateway.tpp_management.allowed_scopes.toml"
         }
     ]
 }
