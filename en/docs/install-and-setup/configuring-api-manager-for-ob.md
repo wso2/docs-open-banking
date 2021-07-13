@@ -77,14 +77,14 @@ database server, and the JDBC driver.
     [open_banking.dcr]
     #jwks_endpoint_name = ""
     #app_name_claim = " "
-    token_endpoint = "https://<IS_HOST>:9446/oauth2/token"
+    token_endpoint = https://<APIM_HOST>:9443/oauth2/token
     ```
 
 6. Add the following and configure the hostname of the Identity Server.  
 
     ``` toml
-    [open_banking.gateway]
-    consent.validation.endpoint = "https://<IS_HOST>:9446/api/openbanking/consent/validate"
+    [open_banking.gateway.consent.validation]
+    endpoint = "https://<IS_HOST>:9446/api/openbanking/consent/validate"
     ```
    
 7. If you want to use the [Data publishing](../learn/data-publishing.md) feature:

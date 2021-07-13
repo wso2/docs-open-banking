@@ -1,0 +1,4 @@
+[open_banking.gateway.certificate_management.certificate.revocation.proxy]
+enabled = false
+host = "PROXY_HOSTNAME"
+port = 8080

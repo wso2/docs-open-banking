@@ -1,0 +1,7 @@
+[[open_banking.dcr.regulatory_api]]
+api_name = "CDR-DynamicClientRegistration"
+roles = "AISP,PISP"
+
+[[open_banking.dcr.regulatory_api]]
+api_name = "AccountandTransactionAPI"
+roles = "AISP"

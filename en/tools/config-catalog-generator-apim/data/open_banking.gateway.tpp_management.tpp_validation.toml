@@ -1,0 +1,4 @@
+[open_banking.gateway.tpp_management.tpp_validation]
+enabled = false
+implementation_path = ""
+cache_expiry = 3600

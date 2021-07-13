@@ -82,7 +82,7 @@ jwks_endpoint_name = "jwks_uri"
 api_name = "CDR-DynamicClientRegistration"
 ```
 
-8. Configure the time out values when validating the signature of the request.
+8. Configure the timeout values when validating the signature of the request.
 ``` toml
 [open_banking.dcr.jwks_retriever]
 connection_timeout = 3000

@@ -1,0 +1,5 @@
+[[open_banking.dcr.apim_rest_endpoints]]
+app_creation = "api/am/devportal/v2/applications"
+key_generation = "api/am/devportal/v2/applications/application-id/map-keys"
+api_retrieve = "api/am/devportal/v2/apis"
+api_subscribe = "api/am/devportal/v2/subscriptions/multiple"

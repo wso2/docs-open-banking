@@ -1,0 +1,13 @@
+[[open_banking.data_publishing.thrift.stream.attributes]]
+name="consentId"
+priority=1
+[[open_banking.data_publishing.thrift.stream.attributes]]
+name="consumerId"
+priority=2
+[[open_banking.data_publishing.thrift.stream.attributes]]
+name="clientId"
+priority=3
+[[open_banking.data_publishing.thrift.stream.attributes]]
+name="userAgent"
+priority=4
+required=true

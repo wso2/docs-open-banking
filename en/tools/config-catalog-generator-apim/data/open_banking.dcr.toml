@@ -1,0 +1,5 @@
+[open_banking.dcr]
+#jwks_endpoint_name = ""
+#app_name_claim = " "
+token_endpoint = "https://localhost:9443/oauth2/token"
+use_softwareIdForAppName = true

@@ -1,0 +1,2 @@
+[open_banking.gateway.consent.validation]
+endpoint = "https://localhost:9446/api/openbanking/consent/validate"
