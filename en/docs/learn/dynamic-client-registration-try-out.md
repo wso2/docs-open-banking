@@ -9,7 +9,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 1. Sign in to the API Publisher Portal at `https://<APIM_HOST>:9443/publisher` with `creator/publisher` 
 privileges. 
 
-2. In the Homepage, click **REST API** and then  select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
+2. In the homepage, go to **REST API** and select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
 3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 
@@ -89,7 +89,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | **Claim URIs**      |   
         | Consumer Key Claim URI | The claim URI for the consumer key.  | (Optional)  |
         | Scopes Claim URI | The claim URI for the scopes | (Optional) | 
-        | Grant Types | The supported grant types. Add multiple grant types by adding a grant type press Enter. | (Optional) |
+        | Grant Types | The supported grant types. According to your open banking specification, add multiple grant types by adding a grant type press Enter. For example, `refresh_token`, `client_credentials`, `authorization_code`.| (Optional) |
         | **Certificates** | 
         | PEM | Either copy and paste the certificate in PEM format or upload the PEM file. | (Optional) |
         | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | `https://<IS_HOST>:9446/oauth2/jwks` |
