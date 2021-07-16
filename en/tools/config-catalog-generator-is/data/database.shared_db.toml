@@ -1,0 +1,5 @@
+[database.shared_db]
+url = "jdbc:mysql://localhost:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false"
+username = "root"
+password = "root"
+driver = "com.mysql.jdbc.Driver"

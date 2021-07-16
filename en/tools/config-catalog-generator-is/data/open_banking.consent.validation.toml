@@ -1,0 +1,2 @@
+[open_banking.consent.validation]
+validator="com.wso2.openbanking.accelerator.consent.extensions.validate.impl.DefaultConsentValidator"

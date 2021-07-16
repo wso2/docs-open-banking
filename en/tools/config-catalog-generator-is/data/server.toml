@@ -1,0 +1,8 @@
+[server]
+hostname = "localhost"
+node_ip = "127.0.0.1"
+base_path = "https://$ref{server.hostname}:${carbon.management.port}"
+serverDetails = "WSO2 IS as KM 5.11.0"
+mode = "single"
+userAgent = "WSO2 IS as KM 5.11.0"
+offset = 3

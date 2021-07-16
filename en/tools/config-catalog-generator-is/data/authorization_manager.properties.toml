@@ -1,0 +1,4 @@
+[authorization_manager.properties]
+AdminRoleManagementPermissions = "/permission"
+AuthorizationCacheEnabled = true
+GetAllRolesOfUserEnabled = false

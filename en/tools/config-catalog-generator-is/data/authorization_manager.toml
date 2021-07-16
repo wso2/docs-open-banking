@@ -1,0 +1,2 @@
+[authorization_manager]
+class = "org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager"

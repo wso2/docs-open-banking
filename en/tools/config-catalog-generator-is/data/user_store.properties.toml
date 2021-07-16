@@ -1,0 +1,7 @@
+[user_store.properties]
+UsernameJavaRegEx = "a-zA-Z0-9@._-{3,30}$"
+UsernameJavaScriptRegEx = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"
+SCIMEnabled = false
+IsBulkImportSupported = false
+LeadingOrTrailingSpaceAllowedInUserName = false
+UsernameWithEmailJavaScriptRegEx = "^[\\S]{3,30}$"

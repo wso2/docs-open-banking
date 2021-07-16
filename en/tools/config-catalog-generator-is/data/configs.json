@@ -1,33 +1,2066 @@
 {
     "configs" : [
         {
-            "title": "Connecting to the primary data store",
+            "title": "Server",
             "options": [
                 {
                     "name": "server",
                     "required": true,
-                    "description": "You can count on it.This toml header groups the parameters that define the server node details.",
-                    "description": "You can count on it.This toml header groups the parameters that define the server node details.",
+                    "description": "This includes configurations required for deploying an Identity Server node.",
                     "params": [
                         {
                             "name": "hostname",
                             "type": "string",
                             "required": true,
                             "default": "\"localhost\"",
-                            "possible": "\"127.0.0.1\",\"localhost\",\"<any-ip-address>\"",
-                            "description": "The hostname of the WSO2 EI server instance."
+                            "possible": "\"localhost\",\"127.0.0.1\",\"<any-ip-address>\",\"<any-hostname>\"",
+                            "description": "The hostname of the machine hosting the Identity Server instance."
                         },
                         {
                             "name": "node_ip",
                             "type": "string",
                             "required": true,
-                            "default": "\"127.0.0.1\"",
-                            "description": "The IP address of the server node."
+                            "default": "127.0.0.1",
+                            "description": "The IP address of the machine hosting the Identity Server instance."
+                        },
+                        {
+                            "name": "base_path",
+                            "type": "string",
+                            "required": true,
+                            "default": "${carbon.protocol}://${carbon.host}:${carbon.management.port}",
+                            "description": "Defines the base path URL to access the server."
+                        },
+                        {
+                            "name": "serverDetails",
+                            "type": "string",
+                            "required": true,
+                            "default": "WSO2 IS as KM 5.11.0",
+                            "description": "Description of the server."
+                        },
+                        {
+                            "name": "mode",
+                            "type": "string",
+                            "required": true,
+                            "default": "single",
+                            "possible": "single,ha",
+                            "description": "Defines the type of deployment, whether it is a single node deployment or a High Availability (HA) cluster."
+                        },
+                        {
+                            "name": "userAgent",
+                            "type": "string",
+                            "required": true,
+                            "default": "WSO2 IS as KM 5.11.0"
+                        },
+                        {
+                            "name": "offset",
+                            "type": "integer",
+                            "required": true,
+                            "default": "3",
+                            "description": "Port offset allows you to run multiple WSO2 products, multiple instances of a WSO2 product, or multiple WSO2 product clusters on the same server or virtual machine (VM). Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9443 and the port offset is 3, the effective HTTP port will be 9446. Therefore, for each additional WSO2 product instance, set the port offset to a unique value so that they can all run on the same server without any port conflicts."
                         }
                     ]
                 }
             ],
-            "exampleFile": "sample.toml"
+            "exampleFile": "server.toml"
+        },
+        {
+            "title": "Primary keystore",
+            "options": [
+                {
+                    "name": "keystore.primary",
+                    "required": true,
+                    "description": "Configurations related to the primary keystore.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2carbon.jks",
+                            "description": "The filename of the primary keystore."
+                        },
+                        {
+
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "description": "The password of the keystore file"
+
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "keystore.primary.toml"
+        },
+        {
+            "title": "Tenant management",
+            "options": [
+                {
+                    "name": "tenant_mgt",
+                    "required": true,
+                    "description": "Configurations related to tenant users.",
+                    "params": [
+                        {
+                            "name": "enable_email_domain",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Enable email login for tenant users."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "tenant_mgt.toml"
+        },
+        {
+            "title": "Super admin",
+            "options": [
+                {
+                    "name": "super_admin",
+                    "required": true,
+                    "description": "This includes the configurations related to the super admin user.",
+                    "params": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "admin@wso2.com",
+                            "description": "The username of the super admin user."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2123",
+                            "description": "The password of the super admin user."
+                        },
+                        {
+                            "name": "create_admin_account",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Set this to true, to create a new user with the super admin details given."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "super_admin.toml"
+        },
+        {
+            "title": "User management database",
+            "options": [
+                {
+                    "name": "realm_manager",
+                    "required": true,
+                    "description": "This includes the datasource configurations for the user management database.",
+                    "params": [
+                        {
+                            "name": "data_source",
+                            "type": "string",
+                            "required": true,
+                            "default": "WSO2USER_DB",
+                            "description": "The datasource used by the user manager."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "realm_manager.toml"
+        },
+        {
+            "title": "User store",
+            "options": [
+                {
+                    "name": "user_store",
+                    "required": true,
+                    "description": "This includes the configurations related to the user store.",
+                    "params": [
+                        {
+                            "name": "type",
+                            "type": "string",
+                            "required": true,
+                            "default": "database_unique_id"
+                        },
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "user_store.toml"
+        },
+        {
+            "title": "User store properties",
+            "options": [
+                {
+                    "name": "user_store.properties",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "UsernameJavaRegEx",
+                            "type": "string",
+                            "required": true,
+                            "default": "a-zA-Z0-9@._-{3,30}$",
+                            "description": "A regular expression to validate usernames. By default, strings have a length of 5 to 30. Only non-empty characters are allowed. You can provide ranges of alphabets, numbers and also ranges of ASCII values in the RegEx properties."
+                        },
+                        {
+                            "name": "UsernameJavaScriptRegEx",
+                            "type": "string",
+                            "required": true,
+                            "default": "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$",
+                            "description": "The regular expression used by the front-end components for username validation."
+                        },
+                        {
+                            "name": "SCIMEnabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "This is to configure whether the user store is supported for SCIM provisioning."
+                        },
+                        {
+                            "name": "IsBulkImportSupported",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "This is to configure whether the user store is supported for bulk imports."
+                        },
+                        {
+                            "name": "LeadingOrTrailingSpaceAllowedInUserName",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "This is to configure whether the username can contain leading or trailing spaces."
+                        },
+                        {
+                            "name": "UsernameWithEmailJavaScriptRegEx",
+                            "type": "string",
+                            "required": true,
+                            "default": "^[\\S]{3,30}$",
+                            "description": "A regular expression to validate usernames that contain an email address. By default, strings have a length of 3 to 30. Only non-empty characters are allowed. You can provide ranges of alphabets, numbers and also ranges of ASCII values in the RegEx properties."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "user_store.properties.toml"
+        },
+        {
+            "title": "Authorization manager",
+            "options": [
+                {
+                    "name": "authorization_manager",
+                    "required": true,
+                    "description": "This includes the configurations related to the authorization manager.",
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager",
+                            "description": "The Authorization Manager for your server."
+                        }
+                    ]
+
+                }
+            ],
+            "exampleFile": "authorization_manager.toml"
+        },
+        {
+            "title": "Authorization manager properties",
+            "options": [
+                {
+                    "name": "authorization_manager.properties",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "AdminRoleManagementPermissions",
+                            "type": "string",
+                            "required": true,
+                            "default": "/permission",
+                            "description": "Sets the registry path where the authorization information (role-based permissions) are stored. "
+                        },
+                        {
+                            "name": "AuthorizationCacheEnabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "To enable authorization cache."
+                        },
+                        {
+                            "name": "GetAllRolesOfUserEnabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Enable this if there are any performance issues in the production environment. Enabling this property affects the performance when the user logs in. This depends on the users, roles and permission stats."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authorization_manager.properties.toml"
+        },
+        {
+            "title": "Shared database configurations",
+            "options": [
+                {
+                    "name": "database.shared_db",
+                    "required": true,
+                    "description": "Configurations related to the databases shared between nodes.",
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_govdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.shared_db.toml"
+        },
+        {
+            "title": "Shared database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.shared_db.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                            "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait ",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                            "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                            "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+
+                        },
+                        {
+                            "name": "validationInterval",
+                            "type": "string",
+                            "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.shared_db.pool_options.toml"
+        },
+        {
+            "title": "API Manager database configurations",
+            "options": [
+                {
+                    "name": "database.identity_db",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_apimgtdb database, which contains API Manager data."
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.identity_db.toml"
+        },
+        {
+            "title": "API Manager database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.identity_db.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                            "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait ",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                            "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                            "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {
+                            "name": "validationInterval",
+                            "type": "string",
+                            "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+
+                    ]
+                }
+            ],
+            "exampleFile": "database.identity_db.pool_options.toml"
+        },
+        {
+            "title": "API Manager config registry database",
+            "options": [
+                {
+                    "name": "database.config",
+                    "required": true,
+                    "description": "Configurations related to the API Manager config registry database.",
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_am_configdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_am_configdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.config.toml"
+        },
+        {
+            "title": "Config registry database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.config.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                            "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait ",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                            "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                            "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {"name": "validationInterval",
+                            "type": "string",
+                            "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.config.pool_options.toml"
+        },
+        {
+            "title": "User Management database configurations",
+            "options": [
+                {
+                    "name": "database.user",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_userdb database, which contains user management data."
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.user.toml"
+        },
+        {
+            "title": "User Management database connection pool configurations",
+            "options": [
+                {
+                    "name": "database.user.pool_options",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "maxActive",
+                            "type": "string",
+                            "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "maxWait",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "minIdle",
+                            "type": "string",
+                            "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "testOnBorrow",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "validationQuery",
+                            "type": "string",
+                            "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {
+                            "name": "validationInterval",
+                            "type": "string",
+                            "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "defaultAutoCommit",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "database.user.pool_options.toml"
+        },
+        {
+            "title": "User Manager datasource",
+            "options": [
+                {
+                    "name": "datasource",
+                    "required": true,
+                    "description": "Configurations related to the user manager datasource.",
+                    "params": [
+                        {"name": "id",
+                            "type": "string",
+                            "required": true,
+                            "default": "WSO2OB_DB",
+                            "description": "The datasource used by the user manager."
+                        },
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": true,
+                            "default": "jdbc:mysql://localhost:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false",
+                            "description": "The database connection URL that your DBMS JDBC driver uses to connect to the openbank_userdb database. "
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The username used for the database connection"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "root",
+                            "description": "The password used for the database connection"
+                        },
+                        {
+                            "name": "driver",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.mysql.jdbc.Driver",
+                            "possible": "com.mysql.jdbc.Driver, com.microsoft.sqlserver.jdbc.SQLServerDriver, oracle.jdbc.driver.OracleDriver, org.postgresql.Driver",
+                            "description": "The name of the JDBC driver."
+                        },
+                        {
+                            "name": "jmx_enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Use this parameter to enable JMX for the database connection."
+                        },
+                        {
+                            "name": "pool_options.maxActive",
+                            "type": "string",
+                            "required": true,
+                            "default": "150",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.maxWait",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.minIdle",
+                            "type": "string",
+                            "required": true,
+                            "default": "5",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.testOnBorrow ",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.validationQuery",
+                            "type": "string",
+                            "required": true,
+                            "default": "SELECT 1",
+                            "possible": "SELECT 1,SELECT 1 FROM DUAL",
+                            "description": "Tuning parameters. Change according to the preferred database. For Oracle DBMS, use \"SELECT 1 FROM DUAL\"."
+                        },
+                        {
+                            "name": "pool_options.validationInterval",
+                            "type": "string",
+                            "required": true,
+                            "default": "30000",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        },
+                        {
+                            "name": "pool_options.defaultAutoCommit",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "Tuning parameters. Change according to the preferred database."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "datasource.toml"
+        },
+        {
+            "title": "Authentication endpoints",
+            "options": [
+                {
+                    "name": "authentication.endpoints",
+                    "required": true,
+                    "description": "The URLs of the authentication web application.",
+                    "params": [
+                        {
+                            "name": "login_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:9446/authenticationendpoint/login.do"
+                        },
+                        {
+                            "name": "retry_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:9446/authenticationendpoint/retry.do"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authentication.endpoints.toml"
+        },
+        {
+            "title": "Authentication endpoint redirect parameters",
+            "options": [
+                {
+                    "name": "authentication.endpoint.redirect_params",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "filter_policy",
+                            "type": "string",
+                            "required": true,
+                            "default": "include",
+                            "possible": " ",
+                            "description": "When the action is set to include, the defined parameters will be sent to the authentication endpoint as a query parameter."
+                        },
+                        {
+                            "name": "remove_on_consume_from_api",
+                            "type": "string",
+                            "required": true,
+                            "default": "TRUE"
+                        },
+                        {
+                            "name": "parameters",
+                            "type": "string",
+                            "required": true,
+                            "default": "[\"sessionDataKeyConsent\",\"relyingParty\", \"authenticators\", \"authFailureMsg\", \"authFailure\"]"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authentication.endpoint.redirect_params.toml"
+        },
+        {
+            "title": "OAuth endpoints",
+            "options": [
+                {
+                    "name": "oauth.endpoints",
+                    "required": true,
+                    "description": "The OAuth endpoints for the Identity Server.",
+                    "params": [
+                        {"name": "oauth2_consent_page",
+                            "type": "string",
+                            "required": true,
+                            "default": "${carbon.protocol}://localhost:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"
+                        },
+                        {
+                            "name": "oidc_consent_page",
+                            "type": "string",
+                            "required": true,
+                            "default": "${carbon.protocol}://localhost:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "oauth.endpoints.toml"
+        },
+        {
+            "title": "SMS OTP Authenticator parameters",
+            "options": [
+                {
+                    "name": "authentication.authenticator.sms_otp.parameters",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "EnableAccountLockingForFailedAttempts",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "To enable account locking for each type of OTP attempt, set it to true."
+                        },
+                        {
+                            "name": "BackupCode",
+                            "type": "string",
+                            "required": true,
+                            "default": "FALSE",
+                            "possible": "true,false",
+                            "description": "To set up backup codes."
+                        },
+                        {
+                            "name": "TokenExpiryTime",
+                            "type": "string",
+                            "required": true,
+                            "default": "60",
+                            "description": "Set up the expiration time for the token."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authentication.authenticator.sms_otp.parameters.toml"
+        },
+        {
+            "title": "Custom Authenticator",
+            "options": [
+                {
+                    "name": "authentication.custom_authenticator",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "IdentifierExecutor",
+                            "description": "The name of the custom authenticator."
+                        },
+                        {
+                            "name": "parameters.ValidateUsername",
+                            "type": "string",
+                            "required": true,
+                            "default": "TRUE",
+                            "description": "If you want your username validated first, the value of this parameter should be changed to true."
+                        },
+                        {
+                            "name": "parameters.throttleLimit",
+                            "type": "string",
+                            "required": true,
+                            "default": "3",
+                            "description": "Configure the throttle limit. "
+                        },
+                        {
+                            "name": "parameters.throttleTimePeriod",
+                            "type": "string",
+                            "required": true,
+                            "default": "300",
+                            "description": "Configure the time period for throttling. "
+                        },
+                        {
+                            "name": "parameters.authRequestURL",
+                            "type": "string",
+                            "required": true,
+                            "default": "https://localhost:9446/api/identity/auth/v1.1/data/AuthRequestKey/",
+                            "description": "The authorization request URL."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authentication.custom_authenticator.toml"
+        },
+        {
+            "title": "Signing certificate configurations",
+            "options": [
+                {
+                    "name": "open_banking.identity",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "signing_certificate_kid",
+                            "type": "string",
+                            "required": true,
+                            "default": "123",
+                            "description": "Configure the key ID (kid) value for the signing certificate of the bank. The same value is configured as the kid of the ID Token."
+                        },
+                        {
+                            "name": "client_transport_cert_as_header_enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "TRUE",
+                            "possible": "true,false",
+                            "description": "To send the client certificate as a transport header, set this to true."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.identity.toml"
+        },
+        {
+            "title": "Consent ID claim",
+            "options": [
+                {
+                    "name": "open_banking.identity",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "consent_id_claim_name",
+                            "type": "string",
+                            "required": false,
+                            "default": "consent_id",
+                            "description": "By default, the consent ID is available in the JWT token under the custom claim name;consent_id. To change the default claim name, use this  configuration."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.identity.consent_id_claim_name.toml"
+        },
+        {
+            "title": "Adaptive authentication event publisher",
+            "options": [
+                {
+                    "name": "authentication.adaptive.event_publisher",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "required": true,
+                            "default": "http://localhost:8006/",
+                            "description": "Configure the event publisher URL for adaptive authentication with the hostname of the Identity Server."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "authentication.adaptive.event_publisher.toml"
+        },
+        {
+            "title": "Data publishing configurations",
+            "options": [
+                {
+                    "name": "open_banking.data_publishing",
+                    "required": true,
+                    "description": "Configurations related to the data publishing in Identity Server.",
+                    "params": [
+                        {
+                            "name": "enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "FALSE",
+                            "description": "To enable the data publishing feature."
+                        },
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{super_admin.username}@carbon.super",
+                            "description": "Credentials to access WSO2 Streaming Integrator."
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{super_admin.password}",
+                            "description": "Credentials to access WSO2 Streaming Integrator."
+                        },
+                        {
+                            "name": "server_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "{tcp://<SI_HOST>:7612}",
+                            "description": "The TCP port of Open Banking Business Intelligence Worker."
+                        },
+                        {
+                            "name": "auth_url",
+                            "type": "string",
+                            "required": false,
+                            "default": "{tcp://<SI_HOST>:7612}",
+                            "description": "The SSL authentication URL of Open Banking Business Intelligence Worker. This is an optional configuration."
+                        },
+                        {
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "default": "Thrift",
+                            "possible": "Thrift",
+                            "description": "The protocol used to publish Open Banking data."
+                        },
+                        {
+                            "name": "pool_size",
+                            "type": "string",
+                            "required": true,
+                            "default": "10",
+                            "description": "Defines the maximum number of instances that can reside in the pool."
+                        },
+                        {
+                            "name": "queue_size",
+                            "type": "string",
+                            "required": true,
+                            "default": "32768"
+                        },
+                        {
+                            "name": "worker_thread_count",
+                            "type": "string",
+                            "required": true,
+                            "default": "10"
+                        },
+                        {
+                            "name": "pool_wait_time_Ms",
+                            "type": "string",
+                            "required": true,
+                            "default": "60000",
+                            "description": "Defines the maximum waiting time to retrieve an instance from the pool."
+                        },
+                        {
+                            "name": "auth_data_publisher",
+                            "type": "string",
+                            "required": false,
+                            "default": "{ssl://<SI_HOST>:7612}",
+                            "description": "Configures a custom data publishing class using its FQN."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.data_publishing.toml"
+        },
+        {
+            "title": "Data publishing stream",
+            "options": [
+                {
+                    "name": "open_banking.data_publishing.thrift.stream",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "default": "AuthenticationInputStream",
+                            "description": "Define a stream for publishing data."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.data_publishing.thrift.stream.toml"
+        },
+        {
+            "title": "Data publishing attributes",
+            "options": [
+                {
+                    "name": "open_banking.data_publishing.thrift.stream.attributes",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "description": "Define an attribute for publishing data."
+                        },
+                        {
+                            "name": "priority",
+                            "type": "string",
+                            "required": false,
+                            "description": "Define the priority for a data publishing attribute."
+                        }
+
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.data_publishing.thrift.stream.attributes.toml"
+        },
+        {
+            "title": "Regulatory issuer - DCR",
+            "options": [
+                {
+                    "name": "open_banking.dcr.regulatory_issuers.iss",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "description": "Configure the issuer (iss) of the SSA in the following tag. If not specified, the application is considered a non-regulatory application."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.regulatory_issuers.iss.toml"
+        },
+        {
+            "title": "Dynamic Client Registrations (DCR) configurations",
+            "options": [
+                {
+                    "name": "open_banking.dcr",
+                    "required": true,
+                    "description": "Configurations for Dynamic Client Registration.",
+                    "params": [
+                        {
+                            "name": "validator",
+                            "type": "string",
+                            "required": true,
+                            "description": "Configure the issuer (iss) of the SSA in the following tag. If not specified, the application is considered a non-regulatory application. Configure your custom DCR validator here. By default, the DefaultRegistrationValidatorImpl class is configured as given here."
+                        },
+                        {
+                            "name": "jwks_url_sandbox",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
+                        },
+                        {
+                            "name": "jwks_url_production",
+                            "type": "string",
+                            "required": true,
+                            "default": "The JWKS endpoints that are used for validating the SSA signature."
+                        },
+                        {
+                            "name": "applicationupdater",
+                            "type": "string",
+                            "required": true,
+                            "description": "If you have modified the Application Listener interface, for example, adding OAuth 2.0 properties or for data publishing requirements, the Application Listener invokes methods that are overridden from a class. Configure the following tag with the name of the class that is extended to do so."
+                        },
+                        {
+                            "name": "use_softwareIdForAppName",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "If you have modified the Application Listener interface, for example, adding OAuth 2.0 properties or for data publishing requirements, the Application Listener invokes methods that are overridden from a class. Configure the following tag with the name of the class that is extended to do so.",
+                            "possible": "true,false",
+                            "description": "Sets the software id as the name of the application. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.toml"
+        },
+        {
+            "title": "JWKS retrieval connection timeout",
+            "options": [
+                {
+                    "name": "open_banking.dcr.jwks_retriever",
+                    "required": true,
+                    "description": "When retrieving the JSON web keys related to the API consumer application, the time-out values when connecting to the JWKS endpoint of the Open Banking directory.",
+                    "params": [
+                        {
+                            "name": "connection_timeout",
+                            "type": "integer",
+                            "default": 3000,
+                            "required": "true"
+                        },
+                        {
+                            "name": "read_timeout",
+                            "type": "integer",
+                            "required": true,
+                            "default": 3000
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.jwks_retriever.toml"
+        },
+        {
+            "title": "DCR request - configure issuer parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.issuer",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is a mandatory request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter optional, add this tag and set it to false. Otherwise, this is considered as a mandatory request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.issuer.toml"
+        },
+        {
+            "title": "DCR request - configure audience parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.audience",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is a mandatory request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter optional, add this tag and set it to false. Otherwise, this is considered as a mandatory request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.audience.toml"
+        },
+        {
+            "title": "DCR request - configure token_endpoint_authentication parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.token_endpoint_authentication",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is a mandatory request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter optional, add this tag and set it to false. Otherwise, this is considered as a mandatory request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.audience.toml"
+        },
+        {
+            "title": "DCR request - configure id_token_signed_response_alg parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.id_token_signed_response_alg",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is a mandatory request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter optional, add this tag and set it to false. Otherwise, this is considered as a mandatory request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.id_token_signed_response_alg.toml"
+        },
+        {
+            "title": "DCR request - configure software_statement parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.software_statement",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is a mandatory request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter optional, add this tag and set it to false. Otherwise, this is considered as a mandatory request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.software_statement.toml"
+        },
+        {
+            "title": "DCR request - configure grant_types parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.grant_types",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is a mandatory request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter optional, add this tag and set it to false. Otherwise, this is considered as a mandatory request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.grant_types.toml"
+        },
+        {
+            "title": "DCR request - configure scope parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.scope",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.scope.toml"
+        },
+        {
+            "title": "DCR request - configure application_type parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.application_type",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.application_type.toml"
+        },
+        {
+            "title": "DCR request - configure response_types parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.response_types",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.response_types.toml"
+        },
+        {
+            "title": "DCR request - configure callback_uris parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.callback_uris",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.callback_uris.toml"
+        },
+        {
+            "title": "DCR request - configure token_endpoint_auth_signing_alg parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.token_endpoint_auth_signing_alg",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.token_endpoint_auth_signing_alg.toml"
+        },
+        {
+            "title": "DCR request - configure software_id parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.software_id",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.software_id.toml"
+        },
+        {
+            "title": "DCR request - configure id_token_encryption_response_alg parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.id_token_encryption_response_alg",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.id_token_encryption_response_alg.toml"
+        },
+        {
+            "title": "DCR request - configure id_token_encryption_response_enc parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.id_token_encryption_response_enc",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.id_token_encryption_response_enc.toml"
+        },
+        {
+            "title": "DCR request - configure request_object_signing_algorithm parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.request_object_signing_algorithm",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.request_object_signing_algorithm.toml"
+        },
+        {
+            "title": "DCR request - configure tls_client_auth_subject_dn parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.tls_client_auth_subject_dn",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.tls_client_auth_subject_dn.toml"
+        },
+        {
+            "title": "DCR request - configure backchannel_token_delivery_mode parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.backchannel_token_delivery_mode",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.backchannel_token_delivery_mode.toml"
+        },
+        {
+            "title": "DCR request - configure backchannel_authentication_request_signing_alg parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.backchannel_authentication_request_signing_alg",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.backchannel_authentication_request_signing_alg.toml"
+        },
+        {
+            "title": "DCR request - configure backchannel_client_notification_endpoint parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.backchannel_client_notification_endpoint",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.backchannel_client_notification_endpoint.toml"
+        },
+        {
+            "title": "DCR request - configure backchannel_user_code_parameter_supported parameter",
+            "options": [
+                {
+                    "name": "open_banking.dcr.registration.backchannel_user_code_parameter_supported",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "allowed_values",
+                            "type": "string",
+                            "required": true,
+                            "description": "According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow. By default, this is an optional request parameter in the DCR registration request."
+                        },
+                        {
+                            "name": "required",
+                            "type": "boolean",
+                            "required": false,
+                            "possible": "true,false",
+                            "description": "If you want to make this request parameter mandatory, add this tag and set it to true. Otherwise, this is considered  an optional request parameter in the DCR request. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.dcr.registration.backchannel_user_code_parameter_supported.toml"
+        },
+        {
+            "title": "Primary authenticator",
+            "options": [
+                {
+                    "name": "open_banking.sca.primaryauth",
+                    "required": false,
+                    "description": "Configures the primary authenticator.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "possible": "BasicAuthenticator,IdentifierExecutor",
+                            "description": "The name of the primary authenticator to be engaged in the authentication flow."
+                        },
+                        {
+                            "name": "display",
+                            "type": "string",
+                            "required": false,
+                            "possible": "basic,ob-identifier-first"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.sca.primaryauth.toml"
+        },
+        {
+            "title": "Identity provider configurations",
+            "options": [
+                {
+                    "name": "open_banking.sca.idp",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "description": "Configure the identity provider as the secondary authentication method. The example given here is for SMS OTP."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.sca.idp.toml"
+        },
+        {
+            "title": "Signature validation algorithms",
+            "options": [
+                {
+                    "name": "open_banking.signature_validation.allowed_algorithms.algorithms",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "algorithm",
+                            "type": "string",
+                            "required": false,
+                            "default": "PS256",
+                            "description": "Configure the algorithms that are allowed during signature validation. These algorithms are used for token endpoint authentication assertion signature, request object signature, and id token signature validations."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.signature_validation.allowed_algorithms.algorithms.toml"
+        },
+        {
+            "title": "Consent manage handler",
+            "options": [
+                {
+                    "name": "open_banking.consent.manage",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "handler",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.consent.extensions.manage.impl.DefaultConsentManageHandler",
+                            "description": "Configures a custom Consent Manage component."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.consent.manage.toml"
+        },
+        {
+            "title": "Consent validator",
+            "options": [
+                {
+                    "name": "open_banking.consent.validation",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "validator",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.consent.extensions.validate.impl.DefaultConsentValidator",
+                            "description": "Configures a custom Consent Validate component."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.consent.validation.toml"
+        },
+        {
+            "title": "Consent validation signature",
+            "options": [
+                {
+                    "name": "open_banking.consent.validation.signature",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "alias",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "description": "Configures the certificate alias available in the truststore of the Identity Server. This should be the certificate that is used to sign the consent validate JWT, which is sent from the gateway."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.consent.validation.signature.toml"
+        },
+        {
+            "title": "Consent authorization steps",
+            "options": [
+                {
+                    "name": "open_banking.consent.authorize_steps.retrieve",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "description": "Configures custom retrieval steps and their order. The steps are invoked based on the configured priority order. In the retrieval steps, there is a non-regulatory step configured as the priority order 1001. Make sure to configure any custom step before this step."
+                        },
+                        {
+                            "name": "priority",
+                            "type": "integer",
+                            "required": "TRUE"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.consent.authorize_steps.retrieve.toml"
+        },
+        {
+            "title": "Consent persistent steps",
+            "options": [
+                {
+                    "name": "open_banking.consent.authorize_steps.persist",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.DefaultConsentPersistStep",
+                            "description": "Configures a custom Consent Persistent Steps Manage components and their order."
+                        },
+                        {
+                            "name": "priority",
+                            "type": "integer",
+                            "required": true,
+                            "default": "1",
+                            "description": "The steps are invoked based on the configured priority order."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.consent.authorize_steps.persist.toml"
+        },
+        {
+            "title": "Authentication web app configuration",
+            "options": [
+                {
+                    "name": "open_banking.identity.authentication_webapp",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "servlet_extension",
+                            "type": "string",
+                            "required": false,
+                            "default": "com.wso2.openbanking.accelerator.authentication.webapp.impl.OBDefaultAuthServletImpl",
+                            "description": "When you are customizing the layout of the consent page, use this to configure a custom implementation for OBAuthServletInterface. "
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.identity.authentication_webapp.toml"
+        },
+        {
+            "title": "Identity Server extensions",
+            "options": [
+                {
+                    "name": "open_banking.identity.extensions",
+                    "required": false,
+                    "descriptions": "Contains the configurations for the extension points in the Identity Server.",
+                    "params": [
+                        {
+                            "name": "request_object_validator",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.DefaultOBRequestObjectValidator",
+                            "description": "Configures a custom request object validator using its Fully Qualified Name (FQN)."
+                        },
+                        {
+                            "name": "claim_provider",
+                            "type": "string",
+                            "required": false,
+                            "default": "com.wso2.openbanking.accelerator.identity.claims.OBDefaultClaimProvider",
+                            "description": "Configures a custom claim provider using its Fully Qualified Name (FQN)."
+                        },
+                        {
+                            "name": "response_type_handler",
+                            "type": "string",
+                            "required": false,
+                            "default": "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBResponseTypeHandler",
+                            "description": "Configures a custom response type handler using its Fully Qualified Name (FQN)."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.identity.extensions.toml"
+        },
+        {
+            "title": "OAuth OIDC extensions",
+            "options": [
+                {
+                    "name": "oauth.oidc.extensions",
+                    "required": false,
+                    "params": [
+                        {
+                            "name": "id_token_builder",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder",
+                            "description": "Configures a custom ID Token Builder using its FQN."
+                        },
+                        {
+                            "name": "request_object_validator",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidationExtension",
+                            "description": "The extension for the request object validator."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "oauth.oidc.extensions.toml"
+        },
+        {
+            "title": "Response types",
+            "options": [
+                {
+                    "name": "oauth.custom_response_type",
+                    "required": true,
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "code",
+                            "possible": "code,code id_token",
+                            "description": "Configures OIDC response types."
+                        },
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBCodeResponseTypeHandlerExtension",
+                            "possible": "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBCodeResponseTypeHandlerExtension,com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBHybridResponseTypeHandlerExtension"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "oauth.custom_response_type.toml"
         }
+
     ]
 }

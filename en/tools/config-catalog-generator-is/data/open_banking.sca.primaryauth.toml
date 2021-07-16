@@ -1,0 +1,3 @@
+[open_banking.sca.primaryauth]
+name = "IdentifierExecutor"
+display = "ob-identifier-first"

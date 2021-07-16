@@ -1,0 +1,3 @@
+[oauth.endpoints]
+oauth2_consent_page = "${carbon.protocol}://localhost:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"
+oidc_consent_page = "${carbon.protocol}://localhost:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"

@@ -1,0 +1,4 @@
+[open_banking.identity.extensions]
+request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.DefaultOBRequestObjectValidator"
+claim_provider="com.wso2.openbanking.accelerator.identity.claims.OBDefaultClaimProvider"
+response_type_handler="com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBResponseTypeHandler"

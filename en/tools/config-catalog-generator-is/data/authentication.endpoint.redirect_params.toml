@@ -1,0 +1,4 @@
+[authentication.endpoint.redirect_params]
+filter_policy = "include"
+remove_on_consume_from_api = "true"
+parameters = ["sessionDataKeyConsent","relyingParty", "authenticators", "authFailureMsg", "authFailure"]

@@ -25,7 +25,7 @@ parameters.authRequestURL = "https://<IS_HOST>:9446/api/identity/auth/v1.1/data/
 [authentication.authenticator.sms_otp.parameters]
 EnableAccountLockingForFailedAttempts = true
 BackupCode = false
-TokenExpiryTime = 6
+TokenExpiryTime = 60
 ```
 
 2. Add the following configuration in `<IS_HOME>/repository/conf/deployment.toml` to make the default identifier-first 

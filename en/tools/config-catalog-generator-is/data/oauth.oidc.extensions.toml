@@ -1,0 +1,3 @@
+[oauth.oidc.extensions]
+id_token_builder = "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder",
+request_object_validator = "com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBRequestObjectValidationExtension"

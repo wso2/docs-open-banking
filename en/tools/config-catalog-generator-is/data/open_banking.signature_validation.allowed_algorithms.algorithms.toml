@@ -1,0 +1,2 @@
+[[open_banking.signature_validation.allowed_algorithms.algorithms]]
+algorithm = "PS256"

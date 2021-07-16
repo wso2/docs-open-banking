@@ -1,0 +1,2 @@
+[authentication.adaptive.event_publisher]
+url = "http://localhost:8006/"
