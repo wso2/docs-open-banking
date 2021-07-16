@@ -78,7 +78,7 @@ server_url = "{tcp://<SI_HOST>:7612}"
 ###Try out
 1. Register an API consumer application as instructed  in [Dynamic Client Registration Tryout](dynamic-client-registration-try-out.md). 
 
-2. Try out the sample API flow using the instructions given in [Tryout Flow](publish-an-api.md).
+2. Try out the sample API flow using the instructions given in [Tryout Flow](../get-started/try-out-flow.md).
 
 3. Once you try out the sample API flow, you can notice that data is published to the tables of the `openbank_ob_reporting_statsdb` 
 database. 

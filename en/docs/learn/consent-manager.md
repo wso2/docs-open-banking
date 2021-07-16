@@ -6,6 +6,31 @@ requirements and manages consents.
     - Bank officers with the `CustomerCareOfficerRole` role and bank customers can access the Consent Manager.  
     - Customer Care Officers have privileges such as Advanced Search options and the ability to view the consents of all bank customers. 
     
+## Configuring servers
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file and update access control configurations for the 
+`consentmgr` resource as follows: 
+
+    ``` toml
+    [[resource.access_control]]
+    context = "(.*)/consentmgr(.*)"
+    secure="false"
+    http_method="GET,DELETE"
+    ```
+   
+2. Open the `<API_HOME>/repository/conf/deployment.toml` file and add the following gateway executor configurations for 
+the Consent flow:
+   
+    ``` toml
+    [[open_banking.gateway.openbanking_gateway_executors.type]]
+    name = "Consent"
+    [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+    name = "com.wso2.openbanking.accelerator.gateway.executor.impl.selfcare.portal.UserPermissionValidationExecutor"
+    priority = 1
+    ``` 
+   
+3. Restart the Identity Server and API Manager servers respectively.
+
 ## Creating users and roles
 
 Follow [Configuring users and roles](../install-and-setup/configuring-users-and-roles.md) and do the following:
@@ -108,7 +133,7 @@ file and click **SELECT**.
 
 13. Find the **SelfCarePortalAPI** from the list and click the **Subscribe** button corresponding to it.
 
-## Configuring Identity Server
+## Configuring Consent Manager
 
 1. Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/runtime-config.js` file.
 
