@@ -1,0 +1,12 @@
+[open_banking.data_publishing]
+enable = false
+username="$ref{super_admin.username}@carbon.super"
+password="$ref{super_admin.password}"
+server_url = "{tcp://localhost:7612}"
+#auth_url = "{ssl://localhost:7612}"
+protocol = "Thrift"
+pool_size = 10
+queue_size = 32768
+worker_thread_count = 10
+pool_wait_time_Ms = 60000
+auth_data_publisher = "com.wso2.openbanking.accelerator.authentication.data.publisher.extension.DefaultAuthDataPublisher"

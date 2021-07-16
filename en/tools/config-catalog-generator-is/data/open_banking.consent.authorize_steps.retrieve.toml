@@ -1,0 +1,7 @@
+[[open_banking.consent.authorize_steps.retrieve]]
+class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.NonRegulatoryConsentStep"
+priority = 1
+
+[[open_banking.consent.authorize_steps.retrieve]]
+class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.DefaultConsentRetrievalStep"
+priority = 2
