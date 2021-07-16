@@ -8,7 +8,7 @@ Identity Server.
 
 !!! tip
     If you want to customize and learn more about TOML configurations, see 
-    [Identity Server Configuration Catalog for open banking](../refernces/config-catalog-is.md).
+    [Identity Server Configuration Catalog for open banking](../references/config-catalog-is.md).
 
 1. Replace the `deployment.toml` file as explained in the 
 [Setting up the servers](setting-up-servers.md#copying-the-deploymenttoml) section.
@@ -83,15 +83,16 @@ database server, and the JDBC driver.
     oidc_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"
     ```
    
-6. Configure the following endpoints for the `private_key_jwt_authenticator` event listener:
+6. Configure the following endpoints for the `token_revocation` event listener:
  
     - Configure `TokenEndpointAlias` with the hostname of the Identity Server.
     - Configure `notification_endpoint` with the hostname of the API Manager.  
 
     ``` toml
     [[event_listener]]	
-    id = "private_key_jwt_authenticator"	
+    id = "token_revocation"	
     ...
+    [event_listener.properties]
     TokenEndpointAlias= "https://<IS_HOST>:9446/oauth2/token"	
     notification_endpoint = "https://<APIM_HOST>:9443/internal/data/v1/notify"	
     ```
@@ -114,7 +115,16 @@ database server, and the JDBC driver.
     url = "http://<IS_HOST>:8006/"
     ```
 
-9. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
+9. Update access control configurations for the `consentmgr` resource as follows: 
+
+    ``` toml
+    [[resource.access_control]]
+    context = "(.*)/consentmgr(.*)"
+    secure="false"
+    http_method="GET,DELETE"
+    ```
+
+10. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
 
     - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
     Integrator.
@@ -125,7 +135,6 @@ database server, and the JDBC driver.
     username="$ref{super_admin.username}@carbon.super"	
     password="$ref{super_admin.password}"	
     server_url = "{tcp://<SI_HOST>:7612}"	
-    auth_url = "{ssl://<SI_HOST>:7612}"
     ```   
    
 ## Starting servers

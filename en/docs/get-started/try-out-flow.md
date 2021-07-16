@@ -8,7 +8,7 @@ This document provides step by step instructions to invoke the Accounts Informat
         1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
         privileges. 
 
-        2. In the homepage, Go to **Create API** and click **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
+        2. In the homepage, go to **REST API** and select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
 
         3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
 

@@ -16,8 +16,7 @@ by WSO2 Open Banking Accelerator.
 
 ## Sequence files
 
-In a production environment, you can deploy your own APIs and configure sequence files by following the steps in 
-[Publish an API](publish-an-api.md). By default, the solution contains a mock back end and a sample sequence file as 
+In a production environment, you can deploy your own APIs and configure sequence files. Steps to try out the sample flow is available [here](../get-started/try-out-flow.md). By default, the solution contains a mock back end and a sample sequence file as 
 follows:
 
 ``` xml

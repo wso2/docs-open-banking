@@ -35,7 +35,7 @@ flows to support any open banking requirement.
 
 ####WSO2 Open Banking API Manager Accelerator
 
-- Generalized implementation for [common open banking use cases](../learn/publish-an-api.md):
+- Generalized implementation for [common open banking use cases](../get-started/try-out-flow.md):
 
     - Consent enforcement
     - eIDAS

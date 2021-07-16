@@ -8,7 +8,7 @@ Manager.
 
 !!! tip
     If you want to customize and learn more about TOML configurations, see 
-    [API Manager Configuration Catalog for open banking](../refernces/config-catalog-apim.md).
+    [API Manager Configuration Catalog for open banking](../references/config-catalog-apim.md).
 
 1. Replace the `deployment.toml` file as explained in the 
 [Setting up the servers](setting-up-servers.md#copying-the-deploymenttoml) section.
@@ -87,7 +87,17 @@ database server, and the JDBC driver.
     endpoint = "https://<IS_HOST>:9446/api/openbanking/consent/validate"
     ```
    
-7. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
+7. Add the following gateway executor configurations for the Consent flow:
+
+    ``` toml
+    [[open_banking.gateway.openbanking_gateway_executors.type]]
+    name = "Consent"
+    [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+    name = "com.wso2.openbanking.accelerator.gateway.executor.impl.selfcare.portal.UserPermissionValidationExecutor"
+    priority = 1
+    ```
+
+8. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
    
     - Enable the feature and configure the `server_url` property with the hostname of WSO2 Streaming 
     Integrator.
