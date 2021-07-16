@@ -62,7 +62,7 @@ Once implemented, build a JAR file for your custom claim provider and place it i
 
 ``` toml
 [open_banking.identity.extensions]
-claim_provider=com.wso2.openbanking.accelerator.identity.claims.OBDefaultClaimProvider
+claim_provider="com.wso2.openbanking.accelerator.identity.claims.OBDefaultClaimProvider"
 ```
 
 ##Configuring Claims for an Identity Provider
