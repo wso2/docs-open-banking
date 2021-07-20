@@ -1,0 +1,4 @@
+[authentication.authenticator.sms_otp.parameters]
+EnableAccountLockingForFailedAttempts = true
+BackupCode = false
+TokenExpiryTime = 60

@@ -1,0 +1,2 @@
+[open_banking.consent.manage]
+handler="com.wso2.openbanking.accelerator.consent.extensions.manage.impl.DefaultConsentManageHandler"

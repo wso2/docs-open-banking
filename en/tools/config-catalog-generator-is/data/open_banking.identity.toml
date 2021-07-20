@@ -1,0 +1,3 @@
+[open_banking.identity]
+signing_certificate_kid="123"
+client_transport_cert_as_header_enabled = true

@@ -6,12 +6,12 @@
 a non-regulatory application.
 ``` toml
 [[open_banking.dcr.regulatory_issuers.iss]]
-name = "cdr-register"
+name = "OpenBanking Ltd"
 ```
 
 3. If you have modified the Application Listener interface, for example, adding OAuth 2.0 properties or for data 
-publishing requirements, the Application Listener invokes methods that are overridden from a class. Add the following 
-tag with the name of the class that is extended to so.
+publishing requirements, the Application Listener invokes methods that are overridden from a class. Configure the following 
+tag with the name of the class that is extended to do so.
 ``` toml
 [open_banking.dcr]
 applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
@@ -114,7 +114,6 @@ algorithm = "PS256"
 !!! note "Configuring DCR request parameters" 
     - According to your specification different types of values are allowed in the registration request. WSO2 Open 
     Banking Accelerator provides the capability to configure the parameters and the values they allow.
-        - Open the `<IS_HOME>/repository/conf/deployment.toml` file.
         - By default, the following values are configured as mandatory parameters. To configure 
         the allowed values for them, open the `<IS_HOME>/repository/conf/deployment.toml` file and add the following 
         tags.
@@ -186,7 +185,7 @@ algorithm = "PS256"
             [open_banking.dcr.registration.backchannel_token_delivery_mode] 
             allowed_values = ["value1, value2, value3”]
             
-            [open_banking.dcr.registration.backchannel_authentication_request_signing_alg g] 
+            [open_banking.dcr.registration.backchannel_authentication_request_signing_alg] 
             allowed_values = ["value1, value2, value3”]
             
             [open_banking.dcr.registration.backchannel_client_notification_endpoint] 

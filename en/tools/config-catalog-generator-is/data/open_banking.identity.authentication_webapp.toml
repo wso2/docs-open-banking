@@ -1,0 +1,2 @@
+[open_banking.identity.authentication_webapp]
+servlet_extension = "com.wso2.openbanking.accelerator.authentication.webapp.impl.OBDefaultAuthServletImpl"

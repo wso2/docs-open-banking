@@ -1,0 +1,7 @@
+[[oauth.custom_response_type]]
+name = "code"
+class = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBCodeResponseTypeHandlerExtension"
+
+[[oauth.custom_response_type]]
+name = "code id_token"
+class = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBHybridResponseTypeHandlerExtension"

@@ -128,6 +128,7 @@ nav:
         - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
         - 'Token Data Publishing' : develop/token-data-publishing.md
   - 'References':
+    - 'Identity Server Configuration Catalog': references/config-catalog-is.md
     - 'API Manager Configuration Catalog': references/config-catalog-apim.md
     - 'Consent REST API': references/consent-rest-api.md
     - 'DCR REST API': references/dcr-rest-api.md
