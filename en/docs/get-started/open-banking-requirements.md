@@ -53,9 +53,9 @@ using the following factors one at a time:
 4. **Developer Portal** - The solution offers a customizable Developer Portal that enables application developers to 
 publish, republish, subscribe, and test APIs.
  
-5. **Banking Systems Integration** - The solution uses the integration capabilities of the WSO2 Enterprise Integrator 
-to help banks connect their core banking systems and overcome the challenges of the legacy technology. The solution 
-supports:
+5. **Banking Systems Integration** - The solution uses the integration capabilities of [WSO2 Micro Integrator](https://apim.docs.wso2.com/en/latest/integrate/integration-overview/) 
+to help banks connect their core banking systems and overcome the challenges of legacy technology. With the help of 
+the Micro Integrator, WSO2 Open Banking can support:
      - different message protocols (HTTP/TCP), message types (REST/SOAP), and formats (ISO 8583, ISO 20022).
      - mediation between a legacy or digital core and other banking systems, and the bank’s library of open banking APIs.
 

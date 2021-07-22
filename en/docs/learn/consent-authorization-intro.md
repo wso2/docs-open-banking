@@ -42,7 +42,8 @@ known as **Pushed Authorization**. The reference is notated by the claim; `reque
 and protects the confidentiality and integrity of the authorization details when passing through an API consumer application.
 
 ###Authorization web application 
-The API consumers obtain an authorization URL that redirects the customer to a web interface. In this web application, the customer:
+The API consumers obtain an authorization URL that redirects the customer to a web interface hosted by the bank. In this 
+web application, the customer:
 
 - Logs in using the login credentials. 
 - Views information that the API consumer requested to access.
