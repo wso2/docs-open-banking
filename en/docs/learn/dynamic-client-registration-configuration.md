@@ -73,7 +73,7 @@ app_name_claim = "software_client_name"
 for this value. For example, the `software_jwks_endpoint` claim.
 ``` toml
 [open_banking.dcr]
-jwks_endpoint_name = "jwks_uri"
+jwks_endpoint_name = "software_jwks_endpoint"
 ```
 
 7. Configure the names of all regulatory applications. By default, the DCR API is configured.   
@@ -138,11 +138,11 @@ algorithm = "PS256"
               allowed_values = ["value1, value2, value3”]
               ````
       
-           - If you want to make any of the above parameters optional, add the `required` tag and set it `false`. For 
+           - If you want to make any of the above parameters optional, add the `required` tag and set it to `false`. For 
            example:
               ````toml
               [open_banking.dcr.registration.issuer]
-              required = true
+              required = false
               allowed_values = ["accounts", "payments"]
               ````
               
@@ -196,7 +196,7 @@ algorithm = "PS256"
      
             ```` 
         
-           - If you want to make any of the above parameters mandatory, add the `required` tag and set it `true`. 
+           - If you want to make any of the above parameters mandatory, add the `required` tag and set it to `true`. 
            For example:
         ````toml
         [open_banking.dcr.registration.scope]
