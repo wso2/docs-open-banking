@@ -1,4 +1,4 @@
-# Configuration Catalog
+# Configuration Catalog for API Manager
 
 The configuration model of WSO2 API Manager is based on the `toml` format. The `<APIM_HOME>/repository/conf/deployment.toml`
 file is the single source used to configure and tune various features.
