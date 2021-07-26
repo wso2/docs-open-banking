@@ -47,7 +47,9 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
 
 3. Select **OpenAPI File/Archive**.
 
-4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/SelfCarePortal/scp-swagger.yaml`.
+4. Download the `scp-swagger.yaml` file available <a href="../../assets/attachments/scp-swagger.yaml" download> here </a>.
+
+4. Click **Browse File to Upload** and use the `scp-swagger.yaml` file.
 
 5. Click **Next**. 
 
@@ -71,9 +73,10 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
    
 10. Now, select the **Custom Policy** option. 
 
-11. Upload the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/SelfCarePortal/scp-insequence.xml` 
-file and click **SELECT**.
-    
+11. Download the `scp-insequence.xml` file available <a href="../../assets/attachments/scp-insequence.xml" download> here </a> and use it as the Mediation Policy. 
+
+11. Upload the `scp-insequence.xml` file and click **SELECT**.
+
 12. Scroll down and click **SAVE**. 
 
 13. Go to **Overview** using the left menu pane.
