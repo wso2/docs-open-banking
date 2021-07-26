@@ -1,0 +1,4 @@
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="SCPTokenExchange">
+    <property name="Authorization" scope="transport" action="remove"/>
+    <property name="Authorization" value="Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==" scope="transport"/>
+</sequence>

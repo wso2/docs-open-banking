@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  title: SelfCarePortalAPI
+  description:
+    This specification defines the APIs for self care portal consent endpoints
+  version: 'v1'
+basePath: /ob_consent/{version}
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /*:
+    get:
+      summary: Used to forward a self care portal get request
+      tags:
+        - SelfCarePortal
+      security:
+        - SCPOAuth2Security:
+            - consents:read_all
+            - consents:read_self
+    delete:
+      summary: Used to forward a self care portal delete request
+      tags:
+        - SelfCarePortal
+      security:
+        - SCPOAuth2Security:
+            - consents:read_all
+            - consents:read_self
+securityDefinitions:
+  SCPOAuth2Security:
+    type: oauth2
+    authorizationUrl: 'https://test.com'
+    flow: authorizationCode
+    scopes:
+      consents:read_all: "Grants self care portal read all access to customer care officer"
+      consents:read_self: "Grants access to read user's own details from self care portal"
+    x-scopes-bindings:
+      consents:read_all: Internal/CustomerCareOfficerRole
+      consents:read_self: Internal/subscriber
+x-wso2-production-endpoints: "#/x-wso2-endpoints/productionEndpoint"
+x-wso2-sandbox-endpoints: "#/x-wso2-endpoints/sandboxEndpoint"
+x-wso2-api-type: consent
+x-wso2-endpoints:
+  - productionEndpoint:
+      urls:
+        - "https://localhost:9446/api/openbanking"
+  - sandboxEndpoint:
+      urls:
+        - "https://localhost:9446/api/openbanking"
