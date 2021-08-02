@@ -43,6 +43,7 @@ The following table explains the data available in `ConsentValidator`.
 | requestPath   | String            | The path invoked in the request. |
 | consentId | String                | The consent ID related to the current resource request. This consent ID is bound to the user access token used. |
 | comprehensiveConsent  | DetailedConsentResource   | The comprehensive consent object related to the consent that is being validated. This object contains all the details related to the consent. |
+| resourceParams | Map<String, String>                | Map containing the resource path, http method and query parameters of the request. |
 
 ### Configuration 
 
