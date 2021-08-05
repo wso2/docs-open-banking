@@ -41,7 +41,8 @@ can quickly set up and try out a basic flow.
         If you don't have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact) 
         for more information.
               
-2. WSO2 Open Banking Accelerator contains the following accelerators.
+2. Extract the downloaded WSO2 Open Banking Accelerator zip files. WSO2 Open Banking Accelerator contains the following 
+accelerators:
    
     - wso2-obiam-accelerator-3.0.0
     - wso2-obam-accelerator-3.0.0
@@ -66,15 +67,15 @@ improvements that are released by WSO2. You need to update the base products and
     - Repeat this step for the WSO2 Identity Server, API Manager, and Stream Integrator products.
     
         ```bash tab='On Linux'
-        wso2update_linux 
+        ./wso2update_linux 
         ```
         
         ```bash tab='On Mac'
-        wso2update_darwin
+        ./wso2update_darwin
         ```
         
         ```bash tab='On Windows'
-        wso2update_windows.exe
+        ./wso2update_windows.exe
         ```
 
 2. Go to `<ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
@@ -82,15 +83,15 @@ improvements that are released by WSO2. You need to update the base products and
     - Repeat this step for the WSO2 Open Banking Identity Server, API Manager, and Business Intelligence accelerators.
 
         ```bash tab='On Linux'
-        wso2update_linux 
+        ./wso2update_linux 
         ```
         
         ```bash tab='On Mac'
-        wso2update_darwin
+        ./wso2update_darwin
         ```
         
         ```bash tab='On Windows'
-        wso2update_windows.exe
+        ./wso2update_windows.exe
         ```
    
 For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
