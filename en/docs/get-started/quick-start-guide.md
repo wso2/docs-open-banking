@@ -41,7 +41,7 @@ can quickly set up and try out a basic flow.
         If you don't have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact) 
         for more information.
               
-2. Extract the downloaded WSO2 Open Banking Accelerator zip file. WSO2 Open Banking Accelerator contains the following 
+2. Extract the downloaded WSO2 Open Banking Accelerator zip files. WSO2 Open Banking Accelerator contains the following 
 accelerators:
    
     - wso2-obiam-accelerator-3.0.0
