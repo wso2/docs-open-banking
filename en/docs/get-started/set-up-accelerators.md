@@ -1,13 +1,13 @@
 This section guides you to set up and prepare your servers to run WSO2 Open Banking Accelerator.
 
 ### Step 1: Set up accelerators 
-Copy and extract the accelerator zip files in the root directory of the respective base products. Use the table to 
+Copy the extracted accelerator directories in the root directory of the respective base products. Use the table to 
 locate the respective root directory of the base products:
 
 | File | Directory location to place the Accelerator |
 |---------|---------    |
-|`wso2-obiam-accelerator-3.0.0.zip`|`<IS_HOME>`|
-|`wso2-obam-accelerator-3.0.0.zip`|`<APIM_HOME>`|
+|`wso2-obiam-accelerator-3.0.0`|`<IS_HOME>`|
+|`wso2-obam-accelerator-3.0.0`|`<APIM_HOME>`|
 
 ### Step 2: Configure database scripts
 
@@ -32,7 +32,7 @@ locate the respective root directory of the base products:
      
 ### Step 3: Set up servers 
 1. Run the `merge.sh` script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
-`<OB_IS_ACCELERATOR_HOME>/bin` respectively:
+`<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
 ```
 ./merge.sh
 ```
