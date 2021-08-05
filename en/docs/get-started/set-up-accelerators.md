@@ -1,7 +1,7 @@
 This section guides you to set up and prepare your servers to run WSO2 Open Banking Accelerator.
 
 ### Step 1: Set up accelerators 
-Copy the extracted accelerator directories in the root directory of the respective base products. Use the table to 
+Copy the extracted accelerator directories into the root directories of the respective base products. Use the table to 
 locate the respective root directory of the base products:
 
 | File | Directory location to place the Accelerator |
