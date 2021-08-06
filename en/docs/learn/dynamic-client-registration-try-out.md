@@ -113,7 +113,11 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 
 5. Click **Update**.
 
-6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
+6. Click on Resident Key Manager 
+
+7. Provide Username and Password and Update 
+
+8. Then Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
 
 ## Step 3: Tryout DCR
 
