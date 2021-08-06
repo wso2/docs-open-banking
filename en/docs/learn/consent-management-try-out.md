@@ -15,26 +15,25 @@ This document provides the instructions to try out consent initiation, retrieval
 information from the bank. A sample consent initiation request looks as follows:
 
     ```
-    curl -X POST \
-    https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents \
-    -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
-    -H 'Content-Type: application/json' \
-    --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-    -d '{
-       "Data":{
-          "Permissions": [
-           "ReadAccountsDetail",
-           "ReadTransactionsDetail",
-           "ReadBalances"
-        ],
-          "ExpirationDateTime":"2021-09-02T00:00:00+00:00",
-          "TransactionFromDateTime":"2021-01-01T00:00:00+00:00",
-          "TransactionToDateTime":"2021-03-03T00:00:00+00:00"
-       },
-       "Risk":{
-    
-       }
-    }'
+   curl --location --request POST 'https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents' \
+--header 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
+--header 'Content-Type: application/json' \
+--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+--data-raw '{
+   "Data":{
+      "Permissions": [
+        "ReadAccountsDetail",
+       "ReadTransactionsDetail",
+       "ReadBalances"
+    ],
+      "ExpirationDateTime":"2021-09-02T00:00:00+00:00",
+      "TransactionFromDateTime":"2021-01-01T00:00:00+00:00",
+      "TransactionToDateTime":"2021-03-03T00:00:00+00:00"
+   },
+   "Risk":{
+
+   }
+}'
     ```
   
 - The response contains a Consent ID. A sample response looks as follows:
