@@ -94,3 +94,17 @@ the respective class and overriding the `validate` method, which is explained ab
     ``` java
     com.wso2.openbanking.accelerator.identity.token.validators.SignatureAlgorithmEnforcementValidator 
     ```
+
+### Configuring a custom validator
+
+1. Once you implement the custom validator, build a JAR file for the project and place it in the 
+`<IS_HOME>/repository/components/dropins` directory.
+
+2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+
+3. Add the following tags and configure your validator using its Fully Qualified Name (FQN):
+    ``` toml
+    [[open_banking.identity.token_filter_validators]] 
+    class = <CUSTOM_VALIDATOR_FQN>
+    ```
+4. Save the configurations and restart the Identity Server.
