@@ -41,6 +41,48 @@ known as **Pushed Authorization**. The reference is notated by the claim; `reque
 
 and protects the confidentiality and integrity of the authorization details when passing through an API consumer application.
 
+###Pushed Authorization web application
+The API consumers obtain `request_uri` which is a reference to the authentication and authorization details sent in the 
+pushed authorization request.
+
+- **Pushed Authorization - /par endpoint**
+
+Upon successful invocation of the `/par` endpoint, API consumers will receive a `request_uri` value with an expiration time. Therefore, the reference is only valid until the expiration time for the subsequent authorization invocation.
+
+Given below is a successful response:
+
+```
+{
+    "request_uri": "urn:ietf:params:oauth:request_uri:bwc4JK-ESC0w8acc191e-Y1LTC2",
+    "expires_in": 60
+}
+```
+
+This same `request_uri` value is used in the subsequent authorization request as well.
+
+WSO2 Open Banking Accelerator allows you to perform custom validations for the pushed authorization request. 
+For more information, see [writing a Custom Pushed Auth Request Validator](../develop/custom-pushed-auth-request-validator.md).
+
+??? tip "Click here to see configurations related to the Pushed Authorization web application..."
+    1. Open the `<IS_HOME>/repository/conf/deployment.toml` file. 
+    2. Add the following configurations that allow you to change the format and the expiration time of the `request_uri` reference:
+    
+    ```
+    [open_banking.push_authorisation]
+    expiry_time=60
+    request_uri_sub_string="substring"
+    ```
+
+    !!! note
+        You can change the format of the request_uri using the `request_uri_sub_string` tag.
+        
+        ```
+        {
+            "request_uri": "urn:<substring>:bwc4JK-ESC0w8acc191e-Y1LTC2",
+            "expires_in": 60
+        }
+        ```
+
 ###Authorization web application 
 The API consumers obtain an authorization URL that redirects the customer to a web interface hosted by the bank. In this 
 web application, the customer:
