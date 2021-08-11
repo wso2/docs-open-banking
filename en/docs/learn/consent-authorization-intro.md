@@ -47,7 +47,7 @@ pushed authorization request.
 
 - **Pushed Authorization - /par endpoint**
 
-Upon successful invocation of the `/par` endpoint, API consumers will receive a ‘request_uri’ value with an expiration time. Therefore, the reference is only valid until the expiration time for the subsequent authorization invocation.
+Upon successful invocation of the `/par` endpoint, API consumers will receive a `request_uri` value with an expiration time. Therefore, the reference is only valid until the expiration time for the subsequent authorization invocation.
 
 Given below is a successful response:
 
@@ -61,10 +61,11 @@ Given below is a successful response:
 This same `request_uri` value is used in the subsequent authorization request as well.
 
 WSO2 Open Banking Accelerator allows you to perform custom validations for the pushed authorization request. 
-For more information, refer [writing a Custom Pushed Auth Request Validator.](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)
+For more information, see [writing a Custom Pushed Auth Request Validator](../develop/custom-pushed-auth-request-validator.md).
 
-??? tip "Click here to see the configurations related to Pushed Authorization web application..."
-    Open the `<IS_HOME>/repository/conf/deployment.toml` file. Add the following configurations that allow you to change the format, and the expiration time of the `request_uri` reference:
+??? tip "Click here to see configurations related to the Pushed Authorization web application..."
+    1. Open the `<IS_HOME>/repository/conf/deployment.toml` file. 
+    2. Add the following configurations that allow you to change the format and the expiration time of the `request_uri` reference:
     
     ```
     [open_banking.push_authorisation]
@@ -73,7 +74,7 @@ For more information, refer [writing a Custom Pushed Auth Request Validator.](ht
     ```
 
     !!! note
-        You can change the format of the request_uri using the request_uri_sub_string tag.
+        You can change the format of the request_uri using the `request_uri_sub_string` tag.
         
         ```
         {
