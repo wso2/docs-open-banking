@@ -15,7 +15,7 @@ This document provides the instructions to try out consent initiation, retrieval
 information from the bank. A sample consent initiation request looks as follows:
 
     ```
-    curl --location --request POST 'https://3.19.58.161:8243/open-banking/v3.1/aisp/account-access-consents' \
+    curl --location --request POST 'https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents' \
     --header 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
     --header 'Content-Type: application/json' \
     --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
