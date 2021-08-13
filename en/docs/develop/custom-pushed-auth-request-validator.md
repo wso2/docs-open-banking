@@ -67,7 +67,7 @@ public void validateAdditionalParams(Map<String, Object> parameters) throws Push
 
 Input parameters
 
-- `Map<String, Object> parameters` - contains pushed authorization request parameters obtained from HTTP servlet request
+- `Map<String, Object> parameters` - contains pushed authorization request parameters obtained from the HTTP servlet request
 
 Output parameter
 
