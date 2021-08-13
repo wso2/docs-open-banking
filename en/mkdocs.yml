@@ -118,6 +118,7 @@ nav:
         - 'ID Token Builder': develop/id-token-builder-auth-flow.md
         - 'Response Type Handler': develop/response-type-handler.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
+        - 'Custom Pushed Auth Request Validator': develop/custom-pushed-auth-request-validator.md
     - 'Dynamic Client Registration':
         - 'Application Management Listener': develop/application-management-listener.md
         - 'Custom DCR Validator': develop/custom-dcr-validator.md
