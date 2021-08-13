@@ -1,9 +1,11 @@
-##Writing a Custom Pushed Auth Request Validator
+ 
 A pushed authorization request contains authentication and authorization 
 request parameters, which will be used in the Pushed Authorization endpoint 
 of WSO2 Open Banking Accelerator. The Pushed Authorization endpoint returns
 a `request_uri` with an expiration time as a reference to the details sent 
 in the pushed authorization request.
+
+##Default Pushed Authorization Request validations
 
 The Pushed Auth Request Validator uses the existing validation layer of WSO2 Open Banking Accelerator
 to enforce validations. By default, the following validations are available in the validation layer:
@@ -15,7 +17,7 @@ When the `request` parameter is available:
 
 !!! note
     The `request` parameter value which will be referred to as `request object` from here onwards should be a 
-    Signed JWT(JWS) or an Encrypted JWT(JWE). It can be signed and encrypted as well. In this scenario it must 
+    Signed JWT(JWS) or an Encrypted JWT(JWE). It can be signed and encrypted as well. In this scenario, it must 
     be signed before being encrypted.
 
 - Validation of form body parameters - verifies that only client authentication 
@@ -41,6 +43,8 @@ When the `request` parameter is available:
   
 - Validation of invalid claims in request object - check whether the `request` and `request_uri` claims are 
   present in the request object.
+
+##Writing a Custom Pushed Auth Request Validator
 
 You can extend the default validations in WSO2 Open Banking Accelerator and add more validations according to your 
 open banking requirements:
