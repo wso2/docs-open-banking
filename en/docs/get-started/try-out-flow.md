@@ -119,18 +119,17 @@ information from the bank.
 A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
 available [here](../../assets/attachments/Transport_Certs.zip):
 ```
-curl -X POST \
-https://localhost:8243/open-banking/v3.1/aisp/account-access-consents \
--H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
--H 'Content-Type: application/json' \
+curl --location --request POST 'https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents' \
+--header 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
+--header 'Content-Type: application/json' \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
--d '{
+--data-raw '{
    "Data":{
-      "Permissions": [
-       "ReadAccountsDetail",
-       "ReadTransactionsDetail",
-       "ReadBalances"
-    ],
+      "Permissions":[
+         "ReadAccountsDetail",
+         "ReadTransactionsDetail",
+         "ReadBalances"
+      ],
       "ExpirationDateTime":"2021-09-02T00:00:00+00:00",
       "TransactionFromDateTime":"2021-01-01T00:00:00+00:00",
       "TransactionToDateTime":"2021-03-03T00:00:00+00:00"
