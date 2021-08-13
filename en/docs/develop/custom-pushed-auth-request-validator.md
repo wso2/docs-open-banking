@@ -201,9 +201,9 @@ Once implemented, build a JAR file for the project.
 3. Find the `[open_banking.identity.extensions]` tag and configure it using the Fully Qualified Name (FQN) of 
    your custom Pushed Auth Request Validator. For example:
    
-   ``` toml
-   [open_banking.identity.extensions]
-   push_auth_request_validator="com.wso2.openbanking.accelerator.identity.push.auth.extension.request.validator.PushAuthRequestValidator"
-   ```
-
+       ``` toml
+       [open_banking.identity.extensions]
+       push_auth_request_validator="com.wso2.openbanking.accelerator.identity.push.auth.extension.request.validator.PushAuthRequestValidator"
+       ```
+       
 4. Save the above configurations and restart the Identity Server.
