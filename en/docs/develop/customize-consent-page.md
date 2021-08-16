@@ -93,5 +93,5 @@ If you want to add a custom implementation for `OBAuthServletInterface`, you can
 
    ``` toml
    [open_banking.identity.authentication_webapp]
-   servlet_extension = "com.wso2.openbanking.accelerator.authentication.webapp.impl.OBDefaultAuthServletImpl"
+   servlet_extension = "com.wso2.openbanking.accelerator.consent.extensions.authservlet.impl.OBDefaultAuthServletImpl"
    ```
