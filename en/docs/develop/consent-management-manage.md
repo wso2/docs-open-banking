@@ -46,7 +46,7 @@ default void handleFileGet(ConsentManageData consentManageData) throws ConsentEx
 }
 ```
 !!! note
-        Added default methods handleFileUploadPost and handleFileGet as these methods have been added by an update. 
+    The `handleFileUploadPost` and `handleFileGet` methods above are available only as a WSO2 Update and are effective from August 10, 2021 (08-10-2021). For more information on updating WSO2 Open Banking, see [Updating WSO2 Products](/install-and-setup/setting-up-servers#getting-wso2-updates).
         
 ### Error Handling
 In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
