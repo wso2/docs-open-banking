@@ -44,8 +44,14 @@ format of the request:
           "key2":"value2",
           ...
        },
-       "consent-id": “99c9aa62-7b40-11eb-9439-0242ac130002”,
-       "context": "/v2/1.0.5/accounts”
+       "consentId":"5f4e0ded-4768-4bd3-adb9-7a9587415b05",
+       "resourceParams":{
+          "resource":"\/aisp\/accounts?fromDateTime=2021-05-12T12%3A24%3A50.799%2B05%3A30&toDateTime=2021-05-12T12%3A24%3A50.799%2B05%3A30",
+          "context":"\/open-banking\/v3.1\/aisp",
+          "httpMethod":"POST"
+       },
+       "userId":"admin@wso2.com@carbon.super@carbon.super",
+       "electedResource":"\/accounts"
     }
     ```
 
