@@ -99,6 +99,13 @@ This method lets you retrieve a consent with or without its attributes by perfor
 ``` java
 ConsentResource getConsent(String consentID, boolean withConsentAttributes) throws ConsentManagementException;
 ```
+### storeConsentAttributes method
+
+This method lets you store consent attributes related to a particular consent. 
+  
+``` java
+boolean storeConsentAttributes(String consentID, Map<String, String> consentAttributes) throws ConsentManagementException
+```
 
 ### getConsentAttributes method
     
@@ -121,6 +128,14 @@ This method lets you retrieve consent attributes for a provided attribute name.
 
 ``` java
 Map<String, String> getConsentAttributesByName(String attributeName) throws ConsentManagementException;
+```
+
+### getConsentIdByConsentAttributeNameAndValue method
+
+This method lets you retrieve consent id for a provided attribute name and attribute value.
+
+``` java
+ArrayList<String> getConsentIdByConsentAttributeNameAndValue(String attributeName, String attributeValue) throws ConsentManagementException;
 ```
 
 ### deleteConsentAttributes method
@@ -220,7 +235,7 @@ This method lets you deactivate account bindings for provided account mapping ID
 boolean deactivateAccountMappings(ArrayList<String> accountMappingIDs) throws ConsentManagementException;
 ```
 
-###searchDetailedConsents method
+### searchDetailedConsents method
 
 This method lets you search detailed consents for given lists of parameters. These lists may contain any number of 
 elements and the conjunctive results are returned. 
@@ -289,4 +304,11 @@ however the status of the consent won't be changed.
 ConsentResource amendConsentData(String consentID, String consentReceipt, Long consentValidityTime, String userID) throws ConsentManagementException;
 ```
 
+### updateConsentStatus method
+
+This method lets you update the status of the consent for a given consentId and userId.
+
+``` java
+ConsentResource updateConsentStatus(String consentId, String newConsentStatus) throws ConsentManagementException;
+```
 
