@@ -44,7 +44,7 @@ The following table explains the data available in `ConsentValidator`.
 | consentId | String                | The consent ID related to the current resource request. This consent ID is bound to the user access token used. |
 | userId | String                | The user ID related to the current resource request. This user ID is retrieved from the user access token. |
 | comprehensiveConsent  | DetailedConsentResource   | The comprehensive consent object related to the consent that is being validated. This object contains all the details related to the consent. |
-| resourceParams | Map<String, String>                | A map containing the full resource path with query parameters `(ex: aisp/accounts/{AccountId}?queryParam=urlEncodedQueryParamValue)`, HTTP method, and context `(ex: /open-banking/v3.1/aisp)` of the request. |
+| resourceParams | Map<String, String>                | A map containing the full resource path with query parameters (ex: `aisp/accounts/{AccountId}?queryParam=urlEncodedQueryParamValue`), HTTP method, and context (ex: `/open-banking/v3.1/aisp`) of the request. |
 
 
 ### Configuration 
@@ -99,7 +99,7 @@ alias="wso2carbon"
            },
            "userId":"admin@wso2.com@carbon.super@carbon.super",
            "electedResource":"\/accounts"
-       }
+        }
         ```
         
         All header values including the bearer token is included in `header`. 
