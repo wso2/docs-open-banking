@@ -45,7 +45,7 @@ default void handleFileGet(ConsentManageData consentManageData) throws ConsentEx
     throw new ConsentException(ResponseStatus.METHOD_NOT_ALLOWED, "File retrieval is not supported");
 }
 ```
-    !!! note
+!!! note
         Added default methods handleFileUploadPost and handleFileGet as these methods have been added by an update. 
         
 ### Error Handling
