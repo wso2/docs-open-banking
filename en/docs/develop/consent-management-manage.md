@@ -33,7 +33,21 @@ public void handlePut(ConsentManageData consentManageData) throws ConsentExcepti
 ``` java
 public void handlePatch(ConsentManageData consentManageData) throws ConsentException;
 ```
+``` java
+default void handleFileUploadPost(ConsentManageData consentManageData) throws ConsentException {
 
+    throw new ConsentException(ResponseStatus.METHOD_NOT_ALLOWED, "File upload is not supported");
+}
+```
+``` java
+default void handleFileGet(ConsentManageData consentManageData) throws ConsentException {
+
+    throw new ConsentException(ResponseStatus.METHOD_NOT_ALLOWED, "File retrieval is not supported");
+}
+```
+    !!! note
+        Added default methods handleFileUploadPost and handleFileGet as these methods have been added by an update. 
+        
 ### Error Handling
 In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
 a `ConsentException`.
