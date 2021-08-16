@@ -132,7 +132,7 @@ Map<String, String> getConsentAttributesByName(String attributeName) throws Cons
 
 ### getConsentIdByConsentAttributeNameAndValue method
 
-This method lets you retrieve consent id for a provided attribute name and attribute value.
+This method lets you retrieve the consent Id for a provided attribute name and attribute value.
 
 ``` java
 ArrayList<String> getConsentIdByConsentAttributeNameAndValue(String attributeName, String attributeValue) throws ConsentManagementException;
@@ -306,7 +306,7 @@ ConsentResource amendConsentData(String consentID, String consentReceipt, Long c
 
 ### updateConsentStatus method
 
-This method lets you update the status of the consent for a given consentId and userId.
+This method lets you update the status of the consent for a given consent Id and user Id.
 
 ``` java
 ConsentResource updateConsentStatus(String consentId, String newConsentStatus) throws ConsentManagementException;
