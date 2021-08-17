@@ -24,7 +24,14 @@ set to `true`.
 use_softwareIdForAppName = true
 ```
 
-5. Configure the names of the primary authenticator to be engaged in the authentication flow and the identity provider 
+5. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA for 
+this value. For example, the `software_jwks_endpoint` claim.
+``` toml
+[open_banking.dcr] 
+jwks_endpoint_name = "software_jwks_endpoint" 
+```
+
+6. Configure the names of the primary authenticator to be engaged in the authentication flow and the identity provider 
 if SMS OTP is used as the secondary authentication method.
 ``` toml
 [open_banking.sca.primaryauth]
@@ -76,13 +83,20 @@ for this value. For example, the `software_jwks_endpoint` claim.
 jwks_endpoint_name = "software_jwks_endpoint"
 ```
 
-7. Configure the names of all regulatory applications. By default, the DCR API is configured.   
+7. By default, a JWT is expected at the DCR endpoint. If you want to **send a json payload**, add the following 
+configurations and set the value to `false`.
+``` toml
+[open_banking.dcr]
+isRequestJWT = false
+```
+
+8. Configure the names of all regulatory applications. By default, the DCR API is configured.   
 ``` toml
 [[open_banking.dcr.regulatory_api]]
 api_name = "CDR-DynamicClientRegistration"
 ```
 
-8. Configure the timeout values when validating the signature of the request.
+9. Configure the timeout values when validating the signature of the request.
 ``` toml
 [open_banking.dcr.jwks_retriever]
 connection_timeout = 3000
@@ -107,7 +121,7 @@ jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAA
 4. Configure the algorithms that are allowed during signature validation. These algorithms are used for token endpoint 
 authentication assertion signature, request object signature, and id token signature validations.
 ```toml
-[[open_banking.signature_validation.allowed_algorithms.algorithms]]
+[[open_banking.signature_validation.allowed_algorithms]]
 algorithm = "PS256"
 ```
 

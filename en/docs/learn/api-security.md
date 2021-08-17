@@ -1,3 +1,5 @@
+# API Security
+
 Open Banking allows API consumers to access financial data through open APIs, which requires greater API security. Therefore, 
 open banking standards provide guidelines for security implementations.
 

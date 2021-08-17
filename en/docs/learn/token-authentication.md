@@ -48,6 +48,16 @@ engages the following validators:
 
    - **MTLS enforcement validator**: This enforces that a certificate needs to be passed during the token creation. This 
    certificate is then bound to the access token. 
+   
+    !!! note "To decode the certificate when it is passed from the load balancer to the Gateway:"
+           1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+           2. Add the following configurations and set the value to `true`.
+              ``` toml
+               [open_banking.identity.mutualtls] 
+               client_certificate_encode=true 
+              ```
+           3. Restart the servers.
+      
    - **Client authenticator validator**: This validates whether the token request follows the client authentication 
    method format that was registered through Dynamic Client Registration. While ensuring that it is a registered client 
    authenticator, this validator also limits the client authentication methods for regulatory applications. Regulatory 

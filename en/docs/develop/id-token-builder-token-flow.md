@@ -35,11 +35,18 @@ To configure the custom ID Token Builder, follow the steps below:
 
 2. Add the following tags and configure your custom ID Token Builder using its FQN:
 
-   ``` toml
-   [oauth.oidc.extensions]
-   id_token_builder = "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder"
-   ```
+    ``` toml
+    [oauth.oidc.extensions]
+    id_token_builder = "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder"
+    ```
    
-!!! note
-    If `id_token_builder` is not configured, the default ID Token Builder `DefaultIDTokenBuilder` is used for the 
-    `subject` claim calculation. 
+    !!! note
+        If `id_token_builder` is not configured, the default ID Token Builder `DefaultIDTokenBuilder` is used for 
+        `subject` claim calculation. 
+
+3. If you need to return the subject claim of the id token as a PPID, add the following configurations and set the value to `true`.
+
+    ``` toml
+    [open_banking.identity] 
+    enable_PPID = true
+    ```

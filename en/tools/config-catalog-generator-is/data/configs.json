@@ -2060,6 +2060,33 @@
                 }
             ],
             "exampleFile": "oauth.custom_response_type.toml"
+        },
+        {
+            "title": "HTTP connection pool",
+            "options": [
+                {
+                    "name": "open_banking.http_connection_pool",
+                    "required": false,
+                    "description": "Configure the maximum number of connections for the HTTP connection pool.",
+                    "params": [
+                        {
+                            "name": "max_connections",
+                            "type": "integer",
+                            "required": false,
+                            "default": "2000",
+                            "description": "If not configured, the default value of 2000 will be used."
+                        },
+                        {
+                            "name": "max_connections_per_route",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1500",
+                            "description": "If not configured, the default value of 1500 will be used."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "open_banking.http_connection_pool.toml"
         }
 
     ]
