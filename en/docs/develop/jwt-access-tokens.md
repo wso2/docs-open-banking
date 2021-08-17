@@ -18,7 +18,7 @@ as a scope in the token, configure the name of that scope as `consent_id_claim_n
     consent_id_claim_name="consent_id"
     ```
    
-   - If the scope is defined as `consent:uuid`, the value for the above configuration should be `consent:uuid`.
+   - If the scope is defined as `consent:uuid`, the value for the above configuration should be `consent:`.
    
 3. To enable [certificate-bound access token validation](/learn/token-authentication#certificate-bound-access-tokens):
 

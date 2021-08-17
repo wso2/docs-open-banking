@@ -122,7 +122,7 @@ jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAA
 authentication assertion signature, request object signature, and id token signature validations.
 ```toml
 [[open_banking.signature_validation.allowed_algorithms]]
-algorithm = "PS256"
+name = "PS256"
 ```
 
 !!! note "Configuring DCR request parameters" 
