@@ -3,6 +3,7 @@ template: templates/swagger.html
 ---
 # Dynamic Client Registration API Definition - v1
 
+This is an internal API of WSO2 Open Banking Accelerator. 
 
 ??? Note "Click Here For Instructions"
     Follow the instructions given below to try out the REST APIs with your local setup of WSO2 Open Banking servers.
