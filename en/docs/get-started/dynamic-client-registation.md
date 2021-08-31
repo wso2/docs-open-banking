@@ -252,7 +252,7 @@ The format of the SSA:
     If you change the payload, use the following certificates to sign the JWT and SSA:
     
     - [signing certificate](../../assets/attachments/signing_certificate.pem)
-    - [private keys](../../assets/attachments/signing_key.key)
+    - [private keys](../../assets/attachments/sgsMuc8ACBgBzinpr8oJ8B.key)
 
 - The bank registers the application using the metadata sent in the SSA.
 
