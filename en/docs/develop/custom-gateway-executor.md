@@ -62,18 +62,18 @@ Use the following data model and implement the interface methods according to yo
             
     | DTO      | DTO   | Parameter  | Data Type | Description |
     | ---------|-------| -----------|-----------|-------------|
-    | ResponseContextDTO | MsgInfoDTO | headers |Map | The headers in the HTTP response |
-    | ResponseContextDTO | MsgInfoDTO | payloadHandler | PayloadHandler | The object created to consume the request payload.  
+    | ResponseContextDTO | MsgInfoDTO | headers |Map | The request headers in the HTTP response |
+    | ResponseContextDTO | MsgInfoDTO | payloadHandler | PayloadHandler | The object created to consume the request payload as an interface. Instead of this, you can directly use the `requestPayload` string object in `OBAPIRequestContext` and read the payload of the request|
     | ResponseContextDTO | MsgInfoDTO | resource |	String	| An API resource |
     | ResponseContextDTO | MsgInfoDTO | electedResource | String |	 An elected resource |
-    | ResponseContextDTO | MsgInfoDTO | httpMethod	| String |  The HTTP method of the response |
+    | ResponseContextDTO | MsgInfoDTO | httpMethod	| String |  The HTTP method of the request |
     | ResponseContextDTO | MsgInfoDTO | messageId | String | A unique ID given to a particular request |
     | ResponseContextDTO | APIRequestInfoDTO |context | String | The API context given when publishing the API |
     | ResponseContextDTO | APIRequestInfoDTO |version | String | The published version of the API |
     | ResponseContextDTO | APIRequestInfoDTO |username |String | The owner of the access token |
     | ResponseContextDTO | APIRequestInfoDTO |consumerKey | String | The client ID/Consumer Key of the API consumer application |
     | ResponseContextDTO | APIRequestInfoDTO |apiId | String | A unique ID given for the API |
-    | ResponseContextDTO | Status | | Code | String | The HTTP response status code | 
+    | ResponseContextDTO | Status Code       |      | String | The HTTP response status code | 
     | contextProps |	|	| Map | A map of context properties. You can access and modify these in any executor|
     |modifiedPayload|   |   | String    | The modified payload as a string|
     | responsePayload |	|	| String |  The response payload as a string |
