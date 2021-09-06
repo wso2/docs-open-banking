@@ -47,6 +47,7 @@ Use the following data model and implement the interface methods according to yo
     |RequestContextDTO | APIRequestInfoDTO | apiId | String | A unique ID given for the API |
     |RequestContextDTO | X509Certificate | | X509Certificate | The Transport certificates sent with the request (if available) |
     |contextProps	|	|	| Map		| A map of context properties. You can access and modify these in any executor |
+    |modifiedPayload|   |   | String    | The modified payload as a string|
     |requestPayload |	|	| String	| The request payload as a string |
     |addedHeaders	|	| 	| Map		| The headers that need to be added backend request |
     |isError	|	| 	| Boolean	| A boolean value to indicate the error state |
@@ -57,23 +58,24 @@ Use the following data model and implement the interface methods according to yo
     
     ---
     
-    For `OBAPIRequestContext`:
+    For `OBAPIResponseContext`:
             
     | DTO      | DTO   | Parameter  | Data Type | Description |
     | ---------|-------| -----------|-----------|-------------|
-    | RequestContextDTO | MsgInfoDTO | headers |Map | The request headers in the HTTP request |
-    | RequestContextDTO | MsgInfoDTO | payloadHandler | PayloadHandler | The object created to consume the request payload. `responsePayload` string object in `OBAPIRequestContext` and read the payload
-    | RequestContextDTO | MsgInfoDTO | resource |	String	| An API resource |
-    | RequestContextDTO | MsgInfoDTO | electedResource | String |	 An elected resource |
-    | RequestContextDTO | MsgInfoDTO | httpMethod	| String |  The HTTP method of the request |
-    | RequestContextDTO | MsgInfoDTO | messageId | String | A unique ID given to a particular request |
-    | RequestContextDTO | APIRequestInfoDTO |context | String | The API context given when publishing the API |
-    | RequestContextDTO | APIRequestInfoDTO |version | String | The published version of the API |
-    | RequestContextDTO | APIRequestInfoDTO |username |String | The owner of the access token |
-    | RequestContextDTO | APIRequestInfoDTO |consumerKey | String | The client ID/Consumer Key of the API consumer application |
-    | RequestContextDTO | APIRequestInfoDTO |apiId | String | A unique ID given for the API |
-    | RequestContextDTO | Status | | Code | String | The HTTP response status code | 
+    | ResponseContextDTO | MsgInfoDTO | headers |Map | The headers in the HTTP response |
+    | ResponseContextDTO | MsgInfoDTO | payloadHandler | PayloadHandler | The object created to consume the request payload.  
+    | ResponseContextDTO | MsgInfoDTO | resource |	String	| An API resource |
+    | ResponseContextDTO | MsgInfoDTO | electedResource | String |	 An elected resource |
+    | ResponseContextDTO | MsgInfoDTO | httpMethod	| String |  The HTTP method of the response |
+    | ResponseContextDTO | MsgInfoDTO | messageId | String | A unique ID given to a particular request |
+    | ResponseContextDTO | APIRequestInfoDTO |context | String | The API context given when publishing the API |
+    | ResponseContextDTO | APIRequestInfoDTO |version | String | The published version of the API |
+    | ResponseContextDTO | APIRequestInfoDTO |username |String | The owner of the access token |
+    | ResponseContextDTO | APIRequestInfoDTO |consumerKey | String | The client ID/Consumer Key of the API consumer application |
+    | ResponseContextDTO | APIRequestInfoDTO |apiId | String | A unique ID given for the API |
+    | ResponseContextDTO | Status | | Code | String | The HTTP response status code | 
     | contextProps |	|	| Map | A map of context properties. You can access and modify these in any executor|
+    |modifiedPayload|   |   | String    | The modified payload as a string|
     | responsePayload |	|	| String |  The response payload as a string |
     | addedHeaders |	|	| Map |  The headers that need to be added to the response (if available)|
     | isError 	|	|	| Boolean | A boolean value to indicate the error state |
