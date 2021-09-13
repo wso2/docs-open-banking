@@ -43,6 +43,7 @@ The following table explains the data available in `ConsentValidator`.
 | electedResource   | String            | The path invoked in the request. For example: `/accounts/{AccountId}`|
 | consentId | String                | The consent ID related to the current resource request. This consent ID is bound to the user access token used. |
 | userId | String                | The user ID related to the current resource request. This user ID is retrieved from the user access token. |
+| clientId | String                | The ID of the TPP application related to the current resource request. This client ID is retrieved from the user access token.|
 | comprehensiveConsent  | DetailedConsentResource   | The comprehensive consent object related to the consent that is being validated. This object contains all the details related to the consent. |
 | resourceParams | Map<String, String>                | A map containing the full resource path with query parameters (ex: `aisp/accounts/{AccountId}?queryParam=urlEncodedQueryParamValue`), HTTP method, and context (ex: `/open-banking/v3.1/aisp`) of the request. |
 
@@ -97,6 +98,7 @@ alias="wso2carbon"
               "context":"\/open-banking\/v3.1\/aisp",
               "httpMethod":"POST"
            },
+           "clientId":"1n38TwWOPfOjPkqplqvdbXBtYfsa",
            "userId":"admin@wso2.com@carbon.super@carbon.super",
            "electedResource":"\/accounts"
         }
