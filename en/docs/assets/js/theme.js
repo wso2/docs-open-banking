@@ -150,8 +150,8 @@ request.onload = function() {
                   .setAttribute('href', docSetUrl + data.all[data.current].notes);
         
           // Pre-release version update
-          document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + 'next/');
+//          document.getElementById('pre-release-version-documentation-link')
+//              .setAttribute('href', docSetUrl + 'next/');
       }
       
   } else {
