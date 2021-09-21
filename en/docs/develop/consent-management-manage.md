@@ -33,7 +33,21 @@ public void handlePut(ConsentManageData consentManageData) throws ConsentExcepti
 ``` java
 public void handlePatch(ConsentManageData consentManageData) throws ConsentException;
 ```
+``` java
+default void handleFileUploadPost(ConsentManageData consentManageData) throws ConsentException {
 
+    throw new ConsentException(ResponseStatus.METHOD_NOT_ALLOWED, "File upload is not supported");
+}
+```
+``` java
+default void handleFileGet(ConsentManageData consentManageData) throws ConsentException {
+
+    throw new ConsentException(ResponseStatus.METHOD_NOT_ALLOWED, "File retrieval is not supported");
+}
+```
+!!! note
+    The `handleFileUploadPost` and `handleFileGet` methods above are available only as a WSO2 Update and are effective from August 10, 2021 (08-10-2021). For more information on updating WSO2 Open Banking, see [Updating WSO2 Products](/install-and-setup/setting-up-servers#getting-wso2-updates).
+        
 ### Error Handling
 In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
 a `ConsentException`.
