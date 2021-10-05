@@ -34,7 +34,7 @@ In any of the consent extensions, if an error scenario occurs and you need to se
 a `ConsentException`.
 
 ### Data
-The following table explains the data available in `ConsentValidator`.
+The following table explains the data available in `ConsentValidateData`.
 
 | Name      | Type                  | Description  |
 | ----------|-----------------------| -------------|
