@@ -11,7 +11,7 @@ section explains how to get started with implementing customizations and impleme
         license and are not owned by WSO2.*
 
 2. Download or clone the [open-banking-sample-toolkit](https://github.com/DivyaPremanantha/open-banking-sample-toolkit) project.
-3. Follow the `open-banking-sample-toolkit` project and create your own toolkit.
+3. Follow the README file of the `open-banking-sample-toolkit` project and create your own toolkit.
 
 ##Add JAR files to Maven Repository 
 
