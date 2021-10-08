@@ -23,7 +23,10 @@ This method lets you create a consent by performing the following:
 
  - Stores any available consent attributes
  - Creates an audit record for the consent creation
- - If the `isImplicitAuth` parameter is set to `true`, creates an authorization resource 
+ - If the `isImplicitAuth` parameter is set to `true`, creates an authorization resource
+ - If periodical job for consent expiration is enabled, In order to make consent eligible for expiration,
+    - `consentResource.getConsentAttributes()` need to be appended with `ExpirationDateTime` attribute
+      with UTC timestamp.
  
 Given below is the method signature:
 
@@ -38,6 +41,9 @@ This method lets you create an exclusive consent by performing the following:
  - Updates existing consent statuses and deactivate their account mappings
  - Creates an audit record for the consent update
  - Creates a new authorizable consent
+ - If periodical job for consent expiration is enabled, In order to make consent eligible for expiration,
+    - `consentResource.getConsentAttributes()` need to be appended with `ExpirationDateTime` attribute
+      with UTC timestamp.
 
 ``` java
 DetailedConsentResource createExclusiveConsent(ConsentResource consentResource, 
