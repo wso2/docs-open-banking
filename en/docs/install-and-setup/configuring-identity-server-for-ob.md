@@ -136,6 +136,13 @@ database server, and the JDBC driver.
     password="$ref{super_admin.password}"	
     server_url = "{tcp://<SI_HOST>:7612}"	
     ```   
+11. Add the following and configure the HTTP connection pool:
+
+    ``` toml
+    [open_banking.http_connection_pool]
+    max_connections = 2000
+    max_connections_per_route = 1500	
+    ```
    
 ## Starting servers
 
