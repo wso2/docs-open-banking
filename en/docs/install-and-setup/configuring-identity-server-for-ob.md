@@ -123,21 +123,12 @@ database server, and the JDBC driver.
     secure="false"
     http_method="GET,DELETE"
     ```
+   
+10. Configure a periodical consent expiration job as follows:
 
-10. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
-
-    - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
-    Integrator.
-
-    ``` toml
-    [open_banking.data_publishing]	
-    enable = true	
-    username="$ref{super_admin.username}@carbon.super"	
-    password="$ref{super_admin.password}"	
-    server_url = "{tcp://<SI_HOST>:7612}"	
-    ```   
-11. If you want to use the periodical job for consent expiration feature:
-    - Enable the feature by configuring the deployment.toml as below.
+    !!! info
+        This is available only as a WSO2 Update and is effective from October 18, 2021. For more information on updating 
+        WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
 
     ``` toml
     [open_banking.consent.periodical_expiration]
@@ -150,48 +141,38 @@ database server, and the JDBC driver.
     # These consent statuses will only be consider when checking for expired consents. (Comma separated value list)
     eligible_statuses="authorised"
     ```   
-    - In order to identify the consent expiration time, Relevant consent needs to have a consent attribute as 
-      `ExpirationDateTime` with UTC timestamp.
-    - Without this attribute periodical consent expiration feature is not considering relevant consent is eligible for 
-      expiration.
-    #### Clustered setup configuration for Periodical consent expiration.
-    - Add the `quartz.properties` file to the `<IS_HOME>/repository/conf` and enable clustering by configuring the 
-      datasources according to the
-      [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
-    - Create a new database and use database 
-      [scripts](https://svn.terracotta.org/svn/quartz/tags/quartz-2.1.7/docs/dbTables/)
-      to create the quartz cluster tables.
-    - Add following jars to `repository/component/lib` directory.
-        - [mchange-commons-java-0.2.20.jar](https://repo1.maven.org/maven2/com/mchange/mchange-commons-java/0.2.20/mchange-commons-java-0.2.20.jar)
-        - [c3p0-0.9.2.1.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.jar)
-    - Make sure to add the same copy of the config file `quartz.properties` to each instance in the cluster. (except for 
-      changing the InstanceId)
-    - Example config file is given below.
+    
+    - In order to identify the consent expiration time, relevant consents need to maintain the `ExpirationDateTime` 
+    attribute which contains a UTC timestamp. A consent is not eligible for periodical consent expiration if 
+    the `ExpirationDateTime` attribute is not available for that particular consent.
+    
+    ??? info "Click here to see the configurations for periodical consent expiration in a clustered setup."
+       
+        - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the 
+          datasources according to the
+          [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
+        - Create a new database and use the database scripts available 
+          [here](https://svn.terracotta.org/svn/quartz/tags/quartz-2.1.7/docs/dbTables/)
+          to create the quartz cluster tables.
+        - Add following jars to the `<IS_HOME>/repository/component/lib` directory.
+            - [mchange-commons-java-0.2.20.jar](https://repo1.maven.org/maven2/com/mchange/mchange-commons-java/0.2.20/mchange-commons-java-0.2.20.jar)
+            - [c3p0-0.9.2.1.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.jar)
+        - Copy the same `quartz.properties` file to each instance in the cluster and update the `instanceId`. 
+        - Click [here](../assets/attachments/quartz.properties) to download a sample `quartz.properties` configuration file.
+       
+ 
+11. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
 
-    ``` 
-    org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPoolorg.quartz.threadPool.threadCount = 25
-    
-    # Datasource for JDBCJobStore
-    org.quartz.dataSource.myDS.driver = com.mysql.jdbc.Driver
-    org.quartz.dataSource.myDS.URL = jdbc:mysql://localhost:3306/scheduler?useSSL=false
-    org.quartz.dataSource.myDS.user = root
-    org.quartz.dataSource.myDS.password = root
-    
-    # JDBCJobStore
-    org.quartz.jobStore.class = org.quartz.impl.jdbcjobstore.JobStoreTX
-    org.quartz.jobStore.driverDelegateClass = org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-    org.quartz.jobStore.dataSource = myDS
-    
-    # Turn on clustering
-    org.quartz.jobStore.isClustered = true
-    
-    org.quartz.scheduler.instanceName = ClusteredScheduler
-    # If instanceIf is set to AUTO, it will auto-generate an id automatically.
-    # It's recommend giving explicit names to each clustered host for easy identification.
-    org.quartz.scheduler.instanceId = Host1
+    - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
+    Integrator.
 
-    ``` 
-   
+    ``` toml
+    [open_banking.data_publishing]	
+    enable = true	
+    username="$ref{super_admin.username}@carbon.super"	
+    password="$ref{super_admin.password}"	
+    server_url = "{tcp://<SI_HOST>:7612}"	
+    ```   
 ## Starting servers
 
 1. Go to the `<IS_HOME>/bin` directory using a terminal.
