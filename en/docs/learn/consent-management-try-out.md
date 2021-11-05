@@ -60,87 +60,87 @@ information from the bank. A sample consent initiation request looks as follows:
 The bank sends the request to the customer stating the accounts and information that the API consumer wishes to access.
     
        
-      1. Generate the request object by signing the following JSON payload using the supported algorithms. Given below is 
-      a sample request object in the JWT format:
+  1. Generate the request object by signing the following JSON payload using the supported algorithms. Given below is 
+  a sample request object in the JWT format:
+  
+      ``` tab='Sample'
+      eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4IiwiYWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6IjRoWklMQVRmUHlYbExGcWtQM1owT0JZaG1Ed2EiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiODZjOGEwODUtYTQ0NC00MmQ1LWJlNDMtOTY4YjM2NmE1NDY3IiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3RhdGUiOiJZV2x6Y0Rvek1UUTIiLCJleHAiOjE2MzM1ODY0MDgsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiY2xpZW50X2lkIjoiNGhaSUxBVGZQeVhsTEZxa1AzWjBPQllobUR3YSJ9.LytrdYnlos_hq5p21KVf8P0KkixetUseR1RnhMLtvQJOZow2vspm-XGltU5b4ciFdfdvkRvOh4qSjFozrYabMDToUnSDjoxyLTi5e5kBld81SyWeCt2XQwMV1qQdS4N-ISuTHHUsECox73-rF5kRmi_8RFfJSi2fUjtXkGZpo5JhQIJ1v37IQrOi3RlPhhH33kiVataXtWP1Dy5c28xAKXFaMkm7apRT5X6Rf1s34A9iouQuuxdVi6PCrwFutbYZnrNwy8EW7UMI7YNZsrkfhcXgJt0BMMsgNdIhYXdr7Ui3_q-ICi6zMRQuov0yTbVuHEkjsK2u81EIV3e2C_u_Jg
+      ```
       
-          ``` tab='Sample'
-          eyJraWQiOiJfTG03VFVWNF8yS3dydWhJQzZUWTdtel82WTQxMlhabG54dHl5QXB6eEw4IiwiYWxnIjoiUFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6IjRoWklMQVRmUHlYbExGcWtQM1owT0JZaG1Ed2EiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiODZjOGEwODUtYTQ0NC00MmQ1LWJlNDMtOTY4YjM2NmE1NDY3IiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3RhdGUiOiJZV2x6Y0Rvek1UUTIiLCJleHAiOjE2MzM1ODY0MDgsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiY2xpZW50X2lkIjoiNGhaSUxBVGZQeVhsTEZxa1AzWjBPQllobUR3YSJ9.LytrdYnlos_hq5p21KVf8P0KkixetUseR1RnhMLtvQJOZow2vspm-XGltU5b4ciFdfdvkRvOh4qSjFozrYabMDToUnSDjoxyLTi5e5kBld81SyWeCt2XQwMV1qQdS4N-ISuTHHUsECox73-rF5kRmi_8RFfJSi2fUjtXkGZpo5JhQIJ1v37IQrOi3RlPhhH33kiVataXtWP1Dy5c28xAKXFaMkm7apRT5X6Rf1s34A9iouQuuxdVi6PCrwFutbYZnrNwy8EW7UMI7YNZsrkfhcXgJt0BMMsgNdIhYXdr7Ui3_q-ICi6zMRQuov0yTbVuHEkjsK2u81EIV3e2C_u_Jg
-          ```
-          
-          ``` tab='Format'
-          {
-            "kid": "<The KID value of the signing jwk set>",
-            "alg": "<SUPPORTED_ALGORITHM>",
-            "typ": "JWT"
-          }
-          {
-            "max_age": 86400,
-                "aud": "<This is the audience that the ID token is intended for. Example: https://<IS_HOST>:9446/oauth2/token>",
-            "scope": "accounts openid",
-            "iss": "<CLIENT_ID>",
-            "claims": {
-              "id_token": {
-                "acr": {
-                  "values": [
-                    "urn:openbanking:psd2:sca",
-                    "urn:openbanking:psd2:ca"
-                  ],
-                  "essential": true
-                },
-                "openbanking_intent_id": {
-                  "value": "<CONSENTID>",
-                  "essential": true
-                }
-              },
-              "userinfo": {
-                "openbanking_intent_id": {
-                  "value": "<CONSENTID>",
-                  "essential": true
-                }
-              }
+      ``` tab='Format'
+      {
+        "kid": "<The KID value of the signing jwk set>",
+        "alg": "<SUPPORTED_ALGORITHM>",
+        "typ": "JWT"
+      }
+      {
+        "max_age": 86400,
+            "aud": "<This is the audience that the ID token is intended for. Example: https://<IS_HOST>:9446/oauth2/token>",
+        "scope": "accounts openid",
+        "iss": "<CLIENT_ID>",
+        "claims": {
+          "id_token": {
+            "acr": {
+              "values": [
+                "urn:openbanking:psd2:sca",
+                "urn:openbanking:psd2:ca"
+              ],
+              "essential": true
             },
-            "response_type": "code id_token",  
-            "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
-            "state": "YWlzcDozMTQ2",
-            "exp": <The expiration time of the request object in Epoch format>,
-            "nonce": "<PREVENTS_REPLAY_ATTACKS>",
-            "client_id": "<CLIENT_ID>"
+            "openbanking_intent_id": {
+              "value": "<CONSENTID>",
+              "essential": true
+            }
+          },
+          "userinfo": {
+            "openbanking_intent_id": {
+              "value": "<CONSENTID>",
+              "essential": true
+            }
           }
-          ```
-          
-      2. The request that the bank sends to the customer is in the format of a URL as follows: 
-             
-        ``` url tab="Sample"
-        https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
-        ```
-       
-        ``` url tab="Format"
-        https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20op
-        enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
-        ```
-        
-      3. Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in the application registration.
-        
-      4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login 
-      credentials of a user that has a `subscriber` role. 
-        
-      5. You can view the list of bank accounts and the information that the API consumer wishes to access.
-         ![select accounts](../assets/img/learn/consent-manager/consent-page-select-accounts.png)  
+        },
+        "response_type": "code id_token",  
+        "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
+        "state": "YWlzcDozMTQ2",
+        "exp": <The expiration time of the request object in Epoch format>,
+        "nonce": "<PREVENTS_REPLAY_ATTACKS>",
+        "client_id": "<CLIENT_ID>"
+      }
+      ```
       
-      6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. 
-      Click **Confirm** to grant these permissions.
-        ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png) 
-      
-      7. Upon providing consent, an authorization code is generated on the URL of the web page defined in `redirect_uri`.
-      See the sample given below:
-      
-        - The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
-      
-          ```
-          https://wso2.com/#code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775&id_token=eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1
-          NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5
-          a4f936c74e2ca7f4250208aa42.sk_04ejciXBj6DnpALyYaw
-          ```
+  2. The request that the bank sends to the customer is in the format of a URL as follows: 
+         
+    ``` url tab="Sample"
+    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
+    ```
+   
+    ``` url tab="Format"
+    https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20op
+    enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
+    ```
+    
+  3. Change the value of the `<CLIENT_ID>` placeholder with the value you obtained in the application registration.
+    
+  4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login 
+  credentials of a user that has a `subscriber` role. 
+    
+  5. You can view the list of bank accounts and the information that the API consumer wishes to access.
+     ![select accounts](../assets/img/learn/consent-manager/consent-page-select-accounts.png)  
+  
+  6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. 
+  Click **Confirm** to grant these permissions.
+    ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png) 
+  
+  7. Upon providing consent, an authorization code is generated on the URL of the web page defined in `redirect_uri`.
+  See the sample given below:
+  
+    - The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
+  
+      ```
+      https://wso2.com/#code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775&id_token=eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1
+      NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5
+      a4f936c74e2ca7f4250208aa42.sk_04ejciXBj6DnpALyYaw
+      ```
  
 ### Retrieve a consent 
 - An API consumer can retrieve a consent resource that they have created to check its status. In order to make this request, 

@@ -118,7 +118,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
 ## Step 3: Tryout DCR
 
 !!! tip
-    If you have [Postman](https://www.postman.com/), import the [script](https://www.getpostman.com/collections/a140c92431e94a810f45) 
+    If you have [Postman](https://www.postman.com/), import the [script](https://www.getpostman.com/collections/d0000ae9b54a24c0efe1) 
     to invoke the DCR endpoints for the scenarios explained below.
 
 ###Register an application
