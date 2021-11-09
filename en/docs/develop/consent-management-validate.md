@@ -34,7 +34,7 @@ In any of the consent extensions, if an error scenario occurs and you need to se
 a `ConsentException`.
 
 ### Data
-The following table explains the data available in `ConsentValidator`.
+The following table explains the data available in `ConsentValidateData`.
 
 | Name      | Type                  | Description  |
 | ----------|-----------------------| -------------|
@@ -47,6 +47,13 @@ The following table explains the data available in `ConsentValidator`.
 | comprehensiveConsent  | DetailedConsentResource   | The comprehensive consent object related to the consent that is being validated. This object contains all the details related to the consent. |
 | resourceParams | Map<String, String>                | A map containing the full resource path with query parameters (ex: `aisp/accounts/{AccountId}?queryParam=urlEncodedQueryParamValue`), HTTP method, and context (ex: `/open-banking/v3.1/aisp`) of the request. |
 
+The following table explains the data available in `ConsentValidationResult`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| isValid | boolean | An attribute to identify whether the consent is in a valid state or not. |
+| modifiedPayload | JSONObject | Optionally used to set a modified error payload to be sent with the consent validation response. If a modified payload is set, it is given priority over creating a generic error response using the message and code information. |
+| consentInformation | JSONObject | Used to set the consent data to the consent validation result. This data will be sent to the bank backend. |
 
 ### Configuration 
 
