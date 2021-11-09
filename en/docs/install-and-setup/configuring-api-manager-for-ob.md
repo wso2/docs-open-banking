@@ -97,7 +97,19 @@ database server, and the JDBC driver.
     priority = 1
     ```
 
-8. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
+8. Add the following tags and configure the HTTP connection pool:
+
+    !!! info
+        This is available only as a WSO2 Update and is effective from October 07, 2021. For more information on updating 
+        WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+
+    ``` toml
+    [open_banking.http_connection_pool]
+    max_connections = 2000
+    max_connections_per_route = 1500	
+    ```
+   
+9. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
    
     - Enable the feature and configure the `server_url` property with the hostname of WSO2 Streaming 
     Integrator.
@@ -109,13 +121,6 @@ database server, and the JDBC driver.
     password="$ref{super_admin.password}"	
     server_url = "{tcp://<SI_HOST>:7612}"	
     ```  
-9. Add the following and configure the HTTP connection pool:
-
-    ``` toml
-    [open_banking.http_connection_pool]
-    max_connections = 2000
-    max_connections_per_route = 1500	
-    ```
    
 ## Starting servers
 
