@@ -31,22 +31,33 @@ section explains how to get started with implementing customizations and impleme
             ./ merge.sh
             ```
 
-1. Download the `install.sh` script available [here](../assets/attachments/install.sh).
-    The `install.sh` script will install WSO2 Identity Server, API Manager, and Open Banking specific JAR files to your 
+1. Download the zip file available [here](../assets/attachments/install_scripts.zip) and extract it.
+2. According to your operating system, select and copy the relevant `install` script.
+ 
+    The `install` script will install WSO2 Identity Server, API Manager, and Open Banking specific JAR files to your 
     local Maven Repository.
-2. Go to the `<IS_HOME>` directory and place the `install.sh` file. 
-3. Run the `<IS_HOME>/install.sh` file.
+    
+3. Go to the `<IS_HOME>` directory and place the relevant `install` file. 
+4. According to your operating system, run the `<IS_HOME>/install` file.
 
-    ``` shell 
-    ./install.sh
-    ```
+       ``` shell tab='On Linux'  
+        ./install.sh
+       ```
+       
+       ``` shell tab='On Windows'  
+        ./install.ps1
+       ```
    
-4. Go to the `<APIM_HOME>` directory and place a copy of the downloaded `install.sh` file. 
-5. Run the `<APIM_HOME>/install.sh` file.
+5. Go to the `<APIM_HOME>` directory and place a copy of the relevant `install` file. 
+6. Run the `<APIM_HOME>/install` file.
 
-    ``` shell 
-    ./install.sh
-    ```
+       ``` shell tab='On Linux'  
+        ./install.sh
+       ```
+       
+       ``` shell tab='On Windows'  
+        ./install.ps1
+       ```
 
 !!! note
     When you [update](/install-and-setup/setting-up-servers#getting-wso2-updates) the products/accelerators with WSO2 
