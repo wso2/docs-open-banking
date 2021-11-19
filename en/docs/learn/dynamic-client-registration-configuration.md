@@ -106,7 +106,7 @@ read_timeout = 3000
 ## Configuring a custom DCR validator
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-2. Find the following configuration and replace that with your extended class. By default the 
+2. Find the following configuration and replace that with your extended class. By default, the 
 `DefaultRegistrationValidatorImpl` class is configured as follows: 
 ````toml
 [open_banking.dcr]
