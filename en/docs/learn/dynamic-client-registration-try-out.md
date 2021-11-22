@@ -30,35 +30,30 @@ https://<IS_HOST>:9446/api/openbanking/dynamic-client-registration
 
 9. Click **Save**.
 
-10. Go to **Deployments** using the left menu pane and click **Deploy New Revision**. ![deploy a new revision](../assets/img/learn/dcr/dcr-try-out/step-6.png)
+10. Go to **Deployments** using the left menu pane and select **Default Hybrid** API Gateway. ![deploy_api_gateway](../assets/img/learn/dcr/dcr-try-out/deploy_api_gateway.png)
 
-11.Provide a description for the new revision.
+11. Click **Deploy**.
 
-12.Select the API Gateway type, in this scenario, it is **Production and Sandbox**.
-
-13.Select the host as `localhost` from the dropdown list. ![select_localhost](../assets/img/learn/dcr/dcr-try-out/step-7.png)
-
-14.Click **Deploy**.
-
-15.Go to **Overview** using the left menu pane. 
+12.Go to **Overview** using the left menu pane. 
 
    ![select_overview](../assets/img/learn/dcr/dcr-try-out/step-8.png)
  
-16.Click **Publish**. 
+13.Click **Publish**. 
 
   ![publish_api](../assets/img/learn/dcr/dcr-try-out/step8-publish.png)
 
-17.The deployed DCR API is now available in the Developer Portal at https://<APIM_HOST>:9443/devportal.
+14.The deployed DCR API is now available in the Developer Portal at https://<APIM_HOST>:9443/devportal.
 
-18.Upload the root and issuer certificates found [here](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) 
+15.Upload the root and issuer certificates in OBIE ([Sandbox certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)/
+[Production certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production))
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
 `<IS_HOME>/repository/resources/security/client-truststore.jks` using the following command:
 
-```
-keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
-```
-            
-19.Restart the Identity Server and API Manager instances.
+  ```
+  keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
+  ```
+
+16.Restart the Identity Server and API Manager instances. 
 
 ## Step 2: Configure IS as Key Manager
 
@@ -89,7 +84,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | **Claim URIs**      |   
         | Consumer Key Claim URI | The claim URI for the consumer key.  | (Optional)  |
         | Scopes Claim URI | The claim URI for the scopes | (Optional) | 
-        | Grant Types | The supported grant types. According to your open banking specification, add multiple grant types by adding a grant type press Enter. For example, `refresh_token`, `client_credentials`, `authorization_code`.| (Optional) |
+        | Grant Types | The supported grant types. Add multiple grant types by adding a grant type press Enter. Add the `client_credentials`, `authorization_code`, `refresh_token`, and `urn:ietf:params:oauth:grant-type:jwt-bearer` grant types. | (Mandatory) |
         | **Certificates** | 
         | PEM | Either copy and paste the certificate in PEM format or upload the PEM file. | (Optional) |
         | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | `https://<IS_HOST>:9446/oauth2/jwks` |
@@ -100,7 +95,7 @@ keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keys
         | **Token Validation Method** | The method used to validate the JWT signature. |
         | Self Validate JWT | The kid value is used to validate the JWT token signature. If the kid value is not present, `gateway_certificate_alias` will be used. | (Mandatory) |
         | Use introspect | The JWKS endpoint is used to validate the JWT token signature. | - |
-        | Token Handling Options | This provides a way to validate the token for this particular authorization server. This is mandatory if the Token Validation Method is introspect.| (Optional) |
+        | **Token Handling Options** | This provides a way to validate the token for this particular authorization server. This is mandatory if the Token Validation Method is introspect.| (Optional) |
         | REFERENCE | The tokens that match a specific regular expression (regEx) are validated. e.g., <code>[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}</code> | (Optional) |
         | JWT | The tokens that match a specific JWT are validated. | Select this icon |
         | CUSTOM | The tokens that match a custom pattern are validated. | (Optional) |
@@ -126,6 +121,8 @@ The API allows the API consumer to request the bank to register a new applicatio
 
 - The API consumer sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
 This SSA contains API consumer's metadata. A sample request looks as follows:
+
+ For this sample flow, you can use the transport certificates available [here](../../assets/attachments/Transport_Certs.zip). 
 
 ```
 curl -X POST https://<APIM_HOST>:8243/open-banking/0.1/register \

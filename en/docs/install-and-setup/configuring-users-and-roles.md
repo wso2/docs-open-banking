@@ -18,10 +18,10 @@ Now you have started the servers, let’s create the users and define their perm
 2. Click **Add New Role**.
 3. Create the following user roles:   
   
-    | Domain | Role| Permissions|
-    |--------|--------|--------|
-    |Internal|approverRole|Admin permissions|
-    |Internal|CustomerCareOfficerRole|No permissions required.|
+    | Domain | Role| Permissions | Description |
+    |--------|--------|--------|---------------|
+    |Internal|approverRole|Admin permissions| To approve applications when you register applications using the signup workflow. |
+    |Internal|CustomerCareOfficerRole|No permissions required | To log in to the Consent Manager portal as a customer care officer. |
     
     i. Creating **approverRole**:
     

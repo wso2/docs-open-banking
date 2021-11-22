@@ -106,7 +106,7 @@ read_timeout = 3000
 ## Configuring a custom DCR validator
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-2. Find the following configuration and replace that with your extended class. By default the 
+2. Find the following configuration and replace that with your extended class. By default, the 
 `DefaultRegistrationValidatorImpl` class is configured as follows: 
 ````toml
 [open_banking.dcr]
@@ -115,8 +115,8 @@ validator = "com.wso2.openbanking.accelerator.identity.dcr.validation.DefaultReg
 3. Configure the jwks endpoint that is used for validating the SSA signature. 
 ```toml
 [open_banking.dcr]
-jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/sgsMuc8ACBgBzinpr8oJ8B.jwks"
-jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/sgsMuc8ACBgBzinpr8oJ8B.jwks"
+jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/keystore/openbanking.jwks"
+jwks_url_production = "https://keystore.openbankingtest.org.uk/keystore/openbanking.jwks"
 ```       
 4. Configure the algorithms that are allowed during signature validation. These algorithms are used for token endpoint 
 authentication assertion signature, request object signature, and id token signature validations.
