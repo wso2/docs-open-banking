@@ -3,11 +3,11 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 !!! tip "Before you begin..."
     1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     
-    2. Configure the jwks endpoints as follows. These endpoints are used for validating the SSA signature. 
+    2. Configure the jwks endpoints by following the sample given below. These endpoints are used for validating the SSA signature. 
     ```toml
     [open_banking.dcr]
-    jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/keystore/openbanking.jwks"
-    jwks_url_production = "https://keystore.openbankingtest.org.uk/keystore/openbanking.jwks"
+    jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/sgsMuc8ACBgBzinpr8oJ8B.jwks"
+    jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/sgsMuc8ACBgBzinpr8oJ8B.jwks"
     ```   
     
     3. Restart the Identity Server.
