@@ -62,6 +62,8 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
     - Replace the placeholder with the hostname of Identity Server. 
     
 7. Click **Create**. 
+
+8. Go to **Portal Configurations > Subscriptions > Select Business Plan as 'Unlimited'** using the left menu pane. 
     
 8. Go to **Develop > API Configurations > Runtime** using the left menu pane.   
 
