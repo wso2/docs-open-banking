@@ -41,7 +41,7 @@ WSO2 Open Banking Accelerator uses the following API endpoints to manage consent
   The accelerator gathers all consent details and invokes validators via this API. Once the validations are performed, 
   the flow will proceed. You can write your own validators and customize the process.  
   
-- **Consent Portal - `/portal` endpoint**  
+- **Consent Portal - `/admin` endpoint**  
    The Consent Management portal and the Customer Care portal invoke this API to search consents and revoke consents.
     
 - **Consent Management - `/manage` endpoint**  
