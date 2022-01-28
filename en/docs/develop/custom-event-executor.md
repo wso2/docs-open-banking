@@ -1,13 +1,13 @@
 ##Writing a Custom Event Executor
 
 WSO2 Open Banking Accelerator contains an event executor that processes events taken from an event queue 
-asynchronously. Relevant events will be added to the event queue by the WSO2 Open Banking Accelerator depending 
+asynchronously. Relevant events are added to the event queue by WSO2 Open Banking Accelerator depending 
 on the event triggering scenario. Currently, all the consent state-changing events are added to the event queue.
 
 You can implement the interface provided in WSO2 Open Banking Accelerator and process the events according to your 
 open banking requirements:
 
-- To implement a custom Pushed Auth Request validator, extend the following class:
+- To implement a custom Event Executor, extend the following class:
 
 ``` java
 com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor
@@ -17,7 +17,7 @@ Given below is a brief explanation of the methods you need to implement.
 
 ###processEvent method
 
-This method processes the event polled from the event queue. Given below is the method signature:
+This method processes the events polled from the event queue. Given below is the method signature:
 
 ``` java
 public void processEvent(OBEvent obEvent)
@@ -27,7 +27,7 @@ Input parameters
 
 - `OBEvent obEvent` - contains an OBEvent object with event related details.
 
-Click here to see OBEvent Model class:
+Click here to see the `OBEvent` model class:
 
 ``` java
     private String eventType;
@@ -52,22 +52,22 @@ Click here to see OBEvent Model class:
 ```
 
 !!! note
-Map<String, Object> eventData contains the following parameters with respective key value pairs for a *consent 
-related state change*. You can use the following values to perform business logic.
-
+`Map<String, Object> eventData` contains the following parameters with respective key-value pairs for a **consent 
+related state change**. 
+Use the following values to perform business logic:
 
 | Key | Value |
 |---------|---------    |
 |`ConsentId`|Consent ID|
 |`UserId`|User ID|
-|`PreviousConsentStatus`|Consent status before status change event|
-|`Reason`|Reason for consent status change|
+|`PreviousConsentStatus`|The status of the consent before the status change event|
+|`Reason`|Reason for the change of consent status|
 |`ClientId`|Client ID|
-|`ConsentDataMap`|Consent data map of kind Map<String, Object> containing additional details if necessary|
+|`ConsentDataMap`|A `Map<String, Object>` data map that contains additional details|
 
 For example:
 
-- Implement the `OBEventExecutor` class and override the `processEvent` method in your  class as follows:
+- Implement the `OBEventExecutor` class and override the `processEvent` method in your class as follows:
 
 ``` java
    @Override
@@ -109,7 +109,7 @@ For example:
 1. Once implemented, build a JAR file for your Custom Event Executor and place it in the  
    `<IS_HOME>/repository/components/lib` and `<APIM_HOME>/repository/components/lib` directories.
 2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-3. Find the `[open_banking.event]` tag and configure the queue size, number of worker threads, and then the event 
+3. Find the `[open_banking.event]` tag and configure the queue size, the number of worker threads, and the event 
    executor using the Fully Qualified Name (FQN) of your custom event executor class. For example:
 
        ``` toml
@@ -122,4 +122,4 @@ For example:
 
 4. Save the above configurations and restart the Identity Server.
 5. Repeat steps 2 and 3 for API Manager using the`<APIM_HOME>/repository/conf/deployment.toml` file. 
-   Restart the API Manager server.
+   6. Restart the API Manager server.
