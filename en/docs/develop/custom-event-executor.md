@@ -27,33 +27,34 @@ Input parameters
 
 - `OBEvent obEvent` - contains an OBEvent object with event related details.
 
-Click here to see the `OBEvent` model class:
+??? tip "Click here to see the `OBEvent` model class.."
 
-``` java
-    private String eventType;
-    private Map<String, Object> eventData;
-    
-    public OBEvent(String eventType, Map<String, Object> eventData) {
-    
-       this.eventType = eventType;
-       this.eventData = eventData;
-    }
-    
-    public String getEventType() {
-    
-       return eventType;
-    }
-    
-    public Map<String, Object> getEventData() {
-    
-       return eventData;
-    }
-
-```
+      ``` java
+          private String eventType;
+          private Map<String, Object> eventData;
+          
+          public OBEvent(String eventType, Map<String, Object> eventData) {
+          
+             this.eventType = eventType;
+             this.eventData = eventData;
+          }
+          
+          public String getEventType() {
+          
+             return eventType;
+          }
+          
+          public Map<String, Object> getEventData() {
+          
+             return eventData;
+          }
+      
+      ```
 
 !!! note
-`Map<String, Object> eventData` contains the following parameters with respective key-value pairs for a **consent 
-related state change**. 
+      `Map<String, Object> eventData` contains the following parameters with respective key-value pairs for a **consent 
+      related state change**. 
+
 Use the following values to perform business logic:
 
 | Key | Value |
