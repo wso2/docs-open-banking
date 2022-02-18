@@ -99,6 +99,8 @@ nav:
         - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
         - 'Error handling in API Gateway': develop/gateway-error-handling.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
+    - 'Open Banking Event Executor':
+        - 'Custom Event Executor': develop/custom-event-executor.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
