@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: v1.0
-  title: ConsentAPI
+  title: ConsentA PI
   description: This specifies a RESTful API for making interactions with the consent module
   contact:
     name: WSO2
@@ -169,10 +169,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OBConsentErrorCommon"
-  /manage:
-    get:
-      summary: Get endpoint for manage
-      operationId: manageGet
+
+  /manage/account-access-consents:
+    post:
+      summary: Post endpoint for manage
+      operationId: managePost
       tags:
         - Manage
       parameters:
@@ -181,16 +182,30 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        description: Payload representing consent that is being created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OBConsentCreateResource"
       responses:
         "500":
           description: Internal Server Error
 
-    post:
-      summary: Post endpoint for manage
-      operationId: managePost
+  /manage/account-access-consents/{consent-id}:
+    get:
+      summary: Get endpoint for manage
+      operationId: manageGet
       tags:
         - Manage
       parameters:
+        - name: consent-id
+          in: path
+          description: The consent ID for the created consent
+          required: true
+          schema:
+            type: string
         - in: header
           name: x-wso2-client-id
           required: true
@@ -206,34 +221,12 @@ paths:
       tags:
         - Manage
       parameters:
-        - in: header
-          name: x-wso2-client-id
+        - name: consent-id
+          in: path
+          description: The consent ID for the created consent
           required: true
           schema:
             type: string
-      responses:
-        "500":
-          description: Internal Server Error
-    put:
-      summary: Put endpoint for manage
-      operationId: managePut
-      tags:
-        - Manage
-      parameters:
-        - in: header
-          name: x-wso2-client-id
-          required: true
-          schema:
-            type: string
-      responses:
-        "500":
-          description: Internal Server Error
-    patch:
-      summary: Patch endpoint for manage
-      operationId: managePatch
-      tags:
-        - Manage
-      parameters:
         - in: header
           name: x-wso2-client-id
           required: true
@@ -279,12 +272,12 @@ paths:
           schema:
             type: string
       requestBody:
-        description: Boolean value representing whether the user approved the consent
+        description: Payload representing whether the user approved the consent and selected accounts
         required: true
         content:
           application/json:
             schema:
-              type: boolean
+              $ref: "#/components/schemas/OBConsentPersistResource"
       responses:
         "302":
           description: Post consent redirect
@@ -312,15 +305,21 @@ components:
         payload:
           description: Object containing the request payload received to the gateway
           type: object
-        context:
+        electedResource:
           description: String value of the request path received in the request
           type: string
         consentId:
           description: The consent ID of the consent being valdiated
           type: string
-        resource:
-          description: The context including query parameters of the request
+        userId:
+          description: The consent ID of the consent being valdiated
           type: string
+        clientId:
+          description: The consent ID of the consent being valdiated
+          type: string
+        resourceParams:
+          description: The context including query parameters of the request
+          type: object
     OBConsentErrorCommon:
       type: object
       properties:
@@ -461,3 +460,33 @@ components:
         permission:
           description: Mapping permission
           type: string
+    OBConsentPersistResource:
+      type: object
+      properties:
+        approval:
+          type: boolean
+        accountIds:
+          type: array
+          items:
+            type: string
+    OBConsentCreateResource:
+      type: object
+      properties:
+        Data:
+          type: object
+          properties:
+            Permissions:
+              type: array
+              items:
+                type: string
+            ExpirationDateTime:
+              type: string
+              format: date-time
+            TransactionFromDateTime:
+              type: string
+              format: date-time
+            TransactionToDateTime:
+              type: string
+              format: date-time
+        Risk:
+          type: object
