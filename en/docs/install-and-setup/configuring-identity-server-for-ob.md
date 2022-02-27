@@ -148,7 +148,7 @@ database server, and the JDBC driver.
     
     ??? info "Click here to see the configurations for periodical consent expiration in a clustered setup."
        
-        - :exclamation: It's important to note that, `quartz.properties` is not recommended to use for initializing custom job data from an XML file, As there's a security vulnerability specified in CVE-2019-13990.
+        -  **Due to a security vulnerability specified in CVE-2019-13990, `quartz.properties` is not recommended for initializing custom job data from an XML file.**
         - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the
           datasources according to the
           [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
