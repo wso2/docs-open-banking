@@ -148,7 +148,8 @@ database server, and the JDBC driver.
     
     ??? info "Click here to see the configurations for periodical consent expiration in a clustered setup."
        
-        - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the 
+        -  **Due to a security vulnerability specified in CVE-2019-13990, `quartz.properties` is not recommended for initializing custom job data from an XML file.**
+        - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the
           datasources according to the
           [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
         - Create a new database and use the database scripts available 
