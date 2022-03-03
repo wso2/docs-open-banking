@@ -3,7 +3,12 @@ applications to access account data. **Consent Manager** is an application in WS
 requirements and manages consents.
 
 !!! tip
-    You can customize and build your own Consent Manager using the [Consent API](../references/consent-rest-api.md).
+    You can use the [/admin endpoint in Consent REST API](../references/consent-rest-api.md#/Admin) 
+    to retrieve consent details and customize Consent Manager. For example,
+
+    ``` 
+    curl -X GET "https://localhost:9446/api/openbanking/consent/admin/search?consentIDs=12345&clientIDs=5678&consentTypes=accounts&consentStatuses=authorized&userIDs=user1&fromTime=12012020&toTime=12012021&limit=10&offset=0" -H "accept: application/json"
+    ```
 
 !!! note
     - Bank officers with the `CustomerCareOfficerRole` role and bank customers can access the Consent Manager.  
