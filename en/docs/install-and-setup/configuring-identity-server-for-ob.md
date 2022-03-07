@@ -148,16 +148,15 @@ database server, and the JDBC driver.
     
     ??? info "Click here to see the configurations for periodical consent expiration in a clustered setup."
        
-        -  **Due to a security vulnerability specified in CVE-2019-13990, `quartz.properties` is not recommended for initializing custom job data from an XML file.**
         - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the
           datasources according to the
           [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
         - Create a new database and use the database scripts available 
-          [here](https://svn.terracotta.org/svn/quartz/tags/quartz-2.1.7/docs/dbTables/)
+          [here](https://github.com/quartz-scheduler/quartz/tree/quartz-2.3.x/quartz-core/src/main/resources/org/quartz/impl/jdbcjobstore)
           to create the quartz cluster tables.
         - Add following jars to the `<IS_HOME>/repository/component/lib` directory.
             - [mchange-commons-java-0.2.20.jar](https://repo1.maven.org/maven2/com/mchange/mchange-commons-java/0.2.20/mchange-commons-java-0.2.20.jar)
-            - [c3p0-0.9.2.1.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.jar)
+            - [c3p0-0.9.5.4.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar)
         - Copy the same `quartz.properties` file to each instance in the cluster and update the `instanceId`. 
         - Click [here](../assets/attachments/quartz.properties) to download a sample `quartz.properties` configuration file.
        
