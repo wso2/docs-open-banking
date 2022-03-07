@@ -101,14 +101,14 @@ flow, you can use the transport certificates available [here](../../assets/attac
     ```
 
 2. Upon successful token generation, you obtain a token as follows:
-    ```
+   ```
    {
     "access_token": "eyJ4NXQiOiJNR0l4TVRrMlpXTTJaVEZqTmpOall6WXdOV0ZsWm1OalpHWTRabVk0T1RVd1l6ZGhNRFF4TnciLCJraWQiOiJaREJoT1RjMlpqZzNZV0poWVdVelpUWXlNbVJrWm1JM09EbGpOalV5TXpBd01UYzFObUppTmpnNE56SmxOMlJsT0RFMVpHUTJNVEJqTmpZek9ETmtNQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJhZG1pbkB3c28yLmNvbUBjYXJib24uc3VwZXIiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IjE5X0ZUYkF2YlptOVlDOVFSQll3OEUwaFZuQWEiLCJuYmYiOjE2NDM1MzYzNTgsImF6cCI6IjE5X0ZUYkF2YlptOVlDOVFSQll3OEUwaFZuQWEiLCJzY29wZSI6ImFjY291bnRzIiwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwiY25mIjp7Ing1dCNTMjU2IjoidllvVVlSU1E3Q2dvWXhOTVdXT3pDOHVOZlFyaXM0cFhRWDBabWl0Unh6cyJ9LCJleHAiOjE2NDM1Mzk5NTgsImlhdCI6MTY0MzUzNjM1OCwianRpIjoiNzFmOTE5ZWYtMDYwNC00Mjk4LWI1MjktMGZlYTYwYjE2NjhkIn0.hQdwoC9enYm3Ae4VXJKVB8dSthu5YhWSraWkCHYXyJDrqtl5A2IMlhiXGdg1MDCyU5IRsD-kggm6Tv2qJUteiLKI0rOYxgOIWloyxzkBY9iXJDzNmlhotMQfHJZCaUYpfZEJmi4K-MP1OQiZHaE-owv03mHBxIFum45og6I2iJLJwn7nhmowQqh_x9wF296gGFIVcO0_cSyvLCa42LLjhcjBTVmRIYTUiBfcfu63ld8n6M7BWXMKR7z5rDmKFSn9ROsc4H7CO36APL9QfzWTMMVBUKKQFb3bMrPwFRvMMtfOT_27JpBvIWIF7kh4Mav3t680higBRBUajco12NgNAw",
     "scope": "accounts",
     "token_type": "Bearer",
     "expires_in": 3600
-}
-    ```
+   }
+   ```
 
 ### Step 2: Initiate a consent
 

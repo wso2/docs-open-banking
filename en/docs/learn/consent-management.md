@@ -35,7 +35,8 @@ following methods to revoke these consents granted to API consumer applications.
  - A customer can revoke a consent using the Consent Manager portal 
  - A Customer Care Representative from the bank can revoke a consent on behalf of a user
  
-WSO2 Open Banking Accelerator uses the following API endpoints to manage consents as previously described. 
+WSO2 Open Banking Accelerator uses the following [API endpoints](../references/consent-rest-api.md) to manage consents 
+as previously described. 
 
 - **Consent Validation - `/validate` endpoint**  
   The accelerator gathers all consent details and invokes validators via this API. Once the validations are performed, 
