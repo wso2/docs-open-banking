@@ -19,8 +19,8 @@ locate the respective root directory of the base products:
      - Microsoft SQL Server 2017
      - PostgreSQL 13
      
-       This section explains how to set up the solution with a MySQL 8.0 database server. For other DBMS, see 
-       [Setting up databases](../install-and-setup/setting-up-databases.md).
+This section explains how to set up the solution with a MySQL 8.0 database server. For other DBMS, see 
+[Setting up databases](../install-and-setup/setting-up-databases.md).
 
 1. Open the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
 
