@@ -83,7 +83,7 @@ nav:
       - 'App-to-App Redirection': learn/app-to-app-redirection.md
       - 'Identifier-first Authentication': learn/identifier-first.md
     - 'Event Notification':
-      - 'Introduction': learn/event-notification.md
+      - 'Introduction': learn/custom-event-notification.md
       - 'Configuration': learn/event-notification-configuration.md
     - 'API Security':
       - 'Introduction': learn/api-security.md
@@ -128,6 +128,7 @@ nav:
     - 'Dynamic Client Registration':
         - 'Application Management Listener': develop/application-management-listener.md
         - 'Custom DCR Validator': develop/custom-dcr-validator.md
+    - 'Event Notification': develop/custom-event-notification.md
     - 'Using Hibernate Validator': develop/validation-layer.md
     - 'Data Publishing':
         - 'Custom Data Publishing': develop/custom-data-publishing.md
