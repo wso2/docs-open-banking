@@ -10,6 +10,10 @@ This interface provides methods to validate the event creation payload, invoke t
 the final response for the event creation. You can implement custom validations or custom responses for the event
 notification creation endpoint using this interface.
 
+``` java
+com.wso2.openbanking.accelerator.event.notifications.service.handler.EventCreationServiceHandler
+```
+
 #### publishOBEvent method
 
 This method lets you store event related data in the database.
@@ -29,6 +33,10 @@ EventCreationResponse publishOBEvent(NotificationCreationDTO notificationCreatio
 This interface provides methods to validate the event polling payload, invoke the event polling service, and modify
 the final response for event polling. You can implement any custom validations or custom responses for the event
 polling response using this interface.
+
+``` java
+com.wso2.openbanking.accelerator.event.notifications.service.handler.EventPollingServiceHandler
+```
 
 #### pollEvents method
 
@@ -63,6 +71,10 @@ EventPollingDTO mapPollingRequest(JSONObject eventPollingRequest);
 
 This interface provides method to customize the event notification JSON. For example, use this class to send additional 
 claims in the notification. Furthermore, you can derive an event notification JSON body and generate the JWT.
+
+``` java
+com.wso2.openbanking.accelerator.event.notifications.service.service.EventNotificationGenerator
+```
 
 #### generateEventNotificationBody method
 
