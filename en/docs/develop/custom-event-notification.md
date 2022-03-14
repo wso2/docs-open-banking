@@ -40,8 +40,8 @@ com.wso2.openbanking.accelerator.event.notifications.service.handler.EventPollin
 
 #### pollEvents method
 
-The method lets you provide both positive and negative event acknowledgements. You can this to poll for available open 
-notifications as well.
+The method lets you provide both positive and negative event acknowledgements. You can use this method to poll for 
+available open notifications as well.
 
 ``` java
 /**
@@ -111,15 +111,16 @@ Once implemented, build JAR files for your custom Event Notification services:
          | `event_notification_generator` | Configure your Event Notification Generator using its FQN. |
          | `set_sub_claim_included`, `set_txn_claim_included`, `set_toe_claim_included`| Configure the customized optional claims in event notification using these tags. They represent the subject, transaction, and time of event claims respectively. |espectively. |
 
-      ``` toml
-       token_issuer = "www.openbank.com"
-       number_of_sets_to_return = 5
-       event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
-       event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
-       event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
-       set_sub_claim_included = true
-       set_txn_claim_included = true
-       set_toe_claim_included = true
+      ``` toml 
+       [open_banking.event.notifications]
+        token_issuer = "www.openbank.com"
+        number_of_sets_to_return = 5
+        event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
+        event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
+        event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
+        set_sub_claim_included = true
+        set_txn_claim_included = true
+        set_toe_claim_included = true
       ```
 
 
