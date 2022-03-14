@@ -113,7 +113,7 @@ Once implemented, build JAR files for your custom Event Notification services:
 
       ``` toml 
        [open_banking.event.notifications]
-        token_issuer = "www.openbank.com"
+        token_issuer = "www.wso2.com"
         number_of_sets_to_return = 5
         event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
         event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
