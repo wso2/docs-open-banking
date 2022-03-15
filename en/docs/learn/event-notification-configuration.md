@@ -16,13 +16,14 @@ To enable the Event Notification feature in WSO2 Open Banking UK Toolkit:
          | `set_sub_claim_included`, `set_txn_claim_included`, `set_toe_claim_included`| Configure the customized optional claims in event notification using these tags. They represent the subject, transaction, and time of event claims respectively. |
 
       ``` toml
-       token_issuer = "www.openbank.com"
-       number_of_sets_to_return = 5
-       event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
-       event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
-       event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
-       set_sub_claim_included = true
-       set_txn_claim_included = true
-       set_toe_claim_included = true
+       [open_banking.event.notifications]
+        token_issuer = "www.wso2.com"
+        number_of_sets_to_return = 5
+        event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
+        event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
+        event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
+        set_sub_claim_included = true
+        set_txn_claim_included = true
+        set_toe_claim_included = true
       ```
 

@@ -3,10 +3,13 @@ This section guides you on how to develop a toolkit to customize the accelerator
 regional open banking standard. 
 
    - [Open Banking Gateway](open-banking-gateway.md)
+   - [Open Banking Event Executor](custom-event-executor.md)
    - [Consent Management](consent-management-manage.md)
    - [Token Flow Customization](jwt-access-tokens.md) 
-   - [Application Management Listener](application-management-listener.md)
+   - [Authorization Flow](keyid-provider.md)
+   - [Dynamic Client Registration](application-management-listener.md)
    - [Response Type Handler](response-type-handler.md)
+   - [Event Notification](custom-event-notification.md)
    - [Validation Layer](validation-layer.md) 
    - [Data Publishing](authentication-flow-for-data-publishing.md) 
 
