@@ -105,7 +105,16 @@ Once implemented, build JAR files for your custom Event Notification services:
      2. According to your database, execute the relevant script against the `openbank_openbankingdb` database.
 2. Place the JAR files in the `<IS_HOME>/repository/components/dropins` directory.
 3. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-4. Add the following tags and configure the customized handlers and generator using their Fully Qualified Names (FQN):
+4. Find the `resource.access_control` configurations and add the following tags to secure the Event Notification endpoints:
+      ``` toml
+       [[resource.access_control]]
+       context = "(.)/api/openbanking/event-notifications/(.)"
+       secure="true"
+       http_method="all"
+       permissions=["/permission/admin"]
+       allowed_auth_handlers = ["BasicAuthentication"]
+      ```
+5. Add the following tags and configure the customized handlers and generator using their Fully Qualified Names (FQN):
 
     ??? tip "Click here to see the definitions of the configuration tags..."
          | Configuration | Description |
