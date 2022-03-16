@@ -83,7 +83,7 @@ nav:
       - 'App-to-App Redirection': learn/app-to-app-redirection.md
       - 'Identifier-first Authentication': learn/identifier-first.md
     - 'Event Notification':
-      - 'Introduction': learn/custom-event-notification.md
+      - 'Introduction': learn/event-notification.md
       - 'Configuration': learn/event-notification-configuration.md
     - 'API Security':
       - 'Introduction': learn/api-security.md

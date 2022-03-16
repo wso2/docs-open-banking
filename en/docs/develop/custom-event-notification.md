@@ -16,7 +16,8 @@ com.wso2.openbanking.accelerator.event.notifications.service.handler.EventCreati
 
 #### publishOBEvent method
 
-This method lets you store event related data in the database.
+This method lets you store event-related data in the accelerator database (`openbank_openbankingdb`).
+The event information is saved in the JSON format and you can customize this JSON according to your requirements.
 
 ``` java
 /**
@@ -40,8 +41,8 @@ com.wso2.openbanking.accelerator.event.notifications.service.handler.EventPollin
 
 #### pollEvents method
 
-The method lets you provide both positive and negative event acknowledgements. You can use this method to poll for 
-available open notifications as well.
+The method lets you provide both positive and negative event acknowledgements. You can use this method to update the
+status of the event notification and poll for notifications in the `open` status. 
 
 ``` java
 /**
@@ -56,7 +57,8 @@ EventPollingResponse pollEvents(JSONObject eventPollingRequest);
 
 #### mapPollingRequest method
 
-This method lets you map `eventPollingRequest` to `EventPollingDTO`.
+This method lets you map `eventPollingRequest` to its data object (`EventPollingDTO`). The data object is used to invoke 
+the polling service.
 
 ``` java
 /**
@@ -69,7 +71,7 @@ EventPollingDTO mapPollingRequest(JSONObject eventPollingRequest);
 
 ### Event Notification Generator
 
-This interface provides method to customize the event notification JSON. For example, use this class to send additional 
+This interface provides a method to customize the event notification JSON. For example, use this class to send additional 
 claims in the notification. Furthermore, you can derive an event notification JSON body and generate the JWT.
 
 ``` java
@@ -78,7 +80,8 @@ com.wso2.openbanking.accelerator.event.notifications.service.service.EventNotifi
 
 #### generateEventNotificationBody method
 
-This method lets you generate the event notification body.
+This method lets you generate the event notification body. You can use this method to modify the claim values in 
+the event notification body
 
 ``` java
 /**
@@ -97,9 +100,12 @@ Notification generateEventNotificationBody(NotificationDAO notificationDAO, List
 
 Once implemented, build JAR files for your custom Event Notification services:
 
-1. Place the JAR files in the `<IS_HOME>/repository/components/dropins` directory.
-2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-3. Add the following tags and configure the customized handlers and generator using their Fully Qualified Names (FQN):
+1. To create Event Notification database tables:
+     1. Go to the `<IS_HOME>/dbscripts/open-banking/event-notifications` directory.
+     2. According to your database, execute the relevant script against the `openbank_openbankingdb` database.
+2. Place the JAR files in the `<IS_HOME>/repository/components/dropins` directory.
+3. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+4. Add the following tags and configure the customized handlers and generator using their Fully Qualified Names (FQN):
 
     ??? tip "Click here to see the definitions of the configuration tags..."
          | Configuration | Description |
