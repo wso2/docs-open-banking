@@ -65,7 +65,7 @@ This document provides step by step instructions to invoke the Accounts Informat
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For this sample 
-flow, you can use the transport certificates available [here](../../assets/attachments/Transport_Certs.zip). 
+flow, you can use the transport certificates available [here](../../assets/attachments/ob-transport-certs.zip). 
 
     ```
     curl -X POST \
@@ -116,7 +116,7 @@ In this step, the API consumer creates a request to get the consent of the custo
 information from the bank. 
 
 A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
-available [here](../../assets/attachments/Transport_Certs.zip):
+available [here](../../assets/attachments/ob-transport-certs.zip):
 ```
 curl --location --request POST 'https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents' \
 --header 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
