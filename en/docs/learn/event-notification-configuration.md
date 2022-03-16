@@ -1,9 +1,21 @@
 #Event Notification Configurations
 
-To enable the Event Notification feature in WSO2 Open Banking UK Toolkit:
+To enable the Event Notification feature in WSO2 Open Banking:
 
-1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-2. Add the following tags and configure them:
+1. To create Event Notification database tables:
+    1. Go to the `<IS_HOME>/dbscripts/open-banking/event-notifications` directory.
+    2. According to your database, execute the relevant script against the `openbank_openbankingdb` database.
+2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+3. Find the `resource.access_control` configurations and add the following tags to secure the Event Notification endpoints:
+      ``` toml
+       [[resource.access_control]]
+       context = "(.)/api/openbanking/event-notifications/(.)"
+       secure="true"
+       http_method="all"
+       permissions=["/permission/admin"]
+       allowed_auth_handlers = ["BasicAuthentication"]
+      ```
+4. Add the following tags and configure them:
 
     ??? tip "Click here to see the definitions of the configuration tags..."
          | Configuration | Description |

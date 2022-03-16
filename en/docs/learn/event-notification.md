@@ -151,7 +151,7 @@ Given below are sample Event Polling request payloads (in the decoded format) an
 - To acknowledge the received events (both positive and negative acknowledgements) while accepting more events.
   If there are more events available with the bank. The application continues requesting events until there are no more events.
 
-    ```json tab="Request"
+    ```json  
     {
        "ack":[
           "1256db1c-8fda-4457-a755-bb5113dba717"
