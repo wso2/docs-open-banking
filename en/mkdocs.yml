@@ -82,7 +82,10 @@ nav:
       - 'Introduction': learn/consumer-authentication.md
       - 'App-to-App Redirection': learn/app-to-app-redirection.md
       - 'Identifier-first Authentication': learn/identifier-first.md
-    - 'CIBA': learn/ciba.md
+    - 'CIBA Flow':
+      - 'Introduction': learn/ciba.md
+      - 'Set up CIBA flow': learn/set-up-ciba-flow.md
+      - 'CIBA with sample application': learn/ciba-with-sample-react-native-app.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
       - 'Configuration': learn/event-notification-configuration.md
@@ -125,6 +128,7 @@ nav:
         - 'Response Type Handler': develop/response-type-handler.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
         - 'Custom Pushed Auth Request Validator': develop/custom-pushed-auth-request-validator.md
+    - 'Mobile Application for CIBA': develop/mobile-application-for-ciba.md
     - 'Additional Application Property Validation': develop/application-property-validation.md
     - 'Dynamic Client Registration':
         - 'Application Management Listener': develop/application-management-listener.md
