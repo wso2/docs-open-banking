@@ -291,3 +291,34 @@ the user of that device/account.
 
 3. To develop a mobile application for CIBA, follow the 
 [Develop a mobile application for CIBA](../develop/mobile-application-for-ciba.md) documentation.
+
+### Sending Push Authentication Request
+
+1. Use the push-authentication sample request available in the 
+[Postman collection](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821) and invoke the endpoint.
+
+2. The response is as follows:
+
+    ```json
+    {
+       "auth_req_id":"293c00d5-b318-484b-8f7a-54b1048a4832",
+       "interval":2,
+       "expires_in":3600
+    }
+    ```
+   
+3. At the same time, a notification should pop up on your mobile device. Open it via your mobile application.
+
+4. The application will make the consent retrieval and consent persistence requests to obtain and persist consent data.
+
+5. Provide approval for the consent as guided by the application. 
+
+### Retrieving Access Token 
+
+1. After receiving the above response for the Push Authentication Request, you can poll the token endpoint to get the 
+access token. Until the user provides the approval via the mobile device, you will receive a response indicating 
+awaiting authorization.
+
+2. Once the user completes and submits the approval, the token will be returned.
+
+
