@@ -191,11 +191,11 @@ configuration with the IP address of the Identity Server.
    application. Add the Server Key of that application here. You can obtain it from the 
    [Firebase Console](https://console.firebase.google.com) of your project.
 
-Now this Push Authenticator (CIBA-Push-Aut) is available as a federated authenticator option inside any Service Provider 
+Now, this Push Authenticator (CIBA-Push-Auth) is available as a federated authenticator option inside any Service Provider 
 application in the Identity Server. 
 
 !!! tip
-Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for a sample request.
+    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for a sample request.
 
 ## Configuring Authenticator 
 
@@ -268,7 +268,7 @@ You can configure authentication steps according to your requirements. For more 
  Create an application [using DCR](dynamic-client-registration-try-out.md). Include the CIBA grant type in the DCR 
  request object as follows: 
 
-    ```json
+   ```json
      "grant_types": [
         "client_credentials",
         "authorization_code",
@@ -276,18 +276,18 @@ You can configure authentication steps according to your requirements. For more 
         "urn:ietf:params:oauth:grant-type:jwt-bearer",
         "urn:openid:params:grant-type:ciba"
       ],
-    ```
+   ```
    
 !!! tip 
     Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for a sample request.
 
 ## Trying out CIBA flow
 
-1. Before you begin, install the mobile application in a device. Then, register the device in the Identity Server under 
+1. Before you begin, install the mobile application on a device. Then, register the device in the Identity Server under 
 the user of that device/account.
 
 2. To try out the flow with a sample application provided by WSO2, follow 
-[Try out CIBA with sample React Native app](ciba-with-sample-react-native-app.md).
+[Try out CIBA with a sample React Native app](ciba-with-sample-react-native-app.md).
 
 3. To develop a mobile application for CIBA, follow the 
 [Develop a mobile application for CIBA](../develop/mobile-application-for-ciba.md) documentation.
