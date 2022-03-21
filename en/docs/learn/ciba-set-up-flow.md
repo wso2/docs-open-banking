@@ -16,7 +16,7 @@
 1. Update the keystore of the Identity Server to establish communication between the server and the mobile phone.
    - To communicate with devices in the same local network, use the IP of each device.
    - Update the keystore certificate with private IP of the Identity Server as the Subject Alternative Name (SAN). 
-   - Create a new keystore at `<IS_HOME>/repository/resources/security` and use the IP you configured above.
+   - Create a new keystore at `<IS_HOME>/repository/resources/security` and use the IP you configured above. For example:
 
     ``` 
     keytool -genkey -alias wso2carbon -keyalg RSA -keystore wso2carbon.jks -keysize 2048 -ext SAN="IP:192.168.8.193,DNS:localhost"
@@ -156,7 +156,7 @@ configuration with the IP address of the Identity Server.
      [[oauth.custom_grant_type]]
      name="urn:openid:params:grant-type:ciba"
      grant_handler="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantHandler"
-      grant_validator="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantValidator"
+     grant_validator="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantValidator"
 
      [oauth.custom_grant_type.properties]
      IdTokenAllowed=true
@@ -195,7 +195,7 @@ Now, this Push Authenticator (CIBA-Push-Auth) is available as a federated authen
 application in the Identity Server. 
 
 !!! tip
-    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for a sample request.
+    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample requests.
 
 ## Configuring Authenticator 
 
@@ -279,7 +279,7 @@ You can configure authentication steps according to your requirements. For more 
    ```
    
 !!! tip 
-    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for a sample request.
+    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample requests.
 
 ## Trying out CIBA flow
 
