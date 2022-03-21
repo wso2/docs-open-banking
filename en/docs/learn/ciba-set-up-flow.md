@@ -261,7 +261,7 @@ In this example two authenticator steps are configured:
     ```
 
 You can configure authentication steps according to your requirements. For more information see 
-[Configuring authentication steps by customizing Application Management Listener](../develop/authentication-steps.md).
+[Configuring authentication steps by customizing Application Management Listener](../develop/customize-authentication-steps.md).
 
 ## Creating an application with DCR
 
