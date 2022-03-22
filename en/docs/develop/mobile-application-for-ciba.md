@@ -39,7 +39,9 @@ be supported in future releases.
 
 ## React Native SDK (auth-push-react-native)
 
-The SDK provided by WSO2 is known as `auth-push-react-native`. This section provides an overview of this SDK.
+WSO2 provides a React Native SDK known as `auth-push-react-native` and is available at 
+[wso2-extensions/identity-outbound-auth-push](https://github.com/wso2-extensions/identity-outbound-auth-push/tree/master/sdk)
+This section provides an overview of this SDK.
 
 To install the package:
 
