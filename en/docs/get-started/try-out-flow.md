@@ -275,7 +275,7 @@ Service API.
 - A sample request looks as follows:
 ```
 curl -X GET \
-https://localhost:8243/open-banking/v3.1/aisp/accounts/1' \
+https://localhost:8243/open-banking/v3.1/aisp/accounts/1 \
 -H 'x-fapi-financial-id: open-bank' \
 -H 'Authorization: Bearer <USER_ACCESS_TOKEN>' \
 -H 'Accept: application/json' \
