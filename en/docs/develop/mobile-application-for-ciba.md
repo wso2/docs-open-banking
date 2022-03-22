@@ -61,7 +61,7 @@ an account
 `AuthRequestInterface` object
 - `sendAuthRequest(authRequest: AuthRequestInterface, response: string, account: Account)`: to send the authentication 
 response to the Identity Server once the user authorizes/denies the request.
-- `removeAccount(account: AccountsInterface)`: to request within the app to unregister the device from the 
+- `removeAccount(account: AccountsInterface)`: request within the app to unregister the device from the 
 account in the Identity Server 
 
 For more details including the APIs and the data models available in the SDK, see 
@@ -109,6 +109,10 @@ the mobile app should contain a QR code scanner.
 The SDK invokes the `push-auth/devices` endpoint within the `addAccount()` method to register the device in the 
 authorization server/WSO2 Identity Server.
 
+  ```curl
+  GET https://localhost:9446/api/users/v1/me/push-auth/devices
+  ```
+
 ### push-auth/authenticate endpoint
 
 The SDK invokes the `push-auth/authenticate` endpoint within the `sendAuthRequest()` method to send the consent 
@@ -148,5 +152,4 @@ an FCM token for your device
         When configuring WSO2 Identity Server for the CIBA flow, the **Server Key** of the FCM project you created above will be
         used. It will be referred to as the **FIREBASE_SERVER_KEY**. 
 
-8. Go to the **Firebase Console > Project Overview > Project Settings > Cloud Messaging API > Server Key**. 
-9. Copy Server Key and place it as the **FIREBASE_SERVER_KEY** in the `pushNotifierAuthenticatorConstants.java` file.
+8. Go to **Firebase Console > Project Overview > Project Settings > Cloud Messaging API** and copy the **Server Key**.

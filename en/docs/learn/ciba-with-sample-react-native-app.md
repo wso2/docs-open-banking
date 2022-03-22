@@ -18,20 +18,20 @@ repository.
 2. Checkout to the `auth-push-react-native-app` branch.
 3. A React Native project is available in the following path: 
     ```
-    /identity-outbound-auth-biometric/sdk/sample/WSO2VerifyApp
+    /mobile-apps/ciba-sample-app/WSO2VerifyApp
     ```
 4. Upgrade Node.js and npm to the latest versions.
-5. To enable a Linux machine to use your device via USB debugging:
+5. Enable USB debugging in your device and set up your Linux machine.
+6. Go to the [React Native documentation](https://reactnative.dev/docs/running-on-device#running-your-app-on-android-devices)
+   and follow steps 1 and 2.
 
-    - Go to the [React Native documentation](https://reactnative.dev/docs/running-on-device#running-your-app-on-android-devices)
-      and follow steps 1 and 2.
-      - In addition to the above, install adb:
+    - In addition to the above, install adb:
     
         ```shell
         sudo apt install adb
         ```
      
-6. Setup Android SDK:
+7. Setup Android SDK:
    
     - If you have installed Android Studio, you have already set up the Android SDK. 
     - Edit the `.bashrc` file and set the environment variables as follows:
@@ -47,7 +47,7 @@ repository.
       export ANDROID_SDK_ROOT
       ```
     
-7. Install React Native CLI:
+8. Install React Native CLI:
 
     ```shell
     sudo npm install -g react-native-cli
@@ -60,11 +60,11 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
 **Server Key** of this project.
 
     For example:
-       Project name: `wso2-verify`
-       Package name: `com.wso2verifyapp`
+       Project name: `wso2-verify` <br/>
+       Package name: `com.wso2verifyapp` <br/>
 
-    Download the `google-service.json` file from your project and replace the existing file
-    of the WSO2 application (`sdk/sample/WSO2VerifyApp/android/app/google-services.json`).
+    - Download the `google-service.json` file from your project and replace the existing file
+    of the WSO2 application (`/mobile-apps/ciba-sample-app/WSO2VerifyApp/android/app/google-services.json`).
 
 2. If you run the application now, you will get the following error:
 
@@ -72,8 +72,8 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
     '@wso2/auth-push-react-native' module is not in the npm registry.
     ```
 
-       - To fix this issue, build the SDK manually and add. This happens because the Identity Server has not yet pushed 
-         their SDK to the npm registry.
+       - To fix this issue, build the SDK manually and add it to the project. This happens because the Identity Server 
+         has not yet pushed their SDK to the npm registry.
 
 3. Go to the location where you cloned the `identity-outbound-auth-push` repository.
 
@@ -88,7 +88,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
          npm run build
          ```
 
-4. Create a new directory named `packages` in the app project root directory (`sdk/sample/WSO2VerifyApp/`) and copy the 
+4. Create a new directory named `packages` in the app project root directory (`/mobile-apps/ciba-sample-app/WSO2VerifyApp/`) and copy the 
 package above. 
 
     !!! tip
@@ -100,11 +100,10 @@ package above.
     npm install package
     ```
 
-6. Even though you run the mobile app, it won’t communicate with the Identity Server until 
-[these changes](https://kushanbhareti.medium.com/react-native-android-fixing-ssl-issues-for-communicating-with-local-identity-server-f126b0ce69a9)
+6. Even though you run the mobile app, it won’t communicate with the Identity Server until the following changes
 are performed. They will enable communication between the React Native app and the Identity Server.
 
-    - Update the `sdk/sample/WSO2VerifyApp/android/app/src/main/res/xml/network_security_config.xml` file with your 
+    - Update the `mobile-apps/ciba-sample-app/WSO2VerifyApp/android/app/src/main/res/xml/network_security_config.xml` file with your 
       Identity Server's IP address.
 
         ``` 
@@ -112,14 +111,8 @@ are performed. They will enable communication between the React Native app and t
         ```
       
     - Copy the public cert (`wso2carbon.pem`) extracted from the new keystore of the Identity Server to the  
-      `sdk/sample/WSO2VerifyApp/android/app/src/main/res/raw` directory.
-
-7. Do the following UI changes to try out a CIBA flow:
-
-    - In `AccountsScreen.js`, change “Add Account” to “QR Scanner” at line 104.
-    - In `AuthRequestScreen.js`, remove the view component starting at line 99 to 109.
-
-
+      `mobile-apps/ciba-sample-app/WSO2VerifyApp/android/app/src/main/res/raw` directory.
+    
 ## Run React Native app in an Android device
 
 1. Run the React Nativ app on the mobile device in debug mode. For instructions, follow 
@@ -156,10 +149,11 @@ limited:
 !!! note
     To try out this example, connect both Identity Server and the mobile phone to the same network.
 
-1. Get the QR code to scan and register your app. This will invoke the following endpoint with basic authentication.
+1. Get the QR code to scan and register your app. The bank will invoke the following endpoint in the Identity Server
+   with basic authentication.
 
     ``` tab="Request"
-    GET : https://192.168.8.193:9446/api/users/v1/me/push-auth/discovery-data
+    GET : https://192.168.8.193:9446/api/openbaking/ciba/push-auth/discovery-data
     Headers - Authorization : basic <Base 64 encoded admin credentials>
     ```
    
@@ -177,8 +171,14 @@ limited:
     }
     ```
 
-    Add this JSON discovery response to the QR code. Use a QR code generator. 
- 
+    Use a QR code generator and add this JSON discovery response as the content of the QR code.
+
+    ??? tip "Click here to see a sample implementation of the above functionality in Open Banking Consent Manager Portal"
+        You can try out this without generating a QR code by yourself.
+      
+          ![consent_portal_show_qr](../assets/img/learn/ciba/consent-portal.png)
+          ![consent_portal_show_qr](../assets/img/learn/ciba/consent-portal-qr-code.png)
+
 2. Use the mobile app and register it as a device by scanning the QR code. The app is connected to the configured
 Google FCM project (a firebase Android cloud project) during the installation. An FCM token is generated inside the 
 device as a unique identifier and registered with the Firebase cloud project as well.

@@ -23,7 +23,8 @@ documentation.
 
 3. Add your customized `common.auth.script.js` file to the configured location.
 
-4. Add the authenticator configurations based on your requirements.
+4. Based on your requirements, add the authenticator configurations via the Identity Server Management Console at
+`https://<IS_HOST>:9446/carbon`.
 
 For more information, see the [Application Management Listener](application-management-listener.md) documentation. 
 

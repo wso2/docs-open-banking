@@ -268,7 +268,7 @@ You can configure authentication steps according to your requirements. For more 
  Create an application [using DCR](dynamic-client-registration-try-out.md). Include the CIBA grant type in the DCR 
  request object as follows: 
 
-   ```json
+   ``` json
      "grant_types": [
         "client_credentials",
         "authorization_code",
