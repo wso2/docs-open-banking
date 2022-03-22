@@ -82,6 +82,10 @@ nav:
       - 'Introduction': learn/consumer-authentication.md
       - 'App-to-App Redirection': learn/app-to-app-redirection.md
       - 'Identifier-first Authentication': learn/identifier-first.md
+    - 'CIBA Flow':
+      - 'Introduction': learn/ciba.md
+      - 'Set up CIBA flow': learn/ciba-set-up-flow.md
+      - 'CIBA with sample application': learn/ciba-with-sample-react-native-app.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
       - 'Configuration': learn/event-notification-configuration.md
@@ -111,6 +115,7 @@ nav:
         - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
         - 'Consent Core Service': develop/consent-core-service.md
         - 'Customize the Consent Page': develop/customize-consent-page.md
+        - 'Customize Authentication Steps': develop/customize-authentication-steps.md
     - 'Token Flow Customization':
         - 'JWT Access Tokens': develop/jwt-access-tokens.md
         - 'Token Filters': develop/token-filters.md
@@ -124,6 +129,7 @@ nav:
         - 'Response Type Handler': develop/response-type-handler.md
         - 'Custom Request Object Validator': develop/custom-request-object-validator.md
         - 'Custom Pushed Auth Request Validator': develop/custom-pushed-auth-request-validator.md
+    - 'Mobile Application for CIBA': develop/mobile-application-for-ciba.md
     - 'Additional Application Property Validation': develop/application-property-validation.md
     - 'Dynamic Client Registration':
         - 'Application Management Listener': develop/application-management-listener.md
