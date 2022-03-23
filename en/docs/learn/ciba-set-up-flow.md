@@ -39,7 +39,7 @@ configuration with the IP address of the Identity Server.
 
     - When [Configuring IS as Key Manager](dynamic-client-registration-try-out.md##step-2-configure-is-as-key-manager), 
       change the hostnames of the URLs to the IP address above.
-    - Open the` <IS_HOME>/repository/conf/deployment.toml` file.
+    - Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     - Update the following configuration with the JWKS URL of the certificates that you will use to sign the SSA for DCR.
     
       ``` toml
