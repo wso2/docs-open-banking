@@ -39,7 +39,7 @@ configuration with the IP address of the Identity Server.
 
     - When [Configuring IS as Key Manager](dynamic-client-registration-try-out.md##step-2-configure-is-as-key-manager), 
       change the hostnames of the URLs to the IP address above.
-    - Open the` <IS_HOME>/repository/conf/deployment.toml` file.
+    - Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     - Update the following configuration with the JWKS URL of the certificates that you will use to sign the SSA for DCR.
     
       ``` toml
@@ -268,7 +268,7 @@ You can configure authentication steps according to your requirements. For more 
  Create an application [using DCR](dynamic-client-registration-try-out.md). Include the CIBA grant type in the DCR 
  request object as follows: 
 
-   ```json
+   ``` json
      "grant_types": [
         "client_credentials",
         "authorization_code",

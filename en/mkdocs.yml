@@ -115,7 +115,6 @@ nav:
         - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
         - 'Consent Core Service': develop/consent-core-service.md
         - 'Customize the Consent Page': develop/customize-consent-page.md
-        - 'Customize Authentication Steps': develop/customize-authentication-steps.md
     - 'Token Flow Customization':
         - 'JWT Access Tokens': develop/jwt-access-tokens.md
         - 'Token Filters': develop/token-filters.md
@@ -123,6 +122,10 @@ nav:
         - 'Introspection Data Provider': develop/introspection-data-provider.md
         - 'Custom Claim Provider': develop/custom-claim-provider.md
         - 'ID Token Builder': develop/id-token-builder-token-flow.md
+    - 'Authentication Flow':
+        - 'Customize Authentication Steps' : develop/customize-authentication-steps.md
+        - 'CIBA Push Authenticator': develop/ciba-push-authenticator.md
+        - 'CIBA Consent Updater': develop/ciba-consent-updater.md
     - 'Authorization Flow':
         - 'KeyID Provider': develop/keyid-provider.md
         - 'ID Token Builder': develop/id-token-builder-auth-flow.md
