@@ -13,16 +13,14 @@ WSO2 Identity Server provides a sample React Native application and this section
 
 ## Set up React Native mobile application
 
-1. Clone the [identity-outbound-auth-biometric](https://github.com/kushanb/identity-outbound-auth-biometric.git) GitHub 
-repository.
-2. Checkout to the `auth-push-react-native-app` branch.
-3. A React Native project is available in the following path: 
+1. Clone the [ciba-sample-app](https://github.com/KalanaDananjaya/ciba-sample-app) GitHub repository.
+2. A React Native project is available in the following path: 
     ```
-    /mobile-apps/ciba-sample-app/WSO2VerifyApp
+    /WSO2VerifyApp
     ```
-4. Upgrade Node.js and npm to the latest versions.
-5. Enable USB debugging in your device and set up your Linux machine.
-6. Go to the [React Native documentation](https://reactnative.dev/docs/running-on-device#running-your-app-on-android-devices)
+3. Upgrade Node.js and npm to the latest versions.
+4. Enable USB debugging in your device and set up your Linux machine.
+5. Go to the [React Native documentation](https://reactnative.dev/docs/running-on-device#running-your-app-on-android-devices)
    and follow steps 1 and 2.
 
     - In addition to the above, install adb:
@@ -31,7 +29,7 @@ repository.
         sudo apt install adb
         ```
      
-7. Setup Android SDK:
+6. Setup Android SDK:
    
     - If you have installed Android Studio, you have already set up the Android SDK. 
     - Edit the `.bashrc` file and set the environment variables as follows:
@@ -47,7 +45,7 @@ repository.
       export ANDROID_SDK_ROOT
       ```
     
-8. Install React Native CLI:
+7. Install React Native CLI:
 
     ```shell
     sudo npm install -g react-native-cli
@@ -64,7 +62,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
        Package name: `com.wso2verifyapp` <br/>
 
     - Download the `google-service.json` file from your project and replace the existing file
-    of the WSO2 application (`/mobile-apps/ciba-sample-app/WSO2VerifyApp/android/app/google-services.json`).
+    of the WSO2 application (`/WSO2VerifyApp/android/app/google-services.json`).
 
 2. If you run the application now, you will get the following error:
 
@@ -75,7 +73,10 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
        - To fix this issue, build the SDK manually and add it to the project. This happens because the Identity Server 
          has not yet pushed their SDK to the npm registry.
 
-3. Go to the location where you cloned the `identity-outbound-auth-push` repository.
+3. Clone the [identity-outbound-auth-biometric](https://github.com/kushanb/identity-outbound-auth-biometric.git) GitHub
+   repository.
+4. Checkout to the `auth-push-react-native-app` branch.
+5. Go to the location where you cloned the `identity-outbound-auth-push` repository.
 
        - Open a terminal from the  `/identity-outbound-auth-push/sdk/package`.
        - Execute the following:
@@ -88,22 +89,22 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
          npm run build
          ```
 
-4. Create a new directory named `packages` in the app project root directory (`/mobile-apps/ciba-sample-app/WSO2VerifyApp/`) and copy the 
+6. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`) and copy the 
 package above. 
 
     !!! tip
         You may remove the `src` directory  as it is not required once the SDK is built.
 
-5. Open a terminal from `sdk/sample/WSO2VerifyApp/packages` and run:
+7. Open a terminal from `/WSO2VerifyApp/packages` and run:
 
     ```shell
     npm install package
     ```
 
-6. Even though you run the mobile app, it won’t communicate with the Identity Server until the following changes
+8. Even though you run the mobile app, it won’t communicate with the Identity Server until the following changes
 are performed. They will enable communication between the React Native app and the Identity Server.
 
-    - Update the `mobile-apps/ciba-sample-app/WSO2VerifyApp/android/app/src/main/res/xml/network_security_config.xml` file with your 
+    - Update the `/WSO2VerifyApp/android/app/src/main/res/xml/network_security_config.xml` file with your 
       Identity Server's IP address.
 
         ``` 
@@ -111,14 +112,14 @@ are performed. They will enable communication between the React Native app and t
         ```
       
     - Copy the public cert (`wso2carbon.pem`) extracted from the new keystore of the Identity Server to the  
-      `mobile-apps/ciba-sample-app/WSO2VerifyApp/android/app/src/main/res/raw` directory.
+      `/WSO2VerifyApp/android/app/src/main/res/raw` directory.
     
 ## Run React Native app in an Android device
 
 1. Run the React Nativ app on the mobile device in debug mode. For instructions, follow 
 [React Native documentation](https://reactnative.dev/docs/environment-setup).
 
-    - Go to the project root directory at `identity-outbound-auth-biometric/sdk/sample/WSO2VerifyApp` and run:
+    - Go to the project root directory at `/ciba-sample-app/WSO2VerifyApp` and run:
    
         ``` 
         npm install
