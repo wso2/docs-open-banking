@@ -42,7 +42,7 @@ https://<IS_HOST>:9446/api/openbanking/dynamic-client-registration
 
   ![publish_api](../assets/img/learn/dcr/dcr-try-out/step8-publish.png)
 
-14.The deployed DCR API is now available in the Developer Portal at https://<APIM_HOST>:9443/devportal.
+14.The deployed DCR API is now available in the Developer Portal at `https://<APIM_HOST>:9443/devportal`.
 
 15.Upload the root and issuer certificates in OBIE ([Sandbox certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)/
 [Production certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production))
@@ -122,144 +122,154 @@ The API allows the API consumer to request the bank to register a new applicatio
 - The API consumer sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
 This SSA contains API consumer's metadata. A sample request looks as follows:
 
- For this sample flow, you can use the transport certificates available [here](../../assets/attachments/Transport_Certs.zip). 
+ For this sample flow, you can use the transport certificates available [here](../../assets/attachments/ob-transport-certs.zip). 
 
 ```
 curl -X POST https://<APIM_HOST>:8243/open-banking/0.1/register \
  -H 'Content-Type: application/jwt' \
  --cert <TRANSPORT_PUBLIC_CERT_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
- -d 'eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6IjJNSTlYU0tpNmRkeENiV2cycmhETnRVbHhKYyJ9.eyJpc3MiOiJzZ3NNdWM4QUNCZ0J6aW5wcjhvSjhCIiwiaWF0IjoxNTcxODA4MTY3LCJleHAiOjIxNDc0ODM2NDYsImp0aSI6IjM3NzQ3Y2QxYzEwNTQ1Njk5Zjc1NGFkZjI4YjczZTMxIiwiYXVkIjoiaHR0cHM6Ly9zZWN1cmUuYXBpLmRhdGFob2xkZXIuY29tL2lzc3VlciIsInJlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cubW9ja2NvbXBhbnkuY29tLmF1L3JlZGlyZWN0cy9yZWRpcmVjdDEiLCJodHRwczovL3d3dy5tb2NrY29tcGFueS5jb20uYXUvcmVkaXJlY3RzL3JlZGlyZWN0MiJdLCJ0b2tlbl9lbmRwb2ludF9hdXRoX3NpZ25pbmdfYWxnIjoiUFMyNTYiLCJ0b2tlbl9lbmRwb2ludF9hdXRoX21ldGhvZCI6InByaXZhdGVfa2V5X2p3dCIsImdyYW50X3R5cGVzIjpbImNsaWVudF9jcmVkZW50aWFscyIsImF1dGhvcml6YXRpb25fY29kZSIsInJlZnJlc2hfdG9rZW4iLCJ1cm46aWV0ZjpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTpqd3QtYmVhcmVyIl0sInJlc3BvbnNlX3R5cGVzIjpbImNvZGUgaWRfdG9rZW4iXSwiYXBwbGljYXRpb25fdHlwZSI6IndlYiIsImlkX3Rva2VuX3NpZ25lZF9yZXNwb25zZV9hbGciOiJQUzI1NiIsImlkX3Rva2VuX2VuY3J5cHRlZF9yZXNwb25zZV9hbGciOiJSU0EtT0FFUCIsImlkX3Rva2VuX2VuY3J5cHRlZF9yZXNwb25zZV9lbmMiOiJBMjU2R0NNIiwicmVxdWVzdF9vYmplY3Rfc2lnbmluZ19hbGciOiJQUzI1NiIsInNjb3BlIjoiYWNjb3VudHMiLCJzb2Z0d2FyZV9zdGF0ZW1lbnQiOiJleUpoYkdjaU9pSlFVekkxTmlJc0ltdHBaQ0k2SWpKTlNUbFlVMHRwTm1Sa2VFTmlWMmN5Y21oRVRuUlZiSGhLWXlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcGMzTWlPaUpQY0dWdVFtRnVhMmx1WnlCTWRHUWlMQ0pwWVhRaU9qRTJNVEk0TmpFM056RXNJbXAwYVNJNkltVmpOR0prTm1NMVptSXpOVFF3TjJFaUxDSnpiMlowZDJGeVpWOWxiblpwY205dWJXVnVkQ0k2SW5OaGJtUmliM2dpTENKemIyWjBkMkZ5WlY5dGIyUmxJam9pVkdWemRDSXNJbk52Wm5SM1lYSmxYMmxrSWpvaWMyZHpUWFZqT0VGRFFtZENlbWx1Y0hJNGIwbzRRaUlzSW5OdlpuUjNZWEpsWDJOc2FXVnVkRjlwWkNJNkluTm5jMDExWXpoQlEwSm5RbnBwYm5CeU9HOUtPRUlpTENKemIyWjBkMkZ5WlY5amJHbGxiblJmYm1GdFpTSTZJbGRUVHpJZ1QzQmxiaUJDWVc1cmFXNW5JRlJRVUNBb1UyRnVaR0p2ZUNraUxDSnpiMlowZDJGeVpWOWpiR2xsYm5SZlpHVnpZM0pwY0hScGIyNGlPaUpYVTA4eUlFOXdaVzRnUW1GdWEybHVaeUlzSW5OdlpuUjNZWEpsWDNabGNuTnBiMjRpT2pFdU5Td2ljMjltZEhkaGNtVmZZMnhwWlc1MFgzVnlhU0k2SW1oMGRIQnpPaTh2ZDNOdk1pNWpiMjBpTENKemIyWjBkMkZ5WlY5eVpXUnBjbVZqZEY5MWNtbHpJanBiSW1oMGRIQnpPaTh2ZDNOdk1pNWpiMjBpWFN3aWMyOW1kSGRoY21WZmNtOXNaWE1pT2xzaVFVbFRVQ0lzSWxCSlUxQWlMQ0pEUWxCSlNTSmRMQ0p2Y21kaGJtbHpZWFJwYjI1ZlkyOXRjR1YwWlc1MFgyRjFkR2h2Y21sMGVWOWpiR0ZwYlhNaU9uc2lZWFYwYUc5eWFYUjVYMmxrSWpvaVQwSkhRbElpTENKeVpXZHBjM1J5WVhScGIyNWZhV1FpT2lKVmJtdHViM2R1TURBeE5UZ3dNREF3TVVoUlVYSmFRVUZZSWl3aWMzUmhkSFZ6SWpvaVFXTjBhWFpsSWl3aVlYVjBhRzl5YVhOaGRHbHZibk1pT2x0N0ltMWxiV0psY2w5emRHRjBaU0k2SWtkQ0lpd2ljbTlzWlhNaU9sc2lRVWxUVUNJc0lsQkpVMUFpTENKRFFsQkpTU0pkZlN4N0ltMWxiV0psY2w5emRHRjBaU0k2SWtsRklpd2ljbTlzWlhNaU9sc2lRVWxUVUNJc0lsQkpVMUFpTENKRFFsQkpTU0pkZlN4N0ltMWxiV0psY2w5emRHRjBaU0k2SWs1TUlpd2ljbTlzWlhNaU9sc2lRVWxUVUNJc0lsQkpVMUFpTENKRFFsQkpTU0pkZlYxOUxDSnpiMlowZDJGeVpWOXNiMmR2WDNWeWFTSTZJbWgwZEhCek9pOHZkM052TWk1amIyMHZkM052TWk1cWNHY2lMQ0p2Y21kZmMzUmhkSFZ6SWpvaVFXTjBhWFpsSWl3aWIzSm5YMmxrSWpvaU1EQXhOVGd3TURBd01VaFJVWEphUVVGWUlpd2liM0puWDI1aGJXVWlPaUpYVTA4eUlDaFZTeWtnVEVsTlNWUkZSQ0lzSW05eVoxOWpiMjUwWVdOMGN5STZXM3NpYm1GdFpTSTZJbFJsWTJodWFXTmhiQ0lzSW1WdFlXbHNJam9pZEdWemRERkFkM052TWk1amIyMGlMQ0p3YUc5dVpTSTZJaXM1TkRjM01EQXdNREF3TUNJc0luUjVjR1VpT2lKVVpXTm9ibWxqWVd3aWZTeDdJbTVoYldVaU9pSkNkWE5wYm1WemN5SXNJbVZ0WVdsc0lqb2lkR1Z6ZERGQWQzTnZNaTVqYjIwaUxDSndhRzl1WlNJNklpczVORGMzTURBd01EQXdNQ0lzSW5SNWNHVWlPaUpDZFhOcGJtVnpjeUo5WFN3aWIzSm5YMnAzYTNOZlpXNWtjRzlwYm5RaU9pSm9kSFJ3Y3pvdkwydGxlWE4wYjNKbExtOXdaVzVpWVc1cmFXNW5kR1Z6ZEM1dmNtY3VkV3N2TURBeE5UZ3dNREF3TVVoUlVYSmFRVUZZTHpBd01UVTRNREF3TURGSVVWRnlXa0ZCV0M1cWQydHpJaXdpYjNKblgycDNhM05mY21WMmIydGxaRjlsYm1Sd2IybHVkQ0k2SW1oMGRIQnpPaTh2YTJWNWMzUnZjbVV1YjNCbGJtSmhibXRwYm1kMFpYTjBMbTl5Wnk1MWF5OHdNREUxT0RBd01EQXhTRkZSY2xwQlFWZ3ZjbVYyYjJ0bFpDOHdNREUxT0RBd01EQXhTRkZSY2xwQlFWZ3VhbmRyY3lJc0luTnZablIzWVhKbFgycDNhM05mWlc1a2NHOXBiblFpT2lKb2RIUndjem92TDJ0bGVYTjBiM0psTG05d1pXNWlZVzVyYVc1bmRHVnpkQzV2Y21jdWRXc3ZNREF4TlRnd01EQXdNVWhSVVhKYVFVRllMM05uYzAxMVl6aEJRMEpuUW5wcGJuQnlPRzlLT0VJdWFuZHJjeUlzSW5OdlpuUjNZWEpsWDJwM2EzTmZjbVYyYjJ0bFpGOWxibVJ3YjJsdWRDSTZJbWgwZEhCek9pOHZhMlY1YzNSdmNtVXViM0JsYm1KaGJtdHBibWQwWlhOMExtOXlaeTUxYXk4d01ERTFPREF3TURBeFNGRlJjbHBCUVZndmNtVjJiMnRsWkM5elozTk5kV000UVVOQ1owSjZhVzV3Y2podlNqaENMbXAzYTNNaUxDSnpiMlowZDJGeVpWOXdiMnhwWTNsZmRYSnBJam9pYUhSMGNITTZMeTkzYzI4eUxtTnZiU0lzSW5OdlpuUjNZWEpsWDNSdmMxOTFjbWtpT2lKb2RIUndjem92TDNkemJ6SXVZMjl0SWl3aWMyOW1kSGRoY21WZmIyNWZZbVZvWVd4bVgyOW1YMjl5WnlJNklsZFRUeklnVDNCbGJpQkNZVzVyYVc1bkluMC5lVlFZMVZZM3RqQWZDdTFBUFdONWhLNVhLd2JCZDFGeUJRVl80ajZGN0x2VXJkckdIb1YxX1hiQ0hYelVKZFd4dmdDSmNtX296VS1vWXJ3aW4xYjVyUGt4ekcwa1ZYQ0thVklKNXd0NzhvZ3FsVEtQaElWMTV4QjN4anRVZHpwRXdfa0x4RnFYNVNhM21TS1V4WXBmZHowN1JBU0p4eE9DdnJ4Vk9ENVFpQlBkNk5fRk04VC16RWtEQkRSeEVWVmFkOUpCMlJ4WnZrVWpCWWtWdm5ZeVFXZzBYQTVWUnFhcDE5UWx3RlpsMW1aT212R3ZvNGQwaXoxaWQtRzc5cDN6R25VcXB1TWlPR0tETzVpSDlFcVFBZkZidzVOMzk4MVUzY21xVVB2NERZanhlcngyNWtYMHBaalM3UG54UHRmbUVsSUF3NEdBcGdYTjZYTzNDNVMweVEifQ.B23kHJhLVv10O9bL_USJXtm0Zv1Vi8oJU5Zvqoej9LI99g59HeUlNrWtNCYM6k2dnBMwOF_ozaU2Lfev3n8l042uCXEm3sEE0QFG9si_dtzSE9wor2pCk0tnY6Yv4k7j1JYKd6QOTcJiHbso7NpQg6SgjFZRSvpY-2V_SRM7QDRpX3P9-F9T-OgvkEgPCpi1uQwU1h2GLfoPf52nsFGi92YCIhVjN78OqqMkkUYliZOFnpJ5eF6O47dPPiQxpmLH5pe0H8WMxl-ix67QgWk7zHEcds5WA7Szn0GlHQprwpmZYbypgPh5XhaPbTWuqBLenvcDdhzi_EXfur654Ms4tQ' 
-```
-The payload is a signed JWT. Its format looks as follows:
-```
-{
-  "typ": "JWT",
-  "alg": "PS256",
-  "kid": "2MI9XSKi6ddxCbWg2rhDNtUlxJc"
-}
-{
-  "iss": "sgsMuc8ACBgBzinpr8oJ8B",
-  "iat": 1571808167,
-  "exp": 2147483646,
-  "jti": "37747cd1c10545699f754adf28b73e31",
-  "aud": "https://secure.api.dataholder.com/issuer",
-  "redirect_uris": [
-    "https://www.mockcompany.com.au/redirects/redirect1",
-    "https://www.mockcompany.com.au/redirects/redirect2"
-  ],
-  "token_endpoint_auth_signing_alg": "PS256",
-  "token_endpoint_auth_method": "private_key_jwt",
-  "grant_types": [
-    "client_credentials",
-    "authorization_code",
-    "refresh_token",
-    "urn:ietf:params:oauth:grant-type:jwt-bearer"
-  ],
-  "response_types": [
-    "code id_token"
-  ],
-  "application_type": "web",
-  "id_token_signed_response_alg": "PS256",
-  "id_token_encrypted_response_alg": "RSA-OAEP",
-  "id_token_encrypted_response_enc": "A256GCM",
-  "request_object_signing_alg": "PS256",
-  "scope": "accounts",
-  "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6IjJNSTlYU0tpNmRkeENiV2cycmhETnRVbHhKYyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE2MTI4NjE3NzEsImp0aSI6ImVjNGJkNmM1ZmIzNTQwN2EiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoic2dzTXVjOEFDQmdCemlucHI4b0o4QiIsInNvZnR3YXJlX2NsaWVudF9pZCI6InNnc011YzhBQ0JnQnppbnByOG9KOEIiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUCAoU2FuZGJveCkiLCJzb2Z0d2FyZV9jbGllbnRfZGVzY3JpcHRpb24iOiJXU08yIE9wZW4gQmFua2luZyIsInNvZnR3YXJlX3ZlcnNpb24iOjEuNSwic29mdHdhcmVfY2xpZW50X3VyaSI6Imh0dHBzOi8vd3NvMi5jb20iLCJzb2Z0d2FyZV9yZWRpcmVjdF91cmlzIjpbImh0dHBzOi8vd3NvMi5jb20iXSwic29mdHdhcmVfcm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdLCJvcmdhbmlzYXRpb25fY29tcGV0ZW50X2F1dGhvcml0eV9jbGFpbXMiOnsiYXV0aG9yaXR5X2lkIjoiT0JHQlIiLCJyZWdpc3RyYXRpb25faWQiOiJVbmtub3duMDAxNTgwMDAwMUhRUXJaQUFYIiwic3RhdHVzIjoiQWN0aXZlIiwiYXV0aG9yaXNhdGlvbnMiOlt7Im1lbWJlcl9zdGF0ZSI6IkdCIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfSx7Im1lbWJlcl9zdGF0ZSI6IklFIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfSx7Im1lbWJlcl9zdGF0ZSI6Ik5MIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfV19LCJzb2Z0d2FyZV9sb2dvX3VyaSI6Imh0dHBzOi8vd3NvMi5jb20vd3NvMi5qcGciLCJvcmdfc3RhdHVzIjoiQWN0aXZlIiwib3JnX2lkIjoiMDAxNTgwMDAwMUhRUXJaQUFYIiwib3JnX25hbWUiOiJXU08yIChVSykgTElNSVRFRCIsIm9yZ19jb250YWN0cyI6W3sibmFtZSI6IlRlY2huaWNhbCIsImVtYWlsIjoidGVzdDFAd3NvMi5jb20iLCJwaG9uZSI6Iis5NDc3MDAwMDAwMCIsInR5cGUiOiJUZWNobmljYWwifSx7Im5hbWUiOiJCdXNpbmVzcyIsImVtYWlsIjoidGVzdDFAd3NvMi5jb20iLCJwaG9uZSI6Iis5NDc3MDAwMDAwMCIsInR5cGUiOiJCdXNpbmVzcyJ9XSwib3JnX2p3a3NfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYLzAwMTU4MDAwMDFIUVFyWkFBWC5qd2tzIiwib3JnX2p3a3NfcmV2b2tlZF9lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvcmV2b2tlZC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsInNvZnR3YXJlX2p3a3NfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Nnc011YzhBQ0JnQnppbnByOG9KOEIuandrcyIsInNvZnR3YXJlX2p3a3NfcmV2b2tlZF9lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvcmV2b2tlZC9zZ3NNdWM4QUNCZ0J6aW5wcjhvSjhCLmp3a3MiLCJzb2Z0d2FyZV9wb2xpY3lfdXJpIjoiaHR0cHM6Ly93c28yLmNvbSIsInNvZnR3YXJlX3Rvc191cmkiOiJodHRwczovL3dzbzIuY29tIiwic29mdHdhcmVfb25fYmVoYWxmX29mX29yZyI6IldTTzIgT3BlbiBCYW5raW5nIn0.eVQY1VY3tjAfCu1APWN5hK5XKwbBd1FyBQV_4j6F7LvUrdrGHoV1_XbCHXzUJdWxvgCJcm_ozU-oYrwin1b5rPkxzG0kVXCKaVIJ5wt78ogqlTKPhIV15xB3xjtUdzpEw_kLxFqX5Sa3mSKUxYpfdz07RASJxxOCvrxVOD5QiBPd6N_FM8T-zEkDBDRxEVVad9JB2RxZvkUjBYkVvnYyQWg0XA5VRqap19QlwFZl1mZOmvGvo4d0iz1id-G79p3zGnUqpuMiOGKDO5iH9EqQAfFbw5N3981U3cmqUPv4DYjxerx25kX0pZjS7PnxPtfmElIAw4GApgXN6XO3C5S0yQ"
-}
-<signature>
+ -d 'eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6Ik9OUEN2YU9YZjFtcFZjazhNYkU2bDI5eTNvMCJ9.eyJpc3MiOiJqRlF1UTRlUWJOQ01TcWRDb2cyMW5GIiwiaWF0IjoxNTcxODA4MTY3LCJleHAiOjIxNDc0ODM2NDYsImp0aSI6IjM3NzQ3Y2QxYzEwNTQ1Njk5Zjc1NGFkZjI4YjczZTMxIiwiYXVkIjoiaHR0cHM6Ly9zZWN1cmUuYXBpLmRhdGFob2xkZXIuY29tL2lzc3VlciIsInJlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cubW9ja2NvbXBhbnkuY29tLmF1L3JlZGlyZWN0cy9yZWRpcmVjdDEiLCJodHRwczovL3d3dy5tb2NrY29tcGFueS5jb20uYXUvcmVkaXJlY3RzL3JlZGlyZWN0MiJdLCJ0b2tlbl9lbmRwb2ludF9hdXRoX3NpZ25pbmdfYWxnIjoiUFMyNTYiLCJ0b2tlbl9lbmRwb2ludF9hdXRoX21ldGhvZCI6InByaXZhdGVfa2V5X2p3dCIsImdyYW50X3R5cGVzIjpbImNsaWVudF9jcmVkZW50aWFscyIsImF1dGhvcml6YXRpb25fY29kZSIsInJlZnJlc2hfdG9rZW4iLCJ1cm46aWV0ZjpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTpqd3QtYmVhcmVyIl0sInJlc3BvbnNlX3R5cGVzIjpbImNvZGUgaWRfdG9rZW4iXSwiYXBwbGljYXRpb25fdHlwZSI6IndlYiIsImlkX3Rva2VuX3NpZ25lZF9yZXNwb25zZV9hbGciOiJQUzI1NiIsImlkX3Rva2VuX2VuY3J5cHRlZF9yZXNwb25zZV9hbGciOiJSU0EtT0FFUCIsImlkX3Rva2VuX2VuY3J5cHRlZF9yZXNwb25zZV9lbmMiOiJBMjU2R0NNIiwicmVxdWVzdF9vYmplY3Rfc2lnbmluZ19hbGciOiJQUzI1NiIsInNjb3BlIjoiYWNjb3VudHMiLCJzb2Z0d2FyZV9zdGF0ZW1lbnQiOiJleUpoYkdjaU9pSlFVekkxTmlJc0ltdHBaQ0k2SW5obVUyczNOM05YVEhrMmFHTlJZbVZSTVVsNFdteEZlRlpPWDA5UWVUaEJhRzVaV20xb1RYaFROMGs5SWl3aWRIbHdJam9pU2xkVUluMC5leUpwYzNNaU9pSlBjR1Z1UW1GdWEybHVaeUJNZEdRaUxDSnBZWFFpT2pFMk5EWTRPVFV3TmpZc0ltcDBhU0k2SWpnMU16bGpZV0V6T0RFeE9UUTRaR0VpTENKemIyWjBkMkZ5WlY5bGJuWnBjbTl1YldWdWRDSTZJbk5oYm1SaWIzZ2lMQ0p6YjJaMGQyRnlaVjl0YjJSbElqb2lWR1Z6ZENJc0luTnZablIzWVhKbFgybGtJam9pYWtaUmRWRTBaVkZpVGtOTlUzRmtRMjluTWpGdVJpSXNJbk52Wm5SM1lYSmxYMk5zYVdWdWRGOXBaQ0k2SW1wR1VYVlJOR1ZSWWs1RFRWTnhaRU52WnpJeGJrWWlMQ0p6YjJaMGQyRnlaVjlqYkdsbGJuUmZibUZ0WlNJNklsZFRUeklnVDNCbGJpQkNZVzVyYVc1bklGUlFVRElnS0ZOaGJtUmliM2dwSWl3aWMyOW1kSGRoY21WZlkyeHBaVzUwWDJSbGMyTnlhWEIwYVc5dUlqb2lWR2hwY3lCaGJIUmxjbTVoZEdsMlpTQlVVRkFnYVhNZ1kzSmxZWFJsWkNCbWIzSWdkR1Z6ZEdsdVp5QndkWEp3YjNObGN5NGdJaXdpYzI5bWRIZGhjbVZmZG1WeWMybHZiaUk2TVM0MUxDSnpiMlowZDJGeVpWOWpiR2xsYm5SZmRYSnBJam9pYUhSMGNITTZMeTkzYzI4eUxtTnZiU0lzSW5OdlpuUjNZWEpsWDNKbFpHbHlaV04wWDNWeWFYTWlPbHNpYUhSMGNITTZMeTkzYzI4eUxtTnZiU0pkTENKemIyWjBkMkZ5WlY5eWIyeGxjeUk2V3lKQlNWTlFJaXdpVUVsVFVDSXNJa05DVUVsSklsMHNJbTl5WjJGdWFYTmhkR2x2Ymw5amIyMXdaWFJsYm5SZllYVjBhRzl5YVhSNVgyTnNZV2x0Y3lJNmV5SmhkWFJvYjNKcGRIbGZhV1FpT2lKUFFrZENVaUlzSW5KbFoybHpkSEpoZEdsdmJsOXBaQ0k2SWxWdWEyNXZkMjR3TURFMU9EQXdNREF4U0ZGUmNscEJRVmdpTENKemRHRjBkWE1pT2lKQlkzUnBkbVVpTENKaGRYUm9iM0pwYzJGMGFXOXVjeUk2VzNzaWJXVnRZbVZ5WDNOMFlYUmxJam9pUjBJaUxDSnliMnhsY3lJNld5SlFTVk5RSWl3aVFVbFRVQ0lzSWtOQ1VFbEpJbDE5TEhzaWJXVnRZbVZ5WDNOMFlYUmxJam9pU1VVaUxDSnliMnhsY3lJNld5SlFTVk5RSWl3aVEwSlFTVWtpTENKQlNWTlFJbDE5TEhzaWJXVnRZbVZ5WDNOMFlYUmxJam9pVGt3aUxDSnliMnhsY3lJNld5SlFTVk5RSWl3aVFVbFRVQ0lzSWtOQ1VFbEpJbDE5WFgwc0luTnZablIzWVhKbFgyeHZaMjlmZFhKcElqb2lhSFIwY0hNNkx5OTNjMjh5TG1OdmJTOTNjMjh5TG1wd1p5SXNJbTl5WjE5emRHRjBkWE1pT2lKQlkzUnBkbVVpTENKdmNtZGZhV1FpT2lJd01ERTFPREF3TURBeFNGRlJjbHBCUVZnaUxDSnZjbWRmYm1GdFpTSTZJbGRUVHpJZ0tGVkxLU0JNU1UxSlZFVkVJaXdpYjNKblgyTnZiblJoWTNSeklqcGJleUp1WVcxbElqb2lWR1ZqYUc1cFkyRnNJaXdpWlcxaGFXd2lPaUp6WVdOb2FXNXBjMEIzYzI4eUxtTnZiU0lzSW5Cb2IyNWxJam9pS3prME56YzBNamMwTXpjMElpd2lkSGx3WlNJNklsUmxZMmh1YVdOaGJDSjlMSHNpYm1GdFpTSTZJa0oxYzJsdVpYTnpJaXdpWlcxaGFXd2lPaUp6WVdOb2FXNXBjMEIzYzI4eUxtTnZiU0lzSW5Cb2IyNWxJam9pS3prME56YzBNamMwTXpjMElpd2lkSGx3WlNJNklrSjFjMmx1WlhOekluMWRMQ0p2Y21kZmFuZHJjMTlsYm1Sd2IybHVkQ0k2SW1oMGRIQnpPaTh2YTJWNWMzUnZjbVV1YjNCbGJtSmhibXRwYm1kMFpYTjBMbTl5Wnk1MWF5OHdNREUxT0RBd01EQXhTRkZSY2xwQlFWZ3ZNREF4TlRnd01EQXdNVWhSVVhKYVFVRllMbXAzYTNNaUxDSnZjbWRmYW5kcmMxOXlaWFp2YTJWa1gyVnVaSEJ2YVc1MElqb2lhSFIwY0hNNkx5OXJaWGx6ZEc5eVpTNXZjR1Z1WW1GdWEybHVaM1JsYzNRdWIzSm5MblZyTHpBd01UVTRNREF3TURGSVVWRnlXa0ZCV0M5eVpYWnZhMlZrTHpBd01UVTRNREF3TURGSVVWRnlXa0ZCV0M1cWQydHpJaXdpYzI5bWRIZGhjbVZmYW5kcmMxOWxibVJ3YjJsdWRDSTZJbWgwZEhCek9pOHZhMlY1YzNSdmNtVXViM0JsYm1KaGJtdHBibWQwWlhOMExtOXlaeTUxYXk4d01ERTFPREF3TURBeFNGRlJjbHBCUVZndmFrWlJkVkUwWlZGaVRrTk5VM0ZrUTI5bk1qRnVSaTVxZDJ0eklpd2ljMjltZEhkaGNtVmZhbmRyYzE5eVpYWnZhMlZrWDJWdVpIQnZhVzUwSWpvaWFIUjBjSE02THk5clpYbHpkRzl5WlM1dmNHVnVZbUZ1YTJsdVozUmxjM1F1YjNKbkxuVnJMekF3TVRVNE1EQXdNREZJVVZGeVdrRkJXQzl5WlhadmEyVmtMMnBHVVhWUk5HVlJZazVEVFZOeFpFTnZaekl4YmtZdWFuZHJjeUlzSW5OdlpuUjNZWEpsWDNCdmJHbGplVjkxY21raU9pSm9kSFJ3Y3pvdkwzZHpiekl1WTI5dElpd2ljMjltZEhkaGNtVmZkRzl6WDNWeWFTSTZJbWgwZEhCek9pOHZkM052TWk1amIyMGlMQ0p6YjJaMGQyRnlaVjl2Ymw5aVpXaGhiR1pmYjJaZmIzSm5Jam9pVjFOUE1pQlBjR1Z1SUVKaGJtdHBibWNpZlEuSHJsMDNlWDdJQkZfTm1Ia1V5Yk52OUFPOWZlQmdaUlpYU3dtcUN5MUs1c0lzWURZX2daVXdhTERrZEJHM2Qyd1IzTlg2OVpYSG9rT0VsVG1yb1pPN21TU3ptem5IVDZPdFRNa1B5VlcyNnRHaldiS09JQWQwb29saXprUHRveVN4bXRXZ1VmbE1QQmNZWDlXV2hlajVwWDJlMWZrczlYeldDNUZpTEtTNUg3MTBza3pHZzV6M3gwWldyNkZzcGhMS3Y0bTI4M3JHSm5EQUNGVzlVWkdFZzhPTnR6YWNsSXZNY1lla3F5VU1aeGRUZ3ZwVjAwSlM3d2NoWGQ4aUctOXJRVlRQV3NHenhxQWJSY1A0RWdnWTdmbzJCRFBJVWhDa29GVGhxT0dDbjhtU2M2YkZlVDd0SjRFRDVrT1R5M3pUYndLVjg2WnBqUnBudVpGTkF5YVBBIn0.g6WZvV4-T9xNkdzvHynKuE_TGy49dvNlBXwu6RJ0CzPgUWRr1fNaiP7bqDE9gMGi3MRqekkfqAG-jUk9zTjhV4b3ABOjstYioT1yc627wu0Oq6AvmsUItIDeRaAkcA0U93fOtanonJPOLoNGymlsphp80HstwhAphz1b6BCv8rAaoawjq0hoAP1sKbzo2XVTMSDxfPsDmGLV289k4xCEGB1HbLy4onR8Afhy_iDOvA4J-80ge9x58QZKzJeTmypueve5ZQUGvuSux2oL24m59lTjZLN3zCudAueyZqbDtndF5cmTOisSDznajvWlodwKKYTWwe2S7O-J6gJ45Fbdyw' 
 ```
 
-The format of the SSA:
-```
-{
-  "alg": "PS256",
-  "kid": "2MI9XSKi6ddxCbWg2rhDNtUlxJc",
-  "typ": "JWT"
-}
-{
-  "iss": "OpenBanking Ltd",
-  "iat": 1612861771,
-  "jti": "ec4bd6c5fb35407a",
-  "software_environment": "sandbox",
-  "software_mode": "Test",
-  "software_id": "sgsMuc8ACBgBzinpr8oJ8B",
-  "software_client_id": "sgsMuc8ACBgBzinpr8oJ8B",
-  "software_client_name": "WSO2 Open Banking TPP (Sandbox)",
-  "software_client_description": "WSO2 Open Banking",
-  "software_version": 1.5,
-  "software_client_uri": "https://wso2.com",
-  "software_redirect_uris": [
-    "https://wso2.com"
-  ],
-  "software_roles": [
-    "AISP",
-    "PISP",
-    "CBPII"
-  ],
-  "organisation_competent_authority_claims": {
-    "authority_id": "OBGBR",
-    "registration_id": "Unknown0015800001HQQrZAAX",
-    "status": "Active",
-    "authorisations": [
-      {
-        "member_state": "GB",
-        "roles": [
-          "AISP",
-          "PISP",
-          "CBPII"
-        ]
-      },
-      {
-        "member_state": "IE",
-        "roles": [
-          "AISP",
-          "PISP",
-          "CBPII"
-        ]
-      },
-      {
-        "member_state": "NL",
-        "roles": [
-          "AISP",
-          "PISP",
-          "CBPII"
-        ]
-      }
-    ]
-  },
-  "software_logo_uri": "https://wso2.com/wso2.jpg",
-  "org_status": "Active",
-  "org_id": "0015800001HQQrZAAX",
-  "org_name": "WSO2 (UK) LIMITED",
-  "org_contacts": [
+ The payload is a signed JWT.
+
+??? tip "Click here to see the decoded format of the payload..."
+    
+    ```
     {
-      "name": "Technical",
-      "email": "test1@wso2.com",
-      "phone": "+94770000000",
-      "type": "Technical"
-    },
-    {
-      "name": "Business",
-      "email": "test1@wso2.com",
-      "phone": "+94770000000",
-      "type": "Business"
+      "typ": "JWT",
+      "alg": "PS256",
+      "kid": "ONPCvaOXf1mpVck8MbE6l29y3o0"
     }
-  ],
-  "org_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks",
-  "org_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/0015800001HQQrZAAX.jwks",
-  "software_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/sgsMuc8ACBgBzinpr8oJ8B.jwks",
-  "software_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/sgsMuc8ACBgBzinpr8oJ8B.jwks",
-  "software_policy_uri": "https://wso2.com",
-  "software_tos_uri": "https://wso2.com",
-  "software_on_behalf_of_org": "WSO2 Open Banking"
-}
-<signature>
-```
+
+    {
+      "iss": "jFQuQ4eQbNCMSqdCog21nF",
+      "iat": 1571808167,
+      "exp": 2147483646,
+      "jti": "37747cd1c10545699f754adf28b73e31",
+      "aud": "https://secure.api.dataholder.com/issuer",
+      "redirect_uris": [
+        "https://www.mockcompany.com.au/redirects/redirect1",
+        "https://www.mockcompany.com.au/redirects/redirect2"
+      ],
+      "token_endpoint_auth_signing_alg": "PS256",
+      "token_endpoint_auth_method": "private_key_jwt",
+      "grant_types": [
+        "client_credentials",
+        "authorization_code",
+        "refresh_token",
+        "urn:ietf:params:oauth:grant-type:jwt-bearer"
+      ],
+      "response_types": [
+        "code id_token"
+      ],
+      "application_type": "web",
+      "id_token_signed_response_alg": "PS256",
+      "id_token_encrypted_response_alg": "RSA-OAEP",
+      "id_token_encrypted_response_enc": "A256GCM",
+      "request_object_signing_alg": "PS256",
+      "scope": "accounts",
+      "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6InhmU2s3N3NXTHk2aGNRYmVRMUl4WmxFeFZOX09QeThBaG5ZWm1oTXhTN0k9IiwidHlwIjoiSldUIn0.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE2NDY4OTUwNjYsImp0aSI6Ijg1MzljYWEzODExOTQ4ZGEiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoiakZRdVE0ZVFiTkNNU3FkQ29nMjFuRiIsInNvZnR3YXJlX2NsaWVudF9pZCI6ImpGUXVRNGVRYk5DTVNxZENvZzIxbkYiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUDIgKFNhbmRib3gpIiwic29mdHdhcmVfY2xpZW50X2Rlc2NyaXB0aW9uIjoiVGhpcyBhbHRlcm5hdGl2ZSBUUFAgaXMgY3JlYXRlZCBmb3IgdGVzdGluZyBwdXJwb3Nlcy4gIiwic29mdHdhcmVfdmVyc2lvbiI6MS41LCJzb2Z0d2FyZV9jbGllbnRfdXJpIjoiaHR0cHM6Ly93c28yLmNvbSIsInNvZnR3YXJlX3JlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93c28yLmNvbSJdLCJzb2Z0d2FyZV9yb2xlcyI6WyJBSVNQIiwiUElTUCIsIkNCUElJIl0sIm9yZ2FuaXNhdGlvbl9jb21wZXRlbnRfYXV0aG9yaXR5X2NsYWltcyI6eyJhdXRob3JpdHlfaWQiOiJPQkdCUiIsInJlZ2lzdHJhdGlvbl9pZCI6IlVua25vd24wMDE1ODAwMDAxSFFRclpBQVgiLCJzdGF0dXMiOiJBY3RpdmUiLCJhdXRob3Jpc2F0aW9ucyI6W3sibWVtYmVyX3N0YXRlIjoiR0IiLCJyb2xlcyI6WyJQSVNQIiwiQUlTUCIsIkNCUElJIl19LHsibWVtYmVyX3N0YXRlIjoiSUUiLCJyb2xlcyI6WyJQSVNQIiwiQ0JQSUkiLCJBSVNQIl19LHsibWVtYmVyX3N0YXRlIjoiTkwiLCJyb2xlcyI6WyJQSVNQIiwiQUlTUCIsIkNCUElJIl19XX0sInNvZnR3YXJlX2xvZ29fdXJpIjoiaHR0cHM6Ly93c28yLmNvbS93c28yLmpwZyIsIm9yZ19zdGF0dXMiOiJBY3RpdmUiLCJvcmdfaWQiOiIwMDE1ODAwMDAxSFFRclpBQVgiLCJvcmdfbmFtZSI6IldTTzIgKFVLKSBMSU1JVEVEIiwib3JnX2NvbnRhY3RzIjpbeyJuYW1lIjoiVGVjaG5pY2FsIiwiZW1haWwiOiJzYWNoaW5pc0B3c28yLmNvbSIsInBob25lIjoiKzk0Nzc0Mjc0Mzc0IiwidHlwZSI6IlRlY2huaWNhbCJ9LHsibmFtZSI6IkJ1c2luZXNzIiwiZW1haWwiOiJzYWNoaW5pc0B3c28yLmNvbSIsInBob25lIjoiKzk0Nzc0Mjc0Mzc0IiwidHlwZSI6IkJ1c2luZXNzIn1dLCJvcmdfandrc19lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvMDAxNTgwMDAwMUhRUXJaQUFYLmp3a3MiLCJvcmdfandrc19yZXZva2VkX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9yZXZva2VkLzAwMTU4MDAwMDFIUVFyWkFBWC5qd2tzIiwic29mdHdhcmVfandrc19lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvakZRdVE0ZVFiTkNNU3FkQ29nMjFuRi5qd2tzIiwic29mdHdhcmVfandrc19yZXZva2VkX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9yZXZva2VkL2pGUXVRNGVRYk5DTVNxZENvZzIxbkYuandrcyIsInNvZnR3YXJlX3BvbGljeV91cmkiOiJodHRwczovL3dzbzIuY29tIiwic29mdHdhcmVfdG9zX3VyaSI6Imh0dHBzOi8vd3NvMi5jb20iLCJzb2Z0d2FyZV9vbl9iZWhhbGZfb2Zfb3JnIjoiV1NPMiBPcGVuIEJhbmtpbmcifQ.Hrl03eX7IBF_NmHkUybNv9AO9feBgZRZXSwmqCy1K5sIsYDY_gZUwaLDkdBG3d2wR3NX69ZXHokOElTmroZO7mSSzmznHT6OtTMkPyVW26tGjWbKOIAd0oolizkPtoySxmtWgUflMPBcYX9WWhej5pX2e1fks9XzWC5FiLKS5H710skzGg5z3x0ZWr6FsphLKv4m283rGJnDACFW9UZGEg8ONtzaclIvMcYekqyUMZxdTgvpV00JS7wchXd8iG-9rQVTPWsGzxqAbRcP4EggY7fo2BDPIUhCkoFThqOGCn8mSc6bFeT7tJ4ED5kOTy3zTbwKV86ZpjRpnuZFNAyaPA"
+    }
+
+    <signature>
+    ```
+
+??? tip "Click here to see the decoded format of an SSA..."
+
+    ```
+    {
+       "alg":"PS256",
+       "kid":"xfSk77sWLy6hcQbeQ1IxZlExVN_OPy8AhnYZmhMxS7I=",
+       "typ":"JWT"
+    } 
+
+    {
+       "iss":"OpenBanking Ltd",
+       "iat":1646895066,
+       "jti":"8539caa3811948da",
+       "software_environment":"sandbox",
+       "software_mode":"Test",
+       "software_id":"jFQuQ4eQbNCMSqdCog21nF",
+       "software_client_id":"jFQuQ4eQbNCMSqdCog21nF",
+       "software_client_name":"WSO2 Open Banking TPP2 (Sandbox)",
+       "software_client_description":"This alternative TPP is created for testing purposes. ",
+       "software_version":1.5,
+       "software_client_uri":"https://wso2.com",
+       "software_redirect_uris":[
+          "https://wso2.com"
+       ],
+       "software_roles":[
+          "AISP",
+          "PISP",
+          "CBPII"
+       ],
+       "organisation_competent_authority_claims":{
+          "authority_id":"OBGBR",
+          "registration_id":"Unknown0015800001HQQrZAAX",
+          "status":"Active",
+          "authorisations":[
+             {
+                "member_state":"GB",
+                "roles":[
+                   "PISP",
+                   "AISP",
+                   "CBPII"
+                ]
+             },
+             {
+                "member_state":"IE",
+                "roles":[
+                   "PISP",
+                   "CBPII",
+                   "AISP"
+                ]
+             },
+             {
+                "member_state":"NL",
+                "roles":[
+                   "PISP",
+                   "AISP",
+                   "CBPII"
+                ]
+             }
+          ]
+       },
+       "software_logo_uri":"https://wso2.com/wso2.jpg",
+       "org_status":"Active",
+       "org_id":"0015800001HQQrZAAX",
+       "org_name":"WSO2 (UK) LIMITED",
+       "org_contacts":[
+          {
+             "name":"Technical",
+             "email":"test@wso2.com",
+             "phone":"+94000000000",
+             "type":"Technical"
+          },
+          {
+             "name":"Business",
+             "email":"test@wso2.com",
+             "phone":"+94000000000",
+             "type":"Business"
+          }
+       ],
+       "org_jwks_endpoint":"https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks",
+       "org_jwks_revoked_endpoint":"https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/0015800001HQQrZAAX.jwks",
+       "software_jwks_endpoint":"https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/jFQuQ4eQbNCMSqdCog21nF.jwks",
+       "software_jwks_revoked_endpoint":"https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/jFQuQ4eQbNCMSqdCog21nF.jwks",
+       "software_policy_uri":"https://wso2.com",
+       "software_tos_uri":"https://wso2.com",
+       "software_on_behalf_of_org":"WSO2 Open Banking"
+    }
+
+    <signature>
+    ```
+
 !!! note 
     If you change the payload, use the following certificates to sign the JWT and SSA:
     
-    - [signing certificate](../../assets/attachments/signing_certificate.pem)
-    - [private keys](../../assets/attachments/sgsMuc8ACBgBzinpr8oJ8B.key)
+    - [signing certificate](../../assets/attachments/obsigning.pem)
+    - [private keys](../../assets/attachments/obsigning.key)
 
 - The bank registers the application using the metadata sent in the SSA.
 
@@ -289,7 +299,7 @@ given below:
    "scope":"accounts",
    "software_id":"sgsMuc8ACBgBzinpr8oJ8B",
    "token_endpoint_auth_method":"private_key_jwt",
-   "software_statement":"eyJhbGciOiJQUzI1NiIsImtpZCI6IjJNSTlYU0tpNmRkeENiV2cycmhETnRVbHhKYyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE2MTI4NjE3NzEsImp0aSI6ImVjNGJkNmM1ZmIzNTQwN2EiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoic2dzTXVjOEFDQmdCemlucHI4b0o4QiIsInNvZnR3YXJlX2NsaWVudF9pZCI6InNnc011YzhBQ0JnQnppbnByOG9KOEIiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUCAoU2FuZGJveCkiLCJzb2Z0d2FyZV9jbGllbnRfZGVzY3JpcHRpb24iOiJXU08yIE9wZW4gQmFua2luZyIsInNvZnR3YXJlX3ZlcnNpb24iOjEuNSwic29mdHdhcmVfY2xpZW50X3VyaSI6Imh0dHBzOi8vd3NvMi5jb20iLCJzb2Z0d2FyZV9yZWRpcmVjdF91cmlzIjpbImh0dHBzOi8vd3NvMi5jb20iXSwic29mdHdhcmVfcm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdLCJvcmdhbmlzYXRpb25fY29tcGV0ZW50X2F1dGhvcml0eV9jbGFpbXMiOnsiYXV0aG9yaXR5X2lkIjoiT0JHQlIiLCJyZWdpc3RyYXRpb25faWQiOiJVbmtub3duMDAxNTgwMDAwMUhRUXJaQUFYIiwic3RhdHVzIjoiQWN0aXZlIiwiYXV0aG9yaXNhdGlvbnMiOlt7Im1lbWJlcl9zdGF0ZSI6IkdCIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfSx7Im1lbWJlcl9zdGF0ZSI6IklFIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfSx7Im1lbWJlcl9zdGF0ZSI6Ik5MIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfV19LCJzb2Z0d2FyZV9sb2dvX3VyaSI6Imh0dHBzOi8vd3NvMi5jb20vd3NvMi5qcGciLCJvcmdfc3RhdHVzIjoiQWN0aXZlIiwib3JnX2lkIjoiMDAxNTgwMDAwMUhRUXJaQUFYIiwib3JnX25hbWUiOiJXU08yIChVSykgTElNSVRFRCIsIm9yZ19jb250YWN0cyI6W3sibmFtZSI6IlRlY2huaWNhbCIsImVtYWlsIjoidGVzdDFAd3NvMi5jb20iLCJwaG9uZSI6Iis5NDc3MDAwMDAwMCIsInR5cGUiOiJUZWNobmljYWwifSx7Im5hbWUiOiJCdXNpbmVzcyIsImVtYWlsIjoidGVzdDFAd3NvMi5jb20iLCJwaG9uZSI6Iis5NDc3MDAwMDAwMCIsInR5cGUiOiJCdXNpbmVzcyJ9XSwib3JnX2p3a3NfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYLzAwMTU4MDAwMDFIUVFyWkFBWC5qd2tzIiwib3JnX2p3a3NfcmV2b2tlZF9lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvcmV2b2tlZC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsInNvZnR3YXJlX2p3a3NfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Nnc011YzhBQ0JnQnppbnByOG9KOEIuandrcyIsInNvZnR3YXJlX2p3a3NfcmV2b2tlZF9lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvcmV2b2tlZC9zZ3NNdWM4QUNCZ0J6aW5wcjhvSjhCLmp3a3MiLCJzb2Z0d2FyZV9wb2xpY3lfdXJpIjoiaHR0cHM6Ly93c28yLmNvbSIsInNvZnR3YXJlX3Rvc191cmkiOiJodHRwczovL3dzbzIuY29tIiwic29mdHdhcmVfb25fYmVoYWxmX29mX29yZyI6IldTTzIgT3BlbiBCYW5raW5nIn0.eVQY1VY3tjAfCu1APWN5hK5XKwbBd1FyBQV_4j6F7LvUrdrGHoV1_XbCHXzUJdWxvgCJcm_ozU-oYrwin1b5rPkxzG0kVXCKaVIJ5wt78ogqlTKPhIV15xB3xjtUdzpEw_kLxFqX5Sa3mSKUxYpfdz07RASJxxOCvrxVOD5QiBPd6N_FM8T-zEkDBDRxEVVad9JB2RxZvkUjBYkVvnYyQWg0XA5VRqap19QlwFZl1mZOmvGvo4d0iz1id-G79p3zGnUqpuMiOGKDO5iH9EqQAfFbw5N3981U3cmqUPv4DYjxerx25kX0pZjS7PnxPtfmElIAw4GApgXN6XO3C5S0yQ"
+   "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6IjJNSTlYU0tpNmRkeENiV2cycmhETnRVbHhKYyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE2MTI4NjE3NzEsImp0aSI6ImVjNGJkNmM1ZmIzNTQwN2EiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoic2dzTXVjOEFDQmdCemlucHI4b0o4QiIsInNvZnR3YXJlX2NsaWVudF9pZCI6InNnc011YzhBQ0JnQnppbnByOG9KOEIiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUCAoU2FuZGJveCkiLCJzb2Z0d2FyZV9jbGllbnRfZGVzY3JpcHRpb24iOiJXU08yIE9wZW4gQmFua2luZyIsInNvZnR3YXJlX3ZlcnNpb24iOjEuNSwic29mdHdhcmVfY2xpZW50X3VyaSI6Imh0dHBzOi8vd3NvMi5jb20iLCJzb2Z0d2FyZV9yZWRpcmVjdF91cmlzIjpbImh0dHBzOi8vd3NvMi5jb20iXSwic29mdHdhcmVfcm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdLCJvcmdhbmlzYXRpb25fY29tcGV0ZW50X2F1dGhvcml0eV9jbGFpbXMiOnsiYXV0aG9yaXR5X2lkIjoiT0JHQlIiLCJyZWdpc3RyYXRpb25faWQiOiJVbmtub3duMDAxNTgwMDAwMUhRUXJaQUFYIiwic3RhdHVzIjoiQWN0aXZlIiwiYXV0aG9yaXNhdGlvbnMiOlt7Im1lbWJlcl9zdGF0ZSI6IkdCIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfSx7Im1lbWJlcl9zdGF0ZSI6IklFIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfSx7Im1lbWJlcl9zdGF0ZSI6Ik5MIiwicm9sZXMiOlsiQUlTUCIsIlBJU1AiLCJDQlBJSSJdfV19LCJzb2Z0d2FyZV9sb2dvX3VyaSI6Imh0dHBzOi8vd3NvMi5jb20vd3NvMi5qcGciLCJvcmdfc3RhdHVzIjoiQWN0aXZlIiwib3JnX2lkIjoiMDAxNTgwMDAwMUhRUXJaQUFYIiwib3JnX25hbWUiOiJXU08yIChVSykgTElNSVRFRCIsIm9yZ19jb250YWN0cyI6W3sibmFtZSI6IlRlY2huaWNhbCIsImVtYWlsIjoidGVzdDFAd3NvMi5jb20iLCJwaG9uZSI6Iis5NDc3MDAwMDAwMCIsInR5cGUiOiJUZWNobmljYWwifSx7Im5hbWUiOiJCdXNpbmVzcyIsImVtYWlsIjoidGVzdDFAd3NvMi5jb20iLCJwaG9uZSI6Iis5NDc3MDAwMDAwMCIsInR5cGUiOiJCdXNpbmVzcyJ9XSwib3JnX2p3a3NfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYLzAwMTU4MDAwMDFIUVFyWkFBWC5qd2tzIiwib3JnX2p3a3NfcmV2b2tlZF9lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvcmV2b2tlZC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsInNvZnR3YXJlX2p3a3NfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Nnc011YzhBQ0JnQnppbnByOG9KOEIuandrcyIsInNvZnR3YXJlX2p3a3NfcmV2b2tlZF9lbmRwb2ludCI6Imh0dHBzOi8va2V5c3RvcmUub3BlbmJhbmtpbmd0ZXN0Lm9yZy51ay8wMDE1ODAwMDAxSFFRclpBQVgvcmV2b2tlZC9zZ3NNdWM4QUNCZ0J6aW5wcjhvSjhCLmp3a3MiLCJzb2Z0d2FyZV9wb2xpY3lfdXJpIjoiaHR0cHM6Ly93c28yLmNvbSIsInNvZnR3YXJlX3Rvc191cmkiOiJodHRwczovL3dzbzIuY29tIiwic29mdHdhcmVfb25fYmVoYWxmX29mX29yZyI6IldTTzIgT3BlbiBCYW5raW5nIn0.eVQY1VY3tjAfCu1APWN5hK5XKwbBd1FyBQV_4j6F7LvUrdrGHoV1_XbCHXzUJdWxvgCJcm_ozU-oYrwin1b5rPkxzG0kVXCKaVIJ5wt78ogqlTKPhIV15xB3xjtUdzpEw_kLxFqX5Sa3mSKUxYpfdz07RASJxxOCvrxVOD5QiBPd6N_FM8T-zEkDBDRxEVVad9JB2RxZvkUjBYkVvnYyQWg0XA5VRqap19QlwFZl1mZOmvGvo4d0iz1id-G79p3zGnUqpuMiOGKDO5iH9EqQAfFbw5N3981U3cmqUPv4DYjxerx25kX0pZjS7PnxPtfmElIAw4GApgXN6XO3C5S0yQ"
 }
 
 ```
@@ -350,7 +360,7 @@ redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ###Retrieve an application
 The API allows the API consumer to retrieve the details for an application that has already been registered. 
 The request consists of one path parameter named `Client ID` that the API consumer wants to retrieve details for. 
-When invoking this API, use the transport certificates available [here](../assets/attachments/Transport_Certs.zip).
+When invoking this API, use the transport certificates available [here](../assets/attachments/ob-transport-certs.zip).
 
 See the following sample request:
 ```
@@ -413,7 +423,7 @@ vOFwerKQESFMV2evdg1gyCR5odG_8dxXg"
 The API allows the API consumer to request the bank to modify one or more attributes related to an existing application. 
 The API consumer submits `Client ID` as a path parameter and a JWS payload that describes the characteristics of the 
 application to be modified. This must include all the claims, including the ones that will not be modified. When invoking this API, 
-use the transport certificates available [here](../../assets/attachments/Transport_Certs.zip).
+use the transport certificates available [here](../assets/attachments/ob-transport-certs.zip).
 
 See the following sample request:
 ```
@@ -476,7 +486,7 @@ CJQ9l7Tc8A"
 ###Delete an application
 The API allows the API consumer to request the bank to delete an existing application. The request consists of the 
 `Client ID` of the application, which should be deleted. When invoking this API, use the transport 
-certificates available [here](../../assets/attachments/Transport_Certs.zip).
+certificates available [here](../assets/attachments/ob-transport-certs.zip).
 
 See the following sample request:
 ```
