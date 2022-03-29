@@ -5,8 +5,8 @@ This page explains two methods of deploying the solution in Docker containers.
        [Docker](https://www.docker.com/products/docker-desktop/), and
        [Docker Compose](https://docs.docker.com/compose/install/#install-compose) to get started.
 
-    2. Clone the [wso2/docker-open-banking](https://github.com/wso2/docker-open-banking.git) repository.  This document 
-       refers to the file path of the Docker resources directory as `<OB_DOCKER_RESOURCES>`.
+    2. Clone the [wso2/docker-open-banking](https://github.com/wso2/docker-open-banking.git) repository. This document 
+       refers to the file path of the cloned directory directory as `<OB_DOCKER_HOME>`.
 
 !!! note
     In order to use WSO2 Open Banking Docker Images, you need an active WSO2 Open Banking subscription. If you don't
@@ -28,7 +28,7 @@ This section explains how to deploy the solution using Docker Compose.
 !!! note 
     This is a Quick Start Guide to set up the solution in your local environment.
 
-1. Go to the `obam-with-obiam` directory inside `<OB_DOCKER_RESOURCES>`.
+1. Go to the `obam-with-obiam` directory inside `<OB_DOCKER_HOME>`.
 
     ``` 
     cd docker-open-banking/docker-compose/obam-with-obiam
@@ -115,7 +115,7 @@ This section explains how to deploy the solution using Docker Compose.
 
 ##Deploy WSO2 Open Banking with Docker
 
- This section explains how to set up the solution in separate containers using WSO2 Open Banking Docker Images.
+ This section explains how to set up the solution using WSO2 Open Banking Docker Images.
 
 ### Set up Database Container
 
@@ -157,9 +157,13 @@ This section explains how to deploy the solution using Docker Compose.
 
 7. Update the MySQL connection limit.
 
-       ``` 
-       mysql> show variables like 'max_connections';
+       ```
        mysql> set global max_connections = 1000;
+       ```
+
+8. Update the `USER` and `openbank_apimgtdb.SP_METADATA` tables:
+
+       ```
        mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
        mysql> ALTER TABLE openbank_apimgtdb.SP_METADATA MODIFY VALUE VARCHAR(7500);
        ```
@@ -181,7 +185,7 @@ This section explains how to deploy the solution using Docker Compose.
 3. Start the Open Banking Identity Server:
 
     ``` 
-    sudo docker run -p 9446:9446 --network ob-network --volume <OB_DOCKER_RESOURCES>/deployment.toml:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml --name obiam wso2-obiam:3.0.0
+    docker run -p 9446:9446 --network ob-network --volume <OB_DOCKER_RESOURCES>/deployment.toml:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml --name obiam docker.wso2.com/wso2-obiam
     ```
 
 4. Log in to the Management Console at `https://obiam:9446/carbon/`.
@@ -238,7 +242,7 @@ This section explains how to deploy the solution using Docker Compose.
 3. Start the Open Banking API Manager:
 
     ``` 
-    sudo docker run -p 9443:9443 --network ob-network --volume <OB_DOCKER_RESOURCES>/deployment.toml:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml --name obam wso2-obam:3.0.0
+    docker run -p 9443:9443 --network ob-network --volume <OB_DOCKER_RESOURCES>/deployment.toml:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml --name obam docker.wso2.com/wso2-obam
     ```
 
 ## Download WSO2 Updates
