@@ -57,6 +57,17 @@ This section explains how to deploy the solution using Docker Compose.
     ``` 
     https://obiam:9446/keymanager-operations/dcr/register
     ```
+   
+!!! note "To see separate logs for `obam` and `obiam`"
+     Execute the following commands in  separate terminals:
+
+      ```
+      $ docker logs -f obiam
+      ```
+
+      ```shell
+      $ docker logs -f obam
+      ```
 
 ##Deploy WSO2 Open Banking with Docker
 
