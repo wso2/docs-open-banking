@@ -6,7 +6,7 @@ This page explains two methods of deploying the solution in Docker containers.
        [Docker Compose](https://docs.docker.com/compose/install/#install-compose) to get started.
 
     2. Clone the [wso2/docker-open-banking](https://github.com/wso2/docker-open-banking.git) repository. This document 
-       refers to the file path of the cloned directory directory as `<OB_DOCKER_HOME>`.
+       refers to the file path of the cloned directory as `<OB_DOCKER_HOME>`.
 
 !!! note
     In order to use WSO2 Open Banking Docker Images, you need an active WSO2 Open Banking subscription. If you don't
@@ -28,21 +28,63 @@ This section explains how to deploy the solution using Docker Compose.
 !!! note 
     This is a Quick Start Guide to set up the solution in your local environment.
 
-1. Go to the `obam-with-obiam` directory inside `<OB_DOCKER_HOME>`.
+1. Deploy the solution by executing the following:
 
     ``` 
-    cd docker-open-banking/docker-compose/obam-with-obiam
+    docker-compose up
     ```
- 
-2. Go to the `<OB_DOCKER_RESOURCES>` directory and update the `deployment.toml` file for Identity Server:
 
-   - Change the `jwks_url_sandbox` and `jwks_url_production` URLs with the respective JWKS URLs of your certs.
-   - Change the hostnames of `login_url`, `retry_url`, `oauth2_consent_page`, and `oidc_consent_page`
+2. Obtain the container Id of the Identity Server by executing the command below:
+
+    ``` 
+    docker ps
+    ```
+
+3. Copy the `deployment.toml` file of the Identity Server from the container to a desired location in the host machine.
+
+    ``` 
+    docker cp <IS_CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml <DESIRED_LOCATION>
+    ```
+   
+4. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
+
+    - Change the `jwks_url_sandbox` and `jwks_url_production` URLs with the respective JWKS URLs of your certs.
+    - Change the hostnames of `login_url`, `retry_url`, `oauth2_consent_page`, and `oidc_consent_page`
      with the respective hostnames of the containers.
 
-3. Go to the `<OB_DOCKER_RESOURCES>` directory and update the `deployment.toml` file for API Manager:
+5. Place the modified  `deployment.toml` file in the container:
 
-   - Change the following URLs according the sample given below:
+    ``` 
+    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml
+    ```
+
+6. Stop the container:
+
+    ``` 
+    docker stop obiam
+    ```
+
+7. Restart the container to apply the changes:
+
+    ``` 
+    docker start obiam
+    ``` 
+   
+8. Obtain the container Id of the API Manager by executing the command below:
+
+    ``` 
+    docker ps
+    ```
+
+9. Copy the `deployment.toml` file of the API Manager from the container to a desired location in the host machine.
+
+    ``` 
+    docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <DESIRED_LOCATION>
+    ```
+
+10. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
+
+   - Change the following URLs according to the sample given below:
 
       ``` toml
       [apim.key_manager]
@@ -65,39 +107,50 @@ This section explains how to deploy the solution using Docker Compose.
      endpoint = "https://obiam:9446/api/openbanking/consent/validate"
      ```
 
-
-3. Deploy the solution by executing the following:
-
-    ``` 
-    docker-compose up
-    ```
-
-4. Log in to the Management Console at `https://obiam:9446/carbon/`.
-
-5. Go to **Identity Providers > Resident > Inbound Authentication Configuration > OAuth2/OpenID connect Configuration**.
-
-6. Set **Identity Provider Entity ID** as `https://obiam:9446/oauth2/token`.
-
-7. When publishing the Dynamic Client Registration (DCR) API, provide the hostname as `obiam`. For example,
-
-    ```
-    https://obiam:9446/api/openbanking/dynamic-client-registration
-    ```
-
-8. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
+11. Place the modified  `deployment.toml` file in the container:
 
     ``` 
-    https://obiam:9446/keymanager-operations/dcr/register
+    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml
     ```
 
-9. You can access the WSO2 Open Banking API Manager using a web browser via the following URLs:
+7. Stop the running container:
 
-     - `https://obam:9443/publisher`
-     - `https://obam:9443/devportal`
-     - `https://obam:9443/admin`
-     - `https://obam:9443/carbon`
+    ``` 
+    docker stop obam
+    ```
 
-10. The API Gateway will be available on the following ports:
+8. Restart the container to apply the changes:
+
+    ``` 
+    docker start obam
+    ```
+   
+12. Log in to the Management Console at `https://obiam:9446/carbon/`.
+
+13. Go to **Identity Providers > Resident > Inbound Authentication Configuration > OAuth2/OpenID connect Configuration**.
+
+14. Set **Identity Provider Entity ID** as `https://obiam:9446/oauth2/token`.
+
+15. When publishing the Dynamic Client Registration (DCR) API, provide the hostname as `obiam`. For example,
+
+     ```
+     https://obiam:9446/api/openbanking/dynamic-client-registration
+     ```
+
+16. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
+
+     ``` 
+     https://obiam:9446/keymanager-operations/dcr/register
+     ```
+
+17. You can access the WSO2 Open Banking API Manager using a web browser via the following URLs:
+
+      - `https://obam:9443/publisher`
+      - `https://obam:9443/devportal`
+      - `https://obam:9443/admin`
+      - `https://obam:9443/carbon`
+
+18. The API Gateway will be available on the following ports:
    
      - `https://localhost:8243`
      - `http://localhost:8280`
@@ -182,49 +235,55 @@ This section explains how to deploy the solution using Docker Compose.
     docker run -p 9446:9446 --network ob-network --name obiam docker.wso2.com/wso2-obiam
     ```
    
-3. Log into the `obiam` container.
+3. Obtain the container Id by executing the command below: 
 
-   ``` 
-   docker exec -u 0 -it obiam /bin/bash
-   ```
+    ``` 
+    docker ps
+    ```
 
-4. Copy the `deployment.toml` file to a desired location in the host machine.
+4. Copy the `deployment.toml` file from the container to a desired location in the host machine.
 
-   ``` 
-   docker cp <container-id>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml <LOCATION>
-   ```
-   
-5. Log out and stop the container.
+    ``` 
+    docker cp <CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml <DESIRED_LOCATION>
+    ```
 
-   ```
-   docker stop obiam
-   ```
-
-6. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
+5. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
 
    - Change the `jwks_url_sandbox` and `jwks_url_production` URLs with the respective JWKS URLs of your certs.
    - Change the hostnames of `login_url`, `retry_url`, `oauth2_consent_page`, and `oidc_consent_page` 
      with the respective hostnames of the containers.
 
-7. Restart the container by mounting the updated `deployment.toml` file. 
+6. Place the modified  `deployment.toml` file in the container:
 
     ``` 
-    docker run -p 9446:9446 -p 8243:8243 -p 8280:8280 --network ob-network --volume <SOURCE_CONFIGS>/deployment.toml:<TARGET_CONFIGS>/deployment.toml --name obiam wso2-obiam:3.0.0
+    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml
+    ```
+   
+7. Stop the container:
+
+    ``` 
+    docker stop obiam
     ```
 
-8. Log in to the Management Console at `https://obiam:9446/carbon/`.
+8. Restart the container to apply the changes:
 
-9. Go to **Identity Providers > Resident > Inbound Authentication Configuration > OAuth2/OpenID connect Configuration**.
+    ``` 
+    docker start obiam
+    ``` 
 
-10. Set **Identity Provider Entity ID** as `https://obiam:9446/oauth2/token`.
+9. Log in to the Management Console at `https://obiam:9446/carbon/`.
 
-11. When publishing the Dynamic Client Registration (DCR) API, provide the hostname as `obiam`. For example,
+10. Go to **Identity Providers > Resident > Inbound Authentication Configuration > OAuth2/OpenID connect Configuration**.
+
+11. Set **Identity Provider Entity ID** as `https://obiam:9446/oauth2/token`.
+
+12. When publishing the Dynamic Client Registration (DCR) API, provide the hostname as `obiam`. For example,
 
      ```
      https://obiam:9446/api/openbanking/dynamic-client-registration
      ```
 
-12. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
+13. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
 
      ``` 
      https://obiam:9446/keymanager-operations/dcr/register
@@ -244,55 +303,61 @@ This section explains how to deploy the solution using Docker Compose.
     docker run -p 9443:9443 --network ob-network --name obam docker.wso2.com/wso2-obam
     ```
 
-3. Log into the `obam` container.
-
-   ``` 
-   docker exec -u 0 -it obam /bin/bash
-   ```
-
-4. Copy the `deployment.toml` file to a desired location in the host machine.
-
-   ``` 
-   docker cp <container-id>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <LOCATION>
-   ```
-
-5. Log out and stop the container.
-
-   ```
-   docker stop obam
-   ```
-
-6. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
-
-   - Change the following URLs according the sample below:  
-   
-      ``` toml
-      [apim.key_manager]
-      service_url = "https://obiam:9446${carbon.context}services/"
-       
-      [apim.key_manager.configuration]
-      ServerURL = "https://obiam:9446${carbon.context}services/"
-      TokenURL = "https://obam:${https.nio.port}/token"
-      RevokeURL = "https://obam:${https.nio.port}/revoke"
-      ```
-  
-   - Add the following tags:
-
-     ``` toml
-     [oauth.endpoints]
-     oauth2_token_url = "https://obiam:9446/oauth2/token"
-     oauth2_jwks_url = "https://obiam:9446/oauth2/jwks"
-   
-     [open_banking.gateway.consent.validation]
-     endpoint = "https://obiam:9446/api/openbanking/consent/validate"
-     ```
-
-5. Restart the container by mounting the updated `deployment.toml` file.
+3. Obtain the container Id by executing the command below:
 
     ``` 
-    docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --volume <SOURCE_CONFIGS>/deployment.toml:<TARGET_CONFIGS>/deployment.toml --name obam wso2-obam:3.0.0
+    docker ps
     ```
 
+4. Copy the `deployment.toml` file from the container to a desired location in the host machine.
+
+    ``` 
+    docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <DESIRED_LOCATION>
+    ```
+
+5. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
+
+    - Change the following URLs according to the sample below:  
+   
+        ``` toml
+        [apim.key_manager]
+        service_url = "https://obiam:9446${carbon.context}services/"
+       
+        [apim.key_manager.configuration]
+        ServerURL = "https://obiam:9446${carbon.context}services/"
+        TokenURL = "https://obam:${https.nio.port}/token"
+        RevokeURL = "https://obam:${https.nio.port}/revoke"
+        ```
+  
+    - Add the following tags:
+
+        ``` toml
+        [oauth.endpoints]
+        oauth2_token_url = "https://obiam:9446/oauth2/token"
+        oauth2_jwks_url = "https://obiam:9446/oauth2/jwks"
+   
+        [open_banking.gateway.consent.validation]
+        endpoint = "https://obiam:9446/api/openbanking/consent/validate"
+        ```
+
+6. Place the modified  `deployment.toml` file in the container:
+
+    ``` 
+    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml
+    ```
+
+7. Stop the container:
+
+    ``` 
+    docker stop obam
+    ```
+
+8. Restart the container to apply the changes:
+
+    ``` 
+    docker start obam
+    ``` 
+   
 ## Download WSO2 Updates
 
 This section explains how to download the WSO2 updates for Open Banking Identity Server and API Manager. For each 
