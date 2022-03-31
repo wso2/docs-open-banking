@@ -28,129 +28,129 @@ This section explains how to deploy the solution using Docker Compose.
 !!! note 
     This is a Quick Start Guide to set up the solution in your local environment.
 
-1. Deploy the solution by executing the following:
+1. Go to the `obam-with-obiam` directory inside `<OB_DOCKER_HOME>`.
+
+    ``` 
+    cd <OB_DOCKER_HOME>/docker-compose/obam-with-obiam
+    ```
+
+2. Deploy the solution by executing the following:
 
     ``` 
     docker-compose up
     ```
 
-2. Obtain the container Id of the Identity Server by executing the command below:
+3. Obtain the container Id of the Identity Server by executing the command below:
 
     ``` 
     docker ps
     ```
 
-3. Copy the `deployment.toml` file of the Identity Server from the container to a desired location in the host machine.
+4. Copy the `deployment.toml` file of the Identity Server from the container to a desired location in the host machine.
 
     ``` 
     docker cp <IS_CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml <DESIRED_LOCATION>
     ```
    
-4. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
+6. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
 
     - Change the `jwks_url_sandbox` and `jwks_url_production` URLs with the respective JWKS URLs of your certs.
     - Change the hostnames of `login_url`, `retry_url`, `oauth2_consent_page`, and `oidc_consent_page`
      with the respective hostnames of the containers.
 
-5. Place the modified  `deployment.toml` file in the container:
+7. Place the modified  `deployment.toml` file in the container:
+
+    !!! note
+        You can use the same command and copy any existing `deployment.toml` file to the container.
 
     ``` 
     docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml
     ```
 
-6. Stop the container:
+8. Restart the container to apply the changes:
 
     ``` 
-    docker stop obiam
-    ```
-
-7. Restart the container to apply the changes:
-
-    ``` 
-    docker start obiam
+    docker restart obiam
     ``` 
    
-8. Obtain the container Id of the API Manager by executing the command below:
+9. Obtain the container Id of the API Manager by executing the command below:
 
     ``` 
     docker ps
     ```
 
-9. Copy the `deployment.toml` file of the API Manager from the container to a desired location in the host machine.
+10. Copy the `deployment.toml` file of the API Manager from the container to a desired location in the host machine.
 
-    ``` 
-    docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <DESIRED_LOCATION>
-    ```
-
-10. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
-
-   - Change the following URLs according to the sample given below:
-
-      ``` toml
-      [apim.key_manager]
-      service_url = "https://obiam:9446${carbon.context}services/"
-       
-      [apim.key_manager.configuration]
-      ServerURL = "https://obiam:9446${carbon.context}services/"
-      TokenURL = "https://obam:${https.nio.port}/token"
-      RevokeURL = "https://obam:${https.nio.port}/revoke"
-      ```
-
-   - Add the following tags:
-
-     ``` toml
-     [oauth.endpoints]
-     oauth2_token_url = "https://obiam:9446/oauth2/token"
-     oauth2_jwks_url = "https://obiam:9446/oauth2/jwks"
-   
-     [open_banking.gateway.consent.validation]
-     endpoint = "https://obiam:9446/api/openbanking/consent/validate"
+     ``` 
+     docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <DESIRED_LOCATION>
      ```
 
-11. Place the modified  `deployment.toml` file in the container:
+11. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
+
+    - Change the following URLs according to the sample given below:
+
+       ``` toml
+       [apim.key_manager]
+       service_url = "https://obiam:9446${carbon.context}services/"
+       
+       [apim.key_manager.configuration]
+       ServerURL = "https://obiam:9446${carbon.context}services/"
+       TokenURL = "https://obam:${https.nio.port}/token"
+       RevokeURL = "https://obam:${https.nio.port}/revoke"
+       ```
+
+    - Add the following tags:
+
+      ``` toml
+      [oauth.endpoints]
+      oauth2_token_url = "https://obiam:9446/oauth2/token"
+      oauth2_jwks_url = "https://obiam:9446/oauth2/jwks"
+   
+      [open_banking.gateway.consent.validation]
+      endpoint = "https://obiam:9446/api/openbanking/consent/validate"
+      ```
+
+12. Place the modified  `deployment.toml` file in the container:
+
+    !!! note
+        You can use the same command and copy any existing `deployment.toml` file to the container.
 
     ``` 
     docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml
     ```
 
-7. Stop the running container:
+13. Restart the container to apply the changes:
 
-    ``` 
-    docker stop obam
-    ```
-
-8. Restart the container to apply the changes:
-
-    ``` 
-    docker start obam
-    ```
+     ``` 
+     docker restart obam
+     ```
    
-12. Log in to the Management Console at `https://obiam:9446/carbon/`.
+14. Log in to the Management Console at `https://obiam:9446/carbon/`.
 
-13. Go to **Identity Providers > Resident > Inbound Authentication Configuration > OAuth2/OpenID connect Configuration**.
+15. Go to **Identity Providers > Resident > Inbound Authentication Configuration > OAuth2/OpenID connect Configuration**.
 
-14. Set **Identity Provider Entity ID** as `https://obiam:9446/oauth2/token`.
+16. Set **Identity Provider Entity ID** as `https://obiam:9446/oauth2/token`.
 
-15. When publishing the Dynamic Client Registration (DCR) API, provide the hostname as `obiam`. For example,
+17. When publishing the Dynamic Client Registration (DCR) API, provide the hostname as `obiam`. For example,
 
      ```
      https://obiam:9446/api/openbanking/dynamic-client-registration
      ```
 
-16. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
+18. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
 
      ``` 
      https://obiam:9446/keymanager-operations/dcr/register
      ```
 
-17. You can access the WSO2 Open Banking API Manager using a web browser via the following URLs:
+19. You can access the WSO2 Open Banking API Manager using a web browser via the following URLs:
 
       - `https://obam:9443/publisher`
       - `https://obam:9443/devportal`
       - `https://obam:9443/admin`
       - `https://obam:9443/carbon`
 
-18. The API Gateway will be available on the following ports:
+20. The API Gateway will be available on the following ports:
    
      - `https://localhost:8243`
      - `http://localhost:8280`
@@ -226,7 +226,7 @@ This section explains how to deploy the solution using Docker Compose.
 1. Pull the Open Banking Identity Server Image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obiam).
 
     ```shell
-    docker pull docker.wso2.com/wso2-obiam
+    docker pull docker.wso2.com/wso2-obiam:3.0.0.0
     ```
 
 2. Deploy the Identity Server Image.
@@ -255,20 +255,17 @@ This section explains how to deploy the solution using Docker Compose.
 
 6. Place the modified  `deployment.toml` file in the container:
 
+    !!! note
+        You can use the same command and copy any existing `deployment.toml` file to the container.
+
     ``` 
     docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2is-5.11.0/repository/conf/deployment.toml
     ```
    
-7. Stop the container:
+7. Restart the container to apply the changes:
 
     ``` 
-    docker stop obiam
-    ```
-
-8. Restart the container to apply the changes:
-
-    ``` 
-    docker start obiam
+    docker restart obiam
     ``` 
 
 9. Log in to the Management Console at `https://obiam:9446/carbon/`.
@@ -293,8 +290,8 @@ This section explains how to deploy the solution using Docker Compose.
 
 1. Pull the Open Banking API Manager Image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obam).
 
-    ```shell
-    docker pull docker.wso2.com/wso2-obam
+    ``` 
+    docker pull docker.wso2.com/wso2-obam:3.0.0.0
     ```
 
 2. Deploy the API Manager Image.
@@ -342,20 +339,17 @@ This section explains how to deploy the solution using Docker Compose.
 
 6. Place the modified  `deployment.toml` file in the container:
 
+    !!! note
+        You can use the same command and copy any existing `deployment.toml` file to the container.
+
     ``` 
     docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml
     ```
 
-7. Stop the container:
+7. Restart the container to apply the changes:
 
     ``` 
-    docker stop obam
-    ```
-
-8. Restart the container to apply the changes:
-
-    ``` 
-    docker start obam
+    docker restart obam
     ``` 
    
 ## Download WSO2 Updates
