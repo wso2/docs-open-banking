@@ -195,7 +195,8 @@ Now, this Push Authenticator (CIBA-Push-Auth) is available as a federated authen
 application in the Identity Server. 
 
 !!! tip
-    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample requests.
+    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample 
+    requests in the Accounts Information Service API.
 
 ## Configuring Authenticator 
 
@@ -279,7 +280,8 @@ You can configure authentication steps according to your requirements. For more 
    ```
    
 !!! tip 
-    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample requests.
+    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample
+    requests in the Accounts Information Service API.
 
 ## Trying out CIBA flow
 
