@@ -16,7 +16,7 @@ regional open banking standard.
 !!! note
     WSO2 provides toolkits that offer compliance to the following open banking standards:
     
-    - Open Banking Standard - UK
-    - NextGenPSD2XS2A
-    - Consumer Data Standards - Australia
+    - [Open Banking Standard - UK](https://uk.ob.docs.wso2.com/)
+    - [NextGenPSD2XS2A](https://berlin.ob.docs.wso2.com/)
+    - [Consumer Data Standards - Australia](https://cds.ob.docs.wso2.com/)
     
