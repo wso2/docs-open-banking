@@ -297,7 +297,7 @@ This section explains how to deploy the solution using Docker Compose.
 2. Deploy the API Manager Image.
 
     ```
-    docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --name obam wso2-obam
+    docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --name obam docker.wso2.com/wso2-obam
     ```
 
 3. Obtain the container Id by executing the command below:
