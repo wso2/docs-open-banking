@@ -226,7 +226,7 @@ This section explains how to deploy the solution using Docker Compose.
 1. Pull the Open Banking Identity Server Image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obiam).
 
     ```shell
-    docker pull docker.wso2.com/wso2-obiam:3.0.0.0
+    docker pull docker.wso2.com/wso2-obiam
     ```
 
 2. Deploy the Identity Server Image.
@@ -291,13 +291,13 @@ This section explains how to deploy the solution using Docker Compose.
 1. Pull the Open Banking API Manager Image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obam).
 
     ``` 
-    docker pull docker.wso2.com/wso2-obam:3.0.0.0
+    docker pull docker.wso2.com/wso2-obam
     ```
 
 2. Deploy the API Manager Image.
 
     ```
-    docker run -p 9443:9443 --network ob-network --name obam docker.wso2.com/wso2-obam
+    docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --name obam docker.wso2.com/wso2-obam
     ```
 
 3. Obtain the container Id by executing the command below:
