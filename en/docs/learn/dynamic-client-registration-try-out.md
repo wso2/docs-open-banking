@@ -113,7 +113,7 @@ to the client trust stores in `<APIM_HOME>/repository/resources/security/client-
 ## Step 3: Tryout DCR
 
 !!! tip
-    If you have [Postman](https://www.postman.com/), import the [script](https://www.getpostman.com/collections/d0000ae9b54a24c0efe1) 
+    If you have [Postman](https://www.postman.com/), import the [script](https://www.getpostman.com/collections/0aefc25adfb0716c778c) 
     to invoke the DCR endpoints for the scenarios explained below.
 
 ###Register an application
