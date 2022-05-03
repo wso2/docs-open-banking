@@ -21,7 +21,7 @@ com.wso2.openbanking.accelerator.gateway.executor.core.OpenBankingGatewayExecuto
 
 !!! note
     The `com.wso2.openbanking.accelerator.gateway-3.0.0.jar` JAR file inside the 
-    `<IS_HOME>/repository/components/dropins` directory contains all the Java implementations related to gateway 
+    `<APIM_HOME>/repository/components/dropins` directory contains all the Java implementations related to gateway 
     executors.
 
 Use the following data model and implement the interface methods according to your requirements:
