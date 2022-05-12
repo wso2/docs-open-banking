@@ -12,6 +12,24 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
     
     3. Restart the Identity Server.
 
+    4. If you are using an **API Manager at U2 level 4.0.0.102**, disable the Resident Key Manager:
+        1. Open the `<APIM-HOME>/repository/conf/deployment.toml` file.
+        2. Disable `[apim.key_manager]` configurations by commenting them out:
+
+            ``` toml
+            #[apim.key_manager]
+            #service_url = "https://localhost:9446${carbon.context}services/"
+            #type = "WSO2-IS"
+            #key_manager_client_impl = "org.wso2.carbon.apimgt.impl.AMDefaultKeyManagerImpl"
+            #username = "$ref{super_admin.username}"
+            #password = "$ref{super_admin.password}"
+            #pool.init_idle_capacity = 50
+            #pool.max_idle = 100
+            #key_validation_handler_type = "default"
+            #key_validation_handler_type = "custom"
+            #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
+            ```
+
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
 1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) as `mark@gold.com` who has `creator/publisher` permissions.
