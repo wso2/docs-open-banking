@@ -56,7 +56,7 @@ nav:
       - 'Get Started': get-started/quick-start-guide.md
       - 'Set Up Accelerators': get-started/set-up-accelerators.md
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
-      - 'Dynamic Client Registration': get-started/dynamic-client-registation.md
+      - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
       - 'Tryout Flow': get-started/try-out-flow.md
       - 'Data Publishing': get-started/data-publishing-try-out.md
   - 'Install and Setup':

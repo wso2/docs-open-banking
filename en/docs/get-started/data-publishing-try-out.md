@@ -73,7 +73,7 @@ enable = true
 2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up servers](set-up-accelerators.md).
 
 ###Try out
-1. Register an API consumer application as instructed  in [Dynamic Client Registration](dynamic-client-registation.md). 
+1. Register an API consumer application as instructed  in [Dynamic Client Registration](dynamic-client-registration.md). 
 
 2. Try out the sample API flow using the instructions given in [Tryout Flow](try-out-flow.md).
 
