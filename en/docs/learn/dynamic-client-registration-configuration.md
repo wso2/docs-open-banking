@@ -103,7 +103,7 @@ connection_timeout = 3000
 read_timeout = 3000
 ```
 
-10. If you are using an **API Manager at U2 level 4.0.0.102**, disable the Resident Key Manager:
+10. If you are using an **API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
 
     1. Open the `<APIM-HOME>/repository/conf/deployment.toml` file.
     2. Disable `[apim.key_manager]` configurations by commenting them out:
@@ -122,6 +122,8 @@ read_timeout = 3000
            #key_validation_handler_type = "custom"
            #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
            ```
+
+    3. Restart the API Manager.
 
 ## Configuring a custom DCR validator
 

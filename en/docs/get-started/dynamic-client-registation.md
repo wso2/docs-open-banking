@@ -12,7 +12,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
     
     3. Restart the Identity Server.
 
-    4. If you are using an **API Manager at U2 level 4.0.0.102**, disable the Resident Key Manager:
+    4. If you are using an **API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
         1. Open the `<APIM-HOME>/repository/conf/deployment.toml` file.
         2. Disable `[apim.key_manager]` configurations by commenting them out:
 
@@ -29,6 +29,8 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
             #key_validation_handler_type = "custom"
             #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
             ```
+
+        3. Restart the API Manager.
 
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
@@ -134,7 +136,9 @@ to the client trust stores in `<APIM_HOME>/repository/resources/security/client-
 
 5. Click **Update**.
 
-6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
+6. Disable the Resident Key Manager.
+
+   ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
 
 ### Step 3: Register an application
 The API allows the API consumer to request the bank to register a new application. The process is as follows:
