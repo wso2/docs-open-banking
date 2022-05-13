@@ -109,6 +109,11 @@ to the client trust stores in `<APIM_HOME>/repository/resources/security/client-
 5. Click **Update**.
 
 6. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
+ 
+    !!! note 
+        If you are using an **API Manager at U2 level 4.0.0.102 or above**, make sure the Resident Key Manager 
+        configurations are disabled. For more information, see 
+        [Configuring DCR in API Manager -  Step 10](dynamic-client-registration-configuration.md#configuring-dcr-in-wso2-api-manager).
 
 ## Step 3: Tryout DCR
 
