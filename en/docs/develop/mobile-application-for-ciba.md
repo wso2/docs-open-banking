@@ -87,10 +87,10 @@ Invoke this API within the bank user portal, convert the response to a QR code a
 the mobile app should contain a QR code scanner. 
 
  ``` tab="Request"
- GET https://<IS_SERVER_HOST>:<PORT>/api/users/v1/me/push-auth/discovery-data
+ GET https://<IS_HOST>:<PORT>/api/openbanking/ciba/push-auth/discovery-data
  ```
 
- ``` tab="Request"
+ ``` tab="Response"
  {
     "did":"014e502a-cdff-43bd-9705-ad0ceb6dd351",
     "un":"admin@wso2.com",
@@ -110,7 +110,7 @@ The SDK invokes the `push-auth/devices` endpoint within the `addAccount()` metho
 authorization server/WSO2 Identity Server.
 
   ```curl
-  GET https://localhost:9446/api/users/v1/me/push-auth/devices
+  GET https://<IS_HOST>:9446/api/openbanking/ciba/push-auth/devices
   ```
 
 ### push-auth/authenticate endpoint
