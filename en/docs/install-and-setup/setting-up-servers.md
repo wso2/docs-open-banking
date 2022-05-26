@@ -85,8 +85,23 @@ improvements that are released by WSO2. You need to update the base products and
         ```bash tab='On Windows'
         ./wso2update_windows.exe
         ```
-   
+
 For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
+
+!!! tip
+      When you obtain WSO2 Updates, always run the relevant `merge.sh` script in the Accelerators to reflect the 
+      latest changes. Follow the [Setting up Accelerator](#setting-up-accelerator) section for instructions.
+   
+
+!!! note "Modifying jsonConverter.xml"
+    - If you are customizing the 
+    `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml` file, 
+    instead modify the file below.
+    ```
+    <OB_APIM_ACCELERATOR_HOME>/carbon-home/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml`
+    ```
+    - If you have already customized `jsonConverter.xml` in the API Manager, duplicate the same changes to the 
+    file inside the Open Banking API Manager Accelerator.
 
 ## Setting up Accelerator
 
