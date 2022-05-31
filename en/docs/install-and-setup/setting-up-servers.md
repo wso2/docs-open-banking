@@ -85,8 +85,22 @@ improvements that are released by WSO2. You need to update the base products and
         ```bash tab='On Windows'
         ./wso2update_windows.exe
         ```
-   
+
 For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
+
+!!! tip
+      When you obtain WSO2 Updates, always run the relevant `merge.sh` script in the Accelerators to reflect the 
+      latest changes. Follow steps 1 to 3 in the [Setting up Accelerator](#setting-up-accelerator) section for instructions.
+
+!!! note "Modifying jsonConverter.xml"
+    - If you are customizing the 
+    `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml` file, 
+    instead modify the file below.
+    ```
+    <OB_APIM_ACCELERATOR_HOME>/carbon-home/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml`
+    ```
+    - If you have already customized `jsonConverter.xml` in the API Manager, duplicate the same changes to the 
+    file inside the Open Banking API Manager Accelerator.
 
 ## Setting up Accelerator
 
@@ -104,21 +118,21 @@ and run the `merge.sh` script as follows:
     ./merge.sh
     ```
 
-3. Extract the `wso2is-extensions` zip file. Copy the following files to the Identity Server as follows:
-
-    | File to copy | Copy to |
-    | -------------| ------- |
-    | `wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar` |	`<IS_HOME>/repository/components/dropins`|
-    | `wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar` | `<IS_HOME>/repository/components/dropins` |
-    | `wso2is-extensions-1.2.10/webapps/keymanager-operations.war` | `<IS_HOME>/repository/deployment/server/webapps` |
-      
-4. To copy the accelerator files to the Streaming Integrator, go to the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin` 
+3. To copy the accelerator files to the Streaming Integrator, go to the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin` 
 directory and run the `merge.sh` script as follows:
 
     ``` shell 
     ./merge.sh
     ``` 
-       
+
+4. Extract the `wso2is-extensions` zip file. Copy the following files to the Identity Server as follows:
+
+   | File to copy | Copy to |
+   | -------------| ------- |
+   | `wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar` |	`<IS_HOME>/repository/components/dropins`|
+   | `wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar` | `<IS_HOME>/repository/components/dropins` |
+   | `wso2is-extensions-1.2.10/webapps/keymanager-operations.war` | `<IS_HOME>/repository/deployment/server/webapps` |
+
 ## Setting up JAVA_HOME
 
 Set your `JAVA_HOME` environment variable to point to the directory where the Java Development Kit (JDK) is installed 
