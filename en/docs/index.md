@@ -5,7 +5,7 @@ template: templates/single-column.html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <div>
     <header>
-        <h1>Welcome to the WSO2 Open Banking Documentation!</h1>
+        <h1>Welcome to the WSO2 Open Banking Accelerator Documentation!</h1>
     </header>
     <div class="md-main .md-content" style="float:left; width: 45%;  text-align:justify; max-height:100%; ">
         <p>

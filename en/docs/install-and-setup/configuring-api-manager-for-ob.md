@@ -100,8 +100,9 @@ database server, and the JDBC driver.
 8. Add the following tags and configure the HTTP connection pool:
 
     !!! info
-        This is available only as a WSO2 Update and is effective from October 07, 2021. For more information on updating 
-        WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and 
+        **WSO2 Open Banking Identity Server 3.0.0.10 onwards**.
+        For more information on updating, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
 
     ``` toml
     [open_banking.http_connection_pool]
