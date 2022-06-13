@@ -273,8 +273,8 @@ curl -X POST https://<APIM_HOST>:8243/open-banking/0.1/register \
 !!! note 
     If you change the payload, use the following certificates to sign the JWT and SSA:
     
-    - [signing certificate](../../assets/attachments/obsigning.pem)
-    - [private keys](../../assets/attachments/obsigning.key)
+    - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
+    - [private keys](../../assets/attachments/signing-certs/obsigning.key)
 
 - The bank registers the application using the metadata sent in the SSA.
 

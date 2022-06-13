@@ -146,7 +146,9 @@ The API allows the API consumer to request the bank to register a new applicatio
 - The API consumer sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
 This SSA contains API consumer's metadata. A sample request looks as follows:
 
- For this sample flow, you can use the transport certificates available [here](../../assets/attachments/ob-transport-certs.zip). 
+ For the Transport Layer Security purposes in this sample flow, you can use the attached
+ [private key](../../assets/attachments/transport-certs/obtransport.key) and 
+ [public certificate](../../assets/attachments/transport-certs/obtransport.pem). 
 
 ```
 curl -X POST https://localhost:8243/open-banking/0.1/register \
@@ -292,8 +294,8 @@ The payload is a signed JWT.
 !!! note 
     If you change the payload, use the following certificates to sign the JWT and SSA:
     
-    - [signing certificate](../../assets/attachments/obsigning.pem)
-    - [private keys](../../assets/attachments/obsigning.key)
+    - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
+    - [private keys](../../assets/attachments/signing-certs/obsigning.key)
 
 - The bank registers the application using the metadata sent in the SSA.
 
