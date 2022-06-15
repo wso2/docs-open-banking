@@ -32,29 +32,26 @@ public abstract List<OpenBankingGatewayExecutor> getExecutorsForResponse(OBAPIRe
 ```
 
 The names of the flows are not defined and you can customize them as you wish. When the requests reach the configured 
-requests router, the router decides the flow to execute. 
+request router, the router decides the flow to execute. 
+
+Once implemented, build a JAR file for the project.
  
 ##Configuring a custom Request Router
 
-1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
-2. Follow the given sample configurations and configure your router. 
 
-!!! note
-    The `priority` tag defines the order of execution.
+1. Place the above-created JAR file in the `<APIM_HOME>/repository/components/lib` directory.
 
-``` xml
-[[open_banking.gateway.openbanking_gateway_executors.type]]
-name = "DCR"
-[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.openbanking.accelerator.gateway.executor.impl.api.resource.access.validation.APIResourceAccessValidationExecutor"
-priority = 1
-[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.openbanking.accelerator.gateway.executor.dcr.DCRExecutor"
-priority = 2
-[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-name = "com.wso2.openbanking.accelerator.gateway.executor.impl.error.handler.OBDefaultErrorHandler"
-priority = 1000
-```
+    !!! note
+        If it’s an OSGI JAR file, place it in the `<APIM_HOME>/repository/components/dropins` directory.
+
+2. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+
+3. Add the Fully Qualified Name (FQN) of your Request Router as follows. For example:
+
+    ``` xml
+    [open_banking.gateway]
+    request_router = "com.wso2.openbanking.accelerator.gateway.executor.core.DefaultRequestRouter"
+    ```
 
 ## Handling non-regulatory APIs 
 

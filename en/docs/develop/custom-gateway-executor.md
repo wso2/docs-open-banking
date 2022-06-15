@@ -122,7 +122,7 @@ implementing any method and not return anything. Once implemented, build a JAR f
 1. Place the above-created JAR file in the `<APIM_HOME>/repository/components/lib` directory. 
 
     !!! note
-        If it’s an OSGI JAR file, place it in the `<APIM_HOME>/repository/components/lib` directory.
+        If it’s an OSGI JAR file, place it in the `<APIM_HOME>/repository/components/dropins` directory.
 
 2. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 
