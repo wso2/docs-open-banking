@@ -88,11 +88,11 @@ invoked, the steps to persist are also invoked and the data required for persist
 
 ### Endpoint
 ``` xml
-https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}
+https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}?authorize={boolean}
 ```
 
 !!!note
-    It is mandatory to send the `approval` parameter in the payload of this request. The `approval` parameter is a 
+    It is mandatory to send the `authorize` parameter in the payload of this request. The `authorize` parameter is a 
     boolean value that specifies whether the customer has authorized the consent or not. 
 
 ### Interface
