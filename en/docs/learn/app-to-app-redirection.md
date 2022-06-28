@@ -102,7 +102,7 @@ by an authenticator that is customized to the app-based flow.
 
     !!! note 
         You need to configure custom authenticators that address the requirements of both browser-based and app-based 
-        redirection flows. For more information, see [Adding Custom Authenticators](https://is.docs.wso2.com/en/latest/develop/writing-a-custom-local-authenticator/#writing-a-custom-local-authenticator). 
+        redirection flows. For more information, see [Adding Custom Authenticators](https://is.docs.wso2.com/en/5.11.0/develop/writing-a-custom-local-authenticator/#writing-a-custom-local-authenticator). 
    
     If this is not an error page or application callback redirect, the application can gain the authentication of the 
     bank customer. For example, using biometrics. 

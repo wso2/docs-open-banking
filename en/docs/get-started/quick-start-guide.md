@@ -25,7 +25,7 @@ can quickly set up and try out a basic flow.
 ## Installing base products
 
 1. Download and extract the following base products:
-    1. [WSO2 Identity Server 5.11.0](https://wso2.com/identity-and-access-management/#)
+    1. [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
     2. [WSO2 API Manager 4.0.0](https://wso2.com/api-management/previous-releases/)
     3. [WSO2 Streaming Integrator 4.0.0](https://wso2.com/streaming-integrator/previous-releases/) 
  

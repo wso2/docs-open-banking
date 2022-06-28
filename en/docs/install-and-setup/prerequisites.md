@@ -72,8 +72,8 @@ Listed below are the prerequisites for a successful deployment:
                <br/> <br/>
                See the following documentation to find the environments that the WSO2 products are tested with:
                <ul>
-                  <li> <a href="https://is.docs.wso2.com/en/5.9.0/setup/environment-compatibility/">Identity Server compatibility</a></li>
-                  <li> <a href="https://apim.docs.wso2.com/en/latest/install-and-setup/setup/reference/product-compatibility/">API Manager compatibility</a></li>
+                  <li> <a href="https://is.docs.wso2.com/en/5.11.0/setup/environment-compatibility/">Identity Server compatibility</a></li>
+                  <li> <a href="https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/reference/product-compatibility/">API Manager compatibility</a></li>
                </ul>
             </ul>
          </td>

@@ -1,6 +1,6 @@
 The WSO2 Identity Server provides OAuth Grant Handlers that are useful when you want to support an OAuth flow that is 
 different from standard grant types. They validate the grant, scopes, and access delegation. For more information, see 
-[Identity Server documentation](https://is.docs.wso2.com/en/latest/learn/extension-points-for-oauth/#oauth-grant-handler).
+[Identity Server documentation](https://is.docs.wso2.com/en/5.11.0/learn/extension-points-for-oauth/#oauth-grant-handler).
 
 The following Grant Handlers in WSO2 Open Banking Accelerator are based on OAuth Grant Handlers. They let you modify 
 the token response and define a data publishing logic for token related data.   

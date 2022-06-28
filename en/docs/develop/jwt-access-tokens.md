@@ -30,5 +30,5 @@ as a scope in the token, configure the name of that scope as `consent_id_claim_n
     ```
    
 !!! note
-    For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/latest/learn/jwt-token-generation/#jwt-token-generation) 
-    and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/latest/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
+    For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/5.11.0/learn/jwt-token-generation/#jwt-token-generation) 
+    and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/5.11.0/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
