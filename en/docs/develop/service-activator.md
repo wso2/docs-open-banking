@@ -1,7 +1,7 @@
 ##Writing a Custom OBServiceObserver
 
 WSO2 Open Banking Accelerator contains an `OBServiceObserver` component that provides a Java interface to manually execute 
-methods in non OSGI modules at the server startup time for both Identity Server and API Manager Servers. A new custom 
+methods in non-OSGI modules at the server startup time for both Identity Server and API Manager Servers. A new custom 
 implementation of the `OBServiceObserver` executes as a new thread at runtime. 
 
 - To implement a custom `OBServiceObserver`, extend the following class:
@@ -40,7 +40,7 @@ public class CustomObserver implements OBServiceObserver {
 1. Once implemented, build a JAR file for your `OBServiceObserver` and place it in the  
    `<IS_HOME>/repository/components/dropins` and `<APIM_HOME>/repository/components/dropins` directories.
 2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-3. Add a `[open_banking.service_activator.subscribers]` tag and configure it using the Fully Qualified Name (FQN) of your custom OBServiceObserver implementation.
+3. Add a `[open_banking.service_activator.subscribers]` tag and configure it using the Fully Qualified Name (FQN) of your custom `OBServiceObserver` implementation.
    executor using the Fully Qualified Name (FQN) of your custom event executor class. For example:
 
     ``` toml
