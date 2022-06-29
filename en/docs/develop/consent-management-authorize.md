@@ -95,6 +95,25 @@ https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-k
     It is mandatory to send the `approval` parameter in the payload of this request. The `approval` parameter is a 
     boolean value that specifies whether the customer has authorized the consent or not. 
 
+???info "New persist query parameter to Consent Authorize endpoint"
+    Customers can dynamically skip the authorization redirection flow from the persist endpoint with this new query parameter, and customers can 
+    send a boolean `authorize` query parameter in the persist request URL. If this `authorize` value is `false`, the 
+    authorization redirection will skip.
+    
+    For example:
+
+    ``` tab="Format"
+    https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}?authorize={boolean}
+    ```
+
+    ``` tab="Sample"
+    https://localhost:9446/api/openbanking/consent/authorize/persist/563d373b-4933-4209-b866-3d52620a2745?authorize=false
+    ```
+
+    !!!note
+        This is only available as a WSO2 Update from WSO2 Open Banking API Manager Accelerator Level 3.0.0.7 and
+        WSO2 Open Banking Identity Server 3.0.0.28.full onwards. For more information on updating, see [Getting WSO2 Updates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#getting-wso2-updates).
+
 ### Interface
 ``` java
 com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentPersistStep
