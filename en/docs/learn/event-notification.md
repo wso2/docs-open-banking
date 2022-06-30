@@ -13,7 +13,7 @@ use case. The Event Polling API facilitates storing and retrieving event notific
 without altering the information in the event information JSON.  Both these endpoints are secured with basic authentication
 (admin username and password) and accept base64 encoded JSON.
 
-You can customize them according to your requirements. For more information, see [Customizing Event Notification](../develop/customize-event-notification).
+You can customize them according to your requirements. For more information, see [Customizing Event Notification](../develop/custom-event-notification.md).
 
 ### Event Creation
 

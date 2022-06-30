@@ -60,7 +60,7 @@ section explains how to get started with implementing customizations and impleme
        ```
 
 !!! note
-    When you [update](/install-and-setup/setting-up-servers#getting-wso2-updates) the products/accelerators with WSO2 
+    When you [update](../install-and-setup/setting-up-servers.md#getting-wso2-updates) the products/accelerators with WSO2 
     Updates, repeat the above steps and install the latest versions of the JAR files in the Maven Repository. 
 
 ## Customize WSO2 Open Banking extensions 
