@@ -95,7 +95,7 @@ https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-k
     It is mandatory to send the `approval` parameter in the payload of this request. The `approval` parameter is a 
     boolean value that specifies whether the customer has authorized the consent or not. 
 
-!!!info "New persist query parameter to Consent Authorize endpoint"
+!!!note "New persist query parameter to Consent Authorize endpoint"
     !!!info
         This is only available as a WSO2 Update from WSO2 Open Banking API Manager Accelerator Level 3.0.0.7 and
         WSO2 Open Banking Identity Server Accelerator Level 3.0.0.28 onwards. For more information on updating, see [Getting WSO2 Updates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#getting-wso2-updates).
