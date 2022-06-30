@@ -96,9 +96,9 @@ https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-k
     boolean value that specifies whether the customer has authorized the consent or not. 
 
 ???info "New persist query parameter to Consent Authorize endpoint"
-    Customers can dynamically skip the authorization redirection flow from the persist endpoint with this new query parameter, and customers can 
-    send a boolean `authorize` query parameter in the persist request URL. If this `authorize` value is `false`, the 
-    authorization redirection will skip.
+    Customers can dynamically skip the authorization redirection flow from the persist endpoint with the `authorize` query parameter.
+    The `authorize` query parameter  is a boolean value and if it is set to `false`, the 
+    authorization redirection is skipped.
     
     For example:
 
