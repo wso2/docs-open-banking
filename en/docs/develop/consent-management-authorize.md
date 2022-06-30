@@ -97,7 +97,7 @@ https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-k
 
 ???info "New persist query parameter to Consent Authorize endpoint"
     Customers can dynamically skip the authorization redirection flow from the persist endpoint with the `authorize` query parameter.
-    The `authorize` query parameter  is a boolean value and if it is set to `false`, the 
+    The `authorize` query parameter is a boolean value, and if it is set to `false`, the 
     authorization redirection is skipped.
     
     For example:
@@ -112,7 +112,7 @@ https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-k
 
     !!!note
         This is only available as a WSO2 Update from WSO2 Open Banking API Manager Accelerator Level 3.0.0.7 and
-        WSO2 Open Banking Identity Server 3.0.0.28.full onwards. For more information on updating, see [Getting WSO2 Updates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#getting-wso2-updates).
+        WSO2 Open Banking Identity Server 3.0.0.28 onwards. For more information on updating, see [Getting WSO2 Updates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#getting-wso2-updates).
 
 ### Interface
 ``` java
