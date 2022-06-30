@@ -22,46 +22,45 @@ This document provides step by step instructions to invoke the Accounts Informat
         7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
         requests**.  
         
-            ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5-tryout.png)
-
+             ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5.png)
 
         8. Click **Save**.
     
-        9.Go to **Runtime** using the left menu pane.   
+        9. Go to **Runtime** using the left menu pane.   
         
-           ![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
+            ![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
     
-    
-        10.Click the edit button under **Request** -> **Message Mediation**. ![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
+
+        10. Click the edit button under **Request** -> **Message Mediation**. ![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
         
-        11.Now, select the **Custom Policy** option. 
+        11. Now, select the **Custom Policy** option. 
     
-        12.Upload the 
+        12. Upload the 
         `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
         file and click **SELECT**.
     
-        13.Scroll down and click **SAVE**. 
+        13. Scroll down and click **SAVE**. 
         
-        14.Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
+        14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
-        15.Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
+        15. Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
 
-        16.Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
+        16. Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
     
-        17.Provide a description for the new revision.
+        17. Provide a description for the new revision.
     
-        18.Select `localhost` from the dropdown list. 
+        18. Select `localhost` from the dropdown list. 
     
-        19.Click **Deploy**.
+        19. Click **Deploy**.
     
-        20.Go to **Overview** using the left menu pane and click **Publish**. 
+        20. Go to **Overview** using the left menu pane and click **Publish**. 
     
-        21.Now that you have deployed the API, go to <https://localhost:9443/devportal>.
+        21. Now that you have deployed the API, go to <https://localhost:9443/devportal>.
     
-        22.Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
+        22. Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
         Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
     
-        23.From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
+        23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For the 

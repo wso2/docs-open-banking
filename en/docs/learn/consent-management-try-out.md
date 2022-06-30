@@ -7,7 +7,7 @@ This document provides the instructions to try out consent initiation, retrieval
         
         !!!note
             - For testing purposes, we have included the following sample APIs in WSO2 Open Banking API Manager Accelerator. 
-                - Dynamic Client Registration API. See [Deploy DCR API](https://ob.docs.wso2.com/en/latest/get-started/api-consumer-onboarding/#step-1-deploy-the-dynamic-client-registrationdcr-api) for instructions.
+                - Dynamic Client Registration API. See [Deploy DCR API](https://ob.docs.wso2.com/en/latest/get-started/dynamic-client-registration/#step-1-deploy-the-dynamic-client-registrationdcr-api) for instructions.
                 - Account Information Service API. See [Deploy and Subscribe sample Account and Transaction API](https://ob.docs.wso2.com/en/latest/get-started/try-out-flow/) for instructions.
                 
 ### Consent Initiation

@@ -20,7 +20,7 @@ as a scope in the token, configure the name of that scope as `consent_id_claim_n
    
    - If the scope is defined as `consent:uuid`, the value for the above configuration should be `consent:`.
    
-3. To enable [certificate-bound access token validation](/learn/token-authentication#certificate-bound-access-tokens):
+3. To enable [certificate-bound access token validation](../learn/token-authentication.md#certificate-bound-access-tokens):
 
     1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
     2. Add the following configurations and set the value to `true`.

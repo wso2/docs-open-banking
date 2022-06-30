@@ -34,26 +34,26 @@ https://<IS_HOST>:9446/api/openbanking/dynamic-client-registration
 
 11. Click **Deploy**.
 
-12.Go to **Overview** using the left menu pane. 
+12. Go to **Overview** using the left menu pane. 
 
-   ![select_overview](../assets/img/learn/dcr/dcr-try-out/step-8.png)
+      ![select_overview](../assets/img/learn/dcr/dcr-try-out/step-8.png)
  
-13.Click **Publish**. 
+13. Click **Publish**. 
 
-  ![publish_api](../assets/img/learn/dcr/dcr-try-out/step8-publish.png)
+      ![publish_api](../assets/img/learn/dcr/dcr-try-out/step8-publish.png)
 
-14.The deployed DCR API is now available in the Developer Portal at `https://<APIM_HOST>:9443/devportal`.
+14. The deployed DCR API is now available in the Developer Portal at `https://<APIM_HOST>:9443/devportal`.
 
-15.Upload the root and issuer certificates in OBIE ([Sandbox certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)/
+15. Upload the root and issuer certificates in OBIE ([Sandbox certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)/
 [Production certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production))
 to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and 
 `<IS_HOME>/repository/resources/security/client-truststore.jks` using the following command:
 
-  ```
-  keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
-  ```
+      ```
+      keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
+      ```
 
-16.Restart the Identity Server and API Manager instances. 
+16. Restart the Identity Server and API Manager instances. 
 
 ## Step 2: Configure IS as Key Manager
 
@@ -315,11 +315,9 @@ Generate an application access token using Client Credentials grant. A sample co
 
 ```
 curl -X POST https://<IS_HOST>:9446/oauth2/token  \
-	-H 'Content-Type: application/x-www-form-urlencoded' \
-	--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-	-d 'grant_type=client_credentials&scope=accounts 
-openid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&
-redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
+ -H 'Content-Type: application/x-www-form-urlencoded' \
+ --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+ -d 'grant_type=client_credentials&scope=accountsopenid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
 
 ??? example "Make sure to update the placeholders with the relevant values"
