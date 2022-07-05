@@ -10,8 +10,9 @@ certain specifications are built upon these specifications.
 
 ![fapi_strcutre](../assets/img/learn/api-security/fapi-structure.png)
 
-WSO2 Open Banking Accelerator provides an extra level of security to the Open Banking APIs adhering to the security guidelines 
-provided in the Financial API (FAPI) group, which is based on OAuth 2.0 and OpenID Connect (OIDC).
+While some open banking specifications, such as the Open Banking Standard - UK and Consumer Data Standards - Australia 
+mandated FAPI, others do not. However, regardless of your regional specification, WSO2 Open Banking Accelerator provides 
+FAPI security standards because of the robust security standards offered by FAPI.
 
 ###MTLS enforcement
 
