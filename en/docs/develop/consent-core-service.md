@@ -316,3 +316,16 @@ This method lets you update the status of the consent for a given consent Id and
 ConsentResource updateConsentStatus(String consentId, String newConsentStatus) throws ConsentManagementException;
 ```
 
+### updateAuthorizationStatus method
+
+!!! info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 
+    3.0.0.13** onwards. For more information on updating, 
+    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+This method lets you update the status of an authorization resource when you provide the authorization Id and 
+the new authorization status.
+
+``` java
+AuthorizationResource updateAuthorizationStatus(String authorizationId, String newAuthorizationStatus) throws ConsentManagementException;
+```
