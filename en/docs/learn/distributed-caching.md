@@ -4,7 +4,7 @@ WSO2 Open Banking Distributed Cache is a caching service that creates a clustere
 WSO2 API Manager or Identity Server instances. Distributed Cache is based on the Hazelcast IMDG library.
 This cache can be used as a single instance cache as well.
 
-Distribute Cache has two types of network configurations to recognize clustered members:
+There are two types of network configurations to recognize clustered members:
 
 - TCP-IP
 - Multicast
@@ -85,6 +85,65 @@ logging_type="none"
 |merge_next_run_delay|integer|30|Run interval of split brain/merge process in seconds.|
 |logging_type|string|“none”|Specify logging framework type to send logging events. For example, `“none”, “jdk”, “log4j”, “log4j2”, “slf4j”` |
 
+## Distributed Caching for Consent Enforcement Executor
 
+Open Banking Distributed Cache can create a cache for the 
+[Consent Enforcement Executor](../develop/consent-enforcement-executor.md) in the gateway using two
+executors to add and retrieve data from the cache. The functionality of Distributed Cache reduces the number of consent 
+validation requests sent to the Identity Server for the same consent id and resource. It also stores the validation 
+details of previously validated requests.
 
+You can configure the cache expiry time using the `deployment.toml` file and WSO2 Open Banking Accelerator will handle  
+consent expiration.
 
+!!! tip "Before you begin:"
+    Enable Distributed Cache by following the [section above](#distributed-cache-configurations).
+
+### Add Executors
+
+1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file. 
+2. Configure both `PreConsentEnforcementExecutor` and `PostConsentExecutor`. Configure their priority as follows:
+     - Execute `PreConsentEnforcementExecutor` just before `ConsetEnforcementExecutor`
+     - Execute `PostConsentExecutor` just after `ConsetEnforcementExecutor`
+   For example:
+     
+``` toml
+[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PreConsentEnforcementExecutor"
+priority = 4
+[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor"
+priority = 5
+[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PostConsentEnforcementExecutor"
+priority = 6
+```
+
+### Configure Consent Enforcement Cache Time to live 
+
+1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+2. Configure the Cache Time to live (TTL) for the Consent Enforcement Cache.
+   - Configuration time is in minutes
+   - The default value is 60 minutes
+
+``` toml 
+[open_banking.gateway.cache.consent_enforcement_cache]
+cache_time_to_live=60
+```
+
+### Disable Distributed Cache for Consent Enforcement Executor
+
+1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+2. Comment out the `PreConsentEnforcementExecutor` and `PostConsentExecutor` configurations as follows:
+
+``` toml
+#[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+#name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PreConsentEnforcementExecutor"
+#priority = 4
+[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor"
+priority = 5
+#[[open_banking.gateway.openbanking_gateway_executors.type.executors]]
+#name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PostConsentEnforcementExecutor"
+#priority = 6
+```
