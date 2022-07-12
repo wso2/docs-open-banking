@@ -22,13 +22,19 @@ directories:
 ##Customize the layout of the consent page
 The consent page works with two main servlets, `OBConsentServlet` and `OBConsentConfirmServlet`.
 
-[![customize-the-layout-of-the-consent-page](../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png) ](../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png)
+[ ![customize-the-layout-of-the-consent-page](../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png) ](../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png)
 
-As shown in the above request diagram, when the initial request hits the `OBConsentServlet`, it retrieves the account selection details from the consent service by invoking the `updateRequestAttribute` and `updateSessionAttribute` methods. If you want to access new data from a custom JSP page, you can override these two methods and return the required data as a map.
+As shown in the above diagram, when the initial request hits `OBConsentServlet`, it retrieves the account selection details from the consent service by invoking the `updateRequestAttribute` and `updateSessionAttribute` methods. 
 
-Once a user confirms the consent details, the request hits the `OBConsentConfirmServlet`. Then it writes the permission details to the consent service by invoking the `updateConsentData` and `updateConsentMetaData` methods. If you want to persist with new consent data, you can override these two methods and return the required data as a map.
+If you want to access new data from a custom JSP page, you can override these two methods and return the required data as a map.
 
-An extension is provided for you to implement the JSP implementations of these servlets.
+Once a user confirms the consent details, the request hits `OBConsentConfirmServlet`. 
+
+Then it writes the permission details to the consent service by invoking the `updateConsentData` and `updateConsentMetaData` methods. 
+
+If you want to persist the new consent data, you can override these two methods and return the required data as a map.
+
+An extension is provided for you to customize the JSP implementations of these servlets.
 
 Implement the methods from the following class:
 ```java
@@ -45,7 +51,7 @@ Map < String, Object > updateRequestAttribute(HttpServletRequest request,
   JSONObject dataSet, ResourceBundle resourceBundle);
 ```
 Sample implementation to add account details to the request is shown below:
-
+__
 ```java
 @Override
 public Map < String, Object > updateRequestAttribute(HttpServletRequest request, JSONObject dataSet,
@@ -80,7 +86,7 @@ retrieve data from the request, consent service response, and `resourceBundle` t
 Map < String, Object > updateSessionAttribute(HttpServletRequest request,
   JSONObject dataSet, ResourceBundle resourceBundle);
 ```
-Sample implementation to add an unique transaction ID to session is shown below:
+Sample implementation to add an unique transaction Id to session is shown below:
 
 ```java
 @Override
@@ -101,8 +107,7 @@ from the request. Given below is the method signature:
 ```java
  Map<String, Object> updateConsentData(HttpServletRequest request);
 ```
-
-Before persisting, the account IDs are encoded in base64. Sample implementation to encode the account IDs to Base64 is shown below:
+If required, you can encode the account Ids before persisting. A sample implementation to encode the account Ids to Base64 is shown below:
 
 ```java
 @Override
@@ -145,8 +150,8 @@ public Map < String, String > updateConsentMetaData(HttpServletRequest request) 
 
 ###getJSPPath method
 This method returns the JSP that you want to show while `OBConsentServlet` is invoked. This is the JSP responsible for 
-showing account selection data and consent data to the bank customers. The information you want to pass from `updateRequestAttribute` will be eventually 
-shown in this custom JSP you have implemented. Given below is the method signature:
+displaying account selection data and consent data to the bank customers. The information you want to pass from `updateRequestAttribute` will be eventually 
+displayed in this custom JSP you have implemented. Given below is the method signature:
 ```java
 String getJSPPath();
 ```
