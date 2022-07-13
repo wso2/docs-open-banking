@@ -51,7 +51,6 @@ Map < String, Object > updateRequestAttribute(HttpServletRequest request,
   JSONObject dataSet, ResourceBundle resourceBundle);
 ```
 Sample implementation to add account details to the request is shown below:
-__
 ```java
 @Override
 public Map < String, Object > updateRequestAttribute(HttpServletRequest request, JSONObject dataSet,
@@ -86,7 +85,7 @@ retrieve data from the request, consent service response, and `resourceBundle` t
 Map < String, Object > updateSessionAttribute(HttpServletRequest request,
   JSONObject dataSet, ResourceBundle resourceBundle);
 ```
-Sample implementation to add an unique transaction Id to session is shown below:
+Sample implementation to add a unique transaction ID to the session is shown below:
 
 ```java
 @Override
@@ -107,7 +106,7 @@ from the request. Given below is the method signature:
 ```java
  Map<String, Object> updateConsentData(HttpServletRequest request);
 ```
-If required, you can encode the account Ids before persisting. A sample implementation to encode the account Ids to Base64 is shown below:
+If required, you can encode the account IDs before persisting. A sample implementation to encode the account IDs to base64 is shown below:
 
 ```java
 @Override
@@ -168,7 +167,7 @@ The consent page is designed in a servlet that consists of three main JSP pages 
 
 ![consent-page-structure](../assets/img/develop/customizing-consent-page/consent-page-structure.png)
 
-You can also make changes to the relevant JSP pages and customize according to the open banking requirement. To customize 
+You can also make changes to the relevant JSP pages and customize them according to the open banking requirement. To customize 
 the layout of the authentication endpoint, locate the JSP pages in the following locations:
 
 | Requirement | Path to the relevant file |
