@@ -123,20 +123,19 @@ For example:
 
 4. Save the above configurations and restart the Identity Server.
 5. Repeat steps 2 and 3 for API Manager using the `<APIM_HOME>/repository/conf/deployment.toml` file. 
-   6. Restart the API Manager server.
+6. Restart the API Manager server.
 
-!!!note "Configure a set of Custom Event Executors"
+!!!note "Configuring a set of Custom Event Executors"
 
-    You can use the `[open_banking.event]` tag when there is only one custom event executor. However, if you want to configure 
-    multiple custom event executors that can be executed in a defined order, follow the steps below:
+    You can use the `event_executor` configuration under`[open_banking.event]` tag when there is only one custom event executor for the entire deployment. However, if you want to configure 
+    multiple custom event executors in a defined order, add the configurations as follows:
     
     !!!info
-        This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#getting-wso2-updates).
+        This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
-    1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+    - According to the number of custom executors you want to configure, add `[[open_banking.event.event_executors]]` tags under the `[open_banking.event]` tag. 
 
-    2. Add `[[open_banking.event.event_executors]]` tags according to the number of custom executors you want to configure, after the `[open_banking.event]` tag. 
-      Configure each Event Executor using the Fully Qualified Name (FQN) of your custom event executor class with the decided priority order. 
+    - Configure each Event Executor using the Fully Qualified Name (FQN) of your custom event executor class with the decided priority order. 
          
          For example:
 
@@ -146,14 +145,8 @@ For example:
          priority = 1
 
          [[open_banking.event.event_executors]]
-         name = "<FQN of Custom Event Executor class>"
+         name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor1"
          priority = 2
          ``` 
 
-    2. Remove the `event_executor` configuration from the `[open_banking.event]` tag and include it under a `[[open_banking.event.event_executors]]` tag with the required priority order.
-
-    3. Save the above configurations and restart the Identity Server.
-
-    4. Repeat steps 2 and 3 for API Manager using the `<APIM_HOME>/repository/conf/deployment.toml` file.
-
-    5. Restart the API Manager server.
+    - Remove the `event_executor` configuration under the `[open_banking.event]` tag and include it under a `[[open_banking.event.event_executors]]` tag with the required priority order.
