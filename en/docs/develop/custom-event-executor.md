@@ -122,5 +122,38 @@ For example:
        ```
 
 4. Save the above configurations and restart the Identity Server.
-5. Repeat steps 2 and 3 for API Manager using the`<APIM_HOME>/repository/conf/deployment.toml` file. 
-   6. Restart the API Manager server.
+5. Repeat steps 2 and 3 for API Manager using the `<APIM_HOME>/repository/conf/deployment.toml` file. 
+6. Restart the API Manager server.
+
+!!!note "Configuring a set of Custom Event Executors"
+
+    You can use the `event_executor` configuration under the `[open_banking.event]` tag when there is only one custom event executor for the entire deployment. However, if you want to configure 
+    multiple custom event executors in a defined order, add the configurations as follows:
+    
+    !!!info
+        This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+    1. Remove the `event_executor` configuration under the `[open_banking.event]` tag and include it under a `[[open_banking.event.event_executors]]` tag with the required priority order. For example:
+
+         ``` toml
+         [[open_banking.event.event_executors]]
+         name = "com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
+         priority = 1
+
+         ```
+
+    2. According to the number of custom executors you want to configure, add `[[open_banking.event.event_executors]]` tags after the `[open_banking.event]` tag. 
+
+    3. Configure each Custom Event Executor using the Fully Qualified Name (FQN) of your custom event executor class with the decided priority order. For example:
+
+         ``` toml
+         [[open_banking.event.event_executors]]
+         name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor1"
+         priority = 2
+
+         [[open_banking.event.event_executors]]
+         name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor2"
+         priority = 3
+         ``` 
+
+    
