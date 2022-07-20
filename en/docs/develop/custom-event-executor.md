@@ -107,9 +107,9 @@ For example:
 
 ##Configuring a Custom Event Executor
 
-1. Once implemented, build a JAR file for your Custom Event Executor and place it in the  
-   `<IS_HOME>/repository/components/lib` and `<APIM_HOME>/repository/components/lib` directories.
-2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+1. Once implemented, build a JAR file for your Custom Event Executor and place it in either or both
+   `<IS_HOME>/repository/components/lib` directory and `<APIM_HOME>/repository/components/lib` directory based on your requirement.
+2. Open the `<IS_HOME>/repository/conf/deployment.toml` file if you have placed the JAR file in the `<IS_HOME>/repository/components/lib` directory in step 1.
 3. Find the `[open_banking.event]` tag and configure the queue size, the number of worker threads, and the event 
    executor using the Fully Qualified Name (FQN) of your custom event executor class. For example:
 
@@ -122,7 +122,7 @@ For example:
        ```
 
 4. Save the above configurations and restart the Identity Server.
-5. Repeat steps 2 and 3 for API Manager using the `<APIM_HOME>/repository/conf/deployment.toml` file. 
+5. Repeat steps 2 and 3 for API Manager using the `<APIM_HOME>/repository/conf/deployment.toml` file if you have placed the JAR file in the `<APIM_HOME>/repository/components/lib` directory in step 1. 
 6. Restart the API Manager server.
 
 !!!note "Configuring a set of Custom Event Executors"
