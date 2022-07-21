@@ -1,5 +1,10 @@
 # WSO2 Open Banking Distributed Cache
 
+!!!info
+    This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.25** and
+    **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.48** onwards. For more information on updating, 
+    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
 WSO2 Open Banking Distributed Cache is a caching service that creates a clustered cache among one or more 
 WSO2 API Manager or Identity Server instances. Distributed Cache is based on the Hazelcast IMDG library.
 This cache can be used as a single instance cache as well.
