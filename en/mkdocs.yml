@@ -96,6 +96,7 @@ nav:
     - 'Data Publishing':
       - 'Introduction': learn/data-publishing.md
       - 'Tryout': learn/data-publishing-tryout.md
+    - 'Distributed Caching': learn/distributed-caching.md
     - 'Integration': learn/integration.md
   - 'Develop' :
     - 'Toolkit Introduction': develop/develop-toolkit.md
