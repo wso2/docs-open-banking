@@ -1,3 +1,5 @@
+#Regulatory Aggregator
+
 A regulatory entity enforces regulations for open banking and open finance in a country or 
 a region. For example, ACCC in Australia and FCA in the UK. Apart from enforcing policies, some entities implement open 
 banking in their country and provide services to financial institutions and third-party apps. In addition, some 
