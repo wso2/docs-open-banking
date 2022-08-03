@@ -333,7 +333,7 @@ This section explains how to configure an Authentication Script in the Open Bank
    ![authentication_script](../../assets/img/toolkit/regulatory-aggregator/authentication_script.png)
 8. Click **Update**.
 
-## Deploying Accounts API Adaptive Authentication Script
+## Deploying Accounts API 
 
 Log in to API Publisher, Deploy, and Publish the Accounts API by following 
 the [Try out API Flow](../../get-started/try-out-flow.md) documentation.
