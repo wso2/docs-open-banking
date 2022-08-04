@@ -156,6 +156,7 @@ nav:
         - 'Regulatory Aggregator':
             - 'Introduction': toolkits/regulatory-aggregator/regulatory-aggregator-intro.md
             - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
+            - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
   - 'References':
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
     - 'API Manager Configuration Catalog': references/config-catalog-apim.md
