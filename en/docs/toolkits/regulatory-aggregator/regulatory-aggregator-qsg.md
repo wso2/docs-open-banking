@@ -104,7 +104,7 @@ This section explains how to set up the remaining WSO2 Identity Server and API M
     ```
    
 5. To configure the Identity Server with the API Manager, install
-   [WSO2 IS Connector](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
+   [WSO2 IS Connector](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip).
 
 6. Extract the `wso2is-extensions` zip file. Copy the following files to the Identity Server as follows:
 
