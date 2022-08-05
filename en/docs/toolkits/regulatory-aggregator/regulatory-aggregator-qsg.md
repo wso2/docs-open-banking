@@ -42,7 +42,7 @@ products. Before setting up the accelerator, download and install the base produ
 The WSO2 Update tool delivers hotfixes and updates seamlessly on top of products as WSO2 Updates. They include
 improvements that are released by WSO2. You need to update the base products and accelerators using the relevant script.
 
-1. Go to `/bin` directory and run the WSO2 Update tool:
+1. Go to the `/bin` directory and run the WSO2 Update tool:
 
     ```bash tab='On Linux'
     ./wso2update_linux 
