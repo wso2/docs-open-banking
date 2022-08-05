@@ -6,7 +6,7 @@ This section guides you to set up WSO2 Open Banking Accelerator as a Regulatory 
 
 1. Install Oracle Java 8 or above to your node.
 2. Set your `JAVA_HOME` environment variable to point to the directory where the Java Development Kit (JDK) is installed.
-   For more information, [Setting up JAVA_HOME](../../install-and-setup/setting-up-servers.md#setting-up-java_home).
+   For more information, see [Setting up JAVA_HOME](../../install-and-setup/setting-up-servers.md#setting-up-java_home).
 
 ##Installing base products
 
