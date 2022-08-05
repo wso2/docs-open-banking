@@ -180,7 +180,7 @@ This section explains how to set up the remaining WSO2 Identity Server and API M
 
     a. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-    b. Under `[authentication.endpoint.redirect_params]` tag, add 5 additional parameters as follows:
+    b. Under the `[authentication.endpoint.redirect_params]` tag, add 5 additional parameters as follows:
 
        ```toml
        parameters = ["sessionDataKeyConsent","relyingParty", "authenticators", "authFailureMsg", "authFailure", "scope", "client_id","redirect_uri", "response_type", "state"]
