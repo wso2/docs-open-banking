@@ -317,7 +317,7 @@ This section explains how to configure an Authentication Script in the Open Bank
 3. Locate the service provider generated for DCR and click on the corresponding **Edit** link.
 4. Expand **Local & Outbound Authentication Configuration**.
 5. Select **Advanced Configuration** as the Authentication Type.
-6. Use the following script for **Script Based Adaptive Authentication**. 
+6. Use the following script for **Script Based Adaptive Authentication**:
 
     ```
     var onLoginRequest = function(context) {
