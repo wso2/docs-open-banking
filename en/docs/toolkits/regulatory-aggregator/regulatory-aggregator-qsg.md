@@ -339,5 +339,5 @@ Log in to API Publisher, Deploy, and Publish the Accounts API by following
 the [Try out API Flow](../../get-started/try-out-flow.md) documentation.
 
 !!!note
-    Use the provided the `accounts-dynamic-endpoint-insequence.xml` file as the Message Mediation. 
+    Use the provided `accounts-dynamic-endpoint-insequence.xml` file as the Message Mediation 
     instead of the default file.
