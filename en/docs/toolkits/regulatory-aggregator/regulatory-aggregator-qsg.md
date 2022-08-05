@@ -209,7 +209,7 @@ This section explains how to set up the remaining WSO2 Identity Server and API M
 
        For example: ![authorize_steps](../../assets/img/toolkit/regulatory-aggregator/authorize-steps2.png)
 
-    g. Change the `validator` attribute under the `[open_banking.consent.validation]` as follows:
+    g. Change the `validator` attribute under the `[open_banking.consent.validation]` tag as follows:
 
        ``` toml
        validator="com.wso2.openbanking.sample.aggregator.identity.AggregatorConsentValidator"
