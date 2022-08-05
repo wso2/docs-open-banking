@@ -75,7 +75,7 @@ banks ABC and DCB. However, you can use any standard identity servers with this 
 
 ## Setting up accelerators
 
-This section explains how to set up the remaining WSO2 Identity Server and API Manager
+This section explains how to set up the remaining WSO2 Identity Server and API Manager.
 
 1. Place the Identity Server and API Manager base products in the node.
 2. Place the relevant accelerator in their respective product homes:
