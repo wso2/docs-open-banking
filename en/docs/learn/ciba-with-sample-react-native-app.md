@@ -73,7 +73,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
        - To fix this issue, build the SDK manually and add it to the project. This happens because the Identity Server 
          has not yet pushed their SDK to the npm registry.
 
-3. Clone the [identity-outbound-auth-biometric](https://github.com/kushanb/identity-outbound-auth-biometric.git) GitHub
+3. Clone the [identity-outbound-auth-biometric](https://github.com/wso2-extensions/identity-outbound-auth-push.git) GitHub
    repository.
 4. Checkout to the `auth-push-react-native-app` branch.
 5. Go to the location where you cloned the `identity-outbound-auth-push` repository.
@@ -89,8 +89,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
          npm run build
          ```
 
-6. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`) and copy the 
-package above. 
+6. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`), `auth-push-react-native` inside that directory and copy the content of the package above to that directory. 
 
     !!! tip
         You may remove the `src` directory  as it is not required once the SDK is built.
@@ -116,7 +115,7 @@ are performed. They will enable communication between the React Native app and t
     
 ## Run React Native app in an Android device
 
-1. Run the React Nativ app on the mobile device in debug mode. For instructions, follow 
+1. Run the React Native app on the mobile device in debug mode. For instructions, follow 
 [React Native documentation](https://reactnative.dev/docs/environment-setup).
 
     - Go to the project root directory at `/ciba-sample-app/WSO2VerifyApp` and run:
