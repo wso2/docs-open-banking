@@ -34,10 +34,9 @@ Output parameter:
 4. Add the `open_banking.identity.ciba_webapp` tag and configure your customization using the Fully Qualified Name 
 (FQN). For example,
 
-    ``` toml
-    [open_banking.identity.ciba_webapp]
-    Servlet_extension = com.wso2.openbanking.accelerator.consent.extensions.ciba.model.CIBAAuthenticationEndpointInterface
-    ```
+      ``` toml
+      [open_banking.identity.ciba_webapp]
+      Servlet_extension = com.wso2.openbanking.accelerator.consent.extensions.ciba.model.CIBAAuthenticationEndpointInterface
+      ```
+   
 5. Save the configurations and restart the Identity Server.
-
-

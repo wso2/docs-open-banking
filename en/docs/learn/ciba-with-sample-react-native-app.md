@@ -53,7 +53,7 @@ WSO2 Identity Server provides a sample React Native application and this section
    
 ## Modify the existing application
 
-1. Create an FCM project at [Firebase Console]() and create an Android application under that. You can use your own 
+1. Create an FCM project at [Firebase Console](https://console.firebase.google.com/) and create an Android application under that. You can use your own 
 project and package names. When configuring the [Push Authenticator IDP](ciba-set-up-flow.md#configuring-push-authenticator-idp), use the
 **Server Key** of this project.
 
@@ -73,12 +73,11 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
        - To fix this issue, build the SDK manually and add it to the project. This happens because the Identity Server 
          has not yet pushed their SDK to the npm registry.
 
-3. Clone the [identity-outbound-auth-biometric](https://github.com/wso2-extensions/identity-outbound-auth-push.git) GitHub
+3. Clone the [identity-outbound-auth-push](https://github.com/wso2-extensions/identity-outbound-auth-push/tree/master) GitHub
    repository.
-4. Checkout to the `auth-push-react-native-app` branch.
 5. Go to the location where you cloned the `identity-outbound-auth-push` repository.
 
-       - Open a terminal from the  `/identity-outbound-auth-push/sdk/package`.
+       - Open a terminal from the `/identity-outbound-auth-push/sdk/package` directory.
        - Execute the following:
    
          ```shell

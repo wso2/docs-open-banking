@@ -96,6 +96,7 @@ nav:
     - 'Data Publishing':
       - 'Introduction': learn/data-publishing.md
       - 'Tryout': learn/data-publishing-tryout.md
+    - 'Distributed Caching': learn/distributed-caching.md
     - 'Integration': learn/integration.md
   - 'Develop' :
     - 'Toolkit Introduction': develop/develop-toolkit.md
@@ -109,6 +110,7 @@ nav:
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
     - 'Open Banking Event Executor':
         - 'Custom Event Executor': develop/custom-event-executor.md
+    - 'Open Banking Service Activator': develop/service-activator.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
@@ -145,6 +147,16 @@ nav:
         - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
         - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
         - 'Token Data Publishing' : develop/token-data-publishing.md
+  - 'Toolkits' :
+    - 'Regulatory Compliance':
+        - 'UK Toolkit': toolkits/uk-toolkit.md
+        - 'Berlin Toolkit': toolkits/berlin-toolkit.md
+        - 'CDS Toolkit': toolkits/cds-toolkit.md
+    - 'Other Toolkits':
+        - 'Regulatory Aggregator':
+            - 'Introduction': toolkits/regulatory-aggregator/regulatory-aggregator-intro.md
+            - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
+            - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
   - 'References':
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
     - 'API Manager Configuration Catalog': references/config-catalog-apim.md
@@ -205,4 +217,5 @@ extra:
     - Install and Setup
     - Learn
     - Develop
+    - Toolkits
     - References

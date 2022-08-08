@@ -5,7 +5,7 @@ WSO2 Open Banking Accelerator is a technology stack catered to speed up the impl
 The accelerators run on top of WSO2 Identity Server and WSO2 API Manager, which are referred to as base 
 products. Before setting up the accelerator, download and install the base products:
 
-- Install [WSO2 Identity Server 5.11.0](https://wso2.com/identity-and-access-management/#)
+- Install [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
 - Install [WSO2 API Manager 4.0.0](https://wso2.com/api-management/previous-releases/)
 - Install [WSO2 Streaming Integrator 4.0.0](https://wso2.com/streaming-integrator/previous-releases/)
 - To configure the Identity Server with the API Manager, install 
@@ -41,7 +41,7 @@ homes.
 
     |File| Directory location to place the Accelerator|
     |----| -------------------------------------------|
-    |wso2-obiam-accelerator-3.0.0| `<IS_HOME>`|
+    |wso2-obiam-accelerator-3.0.0.zip| `<IS_HOME>`|
     |wso2-obam-accelerator-3.0.0.zip| `<APIM_HOME>`|
     |wso2-obbi-accelerator-3.0.0.zip| `<SI_HOME>`|
      

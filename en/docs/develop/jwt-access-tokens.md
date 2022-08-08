@@ -20,7 +20,7 @@ as a scope in the token, configure the name of that scope as `consent_id_claim_n
    
    - If the scope is defined as `consent:uuid`, the value for the above configuration should be `consent:`.
    
-3. To enable [certificate-bound access token validation](/learn/token-authentication#certificate-bound-access-tokens):
+3. To enable [certificate-bound access token validation](../learn/token-authentication.md#certificate-bound-access-tokens):
 
     1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
     2. Add the following configurations and set the value to `true`.
@@ -30,5 +30,5 @@ as a scope in the token, configure the name of that scope as `consent_id_claim_n
     ```
    
 !!! note
-    For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/latest/learn/jwt-token-generation/#jwt-token-generation) 
-    and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/latest/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
+    For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/5.11.0/learn/jwt-token-generation/#jwt-token-generation) 
+    and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/5.11.0/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
