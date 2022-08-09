@@ -75,7 +75,7 @@ configuration with the IP address of the Identity Server.
        context = "(.*)/api/users/v1/me/push-auth/(.*)"
        secure="true"
        http_method="GET, HEAD, POST, PUT, DELETE, PATCH"
-       allowed_auth_handlers = ["BasicAuthentication", “OAuthAuthentication”]
+       allowed_auth_handlers = ["BasicAuthentication", "OAuthAuthentication"]
        ```
 
     - Add the following tags:
@@ -155,7 +155,7 @@ configuration with the IP address of the Identity Server.
      ``` toml
      [[oauth.custom_grant_type]]
      name="urn:openid:params:grant-type:ciba"
-     grant_handler="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantHandler"
+     grant_handler="com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBCibaGrantHandler"
      grant_validator="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantValidator"
 
      [oauth.custom_grant_type.properties]
@@ -171,12 +171,42 @@ configuration with the IP address of the Identity Server.
      validator = "org.wso2.carbon.identity.oauth.ciba.handlers.CibaResponseTypeValidator"
      ```   
 
-5. Add CIBA request object validator
+5. Add CIBA request object validator:
 
      ``` toml
      [oauth.oidc.extensions]
      ciba_request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBCIBARequestObjectValidationExtension"
-     ```
+     ```   
+
+     !!! tip
+    Plain FAPI profile does not mandate additional validations in `OBCIBARequestObjectValidationExtension`. 
+    So you can skip this step if you are setting up FAPI:CIBA profile
+
+6. To Enable support for FAPI(optional) add the following changes.
+    
+    ```toml
+    [fapi]
+    enable_ciba_profile=true
+
+    [oauth.oidc.id_token]
+    signature_algorithm = "PS256"
+
+    [transport.https.sslHostConfig.properties]
+    ciphers="TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+
+    [[tomcat.filter_mapping]]
+    name = "TokenFilter"
+    url_pattern = "/ciba"
+    ```
+
+6. Open the `<APIM_HOME>/repository/conf/deployment.toml` file:
+
+7. To Enable support for FAPI(optional) add the following changes.
+    
+    ```toml
+    [transport.https.sslHostConfig.properties]
+    ciphers="TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+    ```
    
 6. Restart the servers to reflect the changes. 
 

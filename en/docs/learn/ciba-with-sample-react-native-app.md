@@ -88,8 +88,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
          npm run build
          ```
 
-6. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`) and copy the 
-package above. 
+6. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`), `auth-push-react-native` inside that directory and copy the content of the package above to that directory. 
 
     !!! tip
         You may remove the `src` directory  as it is not required once the SDK is built.
@@ -115,7 +114,7 @@ are performed. They will enable communication between the React Native app and t
     
 ## Run React Native app in an Android device
 
-1. Run the React Nativ app on the mobile device in debug mode. For instructions, follow 
+1. Run the React Native app on the mobile device in debug mode. For instructions, follow 
 [React Native documentation](https://reactnative.dev/docs/environment-setup).
 
     - Go to the project root directory at `/ciba-sample-app/WSO2VerifyApp` and run:
