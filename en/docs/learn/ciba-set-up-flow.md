@@ -155,7 +155,7 @@ configuration with the IP address of the Identity Server.
      ``` toml
      [[oauth.custom_grant_type]]
      name="urn:openid:params:grant-type:ciba"
-     grant_handler="org.wso2.carbon.identity.oauth.ciba.grant.OBCibaGrantHandler"
+     grant_handler="com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBCibaGrantHandler"
      grant_validator="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantValidator"
 
      [oauth.custom_grant_type.properties]
@@ -173,7 +173,7 @@ configuration with the IP address of the Identity Server.
 
 5. Add CIBA request object validator:
 
-    ``` toml
+     ``` toml
      [oauth.oidc.extensions]
      ciba_request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBCIBARequestObjectValidationExtension"
      ```   
@@ -199,7 +199,7 @@ configuration with the IP address of the Identity Server.
     url_pattern = "/ciba"
     ```
 
-6. Open the `<AM_HOME>/repository/conf/deployment.toml` file:
+6. Open the `<APIM_HOME>/repository/conf/deployment.toml` file:
 
 7. To Enable support for FAPI(optional) add the following changes.
     
