@@ -173,16 +173,16 @@ configuration with the IP address of the Identity Server.
 
 5. Add CIBA request object validator:
 
+    !!! tip
+        The `plain_fapi` profile does not mandate additional validations in `OBCIBARequestObjectValidationExtension`.
+        Therefore, if you are setting up the `FAPI:CIBA` profile, you can skip this configuration.
+
      ``` toml
      [oauth.oidc.extensions]
      ciba_request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBCIBARequestObjectValidationExtension"
      ```   
 
-     !!! tip
-    Plain FAPI profile does not mandate additional validations in `OBCIBARequestObjectValidationExtension`. 
-    So you can skip this step if you are setting up FAPI:CIBA profile
-
-6. To Enable support for FAPI(optional) add the following changes.
+6. Add the following tags to configure the `FAPI:CIBA ` profile:
     
     ```toml
     [fapi]
@@ -201,7 +201,7 @@ configuration with the IP address of the Identity Server.
 
 6. Open the `<APIM_HOME>/repository/conf/deployment.toml` file:
 
-7. To Enable support for FAPI(optional) add the following changes.
+7. Add the following tags to configure the `FAPI:CIBA ` profile:
     
     ```toml
     [transport.https.sslHostConfig.properties]

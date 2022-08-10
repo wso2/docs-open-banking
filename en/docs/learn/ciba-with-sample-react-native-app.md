@@ -75,7 +75,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
 
 3. Clone the [identity-outbound-auth-push](https://github.com/wso2-extensions/identity-outbound-auth-push/tree/master) GitHub
    repository.
-5. Go to the location where you cloned the `identity-outbound-auth-push` repository.
+4. Go to the location where you cloned the `identity-outbound-auth-push` repository.
 
        - Open a terminal from the `/identity-outbound-auth-push/sdk/package` directory.
        - Execute the following:
@@ -88,10 +88,13 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
          npm run build
          ```
 
-6. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`), `auth-push-react-native` inside that directory and copy the content of the package above to that directory. 
+5. Create a new directory named `packages` in the app project root directory (`/WSO2VerifyApp`).
+
+6. Create a new directory named `auth-push-react-native` inside the `packages` directory and the copy the above package
+   content to this new directory. 
 
     !!! tip
-        You may remove the `src` directory  as it is not required once the SDK is built.
+        You may remove the `src` directory as it is not required once the SDK is built.
 
 7. Open a terminal from `/WSO2VerifyApp/packages` and run:
 
