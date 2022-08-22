@@ -127,7 +127,9 @@ The API allows the API consumer to request the bank to register a new applicatio
 - The API consumer sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
 This SSA contains API consumer's metadata. A sample request looks as follows:
 
- For this sample flow, you can use the transport certificates available [here](../../assets/attachments/ob-transport-certs.zip). 
+  For Transport Layer Security purposes in this sample flow, you can use the attached
+  [private key](../../assets/attachments/transport-certs/obtransport.key) and
+  [public certificate](../../assets/attachments/transport-certs/obtransport.pem).
 
 ```
 curl -X POST https://<APIM_HOST>:8243/open-banking/0.1/register \
@@ -362,8 +364,10 @@ curl -X POST https://<IS_HOST>:9446/oauth2/token  \
     
 ###Retrieve an application
 The API allows the API consumer to retrieve the details for an application that has already been registered. 
-The request consists of one path parameter named `Client ID` that the API consumer wants to retrieve details for. 
-When invoking this API, use the transport certificates available [here](../assets/attachments/ob-transport-certs.zip).
+The request consists of one path parameter named `Client ID` that the API consumer wants to retrieve details for.
+When invoking this API, use the attached
+[private key](../../assets/attachments/transport-certs/obtransport.key) and
+[public certificate](../../assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
 
 See the following sample request:
 ```
@@ -425,8 +429,10 @@ vOFwerKQESFMV2evdg1gyCR5odG_8dxXg"
 ###Update an application
 The API allows the API consumer to request the bank to modify one or more attributes related to an existing application. 
 The API consumer submits `Client ID` as a path parameter and a JWS payload that describes the characteristics of the 
-application to be modified. This must include all the claims, including the ones that will not be modified. When invoking this API, 
-use the transport certificates available [here](../assets/attachments/ob-transport-certs.zip).
+application to be modified. This must include all the claims, including the ones that will not be modified.
+When invoking this API, use the attached
+[private key](../../assets/attachments/transport-certs/obtransport.key) and
+[public certificate](../../assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
 
 See the following sample request:
 ```
@@ -488,8 +494,9 @@ CJQ9l7Tc8A"
 
 ###Delete an application
 The API allows the API consumer to request the bank to delete an existing application. The request consists of the 
-`Client ID` of the application, which should be deleted. When invoking this API, use the transport 
-certificates available [here](../assets/attachments/ob-transport-certs.zip).
+`Client ID` of the application, which should be deleted. When invoking this API, use the attached
+[private key](../../assets/attachments/transport-certs/obtransport.key) and
+[public certificate](../../assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
 
 See the following sample request:
 ```
