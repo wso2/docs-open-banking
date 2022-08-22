@@ -12,7 +12,7 @@ interface and the gateway for all open banking services provided by financial in
 
 ### Regulatory Aggregator Ecosystem 
 
-<!-- Add image from WSO2 blog -->
+![regulatory_aggregator_ecosystem](../../assets/img/toolkit/regulatory-aggregator/regulatory-aggregator-ecosystem.png)
 
 The Regulatory Aggregator is the gateway for all the API calls instead of just being the validator.  In this ecosystem, 
 all third-party applications are only registered with the regulatory aggregator, and all the API calls, including token 
