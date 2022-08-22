@@ -61,14 +61,14 @@ For more information, see [Getting WSO2 Updates](../../install-and-setup/setting
 
 ## Setting up servers
 
-This setup consists of the components below. We are using 2 WSO2 Identity Servers (vanilla) as the identity servers of 
+This setup consists of the following components. We are using 2 WSO2 Identity Servers (vanilla) as the identity servers of 
 banks ABC and DCB. However, you can use any standard identity servers with this setup.
 
 !!! tip
     Port offsets are mentioned assuming that this setup is done using a single node. If you are using multiple nodes, 
     you can ignore the port offsets.
 
-<!-- Add image from WSO2 blog -->
+![regulatory_aggregator_setuo](../../assets/img/toolkit/regulatory-aggregator/setup.png)
 
 1. Take 3 copies of the updated WSO2 Identity Server.
 2. Place 2 of them in a preferred location in the node. These 2 will be the identity servers of the banks.
