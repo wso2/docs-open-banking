@@ -23,7 +23,7 @@ GET https://<IS_HOST>:9446/api/openbanking/consent/admin/consent-amendment-histo
 ```
 
 You can implement consent amendment history feature to handle data related to consent amendment history and generate toolkit-specific
-representation for the data according to your requirements, by extending the following class:
+representation for the data according to your open banking specification, by extending the following class:
 
 ```java
 com.wso2.openbanking.accelerator.consent.extensions.admin.impl.DefaultConsentAdminHandler
