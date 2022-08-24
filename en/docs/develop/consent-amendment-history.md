@@ -1,6 +1,6 @@
 Any change that is performed on an active consent is considered as an amendment. WSO2 Open Banking provides 
 the Consent Amendment History feature to retrieve details related to the amendments done to a consent. You can achieve your 
-open banking requirements related to consent amendment which are specific to the relevant specification using the given extension point.
+open banking requirements related to consent amendment, which are specific to the relevant specification using the given extension point.
 
 The [Asynchronous Event Executor Framework](https://ob.docs.wso2.com/en/latest/develop/custom-event-executor/#writing-a-custom-event-executor)
 is utilized for the consent amendment history persistence. A dedicated event executor is available in the 
@@ -18,7 +18,6 @@ Given below is a summary of details related to this extension.
 
 This endpoint retrieves the consent amendment history when the consent ID is provided as a query parameter. The response includes the current consent and an array of consent history data objects.
 
-``` xml
 GET https://<IS_HOST>:9446/api/openbanking/consent/admin/consent-amendment-history?consentId=<CONSENT-ID>
 ```
 
