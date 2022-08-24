@@ -329,3 +329,85 @@ the new authorization status.
 ``` java
 AuthorizationResource updateAuthorizationStatus(String authorizationId, String newAuthorizationStatus) throws ConsentManagementException;
 ```
+
+### amendDetailedConsent method
+
+!!! info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
+    3.0.0.33** onwards. For more information on updating,
+    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+This method amends an entire detailed consent with new values passed to the method. Given below is the method signature:
+
+``` java
+DetailedConsentResource amendDetailedConsent(
+    String consentID,
+    String consentReceipt,
+    Long consentValidityTime,
+    String authID,
+    Map < String, ArrayList < String >> accountIDsMapWithPermissions,
+    String newConsentStatus,
+    Map < String, String > consentAttributes,
+    String userID,
+    Map < String, Object > additionalAmendmentData) throws ConsentManagementException;
+```
+
+Input parameters:
+
+- `consentID`: consent ID of the consent that needs to be amended
+- `consentReceipt`: new consent receipt
+- `consentValidityTime`: new consent validity time
+- `authID`: authorization ID of the user who invoked the amendment
+- `accountIDsMapWithPermissions`: accounts IDs with relevant permissions
+- `newConsentStatus`: new consent status
+- `consentAttributes`: new consent attributes in a key value map
+- `userID`: user ID of the user who invoked the amendment to create audit record
+- `additionalAmendmentData`: a data map to pass any additional data that needs to be amended in the consent
+    - Following 2 data attributes with the respective key values can be passed in `additionalAmendmentData`. However, if no additional data is available for the amendment, keep this map empty.
+        1. Additional Authorization Resources
+            - Key: user ID (for each Authorization Resource in the map)
+            - Value: a map of Authorization Resources
+
+        2. Additional Mapping Resources
+            - Key: user ID (for each mapping resources List in the map)
+            - Value: a map of mapping resources List
+
+### storeConsentAmendmentHistory method
+
+!!! info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
+    3.0.0.33** onwards. For more information on updating,
+    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+This method stores the details of the previous consent when a consent amendment happens. Given below is the method signature:
+
+``` java
+boolean storeConsentAmendmentHistory(
+    String consentID,
+    ConsentHistoryResource consentHistoryResource,
+    DetailedConsentResource detailedCurrentConsent)
+throws ConsentManagementException
+```
+Input parameters:
+
+- `consentID`: consent ID of the consent. This is a mandatory parameter.
+- `consentHistoryResource`: a model that includes the detailed consent resource and other history parameters (for example: amended Timestamp, reason caused the amendment) of the previous consent. This is a mandatory parameter.
+- `currentConsentResource`: detailed consent resource of the existing consent. This is an optional parameter.
+
+### getConsentAmendmentHistoryData method
+
+!!! info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
+    3.0.0.33** onwards. For more information on updating,
+    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+This method retrieves the consent amendment history for a given consent. Given below is the method signature:
+
+``` java
+Map < String, ConsentHistoryResource > getConsentAmendmentHistoryData(
+    String consentID)
+throws ConsentManagementException
+```
+Input parameter:
+
+- `consentID`: consent ID of the consent. This is a mandatory parameter.

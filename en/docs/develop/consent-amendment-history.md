@@ -1,10 +1,11 @@
-Any change that is performed on an active consent is considered as an **amendment**. WSO2 Open Banking provides 
-the Consent Amendment History feature to retrieve details related to the consent amendment history. You can utilize this 
-feature in toolkits to achieve requirements related to consent amendment which are specific for the relevant specification.
+Any change that is performed on an active consent is considered as an amendment. WSO2 Open Banking provides 
+the Consent Amendment History feature to retrieve details related to the amendments done to a consent. You can achieve your 
+open banking requirements related to consent amendment which are specific to the relevant specification using the given extension point.
 
-The [Asynchronous Event Executor](https://ob.docs.wso2.com/en/latest/develop/custom-event-executor/#writing-a-custom-event-executor) 
-is utilized for the consent amendment history persistence, and a dedicated event executor is available to persist this 
-consent amendment data to the database asynchronously.
+The [Asynchronous Event Executor Framework](https://ob.docs.wso2.com/en/latest/develop/custom-event-executor/#writing-a-custom-event-executor)
+is utilized for the consent amendment history persistence. A dedicated event executor is available in the 
+accelerator to persist these consent amendment data to the database asynchronously.
+
 
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
@@ -21,14 +22,18 @@ This endpoint retrieves the consent amendment history when the consent ID is pro
 GET https://<IS_HOST>:9446/api/openbanking/consent/admin/consent-amendment-history?consentId=<CONSENT-ID>
 ```
 
-To enable consent amendmeqnt history feature, extend the following class:
+You can implement consent amendment history feature to handle data related to consent amendment history and generate toolkit-specific
+representation for the data according to your requirements, by extending the following class:
 
 ```java
 com.wso2.openbanking.accelerator.consent.extensions.admin.impl.DefaultConsentAdminHandler
 ```
-Override the `handleConsentAmendmentHistoryRetrieval` method to generate a representation of the consent history data which is specific to the toolkit.
+You can override the `handleConsentAmendmentHistoryRetrieval` method to generate a representation of the consent history data which is specific to the relevant specification.
 
-Given below is a brief explanation of the methods you need to implement:
+Given below is a brief explanation of the methods you need to implement to configure the Consent Amendment History feature according to your requirements:
+
+!!! note
+    Following methods can be accessible from [Consent Core Service](../consent-core-service/).
 
 ### amendDetailedConsent method
 
@@ -53,19 +58,19 @@ Input parameters:
 - `consentReceipt`: new consent receipt
 - `consentValidityTime`: new consent validity time
 - `authID`: authorization ID of the user who invoked the amendment
-- `accountIDsMapWithPermissions`: accounts IDs with relative permissions
+- `accountIDsMapWithPermissions`: accounts IDs with relevant permissions
 - `newConsentStatus`: new consent status
-- `consentAttributes`: new consent attributes key and values map
+- `consentAttributes`: new consent attributes in a key value map
 - `userID`: user ID of the user who invoked the amendment to create audit record
 - `additionalAmendmentData`: a data map to pass any additional data that needs to be amended in the consent
     - Following 2 data attributes with the respective key values can be passed in `additionalAmendmentData`. However, if no additional data is available for the amendment, keep this map empty.
         1. Additional Authorization Resources
-            - Value: a map of Authorization Resources
             - Key: user ID (for each Authorization Resource in the map)
+            - Value: a map of Authorization Resources
 
         2. Additional Mapping Resources
-            - Value: a map of mapping resources List 
             - Key: user ID (for each mapping resources List in the map)
+            - Value: a map of mapping resources List
 
 ### storeConsentAmendmentHistory method
 
@@ -80,12 +85,9 @@ throws ConsentManagementException
 ```
 Input parameters:
 
-- `consentID`: consent ID of the consent
-- `consentHistoryResource`: a model that includes the detailed consent resource and other history parameters (eg: amended Timestamp, reason caused the amendment) of the previous consent
-- `currentConsentResource`: detailed consent resource of the existing consent
-
-!!!note
-    Providing `consentID` and `consentHistoryResource` is mandatory, while providing `currentConsentResource` is optional.
+- `consentID`: consent ID of the consent. This is a mandatory parameter.
+- `consentHistoryResource`: a model that includes the detailed consent resource and other history parameters (for example: amended Timestamp, reason caused the amendment) of the previous consent. This is a mandatory parameter.
+- `currentConsentResource`: detailed consent resource of the existing consent. This is an optional parameter.
 
 ### getConsentAmendmentHistoryData method
 
@@ -98,12 +100,11 @@ throws ConsentManagementException
 ```
 Input parameter:
 
-- `consentID`: consent ID of the consent
-
-!!!note
-    Providing `consentID` is mandatory.
+- `consentID`: consent ID of the consent. This is a mandatory parameter.
 
 ### Data model
+
+The following table explains the data model associated with `ConsentHistoryResource`.
 
 ??? tip "Click here to see the data model associated with `ConsentHistoryResource`."
             
@@ -114,79 +115,44 @@ Input parameter:
     |reason | String | The reason caused the amendment on the consent |
     |detailedConsentResource | DetailedConsentResource | The detailed consent data of the consent which existed prior to the amendment |
 
-### Configuration
+### Configuring the Consent Amendment History feature
 
-!!! tip "Prerequisites"
-    Create the following database and execute the given scripts:
+1. Once implemented, build a JAR file for the Consent Amendment History feature.
 
-    - `ob_consent_history`
-    - Sample table creation script is given below:
-        
-        ```tab="MySQL"
-        CREATE TABLE IF NOT EXISTS OB_CONSENT_HISTORY (
-            TABLE_ID VARCHAR(10) NOT NULL,
-            RECORD_ID VARCHAR(255) NOT NULL,
-            HISTORY_ID VARCHAR(255) NOT NULL,
-            CHANGED_VALUES JSON NOT NULL,
-            REASON VARCHAR(255) NOT NULL,
-            EFFECTIVE_TIMESTAMP BIGINT NOT NULL,
-            PRIMARY KEY (TABLE_ID,RECORD_ID,HISTORY_ID)
-        )
-        ENGINE INNODB;
-        ```
-       
-        ```tab="MS SQL"
-        CREATE TABLE OB_CONSENT_HISTORY (
-            TABLE_ID VARCHAR(10) NOT NULL,
-            RECORD_ID VARCHAR(255) NOT NULL,
-            HISTORY_ID VARCHAR(255) NOT NULL,
-            CHANGED_VALUES NVARCHAR(max) NOT NULL,
-            REASON VARCHAR(255) NOT NULL,
-            EFFECTIVE_TIMESTAMP BIGINT NOT NULL,
-            PRIMARY KEY (TABLE_ID,RECORD_ID,HISTORY_ID)
-        );
-        ```
+2. To configure the database tables related to the Consent Amendment History feature:
 
-        ```tab="Oracle"
-        CREATE TABLE OB_CONSENT_HISTORY (
-            TABLE_ID VARCHAR(10) NOT NULL,
-            RECORD_ID VARCHAR(255) NOT NULL,
-            HISTORY_ID VARCHAR(255) NOT NULL,
-            CHANGED_VALUES CLOB NOT NULL,
-            REASON VARCHAR(255) NOT NULL,
-            EFFECTIVE_TIMESTAMP NUMBER NOT NULL,
-            PRIMARY KEY (TABLE_ID,RECORD_ID,HISTORY_ID)
-        );
-        ```
-        
-        ```tab="PostgreSQL"
-        CREATE TABLE IF NOT EXISTS OB_CONSENT_HISTORY (
-            TABLE_ID VARCHAR(10) NOT NULL,
-            RECORD_ID VARCHAR(255) NOT NULL,
-            HISTORY_ID VARCHAR(255) NOT NULL,
-            CHANGED_VALUES JSON NOT NULL,
-            REASON VARCHAR(255) NOT NULL,
-            EFFECTIVE_TIMESTAMP BIGINT NOT NULL,
-            PRIMARY KEY (TABLE_ID,RECORD_ID,HISTORY_ID)
-        );
-        ```
+       1. Go to the `<IS_HOME>/carbon-home/dbscripts/open-banking/consent-history` directory.
 
-To configure the Consent Amendment History feature, follow the steps below:
+       2. Execute the relevant script according to your database type against the `OB_CONSENT_HISTORY` database.
 
-1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+3. Place the above-created custom JAR file in the `<IS_HOME>/repository/components/lib` directory.
 
-2. Enable the `[open_banking.consent.amendment_history]` tag.
-```xml
-[open_banking.consent.amendment_history]
-enabled=true
-```
-3. Configure the event executor with the required priority. For example:
-```xml
-[[open_banking.event.event_executors]]
-name = "com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
-priority = 1
+4. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-[[open_banking.event.event_executors]]
-name = "com.wso2.openbanking.accelerator.consent.extensions.event.executors.ConsentAmendmentHistoryEventExecutor"
-priority = 2
-```
+5. Locate the `[open_banking.consent.admin]` tag.
+
+6. Configure the Consent Amendment History feature using the Fully Qualified Name (FQN) of the new class you wrote by extending `DefaultConsentAdminHandler`. For example:
+
+    ```toml
+    [open_banking.consent.admin]
+    handler="com.wso2.openbanking.accelerator.consent.extensions.admin.impl.DefaultConsentAdminHandler"
+    ```
+
+7. Add the following configuration and set the `enabled` tag to `true`.
+
+    ```toml
+    [open_banking.consent.amendment_history]
+    enabled=true
+    ```
+
+8. Configure the event executor with the required priority. For example:
+
+    ```toml
+    [[open_banking.event.event_executors]]
+    name = "com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
+    priority = 1
+
+    [[open_banking.event.event_executors]]
+    name = "com.wso2.openbanking.accelerator.consent.extensions.event.executors.ConsentAmendmentHistoryEventExecutor"
+    priority = 2
+    ```
