@@ -217,9 +217,9 @@ configuration with the IP address of the Identity Server.
 3. Register a new IDP for Push Authentication. Use the name **CIBA-Push-Auth**.
 4. Go to **Federated Authenticators > CIBA Push Authentication Configuration** and enable the Push Authenticator.
 5. IDP configurations:
-   - Firebase Server Key: Create an [FCM project](https://fcm.googleapis.com/fcm/send) when setting up the mobile 
-   application. Add the Server Key of that application here. You can obtain it from the 
-   [Firebase Console](https://console.firebase.google.com) of your project.
+     - Firebase Server Key: Create an [FCM project](https://fcm.googleapis.com/fcm/send) when setting up the mobile 
+       application. Add the Server Key of that application here. You can obtain it from the 
+       [Firebase Console](https://console.firebase.google.com) of your project.
 
 Now, this Push Authenticator (CIBA-Push-Auth) is available as a federated authenticator option inside any Service Provider 
 application in the Identity Server. 
