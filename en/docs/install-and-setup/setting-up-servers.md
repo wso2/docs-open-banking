@@ -191,6 +191,18 @@ allow a successful data flow. The instances mentioned below specify the ports th
 In order to enable secure communication, we need to install the certificates of each component in others. This will 
 facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this:
 
+!!! tip "Creating new keystores"
+
+    For API Manager:
+
+      1. Create a new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/security/configuring-keystores/keystore-basics/creating-new-keystores/#creating-a-new-keystore).
+      2. Configure the new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/security/configuring-keystores/configuring-keystores-in-wso2-api-manager/).
+ 
+    For Identity Server:
+
+     1. Create a new keystore by following the [Identity Server documentation](https://is.docs.wso2.com/en/5.11.0/deploy/security/create-new-keystores/#create-a-new-keystore).
+     2. Configure the new keystore by following the [Identity Server documentation](https://is.docs.wso2.com/en/5.11.0/deploy/security/configure-keystores-in-wso2-products/#configure-the-primary-keystore).
+
 1. Generate a key against the keystore of a particular server. For example, server A with an alias and common name that 
 is equal to the hostname.
 
