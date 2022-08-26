@@ -1,5 +1,5 @@
 !!! note
-    WSO2 Open Banking 3.0.0 supports OpenID Conformance Suite v4.1.43. 
+    WSO2 Open Banking 3.0.0 supports OpenID Conformance Suite v5.2.0. 
 
 The OpenID conformance suite consists of security standards that are defined by the OpenID Foundation (OIDF). It 
 maximizes the security of the APIs, providing robust data flow in Open Banking. An advantage of using OIDF security 
@@ -58,7 +58,7 @@ steps and create applications:
 2. Go to the `well-known-config-resources` directory.
 3. Copy the `auth.server.info-1.0-SNAPSHOT.jar` file into the `<IS_HOME>/repository/components/lib` directory.
 4. Copy the `openid-configuration.json` file into the `<IS_HOME>/repository/conf/identity` directory. 
-5. Update the values in `openid-configuration.json` according to your requirement. 
+5. Update the values in `openid-configuration.json` according to your setup. 
 6. Update the `keystore.json` file with the authorization server keys and client application keys generated for 
    [both applications](#configure-applications).
 7. Copy the `keystore.json` file into the `<IS_HOME>/repository/conf/identity` directory.
@@ -109,9 +109,6 @@ simple flask server can be used.
 
 ## Run the conformance suite
 
-The conformance suite requires configuration in the form of a JSON document with two application details; resource and 
-certificate files.
-
 !!! tip "Before you begin:"
     [Set up the CIBA flow](../learn/ciba-set-up-flow.md)
 
@@ -121,6 +118,7 @@ This section describes how to build the conformance suite to identify the config
 
 1. Download the sample JSON configuration file available <a href="../../assets/attachments/ciba-conformance-config.json" download>here</a>.
 
+    - Update the values according to the [applications you created](#configure-applications).
     - The `kid` value should be the specific kid value of the corresponding signing certificate in the JWKS.
     - The `ciba_approval_endpoint` value should be the custom endpoint configured in the 
       [Set up CIBA automated approval endpoint](##set-up-ciba-automated-approval-endpoint) section.
@@ -149,7 +147,7 @@ This section describes how to build the conformance suite to identify the config
        |-----|-------|
        | client_id | The client ID of the application |
        | scope | `openid accounts` |
-       | jwks.keys | The respective signing JWK set. This can be generated online using an online tool |
+       | jwks.keys | The respective signing JWK set |
        | hint_type | `login_hint`| 
        | hint_value | `admin@wso2.com`|
 
@@ -216,9 +214,6 @@ This section describes how to build the conformance suite to identify the config
    
 7. The conformance suite is now locally available at `https://localhost:8443/`.
 
-8. When running both the WSO2 Open Banking and the conformance suite locally, use the host machine's IP for Docker.
-   For example: `docker.for.mac.localhost`
-
 ### Start the suite online
 
 !!! info
@@ -228,23 +223,17 @@ This section describes how to build the conformance suite to identify the config
 
 ### Run tests
 
-1. Download the sample JSON configuration file 
-   available <a href="../../assets/attachments/sample_full_tests.json" download>here</a>.
-2. Update the values according to the [applications you created](#configure-applications).
-3. Use an online tool and convert the private key (tpp.com.key) to a JWK. Use this JWK to update the value of the **keys** 
+1. Use a tool and convert the private key (tpp.com.key) to a JWK. Use this JWK to update the value of the **keys** 
    array element in the JSON configuration.
-4. Log in to the test suite.
-5. Select the Open Banking test plan and client authentication type as follows:
+2. Log in to the test suite.
+3. Select the Open Banking test plan and client authentication type as follows:
     - Test plan: `FAPI-CIBA-ID1: Authorization server test`
     - Client Authentication Type `private_key_jwt` or `mtls`
     - CIBA Mode: `poll`
     - FAPI Profile: `plain_fapi`
     - Client Registration Type: `static_client`
     ![test_configuration](../assets/img/conformance/test-config.png)
-6. Copy the content in the modified JSON configuration file and paste it into the **JSON** tab. ![json_configuration](../assets/img/conformance/json-config.png)
-7. Click **Start Test Plan**.
-8. Run each given test in sequence. ![run_test](../assets/img/conformance/run-test.png)
-9. Refer to <https://openid.net/certification/instructions/> for more information.
-
-
-
+4. Copy the content in the modified JSON configuration file and paste it into the **JSON** tab. ![json_configuration](../assets/img/conformance/json-config.png)
+5. Click **Start Test Plan**.
+6. Run each given test in sequence. ![run_test](../assets/img/conformance/run-test.png)
+7. Refer to <https://openid.net/certification/instructions/> for more information.
