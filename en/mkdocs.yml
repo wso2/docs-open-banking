@@ -158,7 +158,7 @@ nav:
             - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
             - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
   - 'Conformance':
-    - 'CIBA Conformance': conformance/ciba-conformance.md
+    - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
   - 'References':
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
     - 'API Manager Configuration Catalog': references/config-catalog-apim.md
