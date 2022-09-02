@@ -7,7 +7,7 @@ is utilized for the consent amendment history persistence. The following event e
 accelerator to persist the consent amendment data to the database asynchronously:
 
 ```xml
-com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor
+com.wso2.openbanking.accelerator.consent.extensions.event.executors.ConsentAmendmentHistoryEventExecutor
 ```
 
 !!! info
