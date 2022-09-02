@@ -1,23 +1,27 @@
 Any change that is performed on an active consent is considered as an amendment. WSO2 Open Banking provides 
-the Consent Amendment History feature to retrieve details related to the amendments done to a consent. You can achieve your 
-open banking requirements related to consent amendment, which are specific to the relevant specification using the given extension point.
+the Consent Amendment History feature to retrieve details related to the amendments done to a consent. With this feature, 
+you can achieve your open banking requirements related to consent amendment, which are specific to the relevant specification.
 
 The [Asynchronous Event Executor Framework](https://ob.docs.wso2.com/en/latest/develop/custom-event-executor/#writing-a-custom-event-executor)
-is utilized for the consent amendment history persistence. A dedicated event executor is available in the 
-accelerator to persist these consent amendment data to the database asynchronously.
+is utilized for the consent amendment history persistence. The following event executor is available in the 
+accelerator to persist the consent amendment data to the database asynchronously:
 
+```xml
+com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor
+```
 
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.33** onwards. For more information on updating,
     see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
-Given below is a summary of details related to this extension.
+Given below is a summary of details related to this feature:
 
 ### Consent Amendment History Retrieval Endpoint
 
 This endpoint retrieves the consent amendment history when the consent ID is provided as a query parameter. The response includes the current consent and an array of consent history data objects.
 
+```xml
 GET https://<IS_HOST>:9446/api/openbanking/consent/admin/consent-amendment-history?consentId=<CONSENT-ID>
 ```
 
@@ -29,7 +33,7 @@ com.wso2.openbanking.accelerator.consent.extensions.admin.impl.DefaultConsentAdm
 ```
 You can override the `handleConsentAmendmentHistoryRetrieval` method to generate a representation of the consent history data which is specific to the relevant specification.
 
-Given below is a brief explanation of the methods you need to implement to configure the Consent Amendment History feature according to your requirements:
+Given below is a brief explanation of the Consent Core Service methods you can use or override in your toolkits to achieve Consent Amendment and Consent Amendment History requirements according to the specification:
 
 !!! note
     Following methods can be accessible from [Consent Core Service](../consent-core-service/).
