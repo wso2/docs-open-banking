@@ -82,7 +82,7 @@ Listed below are the prerequisites for a successful deployment:
          <th>JDK Version</th>
          <td>
             <ul>
-               <li>Oracle JDK 11</li>
+               <li>OpenJDK 11</li>
             </ul>
          <td>  
       </tr>
@@ -116,10 +116,10 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
          <td>
             <ul>
                <li>
-                  Oracle JDK 11
+                  OpenJDK 11
                </li>
                <li>
-                  OpenJDK 11
+                  Oracle JDK 11
                </li>
             </ul>
          </td>
