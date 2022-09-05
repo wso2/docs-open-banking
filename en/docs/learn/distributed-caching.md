@@ -40,12 +40,24 @@ discovery_mechanism="Multicast"
 
 ### TCP configurations
 
-If `open_banking.distributed_cache.discovery_mechanism` is set to `TCP`,
+If `open_banking.distributed_cache.discovery_mechanism` is set to `TCP`, and if there are 2 API Manager nodes:
 
-``` toml
+``` toml tab="APIM Node1"
 [open_banking.distributed_cache]
+enabled=true
+host_name="localhost"
+port=5701
 discovery_mechanism="TCP"
 members=["192.168.1.0-7", "localhost:5703"]
+```
+
+``` toml tab="APIM Node2"
+[open_banking.distributed_cache]
+enabled=true
+host_name="localhost"
+port=5703
+discovery_mechanism="TCP"
+members=["192.168.1.0-7", "localhost:5701"]
 ```
 
 |Configuration name |Type |Default Value |Description|
@@ -55,6 +67,9 @@ members=["192.168.1.0-7", "localhost:5703"]
 ### Multicast configurations
 
 If `open_banking.distributed_cache.discovery_mechanism` is set to `Multicast`,
+
+!!! note "In a containerized deployment:"
+    You can avoid the `trusted_interfaces` configuration. 
 
 ``` toml
 [open_banking.distributed_cache]
