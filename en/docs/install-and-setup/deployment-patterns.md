@@ -22,23 +22,23 @@ Single node (All-in-one) deployment with API Manager and Identity Server.
 
 ![pattern-1](../assets/img/install-and-setup/deployment-patterns/pattern-1.png)
 
-### Pattern 1 - API Manager HA
+### Pattern 2
 
 Multi-node deployment with 2 API Manager instances and an Identity Server.
 
-![pattern-1-apim-ha](../assets/img/install-and-setup/deployment-patterns/pattern-1-apim-ha.png)
+![pattern-2](../assets/img/install-and-setup/deployment-patterns/pattern-2.png)
 
-### Pattern 1 - Identity Server HA
+### Pattern 3
 
 Single node (All-in-one) deployment with API Manager and 2 Identity Server instances.
 
-![pattern-1-is-ha](../assets/img/install-and-setup/deployment-patterns/pattern-1-is-ha.png)
+![pattern-3](../assets/img/install-and-setup/deployment-patterns/pattern-3.png)
 
-### Pattern 2 - HA
+### Pattern 4
 
 Multi-node deployment with API Manager, Identity Server, and Streaming Integrator.
 
-![pattern-2](../assets/img/install-and-setup/deployment-patterns/pattern-2.png)
+![pattern-4](../assets/img/install-and-setup/deployment-patterns/pattern-4.png)
 
 ## Setting up deployment
 
@@ -51,7 +51,7 @@ section.
     Set the hostname of the Identity Server node as `obiam`.
 
 - Configure WSO2 Identity Server in a clustered setup by following 
-  [Set up WSO2 clusters with Nginx](https://is.docs.wso2.com/en/5.11.0/deploy/front-with-the-nginx-load-balancer/).
+  [Set up WSO2 IS clusters with Nginx](https://is.docs.wso2.com/en/5.11.0/setup/deployment-guide/#fronting-with-a-load-balancer?).
 
 !!! note
     Follow the Nginx configuration that exposes `/oauth2`, `/commonauth`, and other endpoints.
