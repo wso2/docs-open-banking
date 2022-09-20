@@ -2,14 +2,16 @@
 
 The CIBA flow requires a mobile application to interact with the end-user (bank customer) for backchannel authentication. 
 Ideally, this application should be implemented by the bank. If you wish to develop this application with React Native, 
-an SDK is already available [here](https://github.com/wso2-extensions/identity-outbound-auth-push/blob/master/sdk/README.md).
-Several essential requests related to the Identity Server are facilitated via this SDK. 
+the auth-push-react-native SDK is available. This SDK facilitates essential Identity Server related requests. 
 
-WSO2 Identity Server provides a sample React Native application and this section explains how to set it up for a CIBA flow.
+To download the **auth-push-react-native** SDK, contact us via [WSO2 Online Support System](https://support.wso2.com/support),
+if you have an active WSO2 Open Banking subscription
 
-!!! note
-    The available sample application is not implemented with a focus on CIBA but can be customized to try out a CIBA flow 
-    as instructed below.
+!!! note  
+    If you don't have a WSO2 Open Banking subscription,
+    [contact us](https://wso2.com/solutions/financial/open-banking/#contact) for more information.
+
+WSO2 Open Banking provides a sample React Native application and this section explains how to set it up for a CIBA flow.
 
 ## Set up React Native mobile application
 
@@ -73,11 +75,9 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
        - To fix this issue, build the SDK manually and add it to the project. This happens because the Identity Server 
          has not yet pushed their SDK to the npm registry.
 
-3. Clone the [identity-outbound-auth-push](https://github.com/wso2-extensions/identity-outbound-auth-push/tree/master) GitHub
-   repository.
-4. Go to the location where you cloned the `identity-outbound-auth-push` repository.
+3. Go to the location where you downloaded the `auth-push-react-native` directory.
 
-       - Open a terminal from the `/identity-outbound-auth-push/sdk/package` directory.
+       - Open a terminal from the `ciba-mobile-sdk/sdk/package` directory.
        - Execute the following:
    
          ```shell
