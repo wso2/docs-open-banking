@@ -39,9 +39,12 @@ be supported in future releases.
 
 ## React Native SDK (auth-push-react-native)
 
-WSO2 provides a React Native SDK known as `auth-push-react-native` and is available at 
-[wso2-extensions/identity-outbound-auth-push](https://github.com/wso2-extensions/identity-outbound-auth-push/tree/master/sdk)
-This section provides an overview of this SDK.
+WSO2 provides a React Native SDK known as `auth-push-react-native`. To download this SDK, contact us via 
+[WSO2 Online Support System](https://support.wso2.com/support) if you have an active WSO2 Open Banking subscription
+
+!!! note  
+    If you don't have a WSO2 Open Banking subscription,
+    [contact us](https://wso2.com/solutions/financial/open-banking/#contact) for more information.
 
 To install the package:
 
@@ -53,23 +56,23 @@ To install the package:
    yarn add @wso2/auth-push-react-native
    ```
 
-The SDK has provides the following functionalities that can be used for your app development:
+??? tip "Click here to view the SDK functionalities that can be used for your app development:"
+    | Method | Description |
+    |--------|-------------|
+    | `addAccount(qrData: DiscoveryDataInterface, pushId: string)` | Register the device in the authorization server as an account |
+    | `processAuthRequest(request: JSON)` | Process the data received from the push notification as an `AuthRequestInterface` object |
+    | `sendAuthRequest(authRequest: AuthRequestInterface, response: string, account: Account)` | Send the authentication response to the Identity Server once the user authorizes/denies the request |
+    | `removeAccount(account: AccountsInterface)` | Request within the app to unregister the device from the account in the Identity Server |
+    | `addApprovedAccountIds(authRequest: AuthRequestInterface, approvedAccountIds: any[])` | Set the approved account Ids to the authentication response that would to be sent to the server |
+    | `processConsentData(authRequest: AuthRequestInterface)` | Process consent related data in the authentication request to the `ConsentInterface` object |
 
-- `addAccount(qrData: DiscoveryDataInterface, pushId: string)`:  to register the device in the authorization server as 
-an account
-- `processAuthRequest(request: JSON)`:  to process the data received from the push notification as an 
-`AuthRequestInterface` object
-- `sendAuthRequest(authRequest: AuthRequestInterface, response: string, account: Account)`: to send the authentication 
-response to the Identity Server once the user authorizes/denies the request.
-- `removeAccount(account: AccountsInterface)`: request within the app to unregister the device from the 
-account in the Identity Server 
-
-For more details including the APIs and the data models available in the SDK, see 
+The `auth-push-react-native` is based on `WSO2 Push Authenticator React Native SDK`.  For more details including the 
+APIs and the data models available in the SDK, see 
 [wso2-extensions/identity-outbound-auth-push](https://github.com/wso2-extensions/identity-outbound-auth-push/blob/master/sdk/README.md).
 
 !!! note
-    This auth-push-react-native SDK is not published to the npm registry yet. You can obtain the source code of the SDK 
-    from [here](https://github.com/wso2-extensions/identity-outbound-auth-push/tree/master/sdk) then build and add the 
+    This auth-push-react-native SDK is not published to the npm registry yet. You can obtain the source code of the SDK
+    via [WSO2 Online Support System](https://support.wso2.com/support), then build and add the 
     package to your mobile app project.
 
 ## Identity Server APIs to invoke
