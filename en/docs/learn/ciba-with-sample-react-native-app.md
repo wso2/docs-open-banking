@@ -77,7 +77,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
 
 3. Go to the location where you downloaded the `auth-push-react-native` directory.
 
-       - Open a terminal from the `auth-push-react-native/sdk/package` directory.
+       - Open a terminal from the `ciba-mobile-sdk/sdk/package` directory.
        - Execute the following:
    
          ```shell
