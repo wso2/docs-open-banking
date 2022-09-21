@@ -72,7 +72,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
     '@wso2/auth-push-react-native' module is not in the npm registry.
     ```
 
-       - To fix this issue, build the SDK manually and add it to the project. This happens because the Identity Server 
+       - To fix this issue, [build the SDK manually](../develop/mobile-application-for-ciba.md) and add it to the project. This happens because the Identity Server 
          has not yet pushed their SDK to the npm registry.
 
 3. Go to the location where you downloaded the `auth-push-react-native` directory.
@@ -99,7 +99,7 @@ project and package names. When configuring the [Push Authenticator IDP](ciba-se
 7. Open a terminal from `/WSO2VerifyApp/packages` and run:
 
     ```shell
-    npm install package
+    npm install @wso2/auth-push-react-native
     ```
 
 8. Even though you run the mobile app, it won’t communicate with the Identity Server until the following changes
