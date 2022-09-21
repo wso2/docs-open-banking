@@ -194,7 +194,25 @@ device as a unique identifier and registered with the Firebase cloud project as 
 
 The registration request body contains the following:
 
-   ![registration_request](../assets/img/learn/ciba/registration-request.png)
+```
+POST: https://192.168.8.193:9446/t/carbon.super/api/users/v1/me/push-auth/devices
+
+headers:
+{
+   Accept: "application/json",
+   Content-Type: "application/json"
+}
+
+request body:
+{
+   "deviceld":"80265a63-5f13-4c83-916a-a 1cd96287e48",
+   "model":"FLA-LX2",
+   "name":"HUAWEI Y9 2018",
+   "publicKey":"MIGfMAOGCSqGSlb3DQEBAQUAA4GNADCBiQKBgQCQhhhA7mrs6PLUXvW+MaH4c7SvPCn61LiKGnb67bW03NRrsAxblp+W7QwvWBtllz6MJIEgFTU60euMnUoEFYgX/1i+NecwpGIOCsRrxxkl35MkbQZpvaucfbrZ9clnM62NtSuenIKEySJJiN3qyZEd Ma+601yRXhTmtiOShCrwlDAQAB",
+   "pushId":"cMaOcudCR7CmtqAQcwQuHP:APA91bHkp8FZIR9JXdubZhyfq8wlA-6XWrZEEmYCcOms5mw9E57DRPN3iEfSAupZqiythtgcenYo0bfuyxYp4cdQuSVoNF_sn2FUJvsgDo7HBQjuGCL8Q4_7bNKC8orzQTID5c4JM5s-",
+   "signature":"TA+O+FiY50iWoAguQCJ03rlClpRnv57vodlbQABTnOrtlHe112PezMnePrXQwZsbFXdBQllP7ZYPIZvJS382AYKTHMlafH5ohoLFfCWKY+/CptAXxSy+oKqfl5zG21BROePISJBppqOoDyxsYGuluTPPn0185AIKxgON9UTAWSw="
+}
+```
 
   - JSON content extracted from the QR code
   - FCM token of the device (`pushId`)
@@ -212,12 +230,41 @@ device.
 
       - The notification message contains the following:
    
-         ![ciba_response](../assets/img/learn/ciba/ciba-response.png)
+         ``` json
+         {
+            "displayName":"null null",
+            "chaIlenge":"fe1091fa-b4a5-44bb-993d-7426028a51f5",
+            "organization":"carbon.super",
+            "deviceld":"4ce5928b-39ea-4e38-a313-f3e2f1d84c63",
+            "body":"admin@wso2.com is requesting to log into test-a",
+            "username":"admin@wso2.com",
+            "browserName":"Other",
+            "ipAddress":"192.168.8.193",
+            "deviceName":"Other",
+            "sessionDataKey":"398ec5fd-4ff3-4b42-a282-6f1c79981063",
+            "applicationNam":"test-a"
+         }
+         ```
 
    1. When the approval button is clicked the following request is sent to the Identity Server as the response that the user 
    has approved.
 
-      ![ciba_user_authenticated](../assets/img/learn/ciba/ciba-user-authenticated.png)
+
+      ``` json
+      POST: https://192.168.8.193:9446/push-auth/authenticate
+      
+      headers: 
+      {
+        Accept: "application/json",
+        Content-Type: "application/json"
+      }
+      
+      request body:
+      {
+        "authResponse":"eyJhbGciOiJSUz11Nils|mRpZCI6|jRjZTU5MjhiLTM5ZWEtNGUZOC1hMzEzLWYzZTJmMWQ4NGM2MyJ9.eyJqdGkiOilyMTc3NTRIYyO×ZGYWLTQ3ZjEtODQzNy1mMDcOZWJjZDEOYzIiLCJzdWliOiJhZG1pbkB3c28yLmNvbUBjYXJib24uc3VwZXIiLCJpc3MiOiJ3c28ydmVyaWZ5liwiYXVkljoiaHROcHM6Ly8xOTluMTY4LjguMTkzOjkONDYvdC9jYXJib24uc3VwZXIvliwibmJmljoxNj14MTAzNzM2LCJleHAiOjE2MjgxMDczMzYsImIhdCI6MTYyODEwMzczNiwic2|kljoiMzk4ZWM1ZmQtNGZmMy00YiQyLWEyODItNmYxYzc50TgxMDYzliwiY2hnljoiZmUxMDkxZmEtYjRhNS0ONGJiLTk5M2QtNzQyNiA yOGE1MWY1liwicmVzljoiU1VDQ0VTUOZVTCJ9.mg0HCK4qj61KW2fhNOmaredWuvUVPipI6th4S8BTd-w-J850qnKvOmnE7N-k_P_fMgkSKVq2B35Uc3_6gJ95YdIXbdxX_0LKK3veJAruOMMCJXA2fdpW_FnpyskScy08V-5whQqT-CHxvgwaifBb5YMloYJ1QktYHGDoOuVotEo"
+      }
+      ```
+
 
       - The response is signed with the private key of the device. The private key is generated during the device registration.
       The Identity Server can decode the response as the public key is stored in the `PUSH_AUTHENTICATION_DEVICE` database 
