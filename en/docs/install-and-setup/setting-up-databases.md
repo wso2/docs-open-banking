@@ -264,4 +264,22 @@ according to your DBMS.
          ```sql tab='PostgreSQL'
          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column INPUTS type VARCHAR(7500);
          ```              
-         
+
+!!! tip "For MySQL databases:"
+    The consent attributes are stored in the `ATT_VALUE` field of `OB_CONSENT_ATTRIBUTE` table, which is in 
+    the `openbank_openbankingdb` database. 
+
+    Per consent, when the aggregated character length of all consent attribute values is greater than 1024 characters, 
+    increase the `group_concat_max_len` value. By default, this value is 1024.
+
+    ``` sql
+    SHOW VARIABLES LIKE 'group_concat_max_len';
+    SET GLOBAL group_concat_max_len = 10000;
+    ```
+
+    To permanently persist this change in the MySQL server, update the `my.cnf` file as follows:
+
+    ``` sql
+    [mysqld]
+    group_concat_max_len=10000
+    ```
