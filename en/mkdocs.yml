@@ -143,6 +143,8 @@ nav:
         - 'Application Management Listener': develop/application-management-listener.md
         - 'Custom DCR Validator': develop/custom-dcr-validator.md
     - 'Event Notification': develop/custom-event-notification.md
+    - 'API Security':
+        - 'JWS Signature Validation': develop/jws-signature-validation.md
     - 'Using Hibernate Validator': develop/validation-layer.md
     - 'Data Publishing':
         - 'Custom Data Publishing': develop/custom-data-publishing.md
