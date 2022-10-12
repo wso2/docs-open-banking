@@ -397,7 +397,7 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
 - To append the registration access token and client URI to the DCR response, you can use the following methods:
 
     !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server 3.0.0.56 onwards**.
+        This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.56** onwards.
         For more information on updating, see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 

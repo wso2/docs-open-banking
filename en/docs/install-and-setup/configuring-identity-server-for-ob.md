@@ -128,7 +128,7 @@ database server, and the JDBC driver.
 
     !!! info
         This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.8** and 
-        **WSO2 Open Banking Identity Server 3.0.0.11 onwards**.
+        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.11** onwards.
         For more information on updating, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
 
     ``` toml
@@ -165,7 +165,7 @@ database server, and the JDBC driver.
 
     !!! info
         This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
-        **WSO2 Open Banking Identity Server 3.0.0.10 onwards**. For more information on updating 
+        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.10** onwards. For more information on updating 
         WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
 
     ``` toml
