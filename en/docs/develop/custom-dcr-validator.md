@@ -375,7 +375,7 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
     
     ````
     
-    - To implement the ExtendedRegistrationResponse class, extend RegistrationResponse as follows:  
+    - To implement the `ExtendedRegistrationResponse` class, extend `RegistrationResponse` as follows:  
   
     ````
     public class ExtendedRegistrationResponse extends RegistrationResponse {
@@ -393,7 +393,26 @@ public String getRegistrationResponse(Map < String, Object > spMetaData) {
     
     }
     ````
-    
+
+- To append the registration access token and client URI to the DCR response, you can use the following methods:
+
+    !!! info
+        This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server 3.0.0.56 onwards**.
+        For more information on updating, see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+
+    - To append a registration access token:
+
+        ```
+        ValidatorUtils.generateAccessToken(clientId, tlsCert)
+        ```
+
+    - To append a registration client URI:
+
+        ```
+        ValidatorUtils.getRegistrationClientURI()
+        ```
+
 ## Configuring a custom DCR validator
 
 Once you implement the customized validator you need to configure it in WSO2 Open Banking Accelerator. 
