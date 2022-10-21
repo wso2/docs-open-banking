@@ -109,6 +109,7 @@ nav:
         - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
         - 'Error handling in API Gateway': develop/gateway-error-handling.md
         - 'Custom Throttling Keys': develop/custom-throttling-keys.md
+        - 'Distributed Cache Key': develop/distributed-cache-key.md
     - 'Open Banking Event Executor':
         - 'Custom Event Executor': develop/custom-event-executor.md
     - 'Open Banking Service Activator': develop/service-activator.md
