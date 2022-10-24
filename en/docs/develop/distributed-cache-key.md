@@ -3,9 +3,7 @@
 WSO2 Open Banking Distributed Cache is a caching service that creates a clustered cache among one or more WSO2 API 
 Manager or Identity Server instances. The Open Banking Distributed Cache Key contains an extension. 
 According to your requirements, you can extend and override the methods in the `OpenBankingDistributedCacheKey` class 
-to support the following functions:
-
-- todo
+to implement a distributed cache according to your open banking requirements.
 
 To achieve the above, extend the following class.
 ``` java
@@ -77,7 +75,8 @@ public int hashCode() {
 ## Configuring a custom Open Banking Distributed Cache Key
 
 1. Once implemented, build a JAR file for your project.
-2. Place the above-created JAR file in the `todo` directory.
+2. Place the above-created JAR file in the relevant `lib` directory of the base product:
+     - `<APIM_HOME>/repository/components/lib`
+     - `<IS_HOME>/repository/components/lib`
 3. Configure the `deployment.toml` file of the instance based on your caching requirements.
-   See [Distributed Cache Configurations](../learn/distributed-caching.md#wso2-open-banking-distributed-cache),
-   for more information.
+   Fore more information, see [Distributed Cache Configurations](../learn/distributed-caching.md#wso2-open-banking-distributed-cache).
