@@ -82,7 +82,7 @@ This section explains how to deploy the solution using Docker Compose.
 10. Copy the `deployment.toml` file of the API Manager from the container to a desired location in the host machine.
 
      ``` 
-     docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <DESIRED_LOCATION>
+     docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.1.0/repository/conf/deployment.toml <DESIRED_LOCATION>
      ```
 
 11. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
@@ -116,7 +116,7 @@ This section explains how to deploy the solution using Docker Compose.
         You can use the same command and copy any existing `deployment.toml` file to the container.
 
     ``` 
-    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml
+    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.1.0/repository/conf/deployment.toml
     ```
 
 13. Restart the container to apply the changes:
@@ -309,7 +309,7 @@ This section explains how to deploy the solution using Docker Compose.
 4. Copy the `deployment.toml` file from the container to a desired location in the host machine.
 
     ``` 
-    docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml <DESIRED_LOCATION>
+    docker cp <CONTAINER_ID>:/home/wso2carbon/wso2am-4.1.0/repository/conf/deployment.toml <DESIRED_LOCATION>
     ```
 
 5. Go to the location where you copied the `deployment.toml` and update the copied file as follows:
@@ -343,7 +343,7 @@ This section explains how to deploy the solution using Docker Compose.
         You can use the same command and copy any existing `deployment.toml` file to the container.
 
     ``` 
-    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.0.0/repository/conf/deployment.toml
+    docker cp <DESIRED_LOCATION>/deployment.toml <CONTAINER_ID>:/home/wso2carbon/wso2am-4.1.0/repository/conf/deployment.toml
     ```
 
 7. Restart the container to apply the changes:

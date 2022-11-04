@@ -47,7 +47,7 @@ name = "SMSAuthentication"
 1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 
 2. If you want to change the internal REST API endpoints of the API Manager configure the following tags. By default, 
-the API Manager 4.0 endpoints are configured.
+the API Manager 4.1 endpoints are configured.
 ``` toml
 [[open_banking.dcr.apim_rest_endpoints]]
 app_creation = "api/am/devportal/v2/applications"

@@ -4852,7 +4852,7 @@ api_subscribe = "api/am/devportal/v2/subscriptions/multiple"</code></pre>
                             <code>[open_banking.dcr.apim_rest_endpoints]</code>
                             
                             <p>
-                                If you want to change the internal REST API endpoints of the API Manager, configure the following tags. By default, the API Manager 4.0 endpoints are configured.
+                                If you want to change the internal REST API endpoints of the API Manager, configure the following tags. By default, the API Manager 4.1 endpoints are configured.
                             </p>
                         </div>
                         <div class="params-wrap">

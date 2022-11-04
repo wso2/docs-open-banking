@@ -5,9 +5,9 @@ WSO2 Open Banking Accelerator is a technology stack catered to speed up the impl
 The accelerators run on top of WSO2 Identity Server and WSO2 API Manager, which are referred to as base 
 products. Before setting up the accelerator, download and install the base products:
 
-- Install [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
-- Install [WSO2 API Manager 4.0.0](https://wso2.com/api-management/previous-releases/)
-- Install [WSO2 Streaming Integrator 4.0.0](https://wso2.com/streaming-integrator/previous-releases/)
+- [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
+- [WSO2 API Manager 4.1.0](https://wso2.com/api-manager/)
+- [WSO2 Streaming Integrator 4.0.0](https://wso2.com/streaming-integrator/previous-releases/)
 - To configure the Identity Server with the API Manager, install 
 [WSO2 IS Connector](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
 
@@ -195,8 +195,8 @@ facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this
 
     For API Manager:
 
-      1. Create a new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/security/configuring-keystores/keystore-basics/creating-new-keystores/#creating-a-new-keystore).
-      2. Configure the new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/security/configuring-keystores/configuring-keystores-in-wso2-api-manager/).
+      1. Create a new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.1.0/install-and-setup/setup/security/configuring-keystores/keystore-basics/creating-new-keystores/#creating-a-new-keystore).
+      2. Configure the new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.1.0/install-and-setup/setup/security/configuring-keystores/configuring-keystores-in-wso2-api-manager/).
  
     For Identity Server:
 
@@ -236,7 +236,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
 
     - Go to the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
     
-    - Rename `wso2am-4.0.0-deployment.toml` to `deployment.toml`.
+    - Rename `wso2am-4.1.0-deployment.toml` to `deployment.toml`.
     
     - Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory and replace the existing file.
         

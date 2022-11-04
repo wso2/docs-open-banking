@@ -6,8 +6,8 @@ explains the integration points and APIs that your banking system needs to provi
 
 ## Bank back end integration
    
-The integration capabilities of the API Manager 4.0 can help you make the bank back end compatible with WSO2 Open 
-Banking. For more information, see [Developing Your First Integration Solution](https://apim.docs.wso2.com/en/4.0.0/integrate/develop/integration-development-kickstart/). 
+The integration capabilities of the API Manager 4.1 can help you make the bank back end compatible with WSO2 Open 
+Banking. For more information, see [Developing Your First Integration Solution](https://apim.docs.wso2.com/en/4.1.0/integrate/develop/integration-development-kickstart/). 
 
 ## Consent REST API
     
