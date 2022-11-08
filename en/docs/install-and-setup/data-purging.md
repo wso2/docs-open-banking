@@ -40,7 +40,7 @@ the [Common Configurable Attributes](#common-configurable-attributes) section.
        - `OB_CONSENT_STATUS_AUDIT` 
 
 1. According to your database type, compile the stored procedure in the
-   `<IS_HOME>/carbon-home/dbscripts/stored-procedures/consent-purging-procedures/<DB-Type>/<DB-Type>-consent-cleanup-script.sql`
+   `<OB_IS_ACCELERATOR_HOME>/carbon-home/dbscripts/stored-procedures/consent-purging-procedures/<DB-Type>/<DB-Type>-consent-cleanup-script.sql`
    file.
 
 2. Execute the compiled store procedure.
