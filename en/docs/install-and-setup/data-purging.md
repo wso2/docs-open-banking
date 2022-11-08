@@ -93,7 +93,7 @@ see the [Common Configurable Attributes](#common-configurable-attributes) sectio
        - `OB_NOTIFICATION_ERROR`
 
 1. According to your database type, compile the stored procedure in the
-   `<IS_HOME>/carbon-home/dbscripts/stored-procedures/event-notification-purging-procedures/<DB-Type>/<DB-Type>-event-notification-cleanup-script.sql`
+   `<OB_IS_ACCELERATOR_HOME>/carbon-home/dbscripts/stored-procedures/event-notification-purging-procedures/<DB-Type>/<DB-Type>-event-notification-cleanup-script.sql`
    file.
 
 2. Execute the compiled store procedure.
