@@ -18,7 +18,7 @@ database server.
         We recommend that you test the database dump before the cleanup task as the cleanup can take some time.
 
 3. According to your database type, execute the store procedures in the
-   `<IS_HOME>/carbon-home/dbscripts/stored-procedures` directory.
+   `<OB_IS_ACCELERATOR_HOME>/carbon-home/dbscripts/stored-procedures` directory.
 
 4. Once the cleanup is over, start WSO2 Servers by pointing them to the cleaned-up database dump and test thoroughly 
    for any issues.
