@@ -14,7 +14,7 @@ The accelerators run on top of WSO2 Identity Server and WSO2 API Manager, which 
 products. Before setting up the accelerator, download and install the base products:
 
 - Install [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
-- Install [WSO2 API Manager 4.1.0](https://wso2.com/api-manager/)
+- Install [WSO2 API Manager 4.1.0](https://wso2.com/api-manager/) or [WSO2 API Manager 4.0.0](https://wso2.com/api-management/previous-releases/)
 
 ## Installing WSO2 Open Banking Accelerator
 
