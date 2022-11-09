@@ -4,7 +4,7 @@ Banking Accelerator to meet all open banking requirements with additional benefi
 WSO2 Open Banking Accelerator on top of the following WSO2 products:
 
 - WSO2 Identity Server 5.11.0
-- WSO2 API Manager 4.1.0
+- WSO2 API Manager 4.1.0 or WSO2 API Manager 4.0.0
 - WSO2 Streaming Integrator 4.0.0
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
@@ -28,6 +28,16 @@ Given below is a product matrix for different versions of WSO2 Open Banking:
 | 1.4.0 | wso2-obam-1.4.0 <br/> wso2-obkm-1.4.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.4.0 <br/> wso2ei-6.4.0 |
 | 1.3.0 | wso2-obam-1.3.0 <br/> wso2-obkm-1.3.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.3.0 <br/> wso2ei-6.4.0 |
 | 1.2.0 | wso2ob-am-2.6.0 <br/> wso2ob-km-5.7.0 | wso2ob-am-analytics-2.6.0 <br/> wso2ob-ei-6.4.0|
+
+## Compatible Base Product Versions
+
+Given below is the compatible base product matrix for WSO2 Open Banking 3.0:
+
+| Base Product              | Compatible Versions |
+|---------------------------|---------------------|
+| WSO2 Identity Server     | 5.11.0              |
+| WSO2 API Manager         | 4.1.0 <br/> 4.0.0   |
+| WSO2 Streaming Integrator | 4.0.0               |
 
 ## Prerequisites for a Deployment
 
