@@ -195,8 +195,8 @@ facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this
 
     For API Manager:
 
-      1. Create a new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.1.0/install-and-setup/setup/security/configuring-keystores/keystore-basics/creating-new-keystores/#creating-a-new-keystore).
-      2. Configure the new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/4.1.0/install-and-setup/setup/security/configuring-keystores/configuring-keystores-in-wso2-api-manager/).
+      1. Create a new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/security/configuring-keystores/keystore-basics/creating-new-keystores/#creating-a-new-keystore).
+      2. Configure the new keystore by following the [API Manager documentation](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/security/configuring-keystores/configuring-keystores-in-wso2-api-manager/).
  
     For Identity Server:
 
