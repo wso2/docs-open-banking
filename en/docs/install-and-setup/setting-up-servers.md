@@ -236,7 +236,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
 
     - Go to the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
     
-    - Rename `wso2am-4.1.0-deployment.toml` to `deployment.toml`.
+    - Based on the API Manager version you have, rename `wso2am-4.1.0-deployment.toml` or `wso2am-4.0.0-deployment.toml` to `deployment.toml`.
     
     - Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory and replace the existing file.
         
