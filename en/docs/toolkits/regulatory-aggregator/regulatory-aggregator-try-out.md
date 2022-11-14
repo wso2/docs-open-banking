@@ -213,7 +213,7 @@ A successful request will generate an access token with a `200 OK`.
 ## Wire Logs
 
 - To understand this flow further, enable Wire Logs in the WSO2 API Manager by following the
-[Gateway Wire Logs](https://apim.docs.wso2.com/en/4.0.0/administer/logging-and-monitoring/logging/configuring-logging/#gateway-wire-logs) documentation.
+[Gateway Wire Logs](https://apim.docs.wso2.com/en/latest/administer/logging-and-monitoring/logging/configuring-logging/#gateway-wire-logs) documentation.
 - You can see the request that the aggregator receives contains the access token you attached. 
 - Then the request you sent is forwarded to the relevant bank (based on the bank code you used during authorization) 
   with an updated access token. See the screenshot below for Wire Logs:

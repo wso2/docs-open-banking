@@ -1,4 +1,4 @@
-Now you have started the servers, let’s create the users and define their permissions and  roles.
+Now you have started the servers, let’s create the users and define their permissions and roles.
  
 ## Sign in to the Identity Server
  

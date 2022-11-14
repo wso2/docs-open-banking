@@ -4,9 +4,9 @@ The base products for WSO2 Open Banking Accelerator are WSO2 API Manager and WSO
 deployment environments. You can run multiple nodes of WSO2 Identity Server in a cluster mode for seamless request 
 handling and balanced traffic handling. 
 
-- The API Manager can have an [All-in-One Deployment](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/single-node/all-in-one-deployment-overview/#!)
-as well as a [Distributed Deployment](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m)
-where the server nodes separately run the [API Manager profiles](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/#api-m-profiles).
+- The API Manager can have an [All-in-One Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/single-node/all-in-one-deployment-overview/#!)
+as well as a [Distributed Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/)
+where the server nodes separately run the [API Manager profiles](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/#api-m-profiles).
 Typically, when you get started with the API Manager in a development environment, you deploy it as a 
 single instance with all its components on a single server. In a production deployment, the components are 
 deployed in a distributed manner for HA. Therefore, you can create a distributed deployment of the main components. 
@@ -61,11 +61,11 @@ section.
 !!! warning
     WSO2 Open Banking Accelerator does not support the multi-tenancy capabilities in WSO2 API Manager
 
-- Configure the [Proxy Server and the Load Balancer](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/setting-up-proxy-server-and-the-load-balancer/configuring-the-proxy-server-and-the-load-balancer/#step-2-configure-the-load-balancerreverse-proxy-server)
+- Configure the [Proxy Server and the Load Balancer](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/setting-up-proxy-server-and-the-load-balancer/configuring-the-proxy-server-and-the-load-balancer/#step-2-configure-the-load-balancerreverse-proxy-server)
   for WSO2 API Manager. Follow the configurations available under the **HA for Gateway** section.
 
 - To learn more about API Manager Deployment Patterns, see 
-[WSO2 API Manager Deployment](https://apim.docs.wso2.com/en/4.0.0/install-and-setup/setup/deployment-overview/).
+[WSO2 API Manager Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-overview/).
 
 ### Open ports
 

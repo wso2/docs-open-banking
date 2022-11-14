@@ -75,7 +75,7 @@ Perform the following in your error handling executors.
 
 The default API management policies also face errors during policy violations. If your open banking technical 
 specification mentions a common error format, you need to follow the same format in API management related errors as well. 
-To achieve this, place a [custom mediator](https://apim.docs.wso2.com/en/4.0.0/deploy-and-publish/deploy-on-gateway/api-gateway/message-mediation/adding-a-class-mediator/#!).
+To achieve this, place a [custom mediator](https://apim.docs.wso2.com/en/latest/design/api-policies/regular-gateway-policies/adding-a-class-mediator/).
 
 For example, if your class mediator is `com.abc.bank.custom.error.formatter.ClassMediator`, add a new `class` tag and 
 update the configurations in 
