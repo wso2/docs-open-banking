@@ -30,8 +30,8 @@ title: '[OB3][EXT] <title>'
   - Give configuration tags with a sample FQN
   - Which servers need to be restarted?
   -->
-  ### Release date:
-  <!-- Mention the release date of extension-->
+  ### U2 Level:
+  <!-- Mention the released U2 level of extension-->
 
   ### References:
   <!-- Link all relevant PRs or issues -->
