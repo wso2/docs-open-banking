@@ -28,8 +28,8 @@ title: '[U2] <title>'
     - Does this change require restarting the servers?
   -->
 
-  ### Release date:
-  <!-- Mention the release date of U2-->
+  ### U2 Level:
+  <!-- Mention the released U2 levels-->
 
   ### References:
   <!-- Link all relevant support PRs or issues -->
