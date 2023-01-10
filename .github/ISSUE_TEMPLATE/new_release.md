@@ -32,7 +32,7 @@ title: '[GA] <title>'
     - API request/ response payload
 
     - 4. Does this feature provide an accelerator extension point? Yes/No
-    - If yes, please fill the Extension Issue Template (https://github.com/wso2/docs-open-banking/issues/new?assignees=&labels=&template=ob_extension.md&title=%5BOB3%5D%5BEXT%5D+%3Ctitle%3E) as well.
+    - If yes, please fill the [Extension Issue Template](https://github.com/wso2/docs-open-banking/issues/new?assignees=&labels=&template=ob_extension.md&title=%5BOB3%5D%5BEXT%5D+%3Ctitle%3E) as well.
   -->
 
   ### References:
