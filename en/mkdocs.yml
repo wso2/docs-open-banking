@@ -113,6 +113,7 @@ nav:
     - 'Open Banking Event Executor':
         - 'Custom Event Executor': develop/custom-event-executor.md
     - 'Open Banking Service Activator': develop/service-activator.md
+    - 'Open Banking Authentication Worker': develop/authentication-worker.md
     - 'Distributed Cache': develop/distributed-cache.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
