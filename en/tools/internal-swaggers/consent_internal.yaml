@@ -169,6 +169,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/OBConsentErrorCommon"
+  /admin/expire-consents:
+    get:
+      summary: Trigger consent expiration
+      operationId: expireConsents
+      tags:
+        - Admin
+      responses:
+        "204":
+          description: Consent expiration successful
+        "401":
+          description: Authorization not provided
+        "500":
+          description: Internal Server Error
 
   /manage/account-access-consents:
     post:
