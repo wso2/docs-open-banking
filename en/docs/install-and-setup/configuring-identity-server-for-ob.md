@@ -160,6 +160,28 @@ database server, and the JDBC driver.
             - [c3p0-0.9.5.4.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar)
         - Copy the same `quartz.properties` file to each instance in the cluster and update the `instanceId`. 
         - Click [here](../assets/attachments/quartz.properties) to download a sample `quartz.properties` configuration file.
+
+    !!! note
+        To stop the execution of the consent expiration periodical updater and trigger the expiration job, add the configuration as follows: 
+
+        !!! info
+            This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.62** onwards. 
+            For more information on updating WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+
+        ```toml
+        [open_banking.consent.periodical_expiration]
+        # This property needs to be false in order to stop the execution of the consent expiration periodical updater.
+        enabled=false
+        # This value is to be updated for expired consents.
+        expired_consent_status_value="Expired"
+        # These consent statuses will only be considered when checking for expired consents. (Comma separated value list)
+        eligible_statuses="authorised"
+        ```
+        Given below is the custom endpoint provided to trigger the consent expiration job:         
+        ```
+        https://<IS_HOST>:9446/api/openbanking/consent/admin/expire-consents
+        ```
+        Refer to the [Consent REST API documentation](../references/consent-rest-api.md) for more information.
        
 11. Add the following tags and configure the HTTP connection pool:
 
