@@ -115,6 +115,7 @@ nav:
     - 'Open Banking Service Activator': develop/service-activator.md
     - 'Open Banking Authentication Worker': develop/authentication-worker.md
     - 'Distributed Cache': develop/distributed-cache.md
+    - 'Open Banking Idempotency Handling Executor': develop/idempotency-handling-executor.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md

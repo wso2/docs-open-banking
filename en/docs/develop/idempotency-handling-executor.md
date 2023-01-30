@@ -1,0 +1,95 @@
+The idempotency handling executor is used to cache the request. If the same request is repeated within the configured allowed 
+time, the response is returned from the cache without calling the bank backend or the key manager. Extendable idempotency
+handling executor in the accelerator implements the Open Banking gateway executor. This uses Open Banking distributed
+cache for caching. 
+
+According to your requirements, you can extend and override the methods in the `OpenBankingIdempotencyHandlingExecutor`
+class to implement the idempotency handling executor according to your open banking requirements.
+
+!!! info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.48** and 
+    **WSO2 Open Banking API Manager Accelerator Level 3.0.0.25** onwards. For more information on updating, see 
+    [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+[//]: # (To achieve the above, extend the following class:)
+
+[//]: # ()
+[//]: # (```java)
+
+[//]: # (FQN)
+
+[//]: # (```)
+
+Given below are the overridable methods used in Open Banking idempotency handling executor:
+
+- The following table explains the abstract methods that can be overridden:
+
+     | Method Name  	| Parameter/s      | Return Type 				 | Purpose of the Method	      |
+     |------------------|------------------|-----------------------------|--------------------------------|
+     | `getCreatedTimeFromResponse`	| `OBAPIResponseContext` | `String`	        | To extract the created time from the response |
+     | `getPayloadFromRequest` | `OBAPIRequestContext` | `Map<String, Object>` | To extract the payload and HTTP status from the request |
+     | `isValidIdempotencyRequest` | `OBAPIRequestContext` | `boolean`        | To check if the request is an idempotency valid request |
+     | `isValidIdempotencyResponse`	| `OBAPIResponseContext` | `boolean`        | To check if the response is an idempotency valid response |
+
+- The following table explains the other public/ protected methods that can be overridden if needed:
+
+     | Method Name  	| Parameter/s                                                                      | Return Type 				| Purpose of the Method	                                                             |
+     |----------------------------------------------------------------------------------|----------|------------------------------------------------------------------------------------|--------------------	|
+     | `handleIdempotencyErrors`	| `OBAPIRequestContext obapiRequestContext`, </br> `String message`, </br> `String errorCode` | `ArrayList<OpenBankingExecutorError>`	| To handle errors in idempotency validation                                         |
+     | `isRequestReceivedWithinAllowedTime` | `String createdTime`                                                             | `boolean` | To check whether the difference between two dates is less than the configured time |
+     | `getIdempotencyKeyConstantFromConfig` | -                                                                                | `String` | To get the Idempotency Key from the configurations                                 |
+
+A sample open banking idempotency handling executor implementation is given below:
+
+```java
+/**
+ * OpenBankingIdempotencyHandlingExecutorImpl.
+ */
+public class OpenBankingIdempotencyHandlingExecutorImpl extends OpenBankingIdempotencyHandlingExecutor {
+
+    private static final Log log = LogFactory.getLog(OpenBankingIdempotencyHandlingExecutorImpl.class);
+
+
+    @Override
+    public String getCreatedTimeFromResponse(OBAPIResponseContext obapiResponseContext) {
+        String createdTime = null;
+        if (OBAPIResponseContext.getMsgInfo().getHeaders().get("CreatedTime") != null) {
+            //Retrieve response created time from headers
+            createdTime = OBAPIResponseContext.getMsgInfo().getHeaders().get("CreatedTime");
+        }
+        return createdTime;
+    }
+
+    @Override
+    public Map<String, Object> getPayloadFromRequest(OBAPIRequestContext obapiRequestContext) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(IdempotencyConstants.PAYLOAD, obapiRequestContext.getRequestPayload());
+        map.put(IdempotencyConstants.HTTP_STATUS, HttpStatus.SC_CREATED);
+        return map;
+    }
+
+    @Override
+    public boolean isValidIdempotencyRequest(OBAPIRequestContext obapiRequestContext) {
+        return true;
+    }
+
+    @Override
+    public boolean isValidIdempotencyResponse(OBAPIResponseContext obapiResponseContext) {
+        return true;
+    }
+}
+```
+
+## Configuring Open Banking idempotency handling executor
+
+1. Configure the open banking distributed cache configurations according to the [Distributed Cache documentation](distributed-cache.md). 
+2. Add the below configurations for open banking idempotency handling executor.
+
+    ```toml
+    [open_banking.gateway.cache.idempotency_validation_cache]
+    cache_time_to_live=1440
+    [open_banking.gateway.idempotency]
+    enabled=true
+    allowed_time_duration=1440
+    idempotency_key_header=”x-idempotency-key”
+    ```
