@@ -93,3 +93,12 @@ public class OpenBankingIdempotencyHandlingExecutorImpl extends OpenBankingIdemp
     allowed_time_duration=1440
     idempotency_key_header=”x-idempotency-key”
     ```
+
+    The following table explains the configurations used in Open Banking idempotency handling executor:
+    
+    | Configuration Name  	| Default Value     | Type 				| Description	                                                                                                                                                                            |
+    | ------------	|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------	|
+    | `open_banking.gateway.cache.idempotency_validation_cache.cache_time_to_live`	| 1440  | integer | Idempotency validation cache time to live in minutes.		                                                                                                                                 |
+    | `open_banking.gateway.idempotency.enabled` | false   | boolean | This enables the idempotency handling executor. Idempotency validation works only if this is set to `true`. Otherwise, the Open Banking idempotency handling executor will be disabled. |
+    | `open_banking.gateway.idempotency.allowed_time_duration` | 1440 | integer | The idempotency available time for the requests. This is checked in the `isRequestReceivedWithinAllowedTime` method.                                                                    |
+    | `open_banking.gateway.idempotency.idempotency_key_header`	| x-idempotency-key  | string | This configuration takes the header name for the idempotency key.                                                                                                                       |
