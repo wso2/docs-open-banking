@@ -11,14 +11,11 @@ class to implement the idempotency handling executor according to your open bank
     **WSO2 Open Banking API Manager Accelerator Level 3.0.0.25** onwards. For more information on updating, see 
     [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
-[//]: # (To achieve the above, extend the following class:)
+To achieve the above, extend the following class:
 
-[//]: # ()
-[//]: # (```java)
-
-[//]: # (FQN)
-
-[//]: # (```)
+```java
+com.wso2.openbanking.accelerator.gateway.executor.idempotency.OpenBankingIdempotencyHandlingExecutor
+```
 
 Given below are the overridable methods used in Open Banking idempotency handling executor:
 
@@ -83,7 +80,8 @@ public class OpenBankingIdempotencyHandlingExecutorImpl extends OpenBankingIdemp
 ## Configuring Open Banking idempotency handling executor
 
 1. Configure the open banking distributed cache configurations according to the [Distributed Cache documentation](distributed-cache.md). 
-2. Add the below configurations for open banking idempotency handling executor.
+2. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+3. Add the below configurations for open banking idempotency handling executor.
 
     ```toml
     [open_banking.gateway.cache.idempotency_validation_cache]
@@ -91,14 +89,14 @@ public class OpenBankingIdempotencyHandlingExecutorImpl extends OpenBankingIdemp
     [open_banking.gateway.idempotency]
     enabled=true
     allowed_time_duration=1440
-    idempotency_key_header=”x-idempotency-key”
+    idempotency_key_header="x-idempotency-key"
     ```
 
     The following table explains the configurations used in Open Banking idempotency handling executor:
     
     | Configuration Name  	| Default Value     | Type 				| Description	                                                                                                                                                                            |
     | ------------	|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------	|
-    | `open_banking.gateway.cache.idempotency_validation_cache.cache_time_to_live`	| 1440  | integer | Idempotency validation cache time to live in minutes.		                                                                                                                                 |
-    | `open_banking.gateway.idempotency.enabled` | false   | boolean | This enables the idempotency handling executor. Idempotency validation works only if this is set to `true`. Otherwise, the Open Banking idempotency handling executor will be disabled. |
-    | `open_banking.gateway.idempotency.allowed_time_duration` | 1440 | integer | The idempotency available time for the requests. This is checked in the `isRequestReceivedWithinAllowedTime` method.                                                                    |
-    | `open_banking.gateway.idempotency.idempotency_key_header`	| x-idempotency-key  | string | This configuration takes the header name for the idempotency key.                                                                                                                       |
+    | `open_banking.gateway.cache.idempotency_validation_cache.cache_time_to_live`	| `1440`  | integer | Idempotency validation cache time to live in minutes.		                                                                                                                                 |
+    | `open_banking.gateway.idempotency.enabled` | `false`   | boolean | This enables the idempotency handling executor. Idempotency validation works only if this is set to `true`. Otherwise, the Open Banking idempotency handling executor will be disabled. |
+    | `open_banking.gateway.idempotency.allowed_time_duration` | `1440` | integer | The idempotency available time for the requests. This is checked in the `isRequestReceivedWithinAllowedTime` method.                                                                    |
+    | `open_banking.gateway.idempotency.idempotency_key_header`	| `x-idempotency-key`  | string | This configuration takes the header name for the idempotency key.                                                                                                                       |
