@@ -178,3 +178,135 @@ You can configure the following important attributes in the script.
       -- 'Turn on the event_scheduler'
       SET GLOBAL event_scheduler = ON;
       ```
+
+## Data Retention
+
+By enabling data retention, you can archive the data that is purged using the consent purging scripts. This will keep the 
+data records such as consent and its audit log in a separate retention database for more than seven years even after purging. 
+The data retention period can be configured according to your requirements.
+
+!!! info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
+    3.0.0.63** onwards. For more information on updating,
+    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+Follow the below instructions to enable data retention:
+
+1. Create a separate database to store the retention data. 
+
+2. Execute the default consent database creation scripts in the `<OB_IS_ACCELERATOR_HOME>/carbon-home/dbscripts/open-banking/consent` folder to create tables. 
+
+3. Open the `<IS_HOME>/repository/conf/deployment.toml` file. 
+
+4. To enable data retention support from the WSO2 Open Banking Identity Server, add the below configurations to introduce the new datasource. Given below is an example:
+    
+    ```toml
+    [[open_banking.jdbc_retention_data_persistence_manager]]
+    data_source.name = "WSO2OB_RET_DB"
+    connection_verification_timeout=1
+    [open_banking.consent.data_retention]
+    enabled=true
+    [[datasource]]
+    id="WSO2OB_RET_DB"
+    url = ".. jdbc url for retention database.."
+    username = "user"
+    password = "password"
+    driver = "com.mysql.jdbc.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=false
+    ```
+By enabling data retention, you can use the `fetchFromRetentionDatabase` query parameter to fetch the data from the retention database in consent admin APIs.
+
+5. Configure the consent data purging script with types of data to be archived as shown below:
+
+    ```sql 
+    SET enableDataRetentionForAuthResourceAndMapping = TRUE;
+    SET enableDataRetentionForObConsentFile = FALSE;
+    SET enableDataRetentionForObConsentAttribute = FALSE;6. Enable data retention as shown below:
+    SET enableDataRetentionForObConsentStatusAudit = TRUE; 
+    ```
+
+6. Enable data retention as shown below:
+
+    ```sql
+    WSO2_OB_CONSENT_CLEANUP_SP(
+    consentTypes,
+    clientIds,
+    consentStatuses,
+    purgeConsentsOlderThanXNumberOfDays,
+    lastUpdatedTime,
+    backupTables,
+    enableAudit,
+    analyzeTables,
+    enableDataRetention
+    );
+    ```
+
+7. Execute the purging script.
+
+    This will create temporary retention consent tables in consent database with the `RET_` prefix and store the purged data temporarily in these tables.
+
+These temporary retention data need to be moved to the retention database which is created in step 1. This can be done by syncing retention data in the consent database with the retention database.  All the moved consents will be deleted from the temporary retention tables. 
+
+??? info "Click here to see how it is done..."
+
+    This task can be accomplished in two ways:
+    
+    1. By invoking an API
+        ```
+        curl --location --request GET 'https://localhost:9446/api/openbanking/consent/admin/sync-temporary-retention-data' \
+        --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw=='
+        ```
+    
+    2. By configuring as a periodical job 
+        1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+        2. Add the below configurations: 
+        ```toml
+        [open_banking.consent.data_retention]
+        enabled=true
+        enable_db_sync_periodical_job=true
+        db_sync_cron_value="0 0/2 * ? * * *"  
+        ```
+Use these purging scripts in the retention database to purge consents in the retention database by setting the last update time to more than seven years. For example:
+ 
+ ```sql
+ WSO2_OB_CONSENT_CLEANUP_SP('', '', '', 31*12*7,NULL,FALSE,FALSE,TRUE,FALSE);
+ ```
+
+The archived data can be extracted using the consent search API, consent status audit search API, and consent file search API by sending the additional query parameter `fetchFromRetentionDatabase` set to `true`.
+
+??? info "Click here to see some examples..."
+
+    Given below are some examples: 
+ 
+    Consent search API:
+ 
+     ```
+     curl --location --request GET 'https://localhost:9446/api/openbanking/consent/admin/search/?fromTime=1638993429&toTime=1638993429&consentStatuses=valid&userIDs=admin@wso2.com@carbon.super&consentIDs=234ba17f-c3ac-4493-9049-d71f99c36dc2&clientIDs=V92mG4mQwiMqSE8oWS5_VvaVgb4a&limit=25&offset=0&fetchFromRetentionDatabase=true&consentTypes=accounts' \
+     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
+     --data-raw ''
+     ```
+ 
+     Consent status audit search API:
+ 
+     ```
+     curl --location --request GET 'https://localhost:9446/api/openbanking/consent/admin/search/consent-status-audit?limit=2&offset=10&consentIDs=d239d1be-4e81-46d6-8a2e-76345370dbf3,f18b6ce1-15f7-44f7-9633-4e66fa6ceb88&fetchFromRetentionDatabase=true' \
+     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
+     --data-raw ''
+     ```
+ 
+     Consent file search API:
+ 
+     ```
+     curl --location --request GET 'https://localhost:9446/api/openbanking/consent/admin/search/consent-file?consentId=05ac14f9-b980-45c1-913c-614cb1469a90' \
+     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
+     --data-raw ''
+     ```
