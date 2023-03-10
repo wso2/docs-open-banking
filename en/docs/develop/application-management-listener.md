@@ -60,79 +60,41 @@ throws OpenBankingException {
 This method lets you configure authenticators to be invoked during the authorization flow.
 
 ``` java
-public void setAuthenticators(boolean isRegulatoryApp, String tenantDomain, ServiceProvider serviceProvider,
-  LocalAndOutboundAuthenticationConfig localAndOutboundAuthenticationConfig)
-throws OpenBankingException {
+public void setAuthenticators (boolean isRegulatoryApp, String tenantDomain, ServiceProvider serviceProvider,
+                               LocalAndOutboundAuthenticationConfig localAndOutboundAuthenticationConfig)
+        throws OpenBankingException {
 
-  IdentityExtensionsDataHolder identityExtensionsDataHolder = IdentityExtensionsDataHolder.getInstance();
-  if (isRegulatoryApp) {
+    if (isRegulatoryApp) {
 
-    Map < String, Object > configMap = identityExtensionsDataHolder.getConfigurationMap();
-    List < AuthenticationStep > authSteps = new ArrayList < > ();
-    //AuthenticationStep[] authenticationSteps = new AuthenticationStep[2];
-    //Step 1 - Default basic authentication
-    LocalAuthenticatorConfig localAuthenticatorConfig = new LocalAuthenticatorConfig();
-    LocalAuthenticatorConfig[] localAuthenticatorConfigs = new LocalAuthenticatorConfig[1];
-    AuthenticationStep basicAuthenticationStep = new AuthenticationStep();
+        List<AuthenticationStep> authSteps = new ArrayList<>();
 
-    String authenticatorDisplayName = configMap.get(IdentityCommonConstants.PRIMARY_AUTHENTICATOR_DISPLAYNAME)
-      .toString();
-    String authenticatorName = configMap.get(IdentityCommonConstants.PRIMARY_AUTHENTICATOR_NAME).toString();
+        //Step 1 - Default basic authentication
+        LocalAuthenticatorConfig localAuthenticatorConfig = new LocalAuthenticatorConfig();
+        LocalAuthenticatorConfig[] localAuthenticatorConfigs = new LocalAuthenticatorConfig[1];
+        AuthenticationStep basicAuthenticationStep = new AuthenticationStep();
 
-    localAuthenticatorConfig.setDisplayName(authenticatorDisplayName);
-    localAuthenticatorConfig.setEnabled(true);
-    localAuthenticatorConfig.setName(authenticatorName);
-    localAuthenticatorConfigs[0] = localAuthenticatorConfig;
+        String authenticatorDisplayName = "<PRIMARY_AUTHENTICATOR_DISPLAY_NAME>";
+        String authenticatorName = "<PRIMARY_AUTHENTICATOR_NAME>";
 
-    basicAuthenticationStep.setStepOrder(1);
-    basicAuthenticationStep.setLocalAuthenticatorConfigs(localAuthenticatorConfigs);
-    basicAuthenticationStep.setAttributeStep(true);
-    basicAuthenticationStep.setSubjectStep(true);
-    //set step 1
-    authSteps.add(basicAuthenticationStep);
+        localAuthenticatorConfig.setDisplayName(authenticatorDisplayName);
+        localAuthenticatorConfig.setEnabled(true);
+        localAuthenticatorConfig.setName(authenticatorName);
+        localAuthenticatorConfigs[0] = localAuthenticatorConfig;
 
-    if (logger.isDebugEnabled()) {
-      logger.debug(String.format("Authentication step 1 added: %s", authenticatorName));
+        basicAuthenticationStep.setStepOrder(1);
+        basicAuthenticationStep.setLocalAuthenticatorConfigs(localAuthenticatorConfigs);
+        basicAuthenticationStep.setAttributeStep(true);
+        basicAuthenticationStep.setSubjectStep(true);
+        //set step 1
+        authSteps.add(basicAuthenticationStep);
+
+         if (logger.isDebugEnabled()) {
+            logger.debug(String.format("Authentication step 1 added: %s", authenticatorName));
+        }
+
+        localAndOutboundAuthenticationConfig.setAuthenticationSteps(authSteps.toArray(
+                    new AuthenticationStep[0]));
     }
-
-    //Read the identity provider from open-banking.xml
-    String idpName = configMap.get(IdentityCommonConstants.IDENTITY_PROVIDER_NAME).toString();
-
-    if (StringUtils.isNotEmpty(idpName)) {
-      IdentityProvider configuredIdentityProvider = null;
-      try {
-        IdentityProvider[] federatedIdPs = identityExtensionsDataHolder
-          .getApplicationManagementService().getAllIdentityProviders(tenantDomain);
-        if (federatedIdPs != null && federatedIdPs.length > 0) {
-          for (IdentityProvider identityProvider: federatedIdPs) {
-            if (idpName.equals(identityProvider.getIdentityProviderName())) {
-              configuredIdentityProvider = identityProvider;
-              break;
-            }
-          }
-        }
-        //Step 2 - federated authentication
-        if (configuredIdentityProvider != null) {
-          IdentityProvider[] identityProviders = new IdentityProvider[1];
-          identityProviders[0] = configuredIdentityProvider;
-
-          AuthenticationStep federatedAuthStep = new AuthenticationStep();
-          federatedAuthStep.setStepOrder(2);
-          federatedAuthStep.setFederatedIdentityProviders(identityProviders);
-          //set step 2
-          authSteps.add(federatedAuthStep);
-        }
-
-        if (logger.isDebugEnabled()) {
-          logger.debug("Authentication step 2 added: " + idpName);
-        }
-      } catch (IdentityApplicationManagementException e) {
-        throw new OpenBankingException("Error while reading configured Identity providers", e);
-      }
-
-    }
-    localAndOutboundAuthenticationConfig.setAuthenticationSteps(authSteps.toArray(new AuthenticationStep[0]));
-  }
 }
 ```
 
