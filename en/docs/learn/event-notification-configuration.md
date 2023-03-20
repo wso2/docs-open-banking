@@ -9,7 +9,7 @@ To enable the Event Notification feature in WSO2 Open Banking:
 3. Find the `resource.access_control` configurations and add the following tags to secure the Event Notification endpoints:
       ``` toml
        [[resource.access_control]]
-       context = "(.)/api/openbanking/event-notifications/(.)"
+       context = "(.*)/api/openbanking/event-notifications/(.*)"
        secure="true"
        http_method="all"
        permissions=["/permission/admin"]
