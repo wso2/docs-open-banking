@@ -25,42 +25,70 @@ This document provides step by step instructions to invoke the Accounts Informat
              ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5.png)
 
         8. Click **Save**.
-    
-        9. Go to **Runtime** using the left menu pane.   
-        
-            ![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
-    
 
-        10. Click the edit button under **Request** -> **Message Mediation**. ![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
-        
-        11. Now, select the **Custom Policy** option. 
-    
-        12. Upload the 
-        `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
-        file and click **SELECT**.
-    
-        13. Scroll down and click **SAVE**. 
-        
-        14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
-    
-        15. Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
+        9. Add a custom policy. Follow the instructions given below according to the API Manager version you are using:
 
-        16. Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
+            ??? note "Click here to see how to add a custom policy if you are using API Manager 4.0.0..." 
+                1. Go to **Develop -> API Configurations -> Runtime** using in the left menu pane.<br><br>![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
+                                 
+                2. Click the edit icon under **Request** -> **Message Mediation**.<br><br>![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
+                
+                3. Select the **Custom Policy** option. 
+                
+                4. Upload the 
+                `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
+                file and click **SELECT**.
+
+                5. Scroll down and click **SAVE**.
+
+            ??? note "Click here to see how to add a custom policy if you are using API Manager 4.1.0..."
+                
+                1. Go to **Develop -> API Configurations -> Policies** in the left menu pane.<br><br>
+                <div style="width:40%">
+                ![select_policies](../assets/img/get-started/quick-start-guide/select-policies.png)
+                </div>
+
+                2. On the **Policy List** card, click on **Add New Policy**.
+
+                3. Fill in the **Create New Policy**.
+
+                4. Upload the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` file.
+
+                5. Scroll down and click **Save**. Upon successful creation of the policy, you receive an alert as shown below: <br><br>
+                <div style="width:35%">
+                ![successful](../assets/img/get-started/quick-start-guide/successful.png)
+                </div>
+
+                6. Expand the API endpoint you want from the list of API endpoints. For example: ![expand_api_endpoint](../assets/img/get-started/quick-start-guide/expand-api-endpoint.png)
+
+                7. Expand the HTTP method from the API endpoint you selected. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method.png)
+
+                8. Drag and drop the previously created policy to the **Request Flow** of the API endpoint. ![request_flow](../assets/img/get-started/quick-start-guide/request-flow.png)
+
+                9. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
+
+                10. Scroll down and click **Save**.
+        
+         14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
-        17. Provide a description for the new revision.
+         15. Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
+
+         16. Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
     
-        18. Select `localhost` from the dropdown list. 
+         17. Provide a description for the new revision.
     
-        19. Click **Deploy**.
+         18. Select `localhost` from the dropdown list. 
     
-        20. Go to **Overview** using the left menu pane and click **Publish**. 
+         19. Click **Deploy**.
     
-        21. Now that you have deployed the API, go to <https://localhost:9443/devportal>.
+         20. Go to **Overview** using the left menu pane and click **Publish**. 
     
-        22. Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
-        Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
+         21. Now that you have deployed the API, go to <https://localhost:9443/devportal>.
     
-        23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
+         22. Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
+         Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
+    
+         23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For the 
