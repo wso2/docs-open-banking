@@ -51,6 +51,7 @@ This document provides step by step instructions to invoke the Accounts Informat
                 2. On the **Policy List** card, click on **Add New Policy**.
 
                 3. Fill in the **Create New Policy**.
+                ![create_new_policy](../assets/img/get-started/quick-start-guide/create-new-policy.png)
 
                 4. Upload the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` file.
 
