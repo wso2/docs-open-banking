@@ -1,11 +1,32 @@
 WSO2 Open Banking Accelerator is a collection of technologies that increases the speed and reduces the complexity of 
 adopting open banking compliance. Instead of building an open banking solution from scratch, you can use WSO2 Open 
 Banking Accelerator to meet all open banking requirements with additional benefits beyond compliance. You can use the 
-WSO2 Open Banking Accelerator on top of the following WSO2 products:
+WSO2 Open Banking Accelerator on top of the following WSO2 products.
 
-- WSO2 Identity Server 5.11.0
-- WSO2 API Manager 4.1.0 or WSO2 API Manager 4.0.0
-- WSO2 Streaming Integrator 4.0.0
+You can use any of the following combinations:
+
+<table>
+  <tr>
+    <th></th>
+    <th>WSO2 Identity Server</th>
+    <th>WSO2 API Manager</th>
+    <th>WSO2 Streaming Integrator</th>
+  </tr>
+<tbody>
+  <tr>
+    <th>Combination 01</th>
+    <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">5.11.0</a></td>
+    <td><a href="https://wso2.com/api-management/previous-releases/">4.1.0</a> or <a href="https://wso2.com/api-management/previous-releases/">4.0.0</a></td>
+    <td><a href="https://wso2.com/streaming-integrator/previous-releases/">4.0.0</a></td>
+  </tr>
+  <tr>
+    <th>Combination 02<br></th>
+    <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
+    <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
+    <td><a href="https://wso2.com/integration/streaming-integrator/#">4.2.0</a></td>
+  </tr>
+</tbody>
+</table>
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -33,11 +54,35 @@ Given below is a product matrix for different versions of WSO2 Open Banking:
 
 Given below is the compatible base product matrix for WSO2 Open Banking 3.0:
 
-| Base Product              | Compatible Versions |
-|---------------------------|---------------------|
-| WSO2 Identity Server     | 5.11.0              |
-| WSO2 API Manager         | 4.1.0 <br/> 4.0.0   |
-| WSO2 Streaming Integrator | 4.0.0               |
+<table>
+<thead>
+  <tr>
+    <th rowspan="2" style="text-align: center">Base Product</th>
+    <th colspan="2" style="text-align: center">Compatible Versions</th>
+  </tr>
+  <tr>
+    <th>Combination 01</th>
+    <th>Combination 02</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>WSO2 Identity Server</td>
+    <td>5.11.0</td>
+    <td>6.0.0</td>
+  </tr>
+  <tr>
+    <td>WSO2 API Manager<br></td>
+    <td>4.1.0<br>4.0.0</td>
+    <td>4.2.0</td>
+  </tr>
+  <tr>
+    <td>WSO2 Streaming Integrator</td>
+    <td>4.0.0</td>
+    <td>4.1.0</td>
+  </tr>
+</tbody>
+</table>
 
 ## Prerequisites for a Deployment
 
@@ -92,7 +137,7 @@ Listed below are the prerequisites for a successful deployment:
          <th>JDK Version</th>
          <td>
             <ul>
-               <li>OpenJDK 11</li>
+               <li>OpenJDK 11 or OpenJDK 17</li><br>See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> for compatible JDK versions based on the base product versions.
             </ul>
          <td>  
       </tr>
@@ -119,6 +164,9 @@ Listed below are the prerequisites for a successful deployment:
 
 WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
 
+!!!info
+    If you are using **WSO2 Identity Server 6.0.0** and **WSO2 API Manager 4.2.0** as the base products, it is recommended to use OpenJDK 17. For other base products, use OpenJDK 11.
+
 <table>
    <tbody>
       <tr>
@@ -130,6 +178,9 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
                </li>
                <li>
                   Oracle JDK 11
+               </li>
+               <li>
+                  OpenJDK 17
                </li>
             </ul>
          </td>

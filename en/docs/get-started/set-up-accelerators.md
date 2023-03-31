@@ -53,6 +53,23 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
 ### Step 4: Start servers
 
+??? warning "If you are using JDK 17 with WSO2 Identity Server 6.0.0, you need to enable adaptive authentication. Click here to see how it is done..."
+
+     For JDK 17 runtime, adaptive authentication is disabled by default and it is required to enable adaptive authentication. To enable adaptive authentication: 
+
+     1. Go to `<IS_HOME>/bin`. 
+     2. Run the following command:
+
+         ```toml tab='On Mac'
+         ./adaptive.sh
+         ```
+         
+         ```toml tab='On Windows'
+         ./adaptive.bat
+         ```
+
+     See [Adaptive Authentication - Prerequisites](https://is.docs.wso2.com/en/6.0.0/guides/adaptive-auth/configure-adaptive-auth/#prerequisites) for more information.
+
 1. Run the following command in `<IS_HOME>/bin`:
 ```
 ./wso2server.sh

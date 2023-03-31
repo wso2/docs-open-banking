@@ -2,16 +2,21 @@ This section guides you to set up and prepare the servers to run WSO2 Open Banki
 
 ## Installing base products
 
-1. WSO2 Open Banking Accelerator is a technology stack catered to speed up the implementation of an open banking solution.
+WSO2 Open Banking Accelerator is a technology stack catered to speed up the implementation of an open banking solution.
 The accelerators run on top of WSO2 Identity Server and WSO2 API Manager, which are referred to as base 
-products. Before setting up the accelerator, download and install the base products:
+products. 
 
-    - [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
-    - [WSO2 API Manager 4.1.0](https://wso2.com/api-manager/) or [WSO2 API Manager 4.0.0](https://wso2.com/api-management/previous-releases/)
-    - [WSO2 Streaming Integrator 4.0.0](https://wso2.com/streaming-integrator/previous-releases/)
+1. Before setting up the accelerator, download and install the base products. You can use any of the following combinations:
 
-2. To configure the Identity Server with the API Manager, install the respective WSO2 IS Connector according to the API Manager version you have downloaded..
+   | Base Product              | Combination 01                                                                                                             | Combination 02                                                              |
+   |---------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+   | WSO2 Identity Server      | [5.11.0](https://wso2.com/identity-and-access-management/previous-releases/)                                               | [6.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
+   | WSO2 API Manager          | [4.1.0](https://wso2.com/api-management/previous-releases/) or [4.0.0](https://wso2.com/api-management/previous-releases/) | [4.2.0](https://wso2.com/api-manager/)                                      |
+   | WSO2 Streaming Integrator | [4.0.0](https://wso2.com/streaming-integrator/previous-releases/)                                                          | [4.1.0]()
 
+2. To configure the Identity Server with the API Manager, install the respective WSO2 IS Connector according to the API Manager version you have downloaded.
+
+    - [WSO2 IS Connector for API Manager 4.2.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
     - [WSO2 IS Connector for API Manager 4.1.0](https://apim.docs.wso2.com/en/4.1.0/assets/attachments/administer/wso2is-extensions-1.4.2.zip)
     - [WSO2 IS Connector for API Manager 4.0.0](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
 
