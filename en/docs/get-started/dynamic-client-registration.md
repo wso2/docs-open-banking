@@ -1,19 +1,26 @@
 This page explains how to onboard API consumers using the Dynamic Client Registration API. 
 
 !!! tip "Before you begin..."
+
     1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     
-    2. Configure the jwks endpoints by following the sample given below. These endpoints are used for validating the SSA signature. 
+    2. Configure the JWKS endpoints by following the sample given below. These endpoints are used for validating the SSA signature. 
     ```toml
     [open_banking.dcr]
     jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
     jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
-    ```   
-    
-    3. Restart the Identity Server.
+    ```  
 
-    4. If you are using an **API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
-        1. Open the `<APIM-HOME>/repository/conf/deployment.toml` file.
+    3. If you are using **WSO2 Identity Server 6.0.0**, add the below configuration to enable the application role validation:
+    ```toml
+    [application_mgt]
+    enable_role_validation = true
+    ```
+       
+    4. Restart the Identity Server.
+
+    5. If you are using **WSO2 API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
+        1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
         2. Disable `[apim.key_manager]` configurations by commenting them out:
 
             ``` toml
@@ -30,7 +37,21 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
             #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
             ```
 
-        3. Restart the API Manager.
+    6. If you are using **WSO2 API Manager 4.2.0**, you need to change the API Manager REST API version.
+        1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+        2. Locate the `[open_banking.dcr.apim_rest_endpoints]` tag. By default, the configuration is commented out.
+        3. Uncomment the configuration and update as shown below:
+
+            ```toml
+            [open_banking.dcr.apim_rest_endpoints]
+            app_creation = "api/am/devportal/v3/applications"
+            key_generation = "api/am/devportal/v3/applications/application-id/map-keys"
+            api_retrieve = "api/am/devportal/v3/apis"
+            api_subscribe = "api/am/devportal/v3/subscriptions/multiple"
+            retrieve_subscribe="api/am/devportal/v3/subscriptions"
+            ```
+
+    7. Restart the API Manager.
 
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 

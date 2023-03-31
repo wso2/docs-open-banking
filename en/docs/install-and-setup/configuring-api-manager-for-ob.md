@@ -122,6 +122,19 @@ database server, and the JDBC driver.
     password="$ref{super_admin.password}"	
     server_url = "{tcp://<SI_HOST>:7612}"	
     ```  
+
+10. If you are using WSO2 API Manager 4.2.0, you need to change the API Manager REST API version from V2 to V3.
+
+    1. Locate the `[open_banking.dcr.apim_rest_endpoints]` tag. By default, the configuration is commented out.
+    2. Uncomment the configuration and update as shown below:
+        ```toml
+        [open_banking.dcr.apim_rest_endpoints]
+        app_creation = "api/am/devportal/v3/applications"
+        key_generation = "api/am/devportal/v3/applications/application-id/map-keys"
+        api_retrieve = "api/am/devportal/v3/apis"
+        api_subscribe = "api/am/devportal/v3/subscriptions/multiple"
+        retrieve_subscribe="api/am/devportal/v3/subscriptions"
+        ```
    
 ## Starting servers
 

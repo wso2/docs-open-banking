@@ -6,14 +6,18 @@ This section guides you on how to set up the solution in a local environment. Fo
 can quickly set up and try out a basic flow.
 
 !!! tip "Prerequisites"
-    1. Download OpenJDK 11 to the local environment.
-        - In the environment variables, update the JAVA_HOME and PATH variables. For instance, you can do this on a Mac/Linux server by adding the following to the ~/.bashrc file:
+    1. Download Open Java Development Kit (OpenJDK) version 11 or 17 to the local environment based on the base product versions you use.
+
+        !!!info
+            See [Compatibility](../install-and-setup/prerequisites.md#compatibility) for compatible JDK versions.
+
+    2. In the environment variables, update the JAVA_HOME and PATH variables. For instance, you can do this on a Mac/Linux server by adding the following to the ~/.bashrc file:
         ```
         export JAVA_HOME="<JDK_LOCATION>"
         export PATH=$PATH:$JAVA_HOME/bin
         ```
     
-    2. Setup a database server using any of the following:
+    3. Setup a database server using any of the following:
          - MySQL 8.0
          - Oracle 19c
          - Microsoft SQL Server 2017
@@ -24,14 +28,34 @@ can quickly set up and try out a basic flow.
     
 ## Installing base products
 
-1. Download and extract the following base products:
+1. Download and extract the required base products. You can use any of the following combinations:
 
-    - [WSO2 Identity Server 5.11.0](https://wso2.com/identity-server/#)
-    - [WSO2 API Manager 4.1.0](https://wso2.com/api-manager/) or [WSO2 API Manager 4.0.0](https://wso2.com/api-management/previous-releases/)
-    - [WSO2 Streaming Integrator 4.0.0](https://wso2.com/streaming-integrator/previous-releases/) 
+    <table>
+      <tr>
+        <th></th>
+        <th>WSO2 Identity Server</th>
+        <th>WSO2 API Manager</th>
+        <th>WSO2 Streaming Integrator</th>
+      </tr>
+    <tbody>
+      <tr>
+        <th>Combination 01</th>
+        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">5.11.0</a></td>
+        <td><a href="https://wso2.com/api-management/previous-releases/">4.1.0</a> or <a href="https://wso2.com/api-management/previous-releases/">4.0.0</a></td>
+        <td><a href="https://wso2.com/streaming-integrator/previous-releases/">4.0.0</a></td>
+      </tr>
+      <tr>
+        <th>Combination 02<br></th>
+        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
+        <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
+        <td><a href="https://wso2.com/integration/streaming-integrator/#">4.2.0</a></td>
+      </tr>
+    </tbody>
+    </table>
  
-3. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
+2. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
 
+    - [WSO2 IS Connector for API Manager 4.2.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
     - [WSO2 IS Connector for API Manager 4.1.0](https://apim.docs.wso2.com/en/4.1.0/assets/attachments/administer/wso2is-extensions-1.4.2.zip)
     - [WSO2 IS Connector for API Manager 4.0.0](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
 
