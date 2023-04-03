@@ -83,6 +83,7 @@ accelerators:
     |WSO2 API Manager|`<APIM_HOME>`|
     |WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
     |WSO2 Open Banking API Manager Accelerator |`<OB_APIM_ACCELERATOR_HOME>`|
+    |WSO2 IS Connector for API Manager |`<IS_EXTENSION>`|
 
 ## Getting WSO2 Updates
 
