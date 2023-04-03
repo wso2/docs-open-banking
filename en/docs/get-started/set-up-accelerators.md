@@ -33,24 +33,27 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 ### Step 3: Set up servers 
 1. Run the `merge.sh` script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
 `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
-```
-./merge.sh
-```
+    ```
+    ./merge.sh
+    ```
 
 2. Run the configure.sh files in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
 `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
-```
-./configure.sh
-```
+    ```
+    ./configure.sh
+    ```
 
-3.Copy the following files to the given directory paths:
+3. Extract the `wso2is-extensions` zip file of the relevant API Manager version.
 
- | File to copy | Location to  |
- |---------|---------    |
- |`wso2is-extensions-1.2.10/dropins/wso2is.key.manager.core-1.2.10.jar`|`<IS_HOME>/repository/components/dropins`|
- |`wso2is-extensions-1.2.10/dropins/wso2is.notification.event.handlers-1.2.10.jar`|`<IS_HOME>/repository/components/dropins`|
- |`wso2is-extensions-1.2.10/webapps/keymanager-operations.war`|`<IS_HOME>/repository/deployment/server/webapps`|
+4. Follow the given instructions and copy the relevant files to the given directory paths. 
 
+     1. Open the `<IS_EXTENSION>/dropins` folder.
+     2. Copy the following JAR files to the `<IS_HOME>/repository/components/dropins` folder.
+         - `wso2is.key.manager.core`
+         - `wso2is.notification.event.handlers`
+     3. Open the `<IS_EXTENSION>/webapps` folder.
+     4. Copy the `keymanager-operations.war` file to the `<IS_HOME>/repository/deployment/server/webapps` folder.
+    
 ### Step 4: Start servers
 
 ??? warning "If you are using JDK 17 with WSO2 Identity Server 6.0.0, you need to enable adaptive authentication. Click here to see how it is done..."
