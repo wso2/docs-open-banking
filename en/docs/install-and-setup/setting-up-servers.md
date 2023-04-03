@@ -134,7 +134,8 @@ directory and run the `merge.sh` script as follows:
     ./merge.sh
     ``` 
 
-4. Extract the `wso2is-extensions` zip file. 
+4. Extract the `wso2is-extensions` zip file of the relevant API Manager version. 
+
 5. Copy the following files to the Identity Server as follows:
 
      1. Open the `<IS_EXTENSION>/dropins` folder.

@@ -43,7 +43,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     ./configure.sh
     ```
 
-3. Extract the `wso2is-extensions` zip file.
+3. Extract the `wso2is-extensions` zip file of the relevant API Manager version.
 
 4. Follow the given instructions and copy the relevant files to the given directory paths. 
 
