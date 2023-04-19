@@ -15,8 +15,32 @@
         ```
         ./merge.sh
         ```
-        
-    3. Exchange the public certificates between servers. 
+
+    3. If you are using WSO2 Open Banking Business Intelligence at U2 level 3.0.0.1 or above, configure the `PRODUCT_CONF_PATH` 
+    property according to the WSO2 Streaming Integrator version you are using.
+
+        1. Open the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
+
+        2. Locate the `PRODUCT_CONF_PATH` property.
+
+        3. Specify the `deployment.yaml` file which contains the required configurations according to the WSO2 Streaming 
+        Integrator version you are using.
+
+            ```toml tab='For WSO2 Streaming Integrator 4.0.0'
+            PRODUCT_CONF_PATH=repository/resources/wso2si-4.0.0-deployment.yaml
+            ```
+            
+            ```toml tab='For WSO2 Streaming Integrator 4.2.0'
+            PRODUCT_CONF_PATH=repository/resources/wso2si-4.2.0-deployment.yaml 
+            ```
+
+    4. Run the configure.sh file in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
+
+        ```
+        ./configure.sh
+        ```
+
+    5. Exchange the public certificates between servers. 
         
         ??? "Click here to see how it is done..."
     
