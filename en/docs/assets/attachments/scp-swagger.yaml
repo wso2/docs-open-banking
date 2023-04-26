@@ -21,6 +21,15 @@ paths:
         - SCPOAuth2Security:
             - consents:read_all
             - consents:read_self
+      responses:
+        '200':
+          description: Success
+        '400':
+          $ref: '#/responses/400Error'
+        '403':
+          $ref: '#/responses/403Error'
+        '422':
+          $ref: '#/responses/422Error'
     delete:
       summary: Used to forward a self care portal delete request
       tags:
@@ -29,17 +38,37 @@ paths:
         - SCPOAuth2Security:
             - consents:read_all
             - consents:read_self
+      responses:
+        '204':
+          description: Successfully revoked the consent
+        '400':
+          $ref: '#/responses/400Error'
+        '403':
+          $ref: '#/responses/403Error'
+        '422':
+          $ref: '#/responses/422Error'
 securityDefinitions:
   SCPOAuth2Security:
     type: oauth2
     authorizationUrl: 'https://test.com'
-    flow: authorizationCode
+    tokenUrl: 'https://test.com'
+    flow: accessCode
     scopes:
       consents:read_all: "Grants self care portal read all access to customer care officer"
       consents:read_self: "Grants access to read user's own details from self care portal"
     x-scopes-bindings:
       consents:read_all: Internal/CustomerCareOfficerRole
       consents:read_self: Internal/subscriber
+      
+responses:
+  400Error:
+    description: "Request failed due to client authentication failure"
+
+  403Error:
+    description: "Request failed due to client is not authorized to perform the management"
+
+  422Error:
+    description: 'Request failed due to  client submitted an invalid arrangement identifier or the identifier could not be found'
 x-wso2-production-endpoints: "#/x-wso2-endpoints/productionEndpoint"
 x-wso2-sandbox-endpoints: "#/x-wso2-endpoints/sandboxEndpoint"
 x-wso2-api-type: consent
