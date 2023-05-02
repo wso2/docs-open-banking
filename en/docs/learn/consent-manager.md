@@ -194,34 +194,25 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
           };
         ```
       
-2. Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/WEB-INF/web.xml` file.
+2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
     | Configuration | Description |
     | ----------| ------------|
-    | identityServerBaseUrl | The hostname of the Identity Server. |
-    | apiManagerServerUrl | The hostname of the API Manager. |
-    | scpClientKey | The Consumer Key of the [application created](#subscribing-to-self-care-portal-api). |
-    | scpClientSecret | The Consumer Secret of the [application created](#subscribing-to-self-care-portal-api). |
+    | identity_server_base_url | The hostname of the Identity Server. |
+    | api_manager_server_base_url | The hostname of the API Manager. |
+    | client_id | The Consumer Key of the [application created](#subscribing-to-self-care-portal-api). |
+    | client_secret | The Consumer Secret of the [application created](#subscribing-to-self-care-portal-api). |
     
     For example, 
     
-    ``` xml
-    <context-param>
-    	<param-name>identityServerBaseUrl</param-name>
-    	<param-value>https://localhost:9446</param-value>
-    </context-param>
-    <context-param>
-    	<param-name>apiManagerServerUrl</param-name>
-    	<param-value>https://localhost:8243</param-value>
-    </context-param>
-    <context-param>
-    	<param-name>scpClientKey</param-name>
-    	<param-value>2zB5s9wGHWVwmlrvHdWa6Mwc4vsa</param-value>
-    </context-param>
-    <context-param>
-    	<param-name>scpClientSecret</param-name>
-    	<param-value>cqblprasAniVfi02IXGFvp8VREAa</param-value>
-    </context-param>
+    ``` toml
+    [open_banking.consent.portal.client_credentials]
+    client_id="2zB5s9wGHWVwmlrvHdWa6Mwc4vsa"
+    client_secret="cqblprasAniVfi02IXGFvp8VREAa"
+    
+    [open_banking.consent.portal.params]
+    identity_server_base_url="https://localhost:9446"
+    api_manager_server_base_url="https://localhost:8243"
     ```
     
 ## Using Consent Manager
