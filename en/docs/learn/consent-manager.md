@@ -26,7 +26,7 @@ requirements and manages consents.
     http_method="GET,DELETE"
     ```
    
-2. Open the `<API_HOME>/repository/conf/deployment.toml` file and add the following gateway executor configurations for 
+2. Open the `<APIM_HOME>/repository/conf/deployment.toml` file and add the following gateway executor configurations for 
 the Consent flow:
    
     ``` toml
