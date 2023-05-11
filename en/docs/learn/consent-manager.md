@@ -182,27 +182,32 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
 
 1. Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/runtime-config.js` file.
 
-    - Update the `SERVER_URL` parameter with a URL to the Identity Server. For example:
+2. Update the `SERVER_URL` parameter with a URL to the Identity Server. For example:
     
-        ``` javascript
-        window.env = {
-            // This option can be retrieved in "src/index.js" with "window.env.API_URL".
-            SERVER_URL: 'https://localhost:9446',
-            TENANT_DOMAIN: 'carbon.super',
-            NUMBER_OF_CONSENTS: 25,
-            VERSION: '3.0.0'
-          };
-        ```
+    ``` javascript
+    window.env = {
+        // This option can be retrieved in "src/index.js" with "window.env.API_URL".
+        SERVER_URL: 'https://localhost:9446',
+        TENANT_DOMAIN: 'carbon.super',
+        NUMBER_OF_CONSENTS: 25,
+        VERSION: '3.0.0'
+      };
+    ```
       
-2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+3. Update the following configurations related to the Consent Manager:
 
+    !!! note
+        We recommend that you use the latest version of the WSO2 Open Banking Identity Server Accelerator.
+
+    If you are using **WSO2 Open Banking Accelerator at U2 level 3.0.0.73 or above**, open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
+ 
     | Configuration | Description |
     | ----------| ------------|
-    | identity_server_base_url | The hostname of the Identity Server. |
-    | api_manager_server_base_url | The hostname of the API Manager. |
-    | client_id | The Consumer Key of the [application created](#subscribing-to-self-care-portal-api). |
-    | client_secret | The Consumer Secret of the [application created](#subscribing-to-self-care-portal-api). |
-    
+    | `identity_server_base_url` | The hostname of the Identity Server. |
+    | `api_manager_server_base_url` | The hostname of the API Manager. |
+    | `client_id` | The Consumer Key of the [application created](#subscribing-to-self-care-portal-api). |
+    | `client_secret` | The Consumer Secret of the [application created](#subscribing-to-self-care-portal-api). |
+     
     For example, 
     
     ``` toml
@@ -215,6 +220,38 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
     api_manager_server_base_url="https://localhost:8243"
     ```
     
+    ??? tip "Click here to see how to configure the above if you are not using the latest version of the WSO2 Open Banking Identity Server Accelerator."
+
+        Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/WEB-INF/web.xml` file and update the configurations.
+
+        | Configuration | Description |
+        | ----------| ------------|
+        | `identityServerBaseUrl` | The hostname of the Identity Server. |
+        | `apiManagerServerUrl` | The hostname of the API Manager. |
+        | `scpClientKey` | The Consumer Key of the [application created](#subscribing-to-self-care-portal-api). |
+        | `scpClientSecret` | The Consumer Secret of the [application created](#subscribing-to-self-care-portal-api). |
+        
+        For example,
+        
+        ``` xml
+        <context-param>
+            <param-name>identityServerBaseUrl</param-name>
+            <param-value>https://localhost:9446</param-value>
+        </context-param>
+        <context-param>
+            <param-name>apiManagerServerUrl</param-name>
+            <param-value>https://localhost:8243</param-value>
+        </context-param>
+        <context-param>
+            <param-name>scpClientKey</param-name>
+            <param-value>2zB5s9wGHWVwmlrvHdWa6Mwc4vsa</param-value>
+        </context-param>
+        <context-param>
+            <param-name>scpClientSecret</param-name>
+            <param-value>cqblprasAniVfi02IXGFvp8VREAa</param-value>
+        </context-param>
+        ```
+
 ## Using Consent Manager
 
 1. Go to the Consent Manager application at
