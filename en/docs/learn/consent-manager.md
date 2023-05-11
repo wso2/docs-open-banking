@@ -199,7 +199,7 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
     !!! note
         We recommend that you use the latest version of the WSO2 Open Banking Identity Server Accelerator.
 
-    If you are using **WSO2 Open Banking Accelerator at U2 level 3.0.0.73 or above**, open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
+    If you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.73 or above**, open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
  
     | Configuration | Description |
     | ----------| ------------|
