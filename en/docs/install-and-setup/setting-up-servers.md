@@ -134,7 +134,7 @@ directory and run the `merge.sh` script as follows:
     ./merge.sh
     ``` 
 
-4. If you are using **WSO2 Identity Server 6.0.0**, add below configuration to enable the application role validation:
+4. If you are using **WSO2 Identity Server 6.0.0**, add below configuration to enable application role validation:
     ```toml
     [application_mgt]
     enable_role_validation = true
