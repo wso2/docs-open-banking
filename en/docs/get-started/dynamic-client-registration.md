@@ -9,17 +9,11 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
     [open_banking.dcr]
     jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
     jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
-    ```  
-
-    3. If you are using **WSO2 Identity Server 6.0.0**, add the below configuration to enable the application role validation:
-    ```toml
-    [application_mgt]
-    enable_role_validation = true
     ```
        
-    4. Restart the Identity Server.
+    3. Restart the Identity Server.
 
-    5. If you are using **WSO2 API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
+    4. If you are using **WSO2 API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
         1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
         2. Disable `[apim.key_manager]` configurations by commenting them out:
 
@@ -37,7 +31,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
             #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
             ```
 
-    6. If you are using **WSO2 API Manager 4.2.0**, you need to change the API Manager REST API version.
+    5. If you are using **WSO2 API Manager 4.2.0**, you need to change the API Manager REST API version.
         1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
         2. Locate the `[open_banking.dcr.apim_rest_endpoints]` tag. By default, the configuration is commented out.
         3. Uncomment the configuration and update as shown below:
@@ -51,7 +45,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
             retrieve_subscribe="api/am/devportal/v3/subscriptions"
             ```
 
-    7. Restart the API Manager.
+    6. Restart the API Manager.
 
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
