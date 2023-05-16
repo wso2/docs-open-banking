@@ -180,26 +180,47 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
 
 ## Configuring Consent Manager
 
+!!! note
+    We recommend that you use the latest version of the WSO2 Open Banking Identity Server Accelerator.
+
 1. Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/runtime-config.js` file.
 
-2. Update the `SERVER_URL` parameter with a URL to the Identity Server. For example:
+2. Follow the below instructions if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above**, 
+          
+    - If the Consent Manager Portal is deployed on the WSO2 Identity Server, use the default configuration given below.
     
-    ``` javascript
-    window.env = {
-        // This option can be retrieved in "src/index.js" with "window.env.API_URL".
-        SERVER_URL: 'https://localhost:9446',
-        TENANT_DOMAIN: 'carbon.super',
-        NUMBER_OF_CONSENTS: 25,
-        VERSION: '3.0.0'
-      };
-    ```
+        ```javascript
+        window.env = {
+            // This option can be retrieved in "src/index.js" with "window.env.API_URL".
+            USE_DEFAULT_CONFIGS: true,
+            SERVER_URL: 'https://localhost:9446',
+            SPEC: 'Default',
+            TENANT_DOMAIN: 'carbon.super',
+            NUMBER_OF_CONSENTS: 20,
+            VERSION: '3.0.0'
+          };
+        ```
+    
+    - If you are using a different server for the Identity Server, 
+    
+        1. Set `USE_DEFAULT_CONFIGS` to `false`. 
+        
+        2. Update the `SERVER_URL` parameter with the URL of the Identity Server.
+    
+    ??? tip "Click here to see how to configure the above if you are not using the latest version of the WSO2 Open Banking Identity Server Accelerator."
+        Update the `SERVER_URL` parameter with the URL to the Identity Server. For example:
+            
+           ``` javascript
+           window.env = {
+               // This option can be retrieved in "src/index.js" with "window.env.API_URL".
+               SERVER_URL: 'https://localhost:9446',
+               TENANT_DOMAIN: 'carbon.super',
+               NUMBER_OF_CONSENTS: 25,
+               VERSION: '3.0.0'
+             };
+           ```
       
-3. Update the following configurations related to the Consent Manager:
-
-    !!! note
-        We recommend that you use the latest version of the WSO2 Open Banking Identity Server Accelerator.
-
-    If you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.73 or above**, open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
+3. If you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.73 or above**, open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
  
     | Configuration | Description |
     | ----------| ------------|
