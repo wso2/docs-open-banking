@@ -201,9 +201,9 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
           };
         ```
     
-    - If you are using a different server for the Identity Server, 
+    - If you are using a different server instance for the Identity Server, 
     
-        1. Set `USE_DEFAULT_CONFIGS` to `false`. 
+        1. Set the `USE_DEFAULT_CONFIGS` parameter to `false`. 
         
         2. Update the `SERVER_URL` parameter with the URL of the Identity Server.
     
