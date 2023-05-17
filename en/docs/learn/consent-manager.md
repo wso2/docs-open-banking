@@ -201,7 +201,7 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
           };
         ```
     
-    - If you are using a different server instance for the Identity Server, 
+    - If you are using a different server instance for the Identity Server, update the configurations as follows. 
     
         1. Set the `USE_DEFAULT_CONFIGS` parameter to `false`. 
         
