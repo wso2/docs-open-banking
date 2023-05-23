@@ -285,7 +285,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     - `obam:9443`
     - `obiam:9446`
 
-3. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For an example,
+3. When configuring the Key Manager, set the value of `IS_HOST` as `obiam`. For example,
 
     ```
     https://obiam:9446/keymanager-operations/dcr/register
