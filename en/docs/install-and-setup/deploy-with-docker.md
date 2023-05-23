@@ -270,7 +270,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 
 10. You can access the WSO2 Open Banking Identity Server using a web browser via the following URL:
 
-    - `https://obiam:9443/carbon`
+    - `https://obiam:9446/carbon`
 
 ### Deploy APIs and Configure IS as Key manager
 
