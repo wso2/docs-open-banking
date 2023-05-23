@@ -57,12 +57,18 @@ This section explains how to deploy the solution using Docker Compose.
     4. Change the SQL script according to your base product versions. You can find the respective SQL script 
     according to your base product version [here](https://github.com/wso2/docker-open-banking/tree/master/docker-compose/mysql/scripts).
 
-5. Follow the steps below only if you wish to run the Docker Compose setup using WSO2 UK Toolkit Docker Images or locally-built Docker images:
+4. Follow the steps below only if you wish to run the Docker Compose setup using WSO2 UK Toolkit Docker Images or locally-built Docker images:
 
     1. Build Docker images using Docker resources available [here](https://github.com/wso2/docker-open-banking/tree/master/dockerfiles).
     2. Remove the `docker.wso2.com/` prefix from the `image` name in the `docker-compose.yml` and change the image name to the image name of the locally-built image.
 
-6. Volume mount the IS connector on the `obiam` container.
+5. Volume mount the IS connector on the `obiam` container.
+
+    !!!info
+        This step is required based on the WSO2 Identity Server version and the update level you are using:
+
+        - For WSO2 Identity Server 5.11, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 5.11.0.239 or above**.
+        - For WSO2 Identity Server 6.0, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 6.0.0.71 or above**.
 
     1. Go to the `volumes` section of the `obiam` service in the `docker-compose.yml` in the `<DOCKER_COMPOSE_HOME>` directory.
     2. Change the root directory path of the extracted WSO2 IS Connector with `<IS_CONNECTOR_HOME>`.
@@ -155,6 +161,13 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 
     !!! note
         Here, `<IS_CONNECTOR_HOME>` refers to the root directory path of the extracted WSO2 IS Connector.
+   
+    !!!info
+        The IS Connector is required based on the WSO2 Identity Server version and the update level you are using:
+
+        - For WSO2 Identity Server 5.11, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 5.11.0.239 or above**.
+        - For WSO2 Identity Server 6.0, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 6.0.0.71 or above**.
+
 
 ### Set up Open Banking API Manager with Docker
 
@@ -184,7 +197,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     docker run -it -p 9712:9712 -p 9612:9612 -p 7712:7712 -p 7612:7612 -p 9092:9092 -p 9444:9444 --network ob-network --name obbi wso2-obbi:3.0.0.0-si4.2.0.0
     ```
 
-### Configure the WSO2 Open Banking solution
+## Configure the WSO2 Open Banking solution
 
 1. Copy the `deployment.toml` files of the Identity Server and API Manager from the containers to a desired location in the host machine.
 
@@ -272,7 +285,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 
     - `https://obiam:9446/carbon`
 
-### Deploy APIs and Configure IS as Key manager
+## Deploy APIs and Configure IS as Key manager
 
 1. If you are using HTTP/REST Endpoints when publishing the APIs, update the hostname of the endpoint as `obiam`. For example,
 
@@ -290,36 +303,3 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     ```
     https://obiam:9446/keymanager-operations/dcr/register
     ```
-
-## Download WSO2 Updates
-
-This section explains how to download the WSO2 updates for Open Banking Identity Server and API Manager. For each 
-container you want to update, follow the steps below:
-
-1. Start the container and log in to the container as the root user.
-
-    ```shell
-    sudo docker exec -u 0 -it obiam /bin/bash
-    ```
-
-2. Update the `<WSO2_IS_HOME>/updates/config.json` file with the relevant `username` and `backup-dir`.
-
-3. Do the same changes to the `<WSO2_IS_HOME>/<WSO2_IAM_ACCELERATOR_HOME>/updates/config.json` file.
-
-4. Go to the `<WSO2_IS_HOME>/bin` directory and update the product.
-
-      ```shell 
-      ./wso2update_linux 
-      ```
-
-5. Run the `merge.sh` script.
-
-     ```shell 
-     ./merge.sh
-     ```
-
-6. Log out and stop the container.
-
-7. Restart the `obiam` container.
-
-8. Repeat the same steps for the API Manager (`obam`) container.
