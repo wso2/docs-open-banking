@@ -67,8 +67,8 @@ This section explains how to deploy the solution using Docker Compose.
     !!!info
         This step is required based on the WSO2 Identity Server version and the update level you are using:
 
-        - For WSO2 Identity Server 5.11, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 5.11.0.239 or above**.
-        - For WSO2 Identity Server 6.0, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 6.0.0.71 or above**.
+        - For WSO2 Identity Server 5.11 as the base product, follow the instructions below if you are using Docker images  with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
+        - For WSO2 Identity Server 6.0 as the base product, follow the instructions below if you are using Docker images  with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
 
     1. Go to the `volumes` section of the `obiam` service in the `docker-compose.yml` in the `<DOCKER_COMPOSE_HOME>` directory.
     2. Change the root directory path of the extracted WSO2 IS Connector with `<IS_CONNECTOR_HOME>`.
@@ -165,9 +165,8 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     !!!info
         The IS Connector is required based on the WSO2 Identity Server version and the update level you are using:
 
-        - For WSO2 Identity Server 5.11, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 5.11.0.239 or above**.
-        - For WSO2 Identity Server 6.0, follow the instructions below if you are using **WSO2 Open Banking Identity Server Accelerator at U2 level 3.0.0.76 or above** and **WSO2 Identity Server at U2 level 6.0.0.71 or above**.
-
+        - For WSO2 Identity Server 5.11 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
+        - For WSO2 Identity Server 6.0 as the base product, follow the instructions below if you are using Docker images  with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
 
 ### Set up Open Banking API Manager with Docker
 
