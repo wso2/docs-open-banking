@@ -70,12 +70,6 @@ This section explains how to deploy the solution using Docker Compose.
 
 5. Volume mount the IS connector on the `obiam` container.
 
-    !!!info
-        This step is required based on the WSO2 Identity Server version and the update level you are using:
-
-        - For WSO2 Identity Server 5.11.0 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
-        - For WSO2 Identity Server 6.0.0 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
-
     1. Go to the `volumes` section of the `obiam` service in the `docker-compose.yml` in the `<DOCKER_COMPOSE_HOME>` directory.
     2. Change the root directory path of the extracted WSO2 IS Connector with `<IS_CONNECTOR_HOME>`.
 
@@ -151,6 +145,20 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     mysql> ALTER TABLE openbank_apimgtdb.SP_METADATA MODIFY VALUE VARCHAR(7500);
     ```
 
+### Set up Open Banking Business Intelligence with Docker
+
+1. Pull the Open Banking Business Intelligence image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obiam).
+
+    ```shell
+    docker pull docker.wso2.com/wso2-obbi:3.0.0.0-si4.2.0.0
+    ```
+
+2. Run the Open Banking Business Intelligence image.
+
+    ```shell
+    docker run -it -p 9712:9712 -p 9612:9612 -p 7712:7712 -p 7612:7612 -p 9092:9092 -p 9444:9444 --network ob-network --name obbi wso2-obbi:3.0.0.0-si4.2.0.0
+    ```
+
 ### Set up Open Banking Identity Server with Docker
 
 1. Pull the Open Banking Identity Server image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obiam).
@@ -186,20 +194,6 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 
     ```shell
     docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --name obam docker.wso2.com/wso2-obam:3.0.0.0-am4.2.0.0
-    ```
-
-### Set up Open Banking Business Intelligence with Docker
-
-1. Pull the Open Banking Business Intelligence image from [WSO2 Docker Repositories](https://docker.wso2.com/tags.php?repo=wso2-obiam).
-
-    ```shell
-    docker pull docker.wso2.com/wso2-obbi:3.0.0.0-si4.2.0.0
-    ```
-
-2. Run the Open Banking Business Intelligence image.
-
-    ```shell
-    docker run -it -p 9712:9712 -p 9612:9612 -p 7712:7712 -p 7612:7612 -p 9092:9092 -p 9444:9444 --network ob-network --name obbi wso2-obbi:3.0.0.0-si4.2.0.0
     ```
 
 ## Configure the WSO2 Open Banking solution
