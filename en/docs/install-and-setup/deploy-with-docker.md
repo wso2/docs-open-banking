@@ -12,6 +12,12 @@ This page explains two methods of deploying the solution in Docker containers.
     [Installing base products](https://ob.docs.wso2.com/en/latest/get-started/quick-start-guide/#installing-base-products) 
     documentation to learn about the respective WSO2 IS Connector according to the API Manager version.
 
+        !!!info
+            The IS Connector is required based on the WSO2 Identity Server version and the update level you are using:
+        
+            - For WSO2 Identity Server 5.11.0 as the base product, the IS Connector is needed if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
+            - For WSO2 Identity Server 6.0.0 as the base product, the IS Connector is needed below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
+
 !!! note
     In order to use WSO2 Open Banking Docker Images, you need an active WSO2 Open Banking subscription. If you don't
     have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact)
@@ -57,7 +63,7 @@ This section explains how to deploy the solution using Docker Compose.
     4. Change the SQL script according to your base product versions. You can find the respective SQL script 
     according to your base product version [here](https://github.com/wso2/docker-open-banking/tree/master/docker-compose/mysql/scripts).
 
-4. Follow the steps below only if you wish to run the Docker Compose setup using WSO2 UK Toolkit Docker Images or locally-built Docker images:
+4. Follow the steps below only if you wish to run the Docker Compose setup using WSO2 Toolkit Docker Images or locally-built Docker images:
 
     1. Build Docker images using Docker resources available [here](https://github.com/wso2/docker-open-banking/tree/master/dockerfiles).
     2. Remove the `docker.wso2.com/` prefix from the `image` name in the `docker-compose.yml` and change the image name to the image name of the locally-built image.
@@ -67,8 +73,8 @@ This section explains how to deploy the solution using Docker Compose.
     !!!info
         This step is required based on the WSO2 Identity Server version and the update level you are using:
 
-        - For WSO2 Identity Server 5.11 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
-        - For WSO2 Identity Server 6.0 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
+        - For WSO2 Identity Server 5.11.0 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
+        - For WSO2 Identity Server 6.0.0 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
 
     1. Go to the `volumes` section of the `obiam` service in the `docker-compose.yml` in the `<DOCKER_COMPOSE_HOME>` directory.
     2. Change the root directory path of the extracted WSO2 IS Connector with `<IS_CONNECTOR_HOME>`.
@@ -105,7 +111,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     docker run --network ob-network --name mysql -e MYSQL_ROOT_PASSWORD=root  -d mysql:8.0.32
     ```
 
-3. Choose the SQL script according to your base product versions and copy that SQL script to the MySQL container.
+3. Choose the SQL script according to your base product versions and copy that SQL script to the MySQL container. For example, execute the below script if you are using WSO2 API Manager 4.2.0 and WSO2 Identity Server 6.0.0 as base products.
 
     ```shell 
     docker cp <OB_DOCKER_HOME>/docker-compose/mysql/scripts/setup-apim4.2.0-IS6.0.0.sql  mysql:/setup.sql
@@ -153,7 +159,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     docker pull docker.wso2.com/wso2-obiam:3.0.0.0-is6.0.0.0
     ```
 
-2. Deploy the Identity Server image.
+2. Volume mount the IS connector and run the Identity Server image.
 
     ```shell
     docker run -it -p 9446:9446 --network ob-network --name obiam -v <IS_CONNECTOR_HOME>/dropins:/home/wso2carbon/wso2-artifact-volume/repository/components/dropins/ -v <IS_CONNECTOR_HOME>/webapps:/home/wso2carbon/wso2-artifact-volume/repository/deployment/server/webapps/ wso2-obiam:3.0.0.0-is6.0.0.0
@@ -165,8 +171,8 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     !!!info
         The IS Connector is required based on the WSO2 Identity Server version and the update level you are using:
 
-        - For WSO2 Identity Server 5.11 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
-        - For WSO2 Identity Server 6.0 as the base product, follow the instructions below if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
+        - For WSO2 Identity Server 5.11.0 as the base product, the IS Connector is needed if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is5.11.0.239 or above**.
+        - For WSO2 Identity Server 6.0.0 as the base product, the IS Connector is needed if you are using Docker images with the tag **docker.wso2.com/wso2-obiam:3.0.0.76-is6.0.0.71 or above**.
 
 ### Set up Open Banking API Manager with Docker
 
@@ -176,7 +182,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     docker pull docker.wso2.com/wso2-obam:3.0.0.0-am4.2.0.0
     ```
 
-2. Deploy the Open Banking API Manager image.
+2. Run the Open Banking API Manager image.
 
     ```shell
     docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --name obam docker.wso2.com/wso2-obam:3.0.0.0-am4.2.0.0
@@ -190,7 +196,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     docker pull docker.wso2.com/wso2-obbi:3.0.0.0-si4.2.0.0
     ```
 
-2. Deploy the Open Banking Business Intelligence image.
+2. Run the Open Banking Business Intelligence image.
 
     ```shell
     docker run -it -p 9712:9712 -p 9612:9612 -p 7712:7712 -p 7612:7612 -p 9092:9092 -p 9444:9444 --network ob-network --name obbi wso2-obbi:3.0.0.0-si4.2.0.0
