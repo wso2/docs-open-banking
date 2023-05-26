@@ -124,6 +124,7 @@ nav:
         - 'Consent Core Service': develop/consent-core-service.md
         - 'Customize the Consent Page': develop/customize-consent-page.md
         - 'Consent Amendment History': develop/consent-amendment-history.md
+        - 'Customize the Consent Manager UI': develop/customize-consent-manager-ui.md
     - 'Token Flow Customization':
         - 'JWT Access Tokens': develop/jwt-access-tokens.md
         - 'Token Filters': develop/token-filters.md
