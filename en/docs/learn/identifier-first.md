@@ -76,12 +76,7 @@ var OTPFlow = function(context) {
 };
 ```
 
-4. Add the following configuration to the `<IS_HOME>/repository/conf/deployment.toml` file to set authenticator steps.
-
-    !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
-        3.0.0.78** onwards. For more information on updating,
-        see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+4. If you are using **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.78 or above,** add the following configuration to the `<IS_HOME>/repository/conf/deployment.toml` file to set authenticator steps.
 
     ```toml
     [open_banking.sca.idp]
