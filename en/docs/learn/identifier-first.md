@@ -76,6 +76,26 @@ var OTPFlow = function(context) {
 };
 ```
 
+4. Add the following configuration to the `<IS_HOME>/repository/conf/deployment.toml` file to set authenticator steps.
+
+    !!! info
+        This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
+        3.0.0.78** onwards. For more information on updating,
+        see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+
+    ```toml
+    [open_banking.sca.idp]
+    name = "<IDP_NAME>"
+    step = "<IDP_STEP>"
+    ```
+
+    For example, to add the SMS Authenticator IDP named `SMSAuthentication` as the second authenticator step, add the following configuration:
+    ```toml
+    [open_banking.sca.idp]
+    name = "SMSAuthentication"
+    step = "2"
+    ```
+
 ###After server start
 If you have already started the Identity Server and API Manager servers, follow the below instructions to configure 
 identifier-first authentication.
