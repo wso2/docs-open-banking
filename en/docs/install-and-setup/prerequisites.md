@@ -17,13 +17,13 @@ You can use any of the following combinations:
     <th>Combination 01</th>
     <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">5.11.0</a></td>
     <td><a href="https://wso2.com/api-management/previous-releases/">4.1.0</a> or <a href="https://wso2.com/api-management/previous-releases/">4.0.0</a></td>
-    <td><a href="https://wso2.com/streaming-integrator/previous-releases/">4.0.0</a></td>
+    <td><a href="https://wso2.com/streaming-integrator/">4.0.0</a></td>
   </tr>
   <tr>
     <th>Combination 02<br></th>
     <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
     <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
-    <td><a href="https://wso2.com/integration/streaming-integrator/#">4.2.0</a></td>
+    <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
   </tr>
 </tbody>
 </table>
@@ -79,7 +79,7 @@ Given below is the compatible base product matrix for WSO2 Open Banking 3.0:
   <tr>
     <td>WSO2 Streaming Integrator</td>
     <td>4.0.0</td>
-    <td>4.1.0</td>
+    <td>4.2.0</td>
   </tr>
 </tbody>
 </table>
