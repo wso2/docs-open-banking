@@ -326,3 +326,6 @@ account numbers, and permissions that you have granted.
     
 - Once you click **Stop Sharing**, the status of the consent changes to `withdrawn`. You can find this consent in the 
 **Withdrawn** tab now.
+
+!!!note
+    To learn about customizing the Consent Manager Portal, see the [Customize the Consent Manager Portal](../develop/customize-consent-manager-portal) documentation.
