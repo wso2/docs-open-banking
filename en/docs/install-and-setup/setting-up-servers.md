@@ -12,7 +12,7 @@ products.
     |---------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
     | WSO2 Identity Server      | [5.11.0](https://wso2.com/identity-and-access-management/previous-releases/)                                               | [6.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
     | WSO2 API Manager          | [4.1.0](https://wso2.com/api-management/previous-releases/) or [4.0.0](https://wso2.com/api-management/previous-releases/) | [4.2.0](https://wso2.com/api-manager/)                                      |
-    | WSO2 Streaming Integrator | [4.0.0](https://wso2.com/streaming-integrator/previous-releases/)                                                          | [4.1.0]()
+    | WSO2 Streaming Integrator | [4.0.0](https://wso2.com/streaming-integrator/)                                                          | [4.2.0](https://wso2.com/streaming-integrator/)
 
 2. To configure the Identity Server with the API Manager, install the respective WSO2 IS Connector according to the API Manager version you have downloaded.
 
