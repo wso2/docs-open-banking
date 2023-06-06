@@ -1,5 +1,4 @@
-This page explains how the developers can plug in the required toolkit code and customize the User Interface (UI) of the Consent 
-Manager application by modifying or adding files.
+This page explains how the developers can plug in the required toolkit code and customize the Consent Manager Portal by modifying or adding files.
 
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
