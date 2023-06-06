@@ -31,7 +31,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
             #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
             ```
 
-    5. If you are using **WSO2 API Manager 4.2.0**, you need to change the API Manager REST API version.
+    5. If you are using **WSO2 API Manager 4.2.0**, you need to change the API Manager REST API version from V2 to V3.
         1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
         2. Locate the `[open_banking.dcr.apim_rest_endpoints]` tag. By default, the configuration is commented out.
         3. Uncomment the configuration and update as shown below:
