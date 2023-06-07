@@ -69,7 +69,7 @@ database server, and the JDBC driver.
     driver = "com.mysql.jdbc.Driver"
     ```
 
-5. 	Configure the authentication endpoints with the hostname of the Identity Server.
+5. Configure the authentication endpoints with the hostname of the Identity Server.
 
     ``` toml
     [authentication.endpoints]	
@@ -208,6 +208,12 @@ database server, and the JDBC driver.
     password="$ref{super_admin.password}"	
     server_url = "{tcp://<SI_HOST>:7612}"	
     ```   
+    
+13. If you are using **WSO2 Identity Server 6.0.0**, add below configuration to enable application role validation:
+        ```toml
+        [application_mgt]
+        enable_role_validation = true
+        ```
    
 ## Starting servers
 
