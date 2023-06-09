@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: v3.0.0
-  title: ApplicationInfoAPI
+  title: Application Info API
   description: This specifies a RESTful API for retrieving OAuth Application Information
   contact:
     name: WSO2
