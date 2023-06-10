@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: v1.0
-  title: ConsentAPI
+  title: Consent API
   description: This specifies a RESTful API for making interactions with the consent module
   contact:
     name: WSO2
