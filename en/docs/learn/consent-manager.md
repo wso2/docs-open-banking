@@ -178,6 +178,20 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
 
 13. Find the **SelfCarePortalAPI** from the list and click the **Subscribe** button corresponding to it.
 
+14. If you are using **WSO2 Identity Server 6.0.0**, follow the below instructions:
+
+    1. Sign in to the Management Console at `https://<IS_HOST>:9446/carbon/`.
+    
+    2. In the **Main** tab, click **Identity -> Service Providers -> List**.
+    
+    3. Select the Service Provider of the `consentmgr` application, and click the corresponding **Edit** icon.
+    
+    4. Expand the **Claim Configuration** section.
+    
+    5. Select **http://wso2.org/claims/username** from the **Subject Claim URI** list.
+    
+    6. Click **Update** to save the configurations.
+
 ## Configuring Consent Manager
 
 !!! note
