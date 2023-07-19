@@ -145,7 +145,8 @@ Listed below are the prerequisites for a successful deployment:
          <th>DBMS</th>
          <td>
             <ul>
-               <li>MySQL 8.0</li>
+               <li>MySQL 8.0</li> 
+               See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> if you are using MySQL 8.0.
                <li>Oracle 19c</li>
                <li>Microsoft SQL Server 2017</li>
                <li> PostgreSQL 13</li>
@@ -166,6 +167,14 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
 
 !!!info
     If you are using **WSO2 Identity Server 6.0.0** and **WSO2 API Manager 4.2.0** as the base products, it is recommended to use OpenJDK 17. For other base products, use OpenJDK 11.
+
+!!!note
+    To use MySQL 8.0, you need to create the database with `charset latin1` as shown below:
+
+    ```
+    create database regdb
+    character set latin1;
+    ```
 
 <table>
    <tbody>
