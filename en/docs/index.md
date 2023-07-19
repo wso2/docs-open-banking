@@ -2,7 +2,31 @@
 template: templates/single-column.html 
 ---
 
-<link href="https://wso2.cachefly.net/wso2/sites/all/fonts/docs/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" rel="stylesheet" />
+<style>
+    @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://wso2.cachefly.net/wso2/sites/all/fonts/docs/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+    }
+
+    .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    }
+</style>
+
 <div>
     <header>
         <h1>Welcome to the WSO2 Open Banking Accelerator Documentation!</h1>
@@ -98,7 +122,7 @@ template: templates/single-column.html
     		</div>
     		<!-- end card -->
     		<!-- card -->
-    		<div class="card" onclick="location.href='develop/develop-toolkit/';">
+    		<div class="card" onclick="location.href='develop/overview/';">
     			<div class="line"></div>
     			<div class="card-icon">
     				<i class="material-icons md-36">code</i>
