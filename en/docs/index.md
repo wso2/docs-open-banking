@@ -122,7 +122,7 @@ template: templates/single-column.html
     		</div>
     		<!-- end card -->
     		<!-- card -->
-    		<div class="card" onclick="location.href='develop/overview/';">
+    		<div class="card" onclick="location.href='develop/develop-toolkit/';">
     			<div class="line"></div>
     			<div class="card-icon">
     				<i class="material-icons md-36">code</i>
