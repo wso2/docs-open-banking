@@ -23,6 +23,9 @@ can quickly set up and try out a basic flow.
          - Microsoft SQL Server 2017
          - PostgreSQL 13
          
+        !!!info
+            See [Compatibility](../install-and-setup/prerequisites.md#compatibility) if you are using MySQL 8.0.
+
         !!!note
             We do not recommend configuring H2 database in the production environment.
     
