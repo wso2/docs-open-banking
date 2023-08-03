@@ -31,7 +31,7 @@ section explains how to get started with implementing customizations and impleme
             ./ merge.sh
             ```
 
-1. Download the zip file available [here](../assets/attachments/install_scripts.zip) and extract it.
+1. Download the zip file available [here](../assets/attachments/install-scripts.zip) and extract it.
 2. According to your operating system, select and copy the relevant `install` script.
  
     The `install` script will install WSO2 Identity Server, API Manager, and Open Banking specific JAR files to your 
