@@ -364,6 +364,6 @@ curl --location --request DELETE 'https://localhost:9446/api/openbanking/event-n
 --data ''
 ```
 
-```json tab="Response"
+```tab="Response"
 204 No Content
 ```
