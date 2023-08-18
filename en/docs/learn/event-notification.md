@@ -165,7 +165,6 @@ Given below are sample Event Polling request payloads (in the decoded format) an
        },
        "returnImmediately":true
     }
-  
 
     ### Event Subscription
 
