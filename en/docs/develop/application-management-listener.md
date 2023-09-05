@@ -22,7 +22,7 @@ Given below is a brief description of each method.
 This method lets you enable OAuth 2.0 properties related to the application. For example, ID token encryption.
 
 ``` java
-public void setOauthAppProperties(boolean isRegulatoryApp, OAuthConsumerAppDTO oauthApplication)
+public void setOauthAppProperties(boolean isRegulatoryApp, OAuthConsumerAppDTO oauthApplication, Map<String, Object> spMetaData)
 throws OpenBankingException {
 
   oauthApplication.setIdTokenEncryptionEnabled(true);
