@@ -243,7 +243,7 @@ The API consumer application redirects the bank customer to authenticate and app
 consumer wishes to access. This request is in the format of a URL as follows: 
 
     ``` url tab="Sample"
-    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=LvbSjaOIUPmAWZT8jdzyvjqCqY8a&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
+    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=S6u2He4jywvyypT7fGYExLSypQYa&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
     ```
    
     ``` url tab="Format"
