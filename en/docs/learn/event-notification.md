@@ -149,7 +149,7 @@ Given below are sample Event Polling request payloads (in the decoded format) an
     }    
     ```
 
-- To acknowledge the received events (both positive and negative acknowledgements) while accepting more events.
+- To acknowledge the received events (both positive and negative acknowledgments) while accepting more events.
   If there are more events available with the bank. The application continues requesting events until there are no more events.
 
     ```json  
@@ -165,7 +165,8 @@ Given below are sample Event Polling request payloads (in the decoded format) an
        },
        "returnImmediately":true
     }
-
+    ```
+    
     ### Event Subscription
 
 You can subscribe to receive notifications using this API for particular event types. WSO2 Open Banking Accelerator uses six API endpoints to manage event notification subscriptions.
@@ -196,7 +197,7 @@ The API allows API consumer applications to delete specific event notification s
 
 Given below are sample Event Subscription request payloads and their responses:
 
-Create an Event Notification Subscription
+- Create an Event Notification Subscription
 
 ```tab="Request"
 curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/' \
@@ -227,7 +228,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 }
 ```
 
-Retrieve an Event Notification Subscription
+- Retrieve an Event Notification Subscription
 
 ```tab="Request"
 curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/<SUBSCRIPTION_ID>' \
@@ -254,7 +255,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 }
 ```
 
-Retrieve All Event Notification Subscriptions
+- Retrieve All Event Notification Subscriptions
 
 ```tab="Request"
 curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/' \
@@ -291,7 +292,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 }
 ```
 
-Retrieve Event Notification Subscriptions by an Subscribed Event Type
+- Retrieve Event Notification Subscriptions by an Subscribed Event Type
 
 ```tab="Request"
 curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/type/<SUBSCRIBED_EVENT_TYPE>' \
@@ -326,7 +327,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 }
 ```
 
-Update an Event Notification Subscription
+- Update an Event Notification Subscription
 
 ```tab="Request"
 curl --location --request PUT 'https://localhost:9446/api/openbanking/event-notifications/subscription/<SUBSCRIPTION_ID>' \
@@ -354,7 +355,7 @@ curl --location --request PUT 'https://localhost:9446/api/openbanking/event-noti
 }
 ```
 
-Delete an Event Notification Subscription
+- Delete an Event Notification Subscription
 
 ```tab="Request"
 curl --location --request DELETE 'https://localhost:9446/api/openbanking/event-notifications/subscription/<SUBSCRIPTION_ID>' \
