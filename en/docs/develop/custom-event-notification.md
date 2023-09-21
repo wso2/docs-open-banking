@@ -69,6 +69,108 @@ the polling service.
 EventPollingDTO mapPollingRequest(JSONObject eventPollingRequest);
 ```
 
+### Event Subscription Service Handler
+
+This interface provides methods to validate the event subscription payload, invoke the event subscription service, and modify
+the final response for the event subscription. You can implement custom validations or custom responses for the event notification
+subscription endpoint using this interface.
+
+``` java
+com.wso2.openbanking.accelerator.event.notifications.service.handler.EventSubscriptionServiceHandler
+```
+
+#### createEventSubscription method
+
+The method lets you create an event subscription to receive events tailored to your specific needs. By selecting the events they 
+want to be notified about.
+
+``` java
+/**
+ * This method is used to create event subscriptions in the accelerator database. The method is a generic
+ * method that is used to persist data into the NOTIFICATION_SUBSCRIPTION and NOTIFICATION_SUBSCRIPTION_EVENT
+ * tables.
+ *
+ * @param eventSubscriptionRequestDto The request DTO that contains the subscription details.
+ * @return For successful request the API will return a JSON with the subscriptionId
+ */
+EventSubscriptionResponse createEventSubscription(EventSubscriptionDTO eventSubscriptionRequestDto);
+```
+
+#### getEventSubscription method
+
+The method lets you retrieve information about specific event notification subscriptions you have previously established. 
+This feature ensures that you have easy access to the subscribed events and the respective configurations.
+
+``` java
+/**
+ * This method is used to retrieve an event subscription by its subscription ID.
+ *
+ * @param clientId The client ID of the subscription.
+ * @param subscriptionId The subscription ID of the subscription.
+ * @return For successful request the API will return a JSON with the retrieved Subscription.
+ */
+EventSubscriptionResponse getEventSubscription(String clientId, String subscriptionId);
+```
+
+#### getAllEventSubscriptions method
+
+The method lets you access a comprehensive list of all their event notification subscriptions.
+
+``` java
+/**
+ * This method is used to retrieve all event subscriptions of a client.
+ *
+ * @param clientId The client ID of the subscription.
+ * @return For successful request the API will return a JSON with the retrieved Subscriptions.
+ */
+EventSubscriptionResponse getAllEventSubscriptions(String clientId);
+```
+
+#### getEventSubscriptionsByEventType method
+
+The method lets you retrieve event notification subscriptions that have subscribed to a particular event type.
+
+``` java
+/**
+ * This method is used to retrieve all event subscriptions by event type.
+ *
+ * @param clientId The client ID of the subscription.
+ * @param eventType The event type that needs to be subscribed by the retrieving subscriptions.
+ * @return For successful request the API will return a JSON with the retrieved Subscriptions.
+ */
+EventSubscriptionResponse getEventSubscriptionsByEventType(String clientId, String eventType);
+```
+
+#### updateEventSubscription method
+
+The method lets you update the data and configurations of their existing event notification subscriptions. 
+This feature allows them to adapt to changing requirements and preferences seamlessly.
+
+``` java
+/**
+ * This method is used to update an event subscription.
+ *
+ * @param eventSubscriptionUpdateRequestDto The request DTO that contains the updating subscription details.
+ * @return For successful request the API will return a JSON with the updated Subscription.
+ */
+EventSubscriptionResponse updateEventSubscription(EventSubscriptionDTO eventSubscriptionUpdateRequestDto);
+```
+
+#### deleteEventSubscription method
+
+The method lets you delete specific event notification subscriptions that are no longer required.
+
+``` java
+/**
+ * This method is used to delete an event subscription.
+ *
+ * @param clientId The client ID of the subscription.
+ * @param subscriptionId The subscription ID of the subscription.
+ * @return For successful request the API will an OK response.
+ */
+EventSubscriptionResponse deleteEventSubscription(String clientId, String subscriptionId);
+```
+
 ### Event Notification Generator
 
 This interface provides a method to customize the event notification JSON. For example, use this class to send additional 
@@ -123,6 +225,7 @@ Once implemented, build JAR files for your custom Event Notification services:
          | `number_of_sets_to_return` | The maximum number of events to be returned. This is the default value for `maxEvents`, if the request payload has not defined a value. |
          | `event_creation_handler` | Configure your Event Creation Handler using its FQN.|
          | `event_polling_handler` | Configure your Event Polling Handler using its FQN.|
+         | `event_subscription_handler` | Configure the Event Subscription Handler using its FQN.|
          | `event_notification_generator` | Configure your Event Notification Generator using its FQN. |
          | `set_sub_claim_included`, `set_txn_claim_included`, `set_toe_claim_included`| Configure the customized optional claims in event notification using these tags. They represent the subject, transaction, and time of event claims respectively. |espectively. |
 
@@ -132,6 +235,7 @@ Once implemented, build JAR files for your custom Event Notification services:
         number_of_sets_to_return = 5
         event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
         event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
+        event_subscription_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventSubscriptionServiceHandler"
         event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
         set_sub_claim_included = true
         set_txn_claim_included = true
