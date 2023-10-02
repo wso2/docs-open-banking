@@ -246,7 +246,7 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
 
 When deploying WSO2 Open Banking in a production server, make sure to comply with the following common security guidelines for production deployment. 
 
- - [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
+ - For WSO2 Open Banking Identity Server Accelerator refer [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
  - [WSO2 API Manager Security Guidelines for Production Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#api-m-runtime-security)
  - [WSO2 Streaming Integrator  Security Guidelines for Production Deployment](https://ei.docs.wso2.com/en/latest/streaming-integrator/setup/production-checklist/#securing-the-streaming-integrator)
 
