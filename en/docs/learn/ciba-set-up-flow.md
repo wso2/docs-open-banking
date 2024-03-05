@@ -215,7 +215,7 @@ configuration with the IP address of the Identity Server.
 1. Log in to the Identity Server Management Console at `https://<IS_HOST>:9446/carbon` as an admin user.
 2. Go to **Identity Providers > Add**.
 3. Register a new IDP for Push Authentication. Use the name **CIBA-Push-Auth**.
-4. Go to **Federated Authenticators > CIBA Push Authentication Configuration** and enable the Push Authenticator.
+4. Go to **Federated Authenticators > CIBA Authentication Configuration** and enable the Push Authenticator.
 5. IDP configurations:
      - Firebase Server Key: Create an [FCM project](https://fcm.googleapis.com/fcm/send) when setting up the mobile 
        application. Add the Server Key of that application here. You can obtain it from the 
