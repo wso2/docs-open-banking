@@ -34,7 +34,7 @@ Once you have successfully prepared the environment for the deployment, you can 
         
         | DBMS version | JDBC driver version |
         |--------------|---------------------|
-        | MySQL 8.0 | `mysql-connector-java-5.1.44.jar` <br> By default, this file available in the above locations.  |
+        | MySQL 8.0 | `mysql-connector-java-5.1.44.jar`  |
         | Oracle 19c | `ojdbc10.jar` |
         | Microsoft SQL Server 2017 | `sqljdbc41.jar` |
         | PostgreSQL 13 | `postgresql-42.2.17.jar` |
