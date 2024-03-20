@@ -23,6 +23,15 @@ This page explains two methods of deploying the solution in Docker containers.
     have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact)
     for more information.
 
+??? warning "If you are using a JDK 17 obiam docker image, adaptive authentication is disabled by default."
+
+    To create a Docker image with adaptive authentication enabled, add the following commands to your Dockerfile and run it against the base image. 
+
+    ```
+    RUN chmod +x ${WSO2_IAM_SERVER_HOME}/bin/adaptive.sh
+    RUN ${WSO2_IAM_SERVER_HOME}/bin/adaptive.sh
+    ```
+
   - If you are looking for a Quick Start Guide and deploy the solution, follow 
   [Deploy WSO2 Open Banking with Docker Compose](#deploy-wso2-open-banking-with-docker-compose).
 
