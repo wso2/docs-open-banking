@@ -1,6 +1,5 @@
 The idempotency validator is used to validate idempotency of the requests. Idempotency validator will be a part of the key manager and will used to validate the idempotency of the  consent related requests. If the same request is repeated within the configured allowed time, the response is returned from the key manager without calling the back end. 
 
-
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.48** and 
     **WSO2 Open Banking API Manager Accelerator Level 3.0.0.25** onwards. For more information on updating, see 
@@ -16,7 +15,7 @@ boolean storeConsentAttributes(String consentID, Map<String, String> consentAttr
 Toolkit Developers can use the following method to validate idempotency:
 
 ```java
-public static IdempotencyValidationResult validateIdempotency(String idempotencyKeyName, String idempotencyKeyValue, String request, String clientId)
+public IdempotencyValidationResult validateIdempotency(ConsentManageData consentManageData) throws IdempotencyValidationException
 ```
 
 This method will first check whether idempotency validation is enabled. Then it will check the follwoing,
@@ -25,13 +24,6 @@ This method will first check whether idempotency validation is enabled. Then it 
 - The request is received within the allowed time
 
 If either of the above condition is false, `validateIdempotency` method will throw a `ConsentManagementException` with an error message.
-
-Input parameters
-
-- `idempotencyKeyName` - Idempotency Key Name
-- `idempotencyKeyValue` - Idempotency Key Value
-- `request` - Request Payload
-- `clientId` - Client ID from the request
 
 `validateIdempotency` method will return `IdempotencyValidationResult` as the output after the validation. `IdempotencyValidationResult` contains following parameters.
 
@@ -42,46 +34,95 @@ Input parameters
 | `consent` | Detailed Consent resource retrived from the database|
 | `consentId` | Consent Id retrived from the database|
 
+Since there are different requirements in different regions, you can extend and override the following public methods in the `IdempotencyValidator` class and implement them according tou your requirements.
 
-A sample open banking idempotency handling executor implementation is given below:
+ | Method Name  	| Parameter     | 	Return Type 	| Purpose of the Method  |
+    | ------------	|----------|------------------------ |--------------------	|
+    | `getIdempotencyAttributeName` | `String resourcePath`   | String | To get the Idempotency Attribute Name store in consent Attributes.|
+    | `getIdempotencyHeaderName` | None | String | To get the Idempotency Header Name according to the request. |
+    | `getCreatedTimeOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get created time fof the previous. |
+    | `getPayloadOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get payload of the previous request. |
+    | `isPayloadSimilar` | `ConsentManageData consentManageData`, `String consentReceipt` | boolean | To compare whether payloads are equal. |
+
+A sample open banking idempotency validator implementation is given below:
 
 ```java
 /**
-     * Method to check whether the request is a valid idempotent request.
+ * Class to handle idempotency related operations.
+ */
+public class IdempotencyValidatorImpl extends IdempotencyValidator {
+
+    private static final Log log = LogFactory.getLog(UKIdempotencyValidator.class);
+
+    /**
+     * Method to get the Idempotency Attribute Name store in consent Attributes.
      *
-     * @param consentManageData  Consent Manage Data object
-     * @return whether the request is idempotent
+     * @param resourcePath     Resource Path
+     * @return idempotency Attribute Name.
      */
-    public static boolean isIdempotent(ConsentManageData consentManageData) {
+    @Override
+    public String getIdempotencyAttributeName(String resourcePath) {
+        if (resourcePath.contains("/file")) {
+            return "FileUploadIdempotencyKey";
+        } else {
+            return "IdempotencyKey";
+        }
+    }
 
-        String idempotencyKeyName = ConsentExtensionConstants.IDEMPOTENCY_KEY;
+    /**
+     * Method to get the Idempotency Header Name according to the request.
+     *
+     * @return idempotency Header Name.
+     */
+    @Override
+    public String getIdempotencyHeaderName() {
+        return "x-idempotency-key";
+    }
 
-        Object request = consentManageData.getPayload();
-        try {
-            IdempotencyValidationResult result = IdempotencyValidator.validateIdempotency(idempotencyKeyName,
-                    consentManageData.getHeaders().get(ConsentExtensionConstants.X_IDEMPOTENCY_KEY),
-                    request.toString(), consentManageData.getClientId());
-            if (result.isIdempotent()) {
-                // Idempotency key has been replayed
-                if (result.isValid()) {
-                    // Idempotency key has been replayed, Payloads are similar and request has been received
-                    // within the allowed time hence return the response of the previous request
-                    consentManageData.setResponsePayload(ConsentManageUtil.getInitiationResponse((JSONObject) request,
-                            result.getConsent(), consentManageData, ConsentExtensionConstants.PAYMENTS));
-                    consentManageData.setResponseStatus(ResponseStatus.CREATED);
-                    return true;
-                } else {
-                    log.error(ErrorConstants.IDEMPOTENCY_KEY_FRAUDULENT);
-                    throw new ConsentException("Idempotency check failed.");
-                }
-            }
-        } catch (ConsentManagementException e) {
-            log.error(ErrorConstants.IDEMPOTENCY_KEY_FRAUDULENT, e);
-            throw new ConsentException("Idempotency check failed.", e);
+
+    /**
+     * Method to get created time from the Detailed Consent Resource.
+     *
+     * @param resourcePath     Resource Path
+     * @param consentId        ConsentId
+     * @return Created Time.
+     */
+    @Override
+    public long getCreatedTimeOfPreviousRequest(String resourcePath, String consentId) {
+        return  consentRequest.getCreatedTime();
+    }
+
+    /**
+     * Method to get payload from request.
+     *
+     * @param resourcePath     Resource Path
+     * @param consentId        ConsentId
+     * @return Map containing the payload.
+     */
+    @Override
+    public String getPayloadOfPreviousRequest(String resourcePath, String consentId) {
+            return consentRequest.getReceipt();
+    }
+
+    /**
+     * Method to compare whether payloads are equal.
+     *
+     * @param consentManageData   Consent Manage Data Object
+     * @param consentReceipt      Payload received from database
+     * @return   Whether payloads are equal
+     */
+    @Override
+    public boolean isPayloadSimilar(ConsentManageData consentManageData, String consentReceipt) {
+
+        if (payload == null || consentReceipt == null) {
+            return true;
         }
 
-        return false;
+        JsonNode expectedNode = new ObjectMapper().readTree(payload);
+        JsonNode actualNode = new ObjectMapper().readTree(consentReceipt);
+        return expectedNode.equals(actualNode);
     }
+}
 ```
 
 ## Configuring Open Banking Idempotency Validation
