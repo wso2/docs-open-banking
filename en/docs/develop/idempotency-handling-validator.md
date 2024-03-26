@@ -1,4 +1,4 @@
-The idempotency validator is used to validate idempotency of the requests. Idempotency validator will be a part of the key manager and will used to validate the idempotency of the  consent related requests. If the same request is repeated within the configured allowed time, the response is returned from the key manager without calling the back end. 
+The idempotency validator is used to validate idempotency of the requests. It will be a part of the key manager and will used to validate the idempotency of the  consent related requests. If the same request is repeated within the configured allowed time, the response is returned from the key manager without calling the back end. 
 
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.48** and 
