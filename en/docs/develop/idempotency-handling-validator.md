@@ -30,11 +30,11 @@ If either of the above condition is false, `validateIdempotency` method will thr
 | Field | Description |
 | ------------- | ----------- |
 | `isIdempotent` | boolean value specifying whether the idempotency key in replayed or not |
-| `isValid` | boolean value specifying whether the idempotency validation result  |
-| `consent` | Detailed Consent resource retrived from the database|
-| `consentId` | Consent Id retrived from the database|
+| `isValid` | boolean value specifying whether the idempotent request is valid or not |
+| `consent` | Detailed Consent resource retrieved from the database|
+| `consentId` | Consent Id retrieved from the database|
 
-Since there are different requirements in different regions, you can extend and override the following public methods in the `IdempotencyValidator` class and implement them according tou your requirements.
+Since there are different requirements in different regions, you can extend and override the following public methods in the `IdempotencyValidator` class and implement them according to your requirements.
 
  | Method Name  	| Parameter     | 	Return Type 	| Purpose of the Method  |
     | ------------	|----------|------------------------ |--------------------	|
@@ -89,7 +89,17 @@ public class IdempotencyValidatorImpl extends IdempotencyValidator {
      */
     @Override
     public long getCreatedTimeOfPreviousRequest(String resourcePath, String consentId) {
-        return  consentRequest.getCreatedTime();
+        DetailedConsentResource consentRequest = null;
+        try {
+            consentRequest = consentCoreService.getDetailedConsent(consentId);
+        } catch (ConsentManagementException e) {
+            log.error(IdempotencyConstants.CONSENT_RETRIEVAL_ERROR, e);
+            return 0L;
+        }
+        if (consentRequest == null) {
+            return 0L;
+        }
+        return consentRequest.getCreatedTime();
     }
 
     /**
@@ -101,7 +111,17 @@ public class IdempotencyValidatorImpl extends IdempotencyValidator {
      */
     @Override
     public String getPayloadOfPreviousRequest(String resourcePath, String consentId) {
-            return consentRequest.getReceipt();
+            DetailedConsentResource consentRequest = null;
+        try {
+            consentRequest = consentCoreService.getDetailedConsent(consentId);
+        } catch (ConsentManagementException e) {
+            log.error(IdempotencyConstants.CONSENT_RETRIEVAL_ERROR, e);
+            return null;
+        }
+        if (consentRequest == null) {
+            return null;
+        }
+        return consentRequest.getReceipt();
     }
 
     /**
@@ -115,7 +135,7 @@ public class IdempotencyValidatorImpl extends IdempotencyValidator {
     public boolean isPayloadSimilar(ConsentManageData consentManageData, String consentReceipt) {
 
         if (payload == null || consentReceipt == null) {
-            return true;
+            return false;
         }
 
         JsonNode expectedNode = new ObjectMapper().readTree(payload);
