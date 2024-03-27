@@ -18,7 +18,7 @@ Toolkit Developers can use the following method to validate idempotency:
 public IdempotencyValidationResult validateIdempotency(ConsentManageData consentManageData) throws IdempotencyValidationException
 ```
 
-This method will first check whether idempotency validation is [enabled]((#configuring-open-banking-idempotency-validation)). Then it will check the following,
+This method will first check whether idempotency validation is [enabled](#configuring-open-banking-idempotency-validation). Then it will check the following,
 - Idempotency key exists in the database as a consent attribute
 - Payload of the already available request with the requested idempotency key and the current payload are equal
 - The request is received within the allowed time
