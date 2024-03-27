@@ -99,7 +99,6 @@ nav:
     - 'Data Publishing':
       - 'Introduction': learn/data-publishing.md
       - 'Tryout': learn/data-publishing-tryout.md
-    - 'Distributed Caching': learn/distributed-caching.md
     - 'Integration': learn/integration.md
   - 'Develop' :
     - 'Toolkit Introduction': develop/develop-toolkit.md
@@ -115,8 +114,7 @@ nav:
         - 'Custom Event Executor': develop/custom-event-executor.md
     - 'Open Banking Service Activator': develop/service-activator.md
     - 'Open Banking Authentication Worker': develop/authentication-worker.md
-    - 'Distributed Cache': develop/distributed-cache.md
-    - 'Open Banking Idempotency Handling Executor': develop/idempotency-handling-executor.md
+    - 'Open Banking Idempotency Handling Validator': develop/idempotency-handling-validator.md
     - 'Consent Management':
         - 'Consent Manage': develop/consent-management-manage.md
         - 'Consent Validate': develop/consent-management-validate.md
