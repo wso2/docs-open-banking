@@ -36,13 +36,13 @@ If either of the above condition is false, `validateIdempotency` method will thr
 
 Since there are different requirements in different regions, you can extend and override the following public methods in the `IdempotencyValidator` class and implement them according to your requirements.
 
- | Method Name  	| Parameter     | 	Return Type 	| Purpose of the Method  |
-    | ------------	|----------|------------------------ |--------------------	|
-    | `getIdempotencyAttributeName` | `String resourcePath`   | String | To get the Idempotency Attribute Name store in consent Attributes.|
-    | `getIdempotencyHeaderName` | None | String | To get the Idempotency Header Name according to the request. |
-    | `getCreatedTimeOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get created time fof the previous. |
-    | `getPayloadOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get payload of the previous request. |
-    | `isPayloadSimilar` | `ConsentManageData consentManageData`, `String consentReceipt` | boolean | To compare whether payloads are equal. |
+| Method Name | Parameter | Return Type | Purpose of the Method  |
+| ------------	|----------|------------------------ |--------------------	|
+| `getIdempotencyAttributeName` | `String resourcePath`   | String | To get the Idempotency Attribute Name store in consent Attributes.|
+| `getIdempotencyHeaderName` | None | String | To get the Idempotency Header Name according to the request. |
+| `getCreatedTimeOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get created time fof the previous. |
+| `getPayloadOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get payload of the previous request. |
+| `isPayloadSimilar` | `ConsentManageData consentManageData`, `String consentReceipt` | boolean | To compare whether payloads are equal. |
 
 A sample open banking idempotency validator implementation is given below:
 
