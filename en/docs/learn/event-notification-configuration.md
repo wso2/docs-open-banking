@@ -15,7 +15,7 @@ To enable the Event Notification feature in WSO2 Open Banking:
        permissions=["/permission/admin"]
        allowed_auth_handlers = ["BasicAuthentication"]
       ```
-4. Add the following tags and configure them:
+4. Add the following tags after `[open_banking]` tag and configure them:
 
     ??? tip "Click here to see the definitions of the configuration tags..."
          | Configuration | Description |
