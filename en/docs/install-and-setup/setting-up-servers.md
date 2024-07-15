@@ -116,23 +116,52 @@ For more information, see the [WSO2 Updates documentation](https://updates.docs.
 1. To copy the accelerator files to the API Manager server, go to the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` 
 directory and run the `merge.sh` script as follows:
 
-    ``` shell 
+    ```bash tab='On Linux'
     ./merge.sh
+    ```
+    
+    ```bash tab='On Mac'
+    ./merge.sh
+    ```
+    
+    ```bash tab='On Windows'
+    ./merge.ps1
     ```
  
 2. To copy the accelerator files to the Identity Server, go to the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` directory 
-and run the `merge.sh` script as follows:
+and run the merge script as follows:
    
-    ``` shell 
+    ```bash tab='On Linux'
     ./merge.sh
+    ```
+    
+    ```bash tab='On Mac'
+    ./merge.sh
+    ```
+    
+    ```bash tab='On Windows'
+    ./merge.ps1
     ```
 
 3. To copy the accelerator files to the Streaming Integrator, go to the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin` 
-directory and run the `merge.sh` script as follows:
+directory and run the merge script as follows:
 
     ``` shell 
     ./merge.sh
     ``` 
+
+??? warning "If you are using windows platform..."
+    If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
+    your powershell might prevent you from running this script normally. In that case you
+    may need to run it in a powershell instance where its execution policy is set to bypass mode.
+    
+    Use the following command to run it in execution policy bypassed powershell environment.
+
+    ```
+    powershell -executionpolicy bypass .\merge.ps1
+    ```
+
+    IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
 
 4. Extract the `wso2is-extensions` zip file of the relevant API Manager version. 
 
