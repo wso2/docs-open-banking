@@ -24,8 +24,8 @@ Creation request and response are as follows:
    ```tab="Request"
     curl --location --request POST 'https://localhost:9446/api/openbanking/event-notifications/create-events' \
     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
-    --header 'x-wso2-client_id: cli342efefvsgdsfv' \
-    --header 'x-wso2-resource_id: vfjskenfksdnvfkkfdfd' \
+    --header 'x-wso2-client_id: <CLIENT_ID>' \
+    --header 'x-wso2-resource_id: <CONSENT_ID>' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'request=ewogICAidXJuX3VrX29yZ19vcGVuYmFua2luZ19ldmVudHNfcmVzb3VyY2UtdXBkYXRlIjp7CiAgICAgICJrZXkxIjoidmFsdWUiLAogICAgICAia2V5MiI6InZhbHVlIiwKICAgICAgImtleTMiOiJ2YWx1ZSIKICAgfSwKICAgInVybl91a19vcmdfb3BlbmJhbmtpbmdfZXZlbnRzX2NvbnNlbnQtYXV0aG9yaXphdGlvbi1yZXZva2VkIjp7CiAgICAgICJrZXkxIjoidmFsdWUiLAogICAgICAia2V5MiI6InZhbHVlIiwKICAgICAgImtleTMiOiJ2YWx1ZSIKICAgfQp9'
    ```
@@ -36,7 +36,7 @@ Creation request and response are as follows:
    }
    ```
 
-Given below is the decoded format of a sample request payload:
+Given below is the decoded format of a reference request payload (The JSON object inside the event type attribute can contain any information specific to the event, it doesn't have to be in the same format as below): 
 
 ``` 
 {
