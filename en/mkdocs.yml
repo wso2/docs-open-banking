@@ -90,6 +90,7 @@ nav:
       - 'Introduction': learn/ciba.md
       - 'Set up CIBA flow': learn/ciba-set-up-flow.md
       - 'CIBA with sample application': learn/ciba-with-sample-react-native-app.md
+      - 'CIBA Auth WebLink Flow': learn/ciba-auth-weblink-flow.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
       - 'Configuration': learn/event-notification-configuration.md
