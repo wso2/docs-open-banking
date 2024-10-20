@@ -38,35 +38,46 @@ Creation request and response are as follows:
 
 Given below is the decoded format of a reference request payload (The JSON object inside the event type attribute can contain any information specific to the event, it doesn't have to be in the same format as below): 
 
-``` 
-{
-   "urn_uk_org_openbanking_events_resource-update":{
-      "resourceID":"vfjskenfksdnvfkkfdfd'",
-      "ref":"https://scim.example.com/Users/44f6142df96bd6ab61e7521d9"
-   },
-   "urn_uk_org_openbanking_events_consent-authorization-revoked":{
-      "ref":"https://scim.example.com/Users/44f6142df96bd6ab61e7521d9",
-      "attributes":[
-         "id",
-         "name",
-         "userName",
-         "password",
-         "emails"
-      ]
-   },
-   "urn:ietf:params:scim:event:create":{
-      "ref":"https://scim.example.com/Users/44f6142df96bd6ab61e7521d9",
-      "attributes":[
-         "id",
-         "name",
-         "userName",
-         "password",
-         "emails"
-      ],
-      "resourceID":"9046c276-100f-40ed-b123-2d9f2bcb3e8e"
+   ```tab="Format"
+   {
+      <EVENT_TYPE>:{
+         <EVENT_SPECIFIC_INFORMATION>
+      },
+      <EVENT_TYPE>:{
+         <EVENT_SPECIFIC_INFORMATION>
+      }
    }
-}
-```
+   ```
+
+   ```tab="Sample"
+   {
+      "urn_uk_org_openbanking_events_resource-update":{
+         "resourceID":"vfjskenfksdnvfkkfdfd'",
+         "ref":"https://scim.example.com/Users/44f6142df96bd6ab61e7521d9"
+      },
+      "urn_uk_org_openbanking_events_consent-authorization-revoked":{
+         "ref":"https://scim.example.com/Users/44f6142df96bd6ab61e7521d9",
+         "attributes":[
+            "id",
+            "name",
+            "userName",
+            "password",
+            "emails"
+         ]
+      },
+      "urn:ietf:params:scim:event:create":{
+         "ref":"https://scim.example.com/Users/44f6142df96bd6ab61e7521d9",
+         "attributes":[
+            "id",
+            "name",
+            "userName",
+            "password",
+            "emails"
+         ],
+         "resourceID":"9046c276-100f-40ed-b123-2d9f2bcb3e8e"
+      }
+   }
+   ```
 
 ### Event Polling
 
