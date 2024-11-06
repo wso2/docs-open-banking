@@ -92,6 +92,10 @@ nav:
       - 'CIBA with sample application': learn/ciba-with-sample-react-native-app.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
+      - 'Event Subscription': learn/event-notification-subscription.md
+      - 'Event Creation': learn/event-notification-create.md
+      - 'Event Polling': learn/event-notification-polling.md
+      - 'Real Time Event Notification': learn/event-notification-realtime.md
       - 'Configuration': learn/event-notification-configuration.md
     - 'API Security':
       - 'Introduction': learn/api-security.md
