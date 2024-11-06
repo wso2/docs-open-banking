@@ -317,7 +317,7 @@ The following table explains the data available in `Notification`.
 
 ### Configuration 
 
-To configure the Event Polling Service Handler, follow the steps below:
+To configure the Event Notification Generator, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     
