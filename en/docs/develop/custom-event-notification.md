@@ -1,8 +1,15 @@
 #Event Notification
 
-The Event Notification API in WSO2 Open Banking Accelerator provides a poll-based service. This API consists of the
-Event Creation API and Event Polling API. You can customize the Event Notification feature using the extension
-points discussed in this page.
+Open Banking Specifications require banks to notify any changes related to consent to the Third Party Application Provider (TPP). To achieve this, the specifications includes an API called the Event Notification API, including the flows and common functionality to allow a TPP to receive event notifications. 
+
+The Event Notification feature in WSO2 Open Banking Accelerator provides a realtime service and a poll-based service. WSO2 Open Banking Accelerator supports following features:
+
+- Event Subscription
+- Event Creation
+- Event Polling
+- Real Time Event Notification
+
+You can customize the Event Notification feature using the extension points discussed in this page.
 
 ### Event Creation Service Handler
 
@@ -28,6 +35,27 @@ The event information is saved in the JSON format and you can customize this JSO
  */
 EventCreationResponse publishOBEvent(NotificationCreationDTO notificationCreationDTO);
 ```
+
+### Data 
+The following table explains the data available in `NotificationCreationDTO`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| clientId      | String            | The client ID of the application that made the request. This application is bound to the request from the gateway insequence based on the token used. |
+| resourceId    | String    | Unique identifier of the consent resource related to the event. |
+| events      | Map<String, JSONObject>   | Map of events to be persisted. |
+
+### Configuration 
+
+To configure the Event Creation Service Handler, follow the steps below:
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+    
+2. Locate the following tag and configure it with the customized component.
+  ```xml 
+  [open_banking.event.notifications]
+  event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
+  ```
 
 ### Event Polling Service Handler
 
@@ -68,6 +96,36 @@ the polling service.
  */
 EventPollingDTO mapPollingRequest(JSONObject eventPollingRequest);
 ```
+
+The following table explains the data available in `EventPollingDTO`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| clientId      | String            | The client ID of the application that made the request. This application is bound to the request from the gateway insequence based on the token used. |
+| maxEvents      | int   | The maximum number of events to be transmitted. |
+| returnImmediately      | Boolean   | Whether the bank should return a response immediately. Set to true by default as WSO2 Open Banking don't support long polling |
+| ack    | List<String>    | List of event notification Ids that has been received and successfully processed |
+| errors      | Map<String, NotificationError>   | Map of notification id and error details of the notifications that has been received but the TPP encountered an error in processing. |
+
+The following table explains the data available in `NotificationError`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| notificationId | String | The Notification ID of the event notification. |
+| errorCode      | int   | Error Code. |
+| errorDescription | Boolean   | Error description |
+
+### Configuration 
+
+To configure the Event Polling Service Handler, follow the steps below:
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+    
+2. Locate the following tag and configure it with the customized component.
+  ```xml 
+  [open_banking.event.notifications]
+  event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
+  ```
 
 ### Event Subscription Service Handler
 
@@ -171,6 +229,34 @@ The method lets you delete specific event notification subscriptions that are no
 EventSubscriptionResponse deleteEventSubscription(String clientId, String subscriptionId);
 ```
 
+The following table explains the data available in `EventSubscriptionDTO`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| clientId      | String            | The client ID of the application that made the request. This application is bound to the request from the gateway insequence based on the token used. |
+| subscriptionId      | String   | The unique id of the subscription resource. |
+| requestData      | JSONObject   | Request payload object. |
+
+The following table explains the data available in `EventSubscriptionResponse`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| status | int | Https Status. |
+| responseBody  | Object   | Response payload to return. |
+| errorResponse | Object   | Error Response to return |
+
+### Configuration 
+
+To configure the Event Subscription Service Handler, follow the steps below:
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+    
+2. Locate the following tag and configure it with the customized component.
+  ```xml 
+  [open_banking.event.notifications]
+   event_subscription_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventSubscriptionServiceHandler"
+  ```
+
 ### Event Notification Generator
 
 This interface provides a method to customize the event notification JSON. For example, use this class to send additional 
@@ -189,57 +275,113 @@ the event notification body
 /**
   * This method is to generate event notification body. To generate custom values
   * for the body this method should be extended.
-  * @param notificationDAO
+  * @param notificationDTO
   * @param notificationEventList
   * @return
   * @throws OBEventNotificationException
   */
-Notification generateEventNotificationBody(NotificationDAO notificationDAO, List<NotificationEvent>
-         notificationEventList) throws OBEventNotificationException;
+Notification generateEventNotificationBody(NotificationDTO notificationDTO, List<NotificationEvent> notificationEventList) throws OBEventNotificationException;
 ```
 
-## Configuring Custom Event Notification Services
+The following table explains the data available in `NotificationDTO`.
 
-Once implemented, build JAR files for your custom Event Notification services:
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| notificationId      | String      | Unique identifier of the event notification. |
+| clientId      | String            | The client ID of the application that made the request. This application is bound to the request from the gateway insequence based on the token used. |
+| resourceId      | String            | Unique identifier of the consent resource related to the event. |
+| status      | String   | Status of the event notification |
+| updatedTimeStamp | Long   | Updated timestamp. |
 
-1. To create Event Notification database tables:
-     1. Go to the `<IS_HOME>/dbscripts/open-banking/event-notifications` directory.
-     2. According to your database, execute the relevant script against the `openbank_openbankingdb` database.
-2. Place the JAR files in the `<IS_HOME>/repository/components/dropins` directory.
-3. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-4. Find the `resource.access_control` configurations and add the following tags to secure the Event Notification endpoints:
-      ``` toml
-       [[resource.access_control]]
-       context = "(.)/api/openbanking/event-notifications/(.)"
-       secure="true"
-       http_method="all"
-       permissions=["/permission/admin"]
-       allowed_auth_handlers = ["BasicAuthentication"]
-      ```
-5. Add the following tags and configure the customized handlers and generator using their Fully Qualified Names (FQN):
+The following table explains the data available in `NotificationEvent`.
 
-    ??? tip "Click here to see the definitions of the configuration tags..."
-         | Configuration | Description |
-         | ------------- | ----------- |
-         | `token_issuer` | The issuer of the notification JWT. For example, bank. |
-         | `number_of_sets_to_return` | The maximum number of events to be returned. This is the default value for `maxEvents`, if the request payload has not defined a value. |
-         | `event_creation_handler` | Configure your Event Creation Handler using its FQN.|
-         | `event_polling_handler` | Configure your Event Polling Handler using its FQN.|
-         | `event_subscription_handler` | Configure the Event Subscription Handler using its FQN.|
-         | `event_notification_generator` | Configure your Event Notification Generator using its FQN. |
-         | `set_sub_claim_included`, `set_txn_claim_included`, `set_toe_claim_included`| Configure the customized optional claims in event notification using these tags. They represent the subject, transaction, and time of event claims respectively. |espectively. |
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| eventId | Integer | Unique identifier of the event type. |
+| notificationId  | String   | Unique identifier of the event notification. |
+| eventType | String   | Event type. |
+| eventInformation | JSONObject   | Additional information related to event type.|
 
-      ``` toml 
-       [open_banking.event.notifications]
-        token_issuer = "www.wso2.com"
-        number_of_sets_to_return = 5
-        event_creation_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventCreationServiceHandler"
-        event_polling_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventPollingServiceHandler"
-        event_subscription_handler = "com.wso2.openbanking.accelerator.event.notifications.service.handler.DefaultEventSubscriptionServiceHandler"
-        event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
-        set_sub_claim_included = true
-        set_txn_claim_included = true
-        set_toe_claim_included = true
-      ```
+The following table explains the data available in `Notification`.
 
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| iss | String | Unique identifier of the issuer publishing the SET. |
+| iat | Long   | Value representing when the SET was issued. |
+| jti | String   | Unique identifier for the SET. |
+| sub | String   | Subject of the SET. |
+| aud | String   | One or more audience identifiers for the SET.|
+| txn | String   | Unique transaction identifier.|
+| toe | Long   | Date and time at which the event occurred.|
+| events | Map<String, JSONObject>   | Map of events.|
+
+### Configuration 
+
+To configure the Event Notification Generator, follow the steps below:
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+    
+2. Locate the following tag and configure it with the customized component.
+  ```xml 
+  [open_banking.event.notifications]
+   event_notification_generator = "com.wso2.openbanking.accelerator.event.notifications.service.service.DefaultEventNotificationGenerator"
+  ```
+
+### Real-time Event Notification Request Generator
+
+Real-time Event Notification Request Generator can generate real-time event notification payload and get additional headers for the real-time event notification POST request. Following is the interface to generate real-time event notification requests
+
+``` java
+com.wso2.openbanking.accelerator.event.notifications.service.realtime.service.RealtimeEventNotificationRequestGenerator
+```
+
+#### getRealtimeEventNotificationPayload method
+
+This method gets a NotificationDTO and an encoded event notification as parameters and returns a Stringified JSON. You can add any parameter to this notification body from the NotificationDTO.
+
+``` java
+/**
+  * This method is to generate realtime event notification payload. To generate custom values
+  * for the body this method should be extended.
+  *
+  * @return String payload
+  */
+String getRealtimeEventNotificationPayload(NotificationDTO notificationDTO, String eventSET);
+```
+
+#### getAdditionalHeaders methods
+
+This method returns a Map<String, String> that contains the header name: header value type items to use as the headers for Apache HTTP POST requests made in the RealtimeEventNotificationSenderService. You can return any additional parameters from this method to attach to the HTTP POST requests sent to the Callback URLs
+
+``` java
+/**
+  * This method is to generate realtime event notification request headers. To generate custom values
+  * for the body this method should be extended.
+  *
+  * @return Map<String, String> headers
+  */
+Map<String, String> getAdditionalHeaders();
+```
+
+The following table explains the data available in `NotificationDTO`.
+
+| Name      | Type                  | Description  |
+| ----------|-----------------------| -------------|
+| notificationId      | String      | Unique identifier of the event notification. |
+| clientId      | String            | The client ID of the application that made the request. This application is bound to the request from the gateway insequence based on the token used. |
+| resourceId      | String            | Unique identifier of the consent resource related to the event. |
+| status      | String   | Status of the event notification |
+| updatedTimeStamp | Long   | Updated timestamp. |
+
+### Configuration 
+
+To configure the Real Time Event Notification Request Generator, follow the steps below:
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+    
+2. Locate the following tag and configure it with the customized component.
+  ```xml 
+  [open_banking.event.notifications]
+  event_notification_request_generator = "com.wso2.openbanking.accelerator.event.notifications.service.realtime.service.DefaultRealtimeEventNotificationRequestGenerator"
+  ```
 
