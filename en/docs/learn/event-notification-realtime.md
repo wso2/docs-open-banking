@@ -35,6 +35,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
         ],
         "version": "3.1"
 }
+```
 
 To verify whther Real Time EVent Notification is working for the given callback URL, send an event with subscribed event types. A sample Event Creation request and response are as follows:
 
