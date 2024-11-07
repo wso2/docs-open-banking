@@ -93,11 +93,11 @@ steps and create applications:
 10. Go to the following links and see the changes:
 
     ``` 
-    https://<IS_HOST>:9446/token/.well-known/openid-configuration
+    https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration
     ```
     
     ``` 
-    https://<IS_HOST>:9446/token/keystore
+    https://<IS_HOST>:9446/oauth2/token/keystore
     ```
 
 ## Set up CIBA automated approval endpoint
@@ -127,9 +127,9 @@ This section describes how to build the conformance suite to identify the config
 
 2. Fill in the following values in the `Server` section:
 
-    | Key | Value |
-    |-----|-------|
-    | discoveryURL | `https://<IS_HOST>:9446/token/.well-known/openid-configuration` |
+    | Key | Value                                                                  |
+    |-----|------------------------------------------------------------------------|
+    | discoveryURL | `https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration` |
 
 3. Configure the resource section with the following parameters.
 
