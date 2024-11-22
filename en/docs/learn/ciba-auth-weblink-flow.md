@@ -1,6 +1,6 @@
 # Try out CIBA Auth WebLink Flow
 
-CIBA Auth WebLink flow can be used to send the auth web link as a notification to the user's mobile device. User uses the weblink 
+CIBA Auth WebLink flow can be used to send the auth web link as a notification (Ex: SMS, Email) to the user's mobile device. User use the weblink 
 to go through the authentication and authorization flow. This flow can be used with multiple user authorization scenarios as well. Below are the main steps involved in the flow,
 
 ### Create an application [using DCR](dynamic-client-registration-try-out.md). Include the CIBA grant type in the DCR request object as follows:
@@ -15,6 +15,8 @@ to go through the authentication and authorization flow. This flow can be used w
       ],
    ```
 ### Initiate a consent.
+
+Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry-out-flow.md) for the more information on initiation of the consent.
 
 ### Sending CIBA Request
 
@@ -102,9 +104,17 @@ to go through the authentication and authorization flow. This flow can be used w
      ```
 
 - Configuring **CIBA Web Link Authenticator**
+
       - This section provides sample configurations and resources to configure a service provider application to support both CIBA and redirect based flows such as `code id_token`.
-      - **CIBA Web Link Authenticator** will send the auth weblinks to the users, Upon clicking these links will go through auth flow in the browser of user's mobile devices. 
-      - Below two authenticator steps are needed to configure:
+      - **CIBA Web Link Authenticator** will send the auth weblinks to the users, Upon clicking, these links will go through auth flow in the browser of user's mobile devices.
+          - Sign in to WSO2 Identity Server Management Console at `https://<IS_HOST>:9446/carbon`.
+          - On the **Main** tab, click **Home > Identity > Identity Providers > Add**. ![select-identity-providers](../assets/img/learn/identifier-first/select-identity-providers.png)
+          - Give `Identity Provider Name` as `CIBA-Weblink`.
+          - Expand **Federated Authenticators > CIBA Web Link Authenticator Configuration**.
+          - Select both the **Enable** and **Default** checkboxes. This is to enable and make the `CIBA-Weblink` authenticator
+             the default one.
+
+      - Below two authenticator steps are needed to achive both CIBA and redirect based flows :
          - Step 1: Basic Authenticator - for all browser based authentication flows.
          - Step 2: CIBA Web Link Authenticator - for CIBA flow
      
