@@ -20,7 +20,11 @@ Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry
 
 ### Sending CIBA Request
 
-1. Invoke the CIBA request available in the [Postman collection](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821). (`login_hint` parameter inside the request object is default set to identify the user's email, Behaviour of this value can be customised by extending the `CIBAWebLinkAuthenticator` class and overriding `getAuthenticatedUsers()` method. )
+1. Invoke the CIBA request available in the [Postman collection](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821).
+
+       - `login_hint` parameter inside the request object is default set to identify the user's email.
+       - Behaviour of this value can be customised by extending the `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl` class and overriding it's methods.
+       - Please refer to `Custom CIBA Weblink Extension points` section for more information.
 
 2. The response is as follows:
 
@@ -33,6 +37,9 @@ Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry
     ```
 
 3. At the same time, SMS notification with Auth WebLink should receive to user's mobile device. Click it and open in mobile browser.
+
+       - `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.notification.provider.SMSNotificationProvider` class is responsible to send the SMS service request, For customisations we can extend `SMSNotificationProvider` or create new class by implementing `NotificationProvider`.
+       - Please refer to `Custom CIBA Weblink Extension points` section for more information.
 
 4. Provide approval for the consent as guided by the application.
 
@@ -195,6 +202,7 @@ name= "cibaWebLinkNotificationHandler"
 subscriptions =["CIBA_WEBLINK_NOTIFICATION_EVENT"]
 
 [open_banking.identity.ciba.auth_web_link]
+authenticator_extension = "com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl"
 # allowed_auth_url_parameters parameter is used to filter the Auth WebLink URL parameters.
 allowed_auth_url_parameters = ["client_id", "scope", "response_type", "nonce", "redirect_uri", "binding_message"]
 # redirect_endpoint config defines the user's succesfull authorisations redirect endpoint. This page displays the succesful CIBA flow completions.
@@ -214,20 +222,32 @@ name = "Authorization"
 value = "**"
 ```
 
-- Adding sample redirect endpoint.
+## Custom CIBA Extension points.
+
+- Adding CIBA redirect endpoint.
     - After successful authorisation user should be redirected to a page which displays the user to return back to originating device (Ex: PoS device).
-    - Download the `ciba.jsp` file available <a href="../../assets/attachments/ciba.jsp" download> here </a>.
+    - Refer to the sample display page `ciba.jsp` file available <a href="../../assets/attachments/ciba.jsp" download> here </a>.
     - Copy this file to `<IS_HOME>/repository/deployment/server/webapps/authenticationendpoint` location.
 
-- **CIBA Web Link Authenticator** contains below methods to override in-order for customisations.
-    - `generateWebAuthLink()` - Can be used to generate customised auth webLink URLs.
-    - `getAuthenticatedUsers()` - Can be used to customise identifying the users based on the login_hint parameter.
+- **CIBA WebLink Authenticator Extension Interface** 
+      - This interface contains below methods for override in-order for customisations.
 
-- **SMSNotificationProvider** contains below methods to override in-order for customisations.
-    - `setHeaders()` - Can be used to set custom headers in SMS service request.
-    - `getPayload()` - Can use to send custom payload via an SMS.
+             `generateWebAuthLink()` - Can be used to generate customised auth webLink URLs.
+             `getAuthenticatedUsers()` - Can be used to customise identifying the users based on the login_hint parameter.
 
-### Multi auth user flows.
+      - Accelerator default uses `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl` for the CIBA weblink auth flow.
+      - To apply the customizations, Please update the `authenticator_extension` configuration in the `[open_banking.identity.ciba.auth_web_link]` section of the IS deployment.toml.
+
+- **CIBA Notification Provider**  
+      - This interface contains below methods to override in-order for customisations.
+    
+             `setHeaders()` - Can be used to set custom headers in SMS service request.
+             `getPayload()` - Can use to send custom payload via an SMS or to customise the SMS service request.
+
+      - Accelerator default uses `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.notification.provider.SMSNotificationProvider` to send the SMS notification.
+      - To apply the customisations, Please update the `notification_provider` configuration in the `[open_banking.identity.ciba.auth_web_link]` section of the IS deployment.toml
+
+## Multi auth user flows.
 
 For example of multi authorisation flow, we can think joint account scenario where all the users need to approve the consent. Below steps are mainly involved for multi auth user flows,
 
