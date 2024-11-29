@@ -49,7 +49,7 @@ can quickly set up and try out a basic flow.
       </tr>
       <tr>
         <th>Combination 02<br></th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
+        <td>or <a href="https://wso2.com/identity-server/">6.1.0</a> or <a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
         <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
         <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
       </tr>
