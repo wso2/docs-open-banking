@@ -111,7 +111,7 @@ to the client trust stores in `<APIM_HOME>/repository/resources/security/client-
         | Display Name        | A name to display on the UI.          | OBKM                     |
         | Description         | The name of the authorization server. | (Optional)               |
         | Key Manager Type    | The type of the Key Manager to be selected. | Select `ObKeyManager` |
-        |Well-known-url      | The well-known URL of the authorization server (Key Manager).| `https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration` |
+        |Well-known-url      | The well-known URL of the authorization server (Key Manager). If the Import button is used, verify all the auto imported values with the onces mentioned below.|   `https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration` |
         | Issuer              | The issuer that consumes or validates access tokens.         | `https://<IS_HOST>:9446/oauth2/token` |
         |**Key Manager Endpoints**                                                                |
         | Client Registration Endpoint | The endpoint that verifies the identity and obtain profile information of the end-user based on the authentication performed by an authorization server.  |  `https://<IS_HOST>:9446/keymanager-operations/dcr/register`| 

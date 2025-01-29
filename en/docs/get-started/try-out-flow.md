@@ -62,13 +62,11 @@ This document provides step by step instructions to invoke the Accounts Informat
 
                 6. Expand the API endpoint you want from the list of API endpoints. For example: ![expand_api_endpoint](../assets/img/get-started/quick-start-guide/expand-api-endpoint.png)
 
-                7. Expand the HTTP method from the API endpoint you selected. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method.png)
+                7. Expand the HTTP method from the API endpoint you selected and drag and drop the previously created policy to the **Request Flow** of the API endpoint. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method-drag-and-drop.png)
 
-                8. Drag and drop the previously created policy to the **Request Flow** of the API endpoint. ![request_flow](../assets/img/get-started/quick-start-guide/request-flow.png)
+                8. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
 
-                9. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
-
-                10. Scroll down and click **Save**.
+                9. Scroll down and click **Save**.
         
          14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
