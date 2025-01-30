@@ -215,7 +215,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 
     1. Change the `jwks_url_sandbox` and `jwks_url_production` URLs with the respective JWKS URLs of your certs.
    
-    2. If you are using WSO2 Identity Server 6.0.0, add the below configuration to enable the application role validation:
+    2. If you are using **WSO2 Identity Server 6.0.0** and **above**, add the below configuration to enable the application role validation:
 
         ```toml
         [application_mgt]

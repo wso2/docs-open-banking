@@ -76,7 +76,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
     IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
 
-3. If you are using **WSO2 Identity Server 6.0.0**,
+3. If you are using **WSO2 Identity Server 6.0.0** and **above**,
 
     1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     2. Add below configuration to enable application role validation:

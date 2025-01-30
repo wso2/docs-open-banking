@@ -209,7 +209,7 @@ database server, and the JDBC driver.
     server_url = "{tcp://<SI_HOST>:7612}"	
     ```   
     
-13. If you are using **WSO2 Identity Server 6.0.0**, add below configuration to enable application role validation:
+13. If you are using **WSO2 Identity Server 6.0.0** and **above**, add below configuration to enable application role validation:
         ```toml
         [application_mgt]
         enable_role_validation = true
