@@ -107,7 +107,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=www.wso2.com&client_id=<CLIENT_ID>'
     ```
    
-    - The CLIENT_ID can be taken from the client_id of the DCR request's response, or viewing the service provider configuration in the key manager or, dev poral application's consumer key
+    - The CLIENT_ID can be taken from the client_id of the DCR request's response, or "OAuth Client Key" of the service provider configuration in the Identity Server Management Console or, Consumer Key in Production/Sandbox keys tab in devportal application.
     - The request payload contains a client assertion JWT:
       - In the assertion JWT, make sure to change the values accordingly with respect to the sample provided.
     
@@ -118,7 +118,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     ``` json tab="Format"
     {
     "alg": "<<The algorithm used for signing.>>",
-    "kid": "<<The KID value of the signing jwk set. Value can be retrieved from the 'software_statement' of DCR request's response>>",
+    "kid": "<<The KID value of the signing jwk set.>>",
     "typ": "JWT"
     }
       
@@ -127,7 +127,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
     "exp": <<This is epoch time of the token expiration date/time>>,
     "iat": <<This is epoch time of the token issuance date/time>>,
-    "jti": "<<This is an incremental unique value. Initial random vaue can be retrieved from the 'software_statement' of DCR request's response>>",
+    "jti": "<<This is an incremental unique value.>>",
     "aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
     }
       
