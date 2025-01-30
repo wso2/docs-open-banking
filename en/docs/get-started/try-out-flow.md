@@ -90,7 +90,7 @@ This document provides step by step instructions to invoke the Accounts Informat
          23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
 !!! note
-In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWTs:
+In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
 
     - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
     - [private keys](../../assets/attachments/signing-certs/obsigning.key)
