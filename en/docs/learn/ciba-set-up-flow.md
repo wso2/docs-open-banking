@@ -47,101 +47,71 @@ configuration with the IP address of the Identity Server.
       jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/ykNOgWd2RgnuoLRRyWBkaY.jwks"
       jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/ykNOgWd2RgnuoLRRyWBkaY.jwks"
       ```
+## Try out CIBA Auth WebLink Flow
 
-## Configuring CIBA Push Authenticator
+CIBA Auth WebLink flow can be used to send the auth web link as a notification (Ex: SMS, Email) to the user's mobile device. User use the weblink
+to go through the authentication and authorization flow. This flow can be used with multiple user authorization scenarios as well. Below are the main steps involved in the flow,
 
-1. Go to the `<IS_HOME>/repository/deployment/server/webapps/api/WEB-INF` directory.
-2. Open the `beans.xml` file and add the following `import resource` and `bean class` tags:
-    
-    ``` xml
-    <beans ...>
-        ...
-        <import resource="classpath:META-INF/cxf/user-push-device-handler-v1-cxf.xml"/>
-        <jaxrs:server id="users" address="/users/v1">
-            <jaxrs:serviceBeans>
-               ...
-               <bean class="org.wso2.carbon.identity.api.user.push.device.handler.v1.MeApi"/>
-            </jaxrs:serviceBeans>
-        </jaxrs:server>
-    </beans>
+### Create an application using [DCR](dynamic-client-registration-try-out.md)
+
+Include the CIBA grant type in the DCR request object as follows:
+
+   ``` json
+     "grant_types": [
+        "client_credentials",
+        "authorization_code",
+        "refresh_token",
+        "urn:ietf:params:oauth:grant-type:jwt-bearer",
+        "urn:openid:params:grant-type:ciba"
+      ],
+   ```
+### Initiate a consent
+
+Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry-out-flow.md) for the more information on initiation of the consent.
+
+### Sending CIBA Request
+
+1. Invoke the CIBA request available in the [Postman collection](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821).
+
+       - `login_hint` parameter inside the request object is default set to identify the user's email.
+       - Behaviour of this value can be customised by extending the `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl` class and overriding it's methods.
+       - Please refer to `Custom CIBA Weblink Extension points` section for more information.
+
+2. The response is as follows:
+
+    ```json
+    {
+       "auth_req_id":"293c00d5-b318-484b-8f7a-54b1048a4832",
+       "interval":2,
+       "expires_in":3600
+    }
     ```
 
-3. Open the `<IS_HOME>/repository/conf/deployment.toml` file and add the following under the ` [[resource.access_control]]` tags:
+3. At the same time, SMS notification with Auth WebLink should receive to user's mobile device. Click it and open in mobile browser.
 
-    - Locate the following tags and add `OAuthAuthentication` under `allowed_auth_handlers`:
-    
-       ``` toml
-       [[resource.access_control]]
-       context = "(.*)/api/users/v1/me/push-auth/(.*)"
-       secure="true"
-       http_method="GET, HEAD, POST, PUT, DELETE, PATCH"
-       allowed_auth_handlers = ["BasicAuthentication", "OAuthAuthentication"]
-       ```
+       - `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.notification.provider.SMSNotificationProvider` class is responsible to send the SMS service request, For customisations we can extend `SMSNotificationProvider` or create new class by implementing `NotificationProvider`.
+       - Please refer to `Custom CIBA Weblink Extension points` section for more information.
 
-    - Add the following tags:
+4. Provide approval for the consent as guided by the application.
 
-       ``` toml
-       [[resource.access_control]]
-       context = "(.*)/push-auth/discovery-data"
-       secure="true"
-       http_method="GET"
-       allowed_auth_handlers = ["BasicAuthentication","OAuthAuthentication"]
-       ```
+### Retrieving Access Token
 
-4. Change consent steps in `<IS_HOME>/repository/conf/deployment.toml` as follows:
+1. After receiving the above response for the CIBA request, you can poll the token endpoint to get the
+   access token. Until the user provides the approval via the auth flow in mobile browser, you will receive a response indicating
+   pending authorization.
 
-    - Add `com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentRetrievalStep` and set its 
-      priority to 2. Update the priority of other steps accordingly.
-   
-    - Change the priority of `com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentPersistStep`
-    to 1. Update the priority of other steps accordingly.
-    
-           ``` toml
-           #================consent management==============
-           [[open_banking.consent.authorize_steps.retrieve]]
-           class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.NonRegulatoryConsentStep"
-           priority = 1
-    
-           [[open_banking.consent.authorize_steps.retrieve]]
-           class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentRetrievalStep"
-           priority = 2
-    
-           [[open_banking.consent.authorize_steps.retrieve]]
-           class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.DefaultConsentRetrievalStep"
-           priority = 3
-    
-           [[open_banking.consent.authorize_steps.persist]]
-           class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentPersistStep"
-           priority = 1
-    
-           [[open_banking.consent.authorize_steps.persist]]
-           class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.DefaultConsentPersistStep"
-           priority = 2
-           ```
+2. Once the user completes and submits the approval, the token will be returned.
 
-5. Create a database table for Push Authentication:
+## Assumptions
+- User's mobile number should be configured.
+- Users will receive the notification as web links to authenticate and authorize the consent.
+- For multiple users involved scenarios, Identity server will assume only one user is authenticated (ID Token will contain the details of only one user (Ex: Primary user) ) and the OB consent tables will contain the authentication status of other users. (This user's identity can be customised by extending and overriding `OBCibaResponseTypeHandler.issue()` method.)
 
-    - Execute the following SQL against the `openbank_apimgtdb` database, which is used as the identity database:
-    
+## Setting up flow
 
-        ```sql tab="MySQL"
-        CREATE TABLE IF NOT EXISTS PUSH_AUTHENTICATION_DEVICE (
-        ID VARCHAR(255) NOT NULL,
-        USER_ID VARCHAR(255) NOT NULL,
-        NAME VARCHAR(45) NOT NULL,
-        MODEL VARCHAR(45) NOT NULL,
-        PUSH_ID VARCHAR(255) NOT NULL,
-        PUBLIC_KEY VARCHAR(2048) NOT NULL,
-        REGISTRATION_TIME TIMESTAMP,
-        LAST_USED_TIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (USER_ID, PUSH_ID));
-        ```
-
-## Configuring CIBA 
-
-1. Open the `<IS_HOME>/repository/conf/deployment.toml` file:
-
-2. Add the following under the ` [[resource.access_control]]` tags:
+- Follow the [Quick Start Guide](../get-started/quick-start-guide.md) and set up the base products and accelerators.
+- Open the `<IS_HOME>/repository/conf/deployment.toml` file:
+- Add the following under the ` [[resource.access_control]]` tags:
 
      ``` toml
      [[resource.access_control]]
@@ -149,8 +119,8 @@ configuration with the IP address of the Identity Server.
      secure="false"
      http_method="all"
      ```
-   
-3. Register `urn:openid:params:grant-type:ciba` as a custom grant type:
+
+- Register `urn:openid:params:grant-type:ciba` as a custom grant type:
 
      ``` toml
      [[oauth.custom_grant_type]]
@@ -162,195 +132,181 @@ configuration with the IP address of the Identity Server.
      IdTokenAllowed=true
      ```
 
-4. Add the following custom response type:
+- Add the following custom response type:
 
      ``` toml
      [[oauth.custom_response_type]]
      name = "cibaAuthCode"
-     class = "org.wso2.carbon.identity.oauth.ciba.handlers.CibaResponseTypeHandler"
-     validator = "org.wso2.carbon.identity.oauth.ciba.handlers.CibaResponseTypeValidator"
+     class = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBCibaResponseTypeHandler"
+     validator = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.validator.OBCibaResponseTypeValidator"
      ```   
 
-5. Add CIBA request object validator:
-
-    !!! tip
-        The `plain_fapi` profile does not mandate additional validations in `OBCIBARequestObjectValidationExtension`.
-        Therefore, if you are setting up the `FAPI:CIBA` profile, you can skip this configuration.
+- Add CIBA request object validator:
 
      ``` toml
      [oauth.oidc.extensions]
      ciba_request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBCIBARequestObjectValidationExtension"
-     ```   
+     ```
 
-6. Add the following tags to configure the `FAPI:CIBA ` profile:
-    
-    ```toml
-    [fapi]
-    enable_ciba_profile=true
+- Change consent steps in `<IS_HOME>/repository/conf/deployment.toml`,
+  - Add `com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentPersistStep` , `com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAWebAuthLinkConsentPersistStep` and set its priority to 2 and 3. Update the priority of other steps accordingly.
 
-    [oauth.oidc.id_token]
-    signature_algorithm = "PS256"
-
-    [transport.https.sslHostConfig.properties]
-    ciphers="TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
-
-    [[tomcat.filter_mapping]]
-    name = "TokenFilter"
-    url_pattern = "/ciba"
-    ```
-
-6. Open the `<APIM_HOME>/repository/conf/deployment.toml` file:
-
-7. Add the following tags to configure the `FAPI:CIBA ` profile:
-    
-    ```toml
-    [transport.https.sslHostConfig.properties]
-    ciphers="TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
-    ```
+     ``` toml
+     [[open_banking.consent.authorize_steps.persist]]
+     class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentPersistStep"
+     priority = 2
    
-6. Restart the servers to reflect the changes. 
+     [[open_banking.consent.authorize_steps.persist]]
+     class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAWebAuthLinkConsentPersistStep"
+     priority = 3
+     ```
 
-## Configuring Push Authenticator IDP
+- Configuring **CIBA Web Link Authenticator**
 
-1. Log in to the Identity Server Management Console at `https://<IS_HOST>:9446/carbon` as an admin user.
-2. Go to **Identity Providers > Add**.
-3. Register a new IDP for Push Authentication. Use the name **CIBA-Push-Auth**.
-4. Go to **Federated Authenticators > CIBA Push Authentication Configuration** and enable the Push Authenticator.
-5. IDP configurations:
-     - Firebase Server Key: Create an [FCM project](https://fcm.googleapis.com/fcm/send) when setting up the mobile 
-       application. Add the Server Key of that application here. You can obtain it from the 
-       [Firebase Console](https://console.firebase.google.com) of your project.
+      - This section provides sample configurations and resources to configure a service provider application to support both CIBA and redirect based flows such as `code id_token`.
+      - **CIBA Web Link Authenticator** will send the auth weblinks to the users, Upon clicking, these links will go through auth flow in the browser of user's mobile devices.
+          - Sign in to WSO2 Identity Server Management Console at `https://<IS_HOST>:9446/carbon`.
+          - On the **Main** tab, click **Home > Identity > Identity Providers > Add**. ![select-identity-providers](../assets/img/learn/identifier-first/select-identity-providers.png)
+          - Give `Identity Provider Name` as `CIBA-Weblink`.
+          - Expand **Federated Authenticators > CIBA Web Link Authenticator Configuration**.
+          - Select both the **Enable** and **Default** checkboxes. This is to enable and make the `CIBA-Weblink` authenticator
+             the default one.
 
-Now, this Push Authenticator (CIBA-Push-Auth) is available as a federated authenticator option inside any Service Provider 
-application in the Identity Server. 
-
-!!! tip
-    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample 
-    requests in the Accounts Information Service API.
-
-## Configuring Authenticator 
-
-This section provides sample configurations and resources to configure a service provider application to support both 
-CIBA and redirect based flows such as code.  
-
-!!! note
-    If an application uses only the CIBA flow, set up **Push Authenticator** as the authenticator for the service provider.
-
-In this example two authenticator steps are configured:
-
-   - Step 1: Basic Authenticator - for Code flow
-   - Step 2: Push Authenticator - for CIBA flow
-   
-<br/>
-
-1. Open `<IS_HOME>/repository/conf/deployment.toml` file and add the following configs:
-
-    ``` toml
-    [open_banking.sca.primaryauth]
-    name = "BasicAuthenticator"
-    display = "basic"
-    
-    [open_banking.sca.idp]
-    name = "CIBA-Push-Auth"
-    ```
-
-2. Open the `<IS_HOME>/repository/conf/common.auth.script.js` and update its content as follows:
-
-    ```javascript
-    var psuChannel = 'Online Banking';
-    var isCiba;
+      - Below two authenticator steps are needed to achive both CIBA and redirect based flows :
+         - Step 1: Basic Authenticator - for all browser based authentication flows.
+         - Step 2: CIBA Web Link Authenticator - for CIBA flow
      
-    function onLoginRequest(context) {
-       var responseType = context.request.params.response_type[0];
-     
-       if (responseType.indexOf("code") >= 0) {
-           isCiba = false;
-       } else {
-           isCiba = true;
-       }
-     
-       if (!isCiba) {
-           executeStep(1, {
-               onSuccess: function (context) {
-                   publishAuthData(context, "AuthenticationSuccessful", {'psuChannel': psuChannel});
-               },
-               onFail: function (context) {
-                   publishAuthData(context, "AuthenticationFailed", {'psuChannel': psuChannel});
-               }
-           });
-       } else {
-           executeStep(2, {
-               onSuccess: function (context) {
-                   publishAuthData(context, "AuthenticationSuccessful", {'psuChannel': psuChannel});
-               },
-               onFail: function (context) {
-                   publishAuthData(context, "AuthenticationFailed", {'psuChannel': psuChannel});
-               }
-           });
-       }
-    }
-    ```
+       - Open `<IS_HOME>/repository/conf/deployment.toml` file and add the following configs:
 
-You can configure authentication steps according to your requirements. For more information see 
-[Configuring authentication steps by customizing Application Management Listener](../develop/customize-authentication-steps.md).
+                 ``` toml
+                 [open_banking.sca.primaryauth]
+                 name = "BasicAuthenticator"
+                 display = "basic"
+    
+                 [open_banking.sca.idp]
+                 name = "CIBA-Weblink"
+                  ```
 
-## Creating an application with DCR
+      - Open the `<IS_HOME>/repository/conf/common.auth.script.js` and update its content as follows:
 
- Create an application [using DCR](dynamic-client-registration-try-out.md). Include the CIBA grant type in the DCR 
- request object as follows: 
-
-   ``` json
-     "grant_types": [
-        "client_credentials",
-        "authorization_code",
-        "refresh_token",
-        "urn:ietf:params:oauth:grant-type:jwt-bearer",
-        "urn:openid:params:grant-type:ciba"
-      ],
-   ```
+  ```javascript
+     var psuChannel = 'Online Banking';
+     var isCiba;
+     var isCibaWebLink;
    
-!!! tip 
-    Refer to the Postman collection [here](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821), for sample
-    requests in the Accounts Information Service API.
+     function onLoginRequest(context) {
+     var responseType = context.request.params.response_type[0];
+     var CIBAWebLinkParam = context.request.params.ciba_web_auth_link;
+    
+     if (responseType.indexOf("cibaAuthCode") >= 0) {
+         isCiba = true;
+     } else {
+         isCiba = false;
+     }
 
-## Trying out CIBA flow
+     if (CIBAWebLinkParam != null) {
+         isCibaWebLink = true;
+     } else {
+         isCibaWebLink = false;
+     }
 
-1. Before you begin, install the mobile application on a device. Then, register the device in the Identity Server under 
-the user of that device/account.
+     if (!isCiba) {
+         executeStep(1, {
+             onSuccess: function (context) {
+                 publishAuthData(context, "AuthenticationSuccessful", {'psuChannel': psuChannel});
+             },
+             onFail: function (context) {
+                 publishAuthData(context, "AuthenticationFailed", {'psuChannel': psuChannel});
+             }
+         });
+     } else {
+          if (isCibaWebLink) {
+              executeStep(1, {
+                 onSuccess: function (context) {
+                     publishAuthData(context, "AuthenticationSuccessful", {'psuChannel': psuChannel});
+                 },
+                 onFail: function (context) {
+                     publishAuthData(context, "AuthenticationFailed", {'psuChannel': psuChannel});
+                 }
+             });
+          } else {
+              executeStep(2, {
+                 onSuccess: function (context) {
+                     publishAuthData(context, "AuthenticationSuccessful", {'psuChannel': psuChannel});
+                 },
+                 onFail: function (context) {
+                     publishAuthData(context, "AuthenticationFailed", {'psuChannel': psuChannel});
+                 }
+             });
+          }
+      }
+     }
+  ```
 
-2. To try out the flow with a sample application provided by WSO2, follow 
-[Try out CIBA with a sample React Native app](ciba-with-sample-react-native-app.md).
+- Adding SMS Notification provider configurations.
+  - Accelerator default uses the SMSNotificationProvider to send the Auth WebLink to the user's mobile phone. However, this can be customised by creating `CustomNotificationProvider` by implementing `NotificationProvider`.
+  - Below are the default configurations to be added in `<IS_HOME>/repository/conf/deployment.toml` file to send the Auth WebLink via SMS.
 
-3. To develop a mobile application for CIBA, follow the 
-[Develop a mobile application for CIBA](../develop/mobile-application-for-ciba.md) documentation.
+```toml
+[[event_handler]]
+name= "cibaWebLinkNotificationHandler"
+subscriptions =["CIBA_WEBLINK_NOTIFICATION_EVENT"]
 
-### Sending Push Authentication Request
+[open_banking.identity.ciba.auth_web_link]
+authenticator_extension = "com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl"
+# allowed_auth_url_parameters parameter is used to filter the Auth WebLink URL parameters.
+allowed_auth_url_parameters = ["client_id", "scope", "response_type", "nonce", "redirect_uri", "binding_message"]
+# redirect_endpoint config defines the user's succesfull authorisations redirect endpoint. This page displays the succesful CIBA flow completions.
+redirect_endpoint = "https://localhost:9446/authenticationendpoint/ciba.jsp"
+# custom `NotificationProvider` extention can be added using below config.
+notification_provider = "com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.notification.provider.SMSNotificationProvider"
 
-1. Use the push-authentication sample request available in the 
-[Postman collection](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821) and invoke the endpoint.
+[open_banking.identity.ciba.auth_web_link.sms_notification]
+# SMS service URL is added below.
+sms_url = "https://localhost:9446/sample/sms/service"
+# SMS service request headers can be defined as below.
+[[open_banking.identity.ciba.auth_web_link.sms_notification.header]]
+name = "Accept"
+value = "application/json"
+[[open_banking.identity.ciba.auth_web_link.sms_notification.header]]
+name = "Authorization"
+value = "**"
+```
 
-2. The response is as follows:
+## Custom CIBA Extension points
 
-    ```json
-    {
-       "auth_req_id":"293c00d5-b318-484b-8f7a-54b1048a4832",
-       "interval":2,
-       "expires_in":3600
-    }
-    ```
-   
-3. At the same time, a notification should pop up on your mobile device. Open it via your mobile application.
+- Adding CIBA redirect endpoint.
+   - After successful authorisation user should be redirected to a page which displays the user to return back to originating device (Ex: PoS device).
+   - Refer to the sample display page `ciba.jsp` file available <a href="../../assets/attachments/ciba.jsp" download> here </a>.
+   - Copy this file to `<IS_HOME>/repository/deployment/server/webapps/authenticationendpoint` location.
 
-4. The application will make the consent retrieval and consent persistence requests to obtain and persist consent data.
+- **CIBA WebLink Authenticator Extension Interface**
+  - This interface contains below methods for override in-order for customisations.
 
-5. Provide approval for the consent as guided by the application. 
+             `generateWebAuthLink()` - Can be used to generate customised auth webLink URLs.
+             `getAuthenticatedUsers()` - Can be used to customise identifying the users based on the login_hint parameter.
 
-### Retrieving Access Token 
+      - Accelerator default uses `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl` for the CIBA weblink auth flow.
+      - To apply the customizations, Please update the `authenticator_extension` configuration in the `[open_banking.identity.ciba.auth_web_link]` section of the IS deployment.toml.
 
-1. After receiving the above response for the Push Authentication Request, you can poll the token endpoint to get the 
-access token. Until the user provides the approval via the mobile device, you will receive a response indicating 
-awaiting authorization.
+- **CIBA Notification Provider**  
+  - This interface contains below methods to override in-order for customisations.
 
-2. Once the user completes and submits the approval, the token will be returned.
+             `setHeaders()` - Can be used to set custom headers in SMS service request.
+             `getPayload()` - Can use to send custom payload via an SMS or to customise the SMS service request.
+
+      - Accelerator default uses `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.notification.provider.SMSNotificationProvider` to send the SMS notification.
+      - To apply the customisations, Please update the `notification_provider` configuration in the `[open_banking.identity.ciba.auth_web_link]` section of the IS deployment.toml
+
+## Multi auth user flows
+
+For example of multi authorisation flow, we can think joint account scenario where all the users need to approve the consent. Below steps are mainly involved for multi auth user flows,
+
+- Sending CIBA request with login_hint.
+- Identifying multiple users involved in the CIBA request using the given `login_hint`.
+- Sending auth weblinks via SMS for **each** user.
+- Access token can **only** be retrieved after all users have approved the consents.
+- Currently `getAuthenticatedUsers()` method is identifying list of users (Ex: `admin@wso2.com, ann@wso2.com`) , However this can be customised to identify users based on any input (Ex: Bank account number etc.)
+
 
 

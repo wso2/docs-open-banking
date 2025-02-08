@@ -3181,10 +3181,13 @@ auth_data_publisher = "com.wso2.openbanking.accelerator.authentication.data.publ
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>{tcp://&lt;SI_HOST&gt;:7612}</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>{tcp://&lt;SI_NODE_1_HOST&gt;:7612, tcp://&lt;SI_NODE_2_HOST&gt;:7612, ...}</code></span>
+                                        </div>
+
                                     </div>
                                     <div class="param-description">
-                                        <p>The TCP port of Open Banking Business Intelligence Worker.</p>
+                                        <p>The TCP port of Open Banking Business Intelligence Worker. If the setup mode is HA, configure TCP ports of all the nodes comma seperated.</p>
                                     </div>
                                 </div>
                             </div><div class="param">

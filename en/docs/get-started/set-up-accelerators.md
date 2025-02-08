@@ -31,19 +31,52 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 4. Open the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` file and repeat step 2 and 3.
      
 ### Step 3: Set up servers 
-1. Run the `merge.sh` script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
+1. Run the merge script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
 `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
-    ```
+    ```bash tab='On Linux'
     ./merge.sh
     ```
-
-2. Run the configure.sh files in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
-`<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
+    
+    ```bash tab='On Mac'
+    ./merge.sh
     ```
+    
+    ```bash tab='On Windows'
+    ./merge.ps1
+    ```
+
+2. Run the configure files in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
+`<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
+    ```bash tab='On Linux'
     ./configure.sh
     ```
+    
+    ```bash tab='On Mac'
+    ./configure.sh
+    ```
+    
+    ```powershell tab='On Windows'
+    ./configure.ps1
+    ```
 
-3. If you are using **WSO2 Identity Server 6.0.0**,
+??? warning "If you are using windows platform..."
+    If you are using windows platform, since the merge.ps1 and configure.ps1 files are not digitally signed yet,
+    your powershell might prevent you from running them normally. In that case you may need to run these
+    scripts in a powershell instance where its execution policy is set to bypass mode.
+    
+    Use the following command to run these scripts in execution policy bypassed powershell environment.
+
+    ```
+    powershell -executionpolicy bypass .\merge.ps1
+    ```
+
+    ```
+    powershell -executionpolicy bypass .\configure.ps1
+    ```
+
+    IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
+
+3. If you are using **WSO2 Identity Server 6.0.0** and **above**,
 
     1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     2. Add below configuration to enable application role validation:

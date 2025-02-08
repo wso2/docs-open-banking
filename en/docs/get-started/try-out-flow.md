@@ -62,13 +62,11 @@ This document provides step by step instructions to invoke the Accounts Informat
 
                 6. Expand the API endpoint you want from the list of API endpoints. For example: ![expand_api_endpoint](../assets/img/get-started/quick-start-guide/expand-api-endpoint.png)
 
-                7. Expand the HTTP method from the API endpoint you selected. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method.png)
+                7. Expand the HTTP method from the API endpoint you selected and drag and drop the previously created policy to the **Request Flow** of the API endpoint. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method-drag-and-drop.png)
 
-                8. Drag and drop the previously created policy to the **Request Flow** of the API endpoint. ![request_flow](../assets/img/get-started/quick-start-guide/request-flow.png)
+                8. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
 
-                9. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
-
-                10. Scroll down and click **Save**.
+                9. Scroll down and click **Save**.
         
          14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
     
@@ -91,6 +89,12 @@ This document provides step by step instructions to invoke the Accounts Informat
     
          23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 
+!!! note
+In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
+
+    - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
+    - [private keys](../../assets/attachments/signing-certs/obsigning.key)
+
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For the 
 Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
@@ -103,7 +107,9 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=www.wso2.com&client_id=<CLIENT_ID>'
     ```
    
+    - The CLIENT_ID can be taken from the client_id of the DCR request's response, or "OAuth Client Key" of the service provider configuration in the Identity Server Management Console or, Consumer Key in Production/Sandbox keys tab in devportal application.
     - The request payload contains a client assertion JWT:
+      - In the assertion JWT, make sure to change the values accordingly with respect to the sample provided.
     
     ``` jwt tab="Sample"
     eyJraWQiOiJoM1pDRjBWcnpnWGduSENxYkhiS1h6emZqVGciLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJTNnUySGU0anl3dnl5cFQ3ZkdZRXhMU3lwUVlhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJTNnUySGU0anl3dnl5cFQ3ZkdZRXhMU3lwUVlhIiwiZXhwIjoxNzU3MjMzNTg4LCJpYXQiOjE2OTQwNzUxODgsImp0aSI6IjE0In0.ckHGWvntah1Rk2rcV_VRBNJbxrmcMxv6xk1ddOQoLrL7SF8NHQVCFKs8M_yFtkZ-WVuPWfWa4daEZmjgr42FA6PV1cKuUINYecopVyNMxjvmsARd_6PzJIJZAh4b211avbHk2wkpBtrXGG7wGTmAQOshJRSODeYaa-IDzbqi6NFA7MDoAm2d8ObQvbieXmE1MOVGJLV6Sk9HbJJrV2D03VTQ_WXP6by-AhwdLYFjLhO7SUcHyZIVzf5Gfb2AtaWLURy8bHzlipLglLm3x8erzuW7QoYSZ2Ntc3ULW16pwHxlKA2w8-UIy2mpjblo29eQFZFrWZ2cZCjrwbxQq_plPQ
@@ -112,7 +118,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     ``` json tab="Format"
     {
     "alg": "<<The algorithm used for signing.>>",
-    "kid": "<<The KID value of the signing jwk set>>",
+    "kid": "<<The KID value of the signing jwk set.>>",
     "typ": "JWT"
     }
       
@@ -121,7 +127,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
     "exp": <<This is epoch time of the token expiration date/time>>,
     "iat": <<This is epoch time of the token issuance date/time>>,
-    "jti": "<<This is an incremental unique value>>",
+    "jti": "<<This is an incremental unique value.>>",
     "aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
     }
       
@@ -158,9 +164,9 @@ curl --location --request POST 'https://<APIM_HOST>:8243/open-banking/v3.1/aisp/
          "ReadTransactionsDetail",
          "ReadBalances"
       ],
-      "ExpirationDateTime":"2021-09-02T00:00:00+00:00",
-      "TransactionFromDateTime":"2021-01-01T00:00:00+00:00",
-      "TransactionToDateTime":"2021-03-03T00:00:00+00:00"
+      "ExpirationDateTime":"2026-01-02T00:00:00+00:00",
+      "TransactionFromDateTime":"2025-01-01T00:00:00+00:00",
+      "TransactionToDateTime":"2025-12-01T00:00:00+00:00"
    },
    "Risk":{
 
@@ -173,14 +179,14 @@ The response contains a Consent ID. A sample response looks as follows:
     "consentId": "3e31f726-b9ad-43a7-897d-fcdf5e6d8cd0",
     "Risk": {},
     "Data": {
-        "TransactionToDateTime": "2021-03-03T00:00:00+00:00",
-        "ExpirationDateTime": "2021-09-02T00:00:00+00:00",
+        "TransactionToDateTime": "2025-12-01T00:00:00+00:00",
+        "ExpirationDateTime": "2026-01-02T00:00:00+00:00",
         "Permissions": [
             "ReadAccountsDetail",
             "ReadTransactionsDetail",
             "ReadBalances"
         ],
-        "TransactionFromDateTime": "2021-01-01T00:00:00+00:00"
+        "TransactionFromDateTime": "2025-01-01T00:00:00+00:00"
     }
 }
 ```
@@ -243,7 +249,7 @@ The API consumer application redirects the bank customer to authenticate and app
 consumer wishes to access. This request is in the format of a URL as follows: 
 
     ``` url tab="Sample"
-    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=S6u2He4jywvyypT7fGYExLSypQYa&redirect_uri=https://wso2.com&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
+    https://localhost:9446/oauth2/authorize?response_type=code%20id_token&client_id=S6u2He4jywvyypT7fGYExLSypQYa&redirect_uri=https://www.google.com/redirects/redirect1&scope=openid accounts&state=0pN0NBTHcv&nonce=jBXhOmOKCB&request=<REQUEST_OBJECT>
     ```
    
     ``` url tab="Format"
@@ -252,6 +258,7 @@ consumer wishes to access. This request is in the format of a URL as follows:
     ```
    
 3. Run the URL in a browser to prompt the invocation of the authorize API.
+   ![login screen](../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
 
 4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `subscriber` role. 
 
@@ -265,12 +272,13 @@ consumer wishes to access. This request is in the format of a URL as follows:
 7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample 
 given below:
 
-    The authorization code from the below URL is in the code parameter (`code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775`).
+    The authorization code from the below URL is in the code parameter (`code=24c5b61b-d9fe-315b-b3d2-98b69bebe453`).
 
     ```
-    https://wso2.com/#code=e61579c3-fe9c-3dfe-9af2-0d2f03b95775&id_token=eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1
-    NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5
-    a4f936c74e2ca7f4250208aa42.sk_04ejciXBj6DnpALyYaw
+    https://www.google.com/redirects/redirect1#id_token=eyJ4NXQiOiJNREpsTmpJeE4yRTFPR1psT0dWbU1HUXhPVEZsTXpCbU5tRmpaalEwWTJZd09HWTBOMkkwWXpFNFl6WmpOalJoWW1SbU1tUTBPRGRpTkRoak1HRXdNQSIsImtpZCI6Ik1ESmxOakl4TjJFMU9HWmxPR1ZtTUdReE9URmxNekJtTm1GalpqUTBZMll3T0dZME4ySTBZekU0WXpaak5qUmhZbVJtTW1RME9EZGlORGhqTUdFd01BX1BTMjU2IiwiYWxnIjoiUFMyNTYifQ.eyJpc2siOiIxNmIxZmQxMjViYzcwZTIyY2IxNjViZWI0YzkzZTY2ZWRiOWI5NjFmYzc0ZjQxNmJiNjhiMzNkN2QzYjcyZDJiIiwic3ViIjoic2FtQHdzbzIuY29tIiwiYW1yIjpbIkJhc2ljQXV0aGVudGljYXRvciJdLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0Ojk0NDZcL29hdXRoMlwvdG9rZW4iLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsInNpZCI6Ijg1N2EyZDA3LWNkYjYtNDUyMC1hMDZjLWIyNzBmNmViYjVjMSIsImF1ZCI6IlpFaEgwM0JQbEpheUVPbGFZaGZOU2FTY0FENGEiLCJhY3IiOiJ1cm46bWFjZTppbmNvbW1vbjppYXA6c2lsdmVyIiwiY19oYXNoIjoiaU92VlBRVUJ5ZzRXY21Ody1ZWmlGZyIsInNfaGFzaCI6IjFjSGlXQTFTdjZqSnNLekg0RW55NUEiLCJhenAiOiJaRWhIMDNCUGxKYXlFT2xhWWhmTlNhU2NBRDRhIiwiZXhwIjoxNzM4MTU4ODI2LCJpYXQiOjE3MzgxNTUyMjYsImp0aSI6IjVjM2M2NWQ5LWI4M2ItNGQzYy1hODVhLTNlZDY1NGI4NTc2ZSJ9.YPu83D0IGTc_wyQn3Jy_3A6DQRICAF96ta1CH8KIYve2AlchU0KfY4Pt8s0SVQUVAoda3AEphHv6qJv0hLA1aaNeM6FC_GmAgc5YtaGBB9bTQCtWIMF_rkH5rju8Xp1SNKRdlErOIuZVzQO07R6mR_cKG9sqHOCvlMOwlUZS_Xpzto_3IWwVBNhm1Qs4n1JivbKmywX7fKVLXTmjKge_xFEAgIf12xgdbkPP8HZrBSSOf4ROEcyoMRKecT_47uYJe0rmat9ebXJxo33P1qZ_HfPNN76DakgbGWrV8nkhXpr4IY3Br-6HLtaflsJeONdxjxRj-nzh_go2OoUoBf_zHw
+    &code=24c5b61b-d9fe-315b-b3d2-98b69bebe453
+    &session_state=0386fdaacbbe5cc35a7e5a6f3d5a77c8806c1ee492a1fb29ad98dd71b75cccf6.vJoRcx1IcKsi1hGPo5CXqQ
+    &state=YWlzcDozMTQ2
     ```
    
 ### Step 4: Generate user access token
@@ -282,7 +290,7 @@ given below:
     -H 'Cache-Control: no-cache' \
     -H 'Content-Type: application/x-www-form-urlencoded' \
     --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
-    -d 'grant_type=authorization_code&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=<CLIENT_ASSERTION>&code=4dc73435-eee5-3486-ba3b-29b49be04f21&scope=openid%20accounts&redirect_uri=https%3A%2F%2Fwso2.com'
+    -d 'grant_type=authorization_code&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer&client_assertion=<CLIENT_ASSERTION>&code=4dc73435-eee5-3486-ba3b-29b49be04f21&scope=openid%20accounts&redirect_uri=https://www.google.com/redirects/redirect1'
     ```
 
 2. The `client_assertion` parameter is a JWT as explained in the 
@@ -309,7 +317,7 @@ https://localhost:8243/open-banking/v3.1/aisp/accounts/1 \
 -H 'Authorization: Bearer <USER_ACCESS_TOKEN>' \
 -H 'Accept: application/json' \
 -H 'charset: UTF-8' \
--H 'Content-Type: application/json; charset=UTF-8'
+-H 'Content-Type: application/json; charset=UTF-8' \
 --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
 ```
 - The request retrieves the account information for the Account ID you mentioned in the request. 

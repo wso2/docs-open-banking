@@ -53,6 +53,12 @@ can quickly set up and try out a basic flow.
         <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
         <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
       </tr>
+      <tr>
+        <th>Combination 03<br></th>
+        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.1.0</a></td>
+        <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
+        <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
+      </tr>
     </tbody>
     </table>
  

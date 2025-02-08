@@ -89,7 +89,6 @@ nav:
     - 'CIBA Flow':
       - 'Introduction': learn/ciba.md
       - 'Set up CIBA flow': learn/ciba-set-up-flow.md
-      - 'CIBA with sample application': learn/ciba-with-sample-react-native-app.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
       - 'Event Subscription': learn/event-notification-subscription.md
