@@ -27,6 +27,8 @@ This document provides step by step instructions to invoke the Accounts Informat
         8. Click **Save**.
 
         9. Add a custom policy. Follow the instructions given below according to the API Manager version you are using:
+      
+        Before adding the policy replace the <AUTH_HEADER_VALUE> with the Basic auth header value. i.e Basic Base64(username:password)
 
             ??? note "Click here to see how to add a custom policy if you are using API Manager 4.0.0..." 
                 1. Go to **Develop -> API Configurations -> Runtime** using in the left menu pane.<br><br>![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
