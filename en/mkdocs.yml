@@ -78,6 +78,7 @@ nav:
     - 'Consent Authorization': learn/consent-authorization-intro.md
     - 'JARM for OAuth 2.0': learn/jarm-for-oauth2.md
     - 'Token Authentication': learn/token-authentication.md
+    - 'Client Registration': learn/client-registration.md
     - 'Dynamic Client Registration':
       - 'Introduction': learn/dynamic-client-registration.md
       - 'Configuration': learn/dynamic-client-registration-configuration.md
