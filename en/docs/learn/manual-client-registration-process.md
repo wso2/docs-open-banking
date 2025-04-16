@@ -1,6 +1,6 @@
 ### Step 1: Sign up as a TPP
 
-1. Go to the Developer portal at <https://<IS_HOST>:9443/devportal>.
+1. Go to the Developer portal at <https://<APIM_HOST>:9443/devportal>.
 
 2. Go to the **Applications** tab. <br/> ![applications_tab](../assets/img/learn/mcr/applications-tab.png)
 
@@ -16,7 +16,7 @@
 
 ### Step 2: Sign in to the Developer Portal as the TPP
 
-1. Now, sign in to the [Developer portal](https://localhost:9443/devportal) as the TPP.
+1. Now, sign in to the [Developer portal](https://<APIM_HOST>:9443/devportal) as the TPP.
 
 2. Enter the username and the password you entered when signing up as a TPP.
 

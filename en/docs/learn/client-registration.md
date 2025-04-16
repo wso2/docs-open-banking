@@ -8,7 +8,7 @@ The bank has to implement a proper TPP Onboarding process in its banking system.
 
 For TPP Onboarding, the Open Banking Entities suggests the following processes: 
 
-![tpp_onboarding](../assets/img/learn/client-registration/aTPPOnboardingApproaches.png)
+![tpp_onboarding](../assets/img/learn/client-registration/tpp-onboarding-approaches.png)
 
 ## Manual Client Registration
 
