@@ -58,7 +58,6 @@ nav:
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
       - 'Tryout Flow': get-started/try-out-flow.md
-      - 'Data Publishing': get-started/data-publishing-try-out.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers': install-and-setup/setting-up-servers.md
@@ -229,7 +228,7 @@ extra:
       link: https://twitter.com/wso2
     - type: linkedin
       link: https://www.linkedin.com/company/wso2
-  site_version: 3.0.0
+  site_version: 4.0.0
   nav_list:
     - Home
     - Get Started
