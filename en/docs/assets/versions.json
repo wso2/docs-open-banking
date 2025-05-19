@@ -1,15 +1,21 @@
 {
   "staging": "master",
-  "3.0.0": "master",
-  "latest": "master",
+  "3.0.0": "3.0.0",
+  "4.0.0": "v4.0.0",
+  "latest": "v4.0.0",
   "current": "3.0.0",
   "list": [
-    "3.0.0"
+    "3.0.0",
+    "4.0.0"
   ],
   "all": {
+    "4.0.0": {
+      "doc": "4.0.0",
+      "notes": "latest/get-started/about-this-release/"
+    },
     "3.0.0": {
       "doc": "3.0.0",
-      "notes": "latest/get-started/about-this-release/"
+      "notes": "3.0.0/get-started/about-this-release/"
     },
     "2.0.0": {
       "doc": "https://wso2docs.atlassian.net/wiki/spaces/OB200/",
