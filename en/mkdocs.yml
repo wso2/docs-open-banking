@@ -58,7 +58,6 @@ nav:
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
       - 'Tryout Flow': get-started/try-out-flow.md
-      - 'Data Publishing': get-started/data-publishing-try-out.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers': install-and-setup/setting-up-servers.md
