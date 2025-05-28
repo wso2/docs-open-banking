@@ -6,10 +6,10 @@ For more information on WSO2 Financial Services Accelerator, see the [Get Starte
 
 ## What is new in this release
 
-####WSO2 Financial Services- Identity Server Accelerator
+####WSO2 Financial Services - Identity Server Accelerator
 
 - Accelerator-level support for both pre-initiated and scope-based consent flows
-- OpenAPI based accelerator extension points to implement specification compliance addition to supported java based extension points. Fore more information, see
+- OpenAPI based accelerator extension points to implement specification compliance addition to supported java based extension points. Fore more information, see [OpenAPI for Accelerator extensions](../references/accelerator-extensions-api.md)
 - JDK21 runtime support
 - Idempotency feature support from accelerator layer
 - Generalized consent management support for common open banking use cases. For more information, see [Consent Management](../learn/consent-management.md).

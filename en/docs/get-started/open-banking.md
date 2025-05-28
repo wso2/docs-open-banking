@@ -40,13 +40,16 @@ financial technology.
 
 The **Open Innovation Concept** defined by Henry Chesbrough at Berkley promotes innovation rooted in cooperation with 
 external sources to gain a sustainable competitive advantage. This concept contradicts secrecy and siloed methods. 
-Open banking stems from this concept.  Then introduced a legal framework known as **PSD1** to promote faster, cheaper and 
+Open banking stems from this concept.  
+
+Then introduced a legal framework known as **PSD1** to promote faster, cheaper and 
 more transparent payment services within the European Union (EU) impacting how incumbents operate and promoting the 
 entry of new players. **PSD2**, which is the revised version of PSD1 introduced the concept of open banking by regulatory 
 means requiring banks across the EU to allow consumers to share their data with authorized third parties. **GDPR** 
 introduced a composition to data privacy laws across the EU. GDPR and PSD2 interrelate in terms of consent for data 
 sharing and preserving rights of control for consumers over their data. The world has embraced and extended the open 
 banking concept according to their requirements. 
+
 Countries and regions have established their own standards and implemented them in phased approaches. Certain countries
 are experimenting with an extension of open banking, known as open finance that enforces data sharing across financial
 service verticals like **The USA CFPB 1033 rule** . In addition to this, there are economy-wide data sharing propositions
