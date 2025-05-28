@@ -7,7 +7,7 @@ regional open banking standard.
 The WSO2 Financial Services IS Accelerator supports two approaches for extending and implementing its functionalities, 
 as illustrated in the image below.
 
-![IS_Accelerator_Extensions](../assets/img/develop/openapi-extensions/OB_Flows_with_OpenAPI%20Extensions.png) 
+![IS_Accelerator_Extensions](../assets/img/develop/openapi-extensions/OB_Flows_with_OpenAPI_Extensions.png) 
 
 
 ### OpenAPI based extensions
