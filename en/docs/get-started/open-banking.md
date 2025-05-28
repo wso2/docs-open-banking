@@ -1,6 +1,6 @@
-## What is Open Banking?
+## What is Open Banking and Open Finance?
 
-Open banking is a concept that enables banks, customers, and third parties to use and benefit more from the vast silos 
+**Open banking** is a concept that enables banks, customers, and third parties to use and benefit more from the vast silos 
 of data held by banks on their customers. Fundamentally, open banking allows bank customers to share their financial 
 data with third parties with their consent. In technical terms, this is done via secure APIs that allow the customers 
 or authorised API consumer applications to access data held by the bank. It is envisioned that upon wide adoption, an 
@@ -11,6 +11,30 @@ This gives customers more control over their data and greater financial transpar
 service providers and newer entrants such as fintech to participate more actively and meaningfully in generating 
 customized user experiences for consumers. Open Banking reshapes the banking industry by encouraging networking of data 
 and innovation across various financial institutions.
+
+**Open Finance** extends the principles of Open Banking beyond just banks and current accounts. It aims to provide consumers 
+with access to a wider range of financial data, including:
+
+- Loans and mortgages 
+- Investment accounts 
+- Insurance policies 
+- Pensions and retirement funds 
+- Utility payments and billing data
+
+Open Finance creates a more comprehensive financial data-sharing ecosystem, giving consumers a unified view of their 
+financial lives and enabling more intelligent, data-driven financial services.
+Together, Open Banking and Open Finance are reshaping the financial services landscape by:
+
+ - Encouraging interoperability among financial institutions 
+ - Promoting competition and innovation 
+ - Enabling hyper-personalized products and services 
+ - Supporting greater financial inclusion
+
+This shift toward openness represents a significant step in putting consumers at the center of financial 
+ecosystems—granting them ownership and control over their own data while driving the next generation of 
+financial technology.
+
+
 
 ![conceptual evolution of ob](../assets/img/get-started/open-banking/conceptual-evolution-of-open-banking-globally.png)
 
@@ -24,9 +48,9 @@ introduced a composition to data privacy laws across the EU. GDPR and PSD2 inter
 sharing and preserving rights of control for consumers over their data. The world has embraced and extended the open 
 banking concept according to their requirements. Countries and regions have established their own standards and 
 implemented them in phased approaches. Certain countries are experimenting with an extension of open banking, known 
-as open finance that enforces data sharing across financial service verticals. In addition to this, there are 
-economy-wide data sharing propositions like the Australian CDR.  Economy-wide efforts are now playing out in the 
-UK - Smart Data and the EU as well. For more information on current regulations and standards, see 
+as open finance that enforces data sharing across financial service verticals like ** the USA CFPB 1033 rule** . In 
+addition to this, there are economy-wide data sharing propositions like the **Australian CDR**. Economy-wide efforts are
+now playing out in the UK - Smart Data and the EU as well. For more information on current regulations and standards, see 
 [open banking regulations and standards](regulations-and-standards.md).
 
 ## A sample open banking use case
@@ -41,7 +65,7 @@ of them.
 
 ![before and after open banking](../assets/img/get-started/open-banking/before-after-ob.png)
 
-## Stakeholders in Open Banking
+## Stakeholders in Open Banking / Open Finance
    
 The open banking ecosystem comprises 4 main stakeholders.
    
