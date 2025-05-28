@@ -46,12 +46,12 @@ entry of new players. **PSD2**, which is the revised version of PSD1 introduced 
 means requiring banks across the EU to allow consumers to share their data with authorized third parties. **GDPR** 
 introduced a composition to data privacy laws across the EU. GDPR and PSD2 interrelate in terms of consent for data 
 sharing and preserving rights of control for consumers over their data. The world has embraced and extended the open 
-banking concept according to their requirements. Countries and regions have established their own standards and 
-implemented them in phased approaches. Certain countries are experimenting with an extension of open banking, known 
-as open finance that enforces data sharing across financial service verticals like ** the USA CFPB 1033 rule** . In 
-addition to this, there are economy-wide data sharing propositions like the **Australian CDR**. Economy-wide efforts are
-now playing out in the UK - Smart Data and the EU as well. For more information on current regulations and standards, see 
-[open banking regulations and standards](regulations-and-standards.md).
+banking concept according to their requirements. 
+Countries and regions have established their own standards and implemented them in phased approaches. Certain countries
+are experimenting with an extension of open banking, known as open finance that enforces data sharing across financial
+service verticals like **The USA CFPB 1033 rule** . In addition to this, there are economy-wide data sharing propositions
+like the **Australian CDR**. Economy-wide efforts are now playing out in the UK - Smart Data and the EU as well. For more
+information on current regulations and standards, see [open banking regulations and standards](regulations-and-standards.md).
 
 ## A sample open banking use case
 
