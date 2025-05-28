@@ -47,8 +47,8 @@ theme:
 nav:
   - 'Home': index.md
   - 'Get Started':
-    - 'Open Banking': get-started/open-banking.md
-    - 'Open Banking Requirements': get-started/open-banking-requirements.md
+    - 'Open Banking & Open Finance': get-started/open-banking.md
+    - 'Open Banking & Open Finance Requirements': get-started/open-banking-requirements.md
     - 'Regulations and Standards': get-started/regulations-and-standards.md
     - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
     - 'About this Release': get-started/about-this-release.md
@@ -70,29 +70,32 @@ nav:
     - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
     - 'Troubleshooting': install-and-setup/troubleshooting.md
   - 'Learn':
+    - 'Client Registration': learn/client-registration.md
+    - 'Dynamic Client Registration':
+        - 'Introduction': learn/dynamic-client-registration.md
+        - 'Configuration': learn/dynamic-client-registration-configuration.md
+        - 'Tryout': learn/dynamic-client-registration-try-out.md
+    - 'Manual Client Registration':
+        - 'Introduction': learn/manual-client-registration.md
+        - 'Configuration': learn/manual-client-registration-configuration.md
+        - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
+    - 'Consumer Authentication':
+        - 'Introduction': learn/consumer-authentication.md
+        - 'App-to-App Redirection': learn/app-to-app-redirection.md
+        - 'Identifier-first Authentication': learn/identifier-first.md
+        - 'CIBA Flow':
+            - 'Introduction': learn/ciba.md
+            - 'Set up CIBA flow': learn/ciba-set-up-flow.md
     - 'Consent Management':
       - 'Introduction': learn/consent-management.md
       - 'Tryout': learn/consent-management-try-out.md
       - 'Consent Manager': learn/consent-manager.md
     - 'Consent Authorization': learn/consent-authorization-intro.md
-    - 'JARM for OAuth 2.0': learn/jarm-for-oauth2.md
-    - 'Token Authentication': learn/token-authentication.md
-    - 'Client Registration': learn/client-registration.md
-    - 'Dynamic Client Registration':
-      - 'Introduction': learn/dynamic-client-registration.md
-      - 'Configuration': learn/dynamic-client-registration-configuration.md
-      - 'Tryout': learn/dynamic-client-registration-try-out.md
-    - 'Manual Client Registration':
-      - 'Introduction': learn/manual-client-registration.md
-      - 'Configuration': learn/manual-client-registration-configuration.md
-      - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
-    - 'Consumer Authentication':
-      - 'Introduction': learn/consumer-authentication.md
-      - 'App-to-App Redirection': learn/app-to-app-redirection.md
-      - 'Identifier-first Authentication': learn/identifier-first.md
-    - 'CIBA Flow':
-      - 'Introduction': learn/ciba.md
-      - 'Set up CIBA flow': learn/ciba-set-up-flow.md
+    - 'API Security':
+        - 'Introduction': learn/api-security.md
+        - 'Configuration': learn/api-security-configuration.md
+        - 'JARM for OAuth 2.0': learn/jarm-for-oauth2.md
+        - 'Token Authentication': learn/token-authentication.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
       - 'Event Subscription': learn/event-notification-subscription.md
@@ -100,13 +103,6 @@ nav:
       - 'Event Polling': learn/event-notification-polling.md
       - 'Real Time Event Notification': learn/event-notification-realtime.md
       - 'Configuration': learn/event-notification-configuration.md
-    - 'API Security':
-      - 'Introduction': learn/api-security.md
-      - 'Configuration': learn/api-security-configuration.md
-    - 'Data Publishing':
-      - 'Introduction': learn/data-publishing.md
-      - 'Tryout': learn/data-publishing-tryout.md
-    - 'Integration': learn/integration.md
   - 'Develop' :
     - 'Toolkit Introduction': develop/develop-toolkit.md
     - 'OpenAPI based extensions' :
@@ -179,6 +175,7 @@ nav:
   - 'Conformance':
     - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
   - 'References':
+    - 'Identity Server Configuration Catalog': references/accelerator-extensions-api.md
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
     - 'API Manager Configuration Catalog': references/config-catalog-apim.md
     - 'Consent REST API': references/consent-rest-api.md
