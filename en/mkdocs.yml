@@ -72,14 +72,14 @@ nav:
   - 'Learn':
     - 'Introduction': learn/introduction.md
     - 'Client Registration': learn/client-registration.md
-        - 'Dynamic Client Registration':
-           - 'Introduction': learn/dynamic-client-registration.md
-           - 'Configuration': learn/dynamic-client-registration-configuration.md
-           - 'Tryout': learn/dynamic-client-registration-try-out.md
-        - 'Manual Client Registration':
-           - 'Introduction': learn/manual-client-registration.md
-           - 'Configuration': learn/manual-client-registration-configuration.md
-           - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
+    - 'Dynamic Client Registration':
+        - 'Introduction': learn/dynamic-client-registration.md
+        - 'Configuration': learn/dynamic-client-registration-configuration.md
+        - 'Tryout': learn/dynamic-client-registration-try-out.md
+    - 'Manual Client Registration':
+          - 'Introduction': learn/manual-client-registration.md
+          - 'Configuration': learn/manual-client-registration-configuration.md
+          - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
     - 'Consumer Authentication':
         - 'Introduction': learn/consumer-authentication.md
         - 'App-to-App Redirection': learn/app-to-app-redirection.md
