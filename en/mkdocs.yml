@@ -70,15 +70,16 @@ nav:
     - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
     - 'Troubleshooting': install-and-setup/troubleshooting.md
   - 'Learn':
+    - 'Introduction': learn/introduction.md
     - 'Client Registration': learn/client-registration.md
-    - 'Dynamic Client Registration':
-        - 'Introduction': learn/dynamic-client-registration.md
-        - 'Configuration': learn/dynamic-client-registration-configuration.md
-        - 'Tryout': learn/dynamic-client-registration-try-out.md
-    - 'Manual Client Registration':
-        - 'Introduction': learn/manual-client-registration.md
-        - 'Configuration': learn/manual-client-registration-configuration.md
-        - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
+        - 'Dynamic Client Registration':
+           - 'Introduction': learn/dynamic-client-registration.md
+           - 'Configuration': learn/dynamic-client-registration-configuration.md
+           - 'Tryout': learn/dynamic-client-registration-try-out.md
+        - 'Manual Client Registration':
+           - 'Introduction': learn/manual-client-registration.md
+           - 'Configuration': learn/manual-client-registration-configuration.md
+           - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
     - 'Consumer Authentication':
         - 'Introduction': learn/consumer-authentication.md
         - 'App-to-App Redirection': learn/app-to-app-redirection.md
@@ -93,6 +94,7 @@ nav:
     - 'Consent Authorization': learn/consent-authorization-intro.md
     - 'API Security':
         - 'Introduction': learn/api-security.md
+        - 'Financial grade API (FAPI) Security': learn/fapi.md
         - 'Configuration': learn/api-security-configuration.md
         - 'JARM for OAuth 2.0': learn/jarm-for-oauth2.md
         - 'Token Authentication': learn/token-authentication.md
