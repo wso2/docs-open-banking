@@ -1,4 +1,4 @@
-**WSO2 Financial Services Accelerator 4.0** is the successor of WSO2 Open Banking Accelerator 3.0. It is a collection of technologies that increases the 
+**WSO2 Open Banking Accelerator 4.0** is the successor of WSO2 Open Banking Accelerator 3.0. It is a collection of technologies that increases the 
 speed and reduces the complexity of adopting open banking/open finance compliance. Instead of building a solution from scratch, you 
 can use WSO2 Financial Services Accelerator to meet all legislative requirements with additional benefits beyond compliance.
 
@@ -6,7 +6,7 @@ For more information on WSO2 Financial Services Accelerator, see the [Get Starte
 
 ## What is new in this release
 
-####WSO2 Financial Services - Identity Server Accelerator
+####WSO2 Open Banking Accelerator for Identity Server 
 
 - Accelerator-level support for both pre-initiated and scope-based consent flows
 - OpenAPI based accelerator extension points to implement specification compliance addition to supported java based extension points. Fore more information, see [OpenAPI for Accelerator extensions](../references/accelerator-extensions-api.md)

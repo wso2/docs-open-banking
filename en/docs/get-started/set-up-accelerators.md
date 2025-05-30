@@ -1,13 +1,11 @@
-This section guides you to set up and prepare your servers to run WSO2 Open Banking Accelerator.
+This section guides you to set up and prepare your server to run WSO2 Open Banking Accelerator.
 
-### Step 1: Set up accelerators 
-Copy the extracted accelerator directories into the root directories of the respective base products. Use the table to 
-locate the respective root directory of the base products:
+### Step 1: Set up WSO2 Open Banking Accelerator for Identity Server
+Copy the extracted accelerator directory into the root directory of the WSO2 Identity Server. 
 
-| File | Directory location to place the Accelerator |
-|---------|---------    |
-|`wso2-obiam-accelerator-3.0.0`|`<IS_HOME>`|
-|`wso2-obam-accelerator-3.0.0`|`<APIM_HOME>`|
+| File                           | Directory location to place the Accelerator |
+|--------------------------------|---------    |
+| `wso2-obiam-accelerator-4.0.0` |`<IS_HOME>`|
 
 ### Step 2: Configure database scripts
 
@@ -22,17 +20,14 @@ locate the respective root directory of the base products:
 This section explains how to set up the solution with a MySQL 8.0 database server. For other DBMS, see 
 [Setting up databases](../install-and-setup/setting-up-databases.md).
 
-1. Open the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
+1. Open the `<IS_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
 
-2. Configure the hostnames of the API Manager and Identity Server.
+2. Configure the hostnames of the Identity Server.
 
 3. Configure databases related properties and database names.
-
-4. Open the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` file and repeat step 2 and 3.
-     
-### Step 3: Set up servers 
-1. Run the merge script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
-`<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
+ 
+### Step 3: Set up the IS server 
+1. Run the merge script in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
     ```bash tab='On Linux'
     ./merge.sh
     ```
@@ -45,8 +40,8 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     ./merge.ps1
     ```
 
-2. Run the configure files in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` and 
-`<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin` respectively:
+2. Run the configure file in
+`<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
     ```bash tab='On Linux'
     ./configure.sh
     ```
@@ -120,7 +115,4 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 ```
 ./wso2server.sh
 ```
-2. Run the following command in `<APIM_HOME>/bin`:
-```
-./api-manager.sh
-```
+
