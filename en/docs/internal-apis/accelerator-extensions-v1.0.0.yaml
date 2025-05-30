@@ -568,7 +568,7 @@ paths:
                 status: ERROR
                 errorMessage: server_error
                 errorDescription: Failed to process the response
-  /enrich-consent-search-result:
+  /enrich-consent-search-response:
     post:
       tags:
         - Consent
@@ -1220,7 +1220,7 @@ components:
         searchType:
           type: string
           enum:
-            - BULK_SERACH
+            - BULK_SEARCH
             - AMENDMENT_HISTORY
         searchResult:
           type: object
@@ -1300,6 +1300,10 @@ components:
       properties:
         responseId:
           type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
         data:
           $ref: '#/components/schemas/SuccessResponseForConsentSearchData'
     SuccessResponsePreProcessConsentCreation:
@@ -1572,7 +1576,7 @@ components:
     SuccessResponseForConsentSearchData:
       type: object
       properties:
-        searchResult:
+        enrichedSearchResult:
           type: object
           description: Enriched search result
     SuccessResponseWithDetailedConsentData:
