@@ -8,17 +8,14 @@ products.
 
 1. Before setting up the accelerator, download and install the base products. You can use any of the following combinations:
 
-    | Base Product              | Combination 01                                                                                                             | Combination 02                                                              |
-    |---------------------------|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-    | WSO2 Identity Server      | [5.11.0](https://wso2.com/identity-and-access-management/previous-releases/)                                               | [6.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
-    | WSO2 API Manager          | [4.1.0](https://wso2.com/api-management/previous-releases/) or [4.0.0](https://wso2.com/api-management/previous-releases/) | [4.2.0](https://wso2.com/api-manager/)                                      |
-    | WSO2 Streaming Integrator | [4.0.0](https://wso2.com/streaming-integrator/)                                                          | [4.2.0](https://wso2.com/streaming-integrator/)
-
+    | Base Product              | Combination 01                                                              | Combination 02                                                                                        |
+    |---------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-and-access-management/previous-releases/) | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
+    | WSO2 API Manager          | [4.5.0](https://wso2.com/api-management/previous-releases/)                 | [4.4.0](https://wso2.com/api-manager/) or [4.3.0](https://wso2.com/api-management/previous-releases/) |
+   
 2. To configure the Identity Server with the API Manager, install the respective WSO2 IS Connector according to the API Manager version you have downloaded.
 
-    - [WSO2 IS Connector for API Manager 4.2.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
-    - [WSO2 IS Connector for API Manager 4.1.0](https://apim.docs.wso2.com/en/4.1.0/assets/attachments/administer/wso2is-extensions-1.4.2.zip)
-    - [WSO2 IS Connector for API Manager 4.0.0](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
+    - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.5.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
 
 ## Installing WSO2 Open Banking Accelerator 
 
@@ -28,20 +25,19 @@ products.
     
 1. Download and extract the latest Open Banking Accelerator 3.0 version. 
 
-    - Current latest version [3.3.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v3.3.0).
+    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/tag/V4.0.0-RC3).
     
 2. WSO2 Open Banking Accelerator contains the following 
 accelerators.
 
-    - wso2-obiam-accelerator-3.x.0
-    - wso2-obam-accelerator-3.x.0
-    - wso2-obbi-accelerator-3.x.0
+    - wso2-obiam-accelerator-4.x.0
+    
 
-3. Go to the root directories of WSO2 Identity Server, API Manager and Streaming Integrator. These root directories are the product 
+3. Go to the root directy of WSO2 Identity Server and API Manager. These root directories are the product 
 homes.
  
     !!! tip
-        This documentation will refer to the product homes as `<IS_HOME>`,`<APIM_HOME>`, and `<SI_HOME>` respectively.
+        This documentation will refer to the product homes as `<IS_HOME>`, and `<APIM_HOME>` respectively.
 
 4. Place the relevant accelerator zip files and extract them in their respective product homes:
 
@@ -49,11 +45,9 @@ homes.
     |----| -------------------------------------------|
     |wso2-obiam-accelerator-3.x.0.zip| `<IS_HOME>`|
     |wso2-obam-accelerator-3.x.0.zip| `<APIM_HOME>`|
-    |wso2-obbi-accelerator-3.x.0.zip| `<SI_HOME>`|
-     
     !!! tip
         This documentation will refer to the above-extracted directories of the accelerators as 
-        `<OB_IS_ACCELERATOR_HOME>`,`<OB_APIM_ACCELERATOR_HOME>`, `<OB_BI_ACCELERATOR_HOME>` respectively.
+        `<OB_IS_ACCELERATOR_HOME>`,`<OB_APIM_ACCELERATOR_HOME>` respectively.
 
 ## Getting WSO2 Updates
 

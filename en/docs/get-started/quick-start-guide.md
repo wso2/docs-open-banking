@@ -6,7 +6,7 @@ This section guides you on how to set up the solution in a local environment. Fo
 can quickly set up and try out a basic flow.
 
 !!! tip "Prerequisites"
-    1. Download Open Java Development Kit (OpenJDK) version 11 or 17 to the local environment based on the base product versions you use.
+    1. Download Open Java Development Kit (OpenJDK) version 11 ,17 or 21 to the local environment based on the base product versions you use.
 
         !!!info
             See [Compatibility](../install-and-setup/prerequisites.md#compatibility) for compatible JDK versions.
@@ -33,52 +33,23 @@ can quickly set up and try out a basic flow.
 
 1. Download and extract the required base products. You can use any of the following combinations:
 
-    <table>
-      <tr>
-        <th></th>
-        <th>WSO2 Identity Server</th>
-        <th>WSO2 API Manager</th>
-        <th>WSO2 Streaming Integrator</th>
-      </tr>
-    <tbody>
-      <tr>
-        <th>Combination 01</th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">5.11.0</a></td>
-        <td><a href="https://wso2.com/api-management/previous-releases/">4.1.0</a> or <a href="https://wso2.com/api-management/previous-releases/">4.0.0</a></td>
-        <td><a href="https://wso2.com/streaming-integrator/previous-releases/">4.1.0</a> or <a href="https://wso2.com/streaming-integrator/previous-releases/">4.0.0</a></td>
-      </tr>
-      <tr>
-        <th>Combination 02<br></th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
-        <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
-        <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
-      </tr>
-      <tr>
-        <th>Combination 03<br></th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.1.0</a></td>
-        <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
-        <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
-      </tr>
-    </tbody>
-    </table>
+    - WSO2 Identity Server -7.1.0 ,7.0.0
+    - WSO2 API Manager - 4.5.0
  
 2. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
 
-    - [WSO2 IS Connector for API Manager 4.2.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
-    - [WSO2 IS Connector for API Manager 4.1.0](https://apim.docs.wso2.com/en/4.1.0/assets/attachments/administer/wso2is-extensions-1.4.2.zip)
-    - [WSO2 IS Connector for API Manager 4.0.0](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
+    - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
 
 ## Installing WSO2 Open Banking Accelerator
 
 1. Download and extract the latest Open Banking Accelerator 3.0 version. 
 
-    - Current latest version [3.3.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v3.3.0).
+    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/tree/V4.0.0-RC3).
               
 2. WSO2 Open Banking Accelerator contains the following accelerators:
    
-    - wso2-obiam-accelerator-3.x.0
-    - wso2-obam-accelerator-3.x.0
-    - wso2-obbi-accelerator-3.x.0
+    - wso2-obiam-accelerator-4.x.0
+   
             
 3. This document uses the following placeholders to refer to the following products:
         
