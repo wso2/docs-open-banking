@@ -23,7 +23,7 @@ products.
     See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is 
     compatible with your operating system.
     
-1. Download and extract the latest Open Banking Accelerator 3.0 version. 
+1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
     - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/tag/V4.0.0-RC3).
     
@@ -41,10 +41,10 @@ homes.
 
 4. Place the relevant accelerator zip files and extract them in their respective product homes:
 
-    |File| Directory location to place the Accelerator|
-    |----| -------------------------------------------|
-    |wso2-obiam-accelerator-3.x.0.zip| `<IS_HOME>`|
-    |wso2-obam-accelerator-3.x.0.zip| `<APIM_HOME>`|
+    | File                             | Directory location to place the Accelerator|
+    |----------------------------------| -------------------------------------------|
+    | wso2-obiam-accelerator-4.x.0.zip | `<IS_HOME>`|
+    | wso2-obam-accelerator-4.x.0.zip  | `<APIM_HOME>`|
     !!! tip
         This documentation will refer to the above-extracted directories of the accelerators as 
         `<OB_IS_ACCELERATOR_HOME>`,`<OB_APIM_ACCELERATOR_HOME>` respectively.

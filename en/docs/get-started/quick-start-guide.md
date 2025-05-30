@@ -42,7 +42,7 @@ can quickly set up and try out a basic flow.
 
 ## Installing WSO2 Open Banking Accelerator
 
-1. Download and extract the latest Open Banking Accelerator 3.0 version. 
+1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
     - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/tree/V4.0.0-RC3).
               
