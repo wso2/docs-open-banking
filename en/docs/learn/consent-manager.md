@@ -121,27 +121,15 @@ Follow [Configuring users and roles](../install-and-setup/configuring-users-and-
 
         11. Scroll down and click **Save**.
 
-11. If you are migrating from WSO2 Open Banking 2.0 to 3.0, add `CustomerCareOfficer` role to the `consents:read_all` scope.
-
-    ??? note "Click here to see how to add a role to the scope"
-
-         1. Go to **Develop > API Configurations > Local Scopes** using the left menu pane.
-
-         2. Click the edit button in scope **consents:read_all**.
-
-         3. Add `CustomerCareOfficer` to the **Roles** and hit Enter. ![add-CustomerCareOfficer](../assets/img/get-started/quick-start-guide/add-CustomerCareOfficer.png)
-
-         4. Click **Update**.
-    
-12. Go to **Overview** using the left menu pane.
+11. Go to **Overview** using the left menu pane.
  
-13. Click **Deploy**. 
+12. Click **Deploy**. 
 
-14. Set the API Gateways configurations and deploy the API.
+13. Set the API Gateways configurations and deploy the API.
 
-15. Go back to **Overview**.
+14. Go back to **Overview**.
 
-16. Click **Publish**.
+15. Click **Publish**.
 
 ## Subscribing to Self-Care Portal API
 

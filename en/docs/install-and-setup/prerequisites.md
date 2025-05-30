@@ -21,19 +21,19 @@ more information on customization, see the [Develop](../develop/open-banking-gat
 
 Given below is a product matrix for different versions of WSO2 Open Banking:
 
-| Version | Mandatory Components | Additional Components |
-|---------| ---------------------| ----------------------|
-| 4.0.0   |  wso2ob-is-accelerator-3.0.0 | |
+| Version | Mandatory Components                                                                          | Additional Components |
+|---------|-----------------------------------------------------------------------------------------------| ----------------------|
+| 4.0.0   | wso2ob-is-accelerator-4.0.0                                                                   | |
 | 3.0.0   | wso2ob-apim-accelerator-3.0.0 <br/> wso2ob-is-accelerator-3.0.0 <br/>wso2is-extensions-1.2.10 | wso2ob-bi-accelerator-3.0.0 |
-| 2.0.0   | wso2-obam-2.0.0 <br/> wso2-obiam-2.0.0 | wso2am-analytics-3.1.0 <br/> wso2-obbi-2.0.0 <br/> wso2ei-6.6.0 |
-| 1.5.0   | wso2-obam-1.5.0 <br/> wso2-obkm-1.5.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.5.0 <br/> wso2ei-6.4.0 |
-| 1.4.0   | wso2-obam-1.4.0 <br/> wso2-obkm-1.4.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.4.0 <br/> wso2ei-6.4.0 |
-| 1.3.0   | wso2-obam-1.3.0 <br/> wso2-obkm-1.3.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.3.0 <br/> wso2ei-6.4.0 |
-| 1.2.0   | wso2ob-am-2.6.0 <br/> wso2ob-km-5.7.0 | wso2ob-am-analytics-2.6.0 <br/> wso2ob-ei-6.4.0|
+| 2.0.0   | wso2-obam-2.0.0 <br/> wso2-obiam-2.0.0                                                        | wso2am-analytics-3.1.0 <br/> wso2-obbi-2.0.0 <br/> wso2ei-6.6.0 |
+| 1.5.0   | wso2-obam-1.5.0 <br/> wso2-obkm-1.5.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.5.0 <br/> wso2ei-6.4.0 |
+| 1.4.0   | wso2-obam-1.4.0 <br/> wso2-obkm-1.4.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.4.0 <br/> wso2ei-6.4.0 |
+| 1.3.0   | wso2-obam-1.3.0 <br/> wso2-obkm-1.3.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.3.0 <br/> wso2ei-6.4.0 |
+| 1.2.0   | wso2ob-am-2.6.0 <br/> wso2ob-km-5.7.0                                                         | wso2ob-am-analytics-2.6.0 <br/> wso2ob-ei-6.4.0|
 
 ## Compatible Base Product Versions
 
-Given below is the compatible base product matrix for WSO2 Open Banking 3.0:
+Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
 
 <table>
 <thead>
@@ -141,7 +141,7 @@ Listed below are the prerequisites for a successful deployment:
 
 ## Compatibility 
 
-WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
+WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
 
 !!!info
     If you are using **WSO2 Identity Server 6.0.0** and **WSO2 API Manager 4.2.0** as the base products, it is recommended to use OpenJDK 17. For other base products, use OpenJDK 11.
