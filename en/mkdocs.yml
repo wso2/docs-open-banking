@@ -177,9 +177,9 @@ nav:
   - 'Conformance':
     - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
   - 'References':
-    - 'Identity Server Configuration Catalog': references/accelerator-extensions-api.md
+    - 'Accelerator Extension REST API': references/accelerator-extensions-api.md
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
-    - 'API Manager Configuration Catalog': references/config-catalog-apim.md
+    #- 'API Manager Configuration Catalog': references/config-catalog-apim.md
     - 'Consent REST API': references/consent-rest-api.md
     - 'DCR REST API': references/dcr-rest-api.md
     - 'Application Info API': references/application-info-api.md
