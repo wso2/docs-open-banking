@@ -3,10 +3,6 @@
 WSO2 Open Banking adheres to the [JWT Secured Authorization Response Mode for OAuth 2.0 (JARM) specification](https://bitbucket.org/openid/fapi/src/master/oauth-v2-jarm.md),
 which defines a new JWT-based mode to encode OAuth authorization responses.
 
-!!!info
-    This is only available as a WSO2 Update from **WSO2 Identity Server Level 6.0.0.96** onwards. For more information
-    on updating, see [Updating WSO2 Products](https://updates.docs.wso2.com/en/latest/).
-
 ## Enabling JARM for WSO2 Open Banking
 
 By default, JARM response modes are not enabled in WSO2 Open Banking. To enable JARM, follow the steps below:
