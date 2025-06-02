@@ -108,7 +108,7 @@ nav:
   - 'Develop' :
     - 'Toolkit Introduction': develop/develop-toolkit.md
     - 'OpenAPI based extensions' :
-        - 'Developer Guide': develop/developer-guide.md
+        - 'Developer Guide': develop/openapi-extensions-developer-guide.md
     - 'Java based extensions' :
         - 'Developer Guide': develop/developer-guide.md
         - 'Open Banking Gateway' :
