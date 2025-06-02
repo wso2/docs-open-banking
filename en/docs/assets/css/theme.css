@@ -15,6 +15,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+.beta-badge {
+    display: inline-block;
+    background: #ffd600;
+    font-size: 14px;
+    padding: 5px;
+    line-height: 1;
+}
 
 .md-main > .md-main__inner > .md-content {
     -webkit-transition: margin 0.2s linear;
