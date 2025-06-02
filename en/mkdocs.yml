@@ -65,7 +65,7 @@ nav:
     - 'Data purging': install-and-setup/data-purging.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     # - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
-    - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
+    # - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
     - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
     - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
     - 'Troubleshooting': install-and-setup/troubleshooting.md
@@ -169,11 +169,11 @@ nav:
         - 'UK Toolkit': toolkits/uk-toolkit.md
         - 'Berlin Toolkit': toolkits/berlin-toolkit.md
         - 'CDS Toolkit': toolkits/cds-toolkit.md
-    - 'Other Toolkits':
-        - 'Regulatory Aggregator':
-            - 'Introduction': toolkits/regulatory-aggregator/regulatory-aggregator-intro.md
-            - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
-            - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
+    #- 'Other Toolkits':
+       # - 'Regulatory Aggregator':
+        #    - 'Introduction': toolkits/regulatory-aggregator/regulatory-aggregator-intro.md
+        #    - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
+        #    - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
   - 'Conformance':
     - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
   - 'References':
