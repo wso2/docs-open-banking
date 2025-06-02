@@ -34,13 +34,13 @@ can quickly set up and try out a basic flow.
 1. Download and extract the required base products. You can use any of the following combinations:
 
     - WSO2 Identity Server -7.1.0 ,7.0.0
-    - WSO2 API Manager - 4.5.0
+    <!--- WSO2 API Manager - 4.5.0, 4.4.0-->
  
-2. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
+<!--2. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
 
-    - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
-
-## Installing WSO2 Open Banking Accelerator
+    - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.5.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
+-->
+## Installing WSO2 Open Banking Accelerator for WSO2 Identity Server
 
 1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
@@ -56,10 +56,8 @@ can quickly set up and try out a basic flow.
     | Product | Placeholder |
     |---------|---------    |
     |WSO2 Identity Server|`<IS_HOME>`|
-    |WSO2 API Manager|`<APIM_HOME>`|
     |WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
-    |WSO2 Open Banking API Manager Accelerator |`<OB_APIM_ACCELERATOR_HOME>`|
-    |WSO2 IS Connector for API Manager |`<IS_EXTENSION>`|
+   
 
 ## Getting WSO2 Updates
 

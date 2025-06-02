@@ -44,10 +44,10 @@ homes.
     | File                             | Directory location to place the Accelerator|
     |----------------------------------| -------------------------------------------|
     | wso2-obiam-accelerator-4.x.0.zip | `<IS_HOME>`|
-    | wso2-obam-accelerator-4.x.0.zip  | `<APIM_HOME>`|
+    
     !!! tip
-        This documentation will refer to the above-extracted directories of the accelerators as 
-        `<OB_IS_ACCELERATOR_HOME>`,`<OB_APIM_ACCELERATOR_HOME>` respectively.
+        This documentation will refer to the above-extracted directory of the accelerator as 
+        `<OB_IS_ACCELERATOR_HOME>`.
 
 ## Getting WSO2 Updates
 
