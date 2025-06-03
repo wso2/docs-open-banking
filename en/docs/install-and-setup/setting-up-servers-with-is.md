@@ -8,7 +8,7 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
 1. Before setting up the accelerator, download and install the base products.
 
    | Base Product              | Version                                                                     | 
-       |---------------------------|-----------------------------------------------------------------------------|
+   |---------------------------|-----------------------------------------------------------------------------|
    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-server/)                                  |
    | WSO2 Identity Server      | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
 
@@ -24,7 +24,7 @@ compatible with your operating system.
 
 2. WSO2 Open Banking Accelerator contains the following accelerator.
 
-    - wso2-fsiam-accelerator-4.0.0
+    - wso2-fsiam-accelerator-4.x.0
 
 3. Go to the root directory of WSO2 Identity Server. The root directory is the product home.
 
