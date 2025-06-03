@@ -67,7 +67,7 @@ nav:
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers':
-       - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+       - 'With Only WSO2 Identity Server': get-started/setting-up-servers-with-is.md
       #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
