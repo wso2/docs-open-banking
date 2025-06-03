@@ -54,13 +54,21 @@ nav:
     - 'About this Release': get-started/about-this-release.md
     - 'Quick Start Guide':
       - 'Get Started': get-started/quick-start-guide.md
-      - 'Set Up Accelerators': get-started/set-up-accelerators.md
+      - 'Set Up Accelerators':
+        - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+        #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
-      - 'Tryout Flow': get-started/try-out-flow.md
+          - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+          #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
+      - 'Tryout Flow':
+         - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+        #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/try-out-flow.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers': install-and-setup/setting-up-servers.md
+       - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+      #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     # - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
