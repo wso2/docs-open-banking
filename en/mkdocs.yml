@@ -58,7 +58,7 @@ nav:
         - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
         #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
-      - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
+      - 'Dynamic Client Registration':
           - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
           #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
       - 'Tryout Flow':
@@ -66,7 +66,7 @@ nav:
         #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/try-out-flow.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
-    - 'Setting up servers': install-and-setup/setting-up-servers.md
+    - 'Setting up servers':
        - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
       #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
