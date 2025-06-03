@@ -1,3 +1,5 @@
+## OpenAPI Extensions for Consent Manage
+
 WSO2 Open Banking IAM Accelerator v4.0.0 onwards support OpenAPI based extensions for consent management customizations.
 
 Generally regional open banking specifications do have different flavors of request/response formats for consent management
@@ -13,13 +15,13 @@ Make sure to refer  Developer guide for OpenAPI based extensions from [documenta
 ### OpenAPI Extensions
 | OpenAPI Extension                | Description                                                                       | OpenAPI Definition                                                                                                                     |
 |----------------------------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| pre-process-consent-creation     | handle specification speicifc validations & obtain custom consent data to be stored. | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post         |
-| enrich-consent-creation-response | handle altering consent response according to specification.                      | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1enrich-consent-creation-response/post     |
-| pre-process-consent-file-upload  | handle specification speicifc  validations related to consent file upload requests. | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-file-upload/post      |
-| enrich-consent-file-response     | handle altering consent file upload response                                      | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1enrich-consent-file-response/post         |
-| pre-process-consent-retrieval    | handle specification speicifc validations and alter consent retrieval response    | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-retrieval/post        |
-| validate-consent-file-retrieval  | handle specification speicifc validations for consent-file retrieval              | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1validate-consent-file-retrieval/post                                         |
-| pre-process-consent-revoke       | handle specification speicifc validations and alter consent retrieval response    | https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-revoke/post                                                       |
+| pre-process-consent-creation     | handle specification speicifc validations & obtain custom consent data to be stored. | [pre-process-consent-creation/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)         |
+| enrich-consent-creation-response | handle altering consent response according to specification.                      | [enrich-consent-creation-response/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)     |
+| pre-process-consent-file-upload  | handle specification speicifc  validations related to consent file upload requests. | [pre-process-consent-file-upload/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)      |
+| enrich-consent-file-response     | handle altering consent file upload response                                      | [enrich-consent-file-response/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)         |
+| pre-process-consent-retrieval    | handle specification speicifc validations and alter consent retrieval response    | [pre-process-consent-retrieval/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)        |
+| validate-consent-file-retrieval  | handle specification speicifc validations for consent-file retrieval              | [validate-consent-file-retrieval/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)                                         |
+| pre-process-consent-revoke       | handle specification speicifc validations and alter consent retrieval response    | [pre-process-consent-revoke/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1pre-process-consent-creation/post)                                                |
 
 ### Configuration 
 
@@ -28,6 +30,7 @@ To enable, follow the steps below:
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
     
 2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
+
 ``` toml
 [financial_services.extensions.endpoint]
 enabled = true
@@ -44,4 +47,4 @@ allowed_extensions = ["pre_process_client_creation", "pre_process_client_update"
 type = "Basic-Auth"
 username = ""
 password = ""
-````
+``` 
