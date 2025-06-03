@@ -1,10 +1,14 @@
 This document provides step by step instructions to invoke the Accounts Information Service API.
+Following diagram illustrates the sample Open Banking flow which is going to try from this documentation section.
+
+![Open Banking Demo Flow](../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
+
 
 !!! note 
-    You need to deploy and subscribe an API before invoking it. For the testing purposes, you can use the sample AccountandTransaction 
+    You need to deploy the API before invoking it. For the testing purposes, you can use the sample AccountandTransaction 
     API we have included in the pack.
     
-    ??? tip "Click here to see how to deploy and subscribe to the sample API..."
+    ??? tip "Click here to see how to deploy the sample API..."
         1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
         privileges. 
 
@@ -19,14 +23,8 @@ This document provides step by step instructions to invoke the Accounts Informat
 
         6. Leave the **Endpoint** field empty as it is and click **Create**. 
 
-        7. Select **Subscriptions** from the left menu pane and set the business plan to **Unlimited: Allows unlimited 
-        requests**.  
-        
-             ![select_subscriptions](../assets/img/learn/dcr/dcr-try-out/step-5.png)
-
-        8. Click **Save**.
-
-        9. Add a custom policy. Follow the instructions given below according to the API Manager version you are using:
+       
+        7. Add a custom policy. Follow the instructions given below according to the API Manager version you are using:
       
         Before adding the policy replace the <AUTH_HEADER_VALUE> with the Basic auth header value. i.e Basic Base64(username:password)
 
