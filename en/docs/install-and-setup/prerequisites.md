@@ -1,12 +1,11 @@
 WSO2 Open Banking Accelerator is a collection of technologies that increases the speed and reduces the complexity of 
-adopting open banking compliance. Instead of building an open banking solution from scratch, you can use WSO2 Open 
+adopting open banking compliance. Instead of building an open banking solution from scratch, you can use WSO2 Open
 Banking Accelerator to meet all open banking requirements with additional benefits beyond compliance. You can use the 
 WSO2 Open Banking Accelerator on top of the following WSO2 products.
 
-You can use any of the following combinations:
+You can use any of the following base products:
 
 - WSO2 Identity Server -7.1.0,7.0.0
-- WSO2 API Manager -4.5.0
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -227,7 +226,7 @@ WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
 
 When deploying WSO2 Open Banking in a production server, make sure to comply with the following common security guidelines for production deployment. 
 
- - For WSO2 Open Banking Identity Server Accelerator refer [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
+ - For WSO2 Open Banking Accelerator refer [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
  - For WSO2 Open Banking API Manager Accelerator refer [WSO2 API Manager Security Guidelines for Production Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#api-m-runtime-security)
 
 If you have difficulty in setting up any WSO2 product in a specific platform or database,
