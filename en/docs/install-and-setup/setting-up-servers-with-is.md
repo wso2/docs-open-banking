@@ -1,8 +1,8 @@
-This section guides you to set up and prepare the servers to run WSO2 Financial Services Accelerator.
+This section guides you to set up and prepare the servers to run WSO2 Open Banking Accelerator.
 
 ## Installing base products
 
-WSO2 Financial Services Accelerator is a technology stack catered to speed up the implementation of a financial services.
+WSO2 Open Banking Accelerator is a technology stack catered to speed up the implementation of an open banking solution.
 The accelerators run on top of WSO2 Identity Server, which are referred to as base products.
 
 1. Before setting up the accelerator, download and install the base products.
@@ -12,17 +12,17 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-server/)                                  |
    | WSO2 Identity Server      | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
 
-## Installing WSO2 Financial Services Accelerator
+## Installing WSO2 Open Banking Accelerator
 
 !!! tip "Before you begin"
 See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is
 compatible with your operating system.
 
-1. Download and extract the latest WSO2 Financial Services Accelerator 4.0.0 version.
+1. Download and extract the latest WSO2 Open Banking Accelerator 4.0.0 version.
 
     - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.0.0).
 
-2. WSO2 Financial Services Accelerator contains the following accelerator.
+2. WSO2 Open Banking Accelerator contains the following accelerator.
 
     - wso2-fsiam-accelerator-4.0.0
 
@@ -133,7 +133,7 @@ Environment variables are global system variables accessible by all the processe
 
 ## Configuring ports
 
-The WSO2 Financial Services Accelerator may run in different machines/servers. It is mandatory to open the ports of each server to
+The WSO2 Open Banking Accelerator may run in different machines/servers. It is mandatory to open the ports of each server to
 allow a successful data flow. The instances mentioned below specify the ports that need to be opened:
 
 | Instance/Product     | 	Port    | Usage                                                                                                       |
@@ -214,7 +214,7 @@ facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this
 
 ## Copying the deployment.toml
 
-WSO2 Financial Services Accelerator contains TOML-based configurations. All the server-level configurations of the instance
+WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the instance
 can be applied using a single configuration file, which is the `deployment.toml` file.
 
 1. Replace the existing `deployment.toml` file in the Identity Server as follows:

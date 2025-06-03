@@ -1,9 +1,9 @@
-WSO2 Financial Services Accelerator contains TOML-based configurations. All the server-level configurations of the Identity 
+WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the Identity 
 Server instance can be applied using a single configuration file, which is the `deployment.toml` file. 
 
 ## Configuring deployment.toml
 
-Follow the steps below to configure the `deployment.toml` file and set up the default financial services flow for WSO2 
+Follow the steps below to configure the `deployment.toml` file and set up the default open banking flow for WSO2 
 Identity Server.
 
 !!! tip
