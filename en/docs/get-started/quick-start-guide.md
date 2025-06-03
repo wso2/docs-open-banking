@@ -20,8 +20,8 @@ can quickly set up and try out a basic flow.
     3. Setup a database server using any of the following:
          - MySQL 8.0
          - Oracle 19c
-         - Microsoft SQL Server 2017
-         - PostgreSQL 13
+         - Microsoft SQL Server 2022
+         - PostgreSQL 17.2
          
         !!!info
             See [Compatibility](../install-and-setup/prerequisites.md#compatibility) if you are using MySQL 8.0.
@@ -33,7 +33,7 @@ can quickly set up and try out a basic flow.
 
 ### Installing base products
 
-1. Download and extract the required base products. You can use any of the following combinations:
+1. Download and extract the required base products:
 
     - WSO2 Identity Server -7.1.0 ,7.0.0
     <!--- WSO2 API Manager - 4.5.0, 4.4.0-->
@@ -55,11 +55,10 @@ can quickly set up and try out a basic flow.
             
 3. This document uses the following placeholders to refer to the following products:
         
-    | Product | Placeholder |
-    |---------|---------    |
-    |WSO2 Identity Server|`<IS_HOME>`|
-    |WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
-
+    | Product                                       | Placeholder                |
+    |-----------------------------------------------|----------------------------|
+    | WSO2 Identity Server                          | `<IS_HOME>`                |
+    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
 
 
 ## Getting WSO2 Updates

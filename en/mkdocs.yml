@@ -55,11 +55,11 @@ nav:
     - 'Quick Start Guide':
       - 'Get Started': get-started/quick-start-guide.md
       - 'Set Up Accelerators':
-        - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+        - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
         #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'Dynamic Client Registration':
-          - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+          - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators.md
           #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
       - 'Tryout Flow':
          - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
@@ -67,7 +67,7 @@ nav:
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers':
-       - 'With Only WSO2 Identity Server': get-started/setting-up-servers-with-is.md
+       - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
       #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
