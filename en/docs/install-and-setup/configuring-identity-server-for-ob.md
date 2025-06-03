@@ -1,9 +1,9 @@
-WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the Identity 
+WSO2 Financial Services Accelerator contains TOML-based configurations. All the server-level configurations of the Identity 
 Server instance can be applied using a single configuration file, which is the `deployment.toml` file. 
 
 ## Configuring deployment.toml
 
-Follow the steps below to configure the `deployment.toml` file and set up the default open banking flow for WSO2 
+Follow the steps below to configure the `deployment.toml` file and set up the default financial services flow for WSO2 
 Identity Server.
 
 !!! tip
@@ -22,23 +22,31 @@ Identity Server.
     hostname = "<IS_HOST>"	 
     ```
    
-4. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
+4. Configure the username and password of the super admin user. 
+    
+    ``` toml
+    [super_admin]
+    username = "<SUPER_ADMIN_USERNAME>"
+    password = "<SUPER_ADMIN_PASSWORD>" 
+    ```
+   
+5. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
 database server, and the JDBC driver. 
 
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, 
     see [Setting up databases](setting-up-databases.md).
-
-    ```toml tab='shared_db'
-    [database.shared_db]
-    url = "jdbc:mysql://localhost:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false"
+   
+    ```toml tab='identity_db'
+    [database.identity_db]
+    url = "jdbc:mysql://localhost:3306/fs_identitydb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-   
-    ```toml tab='identity_db'
-    [database.identity_db]
-    url = "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false"
+
+    ```toml tab='shared_db'
+    [database.shared_db]
+    url = "jdbc:mysql://localhost:3306/fs_iskm_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -46,7 +54,7 @@ database server, and the JDBC driver.
      
     ```toml tab='config'
     [database.config]
-    url = "jdbc:mysql://localhost:3306/openbank_iskm_configdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/fs_iskm_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -54,22 +62,22 @@ database server, and the JDBC driver.
     
     ```toml tab='user'
     [database.user]
-    url = "jdbc:mysql://localhost:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/fs_userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
     
-    ```toml tab='WSO2OB_DB'
+    ```toml tab='WSO2FS_DB'
     [[datasource]]
     id="WSO2OB_DB"
-    url = "jdbc:mysql://localhost:3306/openbank_openbankingdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/fs_consentdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
 
-5. Configure the authentication endpoints with the hostname of the Identity Server.
+6. Configure the authentication endpoints with the hostname of the Identity Server.
 
     ``` toml
     [authentication.endpoints]	
@@ -78,68 +86,29 @@ database server, and the JDBC driver.
     ```
    
     ``` toml
-    [oauth.endpoints]	
-    oauth2_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"	
-    oidc_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"
+    [oauth.endpoints.v2]	
+    oauth2_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/fs/authenticationendpoint/oauth2_authz.do"
+    oidc_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/fs/authenticationendpoint/oauth2_consent.do"
     ```
    
-6. Configure the following endpoints for the `token_revocation` event listener:
- 
-    - Configure `TokenEndpointAlias` with the hostname of the Identity Server.
-    - Configure `notification_endpoint` with the hostname of the API Manager.  
+7. Configure the consent portal parameters with the hostname of the Identity Server.
 
     ``` toml
-    [[event_listener]]	
-    id = "token_revocation"	
-    ...
-    [event_listener.properties]
-    TokenEndpointAlias= "https://<IS_HOST>:9446/oauth2/token"	
-    notification_endpoint = "https://<APIM_HOST>:9443/internal/data/v1/notify"	
-    ```
-
-7. Add and configure the following tags:
-    - `signing_certificate_kid`: Configure the `kid` value for the signing certificate of the bank. The same value is 
-    configured as `kid` of the ID Token.
-    - `client_transport_cert_as_header_enabled`: To send the client certificate as a transport header, set this to `true`.
-
-    ``` toml
-    [open_banking.identity]
-    signing_certificate_kid="123"
-    client_transport_cert_as_header_enabled = true
-    ```
-
-8. Configure the event publisher URL for adaptive authentication with the hostname of the Identity Server.
-
-    ``` toml
-    [authentication.adaptive.event_publisher]	
-    url = "http://<IS_HOST>:8006/"
-    ```
-
-9. Update access control configurations for the `consentmgr` resource as follows: 
-
-    ``` toml
-    [[resource.access_control]]
-    context = "(.*)/consentmgr(.*)"
-    secure="false"
-    http_method="GET,DELETE"
+    [financial_services.consent.portal.params]
+    identity_server_base_url="https://<IS_HOST>:9446"
     ```
    
-10. Configure a periodical consent expiration job as follows:
-
-    !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.8** and 
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.11** onwards.
-        For more information on updating, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+8. Configure a periodical consent expiration job as follows:
 
     ``` toml
-    [open_banking.consent.periodical_expiration]
+    [financial_services.consent.periodical_expiration]
     # This property needs to be true in order to run the consent expiration periodical updater.
     enabled=true
     # Cron value for the periodical updater. "0 0 0 * * ?" cron will describe as 00:00:00am every day
     cron_value="0 0 0 * * ?"
     # This value to be update for expired consents.
     expired_consent_status_value="Expired"
-    # These consent statuses will only be consider when checking for expired consents. (Comma separated value list)
+    # The current consent statuses that are eligible to be expired. (Comma separated value list)
     eligible_statuses="authorised"
     ```   
     
@@ -164,17 +133,13 @@ database server, and the JDBC driver.
     !!! note
         To stop the execution of the consent expiration periodical updater and trigger the expiration job, add the configuration as follows: 
 
-        !!! info
-            This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.62** onwards. 
-            For more information on updating WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
-
         ```toml
-        [open_banking.consent.periodical_expiration]
-        # This property needs to be false in order to stop the execution of the consent expiration periodical updater.
+        [financial_services.consent.periodical_expiration]
+        # This property needs to be true in order to run the consent expiration periodical updater.
         enabled=false
-        # This value is to be updated for expired consents.
+        # This value to be update for expired consents.
         expired_consent_status_value="Expired"
-        # These consent statuses will only be considered when checking for expired consents. (Comma separated value list)
+        # The current consent statuses that are eligible to be expired. (Comma separated value list)
         eligible_statuses="authorised"
         ```
         Given below is the custom endpoint provided to trigger the consent expiration job:         
@@ -183,55 +148,137 @@ database server, and the JDBC driver.
         ```
         Refer to the [Consent REST API documentation](../references/consent-rest-api.md) for more information.
        
-11. Add the following tags and configure the HTTP connection pool:
-
-    !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.10** onwards. For more information on updating 
-        WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+9. Configure the HTTP connection pool using below configuration:
 
     ``` toml
-    [open_banking.http_connection_pool]
+    [financial_services.http_connection_pool]
     max_connections = 2000
-    max_connections_per_route = 1500	
+    max_connections_per_route = 1500
     ```
     
-12. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
-
-    - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
-    Integrator.
+10. Configure application_mgt configuration to enable application role validation:
 
     ``` toml
-    [open_banking.data_publishing]	
-    enable = true	
-    username="$ref{super_admin.username}@carbon.super"	
-    password="$ref{super_admin.password}"	
-    server_url = "{tcp://<SI_HOST>:7612}"	
-    ```   
+    [application_mgt]
+    enable_role_validation = true
+    ```
     
-13. If you are using **WSO2 Identity Server 6.0.0** and **above**, add below configuration to enable application role validation:
-        ```toml
-        [application_mgt]
-        enable_role_validation = true
+11. Configure the `is_pre_initiated_consent` parameter to specify whether consent should be pre-initiated prior to the 
+    authorization flow, or dynamically created during the authorization process.
+
+    ``` toml
+    [financial_services.consent]
+    is_pre_initiated_consent=true
+    ```
+    
+12. Configure the `auth_flow_consent_id_source` parameter to specify the source from which the consent ID should be 
+    retrieved during the authorization request. Supported values include `requestObject` and `requestParam`.
+
+    ```toml
+    [financial_services.consent]
+    auth_flow_consent_id_source="requestObject"
+    ```
+    
+    !!! note
+      - The `json_path` should be configured if the `auth_flow_consent_id_source` is set to `requestObject` to extract  
+        the consent ID from the request object.
+
+      ``` toml
+        [financial_services.consent.consent_id_extraction]
+        json_path="/id_token/openbanking_intent_id/value"
+      ```
+     
+      - The `key` should be configured if the `auth_flow_consent_id_source` is set to `requestParam` to determine the 
+        key of the request parameter.
+        Eg: "scope" is currently only supported for specifications like Berlin flow, where the consent ID is included in the scope.
+
+        ``` toml
+        [financial_services.consent.consent_id_extraction]
+        key="scope"
         ```
-   
+        
+      !!! optional
+         - Configure consent_id_regex to extract the consent ID from the value obtained via requestParam or requestObject. 
+           commonly used in Berlin flows to extract it from the scope attribute. This is primarily used in Berlin compliance 
+           solution to parse the consent ID from the scope attribute.
+
+      ``` toml
+            [financial_services.consent.consent_id_extraction]
+            regex_pattern=":([a-fA-F0-9-]+)"
+      ```
+
+13. Use following configuration to determine whether the consent ID should be appended to the token, id_token and introspection 
+    responses. 
+
+      ``` toml
+            [financial_services.identity]
+            consent_id_claim_name="consent_id"
+            append_consent_id_to_token_id_token=false
+            append_consent_id_to_authz_id_token=true
+            append_consent_id_to_access_token=true
+            append_consent_id_to_token_introspect_response=false
+      ```
+    
+14. Enable idempotency validation using below configuration:
+
+    !!!note Add the required API resources to the `allowed_api_resources` list.
+
+    ``` toml
+    [financial_services.consent.idempotency]
+    enabled=true
+    allowed_time_duration=1440
+    header_name="x-idempotency-key"
+    allowed_for_all_apis=false
+    allowed_api_resources=["domestic-payment-consents", "domestic-scheduled-payment-consents", 
+    "domestic-standing-order-consents", "international-payment-consents", "international-scheduled-payment-consents", 
+    "international-standing-order-consents", "file-payment-consents"]
+    ```
+
+15. Configure `drop_unregistered_scopes` to drop unregistered scopes from the consent request. 
+
+    ``` toml
+    [oauth]
+    drop_unregistered_scopes = true
+    ```
+
+??? note "Click here to see the configurations to enable external service extension."
+
+``` toml
+    [[resource.access_control]]
+    allowed_auth_handlers = ["BasicAuthentication"]
+    context = "(.*)/api/reference-implementation/ob/uk/(.*)"
+    http_method = "all"
+    secure = "true"
+
+    [[resource.access_control]]
+    context = "(.*)/api/openbanking/uk/backend/(.*)"
+    http_method = "all"
+    secure = "false"
+    
+    [financial_services.extensions.endpoint]
+    enabled = true
+    # allowed extensions: "pre_process_client_creation", "pre_process_consent_creation"
+    allowed_extensions = ["pre_process_client_creation", "pre_process_client_update", "pre_process_client_retrieval",
+    "pre_process_consent_creation", "enrich_consent_creation_response", "pre_process_consent_file_upload",
+    "enrich_consent_file_response", "pre_process_consent_retrieval", "validate_consent_file_retrieval",
+    "pre_process_consent_revoke", "enrich_consent_search_response", "populate_consent_authorize_screen",
+    "persist_authorized_consent", "validate_consent_access", "issue_refresh_token", "validate_authorization_request",
+    "validate_event_subscription", "enrich_event_subscription_response", "validate_event_creation",
+    "validate_event_polling", "enrich_event_polling_response", "map_accelerator_error_response"]
+    base_url = "http://<IS_HOME>:9766/api/reference-implementation/ob/uk"
+    retry_count = 5
+    connect_timeout = 5
+    read_timeout = 5
+    
+    [financial_services.extensions.endpoint.security]
+    # supported types : Basic-Auth or OAuth2
+    type = "Basic-Auth"
+    username = "<SUPER_ADMIN_USERNAME>"
+    password = "<SUPER_ADMIN_PASSWORD>"
+
+```
+
 ## Starting servers
-
-
-     For JDK 17 runtime, adaptive authentication is disabled by default and it is required to enable adaptive authentication. To enable adaptive authentication: 
-
-     1. Go to `<IS_HOME>/bin`. 
-     2. Run the following command:
-
-         ```toml tab='On Mac'
-         ./adaptive.sh
-         ```
-         
-         ```toml tab='On Windows'
-         ./adaptive.bat
-         ```
-
-     See [Adaptive Authentication - Prerequisites](https://is.docs.wso2.com/en/6.0.0/guides/adaptive-auth/configure-adaptive-auth/#prerequisites) for more information.
 
 1. Go to the `<IS_HOME>/bin` directory using a terminal.
 
