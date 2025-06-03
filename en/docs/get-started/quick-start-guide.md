@@ -28,8 +28,10 @@ can quickly set up and try out a basic flow.
 
         !!!note
             We do not recommend configuring H2 database in the production environment.
-    
-## Installing base products
+
+## Installing WSO2 Open Banking Accelerator for WSO2 Identity Server
+
+### Installing base products
 
 1. Download and extract the required base products. You can use any of the following combinations:
 
@@ -40,11 +42,11 @@ can quickly set up and try out a basic flow.
 
     - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.5.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
 -->
-## Installing WSO2 Open Banking Accelerator for WSO2 Identity Server
 
+### Installing WSO2 Open Banking IAM Accelerator
 1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
-    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/tree/V4.0.0-RC3).
+    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/download/v4.0.0/wso2-fsiam-accelerator-4.0.0.zip).
               
 2. WSO2 Open Banking Accelerator contains the following accelerators:
    
@@ -57,7 +59,8 @@ can quickly set up and try out a basic flow.
     |---------|---------    |
     |WSO2 Identity Server|`<IS_HOME>`|
     |WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
-   
+
+
 
 ## Getting WSO2 Updates
 
