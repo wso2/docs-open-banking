@@ -55,8 +55,8 @@ nav:
     - 'Quick Start Guide':
       - 'Get Started': get-started/quick-start-guide.md
       - 'Set Up Accelerators':
-        - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
-        #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
+        - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators-with-is.md
+        #- 'With both WSO2 Identity Server & WSO2 API Manager': get-started/set-up-accelerators.md
       - 'Configure Users and Roles': get-started/configure-users-and-roles.md
       - 'Dynamic Client Registration':
           - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators.md
