@@ -40,16 +40,18 @@ as previously described.
 
 - **Consent Validation - `/validate` endpoint**  
   The accelerator gathers all consent details and invokes validators via this API. Once the validations are performed, 
-  the flow will proceed. You can write your own validators and customize the process.  
+  the flow will proceed. You can write your own validations and customize the process.  
   
 - **Consent Portal - `/admin` endpoint**  
    The Consent Management portal and the Customer Care portal invoke this API to search consents and revoke consents.
     
 - **Consent Management - `/manage` endpoint**  
-  This component processes requests based on specification requirements. The requests are routed here and a handler 
-  processes them. You can make changes to HTTPServletResponse using the same handler.
+  This component processes requests based on specification requirements on consent management operations as create 
+- consent,get consent, revoke consent and update consent. 
   
 - **Consent Authorize - `/authorize` endpoint**  
-  This endpoint can retrieve and persist consents. You can add your own steps to retrieve or persist.
+  This endpoint uses to retrieve the consent and consumer data showing in consent grant UI and then persist the user 
+  granted data . You can customize the populating data to the consent grant page or persist custom data 
+  after user granted.
 
-For more information on this, refer to [Consent Management Extensions](../develop/consent-management-manage.md).
+For more information on this, refer to [Consent Management OpenAPI Extensions](../develop/openapi-consent-management-manage.md).

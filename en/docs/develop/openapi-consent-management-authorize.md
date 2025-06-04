@@ -1,160 +1,79 @@
-WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant components 
-according to your requirements using the extension points available. This section explains the 
-Consent Authorize component and how to customize its endpoints.
+WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant functionalities of these consent endpoints
+according to your specification requirements using the OpenAPI  based extension points available. This section explains the 
+Consent Authorize component and how to customize its functionalities.
 
-!!! note 
-    When the Consent web application is deployed in a distributed manner with a load balancer, this extension requires 
-    the implementation of session affinity.
+!!! note
+Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 The Consent Authorize extension point relates to the loading of the consent approval page and eventually persisting 
 the consent provided by the users. This consists of 2 endpoints. 
 
-## Retrieve
+## Populate Consent Authorization Screen
 
-The Retrieval Steps extension provides the ability to add extensions to the `jsonObject`, which is sent to the consent 
-page to display to the user. Additionally, you can use these steps for reasons such as data reporting requirements and 
-customizing data for the consent page.
-
+The OpenAPI extension for populate consent authorization screen provides the extendibility to validate and populate the consent grant screen with Open Banking
+specification specific consent data and consumer data. The data setting from this extension point will be sent to the consent 
+page to display to the user. 
 !!! note 
-    This information that is sent and displayed on the consent page depends on the specification that you adhere to. 
+    This information that is sent and displayed on the consent page depends on the specification that you adhere to. The default consent page in WSO2 Open Banking
+accelerator do support showing consent data and accounts data binding to the permissions.
 
-The data provided to Retrieval Steps and the changes that can be done are as follows:
+### OpenAPI Extensions
+| OpenAPI Extension                 | Description                                                                                                                    | OpenAPI Definition                                                                                                                                       |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| populate-consent-authorize-screen | handle specification speicifc custom validations and set consent data and consumer data which need to show in consent grant UI | [populate-consent-authorize-screen/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1populate-consent-authorize-screen/post) |
 
-### Endpoint
-``` xml
-https://<IS_HOST>:9446/api/openbanking/consent/authorize/retrieve/{session-data-key}
-```
 
-### Interface
-``` java
-com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentRetrievalStep
-```
+### Configuration
 
-### Method
-The following method is available in the interface.
-``` java
-void execute(ConsentData consentData, JSONObject jsonObject) throws ConsentException;
-```
-
-### Error Handling
-In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
-a `ConsentException`.
-
-### Data 
-The following table explains the data available in `ConsentRetrieveData`.
-
-| Name      | Type                  | Description  |
-| ----------|-----------------------| -------------|
-| sessionDataKey| String    | The session data key of the current authorization consent. If required, this can be used as a unique identifier. |
-| userId        | String    | The user ID of the currently authenticated user. |
-| spQueryParams | String    | The query parameters related to the current consent invocation. This contains details such as the request object of the authorize request. |
-| scopeString   | String    | The scopes that the user is being authorized for. |
-| application   | String    | The application that is requesting consent from the user to make requests on behalf of them. |
-| consentId     | String    | The consent ID of the currently requested consent. This has to be set in the retrieval steps. |
-| requestHeaders| Map<String, String>   | Any request headers sent from the client UI during the consent flow. |
-| consentResource   | ConsentResource   | The consent resource object of the consent that is currently requested. |
-| authResource  | AuthorizationResource | The authorization resource object of the current authorization. |
-
-### Configuration 
-
-To configure the customized Retrieval Steps, follow the given instructions:
+To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-2. Add the following tags to configure the steps and their order. The steps are invoked based on the configured priority 
-order. 
+2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
-!!! tip 
-    In the retrieval steps, there is a non-regulatory step configured as the priority order 1001. Make sure to configure 
-    any custom step before this step.
+``` toml
+[financial_services.extensions.endpoint]
+enabled = true
+base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
 
-``` xml
-[[open_banking.consent.authorize_steps.retrieve]]
-class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep1"
-priority = 1
+allowed_extensions = [ "populate-consent-authorize-screen" ]
 
-[[open_banking.consent.authorize_steps.retrieve]]
-class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep2"
-priority = 2
-```
-
----
+[financial_services.extensions.endpoint.security]
+# supported types : Basic-Auth or OAuth2
+type = "Basic-Auth"
+username = ""
+password = ""
+``` 
 
 ## Persist
 
-The second endpoint of the Consent Authorize component is the Persist Flow. The Persistent Steps are engaged once the 
+The second extension point of the Consent Authorize component is the Persist Flow. The Persistent functionality is engaged once the 
 user approves/denies the consent via an API invocation made from the consent page. When the `/persist` endpoint is 
-invoked, the steps to persist are also invoked and the data required for persistence will be provided to these steps. 
+invoked, the OpenAPI extension implementation to persist are also invoked and the data required for persistence will be provided from the extension point. 
 
-### Endpoint
-``` xml
-https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}
-```
+### OpenAPI Extensions
+| OpenAPI Extension          | Description                              | OpenAPI Definition                                                                                                                                           |
+|----------------------------|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| persist-authorized-consent | handle user granted consent data storing | [persist-authorized-consent/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1persist-authorized-consent/post) |
 
-!!!note
-    It is mandatory to send the `approval` parameter in the payload of this request. The `approval` parameter is a 
-    boolean value that specifies whether the customer has authorized the consent or not. 
+### Configuration
 
-!!!note "New persist query parameter to Consent Authorize endpoint"
-    !!!info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.28** onwards. For more information on updating, see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
-
-    Customers can dynamically skip the authorization redirection flow from the persist endpoint with the `authorize` query parameter.
-    The `authorize` query parameter is a boolean value, and if it is set to `false`, the 
-    authorization redirection is skipped.
-    
-    For example:
-
-    ``` tab="Format"
-    https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}?authorize={boolean}
-    ```
-
-    ``` tab="Sample"
-    https://localhost:9446/api/openbanking/consent/authorize/persist/563d373b-4933-4209-b866-3d52620a2745?authorize=false
-    ```
-
-### Interface
-``` java
-com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentPersistStep
-```
-
-### Method 
-The following method is available in the interface.
-``` java
-void execute(ConsentPersistData consentPersistData) throws ConsentException;
-```
-
-### Error Handling
-In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
-a `ConsentException`.
-
-### Data 
-The following table explains the data available in `ConsentPersistData`.
-
-| Name      | Type                  | Description  |
-| ----------|-----------------------| -------------|
-| payload   | JSONObject            | The payload of the persistent request. |
-| headers   | Map<String, String>   | The request headers of the persistent request. |
-| consentData | ConsentData | The consent data object used in the retrieval flow, which is populated via cache. |
-| approval | boolean                | A boolean value that represents whether the approval was granted by the user.|
-| metadata | Map<String, Object>    | Additional metadata sent to the steps. |
-
-### Configuration 
-
-To configure the customized Persistent Steps Manage component, follow the given instructions:
+To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-2. Add the following tags to configure the steps and their order. The steps are invoked based on the configured priority 
-order. 
+2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extension.
 
-``` xml
-[[open_banking.consent.authorize_steps.persist]]
-class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep1"
-priority = 1
+``` toml
+[financial_services.extensions.endpoint]
+enabled = true
+base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
 
-[[open_banking.consent.authorize_steps.persist]]
-class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep2"
-priority = 2
+allowed_extensions = ["persist_authorized_consent"]
+
+[financial_services.extensions.endpoint.security]
+# supported types : Basic-Auth or OAuth2
+type = "Basic-Auth"
+username = ""
+password = ""
 ```
