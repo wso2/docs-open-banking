@@ -28,8 +28,8 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
 
 3. Go to the root directory of WSO2 Identity Server. The root directory is the product home.
 
-   !!! tip
-   This documentation will refer to the product home as `<IS_HOME>`.
+!!! tip
+    This documentation will refer to the product home as `<IS_HOME>`.
 
 4. Place the relevant accelerator zip file and extract it in its respective product home:
 

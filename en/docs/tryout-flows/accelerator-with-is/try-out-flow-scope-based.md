@@ -1,7 +1,7 @@
 This document provides step by step instructions to invoke the Accounts Information Service API.
 Following diagram illustrates the sample Open Banking flow which is going to try from this documentation section.
 
-![Open Banking Demo Flow](../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
+![Open Banking Demo Flow](../../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
 
 
 <!--!!! note 
@@ -90,7 +90,7 @@ Following diagram illustrates the sample Open Banking flow which is going to try
          23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 -->
 !!! note
-    In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
+In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
 
     - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
     - [private keys](../../assets/attachments/signing-certs/obsigning.key)
@@ -151,11 +151,11 @@ In this step, the API consumer creates a request to get the consent of the custo
 information from the bank. 
 
 A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
-available [here](../assets/attachments/transport-certs):
+available [here](../../assets/attachments/ob-transport-certs.zip):
 
 !!!note
-      Replace the <AUTH_HEADER_VALUE> with Base64 encoded "admin_username:admin_password" value.
-               `Eg: Base64(admin_username:admin_password)`
+   Replace the <AUTH_HEADER_VALUE> with Base64 encoded "admin_username:admin_password" value.
+      Eg: Base64(admin_username:admin_password)
 
 ```
 curl --location --request POST 'https://localhost:9446/api/fs/consent/manage/account-access-consents' \
@@ -261,16 +261,16 @@ The API consumer application redirects the bank customer to authenticate and app
 consumer wishes to access. This request is in the format of a URL as follows: 
 
     ``` url tab="Sample"
-        https://localhost:9446/oauth2/authorize/?request=eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL29iLWlhbTo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc0OTAyMDQ5MCwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGFjY291bnRzIG9wZW5pZCIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzIjpbInVybjpvcGVuYmFua2luZzpwc2QyOmNhIiwidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhIl0sImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6IjE5NmFkZjAzLTQ2ZDAtNDA4Yy1hNzdiLWFhZWY0MDFlZWM2MiIsImVzc2VudGlhbCI6dHJ1ZX19LCJ1c2VyaW5mbyI6eyJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiIxOTZhZGYwMy00NmQwLTQwOGMtYTc3Yi1hYWVmNDAxZWVjNjIiLCJlc3NlbnRpYWwiOnRydWV9fX0sImlzcyI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vcmVkaXJlY3RzL3JlZGlyZWN0MSIsInN0YXRlIjoiZTkwNzY0YWYtOWIyZS00N2IyLWI3MzUtNzExNjE5ZTA2MmMzIiwiZXhwIjoxNzQ5MDIzOTcwLCJub25jZSI6IjIzNTJiMjZjLTE2YzUtNDdmNy04OTg4LWNhNDA1ZTdhZDIxZCIsImNsaWVudF9pZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EifQ.rmM1Muwbm6qqtm_f3rcZOYMpbiaRQfFsQSs2SVxPCUIncaSHMcBp2vVeEoKkdo-kwysteNEdQw1uhceAU86muAqho7zFVvmTRdMGBi5Ad0zCtvu2QS00c-3Ur2GYKZM-EvfUhxYbwNx15Yu79rPWpgs9dT1qLTLTHtzkXQ_0Ib8U8u42jM3hiOnJontrRJn7WU3pAmcXRH886GJBBhPhgVPr9cpfsFvTcHIiPaxROuyteRh1_x2-_-4pz_1XZq-YkirsbN-p29CohEOzAdHhV80rIqCU_Wknp5Rkt4NT0hMSNeonxTOwfocQkXraZ5kDLb60Y_4vR5N8UUcmkIXQSw&scope=accounts%20openid&response_type=code%20id_token&redirect_uri=https%3A%2F%2Fwww.google.com%2Fredirects%2Fredirect1&state=ace6befc-90a4-4627-ae17-9aa4f75594e8&nonce=nonce&client_id=jXuHPxPhitMUevd4d31GSs25uWca
+    https://localhost:9446/oauth2/authorize/?request=eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL29iLWlhbTo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc0OTAyMDQ5MCwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGFjY291bnRzIG9wZW5pZCIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzIjpbInVybjpvcGVuYmFua2luZzpwc2QyOmNhIiwidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhIl0sImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6IjE5NmFkZjAzLTQ2ZDAtNDA4Yy1hNzdiLWFhZWY0MDFlZWM2MiIsImVzc2VudGlhbCI6dHJ1ZX19LCJ1c2VyaW5mbyI6eyJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiIxOTZhZGYwMy00NmQwLTQwOGMtYTc3Yi1hYWVmNDAxZWVjNjIiLCJlc3NlbnRpYWwiOnRydWV9fX0sImlzcyI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vcmVkaXJlY3RzL3JlZGlyZWN0MSIsInN0YXRlIjoiZTkwNzY0YWYtOWIyZS00N2IyLWI3MzUtNzExNjE5ZTA2MmMzIiwiZXhwIjoxNzQ5MDIzOTcwLCJub25jZSI6IjIzNTJiMjZjLTE2YzUtNDdmNy04OTg4LWNhNDA1ZTdhZDIxZCIsImNsaWVudF9pZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EifQ.rmM1Muwbm6qqtm_f3rcZOYMpbiaRQfFsQSs2SVxPCUIncaSHMcBp2vVeEoKkdo-kwysteNEdQw1uhceAU86muAqho7zFVvmTRdMGBi5Ad0zCtvu2QS00c-3Ur2GYKZM-EvfUhxYbwNx15Yu79rPWpgs9dT1qLTLTHtzkXQ_0Ib8U8u42jM3hiOnJontrRJn7WU3pAmcXRH886GJBBhPhgVPr9cpfsFvTcHIiPaxROuyteRh1_x2-_-4pz_1XZq-YkirsbN-p29CohEOzAdHhV80rIqCU_Wknp5Rkt4NT0hMSNeonxTOwfocQkXraZ5kDLb60Y_4vR5N8UUcmkIXQSw&scope=accounts%20openid&response_type=code%20id_token&redirect_uri=https%3A%2F%2Fwww.google.com%2Fredirects%2Fredirect1&state=ace6befc-90a4-4627-ae17-9aa4f75594e8&nonce=nonce&client_id=jXuHPxPhitMUevd4d31GSs25uWca
     ```
    
     ``` url tab="Format"
-        https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20openid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
+    https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20openid
+   &redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
     ```
    
 3. Run the URL in a browser to prompt the invocation of the authorize API.
-
-   ![login-screen-in-tryout-flow.png](../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
+   ![login screen](../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png![img.png](img.png))
 
 4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `consumer` role. 
 
@@ -311,15 +311,15 @@ given below:
 
 4. The response contains a user access token as below.
       ```
-      {
-       "access_token": "eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9SUzI1NiIsInR5cCI6ImF0K2p3dCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI5MWI2MjY2NC1jNGM3LTRkZTQtODZiMi1lMWNiMzg3MWIyMWVAY2FyYm9uLnN1cGVyIiwiYXV0IjoiQVBQTElDQVRJT05fVVNFUiIsImJpbmRpbmdfdHlwZSI6ImNlcnRpZmljYXRlIiwiaXNzIjoiaHR0cHM6XC9cL29iLWlhbTo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwiY2xpZW50X2lkIjoialh1SFB4UGhpdE1VZXZkNGQzMUdTczI1dVdjYSIsImF1ZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJuYmYiOjE3NDkwMTQ4NjAsImF6cCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImNuZiI6eyJ4NXQjUzI1NiI6Ik5SLW5mWVVmS3NDNnRBT0JIdmhtSHB3Sm51aWV0eVloTWRqWHdiS1RwOVEifSwiZXhwIjoxNzQ5MDE4NDYwLCJvcmdfbmFtZSI6IlN1cGVyIiwiaWF0IjoxNzQ5MDE0ODYwLCJiaW5kaW5nX3JlZiI6IjcxNGY4ZmNkM2E4N2VkZDBhNzg1ZDhlZDRmMzYwNTgzIiwianRpIjoiNzJlZDkxOGEtYmNjMC00MGZlLTgzOTktZDgwODE1ZGNkMzRjIiwiY29uc2VudF9pZCI6IjEyYTRlYmM4LWI5OGMtNGY4MC05YTM3LTQ0Njc5MzYzYjk3YiJ9.vX1pCm55Ihcrxti1P4OAE59nit6FF28rrP8DuFVuxiz97i54V0Uu9EYyXUYeCe8fhJiJFjzlyfsh2PrW0o-RwM-tY3HRWF3Gx1hkUHxUJX7cIvfRKnnPIAvvVywZo5MrUSV_V0RFlu2VrG7fU8ADo8A-s3n_faqmN_PyoafAMjt5BUkfmqAmXuQlTl9DLnxbGf68fF5s8xf_gSOjHFfRx2nWM3TWcPR-IbWOiT1jQSf3m1M-q9kHthL7u1jN0UfqFZmjNEiFigphXxkCXOdhi9p4ci2JFH4YlZiAb0r6NPoWkGLfTErU_rOnSM77IWDV3Hbn7-NasBi2O30zqVq-kg",
-       "refresh_token": "ae63f973-ad49-38f5-b9c1-9bef2cc129bf",
-       "scope": "accounts openid",
-       "id_token": "eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9QUzI1NiIsImFsZyI6IlBTMjU2In0.eyJpc2siOiI0YTI1MWVkNjMzN2JiNWFhYTYxM2UwNTllMTc3YTFmOTZiOGVkYTJmYTQ0MjUxZWFkNTdiNDU4MmIyZDM1M2JhIiwiYXRfaGFzaCI6IlBxS2VvSmk5clRHMEdvLVVzS1ByTEEiLCJzdWIiOiI5MWI2MjY2NC1jNGM3LTRkZTQtODZiMi1lMWNiMzg3MWIyMWVAY2FyYm9uLnN1cGVyIiwiYW1yIjpbIkJhc2ljQXV0aGVudGljYXRvciJdLCJpc3MiOiJodHRwczpcL1wvb2ItaWFtOjk0NDZcL29hdXRoMlwvdG9rZW4iLCJub25jZSI6IjkzMTYxMGFiLWJhOTAtNDRjZi1hOWQ3LWYzMDlkNGE0MjY2YiIsImF1ZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJhY3IiOiJ1cm46bWFjZTppbmNvbW1vbjppYXA6c2lsdmVyIiwiY19oYXNoIjoiZF9zelhPZkVKY3A5OXFaNHpMeWhCQSIsIm5iZiI6MTc0OTAxNDg2MCwiYXpwIjoialh1SFB4UGhpdE1VZXZkNGQzMUdTczI1dVdjYSIsIm9yZ19pZCI6IjEwMDg0YThkLTExM2YtNDIxMS1hMGQ1LWVmZTM2YjA4MjIxMSIsImV4cCI6MTc0OTAxODQ2MCwib3JnX25hbWUiOiJTdXBlciIsImlhdCI6MTc0OTAxNDg2MCwianRpIjoiMGRlZDcxYTAtM2EzOC00OGQ3LWFlYTEtZTlhZmI3MGYxNTc5In0.wjgZ0XuMhFUJMOBqnhkkSdO4Z7eiaNPWllg3SIoR5YQxec0WWIaRScfizXwTpzWtx7Y2zD94m1MsUDFwG857eyxTidpY_p3Yxk9MW8GJp9dDkfDjw3NR6aop-1441_SucYmoEVMGw0cMosAq6xmtI66ALAnHkjgGM6WTK2ymPi4oLHWjJ1xgCHvc5rftJPyBlvi92fb7SUjrow8rHLWTOKmw0fKe2IBqIqCM6oVvvE9_Q85RFOtEjqatpD2GJeb9Uz7BHrAJL5HChmge5BMfb-F9WdYeZfAIa0VaF2gdGWxfaPkQPnaStjyl6JN4tEZa7VVV2xZ42M1rgXd9fhM5Zg",
-       "token_type": "Bearer",
-       "expires_in": 3600
-      }
-      ```
+   {
+    "access_token": "eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9SUzI1NiIsInR5cCI6ImF0K2p3dCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI5MWI2MjY2NC1jNGM3LTRkZTQtODZiMi1lMWNiMzg3MWIyMWVAY2FyYm9uLnN1cGVyIiwiYXV0IjoiQVBQTElDQVRJT05fVVNFUiIsImJpbmRpbmdfdHlwZSI6ImNlcnRpZmljYXRlIiwiaXNzIjoiaHR0cHM6XC9cL29iLWlhbTo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwiY2xpZW50X2lkIjoialh1SFB4UGhpdE1VZXZkNGQzMUdTczI1dVdjYSIsImF1ZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJuYmYiOjE3NDkwMTQ4NjAsImF6cCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImNuZiI6eyJ4NXQjUzI1NiI6Ik5SLW5mWVVmS3NDNnRBT0JIdmhtSHB3Sm51aWV0eVloTWRqWHdiS1RwOVEifSwiZXhwIjoxNzQ5MDE4NDYwLCJvcmdfbmFtZSI6IlN1cGVyIiwiaWF0IjoxNzQ5MDE0ODYwLCJiaW5kaW5nX3JlZiI6IjcxNGY4ZmNkM2E4N2VkZDBhNzg1ZDhlZDRmMzYwNTgzIiwianRpIjoiNzJlZDkxOGEtYmNjMC00MGZlLTgzOTktZDgwODE1ZGNkMzRjIiwiY29uc2VudF9pZCI6IjEyYTRlYmM4LWI5OGMtNGY4MC05YTM3LTQ0Njc5MzYzYjk3YiJ9.vX1pCm55Ihcrxti1P4OAE59nit6FF28rrP8DuFVuxiz97i54V0Uu9EYyXUYeCe8fhJiJFjzlyfsh2PrW0o-RwM-tY3HRWF3Gx1hkUHxUJX7cIvfRKnnPIAvvVywZo5MrUSV_V0RFlu2VrG7fU8ADo8A-s3n_faqmN_PyoafAMjt5BUkfmqAmXuQlTl9DLnxbGf68fF5s8xf_gSOjHFfRx2nWM3TWcPR-IbWOiT1jQSf3m1M-q9kHthL7u1jN0UfqFZmjNEiFigphXxkCXOdhi9p4ci2JFH4YlZiAb0r6NPoWkGLfTErU_rOnSM77IWDV3Hbn7-NasBi2O30zqVq-kg",
+    "refresh_token": "ae63f973-ad49-38f5-b9c1-9bef2cc129bf",
+    "scope": "accounts openid",
+    "id_token": "eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9QUzI1NiIsImFsZyI6IlBTMjU2In0.eyJpc2siOiI0YTI1MWVkNjMzN2JiNWFhYTYxM2UwNTllMTc3YTFmOTZiOGVkYTJmYTQ0MjUxZWFkNTdiNDU4MmIyZDM1M2JhIiwiYXRfaGFzaCI6IlBxS2VvSmk5clRHMEdvLVVzS1ByTEEiLCJzdWIiOiI5MWI2MjY2NC1jNGM3LTRkZTQtODZiMi1lMWNiMzg3MWIyMWVAY2FyYm9uLnN1cGVyIiwiYW1yIjpbIkJhc2ljQXV0aGVudGljYXRvciJdLCJpc3MiOiJodHRwczpcL1wvb2ItaWFtOjk0NDZcL29hdXRoMlwvdG9rZW4iLCJub25jZSI6IjkzMTYxMGFiLWJhOTAtNDRjZi1hOWQ3LWYzMDlkNGE0MjY2YiIsImF1ZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJhY3IiOiJ1cm46bWFjZTppbmNvbW1vbjppYXA6c2lsdmVyIiwiY19oYXNoIjoiZF9zelhPZkVKY3A5OXFaNHpMeWhCQSIsIm5iZiI6MTc0OTAxNDg2MCwiYXpwIjoialh1SFB4UGhpdE1VZXZkNGQzMUdTczI1dVdjYSIsIm9yZ19pZCI6IjEwMDg0YThkLTExM2YtNDIxMS1hMGQ1LWVmZTM2YjA4MjIxMSIsImV4cCI6MTc0OTAxODQ2MCwib3JnX25hbWUiOiJTdXBlciIsImlhdCI6MTc0OTAxNDg2MCwianRpIjoiMGRlZDcxYTAtM2EzOC00OGQ3LWFlYTEtZTlhZmI3MGYxNTc5In0.wjgZ0XuMhFUJMOBqnhkkSdO4Z7eiaNPWllg3SIoR5YQxec0WWIaRScfizXwTpzWtx7Y2zD94m1MsUDFwG857eyxTidpY_p3Yxk9MW8GJp9dDkfDjw3NR6aop-1441_SucYmoEVMGw0cMosAq6xmtI66ALAnHkjgGM6WTK2ymPi4oLHWjJ1xgCHvc5rftJPyBlvi92fb7SUjrow8rHLWTOKmw0fKe2IBqIqCM6oVvvE9_Q85RFOtEjqatpD2GJeb9Uz7BHrAJL5HChmge5BMfb-F9WdYeZfAIa0VaF2gdGWxfaPkQPnaStjyl6JN4tEZa7VVV2xZ42M1rgXd9fhM5Zg",
+    "token_type": "Bearer",
+    "expires_in": 3600
+   }
+   ```
 
 ### Step 5: Validate Account Information Invocation
 
@@ -342,39 +342,39 @@ The Consent Validate implements the validations that are required when the resou
    --data 'eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.CgkJCXsKICAgICAgCQkJImhlYWRlcnMiOiB7CiAJCQkgIAkJIkF1dGhvcml6YXRpb24iOiAiQmFzaWMgYVhOZllXUnRhVzVBZDNOdk1pNWpiMjA2ZDNOdk1qRXlNdz09IiwKIAkJCSAJIAkiY29uc2VudC1pZCI6ICIxMmE0ZWJjOC1iOThjLTRmODAtOWEzNy00NDY3OTM2M2I5N2IiLAogCQkJICAJCSJhY3Rpdml0eWlkIjogIjg2NjZhYTg0LWZjNWEtNDI1ZS05MWM5LTM3ZmEzMGE5NTc4NCIsCiAJCQkgIAkJIkNhY2hlLUNvbnRyb2wiOiAibm8tY2FjaGUiLAogCQkJICAJCSJDb25uZWN0aW9uIjogImtlZXAtYWxpdmUiLAogCQkgICAgICAJCSJVc2VyLUFnZW50IjogIlBvc3RtYW5SdW50aW1lLzcuMjguNCIsCiAJCQkgIAkJIkhvc3QiOiAibG9jYWxob3N0OjgyNDMiLAogCQkJICAJCSJQb3N0bWFuLVRva2VuIjogIjI0NGQxNWI2LWViMTgtNDA0NS1iYTg3LThlZTZjODMwYjg0YyIsCiAJCQkgIAkJIkFjY2VwdC1FbmNvZGluZyI6ICJnemlwLCBkZWZsYXRlLCBiciIsCiAJCQkgIAkJImFjY2VwdCI6ICJhcHBsaWNhdGlvbi9qc29uOyBjaGFyc2V0PXV0Zi04IgogCQkJICAJfSwKICAgICAgICAJCSJjb25zZW50SWQiOiAiMTJhNGViYzgtYjk4Yy00ZjgwLTlhMzctNDQ2NzkzNjNiOTdiIiwKICAgICAgICAJCSJyZXNvdXJjZVBhcmFtcyI6IHsKCQkJCQkicmVzb3VyY2UiOiAiL2Fpc3AvYWNjb3VudHMiLAoJCQkJCSJjb250ZXh0IjogIi9vcGVuLWJhbmtpbmcvdjMuMS9haXNwIiwKCQkJCQkiaHR0cE1ldGhvZCI6ICJHRVQiCiAJCQkgCSB9LAogCQkJICAgICJ1c2VySWQiOiAicHN1QHdzbzIuY29tIiwKICAgICAJCSAJImVsZWN0ZWRSZXNvdXJjZSI6ICIvYWNjb3VudHMiLAoJCQkJImNsaWVudElkIjogImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiCiAJCQl9CiAgICAJCQk.mjbOnLQUvpCfIpy8WRaYxBmSMnENNIu7OG89Dc7kLJTk9NebnKsgFRo0PAyrkCN-h0g5PRfM0HPhSeBxbazgjekaLpA0iSXiuaXKZUmIUSBORNxORjvqD6flQRzUraaf2qG_OKSBMBpal-unqjcCAlNdgwclCnJMwDmQrJPMqs7jJoiJAudIHwppnJ1uK82Zz_J3bWkL4kEuT4Hz4P8ukdTzTALCPGqxt4VT4dh_ADzR-NTGmpAuSNo8dEWkW9a3QAxhS4WZXRTK192wAS16YqRPOk3UXasqF2qI1KVBb5txNFtjw5eZFW0Eg8cNSOQ0BSwp3B_6zd0jHf9EiwTbLA'
    ```
 
-???tip "Click here to see a sample data payload..."
-      - Given below is a sample payload in the JWT format:
+   ???tip "Click here to see a sample data payload..."
+   - Given below is a sample payload in the JWT format:
 
-           ```
-           {
-               "kid": "<The KID value of the signing jwk set>",
-               "alg": "<SUPPORTED_ALGORITHM>",
-               "typ": "JWT"
-           }
-           {
-               "headers": {
-                  "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
-                  "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
-                  "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
-                  "Cache-Control": "no-cache",
-                  "Connection": "keep-alive",
-                  "User-Agent": "PostmanRuntime/7.28.4",
-                  "Host": "localhost:8243",
-                  "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
-                  "Accept-Encoding": "gzip, deflate, br",
-                  "accept": "application/json; charset=utf-8"
-               },
-               "consentId": "<CONSENT_ID>",
-               "resourceParams": {
-               "resource": "/aisp/accounts",
-               "context": "/open-banking/v3.1/aisp",
-               "httpMethod": "GET"
-           },
-           "userId": "psu@wso2.com",
-           "electedResource": "/accounts",
-           "clientId": "<CLIENT_ID>"
-           }
-           ```
+        ```
+        {
+            "kid": "<The KID value of the signing jwk set>",
+            "alg": "<SUPPORTED_ALGORITHM>",
+            "typ": "JWT"
+        }
+        {
+            "headers": {
+               "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
+               "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
+               "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
+               "Cache-Control": "no-cache",
+               "Connection": "keep-alive",
+               "User-Agent": "PostmanRuntime/7.28.4",
+               "Host": "localhost:8243",
+               "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
+               "Accept-Encoding": "gzip, deflate, br",
+               "accept": "application/json; charset=utf-8"
+            },
+            "consentId": "<CONSENT_ID>",
+            "resourceParams": {
+            "resource": "/aisp/accounts",
+            "context": "/open-banking/v3.1/aisp",
+            "httpMethod": "GET"
+        },
+        "userId": "psu@wso2.com",
+        "electedResource": "/accounts",
+        "clientId": "<CLIENT_ID>"
+        }
+        ```
      
 - The request validates the Account Information access request. 
 

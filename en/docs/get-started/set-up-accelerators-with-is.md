@@ -8,7 +8,7 @@ Copy the extracted accelerator directory into the root directory of the WSO2 Ide
 | `wso2-obiam-accelerator-4.x.0` | `<IS_HOME>`                                 |
 
 !!! tip
-This documentation will refer to the above-extracted directory of the accelerator as `<FS_IS_ACCELERATOR_HOME>`.
+    This documentation will refer to the above-extracted directory of the accelerator as `<FS_IS_ACCELERATOR_HOME>`.
 
 ### Step 2: Configure database scripts
 
@@ -33,48 +33,50 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
  
 ### Step 3: Set up the IS server 
 1. Run the merge script in `<IS_HOME>/<FS_IS_ACCELERATOR_HOME>/bin`:
-    ```bash tab='On Linux'
+
+    ``` bash tab='On Linux'
+    ./merge.sh
+    ```
+
+    ``` bash tab='On Mac'
     ./merge.sh
     ```
     
-    ```bash tab='On Mac'
-    ./merge.sh
-    ```
-    
-    ```bash tab='On Windows'
+    ``` powershell tab='On Windows'
     ./merge.ps1
     ```
 
 2. Run the configure file in
 `<IS_HOME>/<FS_IS_ACCELERATOR_HOME>/bin`:
-    ```bash tab='On Linux'
+
+    ``` bash tab="MySQL"
+    ./configure.sh
+    ```
+
+    ``` bash tab='On Mac'
     ./configure.sh
     ```
     
-    ```bash tab='On Mac'
-    ./configure.sh
-    ```
-    
-    ```powershell tab='On Windows'
+    ``` powershell tab='On Windows'
     ./configure.ps1
     ```
 
-??? warning "If you are using windows platform..."
-    If you are using windows platform, since the merge.ps1 and configure.ps1 files are not digitally signed yet,
-    your powershell might prevent you from running them normally. In that case you may need to run these
-    scripts in a powershell instance where its execution policy is set to bypass mode.
+    ??? warning "If you are using windows platform..."
+        If you are using windows platform, since the merge.ps1 and configure.ps1 files are not digitally signed yet,
+        your powershell might prevent you from running them normally. In that case you may need to run these
+        scripts in a powershell instance where its execution policy is set to bypass mode.
+        
+        Use the following command to run these scripts in execution policy bypassed powershell environment.
     
-    Use the following command to run these scripts in execution policy bypassed powershell environment.
-
-    ```
-    powershell -executionpolicy bypass .\merge.ps1
-    ```
-
-    ```
-    powershell -executionpolicy bypass .\configure.ps1
-    ```
-
-    IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution.
+        ```
+        powershell -executionpolicy bypass .\merge.ps1
+        ```
+    
+        ```
+        powershell -executionpolicy bypass .\configure.ps1
+        ```
+    
+        IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution.
 
 3. Run the db script resides in `<IS_HOME>/dbscripts/financial-services/event-notifications` directory to create database 
    tables for event notification feature in `fs_consentdb` database. 
