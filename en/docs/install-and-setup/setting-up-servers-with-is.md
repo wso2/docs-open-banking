@@ -28,8 +28,8 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
 
 3. Go to the root directory of WSO2 Identity Server. The root directory is the product home.
 
-!!! tip
-    This documentation will refer to the product home as `<IS_HOME>`.
+      - !!! info
+              This documentation will refer to the product home as `<IS_HOME>`.
 
 4. Place the relevant accelerator zip file and extract it in its respective product home:
 
@@ -37,8 +37,8 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
    |----------------------------------|---------------------------------------------|
    | wso2-fsiam-accelerator-4.0.0.zip | `<IS_HOME>`                                 |
 
-   !!! tip
-   This documentation will refer to the above-extracted directory of the accelerator as `<FS_IS_ACCELERATOR_HOME>`.
+   - !!! info
+           This documentation will refer to the above-extracted directory of the accelerator as `<FS_IS_ACCELERATOR_HOME>`
 
 ## Getting WSO2 Updates
 
@@ -76,8 +76,8 @@ improvements that are released by WSO2. You need to update the base products and
 For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
 
 !!! tip
-When you obtain WSO2 Updates, always run the `merge.sh` script in the Accelerator to reflect the
-latest changes. Follow steps 1 to 3 in the [Setting up Accelerator](#setting-up-accelerator) section for instructions.
+      When you obtain WSO2 Updates, always run the `merge.sh` script in the Accelerator to reflect the latest changes. 
+      Follow steps 1 to 3 in the [Setting up Accelerator](#setting-up-accelerator) section for instructions.
 
 ## Setting up Accelerator
 
@@ -97,17 +97,17 @@ latest changes. Follow steps 1 to 3 in the [Setting up Accelerator](#setting-up-
     ```
 
 ??? warning "If you are using windows platform..."
-If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
-your powershell might prevent you from running this script normally. In that case you
-may need to run it in a powershell instance where its execution policy is set to bypass mode.
+      If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
+      your powershell might prevent you from running this script normally. In that case you
+      may need to run it in a powershell instance where its execution policy is set to bypass mode.
 
-    Use the following command to run it in execution policy bypassed powershell environment.
+      Use the following command to run it in execution policy bypassed powershell environment.
 
-    ```
-    powershell -executionpolicy bypass .\merge.ps1
-    ```
+      ```
+      powershell -executionpolicy bypass .\merge.ps1
+      ```
 
-    IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution.
+      IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution.
 
 ## Setting up JAVA_HOME
 
@@ -115,7 +115,7 @@ Set your `JAVA_HOME` environment variable to point to the directory where the Ja
 on the server.
 
 !!! info
-Environment variables are global system variables accessible by all the processes running under the operating system.
+      Environment variables are global system variables accessible by all the processes running under the operating system.
 
 1. Open the .bashrc file (.bash_profile file on Mac) in your home directory using a file editor.
 
@@ -142,37 +142,37 @@ allow a successful data flow. The instances mentioned below specify the ports th
 
 ## Exchanging the certificates
 
-??? warning "If you are using the default keystore available in the product, click here to see how to update keystore..."
-If you are using the default keystore available in the product, update them by removing any unnecessary or expired
-Root CA Certificates.
+!!! note
+         If you are using the default keystore available in the product, update them by removing any unnecessary or expired
+         Root CA Certificates.
 
-```bash tab='wso2is-7.1.0'
-    1. The keystore is available in the `<IS_HOME>/repository/resources/security/wso2carbon.p12` files.
-    
-    2. Use the following command to list and identify problematic certificates:
-      
-          keytool -list -v -keystore wso2carbon.p12
-    
-    3. Remove the certificates using the alias as follows: 
-      
-          keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.p12
-```
-
-```bash tab='wso2is-7.0.0'
-    1. The keystore is available in the `<IS_HOME>/repository/resources/security/wso2carbon.jks` files.
-    
-    2. Use the following command to list and identify problematic certificates:
-      
-          keytool -list -v -keystore wso2carbon.jks
-    
-    3. Remove the certificates using the alias as follows: 
+      ```server tab='wso2is-7.1.0'
+          1. The keystore is available in the `<IS_HOME>/repository/resources/security/wso2carbon.p12` files.
           
-          keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.jks
-```
+          2. Use the following command to list and identify problematic certificates:
+            
+                keytool -list -v -keystore wso2carbon.p12
+          
+          3. Remove the certificates using the alias as follows: 
+            
+                keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.p12
+      ```
+
+      ```server tab='wso2is-7.0.0'
+          1. The keystore is available in the `<IS_HOME>/repository/resources/security/wso2carbon.jks` files.
+          
+          2. Use the following command to list and identify problematic certificates:
+            
+                keytool -list -v -keystore wso2carbon.jks
+          
+          3. Remove the certificates using the alias as follows: 
+                
+                keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.jks
+      ```
 
 !!! optional "If you are using multiple servers, click here to see how to exchange the certificates..."
-In order to enable secure communication, we need to install the certificates of each component in others. This will
-facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this:
+      In order to enable secure communication, we need to install the certificates of each component in others. This will
+      facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this:
 
 !!! tip "Creating new keystore"
 
