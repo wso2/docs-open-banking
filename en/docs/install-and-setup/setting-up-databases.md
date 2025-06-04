@@ -5,44 +5,43 @@ Once you have successfully prepared the environment for the deployment, you can 
     
      - MySQL 8.0
      - Oracle 19c
-     - Microsoft SQL Server 2017
-     - PostgreSQL 13
+     - Microsoft SQL Server 2022
+     - PostgreSQL 17.2
 
 ## Creating databases
 
 1. Create the following databases:
 
-    - `openbank_apimgtdb`  
-    - `openbank_am_configdb` 
-    - `openbank_govdb`  
-    - `openbank_userdb`  
-    - `openbank_iskm_configdb` 
-    - `openbank_openbankingdb`  
+    - `fs_identitydb`  
+    - `fs_userdb` 
+    - `fs_iskm_configdb`  
+    - `fs_consentdb`
     
-2. If you are using the [Data Publishing](../learn/data-publishing.md) feature, create the following 
+<!-- 2. If you are using the [Data Publishing](../learn/data-publishing.md) feature, create the following 
     database as well:
     
     - `openbank_ob_reporting_statsdb`
+-->
 
-3. According to your DBMS, place the compatible JDBC drivers in the following directories:
+2. According to your DBMS, place the compatible JDBC drivers in the following directories:
  
-    - `<APIM_HOME>/repository/components/lib`  
+    <!-- `<APIM_HOME>/repository/components/lib`-->
     - `<IS_HOME>/repository/components/lib` 
 
     !!! tip 
         The supported JDBC driver versions are as follows:
         
-        | DBMS version | JDBC driver version |
-        |--------------|---------------------|
-        | MySQL 8.0 | `mysql-connector-java-5.1.44.jar`  |
-        | Oracle 19c | `ojdbc10.jar` |
-        | Microsoft SQL Server 2017 | `sqljdbc41.jar` |
-        | PostgreSQL 13 | `postgresql-42.2.17.jar` |
+        | DBMS version              | JDBC driver version              |
+        |---------------------------|----------------------------------|
+        | MySQL 8.0                 | `mysql-connector-java-5.1.44.jar`|
+        | Oracle 19c                | `ojdbc11.jar`                    |
+        | Microsoft SQL Server 2022 | `mssql-jdbc-12.10.0.jre11.jar`   |
+        | PostgreSQL 17.2           | `postgresql-42.2.17.jar`         |
          
 
 ## Configuring datasources
 
-1. The databases above have a respective datasource. Add or update the default datasource 
+<!-- 1. The databases above have a respective datasource. Add or update the default datasource 
 configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. 
 
     - Given below is the relevant datasource configuration for each database:
@@ -123,25 +122,26 @@ configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your databa
     validationInterval="30000"
     defaultAutoCommit=false
     ```
+-->
       
-2. Add or update the default datasource configurations in `<IS_HOME>/repository/conf/deployment.toml` with your 
+1. Add or update the default datasource configurations in `<IS_HOME>/repository/conf/deployment.toml` with your 
 database configurations.  
 
     - Given below is the relevant datasource configuration for each database:
     
-    |Database|TOML configuration|
-    |--------|----------|
-    |openbank_apimgtdb|`[database.identity_db]`|
-    |openbank_govdb|`[database.shared_db]`|
-    |openbank_userdb|`[database.user] `|
-    |openbank_iskm_configdb | `[database.config]` |
-    |openbank_openbankingdb | `[[datasource]]` <br/> `id="WSO2OB_DB"`|
+    | Database         | TOML configuration                      |
+    |------------------|-----------------------------------------|
+    | fs_identitydb    | `[database.identity_db]`                |
+    | fs_iskm_configdb | `[database.shared_db]`                  |
+    | fs_iskm_configdb | `[database.config] `                    |
+    | fs_userdb        | `[database.user]`                       |
+    | fs_consentdb     | `[[datasource]]` <br/> `id="WSO2FS_DB"` |
     
    - Configure the datasources by following the sample below: 
  
     ``` toml tab="MySQL"
     [database.config]
-    url = "jdbc:mysql://localhost:3306/openbank_iskm_configdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/fs_iskm_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -154,15 +154,16 @@ database configurations.
     validationQuery="SELECT 1"
     validationInterval="30000"
     defaultAutoCommit=false
+    commitOnReturn=true
     ```
 
     ``` toml tab="Oracle"
     [database.config]
-    url = "jdbc:oracle:thin:openbank_iskm_configdb/password@localhost:1521:root"
-    username = "openbank_iskm_configdb"
-    password = "password"
+    url = "jdbc:oracle:thin:@localhost:1521/ORCLCDB"
+    username = "fs_iskm_configdb"
+    password = "ws2carbon"
     driver = "oracle.jdbc.driver.OracleDriver"
-    
+
     [database.config.pool_options]
     maxActive = "150"
     maxWait = "60000"
@@ -171,32 +172,16 @@ database configurations.
     validationQuery="SELECT 1 FROM DUAL"
     validationInterval="30000"
     defaultAutoCommit=false
+    commitOnReturn=true
     ```
    
     ``` toml tab="MS SQL"
     [database.config]
-    url = "jdbc:sqlserver://localhost:1433;databaseName=openbank_iskm_configdb"
-    username = "root"
-    password = "root"
+    url = "jdbc:sqlserver://localhost:1433;databaseName=fs_iskm_configdb;encrypt=false"
+    username = "sa"
+    password = "ws2carbon"
     driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    
-    [database.config.pool_options]
-    maxActive = "300"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
 
-    ``` toml tab="PostgreSQL"
-    [database.config]
-    url = "jdbc:postgresql://localhost:5432/openbank_iskm_configdb"
-    username = "postgres"
-    password = "root"
-    driver = "org.postgresql.Driver"
-    
     [database.config.pool_options]
     maxActive = "150"
     maxWait = "60000"
@@ -205,6 +190,25 @@ database configurations.
     validationQuery="SELECT 1"
     validationInterval="30000"
     defaultAutoCommit=false
+    commitOnReturn=true
+    ```
+
+    ``` toml tab="PostgreSQL"
+    [database.config]
+    url = "jdbc:postgresql://localhost:5432/fs_iskm_configdb"
+    username = "postgres"
+    password = "ws2carbon"
+    driver = "org.postgresql.Driver"
+
+    [database.config.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=false
+    commitOnReturn=true
     ```
    
 ## Creating database tables
@@ -215,18 +219,16 @@ given database.
 These locations contain database scripts for all the supported database types, choose the script 
 according to your DBMS. 
 
-| Database | Script location |
-| -------- | ----------------- |
-|openbank_apimgtdb| `<APIM_HOME>/dbscripts/apimgt`|
-|openbank_am_configdb | `<APIM_HOME>/dbscripts`|
-|openbank_govdb| `<APIM_HOME>/dbscripts `|
-|openbank_userdb| `<APIM_HOME>/dbscripts `|
-|openbank_iskm_configdb| `<IS_HOME>/dbscripts `|
-|openbank_openbankingdb| `<IS_HOME>/dbscripts/open-banking/consent`|
+| Database             | Script location                                                                                                   |
+|----------------------|-------------------------------------------------------------------------------------------------------------------|
+| fs_identitydb        | `<IS_HOME>/dbscripts/identity` and `<IS_HOME>/dbscripts/consent`                                                  |
+| fs_userdb            | `<IS_HOME>/dbscripts`                                                                                             |
+| fs_iskm_configdb     | `<IS_HOME>/dbscripts `                                                                                            |
+| fs_consentdb         | `<IS_HOME>/dbscripts/financial-services/consent` and `<IS_HOME>/dbscripts/financial-services/event-notifications` |
 
 !!! note "Increase the column size of the following table columns:"
 
-     Execute the relevant SQL command against the `openbank_apimgtdb` database.
+     Execute the relevant SQL command against the `fs_identitydb` database.
      
      1. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
@@ -240,34 +242,27 @@ according to your DBMS.
          ```
          
          ```sql tab='Oracle'
-         ALTER TABLE C##OB_APIMGTDB.sp_metadata MODIFY VALUE VARCHAR2(4000);
+         ALTER TABLE fs_identitydb.sp_metadata MODIFY VALUE VARCHAR(4000);
          ```
          
          ```sql tab='PostgreSQL'
          ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
-         ```  
-              
-     2. Increase the column size of the `INPUTS` column in the `AM_APPLICATION_REGISTRATION` table:
-                         
-         ```sql tab='MySQL'
-         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY INPUTS VARCHAR(7500);
          ```
-         
-         ```sql tab='MSSQL'
-          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER COLUMN INPUTS VARCHAR(7500);  
-         ```
-         
-         ```sql tab='Oracle'
-         ALTER TABLE C##OB_APIMGTDB.am_application_registration MODIFY INPUTS VARCHAR2(4000); 
-         ```
-         
-         ```sql tab='PostgreSQL'
-         ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column INPUTS type VARCHAR(7500);
-         ```              
+
+!!! note "Overcome the failure in deleting applications in PostgreSQL database".
+
+    If you are using PostgreSQL, you might encounter an error when deleting applications. To overcome this, execute the 
+    following SQL command against the `fs_identitydb` database:
+    
+    ```sql
+    ALTER TABLE SP_APPLICATION DROP CONSTRAINT IF EXISTS sp_application_name_key;
+    ```
+
+
 
 !!! tip "For MySQL databases:"
-    The consent attributes are stored in the `ATT_VALUE` field of `OB_CONSENT_ATTRIBUTE` table, which is in 
-    the `openbank_openbankingdb` database. 
+    The consent attributes are stored in the `ATT_VALUE` field of `FS_CONSENT_ATTRIBUTE` table, which is in 
+    the `fs_consentdb` database. 
 
     Per consent, when the aggregated character length of all consent attribute values is greater than 1024 characters, 
     increase the `group_concat_max_len` value. By default, this value is 1024.

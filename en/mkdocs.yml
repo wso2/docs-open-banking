@@ -55,14 +55,14 @@ nav:
     - 'Quick Start Guide':
       - 'Get Started': get-started/quick-start-guide.md
       - 'Set Up Accelerators':
-        - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
-        #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
-      - 'Configure Users and Roles': get-started/configure-users-and-roles.md
+        - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators-with-is.md
+        #- 'With both WSO2 Identity Server & WSO2 API Manager': get-started/set-up-accelerators.md
+      - 'Configure Users and Roles': get-started/configure-resources-users-and-roles.md
       - 'Dynamic Client Registration':
-          - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators.md
+          - 'Accelerator with WSO2 Identity Server': get-started/dynamic-client-registration.md
           #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
       - 'Tryout Flow':
-         - 'With Only WSO2 Identity Server': get-started/set-up-accelerators.md
+         - 'With Only WSO2 Identity Server': get-started/try-out-flow.md
         #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/try-out-flow.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
@@ -73,7 +73,7 @@ nav:
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     # - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
     # - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
-    - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
+    - 'Configuring Users and Roles': get-started/configure-resources-users-and-roles.md
     - 'Advanced':
         - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md

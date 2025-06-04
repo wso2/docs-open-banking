@@ -15,8 +15,8 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
 ## Installing WSO2 Open Banking Accelerator
 
 !!! tip "Before you begin"
-See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is
-compatible with your operating system.
+    See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is
+    compatible with your operating system.
 
 1. Download and extract the latest WSO2 Open Banking Accelerator 4.0.0 version.
 

@@ -6,6 +6,7 @@ WSO2 Open Banking Accelerator on top of the following WSO2 products.
 You can use any of the following base products:
 
 - WSO2 Identity Server -7.1.0,7.0.0
+<!-- WSO2 API Manager -4.5.0 -->
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -40,10 +41,10 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
     <th rowspan="2" style="text-align: center">Base Product</th>
     <th colspan="2" style="text-align: center">Compatible Versions</th>
   </tr>
-  <tr>
+  <!--<tr>
     <th>Combination 01</th>
     <th>Combination 02</th>
-  </tr>
+  </tr>-->
 </thead>
 <tbody>
   <tr>
@@ -51,12 +52,12 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
     <td>7.0.0</td>
     <td>7.1.0</td>
   </tr>
-  <tr>
+  <!--<tr>
     <td>WSO2 API Manager<br></td>
      <td>4.5.0</td>
     <td>4.4.0<br>4.3.0</td>
    
-  </tr>
+  </tr>-->
   
 </tbody>
 </table>
@@ -105,7 +106,7 @@ Listed below are the prerequisites for a successful deployment:
                See the following documentation to find the environments that the WSO2 products are tested with:
                <ul>
                   <li> <a href="https://is.docs.wso2.com/en/5.11.0/setup/environment-compatibility/">Identity Server compatibility</a></li>
-                  <li> <a href="https://apim.docs.wso2.com/en/latest/install-and-setup/setup/reference/product-compatibility/">API Manager compatibility</a></li>
+                  <!--<li> <a href="https://apim.docs.wso2.com/en/latest/install-and-setup/setup/reference/product-compatibility/">API Manager compatibility</a></li>-->
                </ul>
             </ul>
          </td>
@@ -114,7 +115,8 @@ Listed below are the prerequisites for a successful deployment:
          <th>JDK Version</th>
          <td>
             <ul>
-               <li>OpenJDK 11 or OpenJDK 17</li><br>See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> for compatible JDK versions based on the base product versions.
+               <li>OpenJDK 11, OpenJDK 17 or OpenJDK 21</li>
+               <li>Oracle JDK 21</li><br>See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> for compatible JDK versions based on the base product versions.
             </ul>
          <td>  
       </tr>
@@ -125,8 +127,8 @@ Listed below are the prerequisites for a successful deployment:
                <li>MySQL 8.0</li> 
                See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> if you are using MySQL 8.0.
                <li>Oracle 19c</li>
-               <li>Microsoft SQL Server 2017</li>
-               <li> PostgreSQL 13</li>
+               <li>Microsoft SQL Server 2022</li>
+               <li> PostgreSQL 17.2</li>
             </ul>
             We do not recommend configuring the H2 database in the production environment.
          <td>   
@@ -142,9 +144,9 @@ Listed below are the prerequisites for a successful deployment:
 
 WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
 
-!!!info
+<!--!!!info
     If you are using **WSO2 Identity Server 6.0.0** and **WSO2 API Manager 4.2.0** as the base products, it is recommended to use OpenJDK 17. For other base products, use OpenJDK 11.
-
+-->
 !!!note
     To use MySQL 8.0, you need to create the database with `charset latin1` as shown below:
 
@@ -171,6 +173,9 @@ WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
                <li>
                   OpenJDK 21
                </li>
+               <li>
+                  Oracle JDK 21
+               </li>
             </ul>
          </td>
       </tr>
@@ -179,11 +184,11 @@ WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
          <td>
             <ul>
                <li>
-                  Ubuntu 18.04.5 LTS
+                  Ubuntu 22.04.5 LTS
                </li>
-               <li>
+               <!--<li>
                   Windows Server 2016
-               </li>
+               </li>-->
             </ul>
          </td>
       </tr>
@@ -198,10 +203,10 @@ WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
                   Oracle 19c
                </li>
                <li>
-                  Microsoft SQL Server 2017
+                  Microsoft SQL Server 2022
                </li>
                <li>
-                  PostgreSQL 13
+                  PostgreSQL 17.2
                </li>
             </ul>
          </td>
@@ -211,10 +216,10 @@ WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
          <td>
             <ul>
                <li>
-                  Google Chrome 69
+                  Google Chrome 136
                </li>
                <li>
-                  Firefox 88.0
+                  Firefox 132.0
                </li>
             </ul>
          </td>
@@ -227,7 +232,7 @@ WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
 When deploying WSO2 Open Banking in a production server, make sure to comply with the following common security guidelines for production deployment. 
 
  - For WSO2 Open Banking Accelerator refer [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
- - For WSO2 Open Banking API Manager Accelerator refer [WSO2 API Manager Security Guidelines for Production Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#api-m-runtime-security)
+ <!-- For WSO2 Open Banking API Manager Accelerator refer [WSO2 API Manager Security Guidelines for Production Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#api-m-runtime-security)-->
 
 If you have difficulty in setting up any WSO2 product in a specific platform or database,
 [contact us](https://wso2.com/subscription/).
