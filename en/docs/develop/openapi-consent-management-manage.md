@@ -1,5 +1,3 @@
-## OpenAPI Extensions for Consent Manage
-
 WSO2 Open Banking IAM Accelerator v4.0.0 onwards support OpenAPI based extensions for consent management customizations.
 
 Generally regional open banking specifications do have different flavors of request/response formats for consent management
@@ -10,7 +8,7 @@ compliances and those extension points can be implemented by specification compl
 API in preferred programming language and deploy externally to WSO2 Identity Server.
 
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 ### OpenAPI Extensions
 | OpenAPI Extension                | Description                                                                       | OpenAPI Definition                                                                                                                     |
@@ -36,11 +34,9 @@ To enable, follow the steps below:
 enabled = true
 base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
 
-allowed_extensions = ["pre_process_client_creation", "pre_process_client_update", "pre_process_client_retrieval", "pre_process_consent_creation",
-"enrich_consent_creation_response", "pre_process_consent_retrieval", "pre_process_consent_bulk_retrieval",
-"pre_process_consent_revoke", "populate_consent_authorize_screen", "persist_authorized_consent", "validate_consent_access",
-"validate_refresh_token_issuance", "validate_authorization_request", "enrich_event_subscription_response",
-"validate_event_creation", "validate_event_polling", "enrich_event_polling_response", "map_accelerator_error_response"]
+allowed_extensions = [ "pre_process_consent_creation",
+"enrich_consent_creation_response", "pre_process_consent_retrieval", "pre_process_consent_file_upload", "enrich-consent-file-response"
+"pre_process_consent_revoke", validate-consent-file-retrieval  ]
 
 [financial_services.extensions.endpoint.security]
 # supported types : Basic-Auth or OAuth2

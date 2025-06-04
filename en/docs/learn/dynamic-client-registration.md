@@ -36,4 +36,4 @@ application access tokens that are required to invoke the open banking APIs.
 
 
 You can customize the validations performed in the DCR process according to your specification and other requirements.
-For information, see [writing a custom DCR validators](../develop/custom-dcr-validator.md).
+For information, see [Implementing OpenAPI based extensions](../develop/openapi-extensions-dcr.md).
