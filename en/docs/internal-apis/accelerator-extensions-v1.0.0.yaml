@@ -82,7 +82,7 @@ paths:
     post:
       tags:
         - Client
-      summary: handle pre validations & obtain custom data to store in dynamic client registration step
+      summary: handle custom validations and set custom client data to be stored
       requestBody:
         content:
           application/json:
@@ -152,7 +152,7 @@ paths:
     post:
       tags:
         - Client
-      summary: handle pre validations & obtain  custom data to store in dynamic client update step
+      summary: handle custom validations and set custom client data to be updated
       requestBody:
         content:
           application/json:
@@ -223,7 +223,7 @@ paths:
     post:
       tags:
         - Client
-      summary: handle post client retrieval response generation
+      summary: handle custom validations and set a custom response
       requestBody:
         content:
           application/json:
@@ -290,7 +290,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle pre validations & obtain custom consent data to be stored
+      summary: handle custom validations and set custom consent data to be stored
       requestBody:
         content:
           application/json:
@@ -331,7 +331,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: "handle post-consent generation -response generation,validations"
+      summary: handle setting custom consent creation response
       requestBody:
         content:
           application/json:
@@ -371,7 +371,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: Handle pre validations related to file upload requests.
+      summary: Handle custom validations related to file upload requests.
       requestBody:
         content:
           application/json:
@@ -412,7 +412,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: Modify the response sent in the file upload request after successfully storig the file.
+      summary: Handle send back custom response for consent file requests
       requestBody:
         content:
           application/json:
@@ -452,7 +452,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle pre-consent retrieval validations
+      summary: handle custom validations & set custom response for consent retrieval
       requestBody:
         content:
           application/json:
@@ -492,7 +492,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: Handle validations related to file retrieval and return a response
+      summary: Handle custom validations for consent file retrieval
       requestBody:
         content:
           application/json:
@@ -532,7 +532,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle pre-consent revocation validations when a TPP calls consent /DELETE
+      summary: handle custom validations for consent revoke
       requestBody:
         content:
           application/json:
@@ -572,7 +572,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle consent search required extension to fetch additional data
+      summary: handle custom enrichments for consent search response
       requestBody:
         content:
           application/json:
@@ -612,7 +612,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle validations before consent  authorization and consent data to load in consent authorization UI
+      summary: handle validations and enrich data to populate in consent grant UI
       requestBody:
         content:
           application/json:
@@ -651,7 +651,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle consent persistence logic and enrich response with user authorization and account mapping data
+      summary: handle custom validations and store user granted data
       requestBody:
         content:
           application/json:
@@ -681,7 +681,7 @@ paths:
     post:
       tags:
         - Consent
-      summary: handle custom consent data validations before data access
+      summary: handle consent data validations before data access
       requestBody:
         content:
           application/json:
@@ -777,7 +777,7 @@ paths:
     post:
       tags:
         - Authorize
-      summary: Handles pre-user authorization requests
+      summary: Validate custom attributes send in authroization request
       operationId: preUserAuthorization
       requestBody:
         content:
