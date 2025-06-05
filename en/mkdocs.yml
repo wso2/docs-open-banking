@@ -200,8 +200,8 @@ nav:
         #    - 'Introduction': toolkits/regulatory-aggregator/regulatory-aggregator-intro.md
         #    - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
         #    - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
-  - 'Conformance':
-    - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
+#  - 'Conformance':
+#    - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
   - 'References':
     - 'Accelerator Extension REST API': references/accelerator-extensions-api.md
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
@@ -265,5 +265,5 @@ extra:
     - Learn
     - Develop
 #    - Toolkits
-    - Conformance
+#    - Conformance
     - References
