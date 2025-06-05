@@ -230,9 +230,7 @@ database server, and the JDBC driver.
             allowed_time_duration=1440
             header_name="x-idempotency-key"
             allowed_for_all_apis=false
-            allowed_api_resources=["domestic-payment-consents", "domestic-scheduled-payment-consents", 
-            "domestic-standing-order-consents", "international-payment-consents", "international-scheduled-payment-consents", 
-            "international-standing-order-consents", "file-payment-consents"]
+            allowed_api_resources=["domestic-payment-consents"]
         ```
 
 15. Configure `drop_unregistered_scopes` to drop unregistered scopes from the consent request. 
@@ -243,19 +241,28 @@ database server, and the JDBC driver.
     ```
 
 ??? note "Click here to see the configurations to enable external service extension."
+    Add the following resource access control if you are deploying the external service within the Identity Server. 
 
     ``` toml
         [[resource.access_control]]
         allowed_auth_handlers = ["BasicAuthentication"]
-        context = "(.*)/api/reference-implementation/ob/uk/(.*)"
+        context = "<REFERENCE_IMPLEMENTATION_CONTEXT>"
         http_method = "all"
         secure = "true"
+    ```
+
+    Add the following resource access control to configure the backend. 
     
+    ``` toml
         [[resource.access_control]]
-        context = "(.*)/api/openbanking/uk/backend/(.*)"
+        context = "<BACKEND_CONTEXT>"
         http_method = "all"
         secure = "false"
-        
+    ```
+
+    Add the following configurations to enable the external service extension.
+
+    ``` toml
         [financial_services.extensions.endpoint]
         enabled = true
         # allowed extensions: "pre_process_client_creation", "pre_process_consent_creation"
@@ -266,7 +273,7 @@ database server, and the JDBC driver.
         "persist_authorized_consent", "validate_consent_access", "issue_refresh_token", "validate_authorization_request",
         "validate_event_subscription", "enrich_event_subscription_response", "validate_event_creation",
         "validate_event_polling", "enrich_event_polling_response", "map_accelerator_error_response"]
-        base_url = "http://<IS_HOME>:9766/api/reference-implementation/ob/uk"
+        base_url = "<EXTERNAL_SERVICE_URL>"
         retry_count = 5
         connect_timeout = 5
         read_timeout = 5
