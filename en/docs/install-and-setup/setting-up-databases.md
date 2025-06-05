@@ -249,16 +249,16 @@ according to your DBMS.
          ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
          ```
 
-!!! note "Overcome the failure in deleting applications in PostgreSQL database".
+
+!!! note 
+    "Overcome the failure in deleting applications in PostgreSQL database".
 
     If you are using PostgreSQL, you might encounter an error when deleting applications. To overcome this, execute the 
     following SQL command against the `fs_identitydb` database:
-    
+        
     ```sql
     ALTER TABLE SP_APPLICATION DROP CONSTRAINT IF EXISTS sp_application_name_key;
     ```
-
-
 
 !!! tip "For MySQL databases:"
     The consent attributes are stored in the `ATT_VALUE` field of `FS_CONSENT_ATTRIBUTE` table, which is in 

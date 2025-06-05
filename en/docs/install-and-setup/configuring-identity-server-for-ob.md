@@ -180,59 +180,58 @@ database server, and the JDBC driver.
     ```
     
     !!! note
-      - The `json_path` should be configured if the `auth_flow_consent_id_source` is set to `requestObject` to extract  
+        - The `json_path` should be configured if the `auth_flow_consent_id_source` is set to `requestObject` to extract  
         the consent ID from the request object.
 
-      ``` toml
-        [financial_services.consent.consent_id_extraction]
-        json_path="/id_token/openbanking_intent_id/value"
-      ```
-     
-      - The `key` should be configured if the `auth_flow_consent_id_source` is set to `requestParam` to determine the 
-        key of the request parameter.
-        Eg: "scope" is currently only supported for specifications like Berlin flow, where the consent ID is included in the scope.
-
         ``` toml
-        [financial_services.consent.consent_id_extraction]
-        key="scope"
+          [financial_services.consent.consent_id_extraction]
+          json_path="/id_token/openbanking_intent_id/value"
         ```
+     
+        - The `key` should be configured if the `auth_flow_consent_id_source` is set to `requestParam` to determine the 
+          key of the request parameter.
+          Eg: "scope" is currently only supported for specifications like Berlin flow, where the consent ID is included in the scope.
+
+          ``` toml
+           [financial_services.consent.consent_id_extraction]
+           key="scope"
+          ```
         
-      !!! optional
+    !!! optional
          - Configure consent_id_regex to extract the consent ID from the value obtained via requestParam or requestObject. 
            commonly used in Berlin flows to extract it from the scope attribute. This is primarily used in Berlin compliance 
            solution to parse the consent ID from the scope attribute.
 
-      ``` toml
-            [financial_services.consent.consent_id_extraction]
-            regex_pattern=":([a-fA-F0-9-]+)"
-      ```
+        ``` toml
+          [financial_services.consent.consent_id_extraction]
+          regex_pattern=":([a-fA-F0-9-]+)"
+        ```
 
 13. Use following configuration to determine whether the consent ID should be appended to the token, id_token and introspection 
-    responses. 
-
-      ``` toml
-            [financial_services.identity]
-            consent_id_claim_name="consent_id"
-            append_consent_id_to_token_id_token=false
-            append_consent_id_to_authz_id_token=true
-            append_consent_id_to_access_token=true
-            append_consent_id_to_token_introspect_response=false
-      ```
+        responses. 
+    
+    ``` toml
+    [financial_services.identity]
+    consent_id_claim_name="consent_id"
+    append_consent_id_to_token_id_token=false
+    append_consent_id_to_authz_id_token=true
+    append_consent_id_to_access_token=true
+    append_consent_id_to_token_introspect_response=false
+    ```
     
 14. Enable idempotency validation using below configuration:
 
-    !!!note Add the required API resources to the `allowed_api_resources` list.
-
-    ``` toml
-    [financial_services.consent.idempotency]
-    enabled=true
-    allowed_time_duration=1440
-    header_name="x-idempotency-key"
-    allowed_for_all_apis=false
-    allowed_api_resources=["domestic-payment-consents", "domestic-scheduled-payment-consents", 
-    "domestic-standing-order-consents", "international-payment-consents", "international-scheduled-payment-consents", 
-    "international-standing-order-consents", "file-payment-consents"]
-    ```
+    !!! note 
+        Add the required API resources to the `allowed_api_resources` list.
+    
+        ``` toml
+            [financial_services.consent.idempotency]
+            enabled=true
+            allowed_time_duration=1440
+            header_name="x-idempotency-key"
+            allowed_for_all_apis=false
+            allowed_api_resources=["domestic-payment-consents"]
+        ```
 
 15. Configure `drop_unregistered_scopes` to drop unregistered scopes from the consent request. 
 
@@ -242,41 +241,50 @@ database server, and the JDBC driver.
     ```
 
 ??? note "Click here to see the configurations to enable external service extension."
+    Add the following resource access control if you are deploying the external service within the Identity Server. 
 
-``` toml
-    [[resource.access_control]]
-    allowed_auth_handlers = ["BasicAuthentication"]
-    context = "(.*)/api/reference-implementation/ob/uk/(.*)"
-    http_method = "all"
-    secure = "true"
+    ``` toml
+        [[resource.access_control]]
+        allowed_auth_handlers = ["BasicAuthentication"]
+        context = "<REFERENCE_IMPLEMENTATION_CONTEXT>"
+        http_method = "all"
+        secure = "true"
+    ```
 
-    [[resource.access_control]]
-    context = "(.*)/api/openbanking/uk/backend/(.*)"
-    http_method = "all"
-    secure = "false"
+    Add the following resource access control to configure the backend. 
     
-    [financial_services.extensions.endpoint]
-    enabled = true
-    # allowed extensions: "pre_process_client_creation", "pre_process_consent_creation"
-    allowed_extensions = ["pre_process_client_creation", "pre_process_client_update", "pre_process_client_retrieval",
-    "pre_process_consent_creation", "enrich_consent_creation_response", "pre_process_consent_file_upload",
-    "enrich_consent_file_response", "pre_process_consent_retrieval", "validate_consent_file_retrieval",
-    "pre_process_consent_revoke", "enrich_consent_search_response", "populate_consent_authorize_screen",
-    "persist_authorized_consent", "validate_consent_access", "issue_refresh_token", "validate_authorization_request",
-    "validate_event_subscription", "enrich_event_subscription_response", "validate_event_creation",
-    "validate_event_polling", "enrich_event_polling_response", "map_accelerator_error_response"]
-    base_url = "http://<IS_HOME>:9766/api/reference-implementation/ob/uk"
-    retry_count = 5
-    connect_timeout = 5
-    read_timeout = 5
-    
-    [financial_services.extensions.endpoint.security]
-    # supported types : Basic-Auth or OAuth2
-    type = "Basic-Auth"
-    username = "<SUPER_ADMIN_USERNAME>"
-    password = "<SUPER_ADMIN_PASSWORD>"
+    ``` toml
+        [[resource.access_control]]
+        context = "<BACKEND_CONTEXT>"
+        http_method = "all"
+        secure = "false"
+    ```
 
-```
+    Add the following configurations to enable the external service extension.
+
+    ``` toml
+        [financial_services.extensions.endpoint]
+        enabled = true
+        # allowed extensions: "pre_process_client_creation", "pre_process_consent_creation"
+        allowed_extensions = ["pre_process_client_creation", "pre_process_client_update", "pre_process_client_retrieval",
+        "pre_process_consent_creation", "enrich_consent_creation_response", "pre_process_consent_file_upload",
+        "enrich_consent_file_response", "pre_process_consent_retrieval", "validate_consent_file_retrieval",
+        "pre_process_consent_revoke", "enrich_consent_search_response", "populate_consent_authorize_screen",
+        "persist_authorized_consent", "validate_consent_access", "issue_refresh_token", "validate_authorization_request",
+        "validate_event_subscription", "enrich_event_subscription_response", "validate_event_creation",
+        "validate_event_polling", "enrich_event_polling_response", "map_accelerator_error_response"]
+        base_url = "<EXTERNAL_SERVICE_URL>"
+        retry_count = 5
+        connect_timeout = 5
+        read_timeout = 5
+        
+        [financial_services.extensions.endpoint.security]
+        # supported types : Basic-Auth or OAuth2
+        type = "Basic-Auth"
+        username = "<SUPER_ADMIN_USERNAME>"
+        password = "<SUPER_ADMIN_PASSWORD>"
+    
+    ```     
 
 ## Starting servers
 
