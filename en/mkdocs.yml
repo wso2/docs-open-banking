@@ -79,9 +79,9 @@ nav:
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
         - 'Troubleshooting': install-and-setup/troubleshooting.md
   - 'Tryout Flows':
-      - 'Accelerator with WSO2 Identity Server':
-          - 'Pre-Initiated Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-pre_initiated_consent.md
-          - 'Scope Based Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-scope-based-consent.md
+    - 'Accelerator with WSO2 Identity Server':
+        - 'Pre-Initiated Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-pre_initiated_consent.md
+        - 'Scope Based Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-scope-based-consent.md
   - 'Learn':
     - 'Introduction': learn/introduction.md
     - 'Client Registration': learn/client-registration.md
