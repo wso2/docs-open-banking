@@ -83,7 +83,6 @@ nav:
         - 'Pre-Initiated Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-pre_initiated_consent.md
         - 'Scope Based Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-scope-based-consent.md
   - 'Learn':
-    - 'Introduction': learn/introduction.md
     - 'Client Registration': learn/client-registration.md
     - 'Dynamic Client Registration':
         - 'Introduction': learn/dynamic-client-registration.md
