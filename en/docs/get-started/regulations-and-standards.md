@@ -1,9 +1,13 @@
 Regulations and specifications are enforced by the authorities to standardise the open banking requirements and 
 evaluate the open banking compliance in their region/country.
 
-## Open banking regulations
-Open banking regulations provide a policy and legislative framework to help banks and API consumers deliver the 
+## Open banking / Open Finance regulations
+Open banking and Open Finance regulations provide a policy and legislative framework to help banks and API consumers deliver the 
 benefits of open banking. 
+
+- The **newest** regulation of Open Finance is the finalized **section 1033 rule from Consumer Financial
+  Protection Bureau (CFPB) of the United States**.It requires financial institutions to make available to consumers the
+  information they have about their financial products and services, upon request.
 
 - The first known open banking regulation is the **Payment Service Directive** in Europe. Administered by the European 
 Commission (Directorate General Internal Market) regulates payment services and payment service providers throughout 
@@ -17,7 +21,8 @@ customer’s consent.
 - The Berlin Group consists of almost 40 banks, associations and Payment Service Providers across the European Union. 
 They have defined a common API standard called NextGenPSD2 for the use cases specified in PSD2. Based on the PSD2 and 
 European Banking Authority - Regulatory Technical Standards (RTS) requirements, the Berlin Group has worked on detailed 
-Access to Account (XS2A) Framework including implementation details for open banking named as **NextGenPSD2XS2A**.
+Access to Account (XS2A) Framework including implementation details for open banking named as **NextGenPSD2XS2A**.Now
+this has been expanded to Open Finance with the introduction of **Berlin Group openFinance API framework**
 
 - **Consumer Data Right** in Australia is a right provided by law under the Treasury Laws Amendment 
 (Consumer Data Right)  Act in 2019 to give Australians greater control over their data. It empowers consumers to 
@@ -41,10 +46,10 @@ encouraging openness among both the financial institutions and the API consumers
 - Following the footsteps of the UK and Australia, New Zealand issued a government backed pilot plan in 2018 to design 
 and develop open banking into their infrastructure. In 2019, as a result of the pilot plan, a 
 new [API service](https://www.apicentre.paymentsnz.co.nz/) was developed to enable payment initiation and account 
-information. 
-
-Likewise, Nigeria, India, Turkey, Brazil, Canada, the United States, Israel, Japan, South Korea, and Columbia have 
-already started drafting open banking regulations for their countries. 
+information.
+- 
+Likewise, Brazil, Saudi Arabia, Bahrain , Israel, Turkey ,Columbia , Nigeria, United Arab Emirates, Oman and Vietnam have 
+already started regulating open banking for their countries. 
 
 ## Open banking standards
 Alongside regulations introduced in different regions, there are specifications to describe the implementation 
@@ -54,6 +59,7 @@ emerged:
 - The Open Banking Standard issued by the Open Banking Implementation Entity in the UK
 - The Berlin Group NextGenPSD2 XS2A implementation framework in the Europe
 - The Consumer Data Standards in Australia
+- The Financial Data Exchange (FDX) in the United States
 - Open Data ATM API specification in Mexico
 - API Playbook in Singapore
 - Open API Standards in Nigeria

@@ -6,7 +6,7 @@ This section guides you on how to set up the solution in a local environment. Fo
 can quickly set up and try out a basic flow.
 
 !!! tip "Prerequisites"
-    1. Download Open Java Development Kit (OpenJDK) version 11 or 17 to the local environment based on the base product versions you use.
+    1. Download Open Java Development Kit (OpenJDK) version 11 ,17 or 21 to the local environment based on the base product versions you use.
 
         !!!info
             See [Compatibility](../install-and-setup/prerequisites.md#compatibility) for compatible JDK versions.
@@ -20,75 +20,46 @@ can quickly set up and try out a basic flow.
     3. Setup a database server using any of the following:
          - MySQL 8.0
          - Oracle 19c
-         - Microsoft SQL Server 2017
-         - PostgreSQL 13
+         - Microsoft SQL Server 2022
+         - PostgreSQL 17.2
          
         !!!info
             See [Compatibility](../install-and-setup/prerequisites.md#compatibility) if you are using MySQL 8.0.
 
         !!!note
             We do not recommend configuring H2 database in the production environment.
-    
-## Installing base products
 
-1. Download and extract the required base products. You can use any of the following combinations:
+## Installing WSO2 Open Banking Accelerator for WSO2 Identity Server
 
-    <table>
-      <tr>
-        <th></th>
-        <th>WSO2 Identity Server</th>
-        <th>WSO2 API Manager</th>
-        <th>WSO2 Streaming Integrator</th>
-      </tr>
-    <tbody>
-      <tr>
-        <th>Combination 01</th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">5.11.0</a></td>
-        <td><a href="https://wso2.com/api-management/previous-releases/">4.1.0</a> or <a href="https://wso2.com/api-management/previous-releases/">4.0.0</a></td>
-        <td><a href="https://wso2.com/streaming-integrator/previous-releases/">4.1.0</a> or <a href="https://wso2.com/streaming-integrator/previous-releases/">4.0.0</a></td>
-      </tr>
-      <tr>
-        <th>Combination 02<br></th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
-        <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
-        <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
-      </tr>
-      <tr>
-        <th>Combination 03<br></th>
-        <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">6.1.0</a></td>
-        <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
-        <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
-      </tr>
-    </tbody>
-    </table>
+### Installing base products
+
+1. Download and extract the required base products:
+
+    - WSO2 Identity Server -7.1.0 ,7.0.0
+    <!--- WSO2 API Manager - 4.5.0, 4.4.0-->
  
-2. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
+<!--2. To configure the Identity Server with the API Manager, download the respective WSO2 IS Connector according to the API Manager version you have downloaded. 
 
-    - [WSO2 IS Connector for API Manager 4.2.0](https://apim.docs.wso2.com/en/4.2.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
-    - [WSO2 IS Connector for API Manager 4.1.0](https://apim.docs.wso2.com/en/4.1.0/assets/attachments/administer/wso2is-extensions-1.4.2.zip)
-    - [WSO2 IS Connector for API Manager 4.0.0](https://apim.docs.wso2.com/en/4.0.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
+    - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.5.0/assets/attachments/administer/wso2is-extensions-1.6.8.zip)
+-->
 
-## Installing WSO2 Open Banking Accelerator
+### Installing WSO2 Open Banking IAM Accelerator
+1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
-1. Download and extract the latest Open Banking Accelerator 3.0 version. 
-
-    - Current latest version [3.3.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v3.3.0).
+    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/download/v4.0.0/wso2-fsiam-accelerator-4.0.0.zip).
               
 2. WSO2 Open Banking Accelerator contains the following accelerators:
    
-    - wso2-obiam-accelerator-3.x.0
-    - wso2-obam-accelerator-3.x.0
-    - wso2-obbi-accelerator-3.x.0
+    - wso2-obiam-accelerator-4.x.0
+   
             
 3. This document uses the following placeholders to refer to the following products:
         
-    | Product | Placeholder |
-    |---------|---------    |
-    |WSO2 Identity Server|`<IS_HOME>`|
-    |WSO2 API Manager|`<APIM_HOME>`|
-    |WSO2 Open Banking Identity Server Accelerator|`<OB_IS_ACCELERATOR_HOME>`|
-    |WSO2 Open Banking API Manager Accelerator |`<OB_APIM_ACCELERATOR_HOME>`|
-    |WSO2 IS Connector for API Manager |`<IS_EXTENSION>`|
+    | Product                                       | Placeholder                |
+    |-----------------------------------------------|----------------------------|
+    | WSO2 Identity Server                          | `<IS_HOME>`                |
+    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
+
 
 ## Getting WSO2 Updates
 

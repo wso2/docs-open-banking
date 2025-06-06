@@ -1,7 +1,7 @@
 This document provides step by step instructions to invoke the Accounts Information Service API.
 Following diagram illustrates the sample Open Banking flow which is going to try from this documentation section.
 
-![Open Banking Demo Flow](../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
+![Open Banking Demo Flow](../../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
 
 
 <!--!!! note 
@@ -90,15 +90,15 @@ Following diagram illustrates the sample Open Banking flow which is going to try
          23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
 -->
 !!! note
-    In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
+      In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
 
-    - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
-    - [private keys](../../assets/attachments/signing-certs/obsigning.key)
+       - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
+       - [private keys](../../assets/attachments/signing-certs/obsigning.key)
 
 ### Step 1: Generate application access token
-1. Once you register the application, generate an application access token using the following command. For the 
-Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../../assets/attachments/transport-certs/obtransport.pem).
+1. Once you register the application, generate an application access token using the following command. For the
+   Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
+   [public certificate](../../assets/attachments/transport-certs/obtransport.pem).
 
     ```
     curl -X POST \
@@ -106,34 +106,34 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
     --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
     -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_id=<CLIENT_ID>&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=https://www.google.com/redirects/redirect1'
     ```
-   
-    - The CLIENT_ID can be taken from the client_id of the DCR request's response, or "Client ID" of the OAuth2.0/OpenID Connect settings of the application in the Identity Server Console.
-    - The request payload contains a client assertion JWT:
+
+   - The CLIENT_ID can be taken from the client_id of the DCR request's response, or "Client ID" of the OAuth2.0/OpenID Connect settings of the application in the Identity Server Console.
+   - The request payload contains a client assertion JWT:
       - In the assertion JWT, make sure to change the values accordingly with respect to the sample provided.
-    
-    ``` jwt tab="Sample"
-    eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiYXVkIjoiaHR0cHM6Ly9vYi1pYW06OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiZXhwIjoxNzQ5MDQ0ODIzLCJpYXQiOjE3NDkwMTQ4MjMsImp0aSI6IjE3NDkwMTQ4MjM0MjEifQ.vzPOE0XMDi_x8OR6Z6Jd5gCLZCbdKyzGlC7yh1oANIVjjNRV4dYd8_uwyO6c7uzhidmblbXVAeX2xd0M1gdk4xUWdZcDOScPvcUM-ds_T5sWC6pXf2WDCFC_AH9B7U7NgqoVINyhg9ROAL32mWNHaFtsQ9F8khXUBvP87dFFrYERwj1kevst0puWxlu1Xcnxm0tKO40XTaYUdjKjud7ZXUe9v8qT91hLdjA2Uk2B-KI8wmiTimmr1rP9iODIfodceVZ8Tk4aXX-Egelqb2LKKu3CRriFHc_Rc4q0GPxStrPyWT4M4A67PV546xp76pArlVdr4v3jfzSZMYyyBBb1Ng
-    ```
+
+       ``` jwt tab="Sample"
+       eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiYXVkIjoiaHR0cHM6Ly9vYi1pYW06OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiZXhwIjoxNzQ5MDQ0ODIzLCJpYXQiOjE3NDkwMTQ4MjMsImp0aSI6IjE3NDkwMTQ4MjM0MjEifQ.vzPOE0XMDi_x8OR6Z6Jd5gCLZCbdKyzGlC7yh1oANIVjjNRV4dYd8_uwyO6c7uzhidmblbXVAeX2xd0M1gdk4xUWdZcDOScPvcUM-ds_T5sWC6pXf2WDCFC_AH9B7U7NgqoVINyhg9ROAL32mWNHaFtsQ9F8khXUBvP87dFFrYERwj1kevst0puWxlu1Xcnxm0tKO40XTaYUdjKjud7ZXUe9v8qT91hLdjA2Uk2B-KI8wmiTimmr1rP9iODIfodceVZ8Tk4aXX-Egelqb2LKKu3CRriFHc_Rc4q0GPxStrPyWT4M4A67PV546xp76pArlVdr4v3jfzSZMYyyBBb1Ng
+       ```
    
-    ``` json tab="Format"
-    {
-    "alg": "<<The algorithm used for signing.>>",
-    "kid": "<<The KID value of the signing jwk set.>>",
-    "typ": "JWT"
-    }
-      
-    {
-    "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
-    "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
-    "exp": <<This is epoch time of the token expiration date/time>>,
-    "iat": <<This is epoch time of the token issuance date/time>>,
-    "jti": "<<This is an incremental unique value.>>",
-    "aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
-    }
-      
-    <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
-    signature of the application certificate is used.>
-    ```
+       ``` json tab="Format"
+       {
+       "alg": "<<The algorithm used for signing.>>",
+       "kid": "<<The KID value of the signing jwk set.>>",
+       "typ": "JWT"
+       }
+         
+       {
+       "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
+       "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
+       "exp": <<This is epoch time of the token expiration date/time>>,
+       "iat": <<This is epoch time of the token issuance date/time>>,
+       "jti": "<<This is an incremental unique value.>>",
+       "aud": "<<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>>"
+       }
+         
+       <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
+       signature of the application certificate is used.>
+       ```
 
 2. Upon successful token generation, you obtain a token as follows:
    ```
@@ -147,15 +147,15 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
 
 ### Step 2: Initiate a consent
 
-In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its 
-information from the bank. 
+In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its
+information from the bank.
 
-A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
-available [here](../assets/attachments/transport-certs):
+A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates
+available [here](../../assets/attachments/transport-certs):
 
 !!!note
       Replace the <AUTH_HEADER_VALUE> with Base64 encoded "admin_username:admin_password" value.
-               `Eg: Base64(admin_username:admin_password)`
+      `Eg: Base64(admin_username:admin_password)`
 
 ```
 curl --location --request POST 'https://localhost:9446/api/fs/consent/manage/account-access-consents' \
@@ -207,91 +207,92 @@ The response contains a Consent ID. A sample response looks as follows:
 
 The API consumer application redirects the bank customer to authenticate and approve/deny application-provided consents.
 
-1. Generate a request object by signing your JSON payload using the supported algorithms. 
-    
-    ???tip "Click here to see a sample request object..."
-        - Given below is a sample request object in the JWT format:
-        
-        ``` jwt tab='Sample'
-        eyJraWQiOiJoM1pDRjBWcnpnWGduSENxYkhiS1h6emZqVGciLCJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6IlM2dTJIZTRqeXd2eXlwVDdmR1lFeExTeXBRWWEiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiODZjOGEwODUtYTQ0NC00MmQ1LWJlNDMtOTY4YjM2NmE1NDY3IiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3RhdGUiOiJZV2x6Y0Rvek1UUTIiLCJleHAiOjE3NTcyMzM1ODgsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiY2xpZW50X2lkIjoiUzZ1MkhlNGp5d3Z5eXBUN2ZHWUV4TFN5cFFZYSJ9.mClPy-6g0Kn3JIF8P7odd-PiWYCSDhVyQJqn9SkHAXo07saGYD-YxQcqfghRnUbYc41SyAwtkw4bfbNLpqLFnmJsBiP3XjjDE0YwKwD4UXFMAac4zW9ooQtzr_5qXkGS5nNpua7KtpvNezNBgS5-c4MjuI6nUxL63rgmZyRoDlrK_Uxgx4CSxmJQkcHP8YzNvCVxe9ftpuKUlanCCgNvGg2ocmwpRP1G1-ZBr2e3nIfGsFxSaX-4vkur4chEyjk5YogfoxjnG1UjvP_al9M07W0J-eysviGMNqzJ7LDIVCDp5ZKrOnf1p_zPLE4No3xV8cN1ZTJJ_ufUABhJTYQKEw
-        ```
-        
-        ``` tab='Format'
-        {
-          "kid": "<The KID value of the signing jwk set>",
-          "alg": "<SUPPORTED_ALGORITHM>",
-          "typ": "JWT"
-        }
-        {
-          "max_age": 86400,
-          "aud": "<This is the audience that the ID token is intended for. Example, https://<IS_HOST>:9446/oauth2/token>",
-          "scope": "accounts openid",
-          "iss": "<CLIENT_ID>",
-          "claims": {
-            "id_token": {
-              "acr": {
-                "values": [
-                  "urn:openbanking:psd2:sca",
-                  "urn:openbanking:psd2:ca"
-                ],
-                "essential": true
-              },
-              "openbanking_intent_id": {
-                "value": "<CONSENTID>",
-                "essential": true
-              }
-            },
-            "userinfo": {
-              "openbanking_intent_id": {
-                "value": "<CONSENTID>",
-                "essential": true
-              }
-            }
-          },
-          "response_type": "code id_token",  
-          "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
-          "state": "YWlzcDozMTQ2",
-          "exp": <The expiration time of the request object in Epoch format>,
-          "nonce": "<PREVENTS_REPLAY_ATTACKS>",
-          "client_id": "<CLIENT_ID>"
-        }
-        ```
+1. Generate a request object by signing your JSON payload using the supported algorithms.
 
-2. The bank sends the request to the customer stating the accounts and information that the API 
-consumer wishes to access. This request is in the format of a URL as follows: 
+
+      - ??? tip "Click here to see a sample request object..."
+            - Given below is a sample request object in the JWT format:
+      
+            ``` jwt tab='Sample'
+                 eyJraWQiOiJoM1pDRjBWcnpnWGduSENxYkhiS1h6emZqVGciLCJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6IlM2dTJIZTRqeXd2eXlwVDdmR1lFeExTeXBRWWEiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiODZjOGEwODUtYTQ0NC00MmQ1LWJlNDMtOTY4YjM2NmE1NDY3IiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3RhdGUiOiJZV2x6Y0Rvek1UUTIiLCJleHAiOjE3NTcyMzM1ODgsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiY2xpZW50X2lkIjoiUzZ1MkhlNGp5d3Z5eXBUN2ZHWUV4TFN5cFFZYSJ9.mClPy-6g0Kn3JIF8P7odd-PiWYCSDhVyQJqn9SkHAXo07saGYD-YxQcqfghRnUbYc41SyAwtkw4bfbNLpqLFnmJsBiP3XjjDE0YwKwD4UXFMAac4zW9ooQtzr_5qXkGS5nNpua7KtpvNezNBgS5-c4MjuI6nUxL63rgmZyRoDlrK_Uxgx4CSxmJQkcHP8YzNvCVxe9ftpuKUlanCCgNvGg2ocmwpRP1G1-ZBr2e3nIfGsFxSaX-4vkur4chEyjk5YogfoxjnG1UjvP_al9M07W0J-eysviGMNqzJ7LDIVCDp5ZKrOnf1p_zPLE4No3xV8cN1ZTJJ_ufUABhJTYQKEw
+            ```
+                 
+            ``` tab='Format'
+                 {
+                   "kid": "<The KID value of the signing jwk set>",
+                   "alg": "<SUPPORTED_ALGORITHM>",
+                   "typ": "JWT"
+                 }
+                 {
+                   "max_age": 86400,
+                   "aud": "<This is the audience that the ID token is intended for. Example, https://<IS_HOST>:9446/oauth2/token>",
+                   "scope": "accounts openid",
+                   "iss": "<CLIENT_ID>",
+                   "claims": {
+                     "id_token": {
+                       "acr": {
+                         "values": [
+                           "urn:openbanking:psd2:sca",
+                           "urn:openbanking:psd2:ca"
+                         ],
+                         "essential": true
+                       },
+                       "openbanking_intent_id": {
+                         "value": "<CONSENTID>",
+                         "essential": true
+                       }
+                     },
+                     "userinfo": {
+                       "openbanking_intent_id": {
+                         "value": "<CONSENTID>",
+                         "essential": true
+                       }
+                     }
+                   },
+                   "response_type": "code id_token",  
+                   "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
+                   "state": "YWlzcDozMTQ2",
+                   "exp": <The expiration time of the request object in Epoch format>,
+                   "nonce": "<PREVENTS_REPLAY_ATTACKS>",
+                   "client_id": "<CLIENT_ID>"
+                 }
+            ```
+
+2. The bank sends the request to the customer stating the accounts and information that the API
+   consumer wishes to access. This request is in the format of a URL as follows:
 
     ``` url tab="Sample"
         https://localhost:9446/oauth2/authorize/?request=eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL29iLWlhbTo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc0OTAyMDQ5MCwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGFjY291bnRzIG9wZW5pZCIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzIjpbInVybjpvcGVuYmFua2luZzpwc2QyOmNhIiwidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhIl0sImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6IjE5NmFkZjAzLTQ2ZDAtNDA4Yy1hNzdiLWFhZWY0MDFlZWM2MiIsImVzc2VudGlhbCI6dHJ1ZX19LCJ1c2VyaW5mbyI6eyJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiIxOTZhZGYwMy00NmQwLTQwOGMtYTc3Yi1hYWVmNDAxZWVjNjIiLCJlc3NlbnRpYWwiOnRydWV9fX0sImlzcyI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vcmVkaXJlY3RzL3JlZGlyZWN0MSIsInN0YXRlIjoiZTkwNzY0YWYtOWIyZS00N2IyLWI3MzUtNzExNjE5ZTA2MmMzIiwiZXhwIjoxNzQ5MDIzOTcwLCJub25jZSI6IjIzNTJiMjZjLTE2YzUtNDdmNy04OTg4LWNhNDA1ZTdhZDIxZCIsImNsaWVudF9pZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EifQ.rmM1Muwbm6qqtm_f3rcZOYMpbiaRQfFsQSs2SVxPCUIncaSHMcBp2vVeEoKkdo-kwysteNEdQw1uhceAU86muAqho7zFVvmTRdMGBi5Ad0zCtvu2QS00c-3Ur2GYKZM-EvfUhxYbwNx15Yu79rPWpgs9dT1qLTLTHtzkXQ_0Ib8U8u42jM3hiOnJontrRJn7WU3pAmcXRH886GJBBhPhgVPr9cpfsFvTcHIiPaxROuyteRh1_x2-_-4pz_1XZq-YkirsbN-p29CohEOzAdHhV80rIqCU_Wknp5Rkt4NT0hMSNeonxTOwfocQkXraZ5kDLb60Y_4vR5N8UUcmkIXQSw&scope=accounts%20openid&response_type=code%20id_token&redirect_uri=https%3A%2F%2Fwww.google.com%2Fredirects%2Fredirect1&state=ace6befc-90a4-4627-ae17-9aa4f75594e8&nonce=nonce&client_id=jXuHPxPhitMUevd4d31GSs25uWca
     ```
-   
+
     ``` url tab="Format"
         https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=accounts%20openid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
     ```
-   
+
 3. Run the URL in a browser to prompt the invocation of the authorize API.
 
-   ![login-screen-in-tryout-flow.png](../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
+   ![login-screen-in-tryout-flow.png](../../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
 
-4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `consumer` role. 
+4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `consumer` role.
 
 5. The page displays a list of bank accounts and the information that the API consumer wishes to access.
-   ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png)   
-    
-6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click 
- **Confirm** to grant these permissions.
-    
-7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample 
-given below:
+   ![grant consent](../../assets/img/learn/consent-manager/consent-page-confirm.png)
 
-    The authorization code from the below URL is in the code parameter (`code=07e213e5-9971-3f0e-9acc-2fd99fd0304b`).
+6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click
+   **Confirm** to grant these permissions.
 
-    ```
-    https://www.google.com/redirects/redirect1#id_token=eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9QUzI1NiIsImFsZyI6IlBTMjU2In0.eyJpc2siOiJmMGFkZTFkMDVmNjg4MTRlNzhjZTY2MTU5OTI1YzZhMDcyZTMwNWE0ZDI5NmRlOWJkODU2ZjdiOWMwMjQ0MTliIiwic3ViIjoiOTljMzEzMjAtNzA4ZC00NjYxLWEwYTgtZGVhYjZhMDQwYTJlQGNhcmJvbi5zdXBlciIsImFtciI6WyJCYXNpY0F1dGhlbnRpY2F0b3IiXSwiaXNzIjoiaHR0cHM6XC9cL29iLWlhbTo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwibm9uY2UiOiJlODAzMTNlNC04ZTZlLTRkYjctOTg2Yi0yNjYwNDQ3OThlOTciLCJzaWQiOiI0NjQ5MDlhYi1jYjZjLTRjZDktYTU5OC0wYWU1MjExYzQzOTciLCJhdWQiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiY19oYXNoIjoiVTZDWFVqc1h4VGdEMWxrM3JRRnpFdyIsInVzZXJfb3JnIjoiMTAwODRhOGQtMTEzZi00MjExLWEwZDUtZWZlMzZiMDgyMjExIiwic19oYXNoIjoiOHlLSmpOcE5RMlVVQXFuN2FFU3lvdyIsImF6cCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJleHAiOjE3NDkwMjgyODIsIm9yZ19uYW1lIjoiU3VwZXIiLCJpYXQiOjE3NDkwMjQ2ODIsImp0aSI6IjZmNWFhZGI1LTdkYTEtNDhiMS04NjVjLTBjOWY5YzRkMzc2NSIsImNvbnNlbnRfaWQiOiI3NDk5ZmYzMy1mNGRlLTRkZjQtYWI0MS1hMDEzMzQ0MGI3OGMifQ.Pe18gebXzDciawD_HwXnezPfP-hgB7QrAjxl1pyWYREuVEhWJ8s-S1hnp5KzOhPbeR8nyws7Qqg7gHurFFGfCFCyLJsH34889LAWSZhcLuPl1ia9wAtHCKztCd9ga6vohhyDoQXqLaIN8E4ZARuQ75xRkLKPektf3fXQiK5Tklr0g4Le-Ht53d39soPNzoF0cSl8csLrpPPSiSie5bNpL8OEZlsJWLv88Mv3RcxC8BhBeGVGMwImmmBD4oJc-wCetUgldoG4txAA_JtckOw0TWKSvuEF_Vx036Z_n6bY8YenILzgbb3MeHrAY7tHPE3JEKe9I4KhRyv6XkZ7gSA5Lg
-    &code=07e213e5-9971-3f0e-9acc-2fd99fd0304b
-    &session_state=0d1e5b4ce6cbc2a338f25baa18efab4929129127f058c6812e9ee0130a4715ea.L25p4RAFA8WfK3UH10OddQ
-    &state=64f525ed-af4a-42f7-a671-78636bf6dd09
-    ```
-   
+7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample
+      given below:
+
+      The authorization code from the below URL is in the code parameter (`code=07e213e5-9971-3f0e-9acc-2fd99fd0304b`).
+
+       ```
+       https://www.google.com/redirects/redirect1#id_token=eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9QUzI1NiIsImFsZyI6IlBTMjU2In0.eyJpc2siOiJmMGFkZTFkMDVmNjg4MTRlNzhjZTY2MTU5OTI1YzZhMDcyZTMwNWE0ZDI5NmRlOWJkODU2ZjdiOWMwMjQ0MTliIiwic3ViIjoiOTljMzEzMjAtNzA4ZC00NjYxLWEwYTgtZGVhYjZhMDQwYTJlQGNhcmJvbi5zdXBlciIsImFtciI6WyJCYXNpY0F1dGhlbnRpY2F0b3IiXSwiaXNzIjoiaHR0cHM6XC9cL29iLWlhbTo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwibm9uY2UiOiJlODAzMTNlNC04ZTZlLTRkYjctOTg2Yi0yNjYwNDQ3OThlOTciLCJzaWQiOiI0NjQ5MDlhYi1jYjZjLTRjZDktYTU5OC0wYWU1MjExYzQzOTciLCJhdWQiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiY19oYXNoIjoiVTZDWFVqc1h4VGdEMWxrM3JRRnpFdyIsInVzZXJfb3JnIjoiMTAwODRhOGQtMTEzZi00MjExLWEwZDUtZWZlMzZiMDgyMjExIiwic19oYXNoIjoiOHlLSmpOcE5RMlVVQXFuN2FFU3lvdyIsImF6cCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJleHAiOjE3NDkwMjgyODIsIm9yZ19uYW1lIjoiU3VwZXIiLCJpYXQiOjE3NDkwMjQ2ODIsImp0aSI6IjZmNWFhZGI1LTdkYTEtNDhiMS04NjVjLTBjOWY5YzRkMzc2NSIsImNvbnNlbnRfaWQiOiI3NDk5ZmYzMy1mNGRlLTRkZjQtYWI0MS1hMDEzMzQ0MGI3OGMifQ.Pe18gebXzDciawD_HwXnezPfP-hgB7QrAjxl1pyWYREuVEhWJ8s-S1hnp5KzOhPbeR8nyws7Qqg7gHurFFGfCFCyLJsH34889LAWSZhcLuPl1ia9wAtHCKztCd9ga6vohhyDoQXqLaIN8E4ZARuQ75xRkLKPektf3fXQiK5Tklr0g4Le-Ht53d39soPNzoF0cSl8csLrpPPSiSie5bNpL8OEZlsJWLv88Mv3RcxC8BhBeGVGMwImmmBD4oJc-wCetUgldoG4txAA_JtckOw0TWKSvuEF_Vx036Z_n6bY8YenILzgbb3MeHrAY7tHPE3JEKe9I4KhRyv6XkZ7gSA5Lg
+       &code=07e213e5-9971-3f0e-9acc-2fd99fd0304b
+       &session_state=0d1e5b4ce6cbc2a338f25baa18efab4929129127f058c6812e9ee0130a4715ea.L25p4RAFA8WfK3UH10OddQ
+       &state=64f525ed-af4a-42f7-a671-78636bf6dd09
+       ```
+
 ### Step 4: Generate user access token
 
 1. You can generate a user access token using the sample request given below:
@@ -304,8 +305,8 @@ given below:
     -d 'grant_type=authorization_code&code=07e213e5-9971-3f0e-9acc-2fd99fd0304b&scope=openid%20accounts&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION>&redirect_uri=https://www.google.com/redirects/redirect1'
     ```
 
-2. The `client_assertion` parameter is a JWT as explained in the 
-[Generating an application access token](#step-1-generate-application-access-token) step.
+2. The `client_assertion` parameter is a JWT as explained in the
+   [Generating an application access token](#step-1-generate-application-access-token) step.
 
 3. Update all parameters and use the authorization code you generated in the previous step as `code`.
 
@@ -326,9 +327,9 @@ given below:
 The Consent Validate implements the validations that are required when the resource endpoints are invoked with a user access token.
 
 !!! note
-    In a real-life open banking environment, the API consumer applications can retrieve details of accounts for which 
-    the bank customer has granted them consent.
- 
+      In a real-life open banking environment, the API consumer applications can retrieve details of accounts for which
+      the bank customer has granted them consent.
+
 - A sample request looks as follows:
    ```
    curl -X POST \
@@ -342,44 +343,44 @@ The Consent Validate implements the validations that are required when the resou
    --data 'eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.CgkJCXsKICAgICAgCQkJImhlYWRlcnMiOiB7CiAJCQkgIAkJIkF1dGhvcml6YXRpb24iOiAiQmFzaWMgYVhOZllXUnRhVzVBZDNOdk1pNWpiMjA2ZDNOdk1qRXlNdz09IiwKIAkJCSAJIAkiY29uc2VudC1pZCI6ICIxMmE0ZWJjOC1iOThjLTRmODAtOWEzNy00NDY3OTM2M2I5N2IiLAogCQkJICAJCSJhY3Rpdml0eWlkIjogIjg2NjZhYTg0LWZjNWEtNDI1ZS05MWM5LTM3ZmEzMGE5NTc4NCIsCiAJCQkgIAkJIkNhY2hlLUNvbnRyb2wiOiAibm8tY2FjaGUiLAogCQkJICAJCSJDb25uZWN0aW9uIjogImtlZXAtYWxpdmUiLAogCQkgICAgICAJCSJVc2VyLUFnZW50IjogIlBvc3RtYW5SdW50aW1lLzcuMjguNCIsCiAJCQkgIAkJIkhvc3QiOiAibG9jYWxob3N0OjgyNDMiLAogCQkJICAJCSJQb3N0bWFuLVRva2VuIjogIjI0NGQxNWI2LWViMTgtNDA0NS1iYTg3LThlZTZjODMwYjg0YyIsCiAJCQkgIAkJIkFjY2VwdC1FbmNvZGluZyI6ICJnemlwLCBkZWZsYXRlLCBiciIsCiAJCQkgIAkJImFjY2VwdCI6ICJhcHBsaWNhdGlvbi9qc29uOyBjaGFyc2V0PXV0Zi04IgogCQkJICAJfSwKICAgICAgICAJCSJjb25zZW50SWQiOiAiMTJhNGViYzgtYjk4Yy00ZjgwLTlhMzctNDQ2NzkzNjNiOTdiIiwKICAgICAgICAJCSJyZXNvdXJjZVBhcmFtcyI6IHsKCQkJCQkicmVzb3VyY2UiOiAiL2Fpc3AvYWNjb3VudHMiLAoJCQkJCSJjb250ZXh0IjogIi9vcGVuLWJhbmtpbmcvdjMuMS9haXNwIiwKCQkJCQkiaHR0cE1ldGhvZCI6ICJHRVQiCiAJCQkgCSB9LAogCQkJICAgICJ1c2VySWQiOiAicHN1QHdzbzIuY29tIiwKICAgICAJCSAJImVsZWN0ZWRSZXNvdXJjZSI6ICIvYWNjb3VudHMiLAoJCQkJImNsaWVudElkIjogImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiCiAJCQl9CiAgICAJCQk.mjbOnLQUvpCfIpy8WRaYxBmSMnENNIu7OG89Dc7kLJTk9NebnKsgFRo0PAyrkCN-h0g5PRfM0HPhSeBxbazgjekaLpA0iSXiuaXKZUmIUSBORNxORjvqD6flQRzUraaf2qG_OKSBMBpal-unqjcCAlNdgwclCnJMwDmQrJPMqs7jJoiJAudIHwppnJ1uK82Zz_J3bWkL4kEuT4Hz4P8ukdTzTALCPGqxt4VT4dh_ADzR-NTGmpAuSNo8dEWkW9a3QAxhS4WZXRTK192wAS16YqRPOk3UXasqF2qI1KVBb5txNFtjw5eZFW0Eg8cNSOQ0BSwp3B_6zd0jHf9EiwTbLA'
    ```
 
-???tip "Click here to see a sample data payload..."
+??? tip "Click here to see a sample data payload..."
       - Given below is a sample payload in the JWT format:
 
-           ```
-           {
-               "kid": "<The KID value of the signing jwk set>",
-               "alg": "<SUPPORTED_ALGORITHM>",
-               "typ": "JWT"
-           }
-           {
-               "headers": {
-                  "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
-                  "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
-                  "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
-                  "Cache-Control": "no-cache",
-                  "Connection": "keep-alive",
-                  "User-Agent": "PostmanRuntime/7.28.4",
-                  "Host": "localhost:8243",
-                  "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
-                  "Accept-Encoding": "gzip, deflate, br",
-                  "accept": "application/json; charset=utf-8"
-               },
-               "consentId": "<CONSENT_ID>",
-               "resourceParams": {
-               "resource": "/aisp/accounts",
-               "context": "/open-banking/v3.1/aisp",
-               "httpMethod": "GET"
-           },
-           "userId": "psu@wso2.com",
-           "electedResource": "/accounts",
-           "clientId": "<CLIENT_ID>"
-           }
-           ```
-     
-- The request validates the Account Information access request. 
+      ```
+      {
+         "kid": "<The KID value of the signing jwk set>",
+         "alg": "<SUPPORTED_ALGORITHM>",
+         "typ": "JWT"
+      }
+      {
+         "headers": {
+            "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
+            "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
+            "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "User-Agent": "PostmanRuntime/7.28.4",
+            "Host": "localhost:8243",
+            "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
+            "Accept-Encoding": "gzip, deflate, br",
+            "accept": "application/json; charset=utf-8"
+         },
+         "consentId": "<CONSENT_ID>",
+         "resourceParams": {
+         "resource": "/aisp/accounts",
+         "context": "/open-banking/v3.1/aisp",
+         "httpMethod": "GET"
+      },
+         "userId": "psu@wso2.com",
+         "electedResource": "/accounts",
+         "clientId": "<CLIENT_ID>"
+      }
+      ```
 
-    !!! note
-        The response contains the validity of the Account access request along with consent information or the reason for the validation failure.
+- The request validates the Account Information access request.
+
+  !!! note
+  The response contains the validity of the Account access request along with consent information or the reason for the validation failure.
 
 ```
 {

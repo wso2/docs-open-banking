@@ -6,14 +6,15 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
     
     2. Configure the JWKS endpoints by following the sample given below. These endpoints are used for validating the SSA signature. 
     ```toml
-    [open_banking.dcr]
-    jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
-    jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
+    [oauth.dcr]
+    ssa_jkws= "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
     ```
        
     3. Restart the Identity Server.
 
-    4. If you are using **WSO2 API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
+    4. Create API Resources, Roles and Users by following the instructions in the [Configuring Users and Roles](../learn/configure-users-and-roles.md) guide. 
+
+<!--    4. If you are using **WSO2 API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
         1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
         2. Disable `[apim.key_manager]` configurations by commenting them out:
 
@@ -154,25 +155,60 @@ to the client trust stores in `<APIM_HOME>/repository/resources/security/client-
 6. Disable the Resident Key Manager.
 
    ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)
+-->
+### Step 1: Register an application
+The DCR allows the TPP to request the bank to register a new application. The process is as follows:
 
-### Step 3: Register an application
-The API allows the API consumer to request the bank to register a new application. The process is as follows:
-
-- The API consumer sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
-This SSA contains API consumer's metadata. A sample request looks as follows:
+- The TPP sends a registration request including a Software Statement Assertion (SSA) as a claim in the payload. 
+This SSA contains API consumer's metadata. It is a signed JWT issued by the Open Banking directory and the TPPs need to 
+obtain it before registering with an ASPSP.A sample request looks as follows:
 
  For the Transport Layer Security purposes in this sample flow, you can use the attached
  [private key](../../assets/attachments/transport-certs/obtransport.key) and 
  [public certificate](../../assets/attachments/transport-certs/obtransport.pem). 
 
 ```
-curl -X POST https://localhost:8243/open-banking/0.1/register \
- -H 'Content-Type: application/jwt' \
- --cert <TRANSPORT_PUBLIC_CERT_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
- -d 'eyJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiIsImtpZCI6ImNJWW8tNXpYNE9UV1pwSHJtbWlaRFZ4QUNKTSJ9.eyJpc3MiOiJvUTRLb2FhdnBPdW9FN3J2UXNaRU9WIiwiaWF0IjoxNjk0MDc1NzEzLCJleHAiOjIxNDc0ODM2NDYsImp0aSI6IjM3NzQ3Y2QxYzEwNTQ1Njk5Zjc1NGFkZjI4YjczZTMyIiwiYXVkIjoiaHR0cHM6Ly9zZWN1cmUuYXBpLmRhdGFob2xkZXIuY29tL2lzc3VlciIsInJlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIl0sInRva2VuX2VuZHBvaW50X2F1dGhfc2lnbmluZ19hbGciOiJQUzI1NiIsInRva2VuX2VuZHBvaW50X2F1dGhfbWV0aG9kIjoicHJpdmF0ZV9rZXlfand0IiwiZ3JhbnRfdHlwZXMiOlsiY2xpZW50X2NyZWRlbnRpYWxzIiwiYXV0aG9yaXphdGlvbl9jb2RlIiwicmVmcmVzaF90b2tlbiIsInVybjppZXRmOnBhcmFtczpvYXV0aDpncmFudC10eXBlOmp3dC1iZWFyZXIiXSwicmVzcG9uc2VfdHlwZXMiOlsiY29kZSBpZF90b2tlbiJdLCJhcHBsaWNhdGlvbl90eXBlIjoid2ViIiwiaWRfdG9rZW5fc2lnbmVkX3Jlc3BvbnNlX2FsZyI6IlBTMjU2IiwiaWRfdG9rZW5fZW5jcnlwdGVkX3Jlc3BvbnNlX2FsZyI6IlJTQS1PQUVQIiwiaWRfdG9rZW5fZW5jcnlwdGVkX3Jlc3BvbnNlX2VuYyI6IkEyNTZHQ00iLCJyZXF1ZXN0X29iamVjdF9zaWduaW5nX2FsZyI6IlBTMjU2Iiwic2NvcGUiOiJvcGVuaWQgYWNjb3VudHMgcGF5bWVudHMiLCJzb2Z0d2FyZV9zdGF0ZW1lbnQiOiJleUpoYkdjaU9pSlFVekkxTmlJc0ltdHBaQ0k2SW1OSldXOHROWHBZTkU5VVYxcHdTSEp0YldsYVJGWjRRVU5LVFNJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcGMzTWlPaUpQY0dWdVFtRnVhMmx1WnlCTWRHUWlMQ0pwWVhRaU9qRTNNVFk1TlRVMk1UTXNJbXAwYVNJNkltSmhNMkpoWmpOak9EUTNNalExWm1FaUxDSnpiMlowZDJGeVpWOWxiblpwY205dWJXVnVkQ0k2SW5OaGJtUmliM2dpTENKemIyWjBkMkZ5WlY5dGIyUmxJam9pVkdWemRDSXNJbk52Wm5SM1lYSmxYMmxrSWpvaWIxRTBTMjloWVhad1QzVnZSVGR5ZGxGeldrVlBWaUlzSW5OdlpuUjNZWEpsWDJOc2FXVnVkRjlwWkNJNkltOVJORXR2WVdGMmNFOTFiMFUzY25aUmMxcEZUMVlpTENKemIyWjBkMkZ5WlY5amJHbGxiblJmYm1GdFpTSTZJbGRUVHpJZ1QzQmxiaUJDWVc1cmFXNW5JRlJRVURJZ0tGTmhibVJpYjNncElpd2ljMjltZEhkaGNtVmZZMnhwWlc1MFgyUmxjMk55YVhCMGFXOXVJam9pVjFOUE1pQlBjR1Z1SUVKaGJtdHBibWNnVkZCUU1pQm1iM0lnZEdWemRHbHVaeUlzSW5OdlpuUjNZWEpsWDNabGNuTnBiMjRpT2lJeExqVWlMQ0p6YjJaMGQyRnlaVjlqYkdsbGJuUmZkWEpwSWpvaWFIUjBjSE02THk5M2QzY3VaMjl2WjJ4bExtTnZiU0lzSW5OdlpuUjNZWEpsWDNKbFpHbHlaV04wWDNWeWFYTWlPbHNpYUhSMGNITTZMeTkzZDNjdVoyOXZaMnhsTG1OdmJTOXlaV1JwY21WamRITXZjbVZrYVhKbFkzUXhJbDBzSW5OdlpuUjNZWEpsWDNKdmJHVnpJanBiSWxCSlUxQWlMQ0pCU1ZOUUlpd2lRMEpRU1VraVhTd2liM0puWVc1cGMyRjBhVzl1WDJOdmJYQmxkR1Z1ZEY5aGRYUm9iM0pwZEhsZlkyeGhhVzF6SWpwN0ltRjFkR2h2Y21sMGVWOXBaQ0k2SWs5Q1IwSlNJaXdpY21WbmFYTjBjbUYwYVc5dVgybGtJam9pVlc1cmJtOTNiakF3TVRVNE1EQXdNREZJVVZGeVdrRkJXQ0lzSW5OMFlYUjFjeUk2SWtGamRHbDJaU0lzSW1GMWRHaHZjbWx6WVhScGIyNXpJanBiZXlKdFpXMWlaWEpmYzNSaGRHVWlPaUpIUWlJc0luSnZiR1Z6SWpwYklsQkpVMUFpTENKQlNWTlFJaXdpUTBKUVNVa2lYWDBzZXlKdFpXMWlaWEpmYzNSaGRHVWlPaUpKUlNJc0luSnZiR1Z6SWpwYklsQkpVMUFpTENKRFFsQkpTU0lzSWtGSlUxQWlYWDBzZXlKdFpXMWlaWEpmYzNSaGRHVWlPaUpPVENJc0luSnZiR1Z6SWpwYklsQkpVMUFpTENKQlNWTlFJaXdpUTBKUVNVa2lYWDFkZlN3aWMyOW1kSGRoY21WZmJHOW5iMTkxY21raU9pSm9kSFJ3Y3pvdkwzZDNkeTVuYjI5bmJHVXVZMjl0SWl3aWIzSm5YM04wWVhSMWN5STZJa0ZqZEdsMlpTSXNJbTl5WjE5cFpDSTZJakF3TVRVNE1EQXdNREZJVVZGeVdrRkJXQ0lzSW05eVoxOXVZVzFsSWpvaVYxTlBNaUFvVlVzcElFeEpUVWxVUlVRaUxDSnZjbWRmWTI5dWRHRmpkSE1pT2x0N0ltNWhiV1VpT2lKVVpXTm9ibWxqWVd3aUxDSmxiV0ZwYkNJNkluTmhZMmhwYm1selFIZHpiekl1WTI5dElpd2ljR2h2Ym1VaU9pSXJPVFEzTnpReU56UXpOelFpTENKMGVYQmxJam9pVkdWamFHNXBZMkZzSW4wc2V5SnVZVzFsSWpvaVFuVnphVzVsYzNNaUxDSmxiV0ZwYkNJNkluTmhZMmhwYm1selFIZHpiekl1WTI5dElpd2ljR2h2Ym1VaU9pSXJPVFEzTnpReU56UXpOelFpTENKMGVYQmxJam9pUW5WemFXNWxjM01pZlYwc0ltOXlaMTlxZDJ0elgyVnVaSEJ2YVc1MElqb2lhSFIwY0hNNkx5OXJaWGx6ZEc5eVpTNXZjR1Z1WW1GdWEybHVaM1JsYzNRdWIzSm5MblZyTHpBd01UVTRNREF3TURGSVVWRnlXa0ZCV0M4d01ERTFPREF3TURBeFNGRlJjbHBCUVZndWFuZHJjeUlzSW05eVoxOXFkMnR6WDNKbGRtOXJaV1JmWlc1a2NHOXBiblFpT2lKb2RIUndjem92TDJ0bGVYTjBiM0psTG05d1pXNWlZVzVyYVc1bmRHVnpkQzV2Y21jdWRXc3ZNREF4TlRnd01EQXdNVWhSVVhKYVFVRllMM0psZG05clpXUXZNREF4TlRnd01EQXdNVWhSVVhKYVFVRllMbXAzYTNNaUxDSnpiMlowZDJGeVpWOXFkMnR6WDJWdVpIQnZhVzUwSWpvaWFIUjBjSE02THk5clpYbHpkRzl5WlM1dmNHVnVZbUZ1YTJsdVozUmxjM1F1YjNKbkxuVnJMekF3TVRVNE1EQXdNREZJVVZGeVdrRkJXQzl2VVRSTGIyRmhkbkJQZFc5Rk4zSjJVWE5hUlU5V0xtcDNhM01pTENKemIyWjBkMkZ5WlY5cWQydHpYM0psZG05clpXUmZaVzVrY0c5cGJuUWlPaUpvZEhSd2N6b3ZMMnRsZVhOMGIzSmxMbTl3Wlc1aVlXNXJhVzVuZEdWemRDNXZjbWN1ZFdzdk1EQXhOVGd3TURBd01VaFJVWEphUVVGWUwzSmxkbTlyWldRdmIxRTBTMjloWVhad1QzVnZSVGR5ZGxGeldrVlBWaTVxZDJ0eklpd2ljMjltZEhkaGNtVmZjRzlzYVdONVgzVnlhU0k2SW1oMGRIQnpPaTh2ZDNkM0xtZHZiMmRzWlM1amIyMGlMQ0p6YjJaMGQyRnlaVjkwYjNOZmRYSnBJam9pYUhSMGNITTZMeTkzZDNjdVoyOXZaMnhsTG1OdmJTSXNJbk52Wm5SM1lYSmxYMjl1WDJKbGFHRnNabDl2Wmw5dmNtY2lPaUpYVTA4eUlFOXdaVzRnUW1GdWEybHVaeUo5LlZuZlhycHBHbUNjWUdXTGNtVDNnQjIycjI5N1ZjMHBwaWJMcmwwbXY4UEdrYjdvWkxFa0lxYUFkejlPQndGamVoRGlIbEl6T3JDek5nekpENUd2eWFjWlNpb3JGa3B6QnBiVjgwcS1uXy11RlR1Z0U3bXJDVm5OZlRzYjFTQkVkb1dDUm5fQmJ6SC1UMllzdHFMV1BoYl9mSGtEU0ZUR0plU25GR3AxRWNNWFZteDhQLXBDZ3NvVFMta1hFUERYRDdGNGlaalp3Y0ZmeERwZV9OOEZ2QVVDMjhsM1R6bTFhdTRiTGpySTBUOTRQVm9FSkVtQWs5QVVfc29tRnlfWEV2dUt1dVVMZmNjVzNDRFI2S0didlhWN01WUE5BNVhUVDVnX0g5YlJ4Y1BYNFphYVdmSWFSVmZaMjhkX1pDUnRzVUlpTGdtXzZlWmtpRC03RWgzcXlWUSJ9.YQG2V25jnO9RYSF2bPOlHxWciiYi5UanUgza5IfzIhkYRZrccZwPPJuxJRtKJ1GQZvIVrjaVNCgovC-MYwQOXYUg5gfQxPd6QF2fhuQd_3vujU6XZ1VLckzGrA4mX3gLf_tK-QGwpIlqwphIPhm71NcF6dwHJy8A6BGjhkYPXC94DjwYfYnIfksEqXKfUPskDEBTuvlOo4sDTuFO-e5xGCV4L7SQvCkjh42uPXHwoHm56mFu69BRYsCer8kak3ZSsm2l0XVbYX74fYq1TBIFSdsA9R3Xo-fn7VgLcQOXQqHGVs2JWIF9-Pf5-gGbM_YE3PUj7kq2dp0saNIoeAvmfQ' 
+curl -X POST https://localhost:9446/api/identity/oauth2/dcr/v1.1/register/ \
+-H 'Accept: application/json' \
+-H 'Authorization: Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
+--cert <TRANSPORT_PUBLIC_CERT_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+-H 'Content-Type: application/json' \
+ -d '{
+    "iss": "oQ4KoaavpOuoE7rvQsZEOV",
+    "iat": 1749012253,
+    "exp": 1749015853,
+    "jti": "1749012253364",
+    "aud": "https://localbank.com",
+    "scope": "accounts payments fundsconfirmations",
+    "token_endpoint_auth_method": "private_key_jwt",
+    "token_endpoint_auth_signing_alg": "PS256",
+    "grant_types": [
+        "authorization_code",
+        "client_credentials",
+        "refresh_token"
+    ],
+    "response_types": [
+        "code id_token"
+    ],
+    "id_token_signed_response_alg": "PS256",
+    "request_object_signing_alg": "PS256",
+    "application_type": "web",
+    "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
+    "redirect_uris": [
+        "https://www.google.com/redirects/redirect1"
+    ],
+    "token_endpoint_allow_reuse_pvt_key_jwt": false,
+    "tls_client_certificate_bound_access_tokens": true,
+    "require_signed_request_object": true,
+    "token_type_extension": "JWT",
+    "jwks_uri": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/oQ4KoaavpOuoE7rvQsZEOV.jwks",
+    "client_name": "WSO2_Open_Banking_TPP2__Sandbox_",
+    "ext_application_display_name": "WSO2_Open_Banking_TPP2__Sandbox_",
+    "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6ImNJWW8tNXpYNE9UV1pwSHJtbWlaRFZ4QUNKTSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE3MTY5NTU2MTMsImp0aSI6ImJhM2JhZjNjODQ3MjQ1ZmEiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoib1E0S29hYXZwT3VvRTdydlFzWkVPViIsInNvZnR3YXJlX2NsaWVudF9pZCI6Im9RNEtvYWF2cE91b0U3cnZRc1pFT1YiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUDIgKFNhbmRib3gpIiwic29mdHdhcmVfY2xpZW50X2Rlc2NyaXB0aW9uIjoiV1NPMiBPcGVuIEJhbmtpbmcgVFBQMiBmb3IgdGVzdGluZyIsInNvZnR3YXJlX3ZlcnNpb24iOiIxLjUiLCJzb2Z0d2FyZV9jbGllbnRfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX3JlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIl0sInNvZnR3YXJlX3JvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXSwib3JnYW5pc2F0aW9uX2NvbXBldGVudF9hdXRob3JpdHlfY2xhaW1zIjp7ImF1dGhvcml0eV9pZCI6Ik9CR0JSIiwicmVnaXN0cmF0aW9uX2lkIjoiVW5rbm93bjAwMTU4MDAwMDFIUVFyWkFBWCIsInN0YXR1cyI6IkFjdGl2ZSIsImF1dGhvcmlzYXRpb25zIjpbeyJtZW1iZXJfc3RhdGUiOiJHQiIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX0seyJtZW1iZXJfc3RhdGUiOiJJRSIsInJvbGVzIjpbIlBJU1AiLCJDQlBJSSIsIkFJU1AiXX0seyJtZW1iZXJfc3RhdGUiOiJOTCIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX1dfSwic29mdHdhcmVfbG9nb191cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tIiwib3JnX3N0YXR1cyI6IkFjdGl2ZSIsIm9yZ19pZCI6IjAwMTU4MDAwMDFIUVFyWkFBWCIsIm9yZ19uYW1lIjoiV1NPMiAoVUspIExJTUlURUQiLCJvcmdfY29udGFjdHMiOlt7Im5hbWUiOiJUZWNobmljYWwiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiVGVjaG5pY2FsIn0seyJuYW1lIjoiQnVzaW5lc3MiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiQnVzaW5lc3MifV0sIm9yZ19qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsIm9yZ19qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvMDAxNTgwMDAwMUhRUXJaQUFYLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9vUTRLb2FhdnBPdW9FN3J2UXNaRU9WLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvb1E0S29hYXZwT3VvRTdydlFzWkVPVi5qd2tzIiwic29mdHdhcmVfcG9saWN5X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20iLCJzb2Z0d2FyZV90b3NfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX29uX2JlaGFsZl9vZl9vcmciOiJXU08yIE9wZW4gQmFua2luZyJ9.VnfXrppGmCcYGWLcmT3gB22r297Vc0ppibLrl0mv8PGkb7oZLEkIqaAdz9OBwFjehDiHlIzOrCzNgzJD5GvyacZSiorFkpzBpbV80q-n_-uFTugE7mrCVnNfTsb1SBEdoWCRn_BbzH-T2YstqLWPhb_fHkDSFTGJeSnFGp1EcMXVmx8P-pCgsoTS-kXEPDXD7F4iZjZwcFfxDpe_N8FvAUC28l3Tzm1au4bLjrI0T94PVoEJEmAk9AU_somFy_XEvuKuuULfccW3CDR6KGbvXV7MVPNA5XTT5g_H9bRxcPX4ZaaWfIaRVfZ28d_ZCRtsUIiLgm_6eZkiD-7Eh3qyVQ"
+}' 
 ```
 
-The payload is a signed JWT.
+<!--The payload is a signed JWT.
 
 ??? tip "Click here to see the decoded format of the payload..."
 
@@ -214,92 +250,92 @@ The payload is a signed JWT.
 
     <signature>
     ```
-
+-->
 ??? tip "Click here to see the decoded format of an SSA..."
 
     ```
     {
-      "alg": "PS256",
-      "kid": "cIYo-5zX4OTWZpHrmmiZDVxACJM",
-      "typ": "JWT"
+        "alg": "PS256",
+        "kid": "cIYo-5zX4OTWZpHrmmiZDVxACJM",
+        "typ": "JWT"
     }
 
     {
-      "iss": "OpenBanking Ltd",
-      "iat": 1647405940,
-      "jti": "36b5dfe0205c4060",
-      "software_environment": "sandbox",
-      "software_mode": "Test",
-      "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
-      "software_client_id": "oQ4KoaavpOuoE7rvQsZEOV",
-      "software_client_name": "WSO2 Open Banking TPP2 (Sandbox)",
-      "software_client_description": "WSO2 Open Banking TPP2 for testing",
-      "software_version": 1.5,
-      "software_client_uri": "https://www.google.com",
-      "software_redirect_uris": [
-         "https://www.google.com/redirects/redirect1"
-      ],
-      "software_roles": [
-         "PISP",
-         "AISP",
-         "CBPII"
-      ],
-      "organisation_competent_authority_claims": {
-         "authority_id": "OBGBR",
-         "registration_id": "Unknown0015800001HQQrZAAX",
-         "status": "Active",
-         "authorisations": [
-            {
-               "member_state": "GB",
-               "roles": [
-                  "PISP",
-                  "AISP",
-                  "CBPII"
+        "iss": "OpenBanking Ltd",
+        "iat": 1716955613,
+        "jti": "ba3baf3c847245fa",
+        "software_environment": "sandbox",
+        "software_mode": "Test",
+        "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
+        "software_client_id": "oQ4KoaavpOuoE7rvQsZEOV",
+        "software_client_name": "WSO2 Open Banking TPP2 (Sandbox)",
+        "software_client_description": "WSO2 Open Banking TPP2 for testing",
+        "software_version": "1.5",
+        "software_client_uri": "https://www.google.com",
+        "software_redirect_uris": [
+            "https://www.google.com/redirects/redirect1"
+        ],
+        "software_roles": [
+            "PISP",
+            "AISP",
+            "CBPII"
+        ],
+        "organisation_competent_authority_claims": {
+            "authority_id": "OBGBR",
+            "registration_id": "Unknown0015800001HQQrZAAX",
+            "status": "Active",
+            "authorisations": [
+                {
+                    "member_state": "GB",
+                    "roles": [
+                        "PISP",
+                        "AISP",
+                        "CBPII"
+                    ]
+                },
+                {
+                    "member_state": "IE",
+                    "roles": [
+                        "PISP",
+                        "CBPII",
+                        "AISP"
+                    ]
+                },
+                {
+                    "member_state": "NL",
+                    "roles": [
+                        "PISP",
+                        "AISP",
+                        "CBPII"
+                    ]
+                }
             ]
+        },
+        "software_logo_uri": "https://www.google.com",
+        "org_status": "Active",
+        "org_id": "0015800001HQQrZAAX",
+        "org_name": "WSO2 (UK) LIMITED",
+        "org_contacts": [
+            {
+                "name": "Technical",
+                "email": "sachinis@wso2.com",
+                "phone": "+94774274374",
+                "type": "Technical"
             },
             {
-            "member_state": "IE",
-            "roles": [
-               "PISP",
-               "CBPII",
-               "AISP"
-            ]
-            },
-            {
-            "member_state": "NL",
-            "roles": [
-               "PISP",
-               "AISP",
-               "CBPII"
-            ]
+                "name": "Business",
+                "email": "sachinis@wso2.com",
+                "phone": "+94774274374",
+                "type": "Business"
             }
-         ]
-      },
-      "software_logo_uri": "https://wso2.com/wso2.jpg",
-      "org_status": "Active",
-      "org_id": "0015800001HQQrZAAX",
-      "org_name": "WSO2 (UK) LIMITED",
-      "org_contacts": [
-         {
-            "name": "Technical",
-            "email": "test@wso2.com",
-            "phone": "+94000000000",
-            "type": "Technical"
-         },
-         {
-            "name": "Business",
-            "email": "test@wso2.com",
-            "phone": "+94000000000",
-            "type": "Business"
-         }
-      ],
-      "org_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks",
-      "org_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/0015800001HQQrZAAX.jwks",
-      "software_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/oQ4KoaavpOuoE7rvQsZEOV.jwks",
-      "software_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/oQ4KoaavpOuoE7rvQsZEOV.jwks",
-      "software_policy_uri": "https://google.com",
-      "software_tos_uri": "https://google.com",
-      "software_on_behalf_of_org": "WSO2 Open Banking"
+        ],
+        "org_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks",
+        "org_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/0015800001HQQrZAAX.jwks",
+        "software_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/oQ4KoaavpOuoE7rvQsZEOV.jwks",
+        "software_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/oQ4KoaavpOuoE7rvQsZEOV.jwks",
+        "software_policy_uri": "https://www.google.com",
+        "software_tos_uri": "https://www.google.com",
+        "software_on_behalf_of_org": "WSO2 Open Banking"
     }
 
     <signature>
@@ -318,27 +354,54 @@ The API consumer can then use the identifier (`Client ID`) to access customers' 
 given below:
 ```
 {
-   "client_id":"S6u2He4jywvyypT7fGYExLSypQYa",
-   "client_id_issued_at":"1694075713",
-   "redirect_uris":[
-      "https://www.google.com/redirects/redirect1"
-      ],
-      "grant_types":[
-         "client_credentials",
-         "authorization_code",
-         "refresh_token",
-         "urn:ietf:params:oauth:grant-type:jwt-bearer"
-      ],
-      "response_types":[
-         "code id_token"
-      ],
-      "application_type":"web",
-      "id_token_signed_response_alg":"PS256",
-      "request_object_signing_alg":"PS256",
-      "scope":"openid accounts payments",
-      "software_id":"oQ4KoaavpOuoE7rvQsZEOV3",
-      "token_endpoint_auth_method":"private_key_jwt",
-      "software_statement":"eyJhbGciOiJQUzI1NiIsImtpZCI6ImNJWW8tNXpYNE9UV1pwSHJtbWlaRFZ4QUNKTSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE3MTY5NTU2MTMsImp0aSI6ImJhM2JhZjNjODQ3MjQ1ZmEiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoib1E0S29hYXZwT3VvRTdydlFzWkVPViIsInNvZnR3YXJlX2NsaWVudF9pZCI6Im9RNEtvYWF2cE91b0U3cnZRc1pFT1YiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUDIgKFNhbmRib3gpIiwic29mdHdhcmVfY2xpZW50X2Rlc2NyaXB0aW9uIjoiV1NPMiBPcGVuIEJhbmtpbmcgVFBQMiBmb3IgdGVzdGluZyIsInNvZnR3YXJlX3ZlcnNpb24iOiIxLjUiLCJzb2Z0d2FyZV9jbGllbnRfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX3JlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIl0sInNvZnR3YXJlX3JvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXSwib3JnYW5pc2F0aW9uX2NvbXBldGVudF9hdXRob3JpdHlfY2xhaW1zIjp7ImF1dGhvcml0eV9pZCI6Ik9CR0JSIiwicmVnaXN0cmF0aW9uX2lkIjoiVW5rbm93bjAwMTU4MDAwMDFIUVFyWkFBWCIsInN0YXR1cyI6IkFjdGl2ZSIsImF1dGhvcmlzYXRpb25zIjpbeyJtZW1iZXJfc3RhdGUiOiJHQiIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX0seyJtZW1iZXJfc3RhdGUiOiJJRSIsInJvbGVzIjpbIlBJU1AiLCJDQlBJSSIsIkFJU1AiXX0seyJtZW1iZXJfc3RhdGUiOiJOTCIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX1dfSwic29mdHdhcmVfbG9nb191cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tIiwib3JnX3N0YXR1cyI6IkFjdGl2ZSIsIm9yZ19pZCI6IjAwMTU4MDAwMDFIUVFyWkFBWCIsIm9yZ19uYW1lIjoiV1NPMiAoVUspIExJTUlURUQiLCJvcmdfY29udGFjdHMiOlt7Im5hbWUiOiJUZWNobmljYWwiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiVGVjaG5pY2FsIn0seyJuYW1lIjoiQnVzaW5lc3MiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiQnVzaW5lc3MifV0sIm9yZ19qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsIm9yZ19qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvMDAxNTgwMDAwMUhRUXJaQUFYLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9vUTRLb2FhdnBPdW9FN3J2UXNaRU9WLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvb1E0S29hYXZwT3VvRTdydlFzWkVPVi5qd2tzIiwic29mdHdhcmVfcG9saWN5X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20iLCJzb2Z0d2FyZV90b3NfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX29uX2JlaGFsZl9vZl9vcmciOiJXU08yIE9wZW4gQmFua2luZyJ9.VnfXrppGmCcYGWLcmT3gB22r297Vc0ppibLrl0mv8PGkb7oZLEkIqaAdz9OBwFjehDiHlIzOrCzNgzJD5GvyacZSiorFkpzBpbV80q-n_-uFTugE7mrCVnNfTsb1SBEdoWCRn_BbzH-T2YstqLWPhb_fHkDSFTGJeSnFGp1EcMXVmx8P-pCgsoTS-kXEPDXD7F4iZjZwcFfxDpe_N8FvAUC28l3Tzm1au4bLjrI0T94PVoEJEmAk9AU_somFy_XEvuKuuULfccW3CDR6KGbvXV7MVPNA5XTT5g_H9bRxcPX4ZaaWfIaRVfZ28d_ZCRtsUIiLgm_6eZkiD-7Eh3qyVQ"
+    "client_id": "jXuHPxPhitMUevd4d31GSs25uWca",
+    "client_secret": "o3BNsU76AQjyq7diTdJh6ZIDThfpLc45K3fps_AeNvUa",
+    "client_secret_expires_at": 0,
+    "redirect_uris": [
+        "https://www.google.com/redirects/redirect1"
+    ],
+    "grant_types": [
+        "authorization_code",
+        "client_credentials",
+        "refresh_token"
+    ],
+    "client_name": "WSO2_Open_Banking_TPP2__Sandbox_",
+    "ext_application_display_name": "WSO2_Open_Banking_TPP2__Sandbox_",
+    "ext_application_version": "v2.0.0",
+    "ext_application_owner": "is_admin@wso2.com@carbon.super",
+    "ext_application_token_lifetime": 3600,
+    "ext_user_token_lifetime": 3600,
+    "ext_refresh_token_lifetime": 86400,
+    "ext_id_token_lifetime": 3600,
+    "ext_pkce_mandatory": false,
+    "ext_pkce_support_plain": false,
+    "ext_public_client": false,
+    "token_type_extension": "JWT",
+    "ext_token_type": "JWT",
+    "jwks_uri": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/oQ4KoaavpOuoE7rvQsZEOV.jwks",
+    "token_endpoint_auth_method": "private_key_jwt",
+    "token_endpoint_allow_reuse_pvt_key_jwt": false,
+    "token_endpoint_auth_signing_alg": "PS256",
+    "sector_identifier_uri": null,
+    "id_token_signed_response_alg": "PS256",
+    "id_token_encrypted_response_alg": null,
+    "id_token_encrypted_response_enc": null,
+    "request_object_signing_alg": "PS256",
+    "tls_client_auth_subject_dn": null,
+    "require_pushed_authorization_requests": false,
+    "require_signed_request_object": true,
+    "tls_client_certificate_bound_access_tokens": true,
+    "subject_type": "public",
+    "request_object_encryption_alg": null,
+    "request_object_encryption_enc": null,
+    "software_statement": null,
+    "ext_allowed_audience": "organization",
+    "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
+    "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6ImNJWW8tNXpYNE9UV1pwSHJtbWlaRFZ4QUNKTSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE3MTY5NTU2MTMsImp0aSI6ImJhM2JhZjNjODQ3MjQ1ZmEiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoib1E0S29hYXZwT3VvRTdydlFzWkVPViIsInNvZnR3YXJlX2NsaWVudF9pZCI6Im9RNEtvYWF2cE91b0U3cnZRc1pFT1YiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUDIgKFNhbmRib3gpIiwic29mdHdhcmVfY2xpZW50X2Rlc2NyaXB0aW9uIjoiV1NPMiBPcGVuIEJhbmtpbmcgVFBQMiBmb3IgdGVzdGluZyIsInNvZnR3YXJlX3ZlcnNpb24iOiIxLjUiLCJzb2Z0d2FyZV9jbGllbnRfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX3JlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIl0sInNvZnR3YXJlX3JvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXSwib3JnYW5pc2F0aW9uX2NvbXBldGVudF9hdXRob3JpdHlfY2xhaW1zIjp7ImF1dGhvcml0eV9pZCI6Ik9CR0JSIiwicmVnaXN0cmF0aW9uX2lkIjoiVW5rbm93bjAwMTU4MDAwMDFIUVFyWkFBWCIsInN0YXR1cyI6IkFjdGl2ZSIsImF1dGhvcmlzYXRpb25zIjpbeyJtZW1iZXJfc3RhdGUiOiJHQiIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX0seyJtZW1iZXJfc3RhdGUiOiJJRSIsInJvbGVzIjpbIlBJU1AiLCJDQlBJSSIsIkFJU1AiXX0seyJtZW1iZXJfc3RhdGUiOiJOTCIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX1dfSwic29mdHdhcmVfbG9nb191cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tIiwib3JnX3N0YXR1cyI6IkFjdGl2ZSIsIm9yZ19pZCI6IjAwMTU4MDAwMDFIUVFyWkFBWCIsIm9yZ19uYW1lIjoiV1NPMiAoVUspIExJTUlURUQiLCJvcmdfY29udGFjdHMiOlt7Im5hbWUiOiJUZWNobmljYWwiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiVGVjaG5pY2FsIn0seyJuYW1lIjoiQnVzaW5lc3MiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiQnVzaW5lc3MifV0sIm9yZ19qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsIm9yZ19qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvMDAxNTgwMDAwMUhRUXJaQUFYLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9vUTRLb2FhdnBPdW9FN3J2UXNaRU9WLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvb1E0S29hYXZwT3VvRTdydlFzWkVPVi5qd2tzIiwic29mdHdhcmVfcG9saWN5X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20iLCJzb2Z0d2FyZV90b3NfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX29uX2JlaGFsZl9vZl9vcmciOiJXU08yIE9wZW4gQmFua2luZyJ9.VnfXrppGmCcYGWLcmT3gB22r297Vc0ppibLrl0mv8PGkb7oZLEkIqaAdz9OBwFjehDiHlIzOrCzNgzJD5GvyacZSiorFkpzBpbV80q-n_-uFTugE7mrCVnNfTsb1SBEdoWCRn_BbzH-T2YstqLWPhb_fHkDSFTGJeSnFGp1EcMXVmx8P-pCgsoTS-kXEPDXD7F4iZjZwcFfxDpe_N8FvAUC28l3Tzm1au4bLjrI0T94PVoEJEmAk9AU_somFy_XEvuKuuULfccW3CDR6KGbvXV7MVPNA5XTT5g_H9bRxcPX4ZaaWfIaRVfZ28d_ZCRtsUIiLgm_6eZkiD-7Eh3qyVQ",
+    "application_type": "web",
+    "scope": "accounts payments fundsconfirmations",
+    "response_types": [
+        "code id_token"
+    ]
 }
-
 ```

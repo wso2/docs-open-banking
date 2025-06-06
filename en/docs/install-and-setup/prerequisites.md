@@ -1,32 +1,12 @@
 WSO2 Open Banking Accelerator is a collection of technologies that increases the speed and reduces the complexity of 
-adopting open banking compliance. Instead of building an open banking solution from scratch, you can use WSO2 Open 
+adopting open banking compliance. Instead of building an open banking solution from scratch, you can use WSO2 Open
 Banking Accelerator to meet all open banking requirements with additional benefits beyond compliance. You can use the 
 WSO2 Open Banking Accelerator on top of the following WSO2 products.
 
-You can use any of the following combinations:
+You can use any of the following base products:
 
-<table>
-  <tr>
-    <th></th>
-    <th>WSO2 Identity Server</th>
-    <th>WSO2 API Manager</th>
-    <th>WSO2 Streaming Integrator</th>
-  </tr>
-<tbody>
-  <tr>
-    <th>Combination 01</th>
-    <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">5.11.0</a></td>
-    <td><a href="https://wso2.com/api-management/previous-releases/">4.1.0</a> or <a href="https://wso2.com/api-management/previous-releases/">4.0.0</a></td>
-    <td><a href="https://wso2.com/streaming-integrator/previous-releases/">4.1.0</a> or <a href="https://wso2.com/streaming-integrator/previous-releases/">4.0.0</a></td>
-  </tr>
-  <tr>
-    <th>Combination 02<br></th>
-    <td><a href="https://wso2.com/identity-and-access-management/">6.1.0</a> or <a href="https://wso2.com/identity-and-access-management/previous-releases/">6.0.0</a></td>
-    <td><a href="https://wso2.com/api-manager/">4.2.0</a></td>
-    <td><a href="https://wso2.com/streaming-integrator/">4.2.0</a></td>
-  </tr>
-</tbody>
-</table>
+- WSO2 Identity Server -7.1.0,7.0.0
+<!-- WSO2 API Manager -4.5.0 -->
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -41,18 +21,19 @@ more information on customization, see the [Develop](../develop/open-banking-gat
 
 Given below is a product matrix for different versions of WSO2 Open Banking:
 
-| Version | Mandatory Components | Additional Components |
-| --------| ---------------------| ----------------------|
-| 3.0.0 | wso2ob-apim-accelerator-3.0.0 <br/> wso2ob-is-accelerator-3.0.0 <br/>wso2is-extensions-1.2.10 | wso2ob-bi-accelerator-3.0.0 |
-| 2.0.0 | wso2-obam-2.0.0 <br/> wso2-obiam-2.0.0 | wso2am-analytics-3.1.0 <br/> wso2-obbi-2.0.0 <br/> wso2ei-6.6.0 |
-| 1.5.0 | wso2-obam-1.5.0 <br/> wso2-obkm-1.5.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.5.0 <br/> wso2ei-6.4.0 |
-| 1.4.0 | wso2-obam-1.4.0 <br/> wso2-obkm-1.4.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.4.0 <br/> wso2ei-6.4.0 |
-| 1.3.0 | wso2-obam-1.3.0 <br/> wso2-obkm-1.3.0 | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.3.0 <br/> wso2ei-6.4.0 |
-| 1.2.0 | wso2ob-am-2.6.0 <br/> wso2ob-km-5.7.0 | wso2ob-am-analytics-2.6.0 <br/> wso2ob-ei-6.4.0|
+| Version | Mandatory Components                                                                          | Additional Components |
+|---------|-----------------------------------------------------------------------------------------------| ----------------------|
+| 4.0.0   | wso2ob-is-accelerator-4.0.0                                                                   | |
+| 3.0.0   | wso2ob-apim-accelerator-3.0.0 <br/> wso2ob-is-accelerator-3.0.0 <br/>wso2is-extensions-1.2.10 | wso2ob-bi-accelerator-3.0.0 |
+| 2.0.0   | wso2-obam-2.0.0 <br/> wso2-obiam-2.0.0                                                        | wso2am-analytics-3.1.0 <br/> wso2-obbi-2.0.0 <br/> wso2ei-6.6.0 |
+| 1.5.0   | wso2-obam-1.5.0 <br/> wso2-obkm-1.5.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.5.0 <br/> wso2ei-6.4.0 |
+| 1.4.0   | wso2-obam-1.4.0 <br/> wso2-obkm-1.4.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.4.0 <br/> wso2ei-6.4.0 |
+| 1.3.0   | wso2-obam-1.3.0 <br/> wso2-obkm-1.3.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.3.0 <br/> wso2ei-6.4.0 |
+| 1.2.0   | wso2ob-am-2.6.0 <br/> wso2ob-km-5.7.0                                                         | wso2ob-am-analytics-2.6.0 <br/> wso2ob-ei-6.4.0|
 
 ## Compatible Base Product Versions
 
-Given below is the compatible base product matrix for WSO2 Open Banking 3.0:
+Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
 
 <table>
 <thead>
@@ -60,27 +41,24 @@ Given below is the compatible base product matrix for WSO2 Open Banking 3.0:
     <th rowspan="2" style="text-align: center">Base Product</th>
     <th colspan="2" style="text-align: center">Compatible Versions</th>
   </tr>
-  <tr>
+  <!--<tr>
     <th>Combination 01</th>
     <th>Combination 02</th>
-  </tr>
+  </tr>-->
 </thead>
 <tbody>
   <tr>
     <td>WSO2 Identity Server</td>
-    <td>5.11.0</td>
-    <td>6.0.0</td>
+    <td>7.0.0</td>
+    <td>7.1.0</td>
   </tr>
-  <tr>
+  <!--<tr>
     <td>WSO2 API Manager<br></td>
-    <td>4.1.0<br>4.0.0</td>
-    <td>4.2.0</td>
-  </tr>
-  <tr>
-    <td>WSO2 Streaming Integrator</td>
-    <td>4.0.0</td>
-    <td>4.2.0</td>
-  </tr>
+     <td>4.5.0</td>
+    <td>4.4.0<br>4.3.0</td>
+   
+  </tr>-->
+  
 </tbody>
 </table>
 
@@ -128,7 +106,7 @@ Listed below are the prerequisites for a successful deployment:
                See the following documentation to find the environments that the WSO2 products are tested with:
                <ul>
                   <li> <a href="https://is.docs.wso2.com/en/5.11.0/setup/environment-compatibility/">Identity Server compatibility</a></li>
-                  <li> <a href="https://apim.docs.wso2.com/en/latest/install-and-setup/setup/reference/product-compatibility/">API Manager compatibility</a></li>
+                  <!--<li> <a href="https://apim.docs.wso2.com/en/latest/install-and-setup/setup/reference/product-compatibility/">API Manager compatibility</a></li>-->
                </ul>
             </ul>
          </td>
@@ -137,7 +115,8 @@ Listed below are the prerequisites for a successful deployment:
          <th>JDK Version</th>
          <td>
             <ul>
-               <li>OpenJDK 11 or OpenJDK 17</li><br>See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> for compatible JDK versions based on the base product versions.
+               <li>OpenJDK 11, OpenJDK 17 or OpenJDK 21</li>
+               <li>Oracle JDK 21</li><br>See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> for compatible JDK versions based on the base product versions.
             </ul>
          <td>  
       </tr>
@@ -148,8 +127,8 @@ Listed below are the prerequisites for a successful deployment:
                <li>MySQL 8.0</li> 
                See <a href="https://ob.docs.wso2.com/en/latest/install-and-setup/prerequisites/#compatibility">Compatibility</a> if you are using MySQL 8.0.
                <li>Oracle 19c</li>
-               <li>Microsoft SQL Server 2017</li>
-               <li> PostgreSQL 13</li>
+               <li>Microsoft SQL Server 2022</li>
+               <li> PostgreSQL 17.2</li>
             </ul>
             We do not recommend configuring the H2 database in the production environment.
          <td>   
@@ -163,11 +142,11 @@ Listed below are the prerequisites for a successful deployment:
 
 ## Compatibility 
 
-WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
+WSO2 Open Banking Accelerator 4.0.0 is supported on the following platforms:
 
-!!!info
+<!--!!!info
     If you are using **WSO2 Identity Server 6.0.0** and **WSO2 API Manager 4.2.0** as the base products, it is recommended to use OpenJDK 17. For other base products, use OpenJDK 11.
-
+-->
 !!!note
     To use MySQL 8.0, you need to create the database with `charset latin1` as shown below:
 
@@ -191,6 +170,12 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
                <li>
                   OpenJDK 17
                </li>
+               <li>
+                  OpenJDK 21
+               </li>
+               <li>
+                  Oracle JDK 21
+               </li>
             </ul>
          </td>
       </tr>
@@ -199,11 +184,11 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
          <td>
             <ul>
                <li>
-                  Ubuntu 18.04.5 LTS
+                  Ubuntu 22.04.5 LTS
                </li>
-               <li>
+               <!--<li>
                   Windows Server 2016
-               </li>
+               </li>-->
             </ul>
          </td>
       </tr>
@@ -218,10 +203,10 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
                   Oracle 19c
                </li>
                <li>
-                  Microsoft SQL Server 2017
+                  Microsoft SQL Server 2022
                </li>
                <li>
-                  PostgreSQL 13
+                  PostgreSQL 17.2
                </li>
             </ul>
          </td>
@@ -231,10 +216,10 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
          <td>
             <ul>
                <li>
-                  Google Chrome 69
+                  Google Chrome 136
                </li>
                <li>
-                  Firefox 88.0
+                  Firefox 132.0
                </li>
             </ul>
          </td>
@@ -246,9 +231,8 @@ WSO2 Open Banking Accelerator 3.0.0 is supported on the following platforms:
 
 When deploying WSO2 Open Banking in a production server, make sure to comply with the following common security guidelines for production deployment. 
 
- - For WSO2 Open Banking Identity Server Accelerator refer [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
- - For WSO2 Open Banking API Manager Accelerator refer [WSO2 API Manager Security Guidelines for Production Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#api-m-runtime-security)
- - For WSO2 Open Banking Business Intelligence Accelerator refer [WSO2 Streaming Integrator  Security Guidelines for Production Deployment](https://ei.docs.wso2.com/en/latest/streaming-integrator/setup/production-checklist/#securing-the-streaming-integrator)
+ - For WSO2 Open Banking Accelerator refer [WSO2 Identity Server Security Guidelines for Production Deployment](https://is.docs.wso2.com/en/latest/deploy/security/security-guidelines-for-production-deployment/)
+ <!-- For WSO2 Open Banking API Manager Accelerator refer [WSO2 API Manager Security Guidelines for Production Deployment](https://apim.docs.wso2.com/en/latest/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#api-m-runtime-security)-->
 
 If you have difficulty in setting up any WSO2 product in a specific platform or database,
 [contact us](https://wso2.com/subscription/).
