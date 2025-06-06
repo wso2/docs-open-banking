@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: API contract for financial accelerator extension points in WSO2 IS
-  description: This API defines the REST API contract for services that implements logic to extend the Open Data accelerator flow.
+  description: This REST API defines the contract for services that implements logic to extend the Open Banking accelerator extension points.
   contact:
     name: WSO2
     url: https://wso2.com/solutions/financial-services/open-banking/
