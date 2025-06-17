@@ -50,4 +50,3 @@ to standard WSO2 API Manager mediation policies, enabling API developers to conf
 - [Open Banking Event Executor](custom-event-executor.md)
 - [Data Publishing](authentication-flow-for-data-publishing.md)
 
-
