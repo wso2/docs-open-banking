@@ -16,6 +16,7 @@ With the release of Open Banking 4.0, it has introduced OpenAPI based extensions
 implement Open Banking specification requirements in their preferred programming language. And the custom developed 
 extensions can be deployed externally and tested seperatly without restarting the WSO2 servers.The OpenAPI extension 
 can be found from [here](../references/accelerator-extensions-api.md).
+
   - [Developer Guide](openapi-extensions-developer-guide.md)
   - [OpenAPI based extensions for Dynamic Client Registration](openapi-extensions-dcr.md)
   - [OpenAPI based extensions for Consent Management](openapi-consent-management-manage.md)
