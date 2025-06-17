@@ -16,6 +16,11 @@ With the release of Open Banking 4.0, it has introduced OpenAPI based extensions
 implement Open Banking specification requirements in their preferred programming language. And the custom developed 
 extensions can be deployed externally and tested seperatly without restarting the WSO2 servers.The OpenAPI extension 
 can be found from [here](../references/accelerator-extensions-api.md).
+  - [Developer Guide](openapi-extensions-developer-guide.md)
+  - [OpenAPI based extensions for Dynamic Client Registration](openapi-extensions-dcr.md)
+  - [OpenAPI based extensions for Consent Management](openapi-consent-management-manage.md)
+  - [OpenAPI based extensions for Token Flow](openapi-token-flow.md)
+  - [OpenAPI based extensions for Authorization Flow](openapi-authorization-flow.md)
 
 
 ### Java based extensions (Old approach)
@@ -45,10 +50,4 @@ to standard WSO2 API Manager mediation policies, enabling API developers to conf
 - [Open Banking Event Executor](custom-event-executor.md)
 - [Data Publishing](authentication-flow-for-data-publishing.md)
 
-!!! note
-    WSO2 provides toolkits that offer compliance to the following open banking standards:
-    
-    - [Open Banking Standard - UK](https://uk.ob.docs.wso2.com/)
-    - [NextGenPSD2XS2A](https://berlin.ob.docs.wso2.com/)
-    - [Consumer Data Standards - Australia](https://cds.ob.docs.wso2.com/)
-    
+
