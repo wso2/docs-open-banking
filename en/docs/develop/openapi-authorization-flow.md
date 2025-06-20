@@ -9,9 +9,9 @@ The OpenAPI extension for validate client sending authorize API requests to ensu
 allowed in the Open Banking  specificatio requirements.
 
 ### OpenAPI Extensions
-| OpenAPI Extension              | Description                                                                                    | OpenAPI Definition                                                                                                                                           |
-|--------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| validate-authorization-request | handle specification speicifc custom validations for the client sending /authorization request | [validate-authorization-request/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Authorize/operation/preUserAuthorization) |
+| OpenAPI Extension              | Description                                                                                    | OpenAPI Definition                                                                                                                                            |
+|--------------------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| validate-authorization-request | handle specification speicifc custom validations for the client sending /authorization request | [validate-authorization-request/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Authorize/operation/preUserAuthorization) |
 
 
 ### Configuration
