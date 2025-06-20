@@ -8,9 +8,9 @@ Make sure to refer  Developer guide for OpenAPI based extensions from [documenta
 This OpenAPI extension implementation  determines if the generated oauth2 token has a refresh token or not according to  the Open Banking  specification requirements. 
 
 ### OpenAPI Extensions
-| OpenAPI Extension   | Description                                                         | OpenAPI Definition                                                                                                                    |
-|---------------------|---------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| issue-refresh-token | handle OAuth2 refresh token issuance according to the specification | [issue-refresh-token/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Token/paths/~1issue-refresh-token/post) |
+| OpenAPI Extension   | Description                                                         | OpenAPI Definition                                                                                                                               |
+|---------------------|---------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| issue-refresh-token | handle OAuth2 refresh token issuance according to the specification | [issue-refresh-token/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Token/paths/~1issue-refresh-token/post) |
 
 
 ### Configuration

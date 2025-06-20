@@ -15,7 +15,7 @@ specificatio requirements. The data setting from this extension point will be st
 ### OpenAPI Extensions
 | OpenAPI Extension           | Description                                                                              | OpenAPI Definition                                                                                                                                |
 |-----------------------------|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| pre-process-client-creation | handle specification speicifc custom validations and set custom client data to be stored | [preprocess-client-creation/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-creation/post) |
+| pre-process-client-creation | handle specification speicifc custom validations and set custom client data to be stored | [preprocess-client-creation/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-creation/post) |
 
 
 ### Configuration
@@ -46,9 +46,9 @@ The OpenAPI extension for dynamic client update  provides the extendibility to v
 specificatio requirements. The data setting from this extension point will be stored as updated client metadata
 
 ### OpenAPI Extensions
-| OpenAPI Extension         | Description                                                                              | OpenAPI Definition                                                                                                                                          |
-|---------------------------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pre-process-client-update | handle specification speicifc custom validations and set custom client data to be update | [preprocess-client-update/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-update/post) |
+| OpenAPI Extension         | Description                                                                              | OpenAPI Definition                                                                                                                                           |
+|---------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| pre-process-client-update | handle specification speicifc custom validations and set custom client data to be update | [preprocess-client-update/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-update/post) |
 
 
 ### Configuration
@@ -78,9 +78,9 @@ The OpenAPI extension for dynamic client data retrieval  provides the extendibil
 specificatio requirements. 
 
 ### OpenAPI Extensions
-| OpenAPI Extension            | Description                                                                     | OpenAPI Definition                                                                                                                                                |
-|------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pre-process-client-retrieval | handle specification speicifc custom validations and set back a custom response | [preprocess-client-retrieval/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-retrieval/post) |
+| OpenAPI Extension            | Description                                                                     | OpenAPI Definition                                                                                                                                                 |
+|------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| pre-process-client-retrieval | handle specification speicifc custom validations and set back a custom response | [preprocess-client-retrieval/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-retrieval/post) |
 
 
 ### Configuration

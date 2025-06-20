@@ -18,9 +18,9 @@ page to display to the user.
 accelerator do support showing consent data and accounts data binding to the permissions.
 
 ### OpenAPI Extensions
-| OpenAPI Extension                 | Description                                                                                                                    | OpenAPI Definition                                                                                                                                       |
-|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| populate-consent-authorize-screen | handle specification speicifc custom validations and set consent data and consumer data which need to show in consent grant UI | [populate-consent-authorize-screen/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1populate-consent-authorize-screen/post) |
+| OpenAPI Extension                 | Description                                                                                                                    | OpenAPI Definition                                                                                                                                                             |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| populate-consent-authorize-screen | handle specification speicifc custom validations and set consent data and consumer data which need to show in consent grant UI | [populate-consent-authorize-screen/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Consent/paths/~1populate-consent-authorize-screen/post) |
 
 
 ### Configuration
@@ -52,9 +52,9 @@ user approves/denies the consent via an API invocation made from the consent pag
 invoked, the OpenAPI extension implementation to persist are also invoked and the data required for persistence will be provided from the extension point. 
 
 ### OpenAPI Extensions
-| OpenAPI Extension          | Description                              | OpenAPI Definition                                                                                                                                           |
-|----------------------------|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| persist-authorized-consent | handle user granted consent data storing | [persist-authorized-consent/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1persist-authorized-consent/post) |
+| OpenAPI Extension          | Description                              | OpenAPI Definition                                                                                                                                               |
+|----------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| persist-authorized-consent | handle user granted consent data storing | [persist-authorized-consent/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Consent/paths/~1persist-authorized-consent/post) |
 
 ### Configuration
 
