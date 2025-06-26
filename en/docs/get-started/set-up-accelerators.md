@@ -101,12 +101,12 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     - fs_apimgtdb 
     - fs_am_configdb
 
-Commands to create the Databases in MySQL
-``` 
-DROP DATABASE IF EXISTS fs_apimgtdb; 
-CREATE DATABASE fs_apimgtdb;
-ALTER DATABASE fs_apimgtdb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-```
+    Commands to create the Databases in MySQL
+    ``` 
+    DROP DATABASE IF EXISTS fs_apimgtdb; 
+    CREATE DATABASE fs_apimgtdb;
+    ALTER DATABASE fs_apimgtdb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+    ```
 
 2. Given below is the relevant datasource configuration for each database:
 

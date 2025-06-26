@@ -2,10 +2,10 @@
 
 Dynamic Client Registration Request Policy is a policy designed to enagege in the request flow of the Dynamic Client Registration Request. It will perform the below tasks.
 
-    - Validate JWT signature in Dynamic Client Registration create and update requests
-    - Decode JWT Payload for DCR create and update requests with JWT payloads
-    - Add Mandatory parameters for Identity Server DCR API for DCR create and update requests
-    - Check whether the token is bound to the correct client id for DCR retrieval, update and delete requests
+- Validate JWT signature in Dynamic Client Registration create and update requests
+- Decode JWT Payload for DCR create and update requests with JWT payloads
+- Add Mandatory parameters for Identity Server DCR API for DCR create and update requests
+- Check whether the token is bound to the correct client id for DCR retrieval, update and delete requests
 
 Create an API Level Policy by following the [Creating API Level Policy](../learn/create-policies.md) and add to all API resources. Find the details to create the policy below.
 
@@ -38,7 +38,7 @@ Upload the [Dynamic Client Registration Request Policy](https://github.com/wso2/
 
 Dynamic Client Registration Request Policy is a policy designed to enagege in the response flow of the Dynamic Client Registration Request. It will perform the below tasks.
    
-    - Remove added Mandatory parameters for Identity Server DCR API for DCR create and update requests
+- Remove added Mandatory parameters for Identity Server DCR API for DCR create and update requests
 
 Create an API Level Policy by following the [Creating API Level Policy](../learn/create-policies.md) and add to all POST, GET and PUT resources. Find the details to create the policy below.
 
