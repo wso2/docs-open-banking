@@ -1,0 +1,1 @@
+WSO2 API Manager Custom Policies allow you to reuse existing policy definitions to create your own policies with predefined values. They can be created either as common policies or as API-specific policies.
