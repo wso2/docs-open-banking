@@ -93,19 +93,9 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 3. Run the db script resides in `<IS_HOME>/dbscripts/financial-services/event-notifications` directory to create database 
    tables for event notification feature in `fs_consentdb` database. 
 
-### Setting Up WSO2 Open Banking Accelerator for WSO2 API Manager
+### Setting Up WSO2 API Manager
 
-#### Step 1: Set up WSO2 Open Banking APIM Accelerator
-Copy the downloaded artifacts to the respective directories of the base product. Use the table to locate the respective directories of the base products:
-
-| File                                                           | Directory location to place the artifact                          |
-|----------------------------------------------------------------|-----------------------------------------------------------------  |
-| `org.wso2.financial.services.accelerator.common-4.0.0.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
-| `org.wso2.financial.services.accelerator.keymanager-4.0.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
-| `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
-| `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
-
-#### Step 2: Configure databases
+#### Step 1: Configure databases
 
 1. Create the following databases:
     - fs_apimgtdb 
@@ -151,7 +141,7 @@ To create the database tables, go to the following locations and execute the rel
         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY INPUTS VARCHAR(7500);
         ```
 
-### Step 3: Set up the APIM server 
+### Step 2: Set up the APIM server 
 
 Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following changes.
 
