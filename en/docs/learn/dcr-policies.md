@@ -1,0 +1,51 @@
+### Dynamic Client Registration Request Policy
+
+Dynamic Client Registration Request Policy is a policy designed to enagege in the request flow of the Dynamic Client Registration Request. It will perform the below tasks.
+    - Validate JWT signature in Dynamic Client Registration create and update requests
+    - Decode JWT Payload for DCR create and update requests with JWT payloads
+    - Add Mandatory parameters for Identity Server DCR API for DCR create and update requests
+    - Check whether the token is bound to the correct client id for DCR retrieval, update and delete requests
+
+Create an API Level Policy by following the [Creating API Level Policy](../learn/create-policies.md) and add to all API resources. Fine the details to create the policy below.
+
+#### General Details
+
+| Name | Dynamic Endpoint Policy |
+| Version | 1 (can be any) |
+| Description | Policy to determine the backend of the request |
+| Applicable Flows | Request |
+| Supported API Types | HTTP |
+
+#### Policy File
+
+Upload the [Dynamic Client Registration Request Policy](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/dynamic-client-registration/dynamicClientRegistrationRequestPolicy.j2) policy file.
+
+#### Policy Attributes
+
+| Attribute name | Display name | Description | Required | Type | Example Values |
+| -------------- | ------------ | ----------- | -------- | ---- | -------------- |
+| validateRequestJWT | Validate Request JWT | Determine whether the request JWT signature should be validated | true | Boolean |
+| jwksEndpointName | JWKS Endpoint Name | JWKS Endpoint field name in the request. | true | String |
+| software_jwks_endpoint | 
+| clientNameAttributeName | Client Name Attribute Name | The field name of the attribute that should be used as the name of the application.  This value will be used if useSoftwareIdAsAppName is disabled. | true | String |
+| software_client_name | useSoftwareIdAsAppName | Use Software Id As App Name | Determine whether the software Id should be used as application name | true | Boolean |
+| jwksEndpointTimeout | jwksEndpointTimeout | Timeout for the JWKS Endpoint | true | Integer | 3000 |
+
+### Dynamic Client Registration Response Policy
+
+Dynamic Client Registration Request Policy is a policy designed to enagege in the response flow of the Dynamic Client Registration Request. It will perform the below tasks.
+    - Remove added Mandatory parameters for Identity Server DCR API for DCR create and update requests
+
+Create an API Level Policy by following the [Creating API Level Policy](../learn/create-policies.md) and add to all POST, GET and PUT resources. Fine the details to create the policy below.
+
+##### General Details
+
+| Name | Dynamic Client Registration Response Policy |
+| Version | 1 (can be any) |
+| Description | Policy to determine the backend of the request |
+| Applicable Flows | Response |
+| Supported API Types | HTTP |
+
+#### Policy File
+
+Upload the [Dynamic Client Registration Response Policy](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/dynamic-client-registration/dynamicClientRegistrationResponsePolicy.j2) policy file.
