@@ -70,7 +70,7 @@ nav:
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers':
        - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
-       - 'Accelerator with WSO2 Identity server and WSO2 API Manager': get-started/set-up-accelerators.md
+       - 'Accelerator with WSO2 Identity Server and WSO2 API Manager': install-and-setup/setting-up-servers.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
@@ -130,7 +130,7 @@ nav:
       - 'Toolkit': 
           - 'Introduction': develop/develop-toolkit.md
           - 'Extending Identity Server Accelerator extensions': develop/develop-is-toolkit.md
-          - 'Extending API Manager extensions': develop/accelerator-extensions-developer-guide.md
+          - 'Extending API Manager extensions': develop/develop-apim-toolkit.md
       - 'OpenAPI based extensions':
           - 'Developer Guide': develop/openapi-extensions-developer-guide.md
           - 'Dynamic Client Registration': develop/openapi-extensions-dcr.md
