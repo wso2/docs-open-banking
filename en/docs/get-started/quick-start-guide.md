@@ -46,30 +46,15 @@ can quickly set up and try out a basic flow.
    
     - wso2-fsiam-accelerator-4.x.0
     
-3. This document uses the following placeholders to refer to the following products:
-        
-    | Product                                       | Placeholder                |
-    |-----------------------------------------------|----------------------------|
-    | WSO2 Identity Server                          | `<IS_HOME>`                |
-    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
 
-### Installing WSO2 Open Banking AM Artifacts
-1. Download and extract the latest Open Banking Accelerator 4.0.0 AM Artifacts. 
-
-    - Current latest version [4.0.0]().
-              
-2. WSO2 Open Banking AM component contains the following artifacts:
-   
-    - org.wso2.financial.services.accelerator.common-4.x.0.jar
-    - org.wso2.financial.services.accelerator.keymanager-4.x.0.jar
-    - financial-services.xml.j2
-    - financial-services.xml
-   
-3. This document uses the following placeholders to refer to the following products:
+!!!note 
+    This document uses the following placeholders to refer to the following products:
         
-    | Product                                   | Placeholder                |
-    |-------------------------------------------|----------------------------|
-    | WSO2 API Manager                          | `<APIM_HOME>`              |
+        | Product                                       | Placeholder                |
+        |-----------------------------------------------|----------------------------|
+        | WSO2 Identity Server                          | `<IS_HOME>`                |
+        | WSO2 API Manager                              | `<APIM_HOME>`              |
+        | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
 
 ## Getting WSO2 Updates
 

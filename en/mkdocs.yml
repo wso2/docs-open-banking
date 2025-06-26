@@ -70,12 +70,12 @@ nav:
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers':
        - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
-      #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
+       - 'Accelerator with WSO2 Identity server and WSO2 API Manager': get-started/set-up-accelerators.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
-    # - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
-    # - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
+    - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
     - 'Configuring API Resources, Users and Roles': install-and-setup/configure-resources-users-and-roles.md
+    - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
     - 'Advanced':
         - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
@@ -119,13 +119,18 @@ nav:
       - 'Event Polling': learn/event-notification-polling.md
       - 'Real Time Event Notification': learn/event-notification-realtime.md
       - 'Configuration': learn/event-notification-configuration.md
-    - 'Policies':
+    - 'Gateway Enforcements':
       - 'Introduction': learn/policies.md
       - 'Create Policies': learn/create-policies.md
       - 'Engage Policies to APIs': learn/engage-policies.md
-      - 'Policies for Dynamic Client Registration': learn/dcr-policies.md
+      - 'Inbuilt Enforcements':
+          - 'Introduction': learn/inbuilt-policies.md
+          - 'Policies for Dynamic Client Registration': learn/dcr-policies.md
   - 'Develop':
-      - 'Toolkit Introduction': develop/develop-toolkit.md
+      - 'Toolkit': 
+          - 'Introduction': develop/develop-toolkit.md
+          - 'Extending Identity Server Accelerator extensions': develop/develop-is-toolkit.md
+          - 'Extending API Manager extensions': develop/accelerator-extensions-developer-guide.md
       - 'OpenAPI based extensions':
           - 'Developer Guide': develop/openapi-extensions-developer-guide.md
           - 'Dynamic Client Registration': develop/openapi-extensions-dcr.md

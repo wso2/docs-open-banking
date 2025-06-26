@@ -27,21 +27,25 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
 This section explains how to set up the solution with a MySQL 8.0 database server. For other DBMS, see Setting up databases.
 
-1. Place the compatible JDBC drivers in the <IS_HOME>/repository/components/lib folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
-2. Open the <IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties file.
+1. Place the compatible JDBC drivers in the `<IS_HOME>/repository/components/lib` folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
+2. Open the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
 3. Configure database-related properties and database names.
 
 ### Step 3: Set up the IS server 
-1. Open and configure the configure.properties file resides in  <IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf folder.
+1. Open and configure the configure.properties file resides in ` <IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf` folder.
     a. Configure the hostnames of the API Manager and Identity Server.
+
     b. Configure the admin credentials of the Identity Server.
-    c. Update the “IS_PRODUCT” to “wso2is-<IS_VERSION>”.
-    d. Update the “PRODUCT_CONF_PATH” to “repository/resources/wso2is-<IS_VERSION>-deployment.toml”.
+
+    c. Update the “IS_PRODUCT” to `wso2is-<IS_VERSION>`.
+
+    d. Update the “PRODUCT_CONF_PATH” to `repository/resources/wso2is-<IS_VERSION>-deployment.toml`.
+
 
 !!!note
     Use the Identity Server version deploying as the IS_VERSION.
 
-2. Run the merge script in `<IS_HOME>/<FS_IS_ACCELERATOR_HOME>/bin`:
+2. Run the merge script in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
 
     ``` bash tab='On Linux'
     ./merge.sh
@@ -89,19 +93,10 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 3. Run the db script resides in `<IS_HOME>/dbscripts/financial-services/event-notifications` directory to create database 
    tables for event notification feature in `fs_consentdb` database. 
 
-### Setting Up WSO2 Open Banking Accelerator for WSO2 API Manager
+### Setting Up WSO2 API Manager
 
-#### Step 1: Set up WSO2 Open Banking APIM Accelerator
-Copy the downloaded artifacts to the respective directories of the base product. Use the table to locate the respective directories of the base products:
+#### Step 1: Configure databases
 
-| File                                                           | Directory location to place the artifact                          |
-|----------------------------------------------------------------|-----------------------------------------------------------------  |
-| `org.wso2.financial.services.accelerator.common-4.0.0.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
-| `org.wso2.financial.services.accelerator.keymanager-4.0.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
-| `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
-| `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
-
-#### Step 2: Configure databases
 1. Create the following databases:
     - fs_apimgtdb 
     - fs_am_configdb
@@ -122,29 +117,33 @@ ALTER DATABASE fs_apimgtdb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 | fs_am_configdb | [database.shared_db]              |
 | fs_userdb      | [[datasource]]<br/>id="WSO2UM_DB" |
 
-3. Place the compatible JDBC drivers in the <IS_HOME>/repository/components/lib folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
+3. Place the compatible JDBC drivers in the `<IS_HOME>/repository/components/lib` folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
+
 4. Creating database tables.
+
 To create the database tables, go to the following locations and execute the relevant database script against the given database. These locations contain database scripts for all the supported database types, choose the script according to your DBMS.
 
-| Database       | Script location                                                  |
-| -------------- | ---------------------------------------------------------------- |
-| fs_apimgtdb    | <APIM_HOME>/dbscripts/apimgt                                     | 
-| fs_am_configdb | <APIM_HOME>/dbscripts                                            |
-| fs_userdb      | No need to create again since tables are created when setting IS |
+| Database         | Script location                                                    |
+| ---------------- | ------------------------------------------------------------------ |
+| `fs_apimgtdb`    | `<APIM_HOME>/dbscripts/apimgt `                                    | 
+| `fs_am_configdb` | `<APIM_HOME>/dbscripts`                                            |
+| `fs_userdb`      | `No need to create again since tables are created when setting IS` |
 
 5. Execute the relevant SQL command against the fs_apimgtdb database.
+
     a. Increase the column size of the VALUE column in the SP_METADATA table: (Command given in MySQL)
         ```
         ALTER TABLE SP_METADATA MODIFY VALUE VARCHAR(4096);
         ```
+
     b. Increase the column size of the INPUTS column in the AM_APPLICATION_REGISTRATION table: (Command given in MySQL)
         ```
         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY INPUTS VARCHAR(7500);
         ```
 
-### Step 3: Set up the APIM server 
+### Step 2: Set up the APIM server 
 
-Open the <APIM_HOME>/repository/conf/deployment.toml file and do the following changes.
+Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following changes.
 
 1. Configure the hostname.
     ```
@@ -191,11 +190,10 @@ Open the <APIM_HOME>/repository/conf/deployment.toml file and do the following c
     defaultAutoCommit=true
     ```
 
-!!!note
-    Similarly configure the `database.shared_db` for registry data and `database.config` for am configs.
+    !!!note 
+        Similarly configure the `database.shared_db` for registry data and `database.config` for am configs.
 
 5. Configure the user db as follows.
-
     ```
     [[datasource]]
     id="WSO2UM_DB"
@@ -213,8 +211,8 @@ Open the <APIM_HOME>/repository/conf/deployment.toml file and do the following c
     pool_options.defaultAutoCommit=true
     ```
 
-!!!note 
-    User DB must be shared in APIM and IS, hence use the same database used in IS as the user DB.
+    !!!note 
+        User DB must be shared in APIM and IS, hence use the same database used in IS as the user DB.
 
 6. Configure key manager details as follows.
     ```
@@ -305,7 +303,7 @@ In order to enable secure communication, we need to install the certificates of 
 !!!note
     Here Server A can be either IS, APIM or any other product.
 
-G1. enerate a key against the keystore of a particular server. For example, server A with an alias and common name that is equal to the hostname.
+1. Generate a key against the keystore of a particular server. For example, server A with an alias and common name that is equal to the hostname.
     ```
     keytool -genkey -alias <keystore_alias> -keyalg RSA -keysize 2048 -validity 3650 -keystore <keystore_path> -storepass <keystore_password> -keypass <key password> -noprompt
 
@@ -323,7 +321,7 @@ G1. enerate a key against the keystore of a particular server. For example, serv
 
 ### Uploading Root and Issuer certificates
 
-Upload the root and issuer certificates ofin OBIE([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)|[Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) to the client trust stores in <IS_HOME>/repository/resources/security/client-truststore.p12 and <APIM_HOME>/repository/resources/security/client-truststore.jks using the following command:
+Upload the root and issuer certificates ofin OBIE ([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) | [Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) to the client trust stores in `<IS_HOME>/repository/resources/security/client-truststore.p12` and `<APIM_HOME>/repository/resources/security/client-truststore.jks` using the following command:
 
     ```
     keytool -import -alias <alias> -file <certificate_location> -keystore <truststore_location> -storepass wso2carbon
