@@ -1,5 +1,6 @@
 WSO2 Open Banking Accelerator is a technology stack catered to speed up the implementation of an open banking solution. 
-You can use the WSO2 Open Banking Accelerator on top of the WSO2 Identity Server and API Manager to obtain an environment for Identity Access Management and API management in open banking. 
+You can use the WSO2 Open Banking Accelerator on top of the WSO2 Identity Server to obtain an environment 
+for Identity Access Management in open banking. 
 
 This section guides you on how to set up the solution in a local environment. Follow the instructions to find how you 
 can quickly set up and try out a basic flow.
@@ -35,7 +36,6 @@ can quickly set up and try out a basic flow.
 1. Download and extract the required base products:
 
     - WSO2 Identity Server -7.1.0 ,7.0.0
-    - WSO2 API Manager - 4.5.0, 4.4.0
 
 ### Installing WSO2 Open Banking IAM Accelerator
 1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
@@ -52,24 +52,6 @@ can quickly set up and try out a basic flow.
     |-----------------------------------------------|----------------------------|
     | WSO2 Identity Server                          | `<IS_HOME>`                |
     | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
-
-### Installing WSO2 Open Banking AM Artifacts
-1. Download and extract the latest Open Banking Accelerator 4.0.0 AM Artifacts. 
-
-    - Current latest version [4.0.0]().
-              
-2. WSO2 Open Banking AM component contains the following artifacts:
-   
-    - org.wso2.financial.services.accelerator.common-4.x.0.jar
-    - org.wso2.financial.services.accelerator.keymanager-4.x.0.jar
-    - financial-services.xml.j2
-    - financial-services.xml
-   
-3. This document uses the following placeholders to refer to the following products:
-        
-    | Product                                   | Placeholder                |
-    |-------------------------------------------|----------------------------|
-    | WSO2 API Manager                          | `<APIM_HOME>`              |
 
 ## Getting WSO2 Updates
 
@@ -92,7 +74,7 @@ improvements that are released by WSO2. You need to update the base products and
         ./wso2update_windows.exe
         ```
 
-2. Go to `<OB_IS_ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
+2. Go to `<ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
 
     - Repeat this step for the WSO2 Open Banking Identity Server accelerator.
 
