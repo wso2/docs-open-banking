@@ -53,19 +53,17 @@ nav:
     - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
     - 'About this Release': get-started/about-this-release.md
     - 'Quick Start Guide':
-      - 'Accelerator with WSO2 Identity server':
-        - 'Get Started': get-started/quick-start-guide-with-is.md
-        - 'Set Up Accelerators': get-started/set-up-accelerators-with-is.md
-        - 'Configure API Resources, Users and Roles': get-started/configure-resources-users-and-roles-for-is.md
-        - 'Dynamic Client Registration': get-started/dynamic-client-registration-with-is.md
-        - 'Tryout Flow': get-started/try-out-flow-with-is.md
-      - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
-        - 'Get Started': get-started/quick-start-guide.md
-        - 'Set Up Accelerators': get-started/set-up-accelerators.md
-        - 'Deploy Open Banking APIs': get-started/deploy-apis.md
-        - 'Configure API Resources, Users and Roles': get-started/configure-users-and-roles.md
-        - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
-        - 'Tryout Flow': get-started/try-out-flow.md
+      - 'Get Started': get-started/quick-start-guide.md
+      - 'Set Up Accelerators':
+        - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators-with-is.md
+        #- 'With both WSO2 Identity Server & WSO2 API Manager': get-started/set-up-accelerators.md
+      - 'Configure API Resources, Users and Roles': get-started/configure-resources-users-and-roles.md
+      - 'Dynamic Client Registration':
+          - 'Accelerator with WSO2 Identity Server': get-started/dynamic-client-registration.md
+          #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
+      - 'Tryout Flow':
+         - 'Accelerator with WSO2 Identity Server': get-started/try-out-flow.md
+        #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/try-out-flow.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers':
@@ -119,11 +117,6 @@ nav:
       - 'Event Polling': learn/event-notification-polling.md
       - 'Real Time Event Notification': learn/event-notification-realtime.md
       - 'Configuration': learn/event-notification-configuration.md
-    - 'Policies':
-      - 'Introduction': learn/policies.md
-      - 'Create Policies': learn/create-policies.md
-      - 'Engage Policies to APIs': learn/engage-policies.md
-      - 'Policies for Dynamic Client Registration': learn/dcr-policies.md
   - 'Develop':
       - 'Toolkit Introduction': develop/develop-toolkit.md
       - 'OpenAPI based extensions':

@@ -205,14 +205,14 @@ allow a successful data flow. The instances mentioned below specify the ports th
 
 6. Upload Root and Issuer certificates.
 
-   - Upload the root and issuer certificates([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)|[Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) of OBIE to the client-truststore in <IS_HOME>/repository/resources/security/ 
+   - Upload the [root and issuer certificates](https://drive.google.com/drive/folders/1jjiJQVMbSaTQ7ZOwYeY32LeAc--5LgNC) of OBIE to the client-truststore in <IS_HOME>/repository/resources/security/ 
    using the following command:
 
     ``` bash
     keytool -import -alias <alias> -file <certificate_location> -keystore <truststore_location> -storepass wso2carbon
     ```
 
-## Copying the deployment.toml for Identity Server
+## Copying the deployment.toml
 
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the instance
 can be applied using a single configuration file, which is the `deployment.toml` file.
