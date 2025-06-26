@@ -12,20 +12,19 @@ Once you have successfully prepared the environment for the deployment, you can 
 
 1. Create the following databases:
 
-    - `fs_identitydb`  
-    - `fs_userdb` 
-    - `fs_iskm_configdb`  
-    - `fs_consentdb`
-    
-<!-- 2. If you are using the [Data Publishing](../learn/data-publishing.md) feature, create the following 
-    database as well:
-    
-    - `openbank_ob_reporting_statsdb`
--->
+    - For Identity Server create following databases.
+        - `fs_identitydb`  
+        - `fs_userdb` 
+        - `fs_iskm_configdb`  
+        - `fs_consentdb`
+
+    - If you are setting up with WSO2 API Manager create following databases.
+        - `fs_apimgtdb`
+        - `fs_am_configdb`
 
 2. According to your DBMS, place the compatible JDBC drivers in the following directories:
  
-    <!-- `<APIM_HOME>/repository/components/lib`-->
+    - `<APIM_HOME>/repository/components/lib`
     - `<IS_HOME>/repository/components/lib` 
 
     !!! tip 
@@ -40,89 +39,6 @@ Once you have successfully prepared the environment for the deployment, you can 
          
 
 ## Configuring datasources
-
-<!-- 1. The databases above have a respective datasource. Add or update the default datasource 
-configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. 
-
-    - Given below is the relevant datasource configuration for each database:
-   
-        |Database|TOML configuration|
-        |--------|----------|
-        |openbank_apimgtdb|`[database.apim_db]`|
-        |openbank_am_configdb|`[database.config]`|
-        |openbank_govdb|`[database.shared_db]`|
-        |openbank_userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
-
-   - Configure the datasources by following the sample below: 
-    
-    ``` toml tab="MySQL"
-    [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false"
-    username = "root"
-    password = "root"
-    driver = "com.mysql.jdbc.Driver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "150"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
-   
-    ``` toml tab="Oracle"
-    [database.apim_db]
-    url = "jdbc:oracle:thin:openbank_apimgtdb/password@localhost:1521:root"
-    username = "openbank_apimgtdb"
-    password = "password"
-    driver = "oracle.jdbc.driver.OracleDriver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "150"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1 FROM DUAL"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
-   
-    ``` toml tab="MS SQL"
-    [database.apim_db]
-    url = "jdbc:sqlserver://localhost:1433;databaseName=openbank_apimgtdb"
-    username = "root"
-    password = "root"
-    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "300"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
-    
-    ``` toml tab="PostgreSQL"
-    [database.apim_db]
-    url = "jdbc:postgresql://localhost:5432/openbank_apimgtdb"
-    username = "postgres"
-    password = "root"
-    driver = "org.postgresql.Driver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "150"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
--->
       
 1. Add or update the default datasource configurations in `<IS_HOME>/repository/conf/deployment.toml` with your 
 database configurations.  
@@ -210,6 +126,87 @@ database configurations.
     defaultAutoCommit=false
     commitOnReturn=true
     ```
+
+2. Add or update the default datasource configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. This step is required of youar setting up with WSO2 API Manager.
+
+    - Given below is the relevant datasource configuration for each database:
+   
+        |Database|TOML configuration|
+        |--------|----------|
+        |fs_apimgtdb|`[database.apim_db]`|
+        |fs_am_configdb|`[database.config]`|
+        |fs_am_configdb|`[database.shared_db]`|
+        |fs_userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
+
+   - Configure the datasources by following the sample below: 
+    
+    ``` toml tab="MySQL"
+    [database.apim_db]
+    url = "jdbc:mysql://localhost:3306/fs_apimgtdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="Oracle"
+    [database.apim_db]
+    url = "jdbc:oracle:thin:fs_apimgtdb/password@localhost:1521:root"
+    username = "fs_apimgtdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1 FROM DUAL"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="MS SQL"
+    [database.apim_db]
+    url = "jdbc:sqlserver://localhost:1433;databaseName=fs_apimgtdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "300"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
+    
+    ``` toml tab="PostgreSQL"
+    [database.apim_db]
+    url = "jdbc:postgresql://localhost:5432/fs_apimgtdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
    
 ## Creating database tables
 
@@ -225,10 +222,12 @@ according to your DBMS.
 | fs_userdb            | `<IS_HOME>/dbscripts`                                                                                             |
 | fs_iskm_configdb     | `<IS_HOME>/dbscripts `                                                                                            |
 | fs_consentdb         | `<IS_HOME>/dbscripts/financial-services/consent` and `<IS_HOME>/dbscripts/financial-services/event-notifications` |
+| fs_apimgtdb          | `<APIM_HOME>/dbscripts/apimgt ` |
+| fs_am_configdb       | `<APIM_HOME>/dbscripts` |
 
 !!! note "Increase the column size of the following table columns:"
 
-     Execute the relevant SQL command against the `fs_identitydb` database.
+     Execute the relevant SQL command against the `fs_identitydb` and `fs_apimgtdb` database.
      
      1. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
@@ -254,7 +253,7 @@ according to your DBMS.
     "Overcome the failure in deleting applications in PostgreSQL database".
 
     If you are using PostgreSQL, you might encounter an error when deleting applications. To overcome this, execute the 
-    following SQL command against the `fs_identitydb` database:
+    following SQL command against the `fs_identitydb` and `fs_apimgtdb` database:
         
     ```sql
     ALTER TABLE SP_APPLICATION DROP CONSTRAINT IF EXISTS sp_application_name_key;
