@@ -40,14 +40,14 @@ products.
 !!! note
     If you are planning to use Manual Client Regitration through DevPortal follow the below steps. Else skip this section.
 
-1. Download and extract the latest Open Banking Accelerator 4.0.0 AM Artifacts. 
+1. Download and extract the latest Open Banking Accelerator 4.1.0 AM Artifacts. 
 
-    - Current latest version [4.0.0]().
+    - Current latest version [4.1.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.0).
               
 2. WSO2 Open Banking AM Accelerator contains the following artifacts: 
    
-    - org.wso2.financial.services.accelerator.common-4.x.0.jar
-    - org.wso2.financial.services.accelerator.keymanager-4.x.0.jar
+    - org.wso2.financial.services.accelerator.common-4.1.0.jar
+    - org.wso2.financial.services.accelerator.keymanager-4.1.0.jar
     - financial-services.xml.j2
     - financial-services.xml
    
