@@ -75,7 +75,7 @@ nav:
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
     - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
     - 'Configuring API Resources, Users and Roles': install-and-setup/configure-resources-users-and-roles.md
-    - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
+    # - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
     - 'Advanced':
         - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
@@ -85,11 +85,11 @@ nav:
         - 'Pre-Initiated Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-pre_initiated_consent.md
         - 'Scope Based Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-scope-based-consent.md
     - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
-        - 'Deploy Open Banking APIs': tryout-flows/deploy-apis.md
+        - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis.md
         - 'Client Registration':
             - 'Dynamic Client Registration': tryout-flows/accelerator-with-is-and-apim/dynamic-client-registration.md
             - 'Manual Client Registration': tryout-flows/accelerator-with-is-and-apim/manual-client-registration.md
-        - 'Tyyout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-flow-accounts.md
+        - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow.md
   - 'Learn':
     - 'Client Registration': learn/client-registration.md
     - 'Dynamic Client Registration':

@@ -16,13 +16,13 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 ### Step 1: Deploy the Dynamic Client Registration(DCR) API
 
 1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher). 
-    ![sign-in](../assets/img/get-started/quick-start-guide/dcr/sign-in.png)
+    ![sign-in](../../assets/img/get-started/quick-start-guide/dcr/sign-in.png)
 
 2. In the homepage, go to **REST API** and select **Import Open API**.
-    ![lets-get-started](../assets/img/get-started/quick-start-guide/dcr/lets-get-started.png)
+    ![lets-get-started](../../assets/img/get-started/quick-start-guide/dcr/lets-get-started.png)
 
 3. Select **OpenAPI File/Archive**. 
-    ![select_API](../assets/img/get-started/quick-start-guide/dcr/create-an-api.png)
+    ![select_API](../../assets/img/get-started/quick-start-guide/dcr/create-an-api.png)
 
 4. Click **Browse File to Upload** and select the [dcr-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/DynamicClientRegistration/dcr-swagger.yaml) file.
 
@@ -32,43 +32,43 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
     ```
     http://<IS_HOSTNAME>:9766/api/identity/oauth2/dcr/v1.1
     ```
-    ![create-dcr](../assets/img/get-started/quick-start-guide/dcr/create-dcr.png)
+    ![create-dcr](../../assets/img/get-started/quick-start-guide/dcr/create-dcr.png)
 
 7. Click **Create**. 
 
 8. Select **Subscriptions** from the left menu pane and uncheck all subscription plans.
-    ![select_subscriptions](../assets/img/get-started/quick-start-guide/dcr/api-subscription.png)
+    ![select_subscriptions](../../assets/img/get-started/quick-start-guide/dcr/api-subscription.png)
 
 9. Click **Save**.
 
 10. Select **Endpoints** from the left menu pane and select **Endpoint Security**.
-    ![config-endpoints](../assets/img/get-started/quick-start-guide/dcr/config-endpoints.png)
+    ![config-endpoints](../../assets/img/get-started/quick-start-guide/dcr/config-endpoints.png)
 
 11. Select Basic Auth as the security type and provide Identity Server Administrator username and password. Click Submit.
-    ![add-basic-auth](../assets/img/get-started/quick-start-guide/dcr/add-basic-auth.png)
+    ![add-basic-auth](../../assets/img/get-started/quick-start-guide/dcr/add-basic-auth.png)
 
 12. Do the same for both Production and Sandbox endpoints and click Save.
 
 13. Refer the documentation on [Creating an API Policy](../learn/create-policies.md) and create DCR policies.
 
-    - [DCR Request Mediation Policy](../learn/dcr-policies.md#dynamic-client-registration-request-policy)
-    - [DCR Response Mediation Policy](../learn/dcr-policies.md#dynamic-client-registration-response-policy)
+    - [DCR Request Mediation Policy](../../learn/dcr-policies.md#dynamic-client-registration-request-policy)
+    - [DCR Response Mediation Policy](../../learn/dcr-policies.md#dynamic-client-registration-response-policy)
 
-14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](../learn/engage-policies.md) for more details.
+14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](../../learn/engage-policies.md) for more details.
 
 15. Go to **Deployments** using the left menu pane.
-    ![select-deployments](../assets/img/get-started/quick-start-guide/dcr/select-deployments.png)
+    ![select-deployments](../../assets/img/get-started/quick-start-guide/dcr/select-deployments.png)
 
 16. Select the API Gateway type, in this scenario, it is **Default**.
-    ![dcr-api-gateway](../assets/img/get-started/quick-start-guide/dcr/dcr-api-gateway.png)
+    ![dcr-api-gateway](../../assets/img/get-started/quick-start-guide/dcr/dcr-api-gateway.png)
 
 17. Click **Deploy**.
 
 18. Go to **Overview** using the left menu pane. 
-    ![dselect-overview](../assets/img/get-started/quick-start-guide/dcr/select-overview.png)
+    ![dselect-overview](../../assets/img/get-started/quick-start-guide/dcr/select-overview.png)
  
 19. Click **Publish**. 
-    ![publish-api](../assets/img/get-started/quick-start-guide/dcr/publish-api.png)
+    ![publish-api](../../assets/img/get-started/quick-start-guide/dcr/publish-api.png)
 
 20. The deployed DCR API is now available in the Developer Portal at [https://localhost:9443/devportal](https://localhost:9443/devportal).
 
@@ -77,15 +77,15 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 1. Sign in to the Admin Portal of API Manager at <https://localhost:9443/admin>.
 
 2. Go to **Key Managers** on the left main menu. 
-    ![add_Key_Manager](../assets/img/get-started/quick-start-guide/dcr/add-key-manager.png)
+    ![add_Key_Manager](../../assets/img/get-started/quick-start-guide/dcr/add-key-manager.png)
 
 3. Configure [WSO2 IS 7.x as a keymanager](https://apim.docs.wso2.com/en/latest/administer/key-managers/configure-wso2is7-connector/).
     
 4. Go to the list of Key Managers and select **Resident Key Manager**. 
-    ![select_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/select-resident-km.png)
+    ![select_Resident_KM](../../assets/img/get-started/quick-start-guide/dcr/select-resident-km.png)
 
 5. Disable the Resident Key Manager.
-    ![Disable_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/disable-resident-km.png)
+    ![Disable_Resident_KM](../../assets/img/get-started/quick-start-guide/dcr/disable-resident-km.png)
 
 ### Step 3: Register an application
 The DCR allows the TPP to request the bank to register a new application. The process is as follows:

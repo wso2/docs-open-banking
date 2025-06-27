@@ -48,10 +48,13 @@ products.
    
     - org.wso2.financial.services.accelerator.common-4.1.0.jar
     - org.wso2.financial.services.accelerator.keymanager-4.1.0.jar
-    - financial-services.xml.j2
-    - financial-services.xml
+
+3. Download the configuration files from the locations given below.
+
+    - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
+    - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
    
-3. This document uses the following placeholders to refer to the following products:
+4. This document uses the following placeholders to refer to the following products:
         
     | Product                                   | Placeholder                |
     |-------------------------------------------|----------------------------|
