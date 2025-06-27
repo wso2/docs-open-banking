@@ -251,8 +251,3 @@ The TPP application requires a Client ID (Consumer Key) to access the subscribed
 6. It generates the consumer key and consumer secret and displays them at the top of the page.
 
     ![generated-keys](../assets/img/learn/mcr/generated-keys.png)
-
-
-
-
-
