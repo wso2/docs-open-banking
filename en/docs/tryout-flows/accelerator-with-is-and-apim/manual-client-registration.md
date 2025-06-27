@@ -163,7 +163,7 @@ Before creating the application, need to enable the additional fields from the D
     | Token Handling Options (Optional) | JWT |
 
 12. Click on **Add** button to create the Key Manager. Key Manager will be displayed as below.
-    ![km-both-enabled](../assets/img/learn/mcr/custom-km/km-both-enabled.png)
+    ![km-both-enabled](../../assets/img/learn/mcr/custom-km/km-both-enabled.png)
 
 13. Disable the Resident Key Manager.
     ![km-display](../../assets/img/learn/mcr/custom-km/km-display.png)

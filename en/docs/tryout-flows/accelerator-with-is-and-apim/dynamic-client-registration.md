@@ -56,7 +56,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](../../learn/engage-policies.md) for more details.
 
-15. Go to **Deployments** using the left menu pane.
+15. Go to **Deployments** using the left menu pane. <br/>
     ![select-deployments](../../assets/img/get-started/quick-start-guide/dcr/select-deployments.png)
 
 16. Select the API Gateway type, in this scenario, it is **Default**.
@@ -64,7 +64,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 17. Click **Deploy**.
 
-18. Go to **Overview** using the left menu pane. 
+18. Go to **Overview** using the left menu pane. <br/>
     ![dselect-overview](../../assets/img/get-started/quick-start-guide/dcr/select-overview.png)
  
 19. Click **Publish**. 
