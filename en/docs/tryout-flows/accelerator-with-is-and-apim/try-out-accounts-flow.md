@@ -1,7 +1,7 @@
 This document provides step by step instructions to invoke the Accounts Information Service API.
 Following diagram illustrates the sample Open Banking flow which is going to try from this documentation section.
 
-![Open Banking Demo Flow](../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
+![Open Banking Demo Flow](../../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
 
 
 !!! note
@@ -66,7 +66,7 @@ In this step, the API consumer creates a request to get the consent of the custo
 information from the bank. 
 
 A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
-available [here](../assets/attachments/transport-certs):
+available [here](../../assets/attachments/transport-certs/):
 
 ```
 curl --location --request POST 'https://localhost:8243/open-banking/v3.1/aisp/account-access-consents' \
@@ -182,12 +182,12 @@ consumer wishes to access. This request is in the format of a URL as follows:
    
 3. Run the URL in a browser to prompt the invocation of the authorize API.
 
-   ![login-screen-in-tryout-flow.png](../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
+   ![login-screen-in-tryout-flow.png](../../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
 
 4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `consumer` role. 
 
 5. The page displays a list of bank accounts and the information that the API consumer wishes to access.
-   ![grant consent](../assets/img/learn/consent-manager/consent-page-confirm.png)   
+   ![grant consent](../../assets/img/learn/consent-manager/consent-page-confirm.png)   
     
 6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click 
  **Confirm** to grant these permissions.
