@@ -2,7 +2,7 @@ WSO2 Open Banking Accelerator support manual client registration(MCR) via DevPor
 
 
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide-am.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide-am.md)
 
 
 ## Application Creation
@@ -44,7 +44,7 @@ The OpenAPI extension for application update provides the extendibility to store
 ### OpenAPI Extensions
 | OpenAPI Extension         | Description                                                                              | OpenAPI Definition                                                                                                                                           |
 |---------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| pre-process-application-update | handle pre validations & changes to the consumer application update | [pre-process-application-update/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-application-update/post) |
+| pre-process-application-update | handle pre validations & changes to the consumer application update | [pre-process-application-update/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Application/paths/~1pre-process-application-update/post) |
 
 
 ### Configuration
