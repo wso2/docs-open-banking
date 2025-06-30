@@ -28,6 +28,8 @@ Follow the following steps to define the policy in either type.
 1. Enter the basic details of the policy.
     ![policy-general-details](../assets/img/learn/policies/policy-general-details.png)
 
+    | Field | Description |
+    | ----- | ----------- |
     | Name | Name of the Policy |
     | Version | Version of the Policy |
     | Description | Description of the Policy |

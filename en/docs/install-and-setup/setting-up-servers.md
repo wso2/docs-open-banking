@@ -139,8 +139,8 @@ and run the merge script as follows:
 
 | File                                                           | Directory location to place the artifact                          |
 |----------------------------------------------------------------|-----------------------------------------------------------------  |
-| `org.wso2.financial.services.accelerator.common-4.0.0.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
-| `org.wso2.financial.services.accelerator.keymanager-4.0.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
+| `org.wso2.financial.services.accelerator.common-4.1.0.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
+| `org.wso2.financial.services.accelerator.keymanager-4.1.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
 | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
 | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
 
@@ -277,7 +277,7 @@ can be applied using a single configuration file, which is the `deployment.toml`
 
     - Go to the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/resources` directory.
     
-    - Rename `wso2is-5.11.0-deployment.toml` to `deployment.toml`.
+    - Rename `wso2is-7.1.0-deployment.toml` to `deployment.toml`.
     
     - Copy the `deployment.toml` file to the `<IS_HOME>/repository/conf` directory to replace the existing file.
       
