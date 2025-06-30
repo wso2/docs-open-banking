@@ -1,6 +1,6 @@
 The WSO2 Financial Services AM COmponent supports two approaches for extending and implementing its functionalities, as illustrated in the image below.
 
-![IS_Accelerator_Extensions](../assets/img/develop/openapi-extensions/OB_Flows_with_OpenAPI_Extensions_AM.png) 
+![AM_Accelerator_Extensions](../assets/img/develop/openapi-extensions/OB_Flows_with_OpenAPI_Extensions_AM.png) 
 
 ## API Policies
 
