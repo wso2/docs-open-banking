@@ -22,7 +22,7 @@ To enable, follow the steps below:
 ``` toml
 [financial_services.extensions.endpoint]
 enabled = true
-base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
+base_url = "<BASE_URL_OF THE EXTENSION>"
 
 allowed_extensions = ["validate_consent_access"]
 
