@@ -50,7 +50,7 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 
 9. Click Save.
 
-10. Go to Runtime using the left menu pane.
+10. Go to Runtime using the left menu pane. <br/>
     ![select-runtime.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-runtime.png)
 
 11. Toggle the Schema Validation button to enable Schema Validation for all APIs except for the Dynamic Client Registration API.
@@ -65,17 +65,17 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     | Client Credentials Grant | APPLICATION      |
     |Authorization Code Grant  | APPLICATION_USER |
 
-13. Go to Endpoints using the left menu pane.
-    ![select-runtime.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-runtime.png)
+13. Go to Endpoints using the left menu pane. <br/>
+    ![select-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-endpoints.png)
 
-14. Select the endpoint types; `Dynamic Endpoints` and click Save.  
+14. Select the endpoint types; **Dynamic Endpoints** and click Save.  
     ![dynamic-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
 
-15. Select the API Gateway type, in this scenario, it is Default.
+15. Select the **API Gateway** type, in this scenario, it is **Default**.
 
 18. Click Deploy.
 
-19. Go to Overview using the left menu pane.
+19. Go to Overview using the left menu pane. <br/>
     ![select-overview.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-overview.png)
 
 20. click Publish. 
