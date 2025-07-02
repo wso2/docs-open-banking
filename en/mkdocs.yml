@@ -131,7 +131,8 @@ nav:
       - 'Engage Policies to APIs': learn/engage-policies.md
       - 'Inbuilt Enforcements':
           - 'Introduction': learn/inbuilt-policies.md
-          - 'Policies for Dynamic Client Registration': learn/dcr-policies.md
+          - 'Dynamic Client Registration Request Policy': learn/dcr-request-policies.md
+          - 'Dynamic Client Registration Response Policy': learn/dcr-response-policies.md
   - 'Develop':
       - 'Toolkit': 
           - 'Introduction': develop/develop-toolkit.md

@@ -51,12 +51,12 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 13. Refer the documentation on [Creating an API Policy](../learn/create-policies.md) and create DCR policies.
 
-    - [DCR Request Mediation Policy](../learn/dcr-policies.md#dynamic-client-registration-request-policy)
-    - [DCR Response Mediation Policy](../learn/dcr-policies.md#dynamic-client-registration-response-policy)
+    - [DCR Request Mediation Policy](../learn/dcr-request-policies.md)
+    - [DCR Response Mediation Policy](../learn/dcr-response-policies.md#)
 
 14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](../learn/engage-policies.md) for more details.
 
-15. Go to **Deployments** using the left menu pane.
+15. Go to **Deployments** using the left menu pane. <br/>
     ![select-deployments](../assets/img/get-started/quick-start-guide/dcr/select-deployments.png)
 
 16. Select the API Gateway type, in this scenario, it is **Default**.
@@ -64,28 +64,13 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 17. Click **Deploy**.
 
-18. Go to **Overview** using the left menu pane. 
+18. Go to **Overview** using the left menu pane. <br/>
     ![dselect-overview](../assets/img/get-started/quick-start-guide/dcr/select-overview.png)
  
 19. Click **Publish**. 
     ![publish-api](../assets/img/get-started/quick-start-guide/dcr/publish-api.png)
 
 20. The deployed DCR API is now available in the Developer Portal at [https://localhost:9443/devportal](https://localhost:9443/devportal).
-
-### Step 2: Configure WSO2 IS 7.x as a Key Manager
-
-1. Sign in to the Admin Portal of API Manager at <https://localhost:9443/admin>.
-
-2. Go to **Key Managers** on the left main menu. 
-    ![add_Key_Manager](../assets/img/get-started/quick-start-guide/dcr/add-key-manager.png)
-
-3. Configure [WSO2 IS 7.x as a keymanager](https://apim.docs.wso2.com/en/latest/administer/key-managers/configure-wso2is7-connector/).
-    
-4. Go to the list of Key Managers and select **Resident Key Manager**. 
-    ![select_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/select-resident-km.png)
-
-5. Disable the Resident Key Manager.
-    ![Disable_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/disable-resident-km.png)
 
 ### Step 3: Register an application
 The DCR allows the TPP to request the bank to register a new application. The process is as follows:
