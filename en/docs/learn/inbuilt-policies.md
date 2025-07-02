@@ -7,6 +7,11 @@ WSO2 Open Banking provides set of mediation policies and the other utility synap
 
 ## Inbuilt Gateway Enforcements
 
-- [Policies for Dynamic Client Registration](../learn/dcr-policies.md)
+- [Dynamic Client Registration Request Policy](../learn/dcr-request-policy.md)
+- [Dynamic Client Registration Response Policy](../learn/dcr-response-policy.md)
+- [Consent Enforcement Policy](../learn/consent-enforcement-policy.md)
+- [Dynamic Endpoint Policy](../learn/dynamic-endpoint-policy.md)
+- [MTLS Enforcement Policy](../learn/mtls-enforcement-policy.md)
+- [UK JWS Header Processing Policy](../learn/uk-jws-header-processing-policy.md)
 
 
