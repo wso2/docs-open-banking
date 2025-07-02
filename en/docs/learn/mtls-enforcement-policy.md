@@ -19,7 +19,7 @@ Create an API Level Policy by following the [Creating API Level Policy](../learn
 
 #### Policy File
 
-Upload the [MTLS Enforcement Policy](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/common/mtls-enforcement/mtlsEnforcementPolicy.j2) policy file.
+Upload the mtlsEnforcementPolicy.j2 policy file which resides inside the extracted fs-apim-mediation-artifacts-1.0.0.zip built in [Create Policies](../learn/create-policies.md) section.
 
 #### Policy Attributes
 

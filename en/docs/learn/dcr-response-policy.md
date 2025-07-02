@@ -18,4 +18,4 @@ Create an API Level Policy by following the [Creating API Level Policy](../learn
 
 #### Policy File
 
-Upload the [Dynamic Client Registration Response Policy](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/dynamic-client-registration/dynamicClientRegistrationResponsePolicy.j2) policy file.
+Upload the dynamicClientRegistrationResponsePolicy.j2 policy file which resides inside the extracted fs-apim-mediation-artifacts-1.0.0.zip built in [Create Policies](../learn/create-policies.md) section.
