@@ -52,7 +52,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 13. Refer the documentation on [Creating an API Policy](../learn/create-policies.md) and create DCR policies.
 
     - [DCR Request Mediation Policy](../../learn/dcr-request-policies.md)
-    - [DCR Response Mediation Policy](../../learn/dcr-responsepolicies.md)
+    - [DCR Response Mediation Policy](../../learn/dcr-response-policies.md)
 
 14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](../../learn/engage-policies.md) for more details.
 
