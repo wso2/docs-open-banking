@@ -7,6 +7,7 @@ WSO2 Open Banking provides set of mediation policies and the other utility synap
 
 ## Inbuilt Gateway Enforcements
 
-- [Policies for Dynamic Client Registration](../learn/dcr-policies.md)
+- [Dynamic Client Registration Request Policy](../learn/dcr-request-policies.md)
+- [Dynamic Client Registration Response Policy](../learn/dcr-response-policies.md)
 
 
