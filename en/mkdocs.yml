@@ -131,8 +131,12 @@ nav:
       - 'Engage Policies to APIs': learn/engage-policies.md
       - 'Inbuilt Enforcements':
           - 'Introduction': learn/inbuilt-policies.md
-          - 'Dynamic Client Registration Request Policy': learn/dcr-request-policies.md
-          - 'Dynamic Client Registration Response Policy': learn/dcr-response-policies.md
+          - 'Dynamic Client Registration Request Policy': learn/dcr-request-policy.md
+          - 'Dynamic Client Registration Response Policy': learn/dcr-response-policy.md
+          - 'Consent Enforcement Policy': learn/consent-enforcement-policy.md
+          - 'Dynamic Endpoint Policy': learn/dynamic-endpoint-policy.md
+          - 'MTLS Enforcement Policy': learn/mtls-enforcement-policy.md
+          - 'UK JWS Header Processing Policy': learn/uk-jws-header-processing-policy.md
   - 'Develop':
       - 'Toolkit': 
           - 'Introduction': develop/develop-toolkit.md
