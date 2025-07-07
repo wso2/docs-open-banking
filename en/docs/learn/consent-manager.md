@@ -76,7 +76,7 @@ requirements and manages consents.
 6. Click the Next button.
 
 7. Add the scopes **consents:read_self** and **consents:read_all** one by one. Enter scope and Display name as below.<br/> 
-![create-api-resource-step2](../assets/img/learn/consent-manager/create-api-resource-step1.png)
+![create-api-resource-step2](../assets/img/learn/consent-manager/create-api-resource-step2.png)
 
 6. Click the Next button.
 
@@ -152,15 +152,14 @@ Similarly assign the **ConsentPortalRole** to the users who have a consumer role
 ![create-application](../assets/img/learn/consent-manager/create-application.png)
 
 5. Select Standard Base Application.<br/> 
-![application-view](../assets/img/learn/consent-manager/application-view.png)
+![application-view](../assets/img/learn/consent-manager/applications-view.png)
 
 6. Create an application providing the following details.<br/> 
 ![create-application-details](../assets/img/learn/consent-manager/create-application-details.png)
 
 7. Click **Create**, and the service provider will be created.
 
-8. Once the application is created, do the following modifications to the application **Protocol** tab.
-    - Configure the below details under the **OAuth2.0/OpenID Connect** section. 
+8. Once the application is created, do the following modifications to the application **Protocol** tab. Configure the below details under the **OAuth2.0/OpenID Connect** section. 
     | Section | Configuration | Value |
     | ------- | ------------- | ----- |
     | OAuth2.0/OpenID | Allowed grant types | Select code, refresh token |
