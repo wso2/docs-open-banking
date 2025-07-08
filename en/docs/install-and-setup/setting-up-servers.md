@@ -10,8 +10,8 @@ products.
 
     | Base Product              | Combination 01                                                              | Combination 02                                                                                        |
     |---------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-and-access-management/previous-releases/) | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
-    | WSO2 API Manager          | [4.5.0](https://wso2.com/api-management/previous-releases/)                 | [4.4.0](https://wso2.com/api-manager/) or [4.3.0](https://wso2.com/api-management/previous-releases/) |
+    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-server/) | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
+    | WSO2 API Manager          | [4.5.0](https://wso2.com/api-manager/) or [4.4.0](https://wso2.com/api-management/previous-releases/)              |  [4.3.0](https://wso2.com/api-management/previous-releases/) |
 
 ## Installing WSO2 Open Banking Accelerator 
 
@@ -83,18 +83,17 @@ improvements that are released by WSO2. You need to update the base products and
 
 2. Go to `<OB_IS_ACCELERATOR_HOME>/bin` of the WSO2 Identity Server side accelerator and run the WSO2 Update tool:
 
-   
-        ```bash tab='On Linux'
-        ./wso2update_linux 
-        ```
-        
-        ```bash tab='On Mac'
-        ./wso2update_darwin
-        ```
-        
-        ```bash tab='On Windows'
-        ./wso2update_windows.exe
-        ```
+    ```bash tab='On Linux'
+    ./wso2update_linux 
+    ```
+    
+    ```bash tab='On Mac'
+    ./wso2update_darwin
+    ```
+    
+    ```bash tab='On Windows'
+    ./wso2update_windows.exe
+    ```
 
 For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
 

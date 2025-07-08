@@ -51,7 +51,7 @@ database server, and the JDBC driver.
    
     ```toml tab='shared_db'
     [database.shared_db]
-    url = "jdbc:mysql://localhost:3306/fs_am_configdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -59,7 +59,7 @@ database server, and the JDBC driver.
     
     ```toml tab='apim_db'
     [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/fs_apimgtdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -67,7 +67,7 @@ database server, and the JDBC driver.
     
     ```toml tab='config'
     [database.config]
-    url = "jdbc:mysql://localhost:3306/fs_am_configdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -76,7 +76,7 @@ database server, and the JDBC driver.
     ```toml tab='WSO2UM_DB'
     [[datasource]]
     id="WSO2UM_DB"
-    url = "jdbc:mysql://localhost:3306/fs_userdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"

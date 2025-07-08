@@ -23,29 +23,14 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 
 6. Click on Finish.
 
-### Configure WSO2 IS 7.x as a Key Manager
-
-1. Sign in to the Admin Portal of API Manager at <https://localhost:9443/admin>.
-
-2. Go to **Key Managers** on the left main menu. 
-    ![add_Key_Manager](../assets/img/get-started/quick-start-guide/dcr/add-key-manager.png)
-
-3. Configure [WSO2 IS 7.x as a keymanager](https://apim.docs.wso2.com/en/latest/administer/key-managers/configure-wso2is7-connector/). Enable role creation in WSO2 Identity Server 7.
-    
-4. Go to the list of Key Managers and select **Resident Key Manager**. 
-    ![select_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/select-resident-km.png)
-
-5. Disable the Resident Key Manager.
-    ![Disable_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/disable-resident-km.png)
-
 ## Publish Accounts API
 
 1. Sign in to the API Publisher Portal at `https://<APIM_HOSTNAME>:9443/publisher`. 
 
-2. In the homepage, go to REST API and select Import Open API. 
+2. In the homepage, go to REST API and select Import Open API. <br/>
     ![select-rest-api.png](../assets/img/get-started/quick-start-guide/deploy-apis/select-rest-api.png)
 
-3. Select OpenAPI File/Archive. 
+3. Select OpenAPI File/Archive. <br/>
     ![upload-swagger.png](../assets/img/get-started/quick-start-guide/deploy-apis/upload-swagger.png)
 
 4. Click Browse File to Upload and select [account-info-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Accounts/account-info-swagger.yaml).  
@@ -57,18 +42,18 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     /open-banking/{version}/aisp
     ```
 
-7. Leave the Endpoint field empty as it is, Select the Gateway Type and click Create.
+7. Leave the Endpoint field empty as it is, Select the Gateway Type and click Create.<br/>
     ![configure-api.png](../assets/img/get-started/quick-start-guide/deploy-apis/configure-api.png)
 
-8. Select Subscriptions from the left menu pane and uncheck all subscription plans.
+8. Select Subscriptions from the left menu pane and uncheck all subscription plans.<br/>
     ![api-subscription.png](../assets/img/get-started/quick-start-guide/deploy-apis/api-subscription.png)
 
 9. Click Save.
 
-10. Go to Runtime using the left menu pane.
+10. Go to Runtime using the left menu pane. <br/>
     ![select-runtime.png](../assets/img/get-started/quick-start-guide/deploy-apis/select-runtime.png)
 
-11. Toggle the Schema Validation button to enable Schema Validation for all APIs except for the Dynamic Client Registration API.
+11. Toggle the Schema Validation button to enable Schema Validation for all APIs except for the Dynamic Client Registration API.<br/>
     ![schema-validation.png](../assets/img/get-started/quick-start-guide/deploy-apis/schema-validation.png)
 
 12. Add [JWT claim based access validation](https://apim.docs.wso2.com/en/latest/design/api-policies/regular-gateway-policies/jwt-claim-based-access-validator/).
@@ -80,20 +65,25 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     | Client Credentials Grant | APPLICATION      |
     |Authorization Code Grant  | APPLICATION_USER |
 
-13. Go to Endpoints using the left menu pane.
-    ![select-runtime.png](../assets/img/get-started/quick-start-guide/deploy-apis/select-runtime.png)
+13. Go to Endpoints using the left menu pane.<br/>
+    ![select-endpoints.png](../assets/img/get-started/quick-start-guide/deploy-apis/select-endpoints.png)
 
-14. Select the endpoint types; `Dynamic Endpoints` and click Save.  
+14. Select the endpoint types; `Dynamic Endpoints` and click Save.  <br/>
     ![dynamic-endpoint.png](../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
 
-15. Select the API Gateway type, in this scenario, it is Default.
+15. Create and engage the required [Inbuilt Gateway Enforcements](../learn/inbuilt-policies.md)
+    - Refer the [Introduction to Policies](../learn/policies.md) for more details on Policies.
+    - Refer the [Create Policies](../learn/create-policies.md) for create new Policies.
+    - Refer the [Engage Policies](../learn/engage-policies.md) to learn how to engage policies to an API.
 
-18. Click Deploy.
+16. Select the API Gateway type, in this scenario, it is Default.
 
-19. Go to Overview using the left menu pane.
+17. Click Deploy.
+
+18. Go to Overview using the left menu pane.<br/>
     ![select-overview.png](../assets/img/get-started/quick-start-guide/deploy-apis/select-overview.png)
 
-20. click Publish. 
+19. click Publish. <br/>
     ![publish-api.png](../assets/img/get-started/quick-start-guide/deploy-apis/publish-api.png)
 
 Once you deploy the APIs an API resource will be created along with the role mentioned in the swagger on the Identity Server side.
