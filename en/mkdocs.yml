@@ -62,6 +62,7 @@ nav:
       - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
         - 'Get Started': get-started/quick-start-guide.md
         - 'Set Up Accelerators': get-started/set-up-accelerators.md
+        - 'Configure IS 7.x as Key Manager': get-started/configure-km.md
         - 'Deploy Open Banking APIs': get-started/deploy-apis.md
         - 'Configure API Resources, Users and Roles': get-started/configure-users-and-roles.md
         - 'Dynamic Client Registration': get-started/dynamic-client-registration.md

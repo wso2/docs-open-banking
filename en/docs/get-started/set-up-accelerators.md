@@ -1,8 +1,8 @@
 This section guides you to set up and prepare your server to run WSO2 Open Banking Accelerator.
 
-### Set up WSO2 Open Banking Accelerator for WSO2 Identity Server
+## Set up WSO2 Identity Server
 
-#### Step 1: Set up WSO2 Open Banking IAM Accelerator
+### Step 1: Install WSO2 Open Banking IAM Accelerator
 Copy the extracted accelerator directory into the root directory of the WSO2 Identity Server. 
 
 | File                           | Directory location to place the Accelerator |
@@ -12,7 +12,7 @@ Copy the extracted accelerator directory into the root directory of the WSO2 Ide
 !!! tip
     This documentation will refer to the above-extracted directory of the accelerator as `<OB_IS_ACCELERATOR_HOME>`.
 
-#### Step 2: Configure database scripts
+### Step 2: Configure database scripts
 
 !!! note 
     WSO2 Open Banking Accelerator is [compatible](../install-and-setup/prerequisites.md#compatibility) with the following DBMSs:
@@ -93,29 +93,30 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 3. Run the db script resides in `<IS_HOME>/dbscripts/financial-services/event-notifications` directory to create database 
    tables for event notification feature in `fs_consentdb` database. 
 
-### Setting Up WSO2 API Manager
+## Setting Up WSO2 API Manager
 
-#### Step 1: Configure databases
+### Step 1: Configure databases
 
 1. Create the following databases:
-    - fs_apimgtdb 
-    - fs_am_configdb
+    - apimgtdb 
+    - am_configdb
+    - userdb
 
     Commands to create the Databases in MySQL
     ``` 
-    DROP DATABASE IF EXISTS fs_apimgtdb; 
-    CREATE DATABASE fs_apimgtdb;
-    ALTER DATABASE fs_apimgtdb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+    DROP DATABASE IF EXISTS apimgtdb; 
+    CREATE DATABASE apimgtdb;
+    ALTER DATABASE apimgtdb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
     ```
 
 2. Given below is the relevant datasource configuration for each database:
 
 | Database       | TOML configuration                |
 | -------------- | --------------------------------  |
-| fs_apimgtdb    | [database.apim_db]                |
-| fs_am_configdb | [database.config]                 | 
-| fs_am_configdb | [database.shared_db]              |
-| fs_userdb      | [[datasource]]<br/>id="WSO2UM_DB" |
+| apimgtdb    | [database.apim_db]                |
+| am_configdb | [database.config]                 | 
+| am_configdb | [database.shared_db]              |
+| userdb      | [[datasource]]<br/>id="WSO2UM_DB" |
 
 3. Place the compatible JDBC drivers in the `<IS_HOME>/repository/components/lib` folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
 
@@ -125,11 +126,11 @@ To create the database tables, go to the following locations and execute the rel
 
 | Database         | Script location                                                    |
 | ---------------- | ------------------------------------------------------------------ |
-| `fs_apimgtdb`    | `<APIM_HOME>/dbscripts/apimgt `                                    | 
-| `fs_am_configdb` | `<APIM_HOME>/dbscripts`                                            |
-| `fs_userdb`      | `No need to create again since tables are created when setting IS` |
+| `apimgtdb`    | `<APIM_HOME>/dbscripts/apimgt `                                    | 
+| `am_configdb` | `<APIM_HOME>/dbscripts`                                            |
+| `userdb`      | `<APIM_HOME>/dbscripts`                                            |
 
-5. Execute the relevant SQL command against the fs_apimgtdb database.
+5. Execute the relevant SQL command against the apimgtdb database.
 
     a. Increase the column size of the VALUE column in the SP_METADATA table: (Command given in MySQL)
         ```
@@ -175,7 +176,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
 4. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
     ```
     [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/fs_apimgtdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdb`c.Driver"
@@ -197,7 +198,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     ```
     [[datasource]]
     id="WSO2UM_DB"
-    url = "jdbc:mysql://localhost:3306/fs_userdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -296,7 +297,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     cache_size = 1024
     ```
 
-### Exchanging the certificates
+## Exchanging the certificates
 
 In order to enable secure communication, we need to install the certificates of each component in others. This will facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this:
 
@@ -319,7 +320,7 @@ In order to enable secure communication, we need to install the certificates of 
 
 4. Repeat above steps for all the servers.
 
-### Uploading Root and Issuer certificates
+## Uploading Root and Issuer certificates
 
 Upload the root and issuer certificates ofin OBIE ([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) | [Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) to the client trust stores in `<IS_HOME>/repository/resources/security/client-truststore.p12` and `<APIM_HOME>/repository/resources/security/client-truststore.jks` using the following command:
 
@@ -328,7 +329,7 @@ Upload the root and issuer certificates ofin OBIE ([Sandbox Certificates](https:
     ```
 
 
-### Start servers
+## Start servers
 
 1. Run the following command in <IS_HOME>/bin:
     ```
