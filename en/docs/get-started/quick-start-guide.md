@@ -63,7 +63,7 @@ improvements that are released by WSO2. You need to update the base products and
 
 1. Go to `<PRODUCT_HOME>/bin` and run the WSO2 Update tool:
 
-    - Repeat this step for the WSO2 Identity Server, API Manager, and Stream Integrator products.
+    - Repeat this step for the WSO2 Identity Server and API Manager products.
     
         ```bash tab='On Linux'
         ./wso2update_linux 

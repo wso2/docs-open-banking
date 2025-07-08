@@ -19,8 +19,9 @@ Once you have successfully prepared the environment for the deployment, you can 
         - `fs_consentdb`
 
     - If you are setting up with WSO2 API Manager create following databases.
-        - `fs_apimgtdb`
-        - `fs_am_configdb`
+        - `apimgtdb`
+        - `am_configdb`
+        - `userdb` 
 
 2. According to your DBMS, place the compatible JDBC drivers in the following directories:
  
@@ -127,22 +128,100 @@ database configurations.
     commitOnReturn=true
     ```
 
+    - Configure the datasource for `consentdb` by following the sample below: 
+    
+    ``` toml tab="MySQL"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:mysql://localhost:3306/fs_consentdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="Oracle"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:oracle:thin:fs_consentdb/password@localhost:1521:root"
+    username = "apimgtdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="MS SQL"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:sqlserver://localhost:1433;databaseName=fs_consentdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+    
+    ``` toml tab="PostgreSQL"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:postgresql://localhost:5432/fs_consentdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+
 2. Add or update the default datasource configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. This step is required of youar setting up with WSO2 API Manager.
 
     - Given below is the relevant datasource configuration for each database:
    
         |Database|TOML configuration|
         |--------|----------|
-        |fs_apimgtdb|`[database.apim_db]`|
-        |fs_am_configdb|`[database.config]`|
-        |fs_am_configdb|`[database.shared_db]`|
-        |fs_userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
+        | apimgtdb|`[database.apim_db]`|
+        | am_configdb|`[database.config]`|
+        | am_configdb|`[database.shared_db]`|
+        | userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
 
    - Configure the datasources by following the sample below: 
     
     ``` toml tab="MySQL"
     [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/fs_apimgtdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -159,8 +238,8 @@ database configurations.
    
     ``` toml tab="Oracle"
     [database.apim_db]
-    url = "jdbc:oracle:thin:fs_apimgtdb/password@localhost:1521:root"
-    username = "fs_apimgtdb"
+    url = "jdbc:oracle:thin:apimgtdb/password@localhost:1521:root"
+    username = "apimgtdb"
     password = "password"
     driver = "oracle.jdbc.driver.OracleDriver"
     
@@ -176,7 +255,7 @@ database configurations.
    
     ``` toml tab="MS SQL"
     [database.apim_db]
-    url = "jdbc:sqlserver://localhost:1433;databaseName=fs_apimgtdb"
+    url = "jdbc:sqlserver://localhost:1433;databaseName=apimgtdb"
     username = "root"
     password = "root"
     driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
@@ -193,7 +272,7 @@ database configurations.
     
     ``` toml tab="PostgreSQL"
     [database.apim_db]
-    url = "jdbc:postgresql://localhost:5432/fs_apimgtdb"
+    url = "jdbc:postgresql://localhost:5432/apimgtdb"
     username = "postgres"
     password = "root"
     driver = "org.postgresql.Driver"
@@ -206,6 +285,84 @@ database configurations.
     validationQuery="SELECT 1"
     validationInterval="30000"
     defaultAutoCommit=true
+    ```
+
+    - Configure the datasource for `userdb` by following the sample below: 
+    
+    ``` toml tab="MySQL"
+    [[datasource]]
+    id="WSO2UM_DB"
+    url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="Oracle"
+    [[datasource]]
+    id="WSO2UM_DB"
+    url = "jdbc:oracle:thin:userdb/password@localhost:1521:root"
+    username = "apimgtdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="MS SQL"
+    [[datasource]]
+    id="WSO2UM_DB"
+    url = "jdbc:sqlserver://localhost:1433;databaseName=userdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+    
+    ``` toml tab="PostgreSQL"
+    [[datasource]]
+    id="WSO2UM_DB"
+    url = "jdbc:postgresql://localhost:5432/userdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
     ```
    
 ## Creating database tables
@@ -222,12 +379,13 @@ according to your DBMS.
 | fs_userdb            | `<IS_HOME>/dbscripts`                                                                                             |
 | fs_iskm_configdb     | `<IS_HOME>/dbscripts `                                                                                            |
 | fs_consentdb         | `<IS_HOME>/dbscripts/financial-services/consent` and `<IS_HOME>/dbscripts/financial-services/event-notifications` |
-| fs_apimgtdb          | `<APIM_HOME>/dbscripts/apimgt ` |
-| fs_am_configdb       | `<APIM_HOME>/dbscripts` |
+| apimgtdb          | `<APIM_HOME>/dbscripts/apimgt ` |
+| am_configdb       | `<APIM_HOME>/dbscripts` |
+| userdb       | `<APIM_HOME>/dbscripts` |
 
 !!! note "Increase the column size of the following table columns:"
 
-     Execute the relevant SQL command against the `fs_identitydb` and `fs_apimgtdb` database.
+     Execute the relevant SQL command against the `fs_identitydb` and `apimgtdb` database.
      
      1. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
@@ -253,7 +411,7 @@ according to your DBMS.
     "Overcome the failure in deleting applications in PostgreSQL database".
 
     If you are using PostgreSQL, you might encounter an error when deleting applications. To overcome this, execute the 
-    following SQL command against the `fs_identitydb` and `fs_apimgtdb` database:
+    following SQL command against the `fs_identitydb` and `apimgtdb` database:
         
     ```sql
     ALTER TABLE SP_APPLICATION DROP CONSTRAINT IF EXISTS sp_application_name_key;

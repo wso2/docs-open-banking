@@ -62,6 +62,7 @@ nav:
       - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
         - 'Get Started': get-started/quick-start-guide.md
         - 'Set Up Accelerators': get-started/set-up-accelerators.md
+        - 'Configure IS 7.x as Key Manager': get-started/configure-km.md
         - 'Deploy Open Banking APIs': get-started/deploy-apis.md
         - 'Configure API Resources, Users and Roles': get-started/configure-users-and-roles.md
         - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
@@ -82,15 +83,22 @@ nav:
         - 'Configuring an Accelerator Deployment with Distributed Gateway and Control Plane': install-and-setup/distributed-gateway-control-plane.md
         - 'Troubleshooting': install-and-setup/troubleshooting.md
   - 'Tryout Flows':
+    - 'Tryout WSO2 Open Banking Accelerator': tryout-flows/introduction.md
     - 'Accelerator with WSO2 Identity Server':
         - 'Pre-Initiated Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-pre_initiated_consent.md
         - 'Scope Based Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-scope-based-consent.md
     - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
-        - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis.md
-        - 'Client Registration':
+        - 'Tryout Flow with Dynamic Client Registration':
+            - 'Configure WSO2 Identity Server 7.x as Key Manager': tryout-flows/accelerator-with-is-and-apim/configure-iskm.md
+            - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis.md
             - 'Dynamic Client Registration': tryout-flows/accelerator-with-is-and-apim/dynamic-client-registration.md
+            - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow.md
+        - 'Tryout Flow with Manual Client Registration':
+            - 'Set up WSO2 Open Banking APIM Artifacts': tryout-flows/accelerator-with-is-and-apim/setup-fskm-artifacts.md
+            - 'Configure WSO2 Financial Service Key Manager': tryout-flows/accelerator-with-is-and-apim/configure-fskm.md
+            - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis.md
             - 'Manual Client Registration': tryout-flows/accelerator-with-is-and-apim/manual-client-registration.md
-        - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow.md
+            - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow.md  
   - 'Learn':
     - 'Client Registration': learn/client-registration.md
     - 'Dynamic Client Registration':
