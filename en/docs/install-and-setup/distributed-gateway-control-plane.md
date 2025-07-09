@@ -107,6 +107,7 @@ Follow the instructions in the [Setting up databases](setting-up-databases.md) t
     Follow the below steps if you are planning to use Manual Client Registration through DevPortal. Else skip this section.
 
 1. Download the configuration files from the locations given below.
+
    - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
    - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
 
