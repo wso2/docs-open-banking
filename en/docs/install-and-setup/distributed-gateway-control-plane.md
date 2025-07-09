@@ -106,16 +106,18 @@ Follow the instructions in the [Setting up databases](setting-up-databases.md) t
 !!! note
     Follow the below steps if you are planning to use Manual Client Registration through DevPortal. Else skip this section.
 
-1. Download the configuration files from the locations given below.
-   - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
-   - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
+1. Download the configuration files from the following locations:
+
+    - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
+    - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
 
 2. Download and extract the latest Open Banking Accelerator 4.1.0 AM Artifacts.
-   - Current latest version [4.1.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.0).
 
-   - WSO2 Open Banking AM Accelerator contains the following artifacts:
-     - org.wso2.financial.services.accelerator.common-4.1.0.jar
-     - org.wso2.financial.services.accelerator.keymanager-4.1.0.jar
+    - Latest release: [Version 4.1.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.0)
+
+    The WSO2 Open Banking AM Accelerator contains the following artifacts:
+    - org.wso2.financial.services.accelerator.common-4.1.0.jar
+    - org.wso2.financial.services.accelerator.keymanager-4.1.0.jar
 
 3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of both Gateway node and Control Plane node. 
 Use the table to locate the respective directories of the base products:
