@@ -137,6 +137,7 @@ nav:
           - 'Dynamic Endpoint Policy': learn/dynamic-endpoint-policy.md
           - 'MTLS Enforcement Policy': learn/mtls-enforcement-policy.md
           - 'UK JWS Header Processing Policy': learn/uk-jws-header-processing-policy.md
+      - 'Custom Error Formatting': learn/custom-error-formatting.md
   - 'Develop':
       - 'Toolkit': 
           - 'Introduction': develop/develop-toolkit.md
