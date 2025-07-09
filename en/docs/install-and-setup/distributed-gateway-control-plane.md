@@ -115,9 +115,10 @@ Follow the instructions in the [Setting up databases](setting-up-databases.md) t
 
     - Latest release: [Version 4.1.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.0)
 
-    The WSO2 Open Banking AM Accelerator contains the following artifacts:
-    - org.wso2.financial.services.accelerator.common-4.1.0.jar
-    - org.wso2.financial.services.accelerator.keymanager-4.1.0.jar
+   The WSO2 Open Banking AM Accelerator contains the following artifacts:
+
+    - `org.wso2.financial.services.accelerator.common-4.1.0.jar`
+    - `org.wso2.financial.services.accelerator.keymanager-4.1.0.jar`
 
 3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of both Gateway node and Control Plane node. 
 Use the table to locate the respective directories of the base products:
