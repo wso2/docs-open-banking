@@ -36,7 +36,7 @@ Now you have started the servers, let’s create the API resources, users and de
 1. Go to the **User Management** tab in the left pane and select **Roles**.
    ![add_user_roles](../assets/img/get-started/quick-start-guide/go-to-add-user-roles.png)
 
-2. Click on the **consumer** role created in [Create new user roles](#create-new-user-roles)
+2. Click on the **consumer** role.
     ![navigate_to_consumer_role_edit_page.png](../assets/img/get-started/quick-start-guide/navigate_to_consumer_role_edit_page.png)
 
 3. Go to **Users** tab.

@@ -59,24 +59,25 @@ for instructions on how to set up the WSO2 Open Banking IAM Accelerator.
 
 ### Installing base products
 
-1. Download and install the API-M base product. The following documentation provides the instruction to install below base product combination :
+1. Download and install the API-M base product. The following documentation provides the instruction to install below base product combination:
 
-   | Base Product              | Combination                                                                 |
-   |---------------------------|-----------------------------------------------------------------------------|
-   | WSO2 Identity Server      | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
-   | WSO2 API Manager          | [4.3.0](https://wso2.com/api-management/previous-releases/)                 |
+| Base Product              | Combination                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| WSO2 Identity Server      | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
+| WSO2 API Manager          | [4.3.0](https://wso2.com/api-management/previous-releases/)                 |
 
-    !!! note
-        Two instances are required to set up the AM distributed deployment.
-   - Instance 1 : AM Gateway Profile.
-   - Instance 2 : AM Control Plane Profile.
+!!! note
+    Two instances are required to set up the AM distributed deployment.
 
- This document uses the following placeholders to refer to the following products:
+    - Instance 1: AM Gateway Profile  
+    - Instance 2: AM Control Plane Profile
 
-   | Product                           | Placeholder      |
-   |-----------------------------------|------------------|
-   | WSO2 API-M Gateway Instance       | `<APIM_GW_HOME>` |
-   | WSO2 API-M Control Plane Instance | `<APIM_CP_HOME>` |
+This document uses the following placeholders to refer to the following products:
+
+| Product                           | Placeholder      |
+|-----------------------------------|------------------|
+| WSO2 API-M Gateway Instance       | `<APIM_GW_HOME>` |
+| WSO2 API-M Control Plane Instance | `<APIM_CP_HOME>` |
 
 ### Getting WSO2 Updates
 

@@ -12,7 +12,7 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
        
     3. Restart the Identity Server.
 
-    4. Create API Resources, Roles and Users by following the instructions in the [Configuring Users and Roles](../learn/configure-users-and-roles.md) guide. 
+    4. Create API Resources, Roles and Users by following the instructions in the [Configuring Users and Roles](../get-started/configure-resources-users-and-roles-for-is.md) guide. 
 
 ### Step 1: Register an application
 The DCR allows the TPP to request the bank to register a new application. The process is as follows:
@@ -22,8 +22,8 @@ This SSA contains API consumer's metadata. It is a signed JWT issued by the Open
 obtain it before registering with an ASPSP.A sample request looks as follows:
 
  For the Transport Layer Security purposes in this sample flow, you can use the attached
- [private key](../../assets/attachments/transport-certs/obtransport.key) and 
- [public certificate](../../assets/attachments/transport-certs/obtransport.pem). 
+ [private key](../assets/attachments/transport-certs/obtransport.key) and 
+ [public certificate](../assets/attachments/transport-certs/obtransport.pem). 
 
 ```
 curl -X POST https://localhost:9446/api/identity/oauth2/dcr/v1.1/register/ \
@@ -202,8 +202,8 @@ curl -X POST https://localhost:9446/api/identity/oauth2/dcr/v1.1/register/ \
 !!! note 
     If you change the payload, use the following certificates to sign the JWT and SSA:
     
-    - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
-    - [private keys](../../assets/attachments/signing-certs/obsigning.key)
+    - [signing certificate](../assets/attachments/signing-certs/obsigning.pem)
+    - [private keys](../assets/attachments/signing-certs/obsigning.key)
 
 - The bank registers the application using the metadata sent in the SSA.
 

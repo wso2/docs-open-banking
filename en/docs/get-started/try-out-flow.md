@@ -12,8 +12,8 @@ Following diagram illustrates the sample Open Banking flow which is going to try
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For the 
-Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../../assets/attachments/transport-certs/obtransport.pem).
+Transport Layer Security purposes in this sample flow, you can use the attached [private key](../assets/attachments/transport-certs/obtransport.key) and
+[public certificate](../assets/attachments/transport-certs/obtransport.pem).
 
     ```
     curl -X POST \
