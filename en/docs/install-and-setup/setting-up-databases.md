@@ -411,10 +411,36 @@ according to your DBMS.
     "Overcome the failure in deleting applications in PostgreSQL database".
 
     If you are using PostgreSQL, you might encounter an error when deleting applications. To overcome this, execute the 
-    following SQL command against the `fs_identitydb` and `apimgtdb` database:
+    following SQL command against the `fs_identitydb` database:
         
-    ```sql
-    ALTER TABLE SP_APPLICATION DROP CONSTRAINT IF EXISTS sp_application_name_key;
+    1. Find the constraint name using the following command
+
+    ``` sql
+    SELECT conname
+    FROM pg_constraint
+    WHERE conrelid = 'AUTHORIZED_SCOPE'::regclass
+    AND contype = 'f'
+    AND conkey = (
+        SELECT ARRAY[attnum]
+        FROM pg_attribute
+        WHERE attrelid = 'AUTHORIZED_SCOPE'::regclass
+        AND attname = 'APP_ID'
+    );
+    ```
+
+    2. Then delete the constraint
+
+    ``` sql
+    ALTER TABLE AUTHORIZED_SCOPE
+    DROP CONSTRAINT <constraint_name>;
+    ```
+
+    3. Add the updated constraint
+
+    ``` sql
+    ALTER TABLE AUTHORIZED_SCOPE
+    ADD CONSTRAINT fk_app_id
+    FOREIGN KEY (APP_ID) REFERENCES SP_APP(UUID) ON DELETE CASCADE;
     ```
 
 !!! tip "For MySQL databases:"
