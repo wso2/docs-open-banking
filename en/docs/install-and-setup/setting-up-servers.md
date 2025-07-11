@@ -53,7 +53,7 @@ products.
 
     - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
     - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
-   
+
 4. This document uses the following placeholders to refer to the following products:
         
     | Product                                   | Placeholder                |
@@ -142,6 +142,8 @@ and run the merge script as follows:
 | `org.wso2.financial.services.accelerator.keymanager-4.1.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
 | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
 | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
+
+3. Download the sample [Banking backend](../../assets/attachments/api#fs#backend.war) and place it inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
 
 ## Setting up JAVA_HOME
 

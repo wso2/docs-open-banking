@@ -23,6 +23,8 @@
 | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
 | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`       |
 
+5. Download the sample [Banking backend](../../assets/attachments/api#fs#backend.war) and place it inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+
 ## Configuring Additional Attributes
 
 Before creating the application, need to enable the additional fields from the DevPortal. To enable additional fields follow the below steps.
