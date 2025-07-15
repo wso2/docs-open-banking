@@ -36,7 +36,7 @@ Manager.
     enable_email_domain = true
 
     [realm_manager]
-    data_source= "WSO2UM_DB"
+    data_source= "WSO2USER_DB"
 
     [user_store]
     type = "database_unique_id"
@@ -73,9 +73,8 @@ database server, and the JDBC driver.
     driver = "com.mysql.jdbc.Driver"
     ```
     
-    ```toml tab='WSO2UM_DB'
-    [[datasource]]
-    id="WSO2UM_DB"
+    ```toml tab='user'
+    [database.user]
     url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"

@@ -116,7 +116,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 | apimgtdb    | [database.apim_db]                |
 | am_configdb | [database.config]                 | 
 | am_configdb | [database.shared_db]              |
-| userdb      | [[datasource]]<br/>id="WSO2UM_DB" |
+| userdb      | [database.user] |
 
 3. Place the compatible JDBC drivers in the `<IS_HOME>/repository/components/lib` folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
 
@@ -166,7 +166,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     enable_email_domain = true
 
     [realm_manager]
-    data_source= "WSO2UM_DB"
+    data_source= "WSO2USER_DB"
 
     [user_store]
     type = "database_unique_id"
@@ -192,30 +192,9 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     ```
 
     !!!note 
-        Similarly configure the `database.shared_db` for registry data and `database.config` for am configs.
+        Similarly configure the `database.shared_db` for registry data, `database.config` for am configs and  `database.user` for user management data.
 
-5. Configure the user db as follows.
-    ```
-    [[datasource]]
-    id="WSO2UM_DB"
-    url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
-    username = "root"
-    password = "root"
-    driver = "com.mysql.jdbc.Driver"
-    jmx_enable=false
-    pool_options.maxActive = "150"
-    pool_options.maxWait = "60000"
-    pool_options.minIdle = "5"
-    pool_options.testOnBorrow = true
-    pool_options.validationQuery="SELECT 1"
-    pool_options.validationInterval="30000"
-    pool_options.defaultAutoCommit=true
-    ```
-
-    !!!note 
-        User DB must be shared in APIM and IS, hence use the same database used in IS as the user DB.
-
-6. Configure key manager details as follows.
+5. Configure key manager details as follows.
     ```
     [apim.key_manager]
     service_url = "https://<IS_HOSTNAME>:9446/services/"
@@ -223,20 +202,20 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     password = "<IS_SUPER_ADMIN_PASSWORD>"
     ```
 
-7. Disable subscription validation as follows.
+6. Disable subscription validation as follows.
     ```
     [apim.key_manager]
     allow_subscription_validation_disabling = true
     ```
 
-8. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
+7. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
     ```
     [apim.oauth_config]
     enable_outbound_auth_header = true
     white_listed_scopes = ["^device_.*", "openid", "^FS_.*", "^TIME_.*"]
     ```
 
-9. Configure the admin username for following features as follows.
+8. Configure the admin username for following features as follows.
     ```
     [apim.throttling]
     username = "$ref{super_admin.username}@carbon.super"
@@ -249,7 +228,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     username = "am_admin!wso2.com!carbon.super"
     ```
 
-10. Add the following config to support JWT content type.
+9. Add the following config to support JWT content type.
     ```
     [[blocking.custom_message_formatters]]
     class = "org.apache.axis2.format.PlainTextFormatter"
@@ -268,7 +247,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     content_type = "application/jwt"
     ```
 
-11. Add following to configure transport layer configs.
+10. Add following to configure transport layer configs.
     ```
     [transport.passthru_https.sender.parameters]
     HostnameVerifier = "AllowAll"
@@ -281,13 +260,13 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     PreferredCiphers = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
     ```
 
-12. Enable certificate chain validation as the following.
+11. Enable certificate chain validation as the following.
     ```
     [apimgt.mutual_ssl]
     enable_certificate_chain_validation = true
     ```
 
-13. Enable certificate revocation validation as follows.
+12. Enable certificate revocation validation as follows.
     ```
     [transport.passthru_https.listener.cert_revocation_validation]
     enable = true

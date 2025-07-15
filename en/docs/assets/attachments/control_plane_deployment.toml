@@ -15,7 +15,7 @@ create_admin_account = true
 enable_email_domain = true
 
 [realm_manager]
-data_source= "WSO2UM_DB"
+data_source= "WSO2USER_DB"
 
 [user_store]
 type = "database_unique_id"
@@ -75,22 +75,22 @@ validationInterval="30000"
 defaultAutoCommit=true
 
 # for user management data
-[[datasource]]
-id="WSO2UM_DB"
-url = "jdbc:mysql://<DB_HOST>:3306/fs_userdb?autoReconnect=true&amp;useSSL=false"
+[database.user]
+url = "jdbc:mysql://<DB_HOST>:3306/userdb?autoReconnect=true&amp;useSSL=false"
 username = "root"
 password = "root"
 driver = "com.mysql.jdbc.Driver"
-jmx_enable=false
-pool_options.maxActive = "150"
-pool_options.maxWait = "60000"
-pool_options.minIdle = "5"
-pool_options.testOnBorrow = true
-pool_options.validationQuery="SELECT 1"
+
+[database.shareduser_db.pool_options]
+maxActive = "150"
+maxWait = "60000"
+minIdle ="5"
+testOnBorrow = true
+validationQuery="SELECT 1"
 #Use below for oracle
 #validationQuery="SELECT 1 FROM DUAL"
-pool_options.validationInterval="30000"
-pool_options.defaultAutoCommit=true
+validationInterval="30000"
+defaultAutoCommit=true
 
 [keystore.tls]
 file_name =  "wso2carbon.jks"

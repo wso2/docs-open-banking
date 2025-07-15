@@ -215,7 +215,7 @@ database configurations.
         | apimgtdb|`[database.apim_db]`|
         | am_configdb|`[database.config]`|
         | am_configdb|`[database.shared_db]`|
-        | userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
+        | userdb|`[database.user]`|
 
    - Configure the datasources by following the sample below: 
     
@@ -285,84 +285,6 @@ database configurations.
     validationQuery="SELECT 1"
     validationInterval="30000"
     defaultAutoCommit=true
-    ```
-
-    - Configure the datasource for `userdb` by following the sample below: 
-    
-    ``` toml tab="MySQL"
-    [[datasource]]
-    id="WSO2UM_DB"
-    url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
-    username = "root"
-    password = "root"
-    driver = "com.mysql.jdbc.Driver"
-    jmx_enable=false
-    pool_options.maxActive = "150"
-    pool_options.maxWait = "60000"
-    pool_options.minIdle = "5"
-    pool_options.testOnBorrow = true
-    pool_options.validationQuery="SELECT 1"
-    #Use below for oracle
-    #validationQuery="SELECT 1 FROM DUAL"
-    pool_options.validationInterval="30000"
-    pool_options.defaultAutoCommit=true
-    ```
-   
-    ``` toml tab="Oracle"
-    [[datasource]]
-    id="WSO2UM_DB"
-    url = "jdbc:oracle:thin:userdb/password@localhost:1521:root"
-    username = "apimgtdb"
-    password = "password"
-    driver = "oracle.jdbc.driver.OracleDriver"
-    jmx_enable=false
-    pool_options.maxActive = "150"
-    pool_options.maxWait = "60000"
-    pool_options.minIdle = "5"
-    pool_options.testOnBorrow = true
-    pool_options.validationQuery="SELECT 1"
-    #Use below for oracle
-    #validationQuery="SELECT 1 FROM DUAL"
-    pool_options.validationInterval="30000"
-    pool_options.defaultAutoCommit=true
-    ```
-   
-    ``` toml tab="MS SQL"
-    [[datasource]]
-    id="WSO2UM_DB"
-    url = "jdbc:sqlserver://localhost:1433;databaseName=userdb"
-    username = "root"
-    password = "root"
-    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    jmx_enable=false
-    pool_options.maxActive = "150"
-    pool_options.maxWait = "60000"
-    pool_options.minIdle = "5"
-    pool_options.testOnBorrow = true
-    pool_options.validationQuery="SELECT 1"
-    #Use below for oracle
-    #validationQuery="SELECT 1 FROM DUAL"
-    pool_options.validationInterval="30000"
-    pool_options.defaultAutoCommit=true
-    ```
-    
-    ``` toml tab="PostgreSQL"
-    [[datasource]]
-    id="WSO2UM_DB"
-    url = "jdbc:postgresql://localhost:5432/userdb"
-    username = "postgres"
-    password = "root"
-    driver = "org.postgresql.Driver"
-    jmx_enable=false
-    pool_options.maxActive = "150"
-    pool_options.maxWait = "60000"
-    pool_options.minIdle = "5"
-    pool_options.testOnBorrow = true
-    pool_options.validationQuery="SELECT 1"
-    #Use below for oracle
-    #validationQuery="SELECT 1 FROM DUAL"
-    pool_options.validationInterval="30000"
-    pool_options.defaultAutoCommit=true
     ```
    
 ## Creating database tables

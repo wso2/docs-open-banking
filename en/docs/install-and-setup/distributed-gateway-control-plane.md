@@ -111,22 +111,22 @@ Follow the instructions in the [Setting up databases](setting-up-databases.md) t
     - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
     - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
 
-2. Download and extract the latest Open Banking Accelerator 4.1.0 AM Artifacts.
+2. Download and extract the latest Open Banking Accelerator 4.1.x AM Artifacts.
 
-    - Latest release: [Version 4.1.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.0)
+    - Latest release: [Version 4.1.1](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.1)
 
    The WSO2 Open Banking AM Accelerator contains the following artifacts:
 
-    - `org.wso2.financial.services.accelerator.common-4.1.0.jar`
-    - `org.wso2.financial.services.accelerator.keymanager-4.1.0.jar`
+    - `org.wso2.financial.services.accelerator.common-4.1.x.jar`
+    - `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`
 
 3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of both Gateway node and Control Plane node. 
 Use the table to locate the respective directories of the base products:
 
 | File                                                            | Directory location to place the artifact                          |
 |-----------------------------------------------------------------|-------------------------------------------------------------------|
-| `org.wso2.financial.services.accelerator.common-4.1.0.jar`      | `<APIM_HOME>/repository/components/dropins`                       |
-| `org.wso2.financial.services.accelerator.keymanager-4.1.0.jar`  | `<APIM_HOME>/repository/components/dropins`                       |
+| `org.wso2.financial.services.accelerator.common-4.1.x.jar`      | `<APIM_HOME>/repository/components/dropins`                       |
+| `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`  | `<APIM_HOME>/repository/components/dropins`                       |
 | `financial-services.xml.j2`                                     | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
 | `financial-services.xml`                                        | `<APIM_HOME>/repository/conf`                                     |
 
@@ -174,7 +174,7 @@ Configure the Gateway to communicate with the Control Plane.
     enable_email_domain = true
 
     [realm_manager]
-    data_source= "WSO2UM_DB"
+    data_source= "WSO2USER_DB"
 
     [user_store]
     type = "database_unique_id"
@@ -383,54 +383,44 @@ Configure the Control Plane to communicate with the Gateway.
     enable_email_domain = true
 
     [realm_manager]
-    data_source= "WSO2UM_DB"
+    data_source= "WSO2USER_DB"
 
     [user_store]
     type = "database_unique_id"
     class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
     ```
 
-7. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the
-   database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
+7. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, see [Setting up databases](setting-up-databases.md).
 
-         ```toml tab='apim_db'
-         [database.apim_db]
-         url = "jdbc:mysql://<DB_HOST>:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
-         username = "root"
-         password = "root"
-         driver = "com.mysql.jdbc.Driver"
-         ```
-         ```toml tab='shared_db'
-         [database.shared_db]
-         url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
-         username = "root"
-         password = "root"
-         driver = "com.mysql.jdbc.Driver"
-         ```
-         ```toml tab='config'
-         [database.config]
-         url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
-         username = "root"
-         password = "root"
-         driver = "com.mysql.jdbc.Driver"
-         ```
-         ```toml tab='user management'
-         [[datasource]]
-         id="WSO2UM_DB"
-         url = "jdbc:mysql://<DB_HOST>:3306/userdb?autoReconnect=true&amp;useSSL=false"
-         username = "root"
-         password = "root"
-         driver = "com.mysql.jdbc.Driver"
-         jmx_enable=false
-         pool_options.maxActive = "150"
-         pool_options.maxWait = "60000"
-         pool_options.minIdle = "5"
-         pool_options.testOnBorrow = true
-         pool_options.validationQuery="SELECT 1"
-         pool_options.validationInterval="30000"
-         pool_options.defaultAutoCommit=true
-         ```
+    ```toml tab='apim_db'
+    [database.apim_db]
+    url = "jdbc:mysql://<DB_HOST>:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    ```
+    ```toml tab='shared_db'
+    [database.shared_db]
+    url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    ```
+    ```toml tab='config'
+    [database.config]
+    url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    ```
+    ```toml tab='user management'
+    [database.user]
+    url = "jdbc:mysql://<DB_HOST>:3306/userdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    ```
 
 8. Update the following configurations with the hostname of the Identity Server.
     ``` toml
