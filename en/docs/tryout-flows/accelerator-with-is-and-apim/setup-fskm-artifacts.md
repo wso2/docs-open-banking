@@ -2,12 +2,12 @@
 
 1. Download and extract the latest Open Banking Accelerator 4.0.0 APIM Artifacts. 
 
-    - Current latest version [4.1.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.0).
+    - Current latest version [4.1.1](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.1).
               
 2. WSO2 Open Banking AM Accelerator contains the following artifacts: 
    
-    - org.wso2.financial.services.accelerator.common-4.1.0.jar
-    - org.wso2.financial.services.accelerator.keymanager-4.1.0.jar
+    - org.wso2.financial.services.accelerator.common-4.1.1.jar
+    - org.wso2.financial.services.accelerator.keymanager-4.1.1.jar
 
 3. Download the configuration files from the locations given below.
 
@@ -16,12 +16,12 @@
 
 4. Copy the downloaded artifacts to the respective directories of the base product. Use the table to locate the respective directories of the base products:
 
-| File                                                           | Directory location to place the artifact                          |
-|----------------------------------------------------------------|-----------------------------------------------------------------  |
-| `org.wso2.financial.services.accelerator.common-4.0.0.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
-| `org.wso2.financial.services.accelerator.keymanager-4.0.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
-| `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
-| `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`       |
+    | File                                                           | Directory location to place the artifact                          |
+    |----------------------------------------------------------------|-----------------------------------------------------------------  |
+    | `org.wso2.financial.services.accelerator.common-4.0.0.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
+    | `org.wso2.financial.services.accelerator.keymanager-4.0.0.jar` | `<APIM_HOME>/repository/components/dropins`                       |
+    | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
+    | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`       |
 
 5. Download the sample [Banking backend](../../assets/attachments/api#fs#backend.war) and place it inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
 

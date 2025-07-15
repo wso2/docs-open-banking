@@ -5,7 +5,6 @@ Following diagram illustrates the sample Open Banking flow which is going to try
 
 Before trying out the flow, make sure the you have created roles and users by following [Create User and Roles](../../install-and-setup/configure-resources-users-and-roles.md).
 
-
 !!! note
     In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
 
