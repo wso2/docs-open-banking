@@ -33,17 +33,17 @@ for instructions on how to set up the WSO2 Open Banking IAM Accelerator.
     
 1. Add following configurations in the <IS_HOME>/repository/conf/deployment.toml file.
     ``` toml
-            [[event_listener]]
-            id = "token_revocation"
-            type = "org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"
-            name = "org.wso2.is.notification.ApimOauthEventInterceptor"
-            order = 1
+    [[event_listener]]
+    id = "token_revocation"
+    type = "org.wso2.carbon.identity.core.handler.AbstractIdentityHandler"
+    name = "org.wso2.is.notification.ApimOauthEventInterceptor"
+    order = 1
     
-            [event_listener.properties]
-            notification_endpoint = "https://<APIM_CP_HOST>:<APIM_PORT>/internal/data/v1/notify"
-            username = "${admin.username}"
-            password = "${admin.password}"
-            'header.X-WSO2-KEY-MANAGER' = "WSO2-IS"
+    [event_listener.properties]
+    notification_endpoint = "https://<APIM_CP_HOST>:<APIM_PORT>/internal/data/v1/notify"
+    username = "${admin.username}"
+    password = "${admin.password}"
+    'header.X-WSO2-KEY-MANAGER' = "WSO2-IS"
     ```
 
 2. Download [notification.event.handlers-2.0.5.jar](https://maven.wso2.org/nexus/content/repositories/releases/org/wso2/km/ext/wso2is/wso2is.notification.event.handlers/2.0.5/wso2is.notification.event.handlers-2.0.5.jar) and add it to `<IS_HOME>/repository/components/dropins` folder.
@@ -84,7 +84,7 @@ This document uses the following placeholders to refer to the following products
 The WSO2 Update tool delivers hotfixes and updates seamlessly on top of products as WSO2 Updates. 
 See [Getting WSO2 Updates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#getting-wso2-updates) to get the latest updates for the WSO2 API Manager.
 
-### Exchanging the certificates
+### Exchanging the Certificates
 Generate a separate SSL certificate for each WSO2 API-M nodes and Identity Server (IS) node, and import them into both the keystore and truststore.
 This will prevent hostname mismatch issues related to SSL certificates.
 
@@ -95,9 +95,9 @@ This will prevent hostname mismatch issues related to SSL certificates.
 Follow the steps [Exchanging the certificates](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-servers/#exchanging-the-certificates) 
 to exchange the certificates between the WSO2 API-M nodes and Identity Server.
 
-### Setting Up WSO2 API-M server and Start the Profiles
+### Setting Up WSO2 API-M Server and Start the Profiles
 
-### Setting up databases
+### Setting up Databases
 You can create the necessary databases for the API-M deployment on a separate server and configure each node to connect to the appropriate databases.
 Follow the instructions in the [Setting up databases](setting-up-databases.md) to create and configure the databases.
 
@@ -140,13 +140,13 @@ Configure the Gateway to communicate with the Control Plane.
       ```
 2. Download the API-M Meditation Artifacts: [fs-apim-mediation-artifacts-1.0.0.zip](https://github.com/wso2/financial-services-apim-mediation-policies/releases/tag/v1.0.0).
 3. Extract the downloaded zip file.
-   Use the table to locate the respective directories of the base products:
+      Use the table to locate the respective directories of the base products:
 
-   | File                                             | Directory location to place the artifact                                        |
-   |--------------------------------------------------|---------------------------------------------------------------------------------|
-   | `consent-enforcement-payload-mediator-1.0.0.jar` | `<APIM_GW_HOME>/repository/component/lib`                                       |
-   | `mtls-header-enforcement-mediator-1.0.0.jar`     | `<APIM_GW_HOME>/repository/component/lib`                                       |
-   | `customErrorFormatter.xml`                       | `<APIM_GW_HOME>/repository/deployment/server/synapse-configs/default/sequences` |
+      | File                                             | Directory location to place the artifact                                        |
+      |--------------------------------------------------|---------------------------------------------------------------------------------|
+      | `consent-enforcement-payload-mediator-1.0.0.jar` | `<APIM_GW_HOME>/repository/component/lib`                                       |
+      | `mtls-header-enforcement-mediator-1.0.0.jar`     | `<APIM_GW_HOME>/repository/component/lib`                                       |
+      | `customErrorFormatter.xml`                       | `<APIM_GW_HOME>/repository/deployment/server/synapse-configs/default/sequences` |
 
 4. Open the `<APIM_GW_HOME>/repository/conf/deployment.toml` file.
 5. Set the hostname of the API Manager:
@@ -401,6 +401,7 @@ Configure the Control Plane to communicate with the Gateway.
          password = "root"
          driver = "com.mysql.jdbc.Driver"
          ```
+      
          ```toml tab='shared_db'
          [database.shared_db]
          url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
@@ -408,6 +409,7 @@ Configure the Control Plane to communicate with the Gateway.
          password = "root"
          driver = "com.mysql.jdbc.Driver"
          ```
+      
          ```toml tab='config'
          [database.config]
          url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
@@ -415,6 +417,7 @@ Configure the Control Plane to communicate with the Gateway.
          password = "root"
          driver = "com.mysql.jdbc.Driver"
          ```
+      
          ```toml tab='user management'
          [[datasource]]
          id="WSO2UM_DB"
@@ -471,8 +474,11 @@ Configure the Control Plane to communicate with the Gateway.
     ```
 
     !!! info
-        This configuration is used for deploying APIs to the Gateway and for connecting the Developer Portal component to the Gateway if the Gateway is shared across tenants. If the Gateway is not used by multiple tenants, you can create a Gateway Environment using the Admin Portal. 
-        Note that in the above configurations, service_url points to the 9443 port of the Gateway node, while http_endpoint and https_endpoint points to the http and https nio ports (8280 and 8243).
+        This configuration is used for deploying APIs to the Gateway and for connecting the Developer Portal component 
+        to the Gateway if the Gateway is shared across tenants. If the Gateway is not used by multiple tenants, you can 
+        create a Gateway Environment using the Admin Portal. Note that in the above configurations, service_url points 
+        to the 9443 port of the Gateway node, while http_endpoint and https_endpoint points to the http and https nio 
+        ports (8280 and 8243).
 
 11. Configure the following traffic manager configurations.
     ``` toml
@@ -505,7 +511,8 @@ Configure the Control Plane to communicate with the Gateway.
     ```
 
 13. Configure token exchange.
-     ``` toml
+
+    ``` toml
     [oauth.grant_type.token_exchange]
     enable = true
     allow_refresh_tokens = true
@@ -519,7 +526,7 @@ Configure the Control Plane to communicate with the Gateway.
     domain = "control-plane-domain"
     ```
     
-15. To configure additional application attributes for Manual Client Registration, follow the steps in [Manual Client Registration](../tryout-flows/accelerator-with-is-and-apim/manual-client-registration.md).
+15. To configure additional application attributes for Manual Client Registration, follow the steps in [Configuring Additional Attributes](https://ob.docs.wso2.com/en/latest/tryout-flows/accelerator-with-is-and-apim/setup-fskm-artifacts/#configuring-additional-attributes).
 
 ### Start the servers
 
@@ -528,9 +535,8 @@ Configure the Control Plane to communicate with the Gateway.
      ```bash
      sh api-manager.sh -Dprofile=control-plane
      ```
-2. Start the Gateway Worker Node.
-    - Navigate to the `<APIM_GW_HOME>/bin` directory and run the following command:
+2. Start the Gateway Worker Node. 
+   - Navigate to the `<APIM_GW_HOME>/bin` directory and run the following command:
       ```bash
       sh api-manager.sh -Dprofile=gateway-worker
       ```
-
