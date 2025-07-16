@@ -3,7 +3,7 @@ according to your specification requirements using the OpenAPI  based extension 
 Consent Authorize component and how to customize its functionalities.
 
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 The Consent Authorize extension point relates to the loading of the consent approval page and eventually persisting 
 the consent provided by the users. This consists of 2 endpoints. 

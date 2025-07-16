@@ -165,10 +165,10 @@ nav:
                       - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
                   - 'Token Flow': develop/openapi-token-flow.md
                   - 'Authorization Flow': develop/openapi-authorization-flow.md
-                  #- 'Event Notification':
-                  #          - 'Event Polling': develop/openapi-event-polling.md
-                  #          - 'Event Creation': develop/openapi-event-creation.md
-                  #          - 'Event Subscription': develop/openapi-event-subscription.md
+                  - 'Event Notification':
+                      - 'Event Subscription': develop/openapi-event-subscription.md
+                      - 'Event Polling': develop/openapi-event-polling.md
+                      - 'Event Creation': develop/openapi-event-creation.md
               - 'Java based extensions':
                   - 'Developer Guide': develop/developer-guide.md
                   - 'Client Registration':

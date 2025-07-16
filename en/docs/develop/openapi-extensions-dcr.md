@@ -4,7 +4,7 @@ specification specific data in Client related operations (create ,read,update), 
 
 
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 
 ## Client Creation

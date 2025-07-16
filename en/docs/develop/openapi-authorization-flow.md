@@ -1,6 +1,6 @@
 This section covers the OpenAPI based extension provided for the user authorization flow.
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 
 ## Validate Authorize Request

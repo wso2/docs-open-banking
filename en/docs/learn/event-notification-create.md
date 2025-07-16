@@ -4,13 +4,13 @@ The Event Creation API allows storing event notification information as a JSON, 
 
 Event Creation API expects a Base64 encoded object of events as the payload and it contains the event type as the key and the event details as the value. The format of the events are not mandated from Accelerator. It is the responsibilty of the toolkit developer to ensure the accuracy of the format of the events according to the regulatory specification they follow. 
 
-You can customize the Event Creation Flow according to your requirements. For more information, see [Customizing Event Notification](../develop/custom-event-notification.md).
+You can customize the Event Creation Flow according to your requirements. For more information, see [Customizing Event Notification Creation](../develop/openapi-event-creation.md).
 
 
 You can create a `create-event` resource using this API and persist information regarding an event. A sample Event Creation request and response are as follows:
 
    ```tab="Request"
-    curl --location --request POST 'https://localhost:9446/api/openbanking/event-notifications/create-events' \
+    curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/create-events' \
     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
     --header 'x-wso2-client_id: cli342efefvsgdsfv' \
     --header 'x-wso2-resource_id: vfjskenfksdnvfkkfdfd' \
