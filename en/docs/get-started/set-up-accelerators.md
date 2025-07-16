@@ -179,7 +179,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
-    driver = "com.mysql.jdb`c.Driver"
+    driver = "com.mysql.jdbc.Driver"
 
     [database.apim_db.pool_options]
     maxActive = "150"

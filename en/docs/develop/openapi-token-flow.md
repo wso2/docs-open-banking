@@ -1,6 +1,6 @@
 This section covers the OpenAPI based accelerator extension provided for the OAuth2 token generation flow. 
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 
 ## Issue Refresh Token

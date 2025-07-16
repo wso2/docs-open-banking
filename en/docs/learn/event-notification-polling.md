@@ -4,7 +4,7 @@ The Event Polling API facilitates storing and retrieving event notifications acc
 
 This endpoint allows applications to poll for, acknowledge, and receive event notifications. You can use this endpoint when the API consumer applications communicate their polling parameters and event notification acknowledgements. Using this endpoint the banks can respond accordingly; sending event notifications as indicated by the application's polling parameters.
 
-You can customize the Event Polling Flow according to your requirements. For more information, see [Customizing Event Notification](../develop/custom-event-notification.md).
+You can customize the Event Polling Flow according to your requirements. For more information, see [Customizing Event POlling](../develop/openapi-event-polling.md).
 
 Based on the request payloads, the Event Polling(`POST /events`) endpoint performs the following:
 
@@ -16,7 +16,7 @@ Based on the request payloads, the Event Polling(`POST /events`) endpoint perfor
 A sample Event Polling request is as follows:
 
    ``` 
-    curl --location --request POST 'https://localhost:9446/api/openbanking/event-notifications/events' \
+    curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/events' \
     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'request=eyAKICJyZXR1cm5JbW1lZGlhdGVseSI6IHRydWUsCiAibWF4RXZlbnRzIjogMCAKIH0='

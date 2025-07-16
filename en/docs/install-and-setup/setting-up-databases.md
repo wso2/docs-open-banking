@@ -23,6 +23,13 @@ Once you have successfully prepared the environment for the deployment, you can 
         - `am_configdb`
         - `userdb` 
 
+    Commands to create the Databases in MySQL
+    ``` 
+    DROP DATABASE IF EXISTS fs_identitydb; 
+    CREATE DATABASE fs_identitydb;
+    ALTER DATABASE fs_identitydb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+    ```
+
 2. According to your DBMS, place the compatible JDBC drivers in the following directories:
  
     - `<APIM_HOME>/repository/components/lib`

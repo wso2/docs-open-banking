@@ -9,7 +9,7 @@ You can customize the Real Time Event Notification Flow according to your requir
 In order to enable Real Time Event Notification, TPPs must subscribe to receive event notifications using Event Subscription feature. TPPs must provide a callback URl which they have established to receive the event notifications. To create an Event Notification Subscription use the below request. 
 
 ```tab="Request"
-curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/' \
+curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json' \
@@ -40,7 +40,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 To verify whther Real Time EVent Notification is working for the given callback URL, send an event with subscribed event types. A sample Event Creation request and response are as follows:
 
    ```
-    curl --location --request POST 'https://localhost:9446/api/openbanking/event-notifications/create-events' \
+    curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/create-events' \
     --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
     --header 'x-wso2-client_id: cli342efefvsgdsfv' \
     --header 'x-wso2-resource_id: vfjskenfksdnvfkkfdfd' \
