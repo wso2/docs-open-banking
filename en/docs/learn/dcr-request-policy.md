@@ -29,6 +29,6 @@ Upload the dynamicClientRegistrationRequestPolicy.j2 policy file which resides i
 | -------------- | ------------ | ----------- | -------- | ---- | -------------- |
 | validateRequestJWT | Validate Request JWT | Determine whether the request JWT signature should be validated | true | Boolean | true/false |
 | jwksEndpointName | JWKS Endpoint Name | JWKS Endpoint field name in the request. | true | String  | software_jwks_endpoint | 
-| clientNameAttributeName |client Name Attribute Name | Client Name Attribute Name | The field name of the attribute that should be used as the name of the application.  This value will be used if useSoftwareIdAsAppName is disabled. | true | String | software_client_name | 
+| clientNameAttributeName |client Name Attribute Name | The field name of the attribute that should be used as the name of the application.  This value will be used if useSoftwareIdAsAppName is disabled. | true | String | software_client_name | 
 | useSoftwareIdAsAppName | Use Software Id As App Name | Determine whether the software Id should be used as application name | true | Boolean | true/false |
 | jwksEndpointTimeout | jwksEndpointTimeout | Timeout for the JWKS Endpoint | true | Integer | 3000 |
