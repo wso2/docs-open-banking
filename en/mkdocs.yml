@@ -94,6 +94,8 @@ nav:
             - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis-dcr.md
             - 'Dynamic Client Registration': tryout-flows/accelerator-with-is-and-apim/dynamic-client-registration.md
             - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow-dcr.md
+            - 'Tryout Payments Flow': tryout-flows/accelerator-with-is-and-apim/try-out-payments-flow-dcr.md
+            - 'Tryout Confirmation Of Funds Flow': tryout-flows/accelerator-with-is-and-apim/try-out-cof-flow-dcr.md  
         - 'Tryout Flow with Manual Client Registration':
             - 'Introduction': tryout-flows/accelerator-with-is-and-apim/tryout-flow-with-mcr.md
             - 'Set up WSO2 Open Banking APIM Artifacts': tryout-flows/accelerator-with-is-and-apim/setup-fskm-artifacts.md
@@ -101,6 +103,8 @@ nav:
             - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis.md
             - 'Manual Client Registration': tryout-flows/accelerator-with-is-and-apim/manual-client-registration.md
             - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow.md  
+            - 'Tryout Payments Flow': tryout-flows/accelerator-with-is-and-apim/try-out-payments-flow.md
+            - 'Tryout Confirmation Of Funds Flow': tryout-flows/accelerator-with-is-and-apim/try-out-cof-flow.md  
   - 'Learn':
     - 'Client Registration': learn/client-registration.md
     - 'Dynamic Client Registration':

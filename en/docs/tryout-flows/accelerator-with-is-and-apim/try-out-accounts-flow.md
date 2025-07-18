@@ -12,10 +12,11 @@ Before trying out the flow, make sure the you have created roles and users by fo
     - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
     - [private keys](../../assets/attachments/signing-certs/obsigning.key)
 
+    For transport layer also use the same certificates.
+
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For the 
-Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../../assets/attachments/transport-certs/obtransport.pem).
+Transport Layer Security purposes in this sample flow, use the certificates provided above.
 
     ```
     curl -X POST \
@@ -67,8 +68,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
 In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its 
 information from the bank. 
 
-A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
-available [here](../../assets/attachments/transport-certs/):
+A sample consent initiation request looks as follows.:
 
 ```
 curl --location --request POST 'https://localhost:8243/open-banking/v3.1/aisp/account-access-consents' \

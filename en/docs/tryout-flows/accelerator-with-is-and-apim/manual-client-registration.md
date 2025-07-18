@@ -70,7 +70,7 @@ The TPP application requires a Client ID (Consumer Key) to access the subscribed
     | Callback URL | The URL used by the TPP to receive the authorization code sent from the bank. The authorisation code can be used later to generate an OAuth2 access token. <br/> **This is a mandatory field for the authorization code grant type.** |
     | Enable PKCE | Enable if you want to enable PKCE support for your application |
     | Support PKCE Plain text | Enable if you want to enable PKCE Plain Text support for your application |
-    | Application Certificate | This is the content of the application certificate (.PEM). For Regulatory applications, it is mandatory to use an application certificate |
+    | Application Certificate | This is the content of the application certificate (.PEM). For Regulatory applications, it is mandatory to use an application certificate. Use [Signing Certificate](../../assets/attachments/signing-certs/obsigning.pem) for testing porpose. |
     | Regulatory Application | The type of application. If your application complies with the Open Banking Regulation, it is a Regulatory application. |
 
     ![enter_application_details](../../assets/img/learn/mcr/enter-application-details-1.png)
