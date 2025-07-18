@@ -108,6 +108,7 @@ curl --location --request POST 'https://localhost:8243/open-banking/v3.1/pisp/pa
 ```
 
 Add all mandatory headers:
+
 - `Authorization`: An Authorisation Token as per the OAuth 2.0 specification. User the application access token you generated from the above step.
 - `x-idempotency-key`: Every request will be processed only once per x-idempotency-key. The Idempotency key will be valid for 24 hours.
 
@@ -227,8 +228,7 @@ The API consumer application redirects the bank customer to authenticate and app
     
 6. Click **Confirm** to grant these permissions.
     
-7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample 
-given below:
+7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample given below:
 
     The authorization code from the below URL is in the code parameter (`code=236e635e-03c2-370b-b2c3-88eea5ac8981`).
 
@@ -254,8 +254,8 @@ given below:
 3. Update all parameters and use the authorization code you generated in the previous step as `code`.
 
 4. The response contains a user access token as below.
-      ```
-      {
+    ```
+    {
         "access_token": "eyJ4NXQiOiJ2b05uSEROb3ZLMF9IclNxd1BsOEJBWkVxRlUiLCJraWQiOiJPR1ZqWTJOa1pqQTVObVJtTXpFME9HUTJPRE16TlRaaU5XVm1NV0UwTWpka1pUWXhOVGc1Tm1WaE1qYzNaRGd4WlRKaVlqWXpZMkk1WWpRMU5qRTRPQV9SUzI1NiIsInR5cCI6ImF0K2p3dCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxMmM5NTI3MC1iNDUxLTQ3OGQtYTMyOS02NTQ1MjM4OWQwZTRAY2FyYm9uLnN1cGVyIiwiYXV0IjoiQVBQTElDQVRJT05fVVNFUiIsImJpbmRpbmdfdHlwZSI6ImNlcnRpZmljYXRlIiwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwiY2xpZW50X2lkIjoibmlJSFdNVUVtZk1NSFFrZ0lfVnVUSVh2UnpJYSIsImF1ZCI6Im5pSUhXTVVFbWZNTUhRa2dJX1Z1VElYdlJ6SWEiLCJuYmYiOjE3NTI4MTE3MTUsImF6cCI6Im5pSUhXTVVFbWZNTUhRa2dJX1Z1VElYdlJ6SWEiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJzY29wZSI6Im9wZW5pZCBwYXltZW50cyIsImNuZiI6eyJ4NXQjUzI1NiI6IjJFZ29wSEY2Y2JiWHQ5NUk1OEU2OVZFV0JUWllnRmlyQlU5dWdkNkQ5REEifSwiZXhwIjoxNzUyODE1MzE1LCJvcmdfbmFtZSI6IlN1cGVyIiwiaWF0IjoxNzUyODExNzE1LCJiaW5kaW5nX3JlZiI6IjZiZGExYWUxNDgwOTk0MDQyNjllNjcyYTRjYmU4YmFlIiwianRpIjoiMTllNWZjMjQtYzk2Ny00YjM4LTg5MGItYTc1ZjRiZDE5ZTgyIiwiY29uc2VudF9pZCI6ImM0ZDE4ZDkyLWIxYTItNGE1Yy1iMWU0LWFiMzJkYWM5NzMxMiJ9.Ynnl3gtiodMAxkxQtgBH5QMLia6et-sTzmH3kpGsTpzmZxAZdTLo1MlBgZukr-7k9FnQMkwjR7zIvj3WhLEEzgpl3ZaVyJ-hkp9Y_6j5OPpYKJ7pvSoZlxUYMPrUa5JqQ36g8qolWJRm0FAJQdV5YoZBm5SCCJI2o9pspRFhuF5VTLXDBdnDJNoyvE8JgV9CTiw6-tRw_sFfr_IFtAgaAh2cSdHi4pKL9zD6-HPU82KtewvzEoRMb2boDcrmJDs8Vp02gsA0wIT4wvTdYfRuWIGVasFpK7t63d6I8MHWxfRoD1veMYFvclVO9GeY0bT53Bbi24LEYEMZ54uzFJuqlA",
         "refresh_token": "fbea8dee-5242-37f2-a862-4eb995d299df",
         "scope": "openid payments",
@@ -263,7 +263,7 @@ given below:
         "token_type": "Bearer",
         "expires_in": 3600
     }
-      ```
+    ```
 
 ### Step 5: Invoking Payment Submission API
 
