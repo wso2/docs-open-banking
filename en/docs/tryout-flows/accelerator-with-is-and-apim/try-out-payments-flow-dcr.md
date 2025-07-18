@@ -265,7 +265,7 @@ given below:
     }
       ```
 
-### Step 5: Invoking Payment Initiation API
+### Step 5: Invoking Payment Submission API
 
 Once the user approves the payment consent, the TPP can proceed to submit the payment order for processing. The following request is an instruction to the bank to begin the process of creating a payment resource.
 
@@ -273,7 +273,7 @@ The TPP must ensure that the Initiation and Risk sections of payment match the c
  
 - A sample request looks as follows:
    ```
-   curl -X GET \
+   curl -X POST \
    https://localhost:8243/open-banking/v3.1/pisp/payments \
    -H 'x-fapi-financial-id: open-bank' \
    -H 'Authorization: Bearer <AUTH_HEADER_VALUE>' \
