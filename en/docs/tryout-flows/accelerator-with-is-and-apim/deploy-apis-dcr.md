@@ -71,14 +71,19 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 14. Select the endpoint types; **Dynamic Endpoints** and click Save.  
     ![dynamic-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
 
-15. Select the **API Gateway** type, in this scenario, it is **Default**.
+15. Create and engage the required [Inbuilt Gateway Enforcements](../../learn/inbuilt-policies.md)
+    - Refer the [Introduction to Policies](../../learn/policies.md) for more details on Policies.
+    - Refer the [Create Policies](../../learn/create-policies.md) for create new Policies.
+    - Refer the [Engage Policies](../../learn/engage-policies.md) to learn how to engage policies to an API.
 
-18. Click Deploy.
+16. Select the **API Gateway** type, in this scenario, it is **Default**.
 
-19. Go to Overview using the left menu pane. <br/>
+17. Click Deploy.
+
+18. Go to Overview using the left menu pane. <br/>
     ![select-overview.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-overview.png)
 
-20. click Publish. 
+19. click Publish. 
     ![publish-api.png](../../assets/img/get-started/quick-start-guide/deploy-apis/publish-api.png)
 
 Once you deploy the APIs an API resource will be created along with the role mentioned in the swagger on the Identity Server side.
