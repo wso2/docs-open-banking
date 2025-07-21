@@ -276,6 +276,10 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     cache_size = 1024
     ```
 
+### Step 3: Adding Mock Backend for Testing
+
+1. Download the sample [Banking backend](../../assets/attachments/api#fs#backend.war) and place it inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+
 ## Exchanging the certificates
 
 In order to enable secure communication, we need to install the certificates of each component in others. This will facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this:

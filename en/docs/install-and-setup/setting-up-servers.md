@@ -133,8 +133,8 @@ and run the merge script as follows:
 
 2. Copy the downloaded WSO2 Open Banking APIM artifacts to the respective directories of the API Manager base product. Use the table to locate the respective directories of the base products:
 
-!!! note
-    If you are planning to use Manual Client Regitration through DevPortal follow the below step. Else skip this section.
+    !!! note
+        If you are planning to use Manual Client Regitration through DevPortal follow the below step. Else skip this section.
 
     | File                                                           | Directory location to place the artifact                          |
     |----------------------------------------------------------------|-----------------------------------------------------------------  |
