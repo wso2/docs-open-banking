@@ -123,12 +123,23 @@ Follow the instructions in the [Setting up databases](setting-up-databases.md) t
 3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of both Gateway node and Control Plane node. 
 Use the table to locate the respective directories of the base products:
 
-| File                                                            | Directory location to place the artifact                          |
-|-----------------------------------------------------------------|-------------------------------------------------------------------|
-| `org.wso2.financial.services.accelerator.common-4.1.x.jar`      | `<APIM_HOME>/repository/components/dropins`                       |
-| `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`  | `<APIM_HOME>/repository/components/dropins`                       |
-| `financial-services.xml.j2`                                     | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
-| `financial-services.xml`                                        | `<APIM_HOME>/repository/conf`                                     |
+    | File                                                            | Directory location to place the artifact                          |
+    |-----------------------------------------------------------------|-------------------------------------------------------------------|
+    | `org.wso2.financial.services.accelerator.common-4.1.x.jar`      | `<APIM_HOME>/repository/components/dropins`                       |
+    | `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`  | `<APIM_HOME>/repository/components/dropins`                       |
+    | `financial-services.xml.j2`                                     | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
+    | `financial-services.xml`                                        | `<APIM_HOME>/repository/conf`                                     |
+
+4. Download the API-M Meditation Artifacts: [fs-apim-mediation-artifacts-1.0.0.zip](https://github.com/wso2/financial-services-apim-mediation-policies/releases/tag/v1.0.0).
+5. Extract the downloaded zip file.
+   Use the table to locate the respective directories of the base products:
+
+   | File                                             | Directory location to place the artifact                                       |
+   |--------------------------------------------------|--------------------------------------------------------------------------------|
+   | `consent-enforcement-payload-mediator-1.0.0.jar` | `<APIM_HOME>/repository/component/lib`                                         |
+   | `mtls-header-enforcement-mediator-1.0.0.jar`     | `<APIM_HOME>/repository/component/lib`                                         |
+   | `customErrorFormatter.xml`                       | `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences`   |
+
 
 ### Configure the Gateway Node
 Configure the Gateway to communicate with the Control Plane.
@@ -138,29 +149,20 @@ Configure the Gateway to communicate with the Control Plane.
       ```bash
         sh profileSetup.sh -Dprofile=gateway-worker
       ```
-2. Download the API-M Meditation Artifacts: [fs-apim-mediation-artifacts-1.0.0.zip](https://github.com/wso2/financial-services-apim-mediation-policies/releases/tag/v1.0.0).
-3. Extract the downloaded zip file.
-      Use the table to locate the respective directories of the base products:
-
-      | File                                             | Directory location to place the artifact                                        |
-      |--------------------------------------------------|---------------------------------------------------------------------------------|
-      | `consent-enforcement-payload-mediator-1.0.0.jar` | `<APIM_GW_HOME>/repository/component/lib`                                       |
-      | `mtls-header-enforcement-mediator-1.0.0.jar`     | `<APIM_GW_HOME>/repository/component/lib`                                       |
-      | `customErrorFormatter.xml`                       | `<APIM_GW_HOME>/repository/deployment/server/synapse-configs/default/sequences` |
-
-4. Open the `<APIM_GW_HOME>/repository/conf/deployment.toml` file.
-5. Set the hostname of the API Manager:
+      
+2. Open the `<APIM_GW_HOME>/repository/conf/deployment.toml` file.
+3. Set the hostname of the API Manager:
     ``` toml
     [server]
     hostname = "<APIM_GW_HOST>" 
     ```
-6. Configure server role.
+4. Configure server role.
     ``` toml
     [server]
     server_role = "gateway-worker"
     ```
 
-7. Configure super admin credentials.
+5. Configure super admin credentials.
     ```
     [super_admin]
     username = "<APIM_SUPER_ADMIN_USERNAME>"
@@ -168,7 +170,7 @@ Configure the Gateway to communicate with the Control Plane.
     create_admin_account = true
     ```
 
-8. Configure the following configs to enable email as username.
+6. Configure the following configs to enable email as username.
     ``` toml
     [tenant_mgt]
     enable_email_domain = true
@@ -181,9 +183,9 @@ Configure the Gateway to communicate with the Control Plane.
     class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
     ```
    
-9. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
+7. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
    database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
-10. Remove am-config and user management DB configs from gateway node and the add shared_db and apim db.
+8. Remove am-config and user management DB configs from gateway node and the add shared_db and apim db.
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, see [Setting up databases](setting-up-databases.md).
 
          ```toml tab='shared_db'
@@ -202,7 +204,7 @@ Configure the Gateway to communicate with the Control Plane.
          driver = "com.mysql.jdbc.Driver"
          ```
 
-11. Update the following configurations with the hostname of the Identity Server to connect the Gateway to the Key 
+9. Update the following configurations with the hostname of the Identity Server to connect the Gateway to the Key 
 Manager component in the Control Plane:
     ``` toml
     [apim.key_manager]
@@ -211,13 +213,13 @@ Manager component in the Control Plane:
     password = "<IS_SUPER_ADMIN_PASSWORD>"
     ```
 
-12. Disable subscription validation as follows.
+10. Disable subscription validation as follows.
     ``` toml
     [apim.key_manager]
     allow_subscription_validation_disabling = true
     ```
 
-13. Configure the following traffic manager configurations.
+11. Configure the following traffic manager configurations.
     ``` toml
     [apim.throttling]
     service_url = "https://<APIM_CP_HOST>:9443/services/"
@@ -241,7 +243,7 @@ Manager component in the Control Plane:
     traffic_manager_auth_urls = ["ssl://<APIM_CP_HOST>:9711"]
     ```
 
-14. Add the following config to support JWT content type.
+12. Add the following config to support JWT content type.
     ``` toml
     [[blocking.custom_message_formatters]]
     class = "org.apache.axis2.format.PlainTextFormatter"
@@ -260,7 +262,7 @@ Manager component in the Control Plane:
     content_type = "application/jwt"
     ```
 
-15. Add the following to configure transport layer configs.
+13. Add the following to configure transport layer configs.
     ``` toml
     [transport.passthru_https.sender.parameters]
     HostnameVerifier = "AllowAll"
@@ -273,13 +275,13 @@ Manager component in the Control Plane:
     PreferredCiphers = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
     ```
     
-16. Enable certificate chain validation as the following.
+14. Enable certificate chain validation as the following.
     ``` toml
     [apimgt.mutual_ssl]
     enable_certificate_chain_validation = true
     ```
     
-17. Disable certificate_revocation.
+15. Disable certificate_revocation.
     ``` toml
     [transport.passthru_https.listener.cert_revocation_validation]
     enable = false
@@ -289,20 +291,20 @@ Manager component in the Control Plane:
     cache_size = 1024
     ```
 
-18. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
+16. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
     ``` toml
     [apim.oauth_config]
     enable_outbound_auth_header = true
     white_listed_scopes = ["^device_.*", "openid", "^FS_.*", "^TIME_.*"]
     ```
 
-19. Configure publisher url.
+17. Configure publisher url.
     ``` toml
     [financial_services]
     publisher_url="https://<APIM_CP_HOST>:9443/publisher"
     ```
     
-20. Add the following configurations to enable the external service extension.
+18. Add the following configurations to enable the external service extension.
     ``` toml
     [financial_services.extensions.endpoint]
     enabled = true
