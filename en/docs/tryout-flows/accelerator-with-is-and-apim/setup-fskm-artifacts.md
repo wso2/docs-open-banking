@@ -23,7 +23,7 @@
     | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
     | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`       |
 
-5. Download the sample [Banking backend](../../assets/attachments/api#fs#backend.war) and place it inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+5. Download the sample [Banking backend](../../assets/attachments/api#fs#backend.war.zip), extract the zip file and place the api#fs#backend.war inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
 
 ## Configuring Additional Attributes
 
