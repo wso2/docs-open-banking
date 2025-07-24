@@ -143,7 +143,7 @@ and run the merge script as follows:
     | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
     | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
 
-3. Download the sample [Banking backend](../assets/attachments/api#fs#backend.war.zip), extract the zip file and place the api#fs#backend.war inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+3. Download the sample [Banking backend](../assets/attachments/backend.zip), extract the zip file and place the `api#fs#backend.war` inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
 
 ## Setting up JAVA_HOME
 

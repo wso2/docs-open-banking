@@ -23,6 +23,9 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 
 6. Click on Finish.
 
+??? tip Adding Mock Banking Backend
+    Download the sample [Banking backend](../../assets/attachments/backend.zip), extract the zip file and place the `api#fs#backend.war` inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+
 ## Publish Accounts API
 
 1. Sign in to the API Publisher Portal at `https://<APIM_HOSTNAME>:9443/publisher`. 
