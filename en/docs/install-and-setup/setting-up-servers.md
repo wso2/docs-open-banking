@@ -118,18 +118,18 @@ and run the merge script as follows:
     ./merge.ps1
     ```
 
-??? warning "If you are using windows platform..."
-    If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
-    your powershell might prevent you from running this script normally. In that case you
-    may need to run it in a powershell instance where its execution policy is set to bypass mode.
-    
-    Use the following command to run it in execution policy bypassed powershell environment.
+    ??? warning "If you are using windows platform..."
+        If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
+        your powershell might prevent you from running this script normally. In that case you
+        may need to run it in a powershell instance where its execution policy is set to bypass mode.
+        
+        Use the following command to run it in execution policy bypassed powershell environment.
 
-    ```
-    powershell -executionpolicy bypass .\merge.ps1
-    ```
+        ```
+        powershell -executionpolicy bypass .\merge.ps1
+        ```
 
-    IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
+        IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
 
 2. Copy the downloaded WSO2 Open Banking APIM artifacts to the respective directories of the API Manager base product. Use the table to locate the respective directories of the base products:
 
@@ -143,7 +143,7 @@ and run the merge script as follows:
     | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
     | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
 
-3. Download the sample [Banking backend](../assets/attachments/api#fs#backend.war) and place it inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+3. Download the sample [Banking backend](../assets/attachments/api#fs#backend.war.zip), extract the zip file and place the api#fs#backend.war inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
 
 ## Setting up JAVA_HOME
 
