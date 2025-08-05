@@ -1,6 +1,8 @@
 The WSO2 API-M server can be deployed as an all-in-one deployment or as a distributed deployment. In the distributed setup, 
 the API-M server profiles are deployed as separate API-M nodes.
 
+![distributed_gateway_control_plane.png](..%2Fassets%2Fimg%2Finstall-and-setup%2Fdeployment-patterns%2Fdistributed_gateway_control_plane.png)
+
 Given below are the API-M nodes you can have in a distributed deployment by default.
 
 | API-M Node (Profile)                           | Description                                                                                                                                             |
