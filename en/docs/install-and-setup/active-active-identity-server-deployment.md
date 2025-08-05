@@ -38,6 +38,7 @@ Ensure that both nodes are configured to use the same database.
    [super_admin]
    create_admin_account = false
     ```
+
 3. Add the following reverse-proxy configuration to the deployment.toml file of both IS nodes:
    ``` toml
    [transport.http.properties]
