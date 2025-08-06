@@ -75,6 +75,11 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     - Refer the [Create Policies](../learn/create-policies.md) for create new Policies.
     - Refer the [Engage Policies](../learn/engage-policies.md) to learn how to engage policies to an API.
 
+    Engage the following policies.
+    - `MTLS Enforcement Policy`
+    - `Consent Enforcement Policy`
+    - `Dynamic Endpoint Policy` 
+
 16. Select the API Gateway type, in this scenario, it is Default.
 
 17. Click Deploy.

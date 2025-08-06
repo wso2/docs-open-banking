@@ -23,7 +23,10 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 
 6. Click on Finish.
 
-## Publish Accounts API
+## Publish Open Banking APIs
+
+!!! note
+    WSO2 Open Banking Accelerator supports Accounts flow, Payments flow and Confirmation of Funds flow. Publish all three APIs before trying out the flows.
 
 1. Sign in to the API Publisher Portal at `https://<APIM_HOSTNAME>:9443/publisher`. 
 
@@ -33,14 +36,23 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 3. Select OpenAPI File/Archive. 
     ![upload-swagger.png](../../assets/img/get-started/quick-start-guide/deploy-apis/upload-swagger.png)
 
-4. Click Browse File to Upload and select [account-info-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Accounts/account-info-swagger.yaml).  
+4. Click Browse File to Upload and select the required yaml file. 
+        
+    | API | Swagger File |
+    | --- | ------------ |
+    | Accounts | [account-info-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Accounts/account-info-swagger.yaml) | 
+    | Payments | [payment-initiation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Payments/payment-initiation-openapi.yaml) | 
+    | Confimation of Funds | [funds-confirmation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/ConfirmationOfFunds/funds-confirmation-openapi.yaml) | 
 
 5. Click Next.
 
 6. Set the Context value as follows:
-    ```
-    /open-banking/{version}/aisp
-    ```
+
+    | API | Context Value |
+    | --- | ------------- |
+    | Accounts | `/open-banking/{version}/aisp` | 
+    | Payments | `/open-banking/{version}/pisp` | 
+    | Confimation of Funds | `/open-banking/{version}/cbpii` | 
 
 7. Leave the Endpoint field empty as it is, Select the Gateway Type and click Create.
     ![configure-api.png](../../assets/img/get-started/quick-start-guide/deploy-apis/configure-api.png)
@@ -56,7 +68,13 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 11. Toggle the Schema Validation button to enable Schema Validation for all APIs except for the Dynamic Client Registration API.
     ![schema-validation.png](../../assets/img/get-started/quick-start-guide/deploy-apis/schema-validation.png)
 
-12. Add [JWT claim based access validation](https://apim.docs.wso2.com/en/latest/design/api-policies/regular-gateway-policies/jwt-claim-based-access-validator/).
+12. Go to Endpoints using the left menu pane. <br/>
+    ![select-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-endpoints.png)
+
+13. Select the endpoint types; **Dynamic Endpoints** and click Save.  
+    ![dynamic-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
+
+14. Add [JWT claim based access validation](https://apim.docs.wso2.com/en/latest/design/api-policies/regular-gateway-policies/jwt-claim-based-access-validator/).
 
     Use aut as the Access verification claim name and value from below.
 
@@ -65,16 +83,18 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     | Client Credentials Grant | APPLICATION      |
     |Authorization Code Grant  | APPLICATION_USER |
 
-13. Go to Endpoints using the left menu pane. <br/>
-    ![select-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-endpoints.png)
-
-14. Select the endpoint types; **Dynamic Endpoints** and click Save.  
-    ![dynamic-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
-
 15. Create and engage the required [Inbuilt Gateway Enforcements](../../learn/inbuilt-policies.md)
     - Refer the [Introduction to Policies](../../learn/policies.md) for more details on Policies.
     - Refer the [Create Policies](../../learn/create-policies.md) for create new Policies.
     - Refer the [Engage Policies](../../learn/engage-policies.md) to learn how to engage policies to an API.
+    
+    Refer to the below table and engage the required policies for each API.
+
+    | API | API Level Policies | Operational Level Policies |
+    | --- | ------------------ | -------------------------- |
+    | Accounts | `MTLS Enforcement Policy` | `Consent Enforcement Policy` </br> `Dynamic Endpoint Policy` |
+    | Payments | `MTLS Enforcement Policy` | `Consent Enforcement Policy` </br> `Dynamic Endpoint Policy` |
+    | Confirmation of Funds | `MTLS Enforcement Policy` | `Consent Enforcement Policy` </br> `Dynamic Endpoint Policy` |
     
 16. Select the **API Gateway** type, in this scenario, it is **Default**.
 
@@ -86,7 +106,7 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 19. click Publish. 
     ![publish-api.png](../../assets/img/get-started/quick-start-guide/deploy-apis/publish-api.png)
 
-Once you deploy the APIs an API resource will be created along with the role mentioned in the swagger on the Identity Server side. Similarly deploy the Payments and Confirmation of Funds APIs as well.
+Once you deploy the APIs an API resource will be created along with the role mentioned in the swagger on the Identity Server side.
 
 !!! note
     If you have created the users, assign the roles created while publishing the APIs to the users.

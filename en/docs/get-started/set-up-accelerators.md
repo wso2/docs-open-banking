@@ -42,8 +42,8 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     d. Update the “PRODUCT_CONF_PATH” to `repository/resources/wso2is-<IS_VERSION>-deployment.toml`.
 
 
-!!!note
-    Use the Identity Server version deploying as the IS_VERSION.
+    !!!note
+        Use the Identity Server version deploying as the IS_VERSION.
 
 2. Run the merge script in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
 
@@ -59,7 +59,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     ./merge.ps1
     ```
 
-2. Run the configure file in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
+3. Run the configure file in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
 
     ``` bash tab="MySQL"
     ./configure.sh
@@ -90,8 +90,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     
         IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution.
 
-3. Run the db script resides in `<IS_HOME>/dbscripts/financial-services/event-notifications` directory to create database 
-   tables for event notification feature in `fs_consentdb` database. 
+4. Run the db script resides in `<IS_HOME>/dbscripts/financial-services/event-notifications` directory to create database tables for event notification feature in `fs_consentdb` database. 
 
 ## Setting Up WSO2 API Manager
 
@@ -111,12 +110,12 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
 2. Given below is the relevant datasource configuration for each database:
 
-| Database       | TOML configuration                |
-| -------------- | --------------------------------  |
-| apimgtdb    | [database.apim_db]                |
-| am_configdb | [database.config]                 | 
-| am_configdb | [database.shared_db]              |
-| userdb      | [database.user] |
+    | Database       | TOML configuration                |
+    | -------------- | --------------------------------  |
+    | apimgtdb    | [database.apim_db]                |
+    | am_configdb | [database.config]                 | 
+    | am_configdb | [database.shared_db]              |
+    | userdb      | [database.user] |
 
 3. Place the compatible JDBC drivers in the `<IS_HOME>/repository/components/lib` folder. Supported JDBC driver for MySQL 8.0 : mysql-connector-java-5.1.44.jar
 
@@ -124,11 +123,11 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
 To create the database tables, go to the following locations and execute the relevant database script against the given database. These locations contain database scripts for all the supported database types, choose the script according to your DBMS.
 
-| Database         | Script location                                                    |
-| ---------------- | ------------------------------------------------------------------ |
-| `apimgtdb`    | `<APIM_HOME>/dbscripts/apimgt `                                    | 
-| `am_configdb` | `<APIM_HOME>/dbscripts`                                            |
-| `userdb`      | `<APIM_HOME>/dbscripts`                                            |
+    | Database         | Script location                                                    |
+    | ---------------- | ------------------------------------------------------------------ |
+    | `apimgtdb`    | `<APIM_HOME>/dbscripts/apimgt `                                    | 
+    | `am_configdb` | `<APIM_HOME>/dbscripts`                                            |
+    | `userdb`      | `<APIM_HOME>/dbscripts`                                            |
 
 5. Execute the relevant SQL command against the apimgtdb database.
 
@@ -266,7 +265,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     enable_certificate_chain_validation = true
     ```
 
-12. Enable certificate revocation validation as follows.
+<!-- 12. Enable certificate revocation validation as follows.
     ```
     [transport.passthru_https.listener.cert_revocation_validation]
     enable = true
@@ -275,6 +274,7 @@ Open the `<APIM_HOME>/repository/conf/deployment.toml` file and do the following
     cache_delay = 1000
     cache_size = 1024
     ```
+-->
 
 ### Step 3: Adding Mock Backend for Testing
 
@@ -290,6 +290,7 @@ In order to enable secure communication, we need to install the certificates of 
 1. Generate a key against the keystore of a particular server. For example, server A with an alias and common name that is equal to the hostname.
     ```
     keytool -genkey -alias <keystore_alias> -keyalg RSA -keysize 2048 -validity 3650 -keystore <keystore_path> -storepass <keystore_password> -keypass <key password> -noprompt
+    ```
 
 2. Export the public certificate of the newly generated key pair.
     ```

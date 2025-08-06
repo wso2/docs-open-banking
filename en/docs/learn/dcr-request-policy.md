@@ -13,9 +13,9 @@ Create an API Level Policy by following the [Creating API Level Policy](../learn
 
 | Field | Description |
 | ----- | ----------- |
-| Name | Dynamic Endpoint Policy |
+| Name | Dynamic Client Registration Request Policy |
 | Version | 1 (can be any) |
-| Description | Policy to determine the backend of the request |
+| Description | Policy to validate and modify DCR Request |
 | Applicable Flows | Request |
 | Supported API Types | HTTP |
 
