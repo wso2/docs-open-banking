@@ -12,7 +12,7 @@ Create an API Level Policy by following the [Creating API Level Policy](../learn
 | ----- | ----------- |
 | Name | Dynamic Client Registration Response Policy |
 | Version | 1 (can be any) |
-| Description | Policy to determine the backend of the request |
+| Description | Policy to modify DCR response |
 | Applicable Flows | Response |
 | Supported API Types | HTTP |
 
