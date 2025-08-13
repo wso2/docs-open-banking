@@ -314,9 +314,7 @@ according to your DBMS.
 
 !!! note "Increase the column size of the following table columns:"
 
-     Execute the relevant SQL command against the `fs_identitydb` and `apimgtdb` database.
-     
-     1. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
+    1. Execute the relevant SQL command against the `fs_identitydb` and `apimgtdb` database. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
      
          ```sql tab='MySQL'
@@ -328,12 +326,30 @@ according to your DBMS.
          ```
          
          ```sql tab='Oracle'
-         ALTER TABLE fs_identitydb.sp_metadata MODIFY VALUE VARCHAR(4000);
+         ALTER TABLE fs_identitydb.SP_METADATA MODIFY VALUE VARCHAR(4000);
          ```
          
          ```sql tab='PostgreSQL'
          ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
          ```
+
+    2. Execute the relevant SQL command against the `apimgtdb` database. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
+     
+     
+         ```sql tab='MySQL'
+         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY VALUE VARCHAR(7500);
+         ```
+         
+         ```sql tab='MSSQL'
+          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER COLUMN VALUE VARCHAR(7500);
+         ```
+         
+         ```sql tab='Oracle'
+         ALTER TABLE apimgtdb.AM_APPLICATION_REGISTRATION MODIFY VALUE VARCHAR2(4000);
+         ```
+         
+         ```sql tab='PostgreSQL'
+         ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column VALUE type VARCHAR(7500);
 
 
 !!! note 
