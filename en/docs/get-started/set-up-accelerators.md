@@ -121,7 +121,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
 4. Creating database tables.
 
-To create the database tables, go to the following locations and execute the relevant database script against the given database. These locations contain database scripts for all the supported database types, choose the script according to your DBMS.
+    To create the database tables, go to the following locations and execute the relevant database script against the given database. These locations contain database scripts for all the supported database types, choose the script according to your DBMS.
 
     | Database         | Script location                                                    |
     | ---------------- | ------------------------------------------------------------------ |

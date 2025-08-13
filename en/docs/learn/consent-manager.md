@@ -14,50 +14,6 @@ requirements and manages consents.
     - Bank officers with the `CustomerCareOfficerRole` role and bank customers can access the Consent Manager.  
     - Customer Care Officers have privileges such as Advanced Search options and the ability to view the consents of all bank customers. 
 
-## Configuring Consent Manager
-
-1. Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/runtime-config.js` file.
-
-2. Follow the below instructions.
-
-    - If the Consent Manager Portal is deployed on the WSO2 Identity Server, use the default configuration given below.
-        ```
-        window.env = {
-            `USE_DEFAULT_CONFIGS: true,
-            SERVER_URL: 'https://localhost:9446',
-            SPEC: 'Default',
-            TENANT_DOMAIN: 'carbon.super',
-            NUMBER_OF_CONSENTS: 20,
-            VERS`ION: '3.0.0'
-        };
-        ```
-
-    -  If you are using a different server instance for the Identity Server, update the above configurations as follows.
-        a. Set the USE_DEFAULT_CONFIGS parameter to false.
-        b. Update the SERVER_URL parameter with the URL of the Identity Server.
-
-3. Open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
-
-    | Configuration              | Description |
-    | -------------------------- | ----------- |
-    | client_id                  | The Consumer Key of the application created. |
-    | client_secret              | The Consumer Secret of the application created. |
-    | identity_server_base_url   | The hostname of the Identity Server. |
-    | application_name_param     | This is the parameter name to extract the consumer application name to display in the consent manager portal. The value should be stored during application creation to retrieve here.|
-    | application_logo_uri_param | This is the parameter name to extract the consumer application logo to display in the consent manager portal. The value should be stored during application creation to retrieve here. |
-
-    For example,
-    ```
-    [financial_services.consent.portal.client_credentials]
-    client_id="2zB5s9wGHWVwmlrvHdWa6Mwc4vsa"
-    client_secret="cqblprasAniVfi02IXGFvp8VREAa"
-
-    [financial_services.consent.portal.params]
-    identity_server_base_url="https://localhost:9446"
-    application_name_param="client_name"
-    application_logo_uri_param="software_logo_uri"
-    ```
-    
 ## Setting up Consent manager app
 
 ### Create API Resource
@@ -160,6 +116,7 @@ Similarly assign the **ConsentPortalRole** to the users who have a consumer role
 7. Click **Create**, and the service provider will be created.
 
 8. Once the application is created, do the following modifications to the application **Protocol** tab. Configure the below details under the **OAuth2.0/OpenID Connect** section. 
+
     | Section | Configuration | Value |
     | ------- | ------------- | ----- |
     | OAuth2.0/OpenID | Allowed grant types | Select code, refresh token |
@@ -201,6 +158,51 @@ Similarly assign the **ConsentPortalRole** to the users who have a consumer role
 ![set-subject](../assets/img/learn/consent-manager/set-subject.png)
 
 21. Click **Update**.
+
+
+## Configuring Consent Manager
+
+1. Open the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/runtime-config.js` file.
+
+2. Follow the below instructions.
+
+    - If the Consent Manager Portal is deployed on the WSO2 Identity Server, use the default configuration given below.
+        ```
+        window.env = {
+            `USE_DEFAULT_CONFIGS: true,
+            SERVER_URL: 'https://localhost:9446',
+            SPEC: 'Default',
+            TENANT_DOMAIN: 'carbon.super',
+            NUMBER_OF_CONSENTS: 20,
+            VERS`ION: '3.0.0'
+        };
+        ```
+
+    -  If you are using a different server instance for the Identity Server, update the above configurations as follows.
+        a. Set the USE_DEFAULT_CONFIGS parameter to false.
+        b. Update the SERVER_URL parameter with the URL of the Identity Server.
+
+3. Open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
+
+    | Configuration              | Description |
+    | -------------------------- | ----------- |
+    | client_id                  | The Consumer Key of the application created. |
+    | client_secret              | The Consumer Secret of the application created. |
+    | identity_server_base_url   | The hostname of the Identity Server. |
+    | application_name_param     | This is the parameter name to extract the consumer application name to display in the consent manager portal. The value should be stored during application creation to retrieve here.|
+    | application_logo_uri_param | This is the parameter name to extract the consumer application logo to display in the consent manager portal. The value should be stored during application creation to retrieve here. |
+
+    For example,
+    ```
+    [financial_services.consent.portal.client_credentials]
+    client_id="2zB5s9wGHWVwmlrvHdWa6Mwc4vsa"
+    client_secret="cqblprasAniVfi02IXGFvp8VREAa"
+
+    [financial_services.consent.portal.params]
+    identity_server_base_url="https://localhost:9446"
+    application_name_param="client_name"
+    application_logo_uri_param="software_logo_uri"
+    ```
 
 ## Using Consent Manager
 
