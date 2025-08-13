@@ -76,7 +76,7 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 
 14. Add [JWT claim based access validation](https://apim.docs.wso2.com/en/latest/design/api-policies/regular-gateway-policies/jwt-claim-based-access-validator/).
 
-    Use aut as the Access verification claim name and value from below.
+    Use **aut** as the Access verification claim name and value from below.
 
     | Token Type               | Claim Value      |
     | ------------------------ | ---------------  |
