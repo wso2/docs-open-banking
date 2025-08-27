@@ -160,7 +160,7 @@ database server, and the JDBC driver.
     enable_certificate_chain_validation = true
     ```
 
-14. Enable certificate revocation validation as follows.
+<!-- 14. Enable certificate revocation validation as follows.
     
     ``` toml
     [transport.passthru_https.listener.cert_revocation_validation]
@@ -169,9 +169,9 @@ database server, and the JDBC driver.
     allow_full_cert_chain_validation = false
     cache_delay = 1000
     cache_size = 1024
-    ```
+    ``` -->
 
-15. Add the following configurations to enable the external service extension.
+14. Add the following configurations to enable the external service extension.
 
     ``` toml
     [financial_services.extensions.endpoint]
