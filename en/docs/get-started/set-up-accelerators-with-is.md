@@ -8,7 +8,7 @@ Copy the extracted accelerator directory into the root directory of the WSO2 Ide
 | `wso2-obiam-accelerator-4.x.0` | `<IS_HOME>`                                 |
 
 !!! tip
-    This documentation will refer to the above-extracted directory of the accelerator as `<FS_IS_ACCELERATOR_HOME>`.
+    This documentation will refer to the above-extracted directory of the accelerator as `<OB_IS_ACCELERATOR_HOME>`.
 
 ### Step 2: Configure database scripts
 
@@ -23,7 +23,7 @@ Copy the extracted accelerator directory into the root directory of the WSO2 Ide
 This section explains how to set up the solution with a MySQL 8.0 database server. For other DBMS, see 
 [Setting up databases](../install-and-setup/setting-up-databases.md).
 
-1. Open the `<IS_HOME>/<FS_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
+1. Open the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
 
 2. Configure the hostnames of the Identity Server.
 
@@ -32,7 +32,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 4. Modify the product version in the `IS_PRODUCT` and `PRODUCT_CONF_PATH` parameters to match with the base product version.
  
 ### Step 3: Set up the IS server 
-1. Run the merge script in `<IS_HOME>/<FS_IS_ACCELERATOR_HOME>/bin`:
+1. Run the merge script in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
 
     ``` bash tab='On Linux'
     ./merge.sh
@@ -46,8 +46,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
     ./merge.ps1
     ```
 
-2. Run the configure file in
-`<IS_HOME>/<FS_IS_ACCELERATOR_HOME>/bin`:
+2. Run the configure file in `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/bin`:
 
     ``` bash tab="MySQL"
     ./configure.sh

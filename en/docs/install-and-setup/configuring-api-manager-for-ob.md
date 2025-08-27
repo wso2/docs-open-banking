@@ -22,7 +22,28 @@ Manager.
     hostname = "<APIM_HOST>" 
     ```
 
-4. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
+4. Configure super admin credentials.
+    ```
+    [super_admin]
+    username = "<APIM_SUPER_ADMIN_USERNAME>"
+    password = "<APIM_SUPER_ADMIN_PASSWORD>"
+    create_admin_account = true
+    ```
+
+5. Configure the following configs to enable email as username.
+    ``` toml
+    [tenant_mgt]
+    enable_email_domain = true
+
+    [realm_manager]
+    data_source= "WSO2USER_DB"
+
+    [user_store]
+    type = "database_unique_id"
+    class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
+    ```
+
+6. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
 database server, and the JDBC driver. 
 
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, 
@@ -30,7 +51,7 @@ database server, and the JDBC driver.
    
     ```toml tab='shared_db'
     [database.shared_db]
-    url = "jdbc:mysql://localhost:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -38,7 +59,7 @@ database server, and the JDBC driver.
     
     ```toml tab='apim_db'
     [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -46,163 +67,135 @@ database server, and the JDBC driver.
     
     ```toml tab='config'
     [database.config]
-    url = "jdbc:mysql://localhost:3306/openbank_am_configdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
     
-    ```toml tab='WSO2UM_DB'
-    [[datasource]]
-    id="WSO2UM_DB"
-    url = "jdbc:mysql://localhost:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false"
+    ```toml tab='user'
+    [database.user]
+    url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
 
-5. Update the following configurations with the hostname of the Identity Server.  
+7. Update the following configurations with the hostname of the Identity Server.  
    
     ``` toml
     [apim.key_manager]
-    service_url = "https://<IS_HOST>:9446${carbon.context}services/"
-    ```
-   
-    ``` toml
-    [apim.key_manager.configuration]
-    ServerURL = "https://<IS_HOST>:9446${carbon.context}services/"
-    ```
-   
-    ``` toml
-    [open_banking.dcr]
-    #jwks_endpoint_name = ""
-    #app_name_claim = " "
-    token_endpoint = https://<APIM_HOST>:9443/oauth2/token
+    service_url = "https://<IS_HOSTNAME>:9446/services/"
+    username = "<IS_SUPER_ADMIN_USERNAME>"
+    password = "<IS_SUPER_ADMIN_PASSWORD>"
     ```
 
-6. Add the following and configure the hostname of the Identity Server.  
-
+8. Disable subscription validation as follows.
+    
     ``` toml
-    [open_banking.gateway.consent.validation]
-    endpoint = "https://<IS_HOST>:9446/api/openbanking/consent/validate"
-    ```
-   
-7. Add the following gateway executor configurations for the Consent flow:
-
-    ``` toml
-    [[open_banking.gateway.openbanking_gateway_executors.type]]
-    name = "Consent"
-    [[open_banking.gateway.openbanking_gateway_executors.type.executors]]
-    name = "com.wso2.openbanking.accelerator.gateway.executor.impl.selfcare.portal.UserPermissionValidationExecutor"
-    priority = 1
+    [apim.key_manager]
+    allow_subscription_validation_disabling = true
     ```
 
-8. Add the following tags and configure the HTTP connection pool:
-
-    !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and 
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.10** onwards.
-        For more information on updating, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
-
+9. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
+    
     ``` toml
-    [open_banking.http_connection_pool]
-    max_connections = 2000
-    max_connections_per_route = 1500	
+    [apim.oauth_config]
+    enable_outbound_auth_header = true
+    white_listed_scopes = ["^device_.*", "openid", "^FS_.*", "^TIME_.*"]
     ```
-   
-9. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
-   
-    - Enable the feature and configure the `server_url` property with the hostname of WSO2 Streaming 
-    Integrator.
+
+10. Configure the admin username for following features as follows.
+    
+    ``` toml
+    [apim.throttling]
+    username = "$ref{super_admin.username}@carbon.super"
+
+    [apim.throttling.policy_deploy]
+    username = "$ref{super_admin.username}@carbon.super"
+
+    [apim.throttling.jms]
+    password = "$ref{super_admin.password}"
+    username = "am_admin!wso2.com!carbon.super"
+    ```
+
+11. Add the following config to support JWT content type.
+    
+    ``` toml
+    [[blocking.custom_message_formatters]]
+    class = "org.apache.axis2.format.PlainTextFormatter"
+    content_type = "application/jwt"
+
+    [[blocking.custom_message_builders]]
+    class = "org.apache.axis2.format.PlainTextBuilder"
+    content_type = "application/jwt"
+
+    [[custom_message_formatters]]
+    class = "org.apache.axis2.format.PlainTextFormatter"
+    content_type = "application/jwt"
+
+    [[custom_message_builders]]
+    class = "org.apache.axis2.format.PlainTextBuilder"
+    content_type = "application/jwt"
+    ```
+
+12. Add following to configure transport layer configs.
+    
+    ``` toml
+    [transport.passthru_https.sender.parameters]
+    HostnameVerifier = "AllowAll"
+
+    [passthru_http]
+    "http.headers.preserve"="Content-Type,Date"
+
+    [transport.passthru_https.listener.parameters]
+    HttpsProtocols = "TLSv1.2"
+    PreferredCiphers = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+    ```
+
+13. Enable certificate chain validation as the following.
+    
+    ``` toml
+    [apimgt.mutual_ssl]
+    enable_certificate_chain_validation = true
+    ```
+
+14. Enable certificate revocation validation as follows.
+    
+    ``` toml
+    [transport.passthru_https.listener.cert_revocation_validation]
+    enable = true
+    allow_cert_expiry_validation = true
+    allow_full_cert_chain_validation = false
+    cache_delay = 1000
+    cache_size = 1024
+    ```
+
+15. Add the following configurations to enable the external service extension.
 
     ``` toml
-    [open_banking.data_publishing]	
-    enable = true	
-    username="$ref{super_admin.username}@carbon.super"	
-    password="$ref{super_admin.password}"	
-    server_url = "{tcp://<SI_HOST>:7612}"	
-    ```  
+    [financial_services.extensions.endpoint]
+    enabled = true
+    allowed_extensions = ["pre-process-application-creation", "pre-process-application-update"]
+    base_url = "<EXTERNAL_SERVICE_URL>"
+    retry_count = 5
+    connect_timeout = 5000
+    read_timeout = 5000
 
-10. If you are using WSO2 API Manager 4.2.0, you need to change the API Manager REST API version from V2 to V3.
 
-    1. Locate the `[open_banking.dcr.apim_rest_endpoints]` tag. By default, the configuration is commented out.
-    2. Uncomment the configuration and update as shown below:
-        ```toml
-        [open_banking.dcr.apim_rest_endpoints]
-        app_creation = "api/am/devportal/v3/applications"
-        key_generation = "api/am/devportal/v3/applications/application-id/map-keys"
-        api_retrieve = "api/am/devportal/v3/apis"
-        api_subscribe = "api/am/devportal/v3/subscriptions/multiple"
-        retrieve_subscribe="api/am/devportal/v3/subscriptions"
-        ```
+    [financial_services.extensions.endpoint.security]
+    # supported types : Basic-Auth or OAuth2
+    type = "Basic-Auth"
+    username = "<EXTERNAL_SERVICE_USERNAME>"
+    password = "<EXTERNAL_SERVICE_PASSWORD>"
+    ```
    
 ## Starting servers
 
 1. Go to the `<APIM_HOME>/bin` directory using a terminal.
 
-2. Run the `wso2server.sh` script as follows:
+2. Run the `api-manager.sh` script as follows:
 
     ``` bash
     ./api-manager.sh
     ``` 
-
-## Configure Identity Server as Key Manager
-
-The **Key Manager** handles all clients, security, and access token-related operations. In a typical API Manager 
-production deployment, different components talk to the Key Manager component to achieve different tasks.
-
-This section explains how to configure WSO2 Identity Server as the Key Manager for WSO2 API Manager.
-
-1. Sign in to the Admin Portal of API Manager at `https://<APIM_HOST>:9443/admin`.
-
-2. Go to **Key Manager** on the left main menu. ![add_Key_Manager](../assets/img/learn/dcr/dcr-try-out/step-9.png)
-
-3. Click **Add New Key Manager** and configure Key Manager. 
-   
-    ??? tip "Click here to see the full list of configurations..."
-        | Configuration       | Description                           | Value                    |
-        | -------------       |-------------                          | -----                    |
-        | Name                | The name of the authorization server. | OBKM                     |
-        | Display Name        | A name to display on the UI.          | OBKM                     |
-        | Description         | The name of the authorization server. | (Optional)               |
-        | Key Manager Type    | The type of the Key Manager to be selected. | Select `ObKeyManager` |
-        |Well-known-url      | The well-known URL of the authorization server (Key Manager). If the Import button is used, verify all the auto imported values with the onces mentioned below.|   `https://<IS_HOST>:9446/oauth2/token/.well-known/openid-configuration` |
-        | Issuer              | The issuer that consumes or validates access tokens.         | `https://<IS_HOST>:9446/oauth2/token` |
-        |**Key Manager Endpoints**                                                                |
-        | Client Registration Endpoint | The endpoint that verifies the identity and obtain profile information of the end-user based on the authentication performed by an authorization server.  |  `https://<IS_HOST>:9446/keymanager-operations/dcr/register`| 
-        | Introspection Endpoint | The endpoint that allows authorized protected resources to query the authorization server to determine the set of metadata for a given token that was presented to them by an OAuth Client. | `https://<IS_HOST>:9446/oauth2/introspect` |
-        | Token Endpoint      | The endpoint that issues the access tokens. | `https://<IS_HOST>:9446/oauth2/token` |
-        | Revoke Endpoint     | The endpoint that revokes the access tokens.| `https://<IS_HOST>:9446/oauth2/revoke` |
-        | Userinfo Endpoint   | The endpoint that allows clients to verify the identity of the end-user based on the authentication performed by an authorization server, as well as to obtain basic profile information about the end-user. | `https://<IS_HOST>:9446/oauth2/userinfo?schema=openid` |
-        | Authorize Endpoint  | The endpoint used to obtain an authorization grant from the resource owner via the user-agent redirection. | `https://<IS_HOST>:9446/oauth2/authorize` |
-        | Scope Management Endpoint | The endpoint used to manage the scopes. | `https://<IS_HOST>:9446/api/identity/oauth2/v1.0/scopes` |
-        | **Connector Configurations**                        |
-        | Username            | The username of an admin user who is authorized to connect to the authorization server. |  |
-        | Password            | The password corresponding to the latter mentioned admin user who is authorized to connect to the authorization server. | |
-        | **Claim URIs**      |   
-        | Consumer Key Claim URI | The claim URI for the consumer key.  | (Optional)  |
-        | Scopes Claim URI | The claim URI for the scopes | (Optional) | 
-        | Grant Types | The supported grant types. Add multiple grant types by adding a grant type press Enter. | (Optional) |
-        | **Certificates** | 
-        | PEM | Either copy and paste the certificate in PEM format or upload the PEM file. | (Optional) |
-        | JWKS | The JSON Web Key Set (JWKS) endpoint is a read-only endpoint. This URL returns the Identity Server's public key set in JSON web key set format. This contains the signing key(s) the Relying Party (RP) uses to validate signatures from the Identity Server. | `https://<IS_HOST>:9446/oauth2/jwks` |
-        | **Advanced Configurations** |
-        | Token Generation | This enables token generation via the authorization server. | (Mandatory) |
-        | Out Of Band Provisioning | This enables the provisioning of Auth clients that have been created without the use of the Developer Portal, such as previously created Auth clients. | (Mandatory) |
-        | Oauth App Creation | This enables the creation of Auth clients. | (Mandatory) |
-        | **Token Validation Method** | The method used to validate the JWT signature. |
-        | Self Validate JWT | The kid value is used to validate the JWT token signature. If the kid value is not present, `gateway_certificate_alias` will be used. | (Mandatory) |
-        | Use introspect | The JWKS endpoint is used to validate the JWT token signature. | - |
-        | Token Handling Options | This provides a way to validate the token for this particular authorization server. This is mandatory if the Token Validation Method is introspect.| (Optional) |
-        | REFERENCE | The tokens that match a specific regular expression (regEx) are validated. e.g., <code>[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}</code> | (Optional) |
-        | JWT | The tokens that match a specific JWT are validated. | Select this icon |
-        | CUSTOM | The tokens that match a custom pattern are validated. | (Optional) |
-        | **Claim Mappings** | Local and remote claim mapping. | (Optional) | 
-
-4. Go to the list of Key Managers and select **Resident Key Manager**. ![select_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-10.png)
-
-5. Locate **Connector Configurations** and provide a username and a password for a user with super admin credentials.
-
-6. Click **Update**.
-
-7. Disable the Resident Key Manager. ![Disable_Resident_KM](../assets/img/learn/dcr/dcr-try-out/step-11.png)

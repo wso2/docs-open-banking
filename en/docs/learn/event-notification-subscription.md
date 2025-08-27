@@ -28,14 +28,14 @@ API consumer applications have the flexibility to update the data and configurat
 
 The API allows API consumer applications to delete specific event notification subscriptions that are no longer required.
 
-You can customize the Event Subscription Flow according to your requirements. For more information, see [Customizing Event Notification](../develop/custom-event-notification.md).
+You can customize the Event Subscription Flow according to your requirements. For more information, see [Customizing Event Subscription](../develop/openapi-event-subscription.md).
 
 Given below are sample Event Subscription request payloads and their responses:
 
 - Create an Event Notification Subscription
 
 ```tab="Request"
-curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/' \
+curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json' \
@@ -66,7 +66,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 - Retrieve an Event Notification Subscription
 
 ```tab="Request"
-curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/<SUBSCRIPTION_ID>' \
+curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/<SUBSCRIPTION_ID>' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json' \
@@ -93,7 +93,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 - Retrieve All Event Notification Subscriptions
 
 ```tab="Request"
-curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/' \
+curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json' \
@@ -130,7 +130,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 - Retrieve Event Notification Subscriptions by an Subscribed Event Type
 
 ```tab="Request"
-curl --location 'https://localhost:9446/api/openbanking/event-notifications/subscription/type/<SUBSCRIBED_EVENT_TYPE>' \
+curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/type/<SUBSCRIBED_EVENT_TYPE>' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json'
@@ -165,7 +165,7 @@ curl --location 'https://localhost:9446/api/openbanking/event-notifications/subs
 - Update an Event Notification Subscription
 
 ```tab="Request"
-curl --location --request PUT 'https://localhost:9446/api/openbanking/event-notifications/subscription/<SUBSCRIPTION_ID>' \
+curl --location --request PUT 'https://localhost:9446/api/fs/event-notifications/subscription/<SUBSCRIPTION_ID>' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json' \
@@ -194,7 +194,7 @@ curl --location --request PUT 'https://localhost:9446/api/openbanking/event-noti
 - Delete an Event Notification Subscription
 
 ```tab="Request"
-curl --location --request DELETE 'https://localhost:9446/api/openbanking/event-notifications/subscription/<SUBSCRIPTION_ID>' \
+curl --location --request DELETE 'https://localhost:9446/api/fs/event-notifications/subscription/<SUBSCRIPTION_ID>' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
 --header 'Content-Type: application/json' \

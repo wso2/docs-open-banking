@@ -3,7 +3,7 @@ according to your specification requirements using the OpenAPI  based extension 
 Consent Authorize component and how to customize its functionalities.
 
 !!! note
-Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
 
 The Consent Authorize extension point relates to the loading of the consent approval page and eventually persisting 
 the consent provided by the users. This consists of 2 endpoints. 
@@ -18,9 +18,9 @@ page to display to the user.
 accelerator do support showing consent data and accounts data binding to the permissions.
 
 ### OpenAPI Extensions
-| OpenAPI Extension                 | Description                                                                                                                    | OpenAPI Definition                                                                                                                                       |
-|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| populate-consent-authorize-screen | handle specification speicifc custom validations and set consent data and consumer data which need to show in consent grant UI | [populate-consent-authorize-screen/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1populate-consent-authorize-screen/post) |
+| OpenAPI Extension                 | Description                                                                                                                    | OpenAPI Definition                                                                                                                                                             |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| populate-consent-authorize-screen | handle specification speicifc custom validations and set consent data and consumer data which need to show in consent grant UI | [populate-consent-authorize-screen/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Consent/paths/~1populate-consent-authorize-screen/post) |
 
 
 ### Configuration
@@ -34,7 +34,7 @@ To enable, follow the steps below:
 ``` toml
 [financial_services.extensions.endpoint]
 enabled = true
-base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
+base_url = "<BASE_URL_OF THE EXTENSION>"
 
 allowed_extensions = [ "populate-consent-authorize-screen" ]
 
@@ -52,9 +52,9 @@ user approves/denies the consent via an API invocation made from the consent pag
 invoked, the OpenAPI extension implementation to persist are also invoked and the data required for persistence will be provided from the extension point. 
 
 ### OpenAPI Extensions
-| OpenAPI Extension          | Description                              | OpenAPI Definition                                                                                                                                           |
-|----------------------------|------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| persist-authorized-consent | handle user granted consent data storing | [persist-authorized-consent/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1persist-authorized-consent/post) |
+| OpenAPI Extension          | Description                              | OpenAPI Definition                                                                                                                                               |
+|----------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| persist-authorized-consent | handle user granted consent data storing | [persist-authorized-consent/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Consent/paths/~1persist-authorized-consent/post) |
 
 ### Configuration
 
@@ -67,7 +67,7 @@ To enable, follow the steps below:
 ``` toml
 [financial_services.extensions.endpoint]
 enabled = true
-base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
+base_url = "<BASE_URL_OF THE EXTENSION>"
 
 allowed_extensions = ["persist_authorized_consent"]
 

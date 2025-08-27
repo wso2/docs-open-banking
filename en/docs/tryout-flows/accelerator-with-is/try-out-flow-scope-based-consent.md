@@ -1,7 +1,6 @@
-This document provides step by step instructions to invoke the Accounts Information Service API without use of pre consent initiation.
-<!--Following diagram illustrates the sample Open Banking flow which is going to try from this documentation section.
+This document provides step by step instructions to invoke the Accounts Information Service API without use of pre consent initiation. Following diagram illustrates the sample Open Banking flow which is going to try from this documentation section.
 
-![Open Banking Demo Flow](../../assets/img/get-started/quick-start-guide/ob_demo_flow.png)-->
+![Open Banking Demo Flow](../../assets/img/get-started/quick-start-guide/scope_based_consent_flow.png)
 
 <!--!!! note 
     You need to deploy the API before invoking it. For the testing purposes, you can use the sample AccountandTransaction 

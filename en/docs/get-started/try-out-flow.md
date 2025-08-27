@@ -4,91 +4,6 @@ Following diagram illustrates the sample Open Banking flow which is going to try
 ![Open Banking Demo Flow](../assets/img/get-started/quick-start-guide/ob_demo_flow.png)
 
 
-<!--!!! note 
-    You need to deploy the API before invoking it. For the testing purposes, you can use the sample AccountandTransaction 
-    API we have included in the pack.
-    
-    ??? tip "Click here to see how to deploy the sample API..."
-        1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
-        privileges. 
-
-        2. In the homepage, go to **REST API** and select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
-
-        3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
-
-        4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR
-        _HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.  
-
-        5. Click **Next**.
-
-        6. Leave the **Endpoint** field empty as it is and click **Create**. 
-
-       
-        7. Add a custom policy. Follow the instructions given below according to the API Manager version you are using:
-      
-        Before adding the policy replace the <AUTH_HEADER_VALUE> with the Basic auth header value. i.e Basic Base64(username:password)
-
-            ??? note "Click here to see how to add a custom policy if you are using API Manager 4.0.0..." 
-                1. Go to **Develop -> API Configurations -> Runtime** using in the left menu pane.<br><br>![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
-                                 
-                2. Click the edit icon under **Request** -> **Message Mediation**.<br><br>![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
-                
-                3. Select the **Custom Policy** option. 
-                
-                4. Upload the 
-                `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
-                file and click **SELECT**.
-
-                5. Scroll down and click **SAVE**.
-
-            ??? note "Click here to see how to add a custom policy if you are using API Manager 4.1.0 or 4.2.0..."
-                
-                1. Go to **Develop -> API Configurations -> Policies** in the left menu pane.<br><br>
-                <div style="width:40%">
-                ![select_policies](../assets/img/get-started/quick-start-guide/select-policies.png)
-                </div>
-
-                2. On the **Policy List** card, click on **Add New Policy**.
-
-                3. Fill in the **Create New Policy**.
-                ![create_new_policy](../assets/img/get-started/quick-start-guide/create-new-policy.png)
-
-                4. Upload the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` file.
-
-                5. Scroll down and click **Save**. Upon successful creation of the policy, you receive an alert as shown below: <br><br>
-                <div style="width:35%">
-                ![successful](../assets/img/get-started/quick-start-guide/successful.png)
-                </div>
-
-                6. Expand the API endpoint you want from the list of API endpoints. For example: ![expand_api_endpoint](../assets/img/get-started/quick-start-guide/expand-api-endpoint.png)
-
-                7. Expand the HTTP method from the API endpoint you selected and drag and drop the previously created policy to the **Request Flow** of the API endpoint. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method-drag-and-drop.png)
-
-                8. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
-
-                9. Scroll down and click **Save**.
-        
-         14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
-    
-         15. Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
-
-         16. Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
-    
-         17. Provide a description for the new revision.
-    
-         18. Select `localhost` from the dropdown list. 
-    
-         19. Click **Deploy**.
-    
-         20. Go to **Overview** using the left menu pane and click **Publish**. 
-    
-         21. Now that you have deployed the API, go to <https://localhost:9443/devportal>.
-    
-         22. Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
-         Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
-    
-         23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
--->
 !!! note
     In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
 
@@ -97,14 +12,14 @@ Following diagram illustrates the sample Open Banking flow which is going to try
 
 ### Step 1: Generate application access token
 1. Once you register the application, generate an application access token using the following command. For the 
-Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../../assets/attachments/transport-certs/obtransport.pem).
+Transport Layer Security purposes in this sample flow, you can use the attached [private key](../assets/attachments/transport-certs/obtransport.key) and
+[public certificate](../assets/attachments/transport-certs/obtransport.pem).
 
     ```
     curl -X POST \
     https://localhost:9446/oauth2/token \
     --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-    -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_id=<CLIENT_ID>&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=https://www.google.com/redirects/redirect1'
+    -d 'grant_type=client_credentials&scope=accounts openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_id=<CLIENT_ID>&client_assertion=<CLIENT_ASSERTION>&redirect_uri=https://www.google.com/redirects/redirect1'
     ```
    
     - The CLIENT_ID can be taken from the client_id of the DCR request's response, or "Client ID" of the OAuth2.0/OpenID Connect settings of the application in the Identity Server Console.
@@ -112,7 +27,7 @@ Transport Layer Security purposes in this sample flow, you can use the attached 
       - In the assertion JWT, make sure to change the values accordingly with respect to the sample provided.
     
     ``` jwt tab="Sample"
-    eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiYXVkIjoiaHR0cHM6Ly9vYi1pYW06OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiZXhwIjoxNzQ5MDQ0ODIzLCJpYXQiOjE3NDkwMTQ4MjMsImp0aSI6IjE3NDkwMTQ4MjM0MjEifQ.vzPOE0XMDi_x8OR6Z6Jd5gCLZCbdKyzGlC7yh1oANIVjjNRV4dYd8_uwyO6c7uzhidmblbXVAeX2xd0M1gdk4xUWdZcDOScPvcUM-ds_T5sWC6pXf2WDCFC_AH9B7U7NgqoVINyhg9ROAL32mWNHaFtsQ9F8khXUBvP87dFFrYERwj1kevst0puWxlu1Xcnxm0tKO40XTaYUdjKjud7ZXUe9v8qT91hLdjA2Uk2B-KI8wmiTimmr1rP9iODIfodceVZ8Tk4aXX-Egelqb2LKKu3CRriFHc_Rc4q0GPxStrPyWT4M4A67PV546xp76pArlVdr4v3jfzSZMYyyBBb1Ng
+    eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJ4TWRxVXIzWHoxNTBkVDJja0RWT2g3a2ZrNm9hIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJ4TWRxVXIzWHoxNTBkVDJja0RWT2g3a2ZrNm9hIiwiZXhwIjoxNzU0NTE5NjMwLCJpYXQiOjE3NTA5MTk2MzAsImp0aSI6IjE3NTA5MTk2MzAzMDAifQ.oAbk1tF8zOMcetxhCKYSZy0DEmMsnbXT7re0bBz54XbLASDox4KtkO_xEdbt7XLRP51ZG5n9wbt3cIIQWwx70_snVi-pw4W9Vghj9duHXZ9hScqZ0Zd-M3VLmfR5KcxcKuSsByF19skJGIiULsJOKg7CDaCJx2sYWBAEMZ4dza_Aun3HtDVKQayOiipjMepUjiPueeeV7TWFa1Q60HMKG85nOGxNTTeduPBJnymaoJYItgAFAfdz5OMQjYw5ln6l1L1u1tc0tFWQuIi1ff3IG5c4RbOq1QlBEkY8ojhSp3Bd6V8p9gt3gbNIHEszIvL3Qd26eSHzuLJMaokxA9wZ3w
     ```
    
     ``` json tab="Format"
@@ -153,30 +68,27 @@ information from the bank.
 A sample consent initiation request looks as follows. You can try out this sample flow with the transport certificates 
 available [here](../assets/attachments/transport-certs):
 
-!!!note
-      Replace the <AUTH_HEADER_VALUE> with Base64 encoded "admin_username:admin_password" value.
-               `Eg: Base64(admin_username:admin_password)`
-
 ```
-curl --location --request POST 'https://localhost:9446/api/fs/consent/manage/account-access-consents' \
---header 'Authorization: Basic <AUTH_HEADER_VALUE>' \
---header 'x-wso2-client-id: <CLIENT_ID>' \
+curl --location --request POST 'https://localhost:8243/open-banking/v3.1/aisp/account-access-consents' \
+--header 'Authorization: Bearer <AUTH_HEADER_VALUE>' \
+--header 'x-fapi-financial-id: open-bank' \
 --header 'Content-Type: application/json' \
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
 --data '{
-   "Data":{
-      "Permissions":[
-         "ReadAccountsBasic",
-         "ReadAccountsDetail",
-         "ReadBalances",
-         "ReadTransactionsDetail"
-      ],
-      "ExpirationDateTime": "2026-01-02T00:00:00+00:00",
-      "TransactionFromDateTime": "2025-06-03T00:00:00+00:00",
-      "TransactionToDateTime": "2025-12-01T00:00:00+00:00"
-   },
-   "Risk":{
-   }
+    "Data": {
+        "Permissions": [
+            "ReadAccountsBasic",
+            "ReadAccountsDetail",
+            "ReadBalances",
+            "ReadTransactionsDetail"
+        ],
+        "ExpirationDateTime": "2025-07-01T12:03:49.936563+05:30",
+        "TransactionFromDateTime": "2025-06-26T12:03:49.938178+05:30",
+        "TransactionToDateTime": "2025-06-29T12:03:49.938301+05:30"
+    },
+    "Risk": {
+        
+    }
 }'
 ```
 The response contains a Consent ID. A sample response looks as follows:
@@ -186,19 +98,19 @@ The response contains a Consent ID. A sample response looks as follows:
         
     },
     "Data": {
-        "ConsentId": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
-        "StatusUpdateDateTime": "2025-06-04T10:57:06+05:30",
+        "StatusUpdateDateTime": "2025-06-26T12:03:51+05:30",
         "Status": "AwaitingAuthorisation",
-        "CreationDateTime": "2025-06-04T10:57:06+05:30",
+        "CreationDateTime": "2025-06-26T12:03:51+05:30",
+        "TransactionToDateTime": "2025-06-29T12:03:49.938301+05:30",
+        "ExpirationDateTime": "2025-07-01T12:03:49.936563+05:30",
         "Permissions": [
             "ReadAccountsBasic",
             "ReadAccountsDetail",
             "ReadBalances",
             "ReadTransactionsDetail"
         ],
-        "ExpirationDateTime": "2026-01-02T00:00:00+00:00",
-        "TransactionToDateTime": "2025-12-01T00:00:00+00:00",
-        "TransactionFromDateTime": "2025-06-03T00:00:00+00:00"
+        "ConsentId": "a34c8608-dbd2-4997-aad7-398a5b31cbe6",
+        "TransactionFromDateTime": "2025-06-26T12:03:49.938178+05:30"
     }
 }
 ```
@@ -321,69 +233,66 @@ given below:
       }
       ```
 
-### Step 5: Validate Account Information Invocation
+### Step 5: Invoking Accounts and Transaction API
 
-The Consent Validate implements the validations that are required when the resource endpoints are invoked with a user access token.
+Once the user approves the account consent, the TPP is eligible to access the account details of the user.
 
-!!! note
-    In a real-life open banking environment, the API consumer applications can retrieve details of accounts for which 
-    the bank customer has granted them consent.
+The TPP can now invoke the GET/ accounts endpoint available in the Account and Transaction API. This retrieves a full list of accounts that the user has authorised the TPP to access. The Account Ids returned are used to retrieve other resources for a specific AccountId.
  
 - A sample request looks as follows:
    ```
-   curl -X POST \
-   https://localhost:9446/api/fs/consent/validate/validate \
+   curl -X GET \
+   https://localhost:8243/open-banking/v3.1/aisp/accounts \
    -H 'x-fapi-financial-id: open-bank' \
-   -H 'x-wso2-client-id: <CLIENT_ID>' \
-   -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+   -H 'Authorization: Bearer <AUTH_HEADER_VALUE>' \
    -H 'Accept: application/json' \
-   -H 'Content-Type: application/jwt \
+   -H 'Content-Type: application/json; charset=UTF-8' \
    --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH> \
-   --data 'eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.CgkJCXsKICAgICAgCQkJImhlYWRlcnMiOiB7CiAJCQkgIAkJIkF1dGhvcml6YXRpb24iOiAiQmFzaWMgYVhOZllXUnRhVzVBZDNOdk1pNWpiMjA2ZDNOdk1qRXlNdz09IiwKIAkJCSAJIAkiY29uc2VudC1pZCI6ICIxMmE0ZWJjOC1iOThjLTRmODAtOWEzNy00NDY3OTM2M2I5N2IiLAogCQkJICAJCSJhY3Rpdml0eWlkIjogIjg2NjZhYTg0LWZjNWEtNDI1ZS05MWM5LTM3ZmEzMGE5NTc4NCIsCiAJCQkgIAkJIkNhY2hlLUNvbnRyb2wiOiAibm8tY2FjaGUiLAogCQkJICAJCSJDb25uZWN0aW9uIjogImtlZXAtYWxpdmUiLAogCQkgICAgICAJCSJVc2VyLUFnZW50IjogIlBvc3RtYW5SdW50aW1lLzcuMjguNCIsCiAJCQkgIAkJIkhvc3QiOiAibG9jYWxob3N0OjgyNDMiLAogCQkJICAJCSJQb3N0bWFuLVRva2VuIjogIjI0NGQxNWI2LWViMTgtNDA0NS1iYTg3LThlZTZjODMwYjg0YyIsCiAJCQkgIAkJIkFjY2VwdC1FbmNvZGluZyI6ICJnemlwLCBkZWZsYXRlLCBiciIsCiAJCQkgIAkJImFjY2VwdCI6ICJhcHBsaWNhdGlvbi9qc29uOyBjaGFyc2V0PXV0Zi04IgogCQkJICAJfSwKICAgICAgICAJCSJjb25zZW50SWQiOiAiMTJhNGViYzgtYjk4Yy00ZjgwLTlhMzctNDQ2NzkzNjNiOTdiIiwKICAgICAgICAJCSJyZXNvdXJjZVBhcmFtcyI6IHsKCQkJCQkicmVzb3VyY2UiOiAiL2Fpc3AvYWNjb3VudHMiLAoJCQkJCSJjb250ZXh0IjogIi9vcGVuLWJhbmtpbmcvdjMuMS9haXNwIiwKCQkJCQkiaHR0cE1ldGhvZCI6ICJHRVQiCiAJCQkgCSB9LAogCQkJICAgICJ1c2VySWQiOiAicHN1QHdzbzIuY29tIiwKICAgICAJCSAJImVsZWN0ZWRSZXNvdXJjZSI6ICIvYWNjb3VudHMiLAoJCQkJImNsaWVudElkIjogImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiCiAJCQl9CiAgICAJCQk.mjbOnLQUvpCfIpy8WRaYxBmSMnENNIu7OG89Dc7kLJTk9NebnKsgFRo0PAyrkCN-h0g5PRfM0HPhSeBxbazgjekaLpA0iSXiuaXKZUmIUSBORNxORjvqD6flQRzUraaf2qG_OKSBMBpal-unqjcCAlNdgwclCnJMwDmQrJPMqs7jJoiJAudIHwppnJ1uK82Zz_J3bWkL4kEuT4Hz4P8ukdTzTALCPGqxt4VT4dh_ADzR-NTGmpAuSNo8dEWkW9a3QAxhS4WZXRTK192wAS16YqRPOk3UXasqF2qI1KVBb5txNFtjw5eZFW0Eg8cNSOQ0BSwp3B_6zd0jHf9EiwTbLA'
    ```
 
-???tip "Click here to see a sample data payload..."
-      - Given below is a sample payload in the JWT format:
-
-           ```
-           {
-               "kid": "<The KID value of the signing jwk set>",
-               "alg": "<SUPPORTED_ALGORITHM>",
-               "typ": "JWT"
-           }
-           {
-               "headers": {
-                  "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
-                  "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
-                  "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
-                  "Cache-Control": "no-cache",
-                  "Connection": "keep-alive",
-                  "User-Agent": "PostmanRuntime/7.28.4",
-                  "Host": "localhost:8243",
-                  "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
-                  "Accept-Encoding": "gzip, deflate, br",
-                  "accept": "application/json; charset=utf-8"
-               },
-               "consentId": "<CONSENT_ID>",
-               "resourceParams": {
-               "resource": "/aisp/accounts",
-               "context": "/open-banking/v3.1/aisp",
-               "httpMethod": "GET"
-           },
-           "userId": "psu@wso2.com",
-           "electedResource": "/accounts",
-           "clientId": "<CLIENT_ID>"
-           }
-           ```
-     
-- The request validates the Account Information access request. 
-
-    !!! note
-        The response contains the validity of the Account access request along with consent information or the reason for the validation failure.
+- The request retrieves the account information for all the accounts related to the user. Given below is a sample response:
 
 ```
 {
-    "isValid": true,
-    "consentInformation": "eyJhbGciOiJSUzI1NiJ9.eyJjbGllbnRJZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJjdXJyZW50U3RhdHVzIjoiQXV0aG9yaXNlZCIsImNyZWF0ZWRUaW1lc3RhbXAiOjE3NDkwMTQ4MjYsInJlY3VycmluZ0luZGljYXRvciI6ZmFsc2UsImF1dGhvcml6YXRpb25SZXNvdXJjZXMiOlt7InVwZGF0ZWRUaW1lIjoxNzQ5MDE0ODU4LCJjb25zZW50SWQiOiIxMmE0ZWJjOC1iOThjLTRmODAtOWEzNy00NDY3OTM2M2I5N2IiLCJhdXRob3JpemF0aW9uSWQiOiI0NzRlYzFhMS1kZDRkLTQ1YjQtYTk4Zi1kMWYwNGRlMjUxYWEiLCJhdXRob3JpemF0aW9uVHlwZSI6ImF1dGhvcmlzYXRpb24iLCJ1c2VySWQiOiJwc3VAd3NvMi5jb20iLCJhdXRob3JpemF0aW9uU3RhdHVzIjoiQXV0aG9yaXNlZCJ9XSwidXBkYXRlZFRpbWVzdGFtcCI6MTc0OTAxNDg1OCwiY29uc2VudF90eXBlIjoiYWNjb3VudHMiLCJ2YWxpZGl0eVBlcmlvZCI6MCwiY29uc2VudEF0dHJpYnV0ZXMiOnt9LCJjb25zZW50SWQiOiIxMmE0ZWJjOC1iOThjLTRmODAtOWEzNy00NDY3OTM2M2I5N2IiLCJjb25zZW50TWFwcGluZ1Jlc291cmNlcyI6W3sibWFwcGluZ0lkIjoiNjZhOTU4YWItMjNkNC00ODhhLTg3M2EtYzM3MzRjN2VlMzVkIiwibWFwcGluZ1N0YXR1cyI6ImFjdGl2ZSIsImFjY291bnRfaWQiOiIzMDA4MDAxMjM0MzQ1NiIsImF1dGhvcml6YXRpb25JZCI6IjQ3NGVjMWExLWRkNGQtNDViNC1hOThmLWQxZjA0ZGUyNTFhYSIsInBlcm1pc3Npb24iOiJwcmltYXJ5In1dLCJhZGRpdGlvbmFsQ29uc2VudEluZm8iOnt9LCJyZWNlaXB0Ijp7IlJpc2siOnt9LCJEYXRhIjp7IlRyYW5zYWN0aW9uVG9EYXRlVGltZSI6IjIwMjUtMDYtMDdUMTA6NTc6MDIuOTczNDIxKzA1OjMwIiwiRXhwaXJhdGlvbkRhdGVUaW1lIjoiMjAyNS0wNi0wOVQxMDo1NzowMi45NzIyNjErMDU6MzAiLCJQZXJtaXNzaW9ucyI6WyJSZWFkQWNjb3VudHNCYXNpYyIsIlJlYWRBY2NvdW50c0RldGFpbCIsIlJlYWRCYWxhbmNlcyIsIlJlYWRUcmFuc2FjdGlvbnNEZXRhaWwiXSwiVHJhbnNhY3Rpb25Gcm9tRGF0ZVRpbWUiOiIyMDI1LTA2LTA0VDEwOjU3OjAyLjk3MzMyNCswNTozMCJ9fSwiY29uc2VudEZyZXF1ZW5jeSI6MH0.dtk8sPwuLdgHENiu7soD-I7cinmVGKn2Dn23pfcrPzqoGC5HuSJ9pPvYnCOeEMvf0gtvSaLbtn02CIo3oNn9JQiyQeR6iaINMfnXxINybWZvIlYowXAePESt3mh9BKNJ8SUWBdQQ1rjq5Jv4WY2Y3rKSqVyxn1l-5bmS7hiE6eb-REE4zqQY4sD8cfQAtJPcn5QWBDjUTssiTHuHJlROdXZTs7NpexzueFWOnMEPw00u9agW-hVnq6i8bDT4AH-ZLNZVT8IozGZ0AFbf9qBbYr5t0wmmiRwXmMEeoXa4np_nFOxzlt4kFdqdM47QIwq71dAzhQW9psMoZd6p6yMPug"
+    "Data": {
+        "Account": [
+            {
+                "AccountId": "30080012343456",
+                "Status": "Enabled",
+                "StatusUpdateDateTime": "2020-04-16T06:06:06+00:00",
+                "Currency": "GBP",
+                "AccountType": "Personal",
+                "AccountSubType": "CurrentAccount",
+                "Nickname": "Bills",
+                "OpeningDate": "2020-01-16T06:06:06+00:00",
+                "MaturityDate": "2025-04-16T06:06:06+00:00",
+                "Account": [
+                    {
+                        "SchemeName": "SortCodeAccountNumber",
+                        "Identification": "30080012343456",
+                        "Name": "Mr Kevin",
+                        "SecondaryIdentification": "00021"
+                    }
+                ]
+            },
+            {
+                "AccountId": "30080098763459",
+                "Status": "Enabled",
+                "StatusUpdateDateTime": "2020-04-16T06:06:06+00:00",
+                "Currency": "GBP",
+                "AccountType": "Personal",
+                "AccountSubType": "CurrentAccount",
+                "Nickname": "Bills",
+                "OpeningDate": "2020-01-16T06:06:06+00:00",
+                "MaturityDate": "2025-04-16T06:06:06+00:00"
+            }
+        ]
+    },
+    "Links": {
+        "Self": "https://api.alphabank.com/open-banking/v4.0/accounts"
+    },
+    "Meta": {
+        "TotalPages": 1
+    }
 }
 ```

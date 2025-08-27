@@ -16,7 +16,7 @@ Find the following configuration in the deployment.toml file which resides in <I
 ``` toml
 [financial_services.extensions.endpoint]
 enabled = true
-base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
+base_url = "<BASE_URL_OF THE EXTENSION>"
 
 allowed_extensions = ["pre_process_client_creation", "pre_process_client_update", "pre_process_client_retrieval", "pre_process_consent_creation",
 "enrich_consent_creation_response", "pre_process_consent_retrieval", "pre_process_consent_bulk_retrieval",

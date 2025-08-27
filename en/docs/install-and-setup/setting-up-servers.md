@@ -10,12 +10,8 @@ products.
 
     | Base Product              | Combination 01                                                              | Combination 02                                                                                        |
     |---------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-and-access-management/previous-releases/) | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
-    | WSO2 API Manager          | [4.5.0](https://wso2.com/api-management/previous-releases/)                 | [4.4.0](https://wso2.com/api-manager/) or [4.3.0](https://wso2.com/api-management/previous-releases/) |
-   
-2. To configure the Identity Server with the API Manager, install the respective WSO2 IS Connector according to the API Manager version you have downloaded.
-
-    - [WSO2 IS Connector for API Manager 4.5.0](https://apim.docs.wso2.com/en/4.5.0/assets/attachments/administer/wso2is-extensions-1.2.10.zip)
+    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-server/) | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
+    | WSO2 API Manager          | [4.5.0](https://wso2.com/api-manager/) or [4.4.0](https://wso2.com/api-management/previous-releases/)              |  [4.3.0](https://wso2.com/api-management/previous-releases/) |
 
 ## Installing WSO2 Open Banking Accelerator 
 
@@ -23,31 +19,46 @@ products.
     See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is 
     compatible with your operating system.
     
+### Installing WSO2 Open Banking IAM Accelerator
 1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
-    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/tag/V4.0.0-RC3).
+    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/download/v4.0.0/wso2-fsiam-accelerator-4.0.0.zip).
+              
+2. WSO2 Open Banking Accelerator contains the following accelerators:
+   
+    - wso2-fsiam-accelerator-4.x.0
     
-2. WSO2 Open Banking Accelerator contains the following 
-accelerators.
+3. This document uses the following placeholders to refer to the following products:
+        
+    | Product                                       | Placeholder                |
+    |-----------------------------------------------|----------------------------|
+    | WSO2 Identity Server                          | `<IS_HOME>`                |
+    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
 
-    - wso2-obiam-accelerator-4.x.0
-    
+### Installing WSO2 Open Banking AM Artifacts
 
-3. Go to the root directy of WSO2 Identity Server and API Manager. These root directories are the product 
-homes.
- 
-    !!! tip
-        This documentation will refer to the product homes as `<IS_HOME>`, and `<APIM_HOME>` respectively.
+!!! note
+    If you are planning to use Manual Client Regitration through DevPortal follow the below steps. Else skip this section.
 
-4. Place the relevant accelerator zip files and extract them in their respective product homes:
+1. Download and extract the latest Open Banking Accelerator 4.1.x AM Artifacts. 
 
-    | File                             | Directory location to place the Accelerator|
-    |----------------------------------| -------------------------------------------|
-    | wso2-obiam-accelerator-4.x.0.zip | `<IS_HOME>`|
-    
-    !!! tip
-        This documentation will refer to the above-extracted directory of the accelerator as 
-        `<OB_IS_ACCELERATOR_HOME>`.
+    - Current latest version [4.1.1](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.1).
+              
+2. WSO2 Open Banking AM Accelerator contains the following artifacts: 
+   
+    - org.wso2.financial.services.accelerator.common-4.1.1.jar
+    - org.wso2.financial.services.accelerator.keymanager-4.1.1.jar
+
+3. Download the configuration files from the locations given below.
+
+    - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
+    - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
+
+4. This document uses the following placeholders to refer to the following products:
+        
+    | Product                                   | Placeholder                |
+    |-------------------------------------------|----------------------------|
+    | WSO2 API Manager                          | `<APIM_HOME>`              |
 
 ## Getting WSO2 Updates 
 
@@ -70,36 +81,25 @@ improvements that are released by WSO2. You need to update the base products and
         ./wso2update_windows.exe
         ```
 
-2. Go to `<ACCELERATOR_HOME>/bin` of the WSO2 Identity Server side accelerator and run the WSO2 Update tool:
+2. Go to `<OB_IS_ACCELERATOR_HOME>/bin` of the WSO2 Identity Server side accelerator and run the WSO2 Update tool:
 
-   
-        ```bash tab='On Linux'
-        ./wso2update_linux 
-        ```
-        
-        ```bash tab='On Mac'
-        ./wso2update_darwin
-        ```
-        
-        ```bash tab='On Windows'
-        ./wso2update_windows.exe
-        ```
+    ```bash tab='On Linux'
+    ./wso2update_linux 
+    ```
+    
+    ```bash tab='On Mac'
+    ./wso2update_darwin
+    ```
+    
+    ```bash tab='On Windows'
+    ./wso2update_windows.exe
+    ```
 
 For more information, see the [WSO2 Updates documentation](https://updates.docs.wso2.com/en/latest/updates/overview/).
 
 !!! tip
       When you obtain WSO2 Updates, always run the relevant `merge.sh` script in the Accelerators to reflect the 
-      latest changes. Follow steps 1 to 3 in the [Setting up Accelerator](#setting-up-accelerator) section for instructions.
-
-!!! note "Modifying jsonConverter.xml"
-    - If you are customizing the 
-    `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml` file, 
-    instead modify the file below.
-    ```
-    <OB_APIM_ACCELERATOR_HOME>/carbon-home/repository/deployment/server/synapse-configs/default/sequences/jsonConverter.xml`
-    ```
-    - If you have already customized `jsonConverter.xml` in the API Manager, duplicate the same changes to the 
-    file inside the Open Banking API Manager Accelerator.
+      latest changes. Follow steps in the [Setting up Accelerator](#setting-up-accelerator) section for instructions.
 
 ## Setting up Accelerator
 
@@ -118,29 +118,32 @@ and run the merge script as follows:
     ./merge.ps1
     ```
 
-??? warning "If you are using windows platform..."
-    If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
-    your powershell might prevent you from running this script normally. In that case you
-    may need to run it in a powershell instance where its execution policy is set to bypass mode.
-    
-    Use the following command to run it in execution policy bypassed powershell environment.
+    ??? warning "If you are using windows platform..."
+        If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
+        your powershell might prevent you from running this script normally. In that case you
+        may need to run it in a powershell instance where its execution policy is set to bypass mode.
+        
+        Use the following command to run it in execution policy bypassed powershell environment.
 
-    ```
-    powershell -executionpolicy bypass .\merge.ps1
-    ```
+        ```
+        powershell -executionpolicy bypass .\merge.ps1
+        ```
 
-    IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
+        IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
 
-4. Extract the `wso2is-extensions` zip file of the relevant API Manager version. 
+2. Copy the downloaded WSO2 Open Banking APIM artifacts to the respective directories of the API Manager base product. Use the table to locate the respective directories of the base products:
 
-5. Copy the following files to the Identity Server as follows:
+    !!! note
+        If you are planning to use Manual Client Regitration through DevPortal follow the below step. Else skip this section.
 
-     1. Open the `<IS_EXTENSION>/dropins` folder.
-     2. Copy the following JAR files to the `<IS_HOME>/repository/components/dropins` folder.
-         - `wso2is.key.manager.core`
-         - `wso2is.notification.event.handlers`
-     3. Open the `<IS_EXTENSION>/webapps` folder.
-     4. Copy the `keymanager-operations.war` file to the `<IS_HOME>/repository/deployment/server/webapps` folder.
+    | File                                                           | Directory location to place the artifact                          |
+    |----------------------------------------------------------------|-----------------------------------------------------------------  |
+    | `org.wso2.financial.services.accelerator.common-4.1.x.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
+    | `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar` | `<APIM_HOME>/repository/components/dropins`                       |
+    | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
+    | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
+
+3. Download the sample [Banking backend](../assets/attachments/backend.zip), extract the zip file and place the `api#fs#backend.war` inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
 
 ## Setting up JAVA_HOME
 
@@ -179,21 +182,43 @@ allow a successful data flow. The instances mentioned below specify the ports th
 ## Exchanging the certificates
 
 ??? warning "If you are using the default keystores available in the products, click here to see how to update keystores..."
-    If you are using the default keystores available in the products, update them by removing any unnecessary or expired 
-    Root CA Certificates.
+    If you are using the default keystores available in the products, update them by removing any unnecessary or expired Root CA Certificates.
     
-    1. The keystores are available in the `<IS_HOME>/repository/resources/security/wso2carbon.jks` and 
-    `<APIM_HOME>/repository/resources/security/wso2carbon.jks` files.
-    
-    2. Use the following command to list and identify problematic certificates:
-    ``` bash 
-    keytool -list -v -keystore wso2carbon.jks
-    ```
-    
-    3. Remove the certificates using the alias as follows: 
-    ``` bash
-    keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.jks
-    ```
+    ```server tab='wso2is-7.1.0'
+          1. The keystore is available in the `<IS_HOME>/repository/resources/security/wso2carbon.p12` files.
+          
+          2. Use the following command to list and identify problematic certificates:
+            
+                keytool -list -v -keystore wso2carbon.p12
+          
+          3. Remove the certificates using the alias as follows: 
+            
+                keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.p12
+      ```
+
+      ```server tab='wso2is-7.0.0'
+          1. The keystore is available in the `<IS_HOME>/repository/resources/security/wso2carbon.jks` files.
+          
+          2. Use the following command to list and identify problematic certificates:
+            
+                keytool -list -v -keystore wso2carbon.jks
+          
+          3. Remove the certificates using the alias as follows: 
+                
+                keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.jks
+      ```
+
+      ```server tab='wso2am-4.x.0'
+          1. The keystore is available in the `<APIM_HOME>/repository/resources/security/wso2carbon.jks` files.
+          
+          2. Use the following command to list and identify problematic certificates:
+            
+                keytool -list -v -keystore wso2carbon.jks
+          
+          3. Remove the certificates using the alias as follows: 
+                
+                keytool -delete -alias <ALIAS_TO_REMOVE> -keystore wso2carbon.jks
+      ```
 
 In order to enable secure communication, we need to install the certificates of each component in others. This will 
 facilitate a Secure Socket Layer (SSL). Follow the steps below to implement this:
@@ -234,6 +259,16 @@ is equal to the hostname.
 5. If there is an Active Directory/LDAP configured in your deployment, add the Active Directory certificate to the 
 client-truststore of all the servers.
 
+6. Upload Root and Issuer certificates.
+
+   - Upload the root and issuer certificates([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)|[Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) of OBIE to the client-truststore in <IS_HOME>/repository/resources/security/ 
+   using the following command:
+
+    ``` bash
+    keytool -import -alias <alias> -file <certificate_location> -keystore <truststore_location> -storepass wso2carbon
+    ```
+
+
 ## Copying the deployment.toml
 
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the instance 
@@ -243,12 +278,13 @@ can be applied using a single configuration file, which is the `deployment.toml`
 
     - Go to the `<IS_HOME>/<OB_IS_ACCELERATOR_HOME>/repository/resources` directory.
     
-    - Rename `wso2is-5.11.0-deployment.toml` to `deployment.toml`.
+    - Rename `wso2is-7.1.0-deployment.toml` to `deployment.toml`.
     
     - Copy the `deployment.toml` file to the `<IS_HOME>/repository/conf` directory to replace the existing file.
       
 2. For instructions on how to configure the deployment.toml file, see the following topics:
 
     - [Configuring Identity Server for open banking](configuring-identity-server-for-ob.md)
+    - [Configuring API Manager for open banking](configuring-api-manager-for-ob.md)
 
 

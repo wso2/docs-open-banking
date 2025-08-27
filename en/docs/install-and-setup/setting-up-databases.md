@@ -12,20 +12,27 @@ Once you have successfully prepared the environment for the deployment, you can 
 
 1. Create the following databases:
 
-    - `fs_identitydb`  
-    - `fs_userdb` 
-    - `fs_iskm_configdb`  
-    - `fs_consentdb`
-    
-<!-- 2. If you are using the [Data Publishing](../learn/data-publishing.md) feature, create the following 
-    database as well:
-    
-    - `openbank_ob_reporting_statsdb`
--->
+    - For Identity Server create following databases.
+        - `fs_identitydb`  
+        - `fs_userdb` 
+        - `fs_iskm_configdb`  
+        - `fs_consentdb`
+
+    - If you are setting up with WSO2 API Manager create following databases.
+        - `apimgtdb`
+        - `am_configdb`
+        - `userdb` 
+
+    Commands to create the Databases in MySQL
+    ``` 
+    DROP DATABASE IF EXISTS fs_identitydb; 
+    CREATE DATABASE fs_identitydb;
+    ALTER DATABASE fs_identitydb CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+    ```
 
 2. According to your DBMS, place the compatible JDBC drivers in the following directories:
  
-    <!-- `<APIM_HOME>/repository/components/lib`-->
+    - `<APIM_HOME>/repository/components/lib`
     - `<IS_HOME>/repository/components/lib` 
 
     !!! tip 
@@ -40,89 +47,6 @@ Once you have successfully prepared the environment for the deployment, you can 
          
 
 ## Configuring datasources
-
-<!-- 1. The databases above have a respective datasource. Add or update the default datasource 
-configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. 
-
-    - Given below is the relevant datasource configuration for each database:
-   
-        |Database|TOML configuration|
-        |--------|----------|
-        |openbank_apimgtdb|`[database.apim_db]`|
-        |openbank_am_configdb|`[database.config]`|
-        |openbank_govdb|`[database.shared_db]`|
-        |openbank_userdb|`[[datasource]]` <br/> `id="WSO2UM_DB"`|
-
-   - Configure the datasources by following the sample below: 
-    
-    ``` toml tab="MySQL"
-    [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false"
-    username = "root"
-    password = "root"
-    driver = "com.mysql.jdbc.Driver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "150"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
-   
-    ``` toml tab="Oracle"
-    [database.apim_db]
-    url = "jdbc:oracle:thin:openbank_apimgtdb/password@localhost:1521:root"
-    username = "openbank_apimgtdb"
-    password = "password"
-    driver = "oracle.jdbc.driver.OracleDriver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "150"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1 FROM DUAL"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
-   
-    ``` toml tab="MS SQL"
-    [database.apim_db]
-    url = "jdbc:sqlserver://localhost:1433;databaseName=openbank_apimgtdb"
-    username = "root"
-    password = "root"
-    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "300"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
-    
-    ``` toml tab="PostgreSQL"
-    [database.apim_db]
-    url = "jdbc:postgresql://localhost:5432/openbank_apimgtdb"
-    username = "postgres"
-    password = "root"
-    driver = "org.postgresql.Driver"
-    
-    [database.apim_db.pool_options]
-    maxActive = "150"
-    maxWait = "60000"
-    minIdle ="5"
-    testOnBorrow = true
-    validationQuery="SELECT 1"
-    validationInterval="30000"
-    defaultAutoCommit=false
-    ```
--->
       
 1. Add or update the default datasource configurations in `<IS_HOME>/repository/conf/deployment.toml` with your 
 database configurations.  
@@ -210,6 +134,165 @@ database configurations.
     defaultAutoCommit=false
     commitOnReturn=true
     ```
+
+    - Configure the datasource for `consentdb` by following the sample below: 
+    
+    ``` toml tab="MySQL"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:mysql://localhost:3306/fs_consentdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="Oracle"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:oracle:thin:fs_consentdb/password@localhost:1521:root"
+    username = "apimgtdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="MS SQL"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:sqlserver://localhost:1433;databaseName=fs_consentdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+    
+    ``` toml tab="PostgreSQL"
+    [[datasource]]
+    id="WSO2FS_DB"
+    url = "jdbc:postgresql://localhost:5432/fs_consentdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    jmx_enable=false
+    pool_options.maxActive = "150"
+    pool_options.maxWait = "60000"
+    pool_options.minIdle = "5"
+    pool_options.testOnBorrow = true
+    pool_options.validationQuery="SELECT 1"
+    #Use below for oracle
+    #validationQuery="SELECT 1 FROM DUAL"
+    pool_options.validationInterval="30000"
+    pool_options.defaultAutoCommit=true
+    ```
+
+2. Add or update the default datasource configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. This step is required of youar setting up with WSO2 API Manager.
+
+    - Given below is the relevant datasource configuration for each database:
+   
+        |Database|TOML configuration|
+        |--------|----------|
+        | apimgtdb|`[database.apim_db]`|
+        | am_configdb|`[database.config]`|
+        | am_configdb|`[database.shared_db]`|
+        | userdb|`[database.user]`|
+
+   - Configure the datasources by following the sample below: 
+    
+    ``` toml tab="MySQL"
+    [database.apim_db]
+    url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
+    username = "root"
+    password = "root"
+    driver = "com.mysql.jdbc.Driver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="Oracle"
+    [database.apim_db]
+    url = "jdbc:oracle:thin:apimgtdb/password@localhost:1521:root"
+    username = "apimgtdb"
+    password = "password"
+    driver = "oracle.jdbc.driver.OracleDriver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1 FROM DUAL"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
+   
+    ``` toml tab="MS SQL"
+    [database.apim_db]
+    url = "jdbc:sqlserver://localhost:1433;databaseName=apimgtdb"
+    username = "root"
+    password = "root"
+    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "300"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
+    
+    ``` toml tab="PostgreSQL"
+    [database.apim_db]
+    url = "jdbc:postgresql://localhost:5432/apimgtdb"
+    username = "postgres"
+    password = "root"
+    driver = "org.postgresql.Driver"
+    
+    [database.apim_db.pool_options]
+    maxActive = "150"
+    maxWait = "60000"
+    minIdle ="5"
+    testOnBorrow = true
+    validationQuery="SELECT 1"
+    validationInterval="30000"
+    defaultAutoCommit=true
+    ```
    
 ## Creating database tables
 
@@ -225,12 +308,13 @@ according to your DBMS.
 | fs_userdb            | `<IS_HOME>/dbscripts`                                                                                             |
 | fs_iskm_configdb     | `<IS_HOME>/dbscripts `                                                                                            |
 | fs_consentdb         | `<IS_HOME>/dbscripts/financial-services/consent` and `<IS_HOME>/dbscripts/financial-services/event-notifications` |
+| apimgtdb          | `<APIM_HOME>/dbscripts/apimgt ` |
+| am_configdb       | `<APIM_HOME>/dbscripts` |
+| userdb       | `<APIM_HOME>/dbscripts` |
 
 !!! note "Increase the column size of the following table columns:"
 
-     Execute the relevant SQL command against the `fs_identitydb` database.
-     
-     1. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
+    1. Execute the relevant SQL command against the `fs_identitydb` and `apimgtdb` database. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
      
          ```sql tab='MySQL'
@@ -242,12 +326,30 @@ according to your DBMS.
          ```
          
          ```sql tab='Oracle'
-         ALTER TABLE fs_identitydb.sp_metadata MODIFY VALUE VARCHAR(4000);
+         ALTER TABLE fs_identitydb.SP_METADATA MODIFY VALUE VARCHAR(4000);
          ```
          
          ```sql tab='PostgreSQL'
          ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
          ```
+
+    2. Execute the relevant SQL command against the `apimgtdb` database. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
+     
+     
+         ```sql tab='MySQL'
+         ALTER TABLE AM_APPLICATION_REGISTRATION MODIFY VALUE VARCHAR(7500);
+         ```
+         
+         ```sql tab='MSSQL'
+          ALTER TABLE AM_APPLICATION_REGISTRATION ALTER COLUMN VALUE VARCHAR(7500);
+         ```
+         
+         ```sql tab='Oracle'
+         ALTER TABLE apimgtdb.AM_APPLICATION_REGISTRATION MODIFY VALUE VARCHAR2(4000);
+         ```
+         
+         ```sql tab='PostgreSQL'
+         ALTER TABLE AM_APPLICATION_REGISTRATION ALTER column VALUE type VARCHAR(7500);
 
 
 !!! note 
@@ -256,8 +358,34 @@ according to your DBMS.
     If you are using PostgreSQL, you might encounter an error when deleting applications. To overcome this, execute the 
     following SQL command against the `fs_identitydb` database:
         
-    ```sql
-    ALTER TABLE SP_APPLICATION DROP CONSTRAINT IF EXISTS sp_application_name_key;
+    1. Find the constraint name using the following command
+
+    ``` sql
+    SELECT conname
+    FROM pg_constraint
+    WHERE conrelid = 'AUTHORIZED_SCOPE'::regclass
+    AND contype = 'f'
+    AND conkey = (
+        SELECT ARRAY[attnum]
+        FROM pg_attribute
+        WHERE attrelid = 'AUTHORIZED_SCOPE'::regclass
+        AND attname = 'APP_ID'
+    );
+    ```
+
+    2. Then delete the constraint
+
+    ``` sql
+    ALTER TABLE AUTHORIZED_SCOPE
+    DROP CONSTRAINT <constraint_name>;
+    ```
+
+    3. Add the updated constraint
+
+    ``` sql
+    ALTER TABLE AUTHORIZED_SCOPE
+    ADD CONSTRAINT fk_app_id
+    FOREIGN KEY (APP_ID) REFERENCES SP_APP(UUID) ON DELETE CASCADE;
     ```
 
 !!! tip "For MySQL databases:"

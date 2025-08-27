@@ -6,7 +6,7 @@ WSO2 Open Banking Accelerator on top of the following WSO2 products.
 You can use any of the following base products:
 
 - WSO2 Identity Server -7.1.0,7.0.0
-<!-- WSO2 API Manager -4.5.0 -->
+- WSO2 API Manager - 4.5.0, 4.4.0
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -23,8 +23,8 @@ Given below is a product matrix for different versions of WSO2 Open Banking:
 
 | Version | Mandatory Components                                                                          | Additional Components |
 |---------|-----------------------------------------------------------------------------------------------| ----------------------|
-| 4.0.0   | wso2ob-is-accelerator-4.0.0                                                                   | |
-| 3.0.0   | wso2ob-apim-accelerator-3.0.0 <br/> wso2ob-is-accelerator-3.0.0 <br/>wso2is-extensions-1.2.10 | wso2ob-bi-accelerator-3.0.0 |
+| 4.0.0   | wso2-fsiam-accelerator-4.0.0                                                                   | |
+| 3.0.0   | wso2-obam-accelerator-3.0.0 <br/> wso2-obiam-accelerator-3.0.0 <br/>wso2is-extensions-1.2.10 | wso2-obbi-accelerator-3.0.0 |
 | 2.0.0   | wso2-obam-2.0.0 <br/> wso2-obiam-2.0.0                                                        | wso2am-analytics-3.1.0 <br/> wso2-obbi-2.0.0 <br/> wso2ei-6.6.0 |
 | 1.5.0   | wso2-obam-1.5.0 <br/> wso2-obkm-1.5.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.5.0 <br/> wso2ei-6.4.0 |
 | 1.4.0   | wso2-obam-1.4.0 <br/> wso2-obkm-1.4.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.4.0 <br/> wso2ei-6.4.0 |
@@ -35,31 +35,48 @@ Given below is a product matrix for different versions of WSO2 Open Banking:
 
 Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
 
-<table>
-<thead>
-  <tr>
-    <th rowspan="2" style="text-align: center">Base Product</th>
-    <th colspan="2" style="text-align: center">Compatible Versions</th>
-  </tr>
-  <!--<tr>
-    <th>Combination 01</th>
-    <th>Combination 02</th>
-  </tr>-->
-</thead>
-<tbody>
-  <tr>
-    <td>WSO2 Identity Server</td>
-    <td>7.0.0</td>
-    <td>7.1.0</td>
-  </tr>
-  <!--<tr>
-    <td>WSO2 API Manager<br></td>
-     <td>4.5.0</td>
-    <td>4.4.0<br>4.3.0</td>
-   
-  </tr>-->
-  
-</tbody>
+- If you are using Identity Server only:
+   <table>
+      <thead>
+      <tr>
+         <th rowspan="2" style="text-align: center">Base Product</th>
+         <th colspan="2" style="text-align: center">Compatible Versions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+         <td>WSO2 Identity Server</td>
+         <td>7.0.0</td>
+         <td>7.1.0</td>
+      </tr>
+      </tbody>
+   </table>
+
+If you are using WSO2 API Manager and WSO2 Identity Server:
+
+   <table>
+      <tr>
+         <th></th>
+         <th>WSO2 Identity Server</th>
+         <th>WSO2 API Manager</th>
+      </tr>
+      <tbody>
+      <tr>
+         <th>Combination 01</th>
+         <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.0.0</a></td>
+         <td><a href="https://wso2.com/api-management/previous-releases/">4.3.0</a></td>
+      </tr>
+      <tr>
+         <th>Combination 02<br></th>
+         <td><a href="https://wso2.com/identity-and-access-management/">7.1.0</a> or <a href="https://wso2.com/identity-and-access-management/previous-releases/">7.0.0</a></td>
+         <td><a href="https://wso2.com/api-manager/">4.4.0</a></td></td>
+      </tr>
+      <tr>
+         <th>Combination 02<br></th>
+         <td><a href="https://wso2.com/identity-and-access-management/">7.1.0</a></td>
+         <td><a href="https://wso2.com/api-manager/">4.5.0</a></td></td>
+      </tr>
+      </tbody>
 </table>
 
 ## Prerequisites for a Deployment

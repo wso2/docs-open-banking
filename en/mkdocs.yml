@@ -53,35 +53,59 @@ nav:
     - 'WSO2 Open Banking Accelerator': get-started/wso2-open-banking-accelerator.md
     - 'About this Release': get-started/about-this-release.md
     - 'Quick Start Guide':
-      - 'Get Started': get-started/quick-start-guide.md
-      - 'Set Up Accelerators':
-        - 'Accelerator with WSO2 Identity Server': get-started/set-up-accelerators-with-is.md
-        #- 'With both WSO2 Identity Server & WSO2 API Manager': get-started/set-up-accelerators.md
-      - 'Configure API Resources, Users and Roles': get-started/configure-resources-users-and-roles.md
-      - 'Dynamic Client Registration':
-          - 'Accelerator with WSO2 Identity Server': get-started/dynamic-client-registration.md
-          #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
-      - 'Tryout Flow':
-         - 'Accelerator with WSO2 Identity Server': get-started/try-out-flow.md
-        #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/try-out-flow.md
+      - 'Accelerator with WSO2 Identity server':
+        - 'Get Started': get-started/quick-start-guide-with-is.md
+        - 'Set Up Accelerators': get-started/set-up-accelerators-with-is.md
+        - 'Configure API Resources, Users and Roles': get-started/configure-resources-users-and-roles-for-is.md
+        - 'Dynamic Client Registration': get-started/dynamic-client-registration-with-is.md
+        - 'Tryout Flow': get-started/try-out-flow-with-is.md
+      - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
+        - 'Get Started': get-started/quick-start-guide.md
+        - 'Set Up Accelerators': get-started/set-up-accelerators.md
+        - 'Configure IS 7.x as Key Manager': get-started/configure-km.md
+        - 'Deploy Open Banking APIs': get-started/deploy-apis.md
+        - 'Configure API Resources, Users and Roles': get-started/configure-users-and-roles.md
+        - 'Dynamic Client Registration': get-started/dynamic-client-registration.md
+        - 'Tryout Flow': get-started/try-out-flow.md
   - 'Install and Setup':
     - 'Prerequisites': install-and-setup/prerequisites.md
     - 'Setting up servers':
        - 'Accelerator with WSO2 Identity Server': install-and-setup/setting-up-servers-with-is.md
-      #- 'With both WSO2 Identity Server & WSO2 API Mansger': get-started/set-up-accelerators.md
+       - 'Accelerator with WSO2 Identity Server and WSO2 API Manager': install-and-setup/setting-up-servers.md
     - 'Setting up databases': install-and-setup/setting-up-databases.md
     - 'Configuring Identity Server': install-and-setup/configuring-identity-server-for-ob.md
-    # - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
-    # - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
+    - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
     - 'Configuring API Resources, Users and Roles': install-and-setup/configure-resources-users-and-roles.md
+    # - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
     - 'Advanced':
         - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
+        - 'Configuring an Accelerator Deployment with Distributed Gateway and Control Plane': install-and-setup/distributed-gateway-control-plane.md
+        - 'Configuring an Accelerator Deployment with Distributed Gateway, Control Plane and Traffic Manager': install-and-setup/distributed-gateway-control-plane-traffic-manager.md
         - 'Troubleshooting': install-and-setup/troubleshooting.md
   - 'Tryout Flows':
+    - 'Tryout WSO2 Open Banking Accelerator': tryout-flows/introduction.md
     - 'Accelerator with WSO2 Identity Server':
         - 'Pre-Initiated Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-pre_initiated_consent.md
         - 'Scope Based Consent Flow': tryout-flows/accelerator-with-is/try-out-flow-scope-based-consent.md
+    - 'Accelerator with WSO2 Identity server and WSO2 API Manager':
+        - 'Tryout Flow with Dynamic Client Registration':
+            - 'Introduction': tryout-flows/accelerator-with-is-and-apim/tryout-flow-with-dcr.md
+            - 'Configure WSO2 Identity Server 7.x as Key Manager': tryout-flows/accelerator-with-is-and-apim/configure-iskm.md
+            - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis-dcr.md
+            - 'Dynamic Client Registration': tryout-flows/accelerator-with-is-and-apim/dynamic-client-registration.md
+            - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow-dcr.md
+            - 'Tryout Payments Flow': tryout-flows/accelerator-with-is-and-apim/try-out-payments-flow-dcr.md
+            - 'Tryout Confirmation Of Funds Flow': tryout-flows/accelerator-with-is-and-apim/try-out-cof-flow-dcr.md  
+        - 'Tryout Flow with Manual Client Registration':
+            - 'Introduction': tryout-flows/accelerator-with-is-and-apim/tryout-flow-with-mcr.md
+            - 'Set up WSO2 Open Banking APIM Artifacts': tryout-flows/accelerator-with-is-and-apim/setup-fskm-artifacts.md
+            - 'Configure WSO2 Financial Service Key Manager': tryout-flows/accelerator-with-is-and-apim/configure-fskm.md
+            - 'Deploy Open Banking APIs': tryout-flows/accelerator-with-is-and-apim/deploy-apis.md
+            - 'Manual Client Registration': tryout-flows/accelerator-with-is-and-apim/manual-client-registration.md
+            - 'Tryout Accounts Flow': tryout-flows/accelerator-with-is-and-apim/try-out-accounts-flow.md  
+            - 'Tryout Payments Flow': tryout-flows/accelerator-with-is-and-apim/try-out-payments-flow.md
+            - 'Tryout Confirmation Of Funds Flow': tryout-flows/accelerator-with-is-and-apim/try-out-cof-flow.md  
   - 'Learn':
     - 'Client Registration': learn/client-registration.md
     - 'Dynamic Client Registration':
@@ -117,78 +141,117 @@ nav:
       - 'Event Polling': learn/event-notification-polling.md
       - 'Real Time Event Notification': learn/event-notification-realtime.md
       - 'Configuration': learn/event-notification-configuration.md
+    - 'Gateway Enforcements':
+      - 'Introduction': learn/policies.md
+      - 'Create Policies': learn/create-policies.md
+      - 'Engage Policies to APIs': learn/engage-policies.md
+      - 'Inbuilt Enforcements':
+          - 'Introduction': learn/inbuilt-policies.md
+          - 'Dynamic Client Registration Request Policy': learn/dcr-request-policy.md
+          - 'Dynamic Client Registration Response Policy': learn/dcr-response-policy.md
+          - 'Consent Enforcement Policy': learn/consent-enforcement-policy.md
+          - 'Dynamic Endpoint Policy': learn/dynamic-endpoint-policy.md
+          - 'MTLS Enforcement Policy': learn/mtls-enforcement-policy.md
+          - 'UK JWS Header Processing Policy': learn/uk-jws-header-processing-policy.md
+      - 'Custom Error Formatting': learn/custom-error-formatting.md
   - 'Develop':
-      - 'Toolkit Introduction': develop/develop-toolkit.md
-      - 'OpenAPI based extensions':
-          - 'Developer Guide': develop/openapi-extensions-developer-guide.md
-          - 'Dynamic Client Registration': develop/openapi-extensions-dcr.md
-          - 'Consent Management':
-              - 'Consent Manage': develop/openapi-consent-management-manage.md
-              - 'Consent Validate': develop/openapi-consent-management-validate.md
-              - 'Consent Authorize': develop/openapi-consent-management-authorize.md
-              - 'Consent Amendment History': develop/openapi-consent-amendment-history.md
-              - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
-          - 'Token Flow': develop/openapi-token-flow.md
-          - 'Authorization Flow': develop/openapi-authorization-flow.md
-          #- 'Event Notification':
-          #          - 'Event Polling': develop/openapi-event-polling.md
-          #          - 'Event Creation': develop/openapi-event-creation.md
-          #          - 'Event Subscription': develop/openapi-event-subscription.md
-      - 'Java based extensions':
-          - 'Developer Guide': develop/developer-guide.md
-          - 'Client Registration':
-              - 'Additional Application Property Validation': develop/application-property-validation.md
-              - 'Dynamic Client Registration':
-                  - 'Application Management Listener': develop/application-management-listener.md
-                  - 'Custom DCR Validator': develop/custom-dcr-validator.md
-          - 'Consent Management':
-              - 'Consent Manage': develop/consent-management-manage.md
-              - 'Consent Validate': develop/consent-management-validate.md
-              - 'Consent Authorize': develop/consent-management-authorize.md
-              - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
-              - 'Consent Core Service': develop/consent-core-service.md
-              - 'Customize the Consent Page': develop/customize-consent-page.md
-              - 'Consent Amendment History': develop/consent-amendment-history.md
-              - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
-          - 'Token Flow Customization':
-              - 'JWT Access Tokens': develop/jwt-access-tokens.md
-              - 'Token Filters': develop/token-filters.md
-              - 'Grant Handlers': develop/grant-handlers.md
-              - 'Introspection Data Provider': develop/introspection-data-provider.md
-              - 'Custom Claim Provider': develop/custom-claim-provider.md
-              - 'ID Token Builder': develop/id-token-builder-token-flow.md
-          - 'Authentication Flow':
-              - 'Customize Authentication Steps': develop/customize-authentication-steps.md
-              - 'CIBA Push Authenticator': develop/ciba-push-authenticator.md
-              - 'CIBA Consent Updater': develop/ciba-consent-updater.md
-          - 'Authorization Flow':
-              - 'KeyID Provider': develop/keyid-provider.md
-              - 'ID Token Builder': develop/id-token-builder-auth-flow.md
-              - 'Response Type Handler': develop/response-type-handler.md
-              - 'Custom Request Object Validator': develop/custom-request-object-validator.md
-              - 'Custom Pushed Auth Request Validator': develop/custom-pushed-auth-request-validator.md
-              - 'Mobile Application for CIBA': develop/mobile-application-for-ciba.md
-          - 'Event Notification': develop/custom-event-notification.md
-          - 'API Security':
-              - 'JWS Signature Validation': develop/jws-signature-validation.md
-              - 'JWS Response Signing': develop/jws-response-signing.md
-          - 'Using Hibernate Validator': develop/validation-layer.md
-          - 'Open Banking Gateway':
-              - 'Introduction': develop/open-banking-gateway.md
-              - 'Custom Request Router': develop/custom-request-router.md
-              - 'Custom Gateway Executor': develop/custom-gateway-executor.md
-              - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
-              - 'Error handling in API Gateway': develop/gateway-error-handling.md
-              - 'Custom Throttling Keys': develop/custom-throttling-keys.md
-          - 'Data Publishing':
-              - 'Custom Data Publishing': develop/custom-data-publishing.md
-              - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
-              - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
-              - 'Token Data Publishing': develop/token-data-publishing.md
-          - 'Additional':
-              - 'Open Banking Service Activator': develop/service-activator.md
-              - 'Open Banking Authentication Worker': develop/authentication-worker.md
-              - 'Open Banking Idempotency Handling Validator': develop/idempotency-handling-validator.md
+      - 'Toolkit': 
+          - 'Introduction': develop/develop-toolkit.md
+          - 'Extending Identity Server Accelerator Extensions': 
+              - 'Introduction': develop/develop-is-toolkit.md
+              - 'OpenAPI based extensions':
+                  - 'Developer Guide': develop/openapi-extensions-developer-guide.md
+                  - 'Dynamic Client Registration': develop/openapi-extensions-dcr.md
+                  - 'Consent Management':
+                      - 'Consent Manage': develop/openapi-consent-management-manage.md
+                      - 'Consent Validate': develop/openapi-consent-management-validate.md
+                      - 'Consent Authorize': develop/openapi-consent-management-authorize.md
+#                      - 'Consent Amendment History': develop/openapi-consent-amendment-history.md
+                      - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
+                  - 'Token Flow': develop/openapi-token-flow.md
+                  - 'Authorization Flow': develop/openapi-authorization-flow.md
+                  - 'Event Notification':
+                      - 'Event Subscription': develop/openapi-event-subscription.md
+                      - 'Event Polling': develop/openapi-event-polling.md
+                      - 'Event Creation': develop/openapi-event-creation.md
+              - 'Java based extensions':
+                  - 'Developer Guide': develop/developer-guide.md
+                  - 'Client Registration':
+                      - 'Additional Application Property Validation': develop/application-property-validation.md
+                      - 'Dynamic Client Registration':
+                          - 'Application Management Listener': develop/application-management-listener.md
+                          - 'Custom DCR Validator': develop/custom-dcr-validator.md
+                  - 'Consent Management':
+                      - 'Consent Manage': develop/consent-management-manage.md
+                      - 'Consent Validate': develop/consent-management-validate.md
+                      - 'Consent Authorize': develop/consent-management-authorize.md
+                      - 'Consent Enforcement Executor': develop/consent-enforcement-executor.md
+                      - 'Consent Core Service': develop/consent-core-service.md
+                      - 'Customize the Consent Page': develop/customize-consent-page.md
+                      - 'Consent Amendment History': develop/consent-amendment-history.md
+                      - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
+                  - 'Token Flow Customization':
+                      - 'JWT Access Tokens': develop/jwt-access-tokens.md
+                      - 'Token Filters': develop/token-filters.md
+                      - 'Grant Handlers': develop/grant-handlers.md
+                      - 'Introspection Data Provider': develop/introspection-data-provider.md
+                      - 'Custom Claim Provider': develop/custom-claim-provider.md
+                      - 'ID Token Builder': develop/id-token-builder-token-flow.md
+                  - 'Authentication Flow':
+                      - 'Customize Authentication Steps': develop/customize-authentication-steps.md
+                      - 'CIBA Push Authenticator': develop/ciba-push-authenticator.md
+                      - 'CIBA Consent Updater': develop/ciba-consent-updater.md
+                  - 'Authorization Flow':
+                      - 'KeyID Provider': develop/keyid-provider.md
+                      - 'ID Token Builder': develop/id-token-builder-auth-flow.md
+                      - 'Response Type Handler': develop/response-type-handler.md
+                      - 'Custom Request Object Validator': develop/custom-request-object-validator.md
+                      - 'Custom Pushed Auth Request Validator': develop/custom-pushed-auth-request-validator.md
+                      - 'Mobile Application for CIBA': develop/mobile-application-for-ciba.md
+                  - 'Event Notification': develop/custom-event-notification.md
+                  - 'API Security':
+                      - 'JWS Signature Validation': develop/jws-signature-validation.md
+                      - 'JWS Response Signing': develop/jws-response-signing.md
+                  - 'Using Hibernate Validator': develop/validation-layer.md
+                  - 'Open Banking Gateway':
+                      - 'Introduction': develop/open-banking-gateway.md
+                      - 'Custom Request Router': develop/custom-request-router.md
+                      - 'Custom Gateway Executor': develop/custom-gateway-executor.md
+                      - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
+                      - 'Error handling in API Gateway': develop/gateway-error-handling.md
+                      - 'Custom Throttling Keys': develop/custom-throttling-keys.md
+                  - 'Data Publishing':
+                      - 'Custom Data Publishing': develop/custom-data-publishing.md
+                      - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
+                      - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
+                      - 'Token Data Publishing': develop/token-data-publishing.md
+                  - 'Additional':
+                      - 'Open Banking Service Activator': develop/service-activator.md
+                      - 'Open Banking Authentication Worker': develop/authentication-worker.md
+                      - 'Open Banking Idempotency Handling Validator': develop/idempotency-handling-validator.md
+          - 'Extending API Manager Extensions': 
+              - 'Introduction': develop/develop-apim-toolkit.md
+              - 'OpenAPI based extensions':
+                  - 'Developer Guide': develop/openapi-extensions-developer-guide-am.md
+                  - 'Manual Client Registration': develop/openapi-extensions-mcr.md
+              - 'Java based extensions':
+                  - 'Developer Guide': develop/developer-guide.md
+                  - 'Open Banking Gateway':
+                      - 'Introduction': develop/open-banking-gateway.md
+                      - 'Custom Request Router': develop/custom-request-router.md
+                      - 'Custom Gateway Executor': develop/custom-gateway-executor.md
+                      - 'Custom API Consumer Validation Executor': develop/custom-api-consumer-validation.md
+                      - 'Error handling in API Gateway': develop/gateway-error-handling.md
+                      - 'Custom Throttling Keys': develop/custom-throttling-keys.md
+                  - 'Data Publishing':
+                      - 'Custom Data Publishing': develop/custom-data-publishing.md
+                      - 'Authentication Flow': develop/authentication-flow-for-data-publishing.md
+                      - 'Dynamic Client Registration': develop/dcr-for-data-publishing.md
+                      - 'Token Data Publishing': develop/token-data-publishing.md
+                  - 'Additional':
+                      - 'Open Banking Service Activator': develop/service-activator.md
+                      - 'Open Banking Authentication Worker': develop/authentication-worker.md
+                      - 'Open Banking Idempotency Handling Validator': develop/idempotency-handling-validator.md
 #  - 'Toolkits' :
 #    - 'Regulatory Compliance':
 #        - 'UK Toolkit': toolkits/uk-toolkit.md

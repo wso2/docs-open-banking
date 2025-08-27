@@ -7,9 +7,9 @@ component and how to incorperate custom validations to the `/validate` endpoint 
 
 
 ### OpenAPI Extensions
-| OpenAPI Extension       | Description                                                          | OpenAPI Definition                                                                                                                                  |
-|-------------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| validate-consent-access | handle specification speicifc custom validations ,before data access | [validate-consent-access/post](https://ob.docs.wso2.com/en/4.0.0/references/accelerator-extensions-api/#tag/Consent/paths/~1validate-consent-access/post) |
+| OpenAPI Extension       | Description                                                          | OpenAPI Definition                                                                                                                                         |
+|-------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| validate-consent-access | handle specification speicifc custom validations ,before data access | [validate-consent-access/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Consent/paths/~1validate-consent-access/post) |
 
 ### Configuration 
 
@@ -22,7 +22,7 @@ To enable, follow the steps below:
 ``` toml
 [financial_services.extensions.endpoint]
 enabled = true
-base_url = "http://<hostname of external service>:<port of the external service>/api/reference-implementation/ob/uk"
+base_url = "<BASE_URL_OF THE EXTENSION>"
 
 allowed_extensions = ["validate_consent_access"]
 
