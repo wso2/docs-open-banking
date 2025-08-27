@@ -98,7 +98,7 @@ template: templates/single-column.html
     	</div>
     	<div class="content">
     		<!-- card -->
-    		<div class="card" onclick="location.href='learn/data-publishing/';">
+    		<!-- <div class="card" onclick="location.href='learn/data-publishing/';">
     			<div class="line"></div>
     			<div class="card-icon">
     				<i class="material-icons md-36">analytics</i>
@@ -107,10 +107,10 @@ template: templates/single-column.html
     				<p class="title">Analytics and Data Publishing</p>
     				<p class="hint">Publish and summarize data for reporting</p>
     			</div>
-    		</div>
+    		</div> -->
     		<!-- end card -->
     		<!-- card -->
-    		<div class="card" onclick="location.href='learn/integration/';">
+    		<!-- <div class="card" onclick="location.href='learn/integration/';">
     			<div class="line"></div>
     			<div class="card-icon">
     				<i class="material-icons md-36">settings_input_component</i>
@@ -119,7 +119,7 @@ template: templates/single-column.html
     				<p class="title">Easily Pluggable</p>
     				<p class="hint">Easy integration with core banking systems</p>
     			</div>
-    		</div>
+    		</div> -->
     		<!-- end card -->
     		<!-- card -->
     		<div class="card" onclick="location.href='develop/develop-toolkit/';">
