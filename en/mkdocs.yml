@@ -80,6 +80,7 @@ nav:
     - 'Advanced':
         - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
+        - 'Configuring Active-Active Identity Server Deployment with Accelerator': install-and-setup/active-active-identity-server-deployment.md
         - 'Configuring an Accelerator Deployment with Distributed Gateway and Control Plane': install-and-setup/distributed-gateway-control-plane.md
         - 'Configuring an Accelerator Deployment with Distributed Gateway, Control Plane and Traffic Manager': install-and-setup/distributed-gateway-control-plane-traffic-manager.md
         - 'Troubleshooting': install-and-setup/troubleshooting.md
