@@ -21,15 +21,10 @@ The DCR allows the TPP to request the bank to register a new application. The pr
 This SSA contains API consumer's metadata. It is a signed JWT issued by the Open Banking directory and the TPPs need to 
 obtain it before registering with an ASPSP.A sample request looks as follows:
 
- For the Transport Layer Security purposes in this sample flow, you can use the attached
- [private key](../assets/attachments/transport-certs/obtransport.key) and 
- [public certificate](../assets/attachments/transport-certs/obtransport.pem). 
-
 ```
 curl -X POST https://localhost:9446/api/identity/oauth2/dcr/v1.1/register/ \
 -H 'Accept: application/json' \
 -H 'Authorization: Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
---cert <TRANSPORT_PUBLIC_CERT_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
 -H 'Content-Type: application/json' \
  -d '{
     "iss": "oQ4KoaavpOuoE7rvQsZEOV",
