@@ -2,99 +2,23 @@ This document provides step by step instructions to invoke the Accounts Informat
 
 ![Open Banking Demo Flow](../../assets/img/get-started/quick-start-guide/scope_based_consent_flow.png)
 
-<!--!!! note 
-    You need to deploy the API before invoking it. For the testing purposes, you can use the sample AccountandTransaction 
-    API we have included in the pack.
-    
-    ??? tip "Click here to see how to deploy the sample API..."
-        1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher) with `creator/publisher` 
-        privileges. 
-
-        2. In the homepage, go to **REST API** and select **Import Open API**. ![import_API](../assets/img/learn/dcr/dcr-try-out/step-2.png)
-
-        3. Select **OpenAPI File/Archive**. ![select_API](../assets/img/learn/dcr/dcr-try-out/step-3.png)
-
-        4. Click **Browse File to Upload** and select `<APIM_HOME>/<OB_APIM_ACCELERATOR
-        _HOME>/repository/resources/apis/Accounts/account-info-swagger.yaml`.  
-
-        5. Click **Next**.
-
-        6. Leave the **Endpoint** field empty as it is and click **Create**. 
-
-       
-        7. Add a custom policy. Follow the instructions given below according to the API Manager version you are using:
-      
-        Before adding the policy replace the <AUTH_HEADER_VALUE> with the Basic auth header value. i.e Basic Base64(username:password)
-
-            ??? note "Click here to see how to add a custom policy if you are using API Manager 4.0.0..." 
-                1. Go to **Develop -> API Configurations -> Runtime** using in the left menu pane.<br><br>![select_runtime](../assets/img/get-started/quick-start-guide/select-runtime.png) 
-                                 
-                2. Click the edit icon under **Request** -> **Message Mediation**.<br><br>![message_mediation](../assets/img/get-started/quick-start-guide/message-mediation.png) 
-                
-                3. Select the **Custom Policy** option. 
-                
-                4. Upload the 
-                `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` 
-                file and click **SELECT**.
-
-                5. Scroll down and click **SAVE**.
-
-            ??? note "Click here to see how to add a custom policy if you are using API Manager 4.1.0 or 4.2.0..."
-                
-                1. Go to **Develop -> API Configurations -> Policies** in the left menu pane.<br><br>
-                <div style="width:40%">
-                ![select_policies](../assets/img/get-started/quick-start-guide/select-policies.png)
-                </div>
-
-                2. On the **Policy List** card, click on **Add New Policy**.
-
-                3. Fill in the **Create New Policy**.
-                ![create_new_policy](../assets/img/get-started/quick-start-guide/create-new-policy.png)
-
-                4. Upload the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources/apis/Accounts/accounts-dynamic-endpoint-insequence.xml` file.
-
-                5. Scroll down and click **Save**. Upon successful creation of the policy, you receive an alert as shown below: <br><br>
-                <div style="width:35%">
-                ![successful](../assets/img/get-started/quick-start-guide/successful.png)
-                </div>
-
-                6. Expand the API endpoint you want from the list of API endpoints. For example: ![expand_api_endpoint](../assets/img/get-started/quick-start-guide/expand-api-endpoint.png)
-
-                7. Expand the HTTP method from the API endpoint you selected and drag and drop the previously created policy to the **Request Flow** of the API endpoint. For example: ![expand_http_method](../assets/img/get-started/quick-start-guide/expand-http-method-drag-and-drop.png)
-
-                8. Select **Apply to all resources** and click **Save**. ![apply_to_all_resources](../assets/img/get-started/quick-start-guide/apply-to-all-resources.png)
-
-                9. Scroll down and click **Save**.
-        
-         14. Go to **Endpoints** using the left menu pane and locate **Dynamic Endpoint** and click **Add**. ![set_endpoint](../assets/img/get-started/quick-start-guide/set-endpoint.png)
-    
-         15. Select the endpoint types; `Production Endpoint/Sandbox Endpoint` and click **Save**.  ![dynamic_endpoint](../assets/img/get-started/quick-start-guide/dynamic-endpoint.png)
-
-         16. Go to **Deployments** using the left menu pane and click **Deploy New Revision**.
-    
-         17. Provide a description for the new revision.
-    
-         18. Select `localhost` from the dropdown list. 
-    
-         19. Click **Deploy**.
-    
-         20. Go to **Overview** using the left menu pane and click **Publish**. 
-    
-         21. Now that you have deployed the API, go to <https://localhost:9443/devportal>.
-    
-         22. Select the **AccountandTransaction V3.1** API and locate **Subscriptions**. 
-         Then, click **Subscribe**. ![subscribe_api](../assets/img/get-started/quick-start-guide/subscribe-api.png)
-    
-         23. From the dropdown list, select the application you created using the DCR API and click **Subscribe**.
--->
 
 ??? note "Click here to see the configurations:"
     - Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-    - Set `is_pre_initiated_consent` to false. 
+    - Set `is_pre_initiated_consent` to false. Setting below config to false will enable scope based consent flow for all scopes registered in the deployment.
 
       ``` toml
          [financial_services.consent]
          is_pre_initiated_consent=false
+      ```
+
+    - If you want to enable scope based consent flow only for specific scopes only you can use the following configuration.
+
+      ``` toml
+         [financial_services.consent]
+         is_pre_initiated_consent=true
+         pre_initiated_consent_scopes=["payments"]
+         scope_based_consent_scopes=["accounts", "balances"]
       ```
 
 !!! note
@@ -114,7 +38,7 @@ The API consumer application redirects the bank customer to authenticate and app
             - Given below is a sample request object in the JWT format:
       
             ``` jwt tab='Sample'
-                 eyJraWQiOiJoM1pDRjBWcnpnWGduSENxYkhiS1h6emZqVGciLCJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6IlM2dTJIZTRqeXd2eXlwVDdmR1lFeExTeXBRWWEiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiODZjOGEwODUtYTQ0NC00MmQ1LWJlNDMtOTY4YjM2NmE1NDY3IiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3RhdGUiOiJZV2x6Y0Rvek1UUTIiLCJleHAiOjE3NTcyMzM1ODgsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiY2xpZW50X2lkIjoiUzZ1MkhlNGp5d3Z5eXBUN2ZHWUV4TFN5cFFZYSJ9.mClPy-6g0Kn3JIF8P7odd-PiWYCSDhVyQJqn9SkHAXo07saGYD-YxQcqfghRnUbYc41SyAwtkw4bfbNLpqLFnmJsBiP3XjjDE0YwKwD4UXFMAac4zW9ooQtzr_5qXkGS5nNpua7KtpvNezNBgS5-c4MjuI6nUxL63rgmZyRoDlrK_Uxgx4CSxmJQkcHP8YzNvCVxe9ftpuKUlanCCgNvGg2ocmwpRP1G1-ZBr2e3nIfGsFxSaX-4vkur4chEyjk5YogfoxjnG1UjvP_al9M07W0J-eysviGMNqzJ7LDIVCDp5ZKrOnf1p_zPLE4No3xV8cN1ZTJJ_ufUABhJTYQKEw
+                 eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc1Njc4Mjk2NSwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGFjY291bnRzIiwiY2xhaW1zIjp7ImlkX3Rva2VuIjp7ImFjciI6eyJ2YWx1ZXMiOlsidXJuOm9wZW5iYW5raW5nOnBzZDI6Y2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiXSwiZXNzZW50aWFsIjp0cnVlfX19LCJpc3MiOiJpZEh2SGNVNUdIbTd3ZnNEMDZwd2xQcWZWNVFhIiwicmVzcG9uc2VfdHlwZSI6ImNvZGUgaWRfdG9rZW4iLCJyZWRpcmVjdF91cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tL3JlZGlyZWN0cy9yZWRpcmVjdDEiLCJzdGF0ZSI6IjhkYTZmNmVmLThjZjktNDY1MS1iNTdmLTljNGNjNzlkZGE4OCIsImV4cCI6MTc1Njc4NjQ0NSwibm9uY2UiOiIzZThlMzllZC01Yzc0LTQ2ZmQtYjYyOS01YzAxYTMyMzViZWMiLCJjbGllbnRfaWQiOiJpZEh2SGNVNUdIbTd3ZnNEMDZwd2xQcWZWNVFhIn0.hqt_HhsYVcqACFudUq8Z58EnLaMyMTMvdroGBWyx7zNELU-nSx5-SYj6qUYOzHyAWsgwGkVO-ZMZcAU_xxaU1MJai1JGpBRDOqFbcmfondsxHqQYQuSm0AEK2JYHVQjlGsg8ynIrC__QCzOKl8KflhiTPF7hu4l5pm15QDgNR2dVz4XBcKNc8q2pqYotu3K65eJDRdv-En9G3yTpyE56u-9aTupYTKCn4nUYhH5DF6zsz6RNsq_W8LxWyr53SNJxkKZyAZVUmCuZnfEoYERtngh90S4QuLOdYrnG76Yh9VhbrU7D6bFI4tv-Uerg4RzdkxkURmLutVdppfIYQ14TOg
             ```
                  
             ``` tab='Format'
@@ -136,16 +60,6 @@ The API consumer application redirects the bank customer to authenticate and app
                            "urn:openbanking:psd2:ca"
                          ],
                          "essential": true
-                       },
-                       "openbanking_intent_id": {
-                         "value": "<CONSENTID>",
-                         "essential": true
-                       }
-                     },
-                     "userinfo": {
-                       "openbanking_intent_id": {
-                         "value": "<CONSENTID>",
-                         "essential": true
                        }
                      }
                    },
@@ -162,7 +76,7 @@ The API consumer application redirects the bank customer to authenticate and app
    consumer wishes to access. This request is in the format of a URL as follows:
 
     ``` url tab="Sample"
-        https://localhost:9446/oauth2/authorize/?request=eyJraWQiOiJjSVlvLTV6WDRPVFdacEhybW1pWkRWeEFDSk0iLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL29iLWlhbTo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc0OTAyMDQ5MCwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGFjY291bnRzIG9wZW5pZCIsImNsYWltcyI6eyJpZF90b2tlbiI6eyJhY3IiOnsidmFsdWVzIjpbInVybjpvcGVuYmFua2luZzpwc2QyOmNhIiwidXJuOm9wZW5iYW5raW5nOnBzZDI6c2NhIl0sImVzc2VudGlhbCI6dHJ1ZX0sIm9wZW5iYW5raW5nX2ludGVudF9pZCI6eyJ2YWx1ZSI6IjE5NmFkZjAzLTQ2ZDAtNDA4Yy1hNzdiLWFhZWY0MDFlZWM2MiIsImVzc2VudGlhbCI6dHJ1ZX19LCJ1c2VyaW5mbyI6eyJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiIxOTZhZGYwMy00NmQwLTQwOGMtYTc3Yi1hYWVmNDAxZWVjNjIiLCJlc3NlbnRpYWwiOnRydWV9fX0sImlzcyI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vcmVkaXJlY3RzL3JlZGlyZWN0MSIsInN0YXRlIjoiZTkwNzY0YWYtOWIyZS00N2IyLWI3MzUtNzExNjE5ZTA2MmMzIiwiZXhwIjoxNzQ5MDIzOTcwLCJub25jZSI6IjIzNTJiMjZjLTE2YzUtNDdmNy04OTg4LWNhNDA1ZTdhZDIxZCIsImNsaWVudF9pZCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EifQ.rmM1Muwbm6qqtm_f3rcZOYMpbiaRQfFsQSs2SVxPCUIncaSHMcBp2vVeEoKkdo-kwysteNEdQw1uhceAU86muAqho7zFVvmTRdMGBi5Ad0zCtvu2QS00c-3Ur2GYKZM-EvfUhxYbwNx15Yu79rPWpgs9dT1qLTLTHtzkXQ_0Ib8U8u42jM3hiOnJontrRJn7WU3pAmcXRH886GJBBhPhgVPr9cpfsFvTcHIiPaxROuyteRh1_x2-_-4pz_1XZq-YkirsbN-p29CohEOzAdHhV80rIqCU_Wknp5Rkt4NT0hMSNeonxTOwfocQkXraZ5kDLb60Y_4vR5N8UUcmkIXQSw&scope=accounts%20openid&response_type=code%20id_token&redirect_uri=https%3A%2F%2Fwww.google.com%2Fredirects%2Fredirect1&state=ace6befc-90a4-4627-ae17-9aa4f75594e8&nonce=nonce&client_id=jXuHPxPhitMUevd4d31GSs25uWca
+        https://localhost:9446/oauth2/authorize/?request=eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc1Njc4Mjk2NSwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGFjY291bnRzIiwiY2xhaW1zIjp7ImlkX3Rva2VuIjp7ImFjciI6eyJ2YWx1ZXMiOlsidXJuOm9wZW5iYW5raW5nOnBzZDI6Y2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiXSwiZXNzZW50aWFsIjp0cnVlfX19LCJpc3MiOiJpZEh2SGNVNUdIbTd3ZnNEMDZwd2xQcWZWNVFhIiwicmVzcG9uc2VfdHlwZSI6ImNvZGUgaWRfdG9rZW4iLCJyZWRpcmVjdF91cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tL3JlZGlyZWN0cy9yZWRpcmVjdDEiLCJzdGF0ZSI6IjhkYTZmNmVmLThjZjktNDY1MS1iNTdmLTljNGNjNzlkZGE4OCIsImV4cCI6MTc1Njc4NjQ0NSwibm9uY2UiOiIzZThlMzllZC01Yzc0LTQ2ZmQtYjYyOS01YzAxYTMyMzViZWMiLCJjbGllbnRfaWQiOiJpZEh2SGNVNUdIbTd3ZnNEMDZwd2xQcWZWNVFhIn0.hqt_HhsYVcqACFudUq8Z58EnLaMyMTMvdroGBWyx7zNELU-nSx5-SYj6qUYOzHyAWsgwGkVO-ZMZcAU_xxaU1MJai1JGpBRDOqFbcmfondsxHqQYQuSm0AEK2JYHVQjlGsg8ynIrC__QCzOKl8KflhiTPF7hu4l5pm15QDgNR2dVz4XBcKNc8q2pqYotu3K65eJDRdv-En9G3yTpyE56u-9aTupYTKCn4nUYhH5DF6zsz6RNsq_W8LxWyr53SNJxkKZyAZVUmCuZnfEoYERtngh90S4QuLOdYrnG76Yh9VhbrU7D6bFI4tv-Uerg4RzdkxkURmLutVdppfIYQ14TOg&scope=openid accounts&response_type=code id_token&redirect_uri=https://www.google.com/redirects/redirect1&state=8b028d5e-f149-49a9-977a-c204fd330446&nonce=nonce&client_id=idHvHcU5GHm7wfsD06pwlPqfV5Qa
     ```
 
     ``` url tab="Format"
@@ -176,21 +90,17 @@ The API consumer application redirects the bank customer to authenticate and app
 4. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has a `consumer` role.
 
 5. The page displays a list of bank accounts and the information that the API consumer wishes to access.
-   ![grant consent](../../assets/img/learn/consent-manager/consent-page-confirm.png)
+   ![grant consent](../../assets/img/try-out/scope-based-consent-screen.png)
 
-6. Data requested by the consent such as permissions, transaction period, and expiration date are displayed. Click
-   **Confirm** to grant these permissions.
+6. Data requested by the consent such as scopes and expiration date are displayed. Click **Confirm** to grant these permissions.
 
 7. Upon providing consent, an authorization code is generated on the web page of the `redirect_uri`. See the sample
    given below:
 
-   The authorization code from the below URL is in the code parameter (`code=07e213e5-9971-3f0e-9acc-2fd99fd0304b`).
+   The authorization code from the below URL is in the code parameter (`code=144060b4-4d8c-3a0b-a44e-66baf58651f1`).
 
    ```
-       https://www.google.com/redirects/redirect1#id_token=eyJ4NXQiOiJ5SFl1RDhrVHZWYzhGdjNUd3pmRUd1dHBudUEiLCJraWQiOiJOemRpTkRBd05ETmpaRE5rWlROak5UQm1NVE5rTVRObE1qRTNNakJqTnpobE1USmtaalk0TUdabU5ERmlZMll3TUdRM01qZzBNakpqT0RnM1lUWmtOUV9QUzI1NiIsImFsZyI6IlBTMjU2In0.eyJpc2siOiJmMGFkZTFkMDVmNjg4MTRlNzhjZTY2MTU5OTI1YzZhMDcyZTMwNWE0ZDI5NmRlOWJkODU2ZjdiOWMwMjQ0MTliIiwic3ViIjoiOTljMzEzMjAtNzA4ZC00NjYxLWEwYTgtZGVhYjZhMDQwYTJlQGNhcmJvbi5zdXBlciIsImFtciI6WyJCYXNpY0F1dGhlbnRpY2F0b3IiXSwiaXNzIjoiaHR0cHM6XC9cL29iLWlhbTo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwibm9uY2UiOiJlODAzMTNlNC04ZTZlLTRkYjctOTg2Yi0yNjYwNDQ3OThlOTciLCJzaWQiOiI0NjQ5MDlhYi1jYjZjLTRjZDktYTU5OC0wYWU1MjExYzQzOTciLCJhdWQiOiJqWHVIUHhQaGl0TVVldmQ0ZDMxR1NzMjV1V2NhIiwiY19oYXNoIjoiVTZDWFVqc1h4VGdEMWxrM3JRRnpFdyIsInVzZXJfb3JnIjoiMTAwODRhOGQtMTEzZi00MjExLWEwZDUtZWZlMzZiMDgyMjExIiwic19oYXNoIjoiOHlLSmpOcE5RMlVVQXFuN2FFU3lvdyIsImF6cCI6ImpYdUhQeFBoaXRNVWV2ZDRkMzFHU3MyNXVXY2EiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJleHAiOjE3NDkwMjgyODIsIm9yZ19uYW1lIjoiU3VwZXIiLCJpYXQiOjE3NDkwMjQ2ODIsImp0aSI6IjZmNWFhZGI1LTdkYTEtNDhiMS04NjVjLTBjOWY5YzRkMzc2NSIsImNvbnNlbnRfaWQiOiI3NDk5ZmYzMy1mNGRlLTRkZjQtYWI0MS1hMDEzMzQ0MGI3OGMifQ.Pe18gebXzDciawD_HwXnezPfP-hgB7QrAjxl1pyWYREuVEhWJ8s-S1hnp5KzOhPbeR8nyws7Qqg7gHurFFGfCFCyLJsH34889LAWSZhcLuPl1ia9wAtHCKztCd9ga6vohhyDoQXqLaIN8E4ZARuQ75xRkLKPektf3fXQiK5Tklr0g4Le-Ht53d39soPNzoF0cSl8csLrpPPSiSie5bNpL8OEZlsJWLv88Mv3RcxC8BhBeGVGMwImmmBD4oJc-wCetUgldoG4txAA_JtckOw0TWKSvuEF_Vx036Z_n6bY8YenILzgbb3MeHrAY7tHPE3JEKe9I4KhRyv6XkZ7gSA5Lg
-       &code=07e213e5-9971-3f0e-9acc-2fd99fd0304b
-       &session_state=0d1e5b4ce6cbc2a338f25baa18efab4929129127f058c6812e9ee0130a4715ea.L25p4RAFA8WfK3UH10OddQ
-       &state=64f525ed-af4a-42f7-a671-78636bf6dd09
+       https://www.google.com/redirects/redirect1#id_token=eyJ4NXQiOiJjZmNONHdac21NMWxtOXBXX2xFUl9LS3ZwRmMiLCJraWQiOiJPV0ptTnpneU5UTmhNR05pTXpFMU5HUTNaall4WlRVellUSTJNbVpoWlRFeVl6SmtZVGRsTURCallqSTJNRE5sWldJeFltUTJNRGt6WVdZNU9ERm1aUV9QUzI1NiIsImFsZyI6IlBTMjU2In0.eyJpc2siOiI0OTcyZjc1YzRjNTBiNTZiYWY1NmJhYzI4MGNiNDFkMWUxYjk5MmRhYTgzNTFiMWE3NGZiZWFiOGJmNDMyOWQzIiwic3ViIjoiMGE0ZmI0ZDgtNGMwMy00MGQ5LWI1MWItNmE1NGRlZDNmNzFlQGNhcmJvbi5zdXBlciIsImFtciI6WyJCYXNpY0F1dGhlbnRpY2F0b3IiXSwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwibm9uY2UiOiIzZThlMzllZC01Yzc0LTQ2ZmQtYjYyOS01YzAxYTMyMzViZWMiLCJzaWQiOiIzMzViM2UzYS05YTI2LTRhYzUtYjdlMy0wZmRiMGIyMzFmNjYiLCJhdWQiOiJpZEh2SGNVNUdIbTd3ZnNEMDZwd2xQcWZWNVFhIiwiYWNyIjoidXJuOm1hY2U6aW5jb21tb246aWFwOnNpbHZlciIsImNfaGFzaCI6IjJYZDcxWGxGVGowcmJrSF9LeWFNenciLCJ1c2VyX29yZyI6IjEwMDg0YThkLTExM2YtNDIxMS1hMGQ1LWVmZTM2YjA4MjIxMSIsInNfaGFzaCI6Ikg2ODhGZkNJZkFBdEg4YUhBUXVwREEiLCJhenAiOiJpZEh2SGNVNUdIbTd3ZnNEMDZwd2xQcWZWNVFhIiwib3JnX2lkIjoiMTAwODRhOGQtMTEzZi00MjExLWEwZDUtZWZlMzZiMDgyMjExIiwiZXhwIjoxNzU2Nzg2NTkzLCJvcmdfbmFtZSI6IlN1cGVyIiwiaWF0IjoxNzU2NzgyOTkzLCJqdGkiOiJhNjNkOGJhMC01MzdlLTQ5YmQtODI0OC1kMTFjMzJmMjYwNmQiLCJjb25zZW50X2lkIjoiNWRlMzhiZGMtZGNmZS00ODUxLWFkMDAtMDM0NjkyYjYzMzgzIn0.O7wVUa239KyF7uswwHDptwlb5rqkyF4mNE5ZS-pD0-oiF08kDimy4f6HGmtCZ93oWVVM4ItCR4z3AeSyi_gIHsqf8Lo3XS5bfODONnvuhtt0vZahxy_G6jiHSaeuiAM5TMasFys_nVOC6T7dAlo_FAI5J6sCHB18bynuYEyPSotz5ZalOl2JeVdUueDIMzhgXuJGeX6_a4E5VrX8c-hm3kytN2vt0HPxPEdkKfFuxHql84OIwn2yhJuPJ1uBhRxsu-V58a8F4qslnqVs2pmd4-V4nfTlLWpSi-w71ycYQB3PZsH2UglRVxksITzDc4YpxKQ0fTHL3m2BdwdfXxwDcg&code=144060b4-4d8c-3a0b-a44e-66baf58651f1&session_state=643f531cef2255b3fd44b1144dad89153282eae20e95fa33d5891ffac114a515.AWErsW9ia1w7Pi11KK_H-w&state=8da6f6ef-8cf9-4651-b57f-9c4cc79dda88
    ```
 
 ### Step 4: Generate user access token
@@ -227,8 +137,8 @@ The API consumer application redirects the bank customer to authenticate and app
 The Consent Validate implements the validations that are required when the resource endpoints are invoked with a user access token.
 
 !!! note
-In a real-life open banking environment, the API consumer applications can retrieve details of accounts for which
-the bank customer has granted them consent.
+   In a real-life open banking environment, the API consumer applications can retrieve details of accounts for which
+   the bank customer has granted them consent.
 
 - A sample request looks as follows:
    ```
@@ -244,43 +154,42 @@ the bank customer has granted them consent.
    ```
 
 ??? tip "Click here to see a sample data payload..."
-- Given below is a sample payload in the JWT format:
+   - Given below is a sample payload in the JWT format:
 
-      ```
-      {
-         "kid": "<The KID value of the signing jwk set>",
-         "alg": "<SUPPORTED_ALGORITHM>",
-         "typ": "JWT"
-      }
-      {
-         "headers": {
-            "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
-            "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
-            "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
-            "Cache-Control": "no-cache",
-            "Connection": "keep-alive",
-            "User-Agent": "PostmanRuntime/7.28.4",
-            "Host": "localhost:8243",
-            "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
-            "Accept-Encoding": "gzip, deflate, br",
-            "accept": "application/json; charset=utf-8"
+         ```
+         {
+            "kid": "<The KID value of the signing jwk set>",
+            "alg": "<SUPPORTED_ALGORITHM>",
+            "typ": "JWT"
+         }
+         {
+            "headers": {
+               "Authorization": "Basic aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==",
+               "consent-id": "12a4ebc8-b98c-4f80-9a37-44679363b97b",
+               "activityid": "8666aa84-fc5a-425e-91c9-37fa30a95784",
+               "Cache-Control": "no-cache",
+               "Connection": "keep-alive",
+               "User-Agent": "PostmanRuntime/7.28.4",
+               "Host": "localhost:8243",
+               "Postman-Token": "244d15b6-eb18-4045-ba87-8ee6c830b84c",
+               "Accept-Encoding": "gzip, deflate, br",
+               "accept": "application/json; charset=utf-8"
+            },
+            "consentId": "<CONSENT_ID>",
+            "resourceParams": {
+            "resource": "/aisp/accounts",
+            "context": "/open-banking/v3.1/aisp",
+            "httpMethod": "GET"
          },
-         "consentId": "<CONSENT_ID>",
-         "resourceParams": {
-         "resource": "/aisp/accounts",
-         "context": "/open-banking/v3.1/aisp",
-         "httpMethod": "GET"
-      },
-         "userId": "psu@wso2.com",
-         "electedResource": "/accounts",
-         "clientId": "<CLIENT_ID>"
-      }
-      ```
+            "userId": "psu@wso2.com",
+            "electedResource": "/accounts",
+            "clientId": "<CLIENT_ID>"
+         }
+         ```
 
 - The request validates the Account Information access request.
 
-  !!! note
-  The response contains the validity of the Account access request along with consent information or the reason for the validation failure.
+The response contains the validity of the Account access request along with consent information or the reason for the validation failure.
 
 ```
 {

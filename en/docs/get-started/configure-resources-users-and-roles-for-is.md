@@ -14,6 +14,15 @@ Now you have started the servers, let’s create the API resources, users and de
 
 ## Create API resources
 
+WSO2 Identity Server provides comprehensive capabilities for managing and securing API resources, particularly in the context of authorization and access control. You need to create below API resources in order to successfully invoke Open Banking APIs.
+
+    | API Resource | Identifier | Display Names | Scopes | 
+    |------------- | ---------- | ------------- | ------ |
+    | API Resource for access scopes attached to customer facing Open Banking APIs | User-defined-oauth2-resource | User-defined-oauth2-resource | accounts </br>payments </br>fundsconfirmations |
+    | API resource to acccess internal Open Banking APIs provided by WSO2 | OB-internal-api-resource | OB-internal-api-resource | ob-internal-api-access |
+
+Follow the below steps to create above API Reources.
+
 1. Go to the **Api Resources** tab in the left pane.
 
 2. Click **New API Resource**.
@@ -44,6 +53,8 @@ Now you have started the servers, let’s create the API resources, users and de
 
     ![api_resource_authorisation_page.png](../assets/img/get-started/quick-start-guide/api_resource_authorisation_page.png)
 
+9. Create **OB-internal-api-resource** by flowing the above steps.
+
 ## Create new user roles
 
 1. Go to the **User Management** tab in the left pane and select **Roles**. 
@@ -53,7 +64,8 @@ Now you have started the servers, let’s create the API resources, users and de
   
     | Role Name | Role audience  | Permissions                  | Description                                                               |
     |-----------|----------------|------------------------------|---------------------------------------------------------------------------|
-    | consumer  | Organization   | User-defined-oauth2-resource | Users must have the Consumer role to proceed with the authorization flow. |
+    | consumer  | Organization   | User-defined-oauth2-resource | Users must have the `Consumer` role to proceed with the authorization flow. |
+    | OBInternalApiAccessRole  | Organization   | OB-internal-api-resource | Users must have the `OBInternalApiAccessRole` role to access internal OB APIs provided by WSO2. |
     
     i. Creating **consumer role**:
     
@@ -63,10 +75,25 @@ Now you have started the servers, let’s create the API resources, users and de
       
       - Click **Next**.
       
-      - Select the API Resource 'User-defined-oauth2-resource' created in [Create API resources](#create-api-resources).
-      - Select all three permissions of the 'User-defined-oauth2-resource' resource.
+      - Select the API Resource `User-defined-oauth2-resource` created in [Create API resources](#create-api-resources).
+      - Select all three permissions of the `User-defined-oauth2-resource` resource.
       
         ![select-permissions.png](../assets/img/get-started/quick-start-guide/select-permissions.png)
+            
+      - Click **Finish**.
+
+    ii. Creating **OBInternalApiAccessRole role**:
+    
+      - Enter the role name as **OBInternalApiAccessRole** and select the role audience as **Organization**:
+      
+        ![enter_basic_role_details_for_consumer.png](../assets/img/get-started/quick-start-guide/enter_basic_role_details_for_internal_api.png)
+      
+      - Click **Next**.
+      
+      - Select the API Resource `OB-internal-api-resource` created in [Create API resources](#create-api-resources).
+      - Select all permissions of the `OB-internal-api-resource` resource.
+      
+        ![select-permissions.png](../assets/img/get-started/quick-start-guide/select-permissions_for_internal_api.png)
             
       - Click **Finish**.
  
@@ -105,3 +132,5 @@ Now you have started the servers, let’s create the API resources, users and de
     ![assign_user_to_consumer_role.png](../assets/img/get-started/quick-start-guide/assign_user_to_consumer_role.png)
 
 6. Click **Update**.
+
+7. Similarly assign **OBInternalApiAccessRole** to the admin user in your system.
