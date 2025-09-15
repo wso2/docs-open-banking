@@ -14,7 +14,8 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     ![am-add-new-role.png](../assets/img/get-started/quick-start-guide/am-role-creation/am-add-new-role.png)
 
 5. Enter role Details:
-          ![am-add-role-details.png](../assets/img/get-started/quick-start-guide/am-role-creation/am-add-role-details.png)
+
+    ![am-add-role-details.png](../assets/img/get-started/quick-start-guide/am-role-creation/am-add-role-details.png)
 
       | Domain   | Role Name |
       | -------- | --------- |

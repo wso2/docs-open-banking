@@ -5,7 +5,7 @@ Copy the extracted accelerator directory into the root directory of the WSO2 Ide
 
 | File                           | Directory location to place the Accelerator |
 |--------------------------------|---------------------------------------------|
-| `wso2-obiam-accelerator-4.x.0` | `<IS_HOME>`                                 |
+| `wso2-fsiam-accelerator-4.x.0` | `<IS_HOME>`                                 |
 
 !!! tip
     This documentation will refer to the above-extracted directory of the accelerator as `<OB_IS_ACCELERATOR_HOME>`.

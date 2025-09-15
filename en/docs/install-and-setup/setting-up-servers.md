@@ -26,7 +26,7 @@ products.
               
 2. WSO2 Open Banking Accelerator contains the following accelerators:
    
-    - wso2-fsiam-accelerator-4.x.0
+    - wso2-fsiam-accelerator-4.0.0
     
 3. This document uses the following placeholders to refer to the following products:
         
