@@ -14,12 +14,12 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     ![am-add-new-role.png](../assets/img/get-started/quick-start-guide/am-role-creation/am-add-new-role.png)
 
 5. Enter role Details:
+
     ![am-add-role-details.png](../assets/img/get-started/quick-start-guide/am-role-creation/am-add-role-details.png)
 
-    | Domain   | Role Name |
-    | -------- | --------- |
-    | INTERNAL | consumer  |
-
+      | Domain   | Role Name |
+      | -------- | --------- |
+      | INTERNAL | consumer  |
 
 6. Click on Finish.
 
@@ -91,4 +91,12 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
 19. click Publish. <br/>
     ![publish-api.png](../assets/img/get-started/quick-start-guide/deploy-apis/publish-api.png)
 
+Follow the same steps to publish Payments and COF API. Refer the below table for the OpenAPI files and context values of Payments and COF APIs.
+
+| API Name               | OpenAPI File                                                                                                                                                                                                                           | Context Value                 |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| PaymentInitiationAPI   | [payment-initiation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Payments/payment-initiation-openapi.yaml)            | /open-banking/{version}/pisp  |
+| ConfirmationOfFundsAPI | [funds-confirmation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/ConfirmationOfFunds/funds-confirmation-openapi.yaml) | /open-banking/{version}/cbpii |
+
 Once you deploy the APIs an API resource will be created along with the role mentioned in the swagger on the Identity Server side.
+

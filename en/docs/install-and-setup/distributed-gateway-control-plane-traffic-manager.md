@@ -5,16 +5,17 @@ the API-M server profiles are deployed as separate API-M nodes.
 
 Given below are the API-M nodes you can have in a distributed deployment by default.
 
-| API-M Node (Profile)                           | Description                                                                                                                                             |
-|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Gateway Worker Node                            | API-M nodes running the Gateway profile.                                                                                                                |
-| Control Plane Node                             | API-M nodes running the Control Plane profile. The Control Plane includes the Traffic Manager, Key Manager, Publisher, and Developer Portal components. |
+| API-M Node (Profile)                           | Description                                                                                                                            |
+|------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| Gateway Worker Node                            | API-M nodes running the Gateway profile.                                                                                               |
+| Control Plane Node                             | API-M nodes running the Control Plane profile. The Control Plane includes the Key Manager, Publisher, and Developer Portal components. |
+| Traffic Manager Node                           | API-M nodes running the Traffic Manager profile.                                                                                       |
 
 See [WSO2 API Manager Distributed Deployment documentation](https://apim.docs.wso2.com/en/4.3.0/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/) 
 for more information on the distributed deployment of WSO2 API Manager.
 
 This document provides instructions on how to set up the financial services accelerator with Identity Server and 
-distributed Gateway and Control Plane nodes of WSO2 API Manager.
+distributed Gateway, Control Plane and Traffic Manager nodes of WSO2 API Manager.
 
 ## Prerequisites
 
@@ -49,7 +50,7 @@ for instructions on how to set up the WSO2 Open Banking IAM Accelerator.
     ```
 
 2. Download [notification.event.handlers-2.0.5.jar](https://maven.wso2.org/nexus/content/repositories/releases/org/wso2/km/ext/wso2is/wso2is.notification.event.handlers/2.0.5/wso2is.notification.event.handlers-2.0.5.jar) and add it to `<IS_HOME>/repository/components/dropins` folder.
-3. Change the following config to false to disable FAPI.
+3. Change the following config to false to disable FAPI with Manual Client Registration.
     ```
     [oauth.dcr]
     enable_fapi_enforcement=false
@@ -57,29 +58,31 @@ for instructions on how to set up the WSO2 Open Banking IAM Accelerator.
 
 4. Restart the IS server
 
-## Step 2: Setting Up WSO2 API-M Distributed Gateway and Control Plane
+## Step 2: Setting Up WSO2 API-M Distributed Gateway, Control Plane and Traffic Manager Nodes
 
 ### Installing base products
 
 1. Download and install the API-M base product. The following documentation provides the instruction to install below base product combination:
 
-| Base Product              | Combination                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| WSO2 Identity Server      | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/) |
-| WSO2 API Manager          | [4.3.0](https://wso2.com/api-management/previous-releases/)                 |
+| Base Product                | Combination                                                                                      |
+|-----------------------------|--------------------------------------------------------------------------------------------------|
+| WSO2 Identity Server        | [7.1.0](https://wso2.com/identity-server/)                                                       |
+| WSO2 API Manager Components | [4.5.0](https://wso2.com/products/downloads/?product=wso2am&package=advanced-deployment-options) |
 
 !!! note
-    Two instances are required to set up the AM distributed deployment.
+    Three instances are required to set up the AM distributed deployment.
 
     - Instance 1: AM Gateway Profile  
     - Instance 2: AM Control Plane Profile
+    - Instance 3: AM Traffic Manager Profile
 
 This document uses the following placeholders to refer to the following products:
 
-| Product                           | Placeholder      |
-|-----------------------------------|------------------|
-| WSO2 API-M Gateway Instance       | `<APIM_GW_HOME>` |
-| WSO2 API-M Control Plane Instance | `<APIM_CP_HOME>` |
+| Product                             | Placeholder      |
+|-------------------------------------|------------------|
+| WSO2 API-M Gateway Instance         | `<APIM_GW_HOME>` |
+| WSO2 API-M Control Plane Instance   | `<APIM_CP_HOME>` |
+| WSO2 API-M Traffic Manager Instance | `<APIM_TM_HOME>` |
 
 ### Getting WSO2 Updates
 
@@ -122,7 +125,7 @@ Follow the instructions in the [Setting up databases](setting-up-databases.md) t
     - `org.wso2.financial.services.accelerator.common-4.1.x.jar`
     - `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`
 
-3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of both Gateway node and Control Plane node. 
+3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of Gateway node, Control Plane node and Traffic Manager node. 
 Use the table to locate the respective directories of the base products:
 
     | File                                                            | Directory location to place the artifact                          |
@@ -140,31 +143,19 @@ Use the table to locate the respective directories of the base products:
    |--------------------------------------------------|--------------------------------------------------------------------------------|
    | `consent-enforcement-payload-mediator-1.0.0.jar` | `<APIM_HOME>/repository/component/lib`                                         |
    | `mtls-header-enforcement-mediator-1.0.0.jar`     | `<APIM_HOME>/repository/component/lib`                                         |
+   | `dynamic-client-registration-mediator-1.0.0.jar` | `<APIM_HOME>/repository/component/lib`                                         |
    | `customErrorFormatter.xml`                       | `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences`   |
-
 
 ### Configure the Gateway Node
 Configure the Gateway to communicate with the Control Plane.
 
-1. Run profile optimization scripts on the gateway profile.
-    - Navigate to `<APIM_GW_HOME>/bin` and run the following command:
-      ```bash
-        sh profileSetup.sh -Dprofile=gateway-worker
-      ```
-      
-2. Open the `<APIM_GW_HOME>/repository/conf/deployment.toml` file.
-3. Set the hostname of the API Manager:
+1. Open the `<APIM_GW_HOME>/repository/conf/deployment.toml` file.
+2. Set the hostname of the API Manager:
     ``` toml
     [server]
-    hostname = "<APIM_GW_HOST>" 
-    ```
-4. Configure server role.
-    ``` toml
-    [server]
-    server_role = "gateway-worker"
-    ```
+    hostname = "<APIM_GW_HOST>"
 
-5. Configure super admin credentials.
+3. Configure super admin credentials.
     ```
     [super_admin]
     username = "<APIM_SUPER_ADMIN_USERNAME>"
@@ -172,22 +163,19 @@ Configure the Gateway to communicate with the Control Plane.
     create_admin_account = true
     ```
 
-6. Configure the following configs to enable email as username.
+4. Configure the following configs to enable email as username.
     ``` toml
     [tenant_mgt]
     enable_email_domain = true
-
-    [realm_manager]
-    data_source= "WSO2USER_DB"
 
     [user_store]
     type = "database_unique_id"
     class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
     ```
    
-7. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
+5. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
    database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
-8. Remove am-config and user management DB configs from gateway node and the add shared_db and apim db.
+6. Add shared_db and apim db configurations.
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, see [Setting up databases](setting-up-databases.md).
 
          ```toml tab='shared_db'
@@ -206,7 +194,7 @@ Configure the Gateway to communicate with the Control Plane.
          driver = "com.mysql.jdbc.Driver"
          ```
 
-9. Update the following configurations with the hostname of the Identity Server to connect the Gateway to the Key 
+7. Update the following configurations with the hostname of the Identity Server to connect the Gateway to the Key 
 Manager component in the Control Plane:
     ``` toml
     [apim.key_manager]
@@ -215,17 +203,16 @@ Manager component in the Control Plane:
     password = "<IS_SUPER_ADMIN_PASSWORD>"
     ```
 
-10. Disable subscription validation as follows.
+8. Disable subscription validation as follows.
     ``` toml
     [apim.key_manager]
     allow_subscription_validation_disabling = true
     ```
 
-11. Configure the following traffic manager configurations.
+9. Configure the following traffic manager configurations.
     ``` toml
     [apim.throttling]
-    service_url = "https://<APIM_CP_HOST>:9443/services/"
-    throttle_decision_endpoints = ["tcp://<APIM_CP_HOST>:5672"]
+    throttle_decision_endpoints = ["tcp://<APIM_TM_HOST>:5672"]
     username= "$ref{super_admin.username}@carbon.super"
     password= "$ref{super_admin.password}"
 
@@ -241,11 +228,24 @@ Manager component in the Control Plane:
     password= "$ref{super_admin.password}"
 
     [[apim.throttling.url_group]]
-    traffic_manager_urls = ["tcp://<APIM_CP_HOST>:9611"]
-    traffic_manager_auth_urls = ["ssl://<APIM_CP_HOST>:9711"]
+    traffic_manager_urls = ["tcp://<APIM_TM_HOST>:9611"]
+    traffic_manager_auth_urls = ["ssl://<APIM_TM_HOST>:9711"]
+    ```
+   
+10. Add event hub configuration.
+
+    !!!note Event hub configuration is used to retrieve Gateway artifacts. Using event_listening_endpoints, the Gateway will create a JMS connection with the event hub that is then used to subscribe for API/Application/Subscription and Key Manager operations-related events. The service_url points to the internal API that resides in the event hub that is used to pull artifacts and information from the database.
+
+    ``` toml
+    [apim.event_hub]
+    enable = true
+    username = "$ref{super_admin.username}"
+    password = "$ref{super_admin.password}"
+    service_url = "https://<APIM_CP_HOST>:9443/services/"
+    event_listening_endpoints = ["tcp://<APIM_CP_HOST>:5672"]
     ```
 
-12. Add the following config to support JWT content type.
+11. Add the following config to support JWT content type.
     ``` toml
     [[blocking.custom_message_formatters]]
     class = "org.apache.axis2.format.PlainTextFormatter"
@@ -264,7 +264,7 @@ Manager component in the Control Plane:
     content_type = "application/jwt"
     ```
 
-13. Add the following to configure transport layer configs.
+12. Add the following to configure transport layer configs.
     ``` toml
     [transport.passthru_https.sender.parameters]
     HostnameVerifier = "AllowAll"
@@ -277,13 +277,13 @@ Manager component in the Control Plane:
     PreferredCiphers = "TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
     ```
     
-14. Enable certificate chain validation as the following.
+13. Enable certificate chain validation as the following.
     ``` toml
     [apimgt.mutual_ssl]
     enable_certificate_chain_validation = true
     ```
     
-15. Disable certificate_revocation.
+14. Disable certificate_revocation.
     ``` toml
     [transport.passthru_https.listener.cert_revocation_validation]
     enable = false
@@ -293,20 +293,20 @@ Manager component in the Control Plane:
     cache_size = 1024
     ```
 
-16. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
+15. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
     ``` toml
     [apim.oauth_config]
     enable_outbound_auth_header = true
     white_listed_scopes = ["^device_.*", "openid", "^FS_.*", "^TIME_.*"]
     ```
 
-17. Configure publisher url.
+16. Configure publisher url.
     ``` toml
     [financial_services]
     publisher_url="https://<APIM_CP_HOST>:9443/publisher"
     ```
     
-18. Add the following configurations to enable the external service extension.
+17. Add the following configurations to enable the external service extension.
     ``` toml
     [financial_services.extensions.endpoint]
     enabled = true
@@ -352,28 +352,16 @@ to the `<APIM_GW_HOME>/repository/deployment/server/synapse-configs/default/sequ
 
 
 ### Configure the Control Plane Node
-Configure the Control Plane to communicate with the Gateway.
-
-1. Run profile optimization scripts on the control plane profile.
-    - Navigate to `<APIM_CP_HOME>/bin` and run the following command:
-      ```bash
-        sh profileSetup.sh -Dprofile=control-plane
-      ```
+Configure the Control Plane to communicate with the Gateway.`
       
-2. Open the `<APIM_CP_HOME>/repository/conf/deployment.toml` file.
-3. Set the hostname of the API Manager:
+1. Open the `<APIM_CP_HOME>/repository/conf/deployment.toml` file.
+2. Set the hostname of the API Manager:
     ``` toml
     [server]
     hostname = "<APIM_CP_HOST>" 
     ```
    
-4. Configure server role.
-    ``` toml
-    [server]
-    server_role = "control-plane"
-    ```
-
-5. Configure super admin credentials.
+3. Configure super admin credentials.
     ```
     [super_admin]
     username = "<APIM_SUPER_ADMIN_USERNAME>"
@@ -381,7 +369,7 @@ Configure the Control Plane to communicate with the Gateway.
     create_admin_account = true
     ```
 
-6. Configure the following configs to enable email as username.
+4. Configure the following configs to enable email as username.
     ``` toml
     [tenant_mgt]
     enable_email_domain = true
@@ -394,7 +382,7 @@ Configure the Control Plane to communicate with the Gateway.
     class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
     ```
 
-7. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
+5. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the database server, and the JDBC driver. Sample shows configuring datasource using MySQL.
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, see [Setting up databases](setting-up-databases.md).
 
          ```toml tab='apim_db'
@@ -438,7 +426,7 @@ Configure the Control Plane to communicate with the Gateway.
          pool_options.defaultAutoCommit=true
          ```
 
-8. Update the following configurations with the hostname of the Identity Server.
+6. Update the following configurations with the hostname of the Identity Server.
     ``` toml
     [apim.key_manager]
     service_url = "https://<IS_HOST>:9446/services/"
@@ -446,13 +434,13 @@ Configure the Control Plane to communicate with the Gateway.
     password = "<IS_SUPER_ADMIN_PASSWORD>"
     ```
 
-9. Disable subscription validation as follows.
+7. Disable subscription validation as follows.
     ``` toml
     [apim.key_manager]
     allow_subscription_validation_disabling = true
     ```
    
-10. Configure the gateway environment.
+8. Configure the gateway environment.
     ``` toml
     [apim]
     gateway_type = "Regular,APK,AWS"
@@ -483,10 +471,10 @@ Configure the Control Plane to communicate with the Gateway.
         to the 9443 port of the Gateway node, while http_endpoint and https_endpoint points to the http and https nio 
         ports (8280 and 8243).
 
-11. Configure the following traffic manager configurations.
+9. Configure the following traffic manager configurations.
     ``` toml
     [apim.throttling]
-    throttle_decision_endpoints = ["tcp://<APIM_CP_HOST>:5672"]
+    throttle_decision_endpoints = ["tcp://<APIM_TM_HOST>:5672"]
     username= "$ref{super_admin.username}@carbon.super"
     password= "$ref{super_admin.password}"
 
@@ -503,17 +491,17 @@ Configure the Control Plane to communicate with the Gateway.
     password= "$ref{super_admin.password}"
 
     [[apim.throttling.url_group]]
-    traffic_manager_urls = ["tcp://<APIM_CP_HOST>:9611"]
-    traffic_manager_auth_urls = ["ssl://<APIM_CP_HOST>:9711"]
+    traffic_manager_urls = ["tcp://<APIM_TM_HOST>:9611"]
+    traffic_manager_auth_urls = ["ssl://<APIM_TM_HOST>:9711"]
     ```
 
-12. Add the following configuration to increase the header size.
+10. Add the following configuration to increase the header size.
     ``` toml
     [transport.https.properties]
     maxHttpHeaderSize = 16384
     ```
 
-13. Configure token exchange.
+11. Configure token exchange.
 
     ``` toml
     [oauth.grant_type.token_exchange]
@@ -522,24 +510,165 @@ Configure the Control Plane to communicate with the Gateway.
     iat_validity_period = "1h"
     ```   
 
-14. Configure cache invalidation.
+12. Configure cache invalidation.
     ``` toml
     [apim.cache_invalidation]
     enable = true
     domain = "control-plane-domain"
     ```
     
-15. To configure additional application attributes for Manual Client Registration, follow the steps in [Configuring Additional Attributes](https://ob.docs.wso2.com/en/latest/tryout-flows/accelerator-with-is-and-apim/setup-fskm-artifacts/#configuring-additional-attributes).
+13. Add event hub configuration.
+
+    ``` toml
+    [apim.event_hub]
+    enable = true
+    username = "$ref{super_admin.username}"
+    password = "$ref{super_admin.password}"
+    service_url = "https://<APIM_CP_HOST>:9443/services/"
+    event_listening_endpoints = ["tcp://<APIM_CP_HOST>:5672"]
+    ```
+
+14. To configure additional application attributes for Manual Client Registration, follow the steps in [Configuring Additional Attributes](https://ob.docs.wso2.com/en/latest/tryout-flows/accelerator-with-is-and-apim/setup-fskm-artifacts/#configuring-additional-attributes).
+
+### Configure the Traffic Manager Node
+Configure the Traffic Manager to communicate with the Control Plane.
+
+1. Open the `<APIM_TM_HOME>/repository/conf/deployment.toml` file.
+2. Set the hostname of the API Manager:
+    ``` toml
+    [server]
+    hostname = "<APIM_TM_HOST>" 
+    ```
+
+3. Configure super admin credentials.
+    ```
+    [super_admin]
+    username = "<APIM_SUPER_ADMIN_USERNAME>"
+    password = "<APIM_SUPER_ADMIN_PASSWORD>"
+    create_admin_account = true
+    ```
+
+4. Configure the following configs to enable email as username.
+    ``` toml
+    [tenant_mgt]
+    enable_email_domain = true
+
+    [user_store]
+    type = "database_unique_id"
+    class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
+    ```
+
+5. Add shared_db and apim db configurations.
+    - Given below are sample configurations for a MySQL database. For other DBMS types and more information, see [Setting up databases](setting-up-databases.md).
+
+         ```toml tab='shared_db'
+         [database.shared_db]
+         url = "jdbc:mysql://<DB_HOST>:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
+         username = "root"
+         password = "root"
+         driver = "com.mysql.jdbc.Driver"
+         ```
+
+         ```toml tab='apim_db'
+         [database.apim_db]
+         url = "jdbc:mysql://<DB_HOST>:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
+         username = "root"
+         password = "root"
+         driver = "com.mysql.jdbc.Driver"
+         ```
+
+6. Update the following configurations with the hostname of the Identity Server.
+    ``` toml
+    [apim.key_manager]
+    service_url = "https://<IS_HOST>:9446/services/"
+    username = "<IS_SUPER_ADMIN_USERNAME>"
+    password = "<IS_SUPER_ADMIN_PASSWORD>"
+    ```
+
+7. Disable subscription validation as follows.
+    ``` toml
+    [apim.key_manager]
+    allow_subscription_validation_disabling = true
+    ```
+
+8. Configure the gateway environment.
+    ``` toml
+    [[apim.gateway.environment]]
+    name = "Default"
+    type = "hybrid"
+    gateway_type = "Regular"
+    provider = "wso2"
+    display_in_api_console = true
+    description = "This is a hybrid gateway that handles both production and sandbox token traffic."
+    show_as_token_endpoint_url = true
+    service_url = "https://<APIM_GW_HOST>:${mgt.transport.https.port}/services/"
+    username= "${super_admin.username}"
+    password= "${super_admin.password}"
+    ws_endpoint = "ws://<APIM_GW_HOST>:9099"
+    wss_endpoint = "wss://<APIM_GW_HOST>:8099"
+    http_endpoint = "http://<APIM_GW_HOST>:8280"
+    https_endpoint = "https://<APIM_GW_HOST>:8243"
+    websub_event_receiver_http_endpoint = "http://<APIM_GW_HOST>:9021"
+    websub_event_receiver_https_endpoint = "https://<APIM_GW_HOST>:8021"
+    ```
+
+   !!! info
+   This configuration is used for deploying APIs to the Gateway and for connecting the Developer Portal component
+   to the Gateway if the Gateway is shared across tenants. If the Gateway is not used by multiple tenants, you can
+   create a Gateway Environment using the Admin Portal. Note that in the above configurations, service_url points
+   to the 9443 port of the Gateway node, while http_endpoint and https_endpoint points to the http and https nio
+   ports (8280 and 8243).
+
+9. Configure the following traffic manager configurations.
+    ``` toml
+    [apim.throttling]
+    throttle_decision_endpoints = ["tcp://<APIM_TM_HOST>:5672"]
+    username= "$ref{super_admin.username}@carbon.super"
+    password= "$ref{super_admin.password}"
+
+    [apim.throttling.policy_deploy]
+    username = "$ref{super_admin.username}@carbon.super"
+    password = "$ref{super_admin.password}"
+
+    [apim.throttling.jms]
+    username = "am_admin!wso2.com!carbon.super"
+    password = "$ref{super_admin.password}"
+
+    [apim.event_hub.jms]
+    username="am_admin!wso2.com!carbon.super"
+    password= "$ref{super_admin.password}"
+
+    [[apim.throttling.url_group]]
+    traffic_manager_urls = ["tcp://<APIM_TM_HOST>:9611"]
+    traffic_manager_auth_urls = ["ssl://<APIM_TM_HOST>:9711"]
+    ```
+
+10. Add event hub configuration.
+    ``` toml
+    [apim.event_hub]
+    enable = true
+    username = "$ref{super_admin.username}"
+    password = "$ref{super_admin.password}"
+    service_url = "https://<APIM_CP_HOST>:9443/services/"
+    event_listening_endpoints = ["tcp://<APIM_CP_HOST>:5672"]
+    ```
 
 ### Start the servers
 
-1. Start the Control Plane Node.
-   - Navigate to the `<APIM_CP_HOME>/bin` directory and run the following command:
-     ```bash
-     sh api-manager.sh -Dprofile=control-plane
-     ```
-2. Start the Gateway Worker Node. 
-   - Navigate to the `<APIM_GW_HOME>/bin` directory and run the following command:
+1. Start the Traffic Manager Node. 
+    - Navigate to the `<APIM_TM_HOME>/bin` directory and run the following command:
       ```bash
-      sh api-manager.sh -Dprofile=gateway-worker
+      sh traffic-manager.sh
+      ```
+      
+2. Start the Gateway Worker Node.
+    - Navigate to the `<APIM_GW_HOME>/bin` directory and run the following command:
+     ```bash
+     sh gateway.sh
+     ```
+   
+3. Start the Control Plane Node. 
+   - Navigate to the `<APIM_CP_HOME>/bin` directory and run the following command:
+      ```bash
+      sh api-cp.sh
       ```

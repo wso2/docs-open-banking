@@ -4,4 +4,3 @@ regional open banking standard.
 
 - [Extending Identity Server Accelerator extensions](../develop/develop-is-toolkit.md)
 - [Extending API Manager extensions](../develop/develop-apim-toolkit.md)
-
