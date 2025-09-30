@@ -44,17 +44,18 @@ can quickly set up and try out a basic flow.
               
 2. WSO2 Open Banking Accelerator contains the following accelerators:
    
-    - wso2-fsiam-accelerator-4.x.0
-    
+    - wso2-fsiam-accelerator-4.x.x
+    - wso2-fsam-accelerator-4.x.x
 
-!!!note 
-    This document uses the following placeholders to refer to the following products:
+
+3. This document uses the following placeholders to refer to the following products:
         
-        | Product                                       | Placeholder                |
-        |-----------------------------------------------|----------------------------|
-        | WSO2 Identity Server                          | `<IS_HOME>`                |
-        | WSO2 API Manager                              | `<APIM_HOME>`              |
-        | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
+    | Product                                       | Placeholder                  |
+    |-----------------------------------------------|------------------------------|
+    | WSO2 Identity Server                          | `<IS_HOME>`                  |
+    | WSO2 API Manager                              | `<APIM_HOME>`                |
+    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>`   |
+    | WSO2 Open Banking API Manager Accelerator     | `<OB_APIM_ACCELERATOR_HOME>` |
 
 ## Getting WSO2 Updates
 
@@ -77,7 +78,7 @@ improvements that are released by WSO2. You need to update the base products and
         ./wso2update_windows.exe
         ```
 
-2. Go to `<OB_IS_ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
+2. Go to `<OB_ACCELERATOR_HOME>/bin` and run the WSO2 Update tool:
 
     - Repeat this step for the WSO2 Open Banking Identity Server accelerator.
 

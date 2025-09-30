@@ -1,4 +1,4 @@
-The `customErrorFormatter.xml` file which resides inside the extracted fs-apim-mediation-artifacts-1.0.0.zip built in [Create Policies](../learn/create-policies.md) section is used to format error responses in a consistent JSON structure. This sequence processes error properties set by various policies and generates a standardized error response.
+The [customErrorFormatter.xml](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/common/custom-error-formatter/customErrorFormatter.xml) file  is used to format error responses in a consistent JSON structure. This sequence processes error properties set by various policies and generates a standardized error response.
 
 ## Configuration Steps
 

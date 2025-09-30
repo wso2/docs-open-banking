@@ -27,38 +27,24 @@ products.
 2. WSO2 Open Banking Accelerator contains the following accelerators:
    
     - wso2-fsiam-accelerator-4.0.0
-    
+    - wso2-fsam-accelerator-4.0.0
+
 3. This document uses the following placeholders to refer to the following products:
         
-    | Product                                       | Placeholder                |
-    |-----------------------------------------------|----------------------------|
-    | WSO2 Identity Server                          | `<IS_HOME>`                |
-    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>` |
+    | Product                                       | Placeholder                  |
+    |-----------------------------------------------|------------------------------|
+    | WSO2 Identity Server                          | `<IS_HOME>`                  |
+    | WSO2 API Manager                              | `<APIM_HOME>`                |
+    | WSO2 Open Banking Identity Server Accelerator | `<OB_IS_ACCELERATOR_HOME>`   |
+    | WSO2 Open Banking API Manager Accelerator     | `<OB_APIM_ACCELERATOR_HOME>` |
 
-### Installing WSO2 Open Banking AM Artifacts
+4. Place the relevant accelerator zip files and extract them in their respective product homes:
 
-!!! note
-    If you are planning to use Manual Client Regitration through DevPortal follow the below steps. Else skip this section.
+    | File                             | Directory location to place the Accelerator |
+    | -------------------------------- | ------------------------------------------- |
+    | wso2-fsiam-accelerator-4.x.0.zip | <IS_HOME>                                   |
+    | wso2-fsam-accelerator-4.x.0.zip  | <APIM_HOME>                                 |
 
-1. Download and extract the latest Open Banking Accelerator 4.1.x AM Artifacts. 
-
-    - Current latest version [4.1.1](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.1).
-              
-2. WSO2 Open Banking AM Accelerator contains the following artifacts: 
-   
-    - org.wso2.financial.services.accelerator.common-4.1.1.jar
-    - org.wso2.financial.services.accelerator.keymanager-4.1.1.jar
-
-3. Download the configuration files from the locations given below.
-
-    - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
-    - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
-
-4. This document uses the following placeholders to refer to the following products:
-        
-    | Product                                   | Placeholder                |
-    |-------------------------------------------|----------------------------|
-    | WSO2 API Manager                          | `<APIM_HOME>`              |
 
 ## Getting WSO2 Updates 
 
@@ -81,7 +67,7 @@ improvements that are released by WSO2. You need to update the base products and
         ./wso2update_windows.exe
         ```
 
-2. Go to `<OB_IS_ACCELERATOR_HOME>/bin` of the WSO2 Identity Server side accelerator and run the WSO2 Update tool:
+2. Go to `<OB_ACCELERATOR_HOME>/bin` of the WSO2 Identity Server side accelerator and run the WSO2 Update tool:
 
     ```bash tab='On Linux'
     ./wso2update_linux 
@@ -131,19 +117,32 @@ and run the merge script as follows:
 
         IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
 
-2. Copy the downloaded WSO2 Open Banking APIM artifacts to the respective directories of the API Manager base product. Use the table to locate the respective directories of the base products:
+2. To copy the accelerator files to the API Manager, go to the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin` directory and run the merge script as follows:
+   
+    ```bash tab='On Linux'
+    ./merge.sh
+    ```
+    
+    ```bash tab='On Mac'
+    ./merge.sh
+    ```
+    
+    ```bash tab='On Windows'
+    ./merge.ps1
+    ```
 
-    !!! note
-        If you are planning to use Manual Client Regitration through DevPortal follow the below step. Else skip this section.
+    ??? warning "If you are using windows platform..."
+        If you are using windows platform, since the merge.ps1 file is not digitally signed yet,
+        your powershell might prevent you from running this script normally. In that case you
+        may need to run it in a powershell instance where its execution policy is set to bypass mode.
+        
+        Use the following command to run it in execution policy bypassed powershell environment.
 
-    | File                                                           | Directory location to place the artifact                          |
-    |----------------------------------------------------------------|-----------------------------------------------------------------  |
-    | `org.wso2.financial.services.accelerator.common-4.1.x.jar`     | `<APIM_HOME>/repository/components/dropins`                       |
-    | `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar` | `<APIM_HOME>/repository/components/dropins`                       |
-    | `financial-services.xml.j2`                                    | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
-    | `financial-services.xml`                                       | `<APIM_HOME>/repository/conf`                                     |
+        ```
+        powershell -executionpolicy bypass .\merge.ps1
+        ```
 
-3. Download the sample [Banking backend](../assets/attachments/backend.zip), extract the zip file and place the `api#fs#backend.war` inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+        IMPORTANT : Do not run any other unverified scripts using this way. This is a temporary solution. 
 
 ## Setting up JAVA_HOME
 
@@ -281,6 +280,14 @@ can be applied using a single configuration file, which is the `deployment.toml`
     - Rename `wso2is-7.1.0-deployment.toml` to `deployment.toml`.
     
     - Copy the `deployment.toml` file to the `<IS_HOME>/repository/conf` directory to replace the existing file.
+
+2. Replace the existing `deployment.toml` file in the API Manager as follows:
+
+    - Go to the `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/repository/resources` directory.
+    
+    - Rename `wso2am-4.5.0-deployment.toml` to `deployment.toml`.
+    
+    - Copy the `deployment.toml` file to the `<APIM_HOME>/repository/conf` directory to replace the existing file.
       
 2. For instructions on how to configure the deployment.toml file, see the following topics:
 

@@ -23,7 +23,7 @@ Given below is a product matrix for different versions of WSO2 Open Banking:
 
 | Version | Mandatory Components                                                                          | Additional Components |
 |---------|-----------------------------------------------------------------------------------------------| ----------------------|
-| 4.0.0   | wso2-fsiam-accelerator-4.0.0                                                                   | |
+| 4.0.0   | wso2-fsiam-accelerator-4.0.0 <br/>  wso2-fsam-accelerator-4.0.0    | |
 | 3.0.0   | wso2-obam-accelerator-3.0.0 <br/> wso2-obiam-accelerator-3.0.0 <br/>wso2is-extensions-1.2.10 | wso2-obbi-accelerator-3.0.0 |
 | 2.0.0   | wso2-obam-2.0.0 <br/> wso2-obiam-2.0.0                                                        | wso2am-analytics-3.1.0 <br/> wso2-obbi-2.0.0 <br/> wso2ei-6.6.0 |
 | 1.5.0   | wso2-obam-1.5.0 <br/> wso2-obkm-1.5.0                                                         | wso2am-analytics-2.6.0 <br/> wso2-obbi-1.5.0 <br/> wso2ei-6.4.0 |
@@ -52,7 +52,7 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
       </tbody>
    </table>
 
-If you are using WSO2 API Manager and WSO2 Identity Server:
+- If you are using WSO2 API Manager and WSO2 Identity Server:
 
    <table>
       <tr>

@@ -30,9 +30,6 @@ See [WSO2 Open Banking IAM Accelerator documentation](setting-up-servers-with-is
 for instructions on how to set up the WSO2 Open Banking IAM Accelerator.
 
 ### Configure WSO2 Identity Server
-
-!!!note 
-    Follow the below steps if you are planning to use Manual Client Registration through DevPortal. Else skip this section.
     
 1. Add following configurations in the <IS_HOME>/repository/conf/deployment.toml file.
     ``` toml
@@ -106,45 +103,39 @@ to exchange the certificates between the WSO2 API-M nodes and Identity Server.
 You can create the necessary databases for the API-M deployment on a separate server and configure each node to connect to the appropriate databases.
 Follow the instructions in the [Setting up databases](setting-up-databases.md) to create and configure the databases.
 
-### Installing WSO2 Open Banking API-M Artifacts
+### Installing WSO2 Open Banking APIM Accelerator
 
-!!! note
-    Follow the below steps if you are planning to use Manual Client Registration through DevPortal. Else skip this section.
+1. Download and extract the latest Open Banking Accelerator 4.x.x AM Accelerator.
 
-1. Download the configuration files from the following locations:
+2. Place the extracted APIM accelerator to the root directories of both Gateway node, Control Plane node and Traffic Manager node. 
 
-    - [financial-services.xml.j2](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/resources/conf/templates/repository/conf/financial-services.xml.j2)
-    - [financial-services.xml](https://github.com/wso2/financial-services-accelerator/blob/main/financial-services-accelerator/accelerators/fs-apim/carbon-home/repository/conf/financial-services.xml)
+3. Run the merge script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin`:
 
-2. Download and extract the latest Open Banking Accelerator 4.1.x AM Artifacts.
+    ``` bash tab='On Linux'
+    ./merge.sh
+    ```
 
-    - Latest release: [Version 4.1.1](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.1.1)
+    ``` bash tab='On Mac'
+    ./merge.sh
+    ```
+    
+    ``` powershell tab='On Windows'
+    ./merge.ps1
+    ```
 
-   The WSO2 Open Banking AM Accelerator contains the following artifacts:
+4. Run the configure file in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin`:
 
-    - `org.wso2.financial.services.accelerator.common-4.1.x.jar`
-    - `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`
+    ``` bash tab="MySQL"
+    ./configure.sh
+    ```
 
-3. Copy the downloaded WSO2 Open Banking API-M artifacts to the respective directories of Gateway node, Control Plane node and Traffic Manager node. 
-Use the table to locate the respective directories of the base products:
+    ``` bash tab='On Mac'
+    ./configure.sh
+    ```
+    
+    ``` powershell tab='On Windows'
+    ./configure.ps1
 
-    | File                                                            | Directory location to place the artifact                          |
-    |-----------------------------------------------------------------|-------------------------------------------------------------------|
-    | `org.wso2.financial.services.accelerator.common-4.1.x.jar`      | `<APIM_HOME>/repository/components/dropins`                       |
-    | `org.wso2.financial.services.accelerator.keymanager-4.1.x.jar`  | `<APIM_HOME>/repository/components/dropins`                       |
-    | `financial-services.xml.j2`                                     | `<APIM_HOME>/repository/resources/conf/templates/repository/conf` |
-    | `financial-services.xml`                                        | `<APIM_HOME>/repository/conf`                                     |
-
-4. Download the API-M Meditation Artifacts: [fs-apim-mediation-artifacts-1.0.0.zip](https://github.com/wso2/financial-services-apim-mediation-policies/releases/tag/v1.0.0).
-5. Extract the downloaded zip file.
-   Use the table to locate the respective directories of the base products:
-
-   | File                                             | Directory location to place the artifact                                       |
-   |--------------------------------------------------|--------------------------------------------------------------------------------|
-   | `consent-enforcement-payload-mediator-1.0.0.jar` | `<APIM_HOME>/repository/component/lib`                                         |
-   | `mtls-header-enforcement-mediator-1.0.0.jar`     | `<APIM_HOME>/repository/component/lib`                                         |
-   | `dynamic-client-registration-mediator-1.0.0.jar` | `<APIM_HOME>/repository/component/lib`                                         |
-   | `customErrorFormatter.xml`                       | `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences`   |
 
 ### Configure the Gateway Node
 Configure the Gateway to communicate with the Control Plane.

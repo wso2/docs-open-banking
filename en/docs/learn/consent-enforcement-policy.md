@@ -21,7 +21,7 @@ Create an API Level Policy by following the [Creating API Level Policy](../learn
 
 #### Policy File
 
-Upload the consentEnforcementPolicy.j2 policy file which resides inside the extracted fs-apim-mediation-artifacts-1.0.0.zip built in [Create Policies](../learn/create-policies.md) section.
+Upload the consentEnforcementPolicy.j2 policy file which resides inside the `<APIM_HOME>/<OB_APIM_ACCELERATOR _HOME>/repository/resources/mediation-policies` folder.
 
 #### Policy Attributes
 

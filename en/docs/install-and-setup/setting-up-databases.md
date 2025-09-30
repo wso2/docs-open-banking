@@ -19,9 +19,9 @@ Once you have successfully prepared the environment for the deployment, you can 
         - `fs_consentdb`
 
     - If you are setting up with WSO2 API Manager create following databases.
-        - `apimgtdb`
-        - `am_configdb`
-        - `userdb` 
+        - `fs_apimgtdb`
+        - `fs_am_configdb`
+        - `fs_am_userdb` 
 
     Commands to create the Databases in MySQL
     ``` 
@@ -219,16 +219,16 @@ database configurations.
    
         |Database|TOML configuration|
         |--------|----------|
-        | apimgtdb|`[database.apim_db]`|
-        | am_configdb|`[database.config]`|
-        | am_configdb|`[database.shared_db]`|
-        | userdb|`[database.user]`|
+        | fs_apimgtdb|`[database.apim_db]`|
+        | fs_am_configdb|`[database.config]`|
+        | fs_am_configdb|`[database.shared_db]`|
+        | fs_am_userdb|`[database.user]`|
 
    - Configure the datasources by following the sample below: 
     
     ``` toml tab="MySQL"
     [database.apim_db]
-    url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
+    url = "jdbc:mysql://localhost:3306/fs_apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
@@ -245,8 +245,8 @@ database configurations.
    
     ``` toml tab="Oracle"
     [database.apim_db]
-    url = "jdbc:oracle:thin:apimgtdb/password@localhost:1521:root"
-    username = "apimgtdb"
+    url = "jdbc:oracle:thin:f_apimgtdb/password@localhost:1521:root"
+    username = "fs_apimgtdb"
     password = "password"
     driver = "oracle.jdbc.driver.OracleDriver"
     
@@ -262,7 +262,7 @@ database configurations.
    
     ``` toml tab="MS SQL"
     [database.apim_db]
-    url = "jdbc:sqlserver://localhost:1433;databaseName=apimgtdb"
+    url = "jdbc:sqlserver://localhost:1433;databaseName=fs_apimgtdb"
     username = "root"
     password = "root"
     driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
@@ -279,7 +279,7 @@ database configurations.
     
     ``` toml tab="PostgreSQL"
     [database.apim_db]
-    url = "jdbc:postgresql://localhost:5432/apimgtdb"
+    url = "jdbc:postgresql://localhost:5432/fs_apimgtdb"
     username = "postgres"
     password = "root"
     driver = "org.postgresql.Driver"
@@ -308,9 +308,9 @@ according to your DBMS.
 | fs_userdb            | `<IS_HOME>/dbscripts`                                                                                             |
 | fs_iskm_configdb     | `<IS_HOME>/dbscripts `                                                                                            |
 | fs_consentdb         | `<IS_HOME>/dbscripts/financial-services/consent` and `<IS_HOME>/dbscripts/financial-services/event-notifications` |
-| apimgtdb          | `<APIM_HOME>/dbscripts/apimgt ` |
-| am_configdb       | `<APIM_HOME>/dbscripts` |
-| userdb       | `<APIM_HOME>/dbscripts` |
+| fs_apimgtdb          | `<APIM_HOME>/dbscripts/apimgt ` |
+| fs_am_configdb       | `<APIM_HOME>/dbscripts` |
+| fs_am_userdb         | `<APIM_HOME>/dbscripts` |
 
 !!! note "Increase the column size of the following table columns:"
 
@@ -333,7 +333,7 @@ according to your DBMS.
          ALTER TABLE SP_METADATA ALTER column VALUE type VARCHAR(4096);
          ```
 
-    2. Execute the relevant SQL command against the `apimgtdb` database. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
+    2. Execute the relevant SQL command against the `fs_apimgtdb` database. Increase the column size of the `VALUE` column in the `SP_METADATA` table:
      
      
          ```sql tab='MySQL'
