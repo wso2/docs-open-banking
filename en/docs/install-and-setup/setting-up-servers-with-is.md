@@ -18,11 +18,15 @@ The accelerators run on top of WSO2 Identity Server, which are referred to as ba
     See the environment [compatibility](prerequisites.md) to determine whether the current accelerator version is
     compatible with your operating system.
 
-1. Download and extract the latest WSO2 Open Banking Accelerator 4.0.0 version.
 
-    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/tag/v4.0.0).
-
-2. WSO2 Open Banking Accelerator contains the following accelerator.
+1. If you have an active WSO2 Open Banking subscription, contact us via 
+[WSO2 Online Support System](https://support.wso2.com/) to download Open Banking Accelerator 4.0.0.
+       
+    !!! note
+        If you don't have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact) 
+        for more information.
+              
+2. Extract the downloaded WSO2 Open Banking Accelerator zip files. WSO2 Open Banking Accelerator 4.0.0 contains the following accelerators:
 
     - wso2-fsiam-accelerator-4.x.0
 
