@@ -48,7 +48,7 @@ can quickly set up and try out a basic flow.
               
 2. Extract the downloaded WSO2 Open Banking Accelerator zip files. WSO2 Open Banking Accelerator 4.0.0 contains the following accelerators:
    
-    - wso2-fsiam-accelerator-4.x.0
+    - wso2-fsiam-accelerator-4.0.0
     
 3. This document uses the following placeholders to refer to the following products:
         

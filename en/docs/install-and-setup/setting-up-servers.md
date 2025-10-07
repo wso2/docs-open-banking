@@ -46,8 +46,8 @@ products.
 
     | File                             | Directory location to place the Accelerator |
     | -------------------------------- | ------------------------------------------- |
-    | wso2-fsiam-accelerator-4.x.0.zip | <IS_HOME>                                   |
-    | wso2-fsam-accelerator-4.x.0.zip  | <APIM_HOME>                                 |
+    | wso2-fsiam-accelerator-4.0.0.zip | <IS_HOME>                                   |
+    | wso2-fsam-accelerator-4.0.0.zip  | <APIM_HOME>                                 |
 
 
 ## Getting WSO2 Updates 
