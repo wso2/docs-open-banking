@@ -38,13 +38,17 @@ can quickly set up and try out a basic flow.
     - WSO2 Identity Server -7.1.0 ,7.0.0
 
 ### Installing WSO2 Open Banking IAM Accelerator
-1. Download and extract the latest Open Banking Accelerator 4.0.0 version. 
 
-    - Current latest version [4.0.0](https://github.com/wso2/financial-services-accelerator/releases/download/v4.0.0/wso2-fsiam-accelerator-4.0.0.zip).
+1. If you have an active WSO2 Open Banking subscription, contact us via 
+[WSO2 Online Support System](https://support.wso2.com/) to download Open Banking Accelerator 4.0.0.
+       
+    !!! note
+        If you don't have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact) 
+        for more information.
               
-2. WSO2 Open Banking Accelerator contains the following accelerators:
+2. Extract the downloaded WSO2 Open Banking Accelerator zip files. WSO2 Open Banking Accelerator 4.0.0 contains the following accelerators:
    
-    - wso2-fsiam-accelerator-4.x.0
+    - wso2-fsiam-accelerator-4.0.0
     
 3. This document uses the following placeholders to refer to the following products:
         
