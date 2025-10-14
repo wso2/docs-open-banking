@@ -153,6 +153,7 @@ nav:
           - 'Consent Enforcement Policy': learn/consent-enforcement-policy.md
           - 'Dynamic Endpoint Policy': learn/dynamic-endpoint-policy.md
           - 'MTLS Enforcement Policy': learn/mtls-enforcement-policy.md
+          - 'JWE Payload Processing Policy': learn/jwe-payload-processing-policy.md
           - 'UK JWS Header Processing Policy': learn/uk-jws-header-processing-policy.md
       - 'Custom Error Formatting': learn/custom-error-formatting.md
   - 'Develop':
