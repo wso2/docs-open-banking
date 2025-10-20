@@ -66,3 +66,4 @@ Upload the jwePayloadProcessingRequestPolicy.j2 policy file which resides inside
 | identityServerBaseUrl | Identity Server Base URL | Base URL of the identity server | true | String | https://localhost:9446 |
 | jweEncryptionAlg | JWE Encrytion Algorithm | Algorithm that is supported to use in encrypting the response paylaod.  | true | String | RSA-OAEP-256, RSA-OAEP, RSA-OAEP-384, RSA-OAEP-512, RSA1_5 |                    |
 | jweEncryptionMethod | JWE Encrytion Method | Encryption Method that is supported to use in encrypting the response paylaod. | true  | String | A128GCM, A256GCM, A192GCM |
+| jweEncryptionCertAlias | JWE Encrytion Certificate Alias | Alias of the private key of the server that is supported to use in encrypting the request paylaod. | true  | String | wso2carbon |
