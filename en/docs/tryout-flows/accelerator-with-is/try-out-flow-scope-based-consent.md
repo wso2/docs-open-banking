@@ -17,8 +17,8 @@ This document provides step by step instructions to invoke the Accounts Informat
       ``` toml
          [financial_services.consent]
          is_pre_initiated_consent=true
-         pre_initiated_consent_scopes=["payments"]
-         scope_based_consent_scopes=["accounts", "balances"]
+         pre_initiated.scopes=["payments"]
+         scope_based.scopes=["accounts", "balances"]
       ```
 
 !!! note
