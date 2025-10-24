@@ -43,21 +43,19 @@ These resources have been created based on the most common WSO2 Open Banking dep
 ### Prerequisites
 
 1. Zip archive file of the Open Banking root and issuer certificates. 
+    - Download the root and issuer [certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox).
+    - Rename the `OB_SandBox_PP_Root.cer` as `root.cer`.
+    - Rename the `OB_SandBox_PP_Issuing.cer` as `issuer.cer`.
+    - Zip the root.cer and issuer.cer in one zip archive file.
 
-- Download the root and issuer [certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox).
-- Rename the `OB_SandBox_PP_Root.cer` as `root.cer`.
-- Rename the `OB_SandBox_PP_Issuing.cer` as `issuer.cer`.
-- Zip the root.cer and issuer.cer in one zip archive file.
-
-2. Keystores directory of wso2 server certs of WSO2 Open Banking Docker Images. (https://github.com/wso2/docker-open-banking/raw/v4.0.0.3/samples/keystores)
+2. [Keystores](https://github.com/wso2/docker-open-banking/raw/v4.0.0.3/samples/keystores) directory of wso2 server certs of WSO2 Open Banking Docker Images. 
 
 3. DB driver file matching to the DB type and version you are going to use with WSO2 API Manager.
 
 4. Host the downloaded artifacts locally or on a remote location. The hosted locations of artifacts will be passed as the build arguments when building the Docker image.
-
-- `OB_TRUSTED_CERTS_URL` - Zip archive location of the certificates of WSO2 Open Banking root and issuer
-- `WSO2_OB_KEYSTORES_URL` - Location of keystores folder of wso2 server certs
-- `RESOURCE_URL` - Location of the DB driver file and [Custom Error Formatter XML](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/common/custom-error-formatter/customErrorFormatter.xml)
+    - `OB_TRUSTED_CERTS_URL` - Zip archive location of the certificates of WSO2 Open Banking root and issuer
+    - `WSO2_OB_KEYSTORES_URL` - Location of keystores folder of wso2 server certs
+    - `RESOURCE_URL` - Location of the DB driver file and [Custom Error Formatter XML](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/common/custom-error-formatter/customErrorFormatter.xml)
 
 ### Update the Dockerfile.
 
@@ -81,7 +79,7 @@ This steps builds the container image for WSO2 Identity Server with WSO2 Open Ba
     ```
     
     ```tab='Hosted remotely'
-    docker build --build-arg BASE_PRODUCT_VERSION=7.1.0 --build-arg OB_TRUSTED_CERTS_URL=http://10.100.8.22:8000/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://10.100.8.22:8000/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://10.100.8.22:8000 -t wso2is-ob:4.0.0 .
+    docker build --build-arg BASE_PRODUCT_VERSION=7.1.0 --build-arg OB_TRUSTED_CERTS_URL=http://<public_ip:port>/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://<public_ip:port>/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://<public_ip:port> -t wso2is-ob:4.0.0 .
     ```
     
 ### Build container image for WSO2 API Manager
@@ -100,7 +98,7 @@ This step builds container image for WSO2 API Manager with WSO2 Open Banking API
     ```
     
     ```tab='Hosted remotely'
-    docker build --build-arg BASE_PRODUCT_VERSION=4.5.0 --build-arg OB_TRUSTED_CERTS_URL=http://10.100.8.22:8000/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://10.100.8.22:8000/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://10.100.8.22:8000 -t wso2am-ob:4.0.0 .
+    docker build --build-arg BASE_PRODUCT_VERSION=4.5.0 --build-arg OB_TRUSTED_CERTS_URL=http://<public_ip:port>/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://<public_ip:port>/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://<public_ip:port> -t wso2am-ob:4.0.0 .
     ```
     
 If you are looking for a Quick Start Guide and deploy the solution, follow 
@@ -127,9 +125,7 @@ This section explains how to deploy the solution using Docker Compose.
     cd <OB_DOCKER_HOME>/samples/docker-compose/wso2am-with-wso2is
     ```
 
-2. Setup Databases for WSO2 API Manager and WSO2 Open Banking Identity Server. Follow the instructions provided in [Setting up Databases](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-databases/) to setup the databases.
-
-3. Deploy the solution by executing the following command:
+2. Deploy the solution by executing the following command:
 
     ```shell
     docker-compose up
