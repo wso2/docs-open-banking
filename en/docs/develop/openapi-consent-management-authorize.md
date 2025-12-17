@@ -29,7 +29,7 @@ To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
+2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
 ``` toml
 [financial_services.extensions.endpoint]
@@ -62,7 +62,7 @@ To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extension.
+2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extension.
 
 ``` toml
 [financial_services.extensions.endpoint]
