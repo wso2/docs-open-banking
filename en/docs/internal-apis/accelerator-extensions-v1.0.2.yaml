@@ -1,0 +1,2529 @@
+openapi: 3.0.1
+info:
+  title: API contract for financial accelerator extension points in WSO2 IS and APIM
+  description: This API defines the REST API contract for services that implements logic to extend the Open Data accelerator flow.
+  contact:
+    name: WSO2
+    url: https://wso2.com/solutions/financial-services/open-banking/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: v1.0.2
+servers:
+  - url: https://virtserver.swaggerhub.com/wso2-f5b/OB4/1.0.0
+    description: SwaggerHub API Auto Mocking
+security:
+  - BasicAuth: []
+  - OAuth2: []
+tags:
+  - name: Client
+    description: APIs for dynamically registering/updating client  related extensions
+  - name: Application
+    description: APIs for registering/updating applications through devportal related extensions
+  - name: Consent
+    description: APIs for consent flow extensions
+  - name: Token
+    description: APIs for token flow extensions
+  - name: Authorize
+    description: APIs for authorize flow extensions
+  - name: Error Handling
+    description: APIs for handling accelerator errors
+paths:
+  /map-accelerator-error-response:
+    post:
+      tags:
+        - Error Handling
+      summary: map accelerator level error formats to custom error formats
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErrorMapperRequestBody'
+            example:
+              requestId: Ec1wMjmiG8
+              data:
+                error:
+                  code: "401"
+                  description: Invalid client ID provided.
+                  operation: consent_create
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForErrorMapper'
+              example:
+                responseId: Ec1wMjmiG8
+                errorCode: 400
+                data:
+                  customErrorCode: invalid
+                  customErrorDescription: Invalid client ID provided.
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /pre-process-client-creation:
+    post:
+      tags:
+        - Client
+      summary: handle pre validations & obtain custom data to store in dynamic client registration step
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientProcessRequestBody'
+            examples:
+              ProcessClientCreation:
+                summary: ProcessClientCreation
+                value:
+                  requestId: Ec1wMjmiG8
+                  data:
+                    clientData:
+                      key: value
+                    softwareStatement:
+                      key: value
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForClientProcess'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      clientData:
+                        key: value
+                failedExample:
+                  summary: Failed response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: ERROR
+                    errorCode: 401
+                    data:
+                      error: invalid_client_metadata
+                      errorDescription: Invalid scope values found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: bad_request
+                  errorDescription: Request does not comply with the schema
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Error occurred while handling the request
+  /pre-process-client-update:
+    post:
+      tags:
+        - Client
+      summary: handle pre validations & obtain  custom data to store in dynamic client update step
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientProcessRequestBody'
+            examples:
+              ProcessClientUpdate:
+                summary: ProcessClientUpdate
+                value:
+                  requestId: Ec1wMjmiG8
+                  data:
+                    clientData:
+                      key: value
+                    softwareStatement:
+                      key: value
+                    existingClientData:
+                      key: value
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForClientProcess'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      clientData:
+                        key: value
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_client_metadata
+                      errorDescription: Invalid scope values found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: bad_request
+                  errorDescription: Request does not comply with the schema
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Error occurred while handling the request
+  /pre-process-client-retrieval:
+    post:
+      tags:
+        - Client
+      summary: handle post client retrieval response generation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientProcessRequestBody'
+            examples:
+              ProcessClientRetrieval:
+                summary: ProcessClientRetrieval
+                value:
+                  requestId: Ec1wMjmiG8
+                  data:
+                    existingClientData:
+                      key: value
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForClientProcess'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      clientData:
+                        key: value
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_client_metadata
+                      errorDescription: Invalid scope values found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: bad_request
+                  errorDescription: Request does not comply with the schema
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Error occurred while handling the request
+  /pre-process-application-creation:
+    post:
+      tags:
+        - Application
+      summary: handle pre validations & changes to the consumer application creation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppCreateProcessRequestBody'
+            examples:
+              ProcessApplicationCreation:
+                summary: ProcessApplicationCreation
+                value:
+                  requestId: Ec1wMjmiG8
+                  data:
+                    appData:
+                      key: value
+                    additionalProperties:
+                      key: value
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForApplicationCreation'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      clientId: value
+                      additionalAppData:
+                        key: value
+                failedExample:
+                  summary: Failed response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: ERROR
+                    errorMessage: Invalid certificate found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: bad_request
+                  errorDescription: Request does not comply with the schema
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Error occurred while handling the request
+  /pre-process-application-update:
+    post:
+      tags:
+        - Application
+      summary: handle pre validations & changes to the consumer application update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppUpdateProcessRequestBody'
+            examples:
+              ProcessApplicationUpdate:
+                summary: ProcessApplicationUpdate
+                value:
+                  requestId: Ec1wMjmiG8
+                  data:
+                    appData:
+                      key: value
+                    additionalProperties:
+                      key: value
+                    existingAppData:
+                      key: value
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForApplicationUpdate'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      additionalAppData:
+                        key: value
+                failedExample:
+                  summary: Failed response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: ERROR
+                    errorMessage: Invalid certificate found
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: bad_request
+                  errorDescription: Request does not comply with the schema
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Error occurred while handling the request
+  /pre-process-consent-creation:
+    post:
+      tags:
+        - Consent
+      summary: handle pre validations & obtain custom consent data to be stored
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreProcessConsentCreationRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForPreProcessConsentCreation'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: invalid_request
+                  errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /enrich-consent-creation-response:
+    post:
+      tags:
+        - Consent
+      summary: "handle post-consent generation -response generation,validations"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrichConsentCreationRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForResponseAlternation'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /pre-process-consent-file-upload:
+    post:
+      tags:
+        - Consent
+      summary: Handle pre validations related to file upload requests.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreProcessFileUploadRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForPreProcessFileUpload'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: invalid_request
+                  errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /enrich-consent-file-response:
+    post:
+      tags:
+        - Consent
+      summary: Modify the response sent in the file upload request after successfully storig the file.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrichFileUploadResponseRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForResponseAlternation'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /pre-process-consent-retrieval:
+    post:
+      tags:
+        - Consent
+      summary: handle pre-consent retrieval validations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreProcessConsentRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForResponseAlternation'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /validate-consent-file-retrieval:
+    post:
+      tags:
+        - Consent
+      summary: Handle validations related to file retrieval and return a response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreProcessConsentRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /pre-process-consent-revoke:
+    post:
+      tags:
+        - Consent
+      summary: handle pre-consent revocation validations when a TPP calls consent /DELETE
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreProcessConsentRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForConsentRevocation'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /enrich-consent-search-response:
+    post:
+      tags:
+        - Consent
+      summary: handle consent search required extension to fetch additional data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrichConsentSearchRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForConsentSearch'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /populate-consent-authorize-screen:
+    post:
+      tags:
+        - Consent
+      summary: handle validations before consent  authorization and consent data to load in consent authorization UI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PopulateConsentAuthorizeScreenRequestBody'
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForPopulateConsentAuthorizeScreen'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Permissions are missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /persist-authorized-consent:
+    post:
+      tags:
+        - Consent
+      summary: handle consent persistence logic and enrich response with user authorization and account mapping data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersistAuthorizedConsentRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForPersistAuthorizedConsent'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: bad_request
+                  errorDescription: Request does not comply with the schema
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Error occurred while handling the request
+  /validate-consent-access:
+    post:
+      tags:
+        - Consent
+      summary: handle custom consent data validations before data access
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateConsentAccessRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 401
+                    data:
+                      errorMessage: invalid_permissions
+                      errorDescription: "The requested permissions are invalid, unknown"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: invalid_request
+                  errorDescription: Permissions are missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: server_error
+                  errorDescription: Failed to process the response
+  /issue-refresh-token:
+    post:
+      tags:
+        - Token
+      summary: Handles refresh token issuance and validations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueRefreshTokenRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForIssueRefreshToken'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Permissions are missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /validate-authorization-request:
+    post:
+      tags:
+        - Authorize
+      summary: Handles pre-user authorization requests
+      operationId: preUserAuthorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateAuthorizationRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForValidateAuthorizationRequest'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 401
+                    errorMessage: invalid_permissions
+                    errorDescription: "The requested permissions are invalid, unknown"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Permissions are missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /validate-event-subscription:
+    post:
+      tags:
+        - Event Subscription
+      summary: handle event subscription validations & storing data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventSubscriptionRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForEventSubscriptionValidation'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                successExampleWithDetails:
+                  summary: Success response With Details
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      callbackUrl: https://test.com
+                      version: "3.1"
+                      eventTypes:
+                        - eventType
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_request
+                      errorMessage: Invalid event subscription payload
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: invalid_request
+                  errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /enrich-event-subscription-response:
+    post:
+      tags:
+        - Event Subscription
+      summary: handle post event-subscription-creation response generation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventSubscriptionRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForEnrichEventSubscription'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      eventSubscriptionResponse: {}
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_equest
+                      errorMessage: Invalid event subscription payload
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /validate-event-creation:
+    post:
+      tags:
+        - Event Creation
+      summary: handle event creation validations & storing data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventCreationRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForEventValidation'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_request
+                      errorMessage: Invalid event creation payload
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: invalid_request
+                  errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /validate-event-polling:
+    post:
+      tags:
+        - Event Polling
+      summary: handle event polling validations & storing data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPollingRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForEventValidation'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_request
+                      errorMessage: Invalid event polling payload
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                data:
+                  errorMessage: invalid_request
+                  errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+  /enrich-event-polling-response:
+    post:
+      tags:
+        - Event Polling
+      summary: handle post event-polling response generation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPollingRequestBody'
+        required: true
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200ForEnrichEventPolling'
+              examples:
+                successExample:
+                  summary: Success response
+                  value:
+                    responseId: Ec1wMjmiG8
+                    status: SUCCESS
+                    data:
+                      eventPollingResponse: {}
+                failedExample:
+                  summary: Failed response
+                  value:
+                    status: ERROR
+                    errorCode: 400
+                    data:
+                      error: invalid_request
+                      errorMessage: Invalid event polling payload
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: invalid_request
+                errorDescription: Data is missing
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                responseId: Ec1wMjmiG8
+                status: ERROR
+                errorMessage: server_error
+                errorDescription: Failed to process the response
+components:
+  schemas:
+    Response200ForErrorMapper:
+      type: object
+      required:
+        - responseId
+        - data
+      properties:
+        responseId:
+          type: string
+        errorCode:
+          type: integer
+        data:
+          type: object
+          description: Defines the custom error response.
+    ErrorMapperRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/ErrorMapperData'
+    ErrorMapperData:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      description: Defines the context data related to the errors.
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code identifying the specific issue.
+        description:
+          type: string
+          description: Detailed description of the error.
+        operation:
+          type: string
+          description: The operation where the error occurred.
+      description: Defines an error object with details.
+    Request:
+      type: object
+      properties:
+        consentInitiationData:
+          type: object
+          description: The initiation payload used by third parties which includes detailed information on data access request.
+        requestHeaders:
+          $ref: '#/components/schemas/RequestHeaders'
+        consentResourcePath:
+          type: string
+          description: To identify requested consent type
+    RequestForEnrichConsentCreationResponse:
+      type: object
+      properties:
+        consentId:
+          type: string
+          description: To identify requested
+        consentResource:
+          $ref: '#/components/schemas/StoredDetailedConsentResourceData'
+        consentResourcePath:
+          type: string
+          description: consent resource path
+    RequestForPreProcessFileUpload:
+      type: object
+      properties:
+        consentId:
+          type: string
+          description: To identify requested
+        consentResource:
+          $ref: '#/components/schemas/StoredDetailedConsentResourceData'
+        fileContent:
+          type: string
+          description: content of the uploaded file
+        consentResourcePath:
+          type: string
+          description: consent resource path
+        requestHeaders:
+          $ref: '#/components/schemas/RequestHeaders'
+    RequestForEnrichFileUploadResponse:
+      type: object
+      properties:
+        consentId:
+          type: string
+          description: To identify consent.
+        fileUploadCreatedTime:
+          type: string
+          description: Timestamp which the file was stored in the database.
+    PreProcessConsentRetrievalData:
+      type: object
+      properties:
+        consentId:
+          type: string
+          description: The consent id
+        consentResource:
+          $ref: '#/components/schemas/StoredBasicConsentResourceData'
+        requestHeaders:
+          $ref: '#/components/schemas/RequestHeaders'
+        consentResourcePath:
+          type: string
+          description: Resource url
+    ConsentSearchData:
+      type: object
+      properties:
+        searchType:
+          type: string
+          enum:
+            - BULK_SEARCH
+            - AMENDMENT_HISTORY
+        searchResult:
+          type: object
+          description: payload
+        enrichmentParams:
+          type: object
+          description: query params
+    PopulateConsentAuthorizeScreenData:
+      type: object
+      properties:
+        consentId:
+          type: string
+          example: An UUID
+        userId:
+          type: string
+          example: Username
+        requestParameters:
+          type: object
+          description: Custom object with request parameters
+        consentResource:
+          $ref: '#/components/schemas/StoredDetailedConsentResourceData'
+    ValidateConsentAccessData:
+      type: object
+      properties:
+        consentId:
+          type: string
+          description: The consent id
+        consentResource:
+          $ref: '#/components/schemas/StoredDetailedConsentResourceData'
+        dataRequestPayload:
+          type: object
+          description: The receipt used by Third parties which includes detailed information on data access request
+    SuccessResponse:
+      type: object
+      required:
+        - responseId
+        - status
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+    SuccessResponseConsentRevocation:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseConsentRevocationData'
+    SuccessResponsePopulateConsentAuthorizeScreen:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponsePopulateConsentAuthorizeScreenData'
+    SuccessResponseForResponseAlternation:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseForResponseAlternationData'
+    SuccessResponseForConsentSearch:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseForConsentSearchData'
+    SuccessResponsePreProcessConsentCreation:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseWithDetailedConsentData'
+    SuccessResponsePreProcessFileUpload:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponsePreProcessFileUploadData'
+    FailedResponse:
+      required:
+        - responseId
+        - data
+        - errorCode
+        - status
+      type: object
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          description: "Indicates the outcome of the request. For a failed operation, this should be set to ERROR."
+          enum:
+            - ERROR
+        errorCode:
+          type: integer
+          description: If any HTTP error code to return.
+        data:
+          type: object
+          description: :"Custom error object to response back"
+    FailedResponseInConsentAuthorize:
+      type: object
+      required:
+        - responseId
+        - data
+        - status
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          description: "Indicates the outcome of the request. For a failed operation, this should be set to ERROR."
+          enum:
+            - ERROR
+        data:
+          $ref: '#/components/schemas/FailedResponseInConsentAuthorizeData'
+    FailedResponseInConsentAuthorizeData:
+      required:
+        - errorMessage
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          description: Error message to be displayed in the URL
+        newConsentStatus:
+          type: string
+          description: New consent status to be set to the consent
+    ErrorResponse:
+      required:
+        - data
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Indicates the outcome of the request. For an error operation, this should be set to ERROR."
+          enum:
+            - ERROR
+        data:
+          type: object
+          description: :"Custom error object to response back"
+    PreProcessConsentCreationRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/Request'
+    EnrichConsentCreationRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/RequestForEnrichConsentCreationResponse'
+    EnrichFileUploadResponseRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/RequestForEnrichFileUploadResponse'
+    PreProcessFileUploadRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/RequestForPreProcessFileUpload'
+    PreProcessConsentRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/PreProcessConsentRetrievalData'
+    EnrichConsentSearchRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/ConsentSearchData'
+    PopulateConsentAuthorizeScreenRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/PopulateConsentAuthorizeScreenData'
+    ValidateConsentAccessRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/ValidateConsentAccessData'
+    IssueRefreshTokenRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/IssueRefreshTokenRequestData'
+    IssueRefreshTokenRequestData:
+      type: object
+      properties:
+        grantType:
+          type: string
+          example: authorization_code
+        consentCreatedTime:
+          type: integer
+          format: int64
+        consentValidityPeriod:
+          type: integer
+          format: int64
+        defaultRefreshTokenValidityPeriod:
+          type: integer
+          format: int64
+    Response200ForPreProcessConsentCreation:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponsePreProcessConsentCreation'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForPreProcessFileUpload:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponsePreProcessFileUpload'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForResponseAlternation:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseForResponseAlternation'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForConsentSearch:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseForConsentSearch'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForIssueRefreshToken:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseIssueRefreshToken'
+        - $ref: '#/components/schemas/FailedResponse'
+    SuccessResponseIssueRefreshToken:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseIssueRefreshTokenData'
+    SuccessResponseIssueRefreshTokenData:
+      type: object
+      properties:
+        issueRefreshToken:
+          type: boolean
+        refreshTokenValidityPeriod:
+          type: integer
+          format: int64
+    Response200ForValidateAuthorizationRequest:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - $ref: '#/components/schemas/FailedResponse'
+    ValidateAuthorizationRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/ValidateAuthorizationRequestBodyData'
+    ValidateAuthorizationRequestBodyData:
+      type: object
+      properties:
+        requestObject:
+          type: object
+      description: full request object
+    Response200ForConsentRevocation:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseConsentRevocation'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForPopulateConsentAuthorizeScreen:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponsePopulateConsentAuthorizeScreen'
+        - $ref: '#/components/schemas/FailedResponseInConsentAuthorize'
+    SuccessResponseConsentRevocationData:
+      type: object
+      properties:
+        revocationStatusName:
+          type: string
+          description: Name for the revoked status
+        requireTokenRevocation:
+          type: string
+          description: Require access token to be revoked
+    SuccessResponseForResponseAlternationData:
+      type: object
+      properties:
+        responseHeaders:
+          type: object
+          description: Headers to be included in the response.
+        modifiedResponse:
+          type: object
+          description: Generated custom response body
+    SuccessResponseForConsentSearchData:
+      type: object
+      properties:
+        enrichedSearchResult:
+          type: object
+          description: Enriched search result
+    SuccessResponseWithDetailedConsentData:
+      type: object
+      properties:
+        consentResource:
+          $ref: '#/components/schemas/DetailedConsentResourceData'
+    SuccessResponsePreProcessFileUploadData:
+      type: object
+      properties:
+        consentStatus:
+          type: string
+          description: "New consent status after the file upload is successful."
+        userId:
+          type: string
+          description: "Id of the user doing the file upload. Used for auditing purposes."
+    PersistAuthorizedConsentRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/PersistAuthorizedConsent'
+    PersistAuthorizedConsent:
+      type: object
+      properties:
+        consentId:
+          type: string
+        isApproved:
+          type: boolean
+        userGrantedData:
+          $ref: '#/components/schemas/UserGrantedData'
+        consentResource:
+          $ref: '#/components/schemas/StoredDetailedConsentResourceData'
+    UserGrantedData:
+      type: object
+      properties:
+        requestParameters:
+          type: object
+        authorizedResources:
+          $ref: '#/components/schemas/AuthorizedResources'
+        userId:
+          type: string
+    Response200ForPersistAuthorizedConsent:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponsePersistAuthorizedConsent'
+        - $ref: '#/components/schemas/FailedResponseInConsentAuthorize'
+    SuccessResponsePersistAuthorizedConsent:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/SuccessResponseWithDetailedConsentData'
+            - $ref: '#/components/schemas/SuccessResponseWithDetailedConsentDataAndAmendments'
+    SuccessResponseWithDetailedConsentDataAndAmendments:
+      type: object
+      properties:
+        consentResource:
+          $ref: '#/components/schemas/DetailedConsentResourceDataWithAmendments'
+    DetailedConsentResourceData:
+      type: object
+      properties:
+        type:
+          type: string
+        status:
+          type: string
+        validityTime:
+          type: integer
+          format: int64
+        recurringIndicator:
+          type: boolean
+        frequency:
+          type: integer
+        receipt:
+          type: object
+        attributes:
+          type: object
+        authorizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Authorization'
+    DetailedConsentResourceDataWithAmendments:
+      type: object
+      properties:
+        type:
+          type: string
+        status:
+          type: string
+        validityTime:
+          type: integer
+          format: int64
+        recurringIndicator:
+          type: boolean
+        frequency:
+          type: integer
+        receipt:
+          type: object
+        attributes:
+          type: object
+        authorizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Authorization'
+        amendments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmendedAuthorization'
+    StoredBasicConsentResourceData:
+      type: object
+      properties:
+        id:
+          type: string
+        receipt:
+          type: object
+        createdTime:
+          type: integer
+          format: int32
+        updatedTime:
+          type: integer
+          format: int32
+        clientId:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        frequency:
+          type: integer
+        validityTime:
+          type: integer
+          format: int32
+        recurringIndicator:
+          type: boolean
+        attributes:
+          type: object
+    StoredDetailedConsentResourceData:
+      type: object
+      properties:
+        id:
+          type: string
+        receipt:
+          type: object
+        createdTime:
+          type: integer
+          format: int32
+        updatedTime:
+          type: integer
+          format: int32
+        clientId:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        frequency:
+          type: integer
+        validityTime:
+          type: integer
+          format: int32
+        recurringIndicator:
+          type: boolean
+        attributes:
+          type: object
+        authorizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/StoredAuthorization'
+        fileContent:
+          type: string
+    Authorization:
+      type: object
+      properties:
+        userId:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+    AmendedAuthorization:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        amendedResources:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmendedResource'
+    StoredAuthorization:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/StoredResource'
+    Resource:
+      type: object
+      properties:
+        accountId:
+          type: string
+        permission:
+          type: string
+        status:
+          type: string
+    AmendedResource:
+      type: object
+      properties:
+        id:
+          type: string
+        permission:
+          type: string
+        status:
+          type: string
+    StoredResource:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        permission:
+          type: string
+        status:
+          type: string
+    Response200ForClientProcess:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseClientProcess'
+        - $ref: '#/components/schemas/FailedResponseClientProcess'
+    ClientProcessRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/ClientProcessData'
+    ClientProcessData:
+      type: object
+      properties:
+        clientData:
+          type: object
+          description: Client Registration Data. Mandatory for pre-process-client-creation and pre-process-client-update.
+        softwareStatement:
+          type: object
+          description: "Parameters of the decoded SSA. Mandatory for pre-process-client-creation, pre-process-client-update and pre-process-client-retrieval."
+        existingClientData:
+          type: object
+          description: properties of the existing client application. Mandatory for pre-process-client-update.
+      description: Defines the context data related to the client registration.
+    SuccessResponseClientProcess:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseClientProcess_data'
+    SuccessResponseClientProcess_data:
+      type: object
+      properties:
+        clientData:
+          type: object
+      description: Defines the success response.
+    FailedResponseClientProcess:
+      required:
+        - data
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Indicates the outcome of the request. For a failed operation, this should be set to ERROR."
+          enum:
+            - ERROR
+        errorCode:
+          type: integer
+          description: If any HTTP error code to return.
+        data:
+          $ref: '#/components/schemas/FailedResponseClientProcess_data'
+    FailedResponseClientProcess_data:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Provides the error code for error.
+          enum:
+            - invalid_client_metadata
+            - invalid_redirect_uri
+            - invalid_software_statement
+        errorDescription:
+          type: string
+          description: Offers a detailed explanation of the error.
+    EventSubscriptionRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/EventSubscriptionRequest'
+    EventSubscriptionRequest:
+      type: object
+      properties:
+        eventType:
+          type: string
+          enum:
+            - SubscriptionCreation
+            - SingleSubscriptionRetrieval
+            - BulkSubscriptionRetrieval
+            - SubscriptionRetrievalForEventTypes
+            - SubscriptionUpdate
+            - SubscriptionDelete
+        eventSubscriptionData:
+          type: object
+          description: Event Subscription Payload
+    EventCreationRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/EventCreationRequest'
+    EventCreationRequest:
+      type: object
+      properties:
+        eventData:
+          type: object
+          description: Event creation Payload
+    EventPollingRequestBody:
+      type: object
+      required:
+        - requestId
+        - data
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/EventPollingRequest'
+    EventPollingRequest:
+      type: object
+      properties:
+        eventPollingData:
+          type: object
+          description: Event polling data
+    Response200ForEventSubscriptionValidation:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - $ref: '#/components/schemas/SuccessResponseForEventWithDetails'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForEventValidation:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForEnrichEventSubscription:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseForEnrichEventSubscription'
+        - $ref: '#/components/schemas/FailedResponse'
+    Response200ForEnrichEventPolling:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseForEnrichEventPolling'
+        - $ref: '#/components/schemas/FailedResponse'
+    SuccessResponseForEventWithDetails:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseForEventWithDetails_data'
+    SuccessResponseForEventWithDetails_data:
+      type: object
+      properties:
+        callbackUrl:
+          type: string
+        version:
+          type: string
+        eventTypes:
+          type: array
+          items:
+            type: string
+    SuccessResponseForEnrichEventSubscription:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseForEnrichEventSubscription_data'
+    SuccessResponseForEnrichEventSubscription_data:
+      type: object
+      properties:
+        eventSubscriptionResponse:
+          type: object
+          description: Event Subscription Response
+    SuccessResponseForEnrichEventPolling:
+      type: object
+      required:
+        - responseId
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseForEnrichEventPolling_data'
+    SuccessResponseForEnrichEventPolling_data:
+      type: object
+      properties:
+        eventPollingResponse:
+          type: object
+          description: Event Polling Response
+    RequestHeaders:
+      type: object
+      description: Request headers sent by the TPP. Filtered set of headers are sent to the external service.
+    SuccessResponsePopulateConsentAuthorizeScreenData:
+      type: object
+      properties:
+        consentData:
+          type: object
+          additionalProperties: true
+          properties:
+            type:
+              type: string
+              description: The type of consent
+            basicConsentData:
+              type: object
+              description: Structured descriptive text shown on the consent page, split into sections. Each key is a section title, and its value is a list of bullet points displayed under that section.
+              additionalProperties:
+                items:
+                  type: string
+            permissions:
+              type: array
+              description: List of permissions for the consent (optional)
+              items:
+                type: object
+                required:
+                  - uid
+                  - displayValues
+                properties:
+                  uid:
+                    type: string
+                    description: Unique ID for the permission
+                  displayValues:
+                    type: array
+                    description: Permission display values
+                    items:
+                      type: string
+                  initiatedAccounts:
+                    type: array
+                    description: Accounts initiated with this permission
+                    items:
+                      $ref: '#/components/schemas/Account'
+            initiatedAccountsForConsent:
+              type: array
+              description: Initialized accounts for the overall consent (optional)
+              items:
+                $ref: '#/components/schemas/Account'
+            allowMultipleAccounts:
+              type: boolean
+              description: Indicates if multiple consumer accounts can be selected per consent / permission
+            isReauthorization:
+              type: boolean
+              description: Indicates if this is a reauthorization flow (optional)
+            consentMetadata:
+              type: object
+              description: Hidden consent metadata to be forwarded to consent persistence.
+        consumerData:
+          type: object
+          additionalProperties: true
+          description: Consumer related data fetched from the banking backend.
+          properties:
+            accounts:
+              type: array
+              description: List of all user accounts/resources selectable in the UI
+              items:
+                type: object
+                required:
+                  - displayName
+                  - selected
+                allOf:
+                  - $ref: '#/components/schemas/Account'
+                properties:
+                  selected:
+                    type: boolean
+                    description: Whether the account is selected by default
+    AuthorizedResources:
+      type: object
+      additionalProperties: true
+      properties:
+        approval:
+          type: boolean
+          description: Whether the user approved the consent
+        isReauthorization:
+          type: boolean
+          description: Indicates if this was a reauthorization flow (optional)
+        type:
+          type: string
+          description: Type of consent granted (e.g., 'accounts', 'payments', etc.)
+        authorizedData:
+          type: array
+          description: List of granted permissions and corresponding user-selected account data
+          items:
+            type: object
+            required:
+              - accounts
+            properties:
+              permissions:
+                type: array
+                description: Granted permissions (optional if no permissions exist)
+                items:
+                  type: string
+              accounts:
+                type: array
+                description: Accounts selected for the permissions
+                items:
+                  $ref: '#/components/schemas/Account'
+        metadata:
+          type: object
+          description: Consent authorization related metadata.
+    Account:
+      type: object
+      description: A user account or resource representation
+      required:
+        - displayName
+      properties:
+        displayName:
+          type: string
+          description: Account display name
+      additionalProperties: true
+
+    AppCreateProcessRequestBody:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/AppCreateProcessData'
+    AppCreateProcessData:
+      type: object
+      required:
+        - appData
+        - additionalProperties
+      properties:
+        appData:
+          type: object
+          description: OAuth Application Data. Mandatory for pre-process-application-creation.
+        additionalProperties:
+          type: object
+          description: Additional properties reterived from devportal UI. Mandatory for pre-process-application-creation.
+      description: Defines the context data related to the application registration.
+    AppUpdateProcessRequestBody:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: A unique correlation identifier
+          example: Ec1wMjmiG8
+        data:
+          $ref: '#/components/schemas/AppUpdateProcessData'
+    AppUpdateProcessData:
+      type: object
+      required:
+        - appData
+        - additionalProperties
+        - existingAppData
+      properties:
+        appData:
+          type: object
+          description: OAuth Application Data. Mandatory for pre-process-application-update.
+        additionalProperties:
+          type: object
+          description: Additional properties reterived from devportal UI. Mandatory for pre-process-application-update.
+        existingAppData:
+          type: object
+          description: Existing OAuth Application Data. Mandatory for pre-process-application-update.
+      description: Defines the context data related to the application update.
+    Response200ForApplicationCreation:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseApplicationCreation'
+        - $ref: '#/components/schemas/FailedResponseApplicationProcess'
+    SuccessResponseApplicationCreation:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseApplicationCreation_data'
+    SuccessResponseApplicationCreation_data:
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: Unique id to be stored as the clientId
+        additionalAppData:
+          type: object
+          description: Defines the additional properties to store against the application.
+    Response200ForApplicationUpdate:
+      oneOf:
+        - $ref: '#/components/schemas/SuccessResponseApplicationUpdate'
+        - $ref: '#/components/schemas/FailedResponseApplicationProcess'
+    SuccessResponseApplicationUpdate:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        responseId:
+          type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+        data:
+          $ref: '#/components/schemas/SuccessResponseApplicationUpdate_data'
+    SuccessResponseApplicationUpdate_data:
+      type: object
+      properties:
+        additionalAppData:
+          type: object
+          description: Defines the additional properties to store against the application.
+    FailedResponseApplicationProcess:
+      required:
+        - data
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Indicates the outcome of the request. For a failed operation, this should be set to ERROR."
+          enum:
+            - ERROR
+        errorMessage:
+          $ref: '#/components/schemas/FailedResponseApplicationProcessData'
+    FailedResponseApplicationProcessData:
+      required:
+        - errorMessage
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          description: Error message to be returned
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            process: process request generate response
