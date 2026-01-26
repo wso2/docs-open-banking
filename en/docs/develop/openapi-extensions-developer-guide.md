@@ -33,6 +33,6 @@ password = ""
 
 ### Test your customizations
 
-You can use specification compliance related testing cases to verify the Open Banking flows are working as expected with the implemented
+You can use specification compliance-related testing cases to verify the Open Banking flows are working as expected with the implemented
 customizations
 
