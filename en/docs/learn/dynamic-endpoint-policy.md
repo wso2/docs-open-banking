@@ -4,6 +4,9 @@ Dynamic Endpoint Policy is a policy designed to be engaged in the request flow o
 
 - Routes the requests to the consent management service or the actual backend endpoint based on the provided regex expression.
 
+!!! note
+  This should be the last policy engaged into the flow as this will change the *To* header in the synapse layer.
+    
 Create an API Level Policy by following the [Creating API Level Policy](../learn/create-policies.md) and add to all API resources which require this routing mechanism. Find the details to create the policy below.
 
 #### General Details
