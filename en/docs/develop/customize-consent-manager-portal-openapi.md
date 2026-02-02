@@ -1,10 +1,5 @@
 This page explains how the developers can plug in the required toolkit code and customize the Consent Manager Portal by modifying or adding files.
 
-!!! info
-    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
-    3.0.0.77** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
-
 After setting up the required toolkit, the default Consent Manager application is overridden by the Consent Manager 
 application specific to each toolkit. Follow the instructions below to customize the application furthermore.
 
