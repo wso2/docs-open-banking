@@ -169,6 +169,7 @@ nav:
                       - 'Consent Validate': develop/openapi-consent-management-validate.md
                       - 'Consent Authorize': develop/openapi-consent-management-authorize.md
 #                      - 'Consent Amendment History': develop/openapi-consent-amendment-history.md
+                      - 'Customize the Consent Page': develop/openapi-customize-consent-page.md
                       - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
                   - 'Token Flow': develop/openapi-token-flow.md
                   - 'Authorization Flow': develop/openapi-authorization-flow.md
@@ -191,7 +192,7 @@ nav:
                       - 'Consent Core Service': develop/consent-core-service.md
                       - 'Customize the Consent Page': develop/customize-consent-page.md
                       - 'Consent Amendment History': develop/consent-amendment-history.md
-                      - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal.md
+                      - 'Customize the Consent Manager Portal': develop/customize-consent-manager-portal-openapi.md
                   - 'Token Flow Customization':
                       - 'JWT Access Tokens': develop/jwt-access-tokens.md
                       - 'Token Filters': develop/token-filters.md
