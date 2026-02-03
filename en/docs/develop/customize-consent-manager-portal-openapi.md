@@ -176,5 +176,5 @@ Consider the following example. `NewPage.jsx` is a newly added component to the 
 You can import an existing Accelerator component as follows:
 
 ```
-import { Nav.jsx } from '../../accelerator/src/common/Nav.jsx';
+import { Nav } from '../../accelerator/src/common/Nav.jsx';
 ```

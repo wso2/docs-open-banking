@@ -4,7 +4,7 @@ WSO2 Open Banking Accelerator supports Dynamic Client Registration (DCR). The DC
 
 
 !!! note
-    Make sure to refer to the Developer guide for OpenAPI based extensions from the [documentation](../develop/openapi-extensions-developer-guide.md).
+    Make sure to refer to the Developer guide for OpenAPI-based extensions from the [documentation](../develop/openapi-extensions-developer-guide.md).
 
 
 ## Client Creation
