@@ -184,35 +184,17 @@ If the `permissions` object does not contain `initiatedAccounts`, the `Requested
         {
             "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
             "displayValues" : [ "Read Account Information" ],
-            "initiatedAccounts" : [ 
-                {
-                    "accountId" : "DE98765432109876543210",
-                    "displayName" : "iban DE98765432109876543210",
-                    "refType" : "iban"
-                } 
-            ]
+            "initiatedAccounts" : []
         }, 
         {
             "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
             "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
-            "initiatedAccounts" : [ 
-                {
-                    "accountId" : "DE98765432109876543210",
-                    "displayName" : "iban DE98765432109876543210",
-                    "refType" : "iban"
-                } 
-            ]
+            "initiatedAccounts" : []
         }, 
         {
             "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
             "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
-            "initiatedAccounts" : [ 
-                {
-                    "accountId" : "DE98765432109876543210",
-                    "displayName" : "iban DE98765432109876543210",
-                    "refType" : "iban"
-                } 
-            ]
+            "initiatedAccounts" : []
         } 
     ]
     ```
@@ -230,7 +212,7 @@ If the `permissions` object does not contain `initiatedAccounts`, the `Requested
 !!! note
     If both `initiatedAccountsForConsent` and `initiatedAccounts` for a permission are defined, `initiatedAccountsForConsent` replaces the permission's `initiatedAccounts`.
 
-#### Allow Multiple Account Selectionion
+#### Allow Multiple Account Selection
 
 `allowMultipleAccounts` boolean parameter decides whether multiple accounts are allowed per permission/consent. If `true`, a list of account checkboxes are displayed. If `false`, a select is displayed instead. The default value is `false`.
 

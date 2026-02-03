@@ -33,7 +33,7 @@ Follow the instructions below to set up the source code for Consent Manager for 
 
 - For example, the `self-care-portal-frontend/toolkit/src/common/Nav.jsx` file takes precedence over the `self-care-portal-frontend/accelerator/src/common/Nav.jsx` file when the npm build is running.
 
-    !!!note
+    !!! note
         The name of the file and the location relative to the source folder needs to be identical.
 
 A sample structure of the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/self-care-portal-frontend/toolkit/src` folder is shown below:
@@ -45,7 +45,7 @@ A sample structure of the `<IS_HOME>/repository/deployment/server/webapps/consen
     The file extension is mandatory for any imports added. For example,
 
     ```
-    import { logout } from “../login/logout.js”;
+    import { logout } from "../login/logout.js";
     ```
 
     Here, the `.js` extension is compulsory. Otherwise, the webpack throws an error.
@@ -96,13 +96,13 @@ You can add your own files to customize the UI in the `<IS_HOME>/repository/depl
 For example, you can import the `NewComponent.jsx` file by adding the `AppOverride` prefix to the import and providing the full path relative to the toolkit folder.			
 
 ```
-import { NewComponent } from 'AppOverride/src/NewComponent.jsx';
+import { NewComponent } from "AppOverride/src/NewComponent.jsx";
 ```
 
 If you try to import the `NewComponent.jsx` file without adding the `AppOverride` prefix as follows, a bundler error will be thrown.					
 
 ```
-import { NewComponent } from '../NewComponent.jsx';
+import { NewComponent } from "../NewComponent.jsx";
 ```
 
 !!! warning "Important"
@@ -110,7 +110,7 @@ import { NewComponent } from '../NewComponent.jsx';
     The file extension is mandatory for the imports added. For example,
 
     ```
-    import { NewComponent } from ‘AppOverride/src/common/NewComponent.jsx’;
+    import { NewComponent } from "AppOverride/src/common/NewComponent.jsx";
     ```
     
     Here, the `.jsx` extension is compulsory. Otherwise, the webpack throws an error.
@@ -156,7 +156,7 @@ Adding imports to an existing component modifies that file. Follow the [Modifyin
 8. Add the following import to the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/self-care-portal-frontend/toolkit/src/landing_page/Body.jsx` file and use the component as needed.
 
     ```
-    import { NewComponent } from 'AppOverride/src/NewComponent.jsx';
+    import { NewComponent } from "AppOverride/src/NewComponent.jsx";
     ```
 
 9. Navigate to the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/self-care-portal-frontend` directory in a terminal.
@@ -176,5 +176,5 @@ Consider the following example. `NewPage.jsx` is a newly added component to the 
 You can import an existing Accelerator component as follows:
 
 ```
-import { Nav } from '../../accelerator/src/common/Nav.jsx';
+import { Nav } from "../../accelerator/src/common/Nav.jsx";
 ```

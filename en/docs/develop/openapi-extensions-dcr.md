@@ -78,6 +78,7 @@ To enable, follow the steps below:
 The OpenAPI extension for dynamic client data retrieval provides the extensibility to validate the incoming dynamic client registration GET request attributes and send back a customized response according to Open Banking specification requirements. 
 
 ### OpenAPI Extensions
+
 | OpenAPI Extension            | Description                                                                     | OpenAPI Definition                                                                                                                                                 |
 |------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pre-process-client-retrieval | Handle specification-specific custom validations and send back a custom response | [pre-process-client-retrieval/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-retrieval/post) |
