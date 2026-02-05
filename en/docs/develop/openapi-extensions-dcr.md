@@ -10,7 +10,7 @@ specification specific data in Client related operations (create ,read,update), 
 ## Client Creation
 
 The OpenAPI extension for dynamic client creation  provides the extendibility to validate the incoming dynamic client registration request attributes and store custom client data according to Open Banking
-specificatio requirements. The data setting from this extension point will be stored as client metadata
+specification requirements. The data setting from this extension point will be stored as client metadata.
 
 ### OpenAPI Extensions
 | OpenAPI Extension           | Description                                                                              | OpenAPI Definition                                                                                                                                |
