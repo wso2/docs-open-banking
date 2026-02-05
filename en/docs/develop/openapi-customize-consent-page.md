@@ -110,7 +110,7 @@ The table below describes the data elements included in the `consentData` object
 
 #### Basic Consent Details
 
-`basicConsentData` includes separate lists of consent related information to display on the consent page. These details will be displayed in the following format:
+`basicConsentData` includes separate lists of consent-related information to display on the consent page. These details will be displayed in the following format:
 
 ![basic-consent-data](../assets/img/develop/customizing-consent-page/basic-consent-data.png)
 
@@ -174,7 +174,7 @@ If the `permissions` object contains `initiatedAccounts`, the `RequestedPermissi
     ]
     ```
 
-If the `permissions` object does not contain `initiatedAccounts`, the `RequestedPermission` section would look like below:
+If the `permissions` object does not contain `initiatedAccounts`, the `RequestedPermission` section would look like this:
 
 ![permissions-without-accounts](../assets/img/develop/customizing-consent-page/permissions-without-accounts.png)
 
@@ -240,7 +240,7 @@ The `consumerData` object contains all consumer-related information retrieved fr
 
 #### Consumer Accounts
 
-Set of accounts in the bank under the user. `accounts` include an optional `selected` property, set to either `true` or `false`. If `true`, the account will be pre-selected when displayed, before any user action.
+`accounts` object under the `consumerData` object contains the bank accounts belonging to the user. Each account is represented by a `displayName` and an `accountId`. An optional `selected` property, decides whether the account is pre-selected or not. It can be either set to `true` or `false`. If `true`, the account will be pre-selected when displayed, before any user action.
 
 ![account-selected](../assets/img/develop/customizing-consent-page/account-selected.png)
 
