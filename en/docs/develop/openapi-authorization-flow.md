@@ -11,7 +11,7 @@ allowed in the Open Banking  specificatio requirements.
 ### OpenAPI Extensions
 | OpenAPI Extension              | Description                                                                                    | OpenAPI Definition                                                                                                                                            |
 |--------------------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| validate-authorization-request | handle specification speicifc custom validations for the client sending /authorization request | [validate-authorization-request/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Authorize/operation/preUserAuthorization) |
+| validate-authorization-request | handle specification specific custom validations for the client sending /authorization request | [validate-authorization-request/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Authorize/operation/preUserAuthorization) |
 
 
 ### Configuration
