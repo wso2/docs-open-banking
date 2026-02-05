@@ -240,7 +240,7 @@ The `consumerData` object contains all consumer-related information retrieved fr
 
 #### Consumer Accounts
 
-Set of accounts in the bank under the user. `accounts` include an optional `selected` property, set to either `true` or `false`. If `true`, the account will be pre-selected when displayed, before any user action.
+`accounts` object under the `consumerData` object represents the bank accounts belonging to the user `accounts` include an optional `selected` property, set to either `true` or `false`. If `true`, the account will be pre-selected when displayed, before any user action.
 
 ![account-selected](../assets/img/develop/customizing-consent-page/account-selected.png)
 
