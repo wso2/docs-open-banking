@@ -61,6 +61,7 @@ The [Populate Consent Authorization Screen extension](../develop/openapi-consent
                     }
                 ],
                 "allowMultipleAccounts": true,
+                "handleAccountSelectionSeparately": false,
                 "isReauthorization": true,
                 "consentMetadata" : {}
             },
@@ -99,6 +100,7 @@ The response of the Populate Consent Authorization Screen extension consists of 
 - Accounts linked to each requested permission
 - Accounts linked to the complete requested consent
 - Whether multiple account selection is allowed
+- Whether account selection page must be shown separately
 - Whether this is a re-authorization of a previously authorized consent
 - Additional metadata for the consent persistence step (not shown on the page)
 
@@ -223,6 +225,18 @@ If `allowMultipleAccounts` is `true`, the accounts selection will be as follows:
 If `allowMultipleAccounts` is `false`, the accounts selection will be as follows:
 
 ![account-selection](../assets/img/develop/customizing-consent-page/account-selection.png)
+
+#### Should Handle Account Selection Separately
+
+`handleAccountSelectionSeparately` boolean parameter determines whether the account selection and consent details are displayed on separate pages or combined. When set to `true`, the account selection page is shown first; once the user selects their accounts and clicks "Next," a subsequent page displays the selected accounts alongside consent details for final approval. When set to `false`, both account selection and consent details are consolidated into a single page, allowing the user to approve the consent immediately.
+
+If `handleAccountSelectionSeparately` is `true`, the consent page will be as follows:
+![handle-account-selection-separately-true-page-one](../assets/img/develop/customizing-consent-page/handle-account-selection-separately-true-1.png)
+
+![handle-account-selection-separately-true-page-two](../assets/img/develop/customizing-consent-page/handle-account-selection-separately-true-2.png)
+
+If `handleAccountSelectionSeparately` is `false`, the consent page will be as follows:
+![handle-account-selection-separately-false](../assets/img/develop/customizing-consent-page/handle-account-selection-separately-false.png)
 
 #### Is Reauthorization
 
