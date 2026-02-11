@@ -14,11 +14,11 @@ Use these as references to:
 - Deploy the WSO2 Open Banking API Manager Accelerator Module on top of WSO2 API Manager
 - Deploy the WSO2 Open Banking Identity & Access Management Accelerator Module on top of WSO2 Identity Server
 
-The sample Dockerfiles help you build generic Docker images for deploying the respective product servers in containerized environments. Each image includes the JDK, the relevant product distribution, and a set of utility libraries, configurations, custom JDBC drivers, extensions, and other deployable artifacts.
+The sample Dockerfiles helps to build generic Docker images for deploying the respective product servers in containerized environments. Each image includes the JDK, the relevant product distribution, and a set of utility libraries, configurations, custom JDBC drivers, extensions, and other deployable artifacts.
 
 ### Docker Compose Resources
 
-Docker Compose resources are available to help you quickly evaluate the Open Banking setup by deploying:
+Docker Compose resources are available helps to quickly evaluate the Open Banking setup by deploying:
 
 - WSO2 Open Banking Accelerator installed WSO2 Open Banking API Manager, together with
 - WSO2 Open Banking Accelerator installed WSO2 Open Banking Identity & Access Management
@@ -107,7 +107,7 @@ If you are looking for a Quick Start Guide and deploy the solution, follow
 If you want to deploy each Open Banking component in separate containers, follow 
 [Deploy WSO2 Open Banking with Docker](#deploy-wso2-open-banking-with-docker).
 
-To learn how to download WSO2 Updates for your Open Banking Images, see [Download WSO2 Updates](#download-wso2-updates).
+To learn how to download WSO2 Updates for Open Banking Images, see [Download WSO2 Updates](#download-wso2-updates).
 
 ## Deploy WSO2 Open Banking with Docker Compose
 
