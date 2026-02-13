@@ -179,8 +179,8 @@ Similarly assign the **ConsentPortalRole** to the users who have a consumer role
         ```
 
     -  If you are using a different server instance for the Identity Server, update the above configurations as follows.
-        a. Set the USE_DEFAULT_CONFIGS parameter to false.
-        b. Update the SERVER_URL parameter with the URL of the Identity Server.
+            a. Set the `USE_DEFAULT_CONFIGS` parameter to false.
+            b. Update the `SERVER_URL` parameter with the URL of the Identity Server.
 
 3. Open the `<IS_HOME>/repository/conf/deployment.toml` file and update the configurations.
 
