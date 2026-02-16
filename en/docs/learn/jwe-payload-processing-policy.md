@@ -1,13 +1,15 @@
 JWE Payload Processing Policy is a policy designed to be engaged in the request flow of any request that requires decrytption and encryption of the payload. This Policy has two sections.
 
 1. JWE Payload Decryption Mediator
+   
 This mediator will decrypt the JWE encrypted payload in the request and set the decrypted payload back to the message. It will check the content-type of the request payload and if it is a supported content-type (application/jose+jwe), it will proceed with the decryption. In the decryption, it will use the private key of the server keystore to decrypt the payload.
 
 2. JWE Response Payload Encryption Handler
+   
 This handler will encrypt the response payload using JWE and set the encrypted payload back to the message context.
 This method will only proceed with the encryption if the response code is 200 or 201. In the encryption, it will use the public key of the JWKS URL provided when registering the application.
 
-Both of the above implementations supports only "RSA-OAEP-256", "RSA-OAEP", "RSA-OAEP-384", "RSA-OAEP-512" and "RSA1_5" as encryption algorithms and "A128GCM", "A256GCM" and "A192GCM" as encryption methods.
+Both of the above implementations supports only `RSA-OAEP-256`, `RSA-OAEP`, `RSA-OAEP-384`, `RSA-OAEP-512` and `RSA1_5` as encryption algorithms and `A128GCM`, `A256GCM` and `A192GCM` as encryption methods.
 
 Before creating policies, need to build the policy artifacts from the source.
 
@@ -35,10 +37,10 @@ If you want to build the Financial Services APIM Mediation Policies from the sou
 
 1. Once the maven build is successful, navigate to the **fs-apim-mediation-artifacts/target** folder to get the zip file containing all the mediation policies,custom sequences and class mediators & handlers to copy in to WSO2 API Manager.
 
-2. Extract the zip 'fs-apim-mediation-artifacts-1.0.0.zip' and you will notice the following folder structure.
-    - Policy .j2 files - The mediation policy files which need to upload in API Publisher UI and engage to APIs. Below mediation policies are available in this repository.
-    - Custom sequences- Synapse based custom sequence files which need to copy in to `<APIM_Home>/repository/deployment/synapse-cofngis/default/sequences` folder.
-    - lib - This folder contains the jars need to copy in to `<APIM_Home>/repository/lib` folder. It contains jars of the class mediator implementations refer from the policies and custom synapse handler implementations.
+2. Extract the zip `fs-apim-mediation-artifacts-1.0.0.zip` and you will notice the following folder structure.
+    - `Policy .j2 files` - The mediation policy files which need to upload in API Publisher UI and engage to APIs. Below mediation policies are available in this repository.
+    - `Custom sequences`- Synapse based custom sequence files which need to copy in to `<APIM_Home>/repository/deployment/synapse-cofngis/default/sequences` folder.
+    - `lib` - This folder contains the jars need to copy in to `<APIM_Home>/repository/lib` folder. It contains jars of the class mediator implementations refer from the policies and custom synapse handler implementations.
         
 3. Restart the API Manager Server.
 
@@ -56,7 +58,7 @@ Create an API Level Policy by following the [Creating API Level Policy](../learn
 
 #### Policy File
 
-Upload the jwePayloadProcessingRequestPolicy.j2 policy file which resides inside the extracted fs-apim-mediation-artifacts-1.0.0.zip built in above section.
+Upload the `jwePayloadProcessingRequestPolicy.j2` policy file which resides inside the extracted `fs-apim-mediation-artifacts-1.0.0.zip` built in above section.
 
 #### Policy Attributes
 
