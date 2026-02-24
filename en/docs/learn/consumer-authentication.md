@@ -17,7 +17,7 @@ You can enforce Consumer Authentication for the WSO2 Open Banking solution with 
 WSO2 Identity Server. For more information:
 
 - By default, WSO2 Identity Server supports basic authentication and SMS OTP authentication. See [The Default Authenticator](https://is.docs.wso2.com/en/5.11.0/learn/writing-a-new-oauth-client-authenticator/#the-default-authenticator).
-- WSO2 Identity Server provides you with the flexibility of implementing any type of authentication such as biometric, FIDO, Duo etc. See [Identity Federation for Developers](https://is.docs.wso2.com/en/latest/references/extend/federation/write-a-custom-federated-authenticator//).
+- WSO2 Identity Server provides you with the flexibility of implementing any type of authentication such as biometric, FIDO, Duo etc. See [Identity Federation for Developers](https://is.docs.wso2.com/en/latest/references/extend/federation/write-a-custom-federated-authenticator/).
 - WSO2 Identity Server allows you to strengthen the existing authentication by adding an additional authentication step 
 to authenticate with basic authentication, such as FIDO, TOTP. See [Multi-factor Authentication](https://is.docs.wso2.com/en/latest/guides/authentication/mfa/).
 - Once you implement multi-factor authentication, you can configure and deploy those multiple factors in a way that the 

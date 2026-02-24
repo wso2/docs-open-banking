@@ -16,7 +16,7 @@ DCR capabilities with an endpoint that performs the following:
 - Allows registered API consumer applications to access data via open banking APIs
 
 !!! note 
-    The Dynamic Client Registration functionality available in WSO2 Open Banking Accelerator meets the open banking requirements including OAuth2.0 and OpenID Connect standards.
+    The Dynamic Client Registration functionality available in WSO2 Open Banking Accelerator meets the open banking requirements including OAuth 2.0 and OpenID Connect standards.
 
 ## How Dynamic Client Registration works
 
@@ -35,7 +35,7 @@ application access tokens that are required to invoke the open banking APIs.
 
 ## Dynamic Client Registration Request Validations supported by Accelerator
 
-WSO2 Open Banking Accelerator leverages the [OAuth2 Dynamic Client Registration (DCR)](https://is.docs.wso2.com/en/latest/guides/authentication/oidc/oauth-dynamic-client-registration/) endpoint in WSO2 Identity Server as the foundation for Open Banking DCR. Standard Dynamic Client Registration request validations, as specified in the [OAuth 2.0 Dynamic Client Registration Protocol](https://datatracker.ietf.org/doc/html/rfc7591), are handled by WSO2 Identity Server.
+WSO2 Open Banking Accelerator leverages the [OAuth 2.0 Dynamic Client Registration (DCR)](https://is.docs.wso2.com/en/latest/guides/authentication/oidc/oauth-dynamic-client-registration/) endpoint in WSO2 Identity Server as the foundation for Open Banking DCR. Standard Dynamic Client Registration request validations, as specified in the [OAuth 2.0 Dynamic Client Registration Protocol](https://datatracker.ietf.org/doc/html/rfc7591), are handled by WSO2 Identity Server.
 
 In addition, the Open Banking Accelerator provides a set of Open Banking–specific validations out of the box. These built-in validations are included to reduce the implementation effort required from toolkit developers and ensure compliance with Open Banking requirements.
 
@@ -55,4 +55,4 @@ The following validations are supported by the Open Banking Accelerator:
 Toolkit developers can enable or disable these validations at the configuration level. Refer to [Configuring Dynamic Client Registration In-built Validators.](../learn/dynamic-client-registration-configuration.md#configuring-inbuilt-dcr-request-validators).
 
 You can customize the validations performed in the DCR process according to your specification and other requirements.
-For information, see [Implementing OpenAPI based extensions](../develop/openapi-extensions-dcr.md).
+For information, see [OpenAPI Extensions for DCR](../develop/openapi-extensions-dcr.md).

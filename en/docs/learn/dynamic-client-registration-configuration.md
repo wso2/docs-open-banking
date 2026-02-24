@@ -41,10 +41,10 @@ name = "OpenBanking Ltd"
 
 ## Configuring DCR request parameters
 
-According to your specification different types of values are allowed in the registration request. WSO2 Open 
+According to your specification, different types of values are allowed in the registration request. WSO2 Open 
 Banking Accelerator provides the capability to configure the parameters and the values they allow.
     
-- By default, the following values are configured in th deployment toml file. 
+- By default, the following values are configured in the deployment toml file. 
         
     ``` toml
     [[financial_services.app_registration.dcr.params]]
@@ -145,7 +145,7 @@ Banking Accelerator provides the capability to configure the parameters and the 
     include_in_response = false
     ```
 
-- If you want to remove any parameter sending in the response, add the `include_in_response` tag and set it to `false`. For example:
+- If you want to remove any parameter from the response, add the `include_in_response` tag and set it to `false`. For example:
     ``` toml
     [[financial_services.app_registration.dcr.params]]
     name = "Aud"

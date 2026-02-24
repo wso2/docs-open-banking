@@ -6,7 +6,7 @@ WSO2 Open Banking Accelerator on top of the following WSO2 products.
 You can use any of the following base products:
 
 - WSO2 Identity Server - 7.2.0, 7.1.0, 7.0.0
-- WSO2 API Manager - 4.6.0, 4.5.0, 4.4.0
+- WSO2 API Manager - 4.6.0, 4.5.0, 4.4.0, 4.3.0
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -73,12 +73,12 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
          <td><a href="https://wso2.com/api-manager/previous-releases">4.4.0</a></td></td>
       </tr>
       <tr>
-         <th>Combination 02<br></th>
+         <th>Combination 03<br></th>
          <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.1.0</a></td>
          <td><a href="https://wso2.com/api-manager/previous-releases">4.5.0</a></td></td>
       </tr>
       <tr>
-         <th>Combination 02<br></th>
+         <th>Combination 04<br></th>
          <td><a href="https://wso2.com/identity-and-access-management/">7.2.0</a></td>
          <td><a href="https://wso2.com/api-manager/">4.6.0</a></td></td>
       </tr>
