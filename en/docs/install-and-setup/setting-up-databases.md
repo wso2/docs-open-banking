@@ -213,7 +213,7 @@ database configurations.
     pool_options.defaultAutoCommit=true
     ```
 
-2. Add or update the default datasource configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. This step is required of youar setting up with WSO2 API Manager.
+2. Add or update the default datasource configurations in `<APIM_HOME>/repository/conf/deployment.toml` with your database configurations. This step is required of your setting up with WSO2 API Manager.
 
     - Given below is the relevant datasource configuration for each database:
    
