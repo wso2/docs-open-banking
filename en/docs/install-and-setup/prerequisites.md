@@ -48,7 +48,7 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
          <td>WSO2 Identity Server</td>
          <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.0.0</a></td>
          <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.1.0</a></td>
-         <td><a href="https://wso2.com/identity-and-access-management/">7.1.0</a></td>
+         <td><a href="https://wso2.com/identity-and-access-management/">7.2.0</a></td>
       </tr>
       </tbody>
    </table>
