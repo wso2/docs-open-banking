@@ -108,32 +108,32 @@ nav:
             - 'Tryout Payments Flow': tryout-flows/accelerator-with-is-and-apim/try-out-payments-flow.md
             - 'Tryout Confirmation Of Funds Flow': tryout-flows/accelerator-with-is-and-apim/try-out-cof-flow.md  
   - 'Learn':
-    - 'Client Registration': learn/client-registration.md
-    - 'Dynamic Client Registration':
-        - 'Introduction': learn/dynamic-client-registration.md
-        - 'Configuration': learn/dynamic-client-registration-configuration.md
-        - 'Tryout': learn/dynamic-client-registration-try-out.md
-    - 'Manual Client Registration':
-          - 'Introduction': learn/manual-client-registration.md
-          - 'Configuration': learn/manual-client-registration-configuration.md
-          - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
+    - 'Client Registration': 
+        - 'Introduction': learn/client-registration.md
+        - 'Dynamic Client Registration':
+            - 'Introduction': learn/dynamic-client-registration.md
+            - 'Configuration': learn/dynamic-client-registration-configuration.md
+            - 'Tryout': learn/dynamic-client-registration-try-out.md
+        - 'Manual Client Registration':
+            - 'Introduction': learn/manual-client-registration.md
+            - 'Configuration': learn/manual-client-registration-configuration.md
+            - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
     - 'Consumer Authentication':
         - 'Introduction': learn/consumer-authentication.md
-        - 'App-to-App Redirection': learn/app-to-app-redirection.md
-        - 'Identifier-first Authentication': learn/identifier-first.md
+        # - 'App-to-App Redirection': learn/app-to-app-redirection.md
+        # - 'Identifier-first Authentication': learn/identifier-first.md
         - 'CIBA Flow':
             - 'Introduction': learn/ciba.md
             - 'Set up CIBA flow': learn/ciba-set-up-flow.md
     - 'Consent Management':
       - 'Introduction': learn/consent-management.md
+      - 'Built-in Validations': learn/consent-management-validations.md
       - 'Tryout': learn/consent-management-try-out.md
       - 'Consent Manager': learn/consent-manager.md
     - 'Consent Authorization': learn/consent-authorization-intro.md
     - 'API Security':
         - 'Introduction': learn/api-security.md
         - 'Financial grade API (FAPI) Security': learn/fapi.md
-        - 'Configuration': learn/api-security-configuration.md
-        - 'JARM for OAuth 2.0': learn/jarm-for-oauth2.md
         - 'Token Authentication': learn/token-authentication.md
     - 'Event Notification':
       - 'Introduction': learn/event-notification.md
