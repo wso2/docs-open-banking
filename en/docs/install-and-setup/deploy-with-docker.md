@@ -14,11 +14,11 @@ Use these as references to:
 - Deploy the WSO2 Open Banking API Manager Accelerator Module on top of WSO2 API Manager
 - Deploy the WSO2 Open Banking Identity & Access Management Accelerator Module on top of WSO2 Identity Server
 
-The sample Dockerfiles help you build generic Docker images for deploying the respective product servers in containerized environments. Each image includes the JDK, the relevant product distribution, and a set of utility libraries, configurations, custom JDBC drivers, extensions, and other deployable artifacts.
+The sample Dockerfiles helps to build generic Docker images for deploying the respective product servers in containerized environments. Each image includes the JDK, the relevant product distribution, and a set of utility libraries, configurations, custom JDBC drivers, extensions, and other deployable artifacts.
 
 ### Docker Compose Resources
 
-Docker Compose resources are available to help you quickly evaluate the Open Banking setup by deploying:
+Docker Compose resources are available helps to quickly evaluate the Open Banking setup by deploying:
 
 - WSO2 Open Banking Accelerator installed WSO2 Open Banking API Manager, together with
 - WSO2 Open Banking Accelerator installed WSO2 Open Banking Identity & Access Management
@@ -50,14 +50,14 @@ These resources have been created based on the most common WSO2 Open Banking dep
 
 2. [Keystores](https://github.com/wso2/docker-open-banking/raw/v4.0.0.3/samples/keystores) directory of wso2 server certs of WSO2 Open Banking Docker Images. 
 
-3. DB driver file matching to the DB type and version you are going to use with WSO2 API Manager.
+3. DB driver file matching to the DB type and version use for the deployment.
 
 4. Host the downloaded artifacts locally or on a remote location. The hosted locations of artifacts will be passed as the build arguments when building the Docker image.
     - `OB_TRUSTED_CERTS_URL` - Zip archive location of the certificates of WSO2 Open Banking root and issuer
     - `WSO2_OB_KEYSTORES_URL` - Location of keystores folder of wso2 server certs
     - `RESOURCE_URL` - Location of the DB driver file and [Custom Error Formatter XML](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/common/custom-error-formatter/customErrorFormatter.xml)
 
-### Update the Dockerfile.
+### Update database details in the Dockerfiles
 
 1. Setup Databases for WSO2 API Manager and WSO2 Open Banking Identity Server.
     - Follow the instructions provided in [Setting up Databases](https://ob.docs.wso2.com/en/latest/install-and-setup/setting-up-databases/) to setup the databases.
@@ -89,7 +89,7 @@ This step builds container image for WSO2 API Manager with WSO2 Open Banking API
 1. Navigate to `<OB_DOCKER_HOME>/samples/wso2am_with_obam` directory.
 2. Execute `docker build` command as shown below.
 
-     ```tab='Sample'
+    ```tab='Sample'
     docker build --build-arg BASE_PRODUCT_VERSION=<APIM_VERSION> --build-arg OB_TRUSTED_CERTS_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg WSO2_OB_KEYSTORES_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg RESOURCE_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> -t wso2am-ob:4.0.0 .
     ```
     
@@ -107,7 +107,7 @@ If you are looking for a Quick Start Guide and deploy the solution, follow
 If you want to deploy each Open Banking component in separate containers, follow 
 [Deploy WSO2 Open Banking with Docker](#deploy-wso2-open-banking-with-docker).
 
-To learn how to download WSO2 Updates for your Open Banking Images, see [Download WSO2 Updates](#download-wso2-updates).
+To learn how to download WSO2 Updates for Open Banking Images, see [Download WSO2 Updates](#download-wso2-updates).
 
 ## Deploy WSO2 Open Banking with Docker Compose
 
