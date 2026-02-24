@@ -41,7 +41,7 @@ follows:
 The diagram below explains the flow and how the Grant Handler and Token Filters engage:
 ![token_flow](../assets/img/learn/access-tokens/token-flow.png)
 
-### Token Filter
+<!-- ### Token Filter
 
 A Token Filter is engaged at the Servlet container level before the request approaches the Token API. The Token Filter 
 engages the following validators:
@@ -67,7 +67,7 @@ engages the following validators:
    was registered through Dynamic Client Registration.
 
 You can add customized filter validators to the solution. For more information on customizations, see 
-[customizing Token Filters](../develop/token-filters.md).
+[customizing Token Filters](../develop/token-filters.md). -->
 
 ### Grant Handler
 
@@ -78,13 +78,10 @@ engaged when issuing tokens:
    - Client Credentials Grant Handler   
    - Refresh Grant Handler  
    
-Mutual TLS authentication is enabled by default in WSO2 Open Banking Accelerator. When MTLS authentication is enabled, 
-the **Signature algorithm enforcement validator**, **Client authentication enforcement validator**, and the 
-**MTLS enforcement validator** are engaged. Regardless of the client authentication method, you need to ensure that the 
-TLS certificate is passed with every token request. 
+Mutual TLS authentication is enabled by default in WSO2 Open Banking Accelerator. Regardless of the client authentication method, you need to ensure that the TLS certificate is passed with every token request. 
 
 You can customize the above Grant Handlers to modify the token response and for other open banking requirements. 
-For more information, see [customizing Grant Handlers](../develop/grant-handlers.md).
+For more information, see [OpenAPI Based extensions for Token Flow](../develop/openapi-token-flow.md).
 
 ## Client Authentication 
 

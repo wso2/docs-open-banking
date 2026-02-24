@@ -60,10 +60,10 @@ Given below is a successful response:
 
 This same `request_uri` value is used in the subsequent authorization request as well.
 
-WSO2 Open Banking Accelerator allows you to perform custom validations for the pushed authorization request. 
-For more information, see [writing a Custom Pushed Auth Request Validator](../develop/custom-pushed-auth-request-validator.md).
+<!-- WSO2 Open Banking Accelerator allows you to perform custom validations for the pushed authorization request. 
+For more information, see [writing a Custom Pushed Auth Request Validator](../develop/custom-pushed-auth-request-validator.md). -->
 
-??? tip "Click here to see configurations related to the Pushed Authorization web application..."
+<!-- ??? tip "Click here to see configurations related to the Pushed Authorization web application..."
     1. Open the `<IS_HOME>/repository/conf/deployment.toml` file. 
     2. Add the following configurations that allow you to change the format and the expiration time of the `request_uri` reference:
     
@@ -81,7 +81,7 @@ For more information, see [writing a Custom Pushed Auth Request Validator](../de
             "request_uri": "urn:<substring>:bwc4JK-ESC0w8acc191e-Y1LTC2",
             "expires_in": 60
         }
-        ```
+        ``` -->
 
 ###Authorization web application 
 The API consumers obtain an authorization URL that redirects the customer to a web interface hosted by the bank. In this 
@@ -92,7 +92,17 @@ web application, the customer:
 - Selects the accounts that the API consumer can access.
 - Provides consent to the API consumer to access the information.
 
-###Identifier-first authenticator
+<!-- ###Identifier-first authenticator
 Banks use Identifier-first authentication to authenticate the user with a second-factor authenticator instead of a password. 
 The user who logs into the authorization web application, can provide the username, and authenticate using a second-factor 
-authentication mechanism such as SMS-OTP/TOTP. 
+authentication mechanism such as SMS-OTP/TOTP.  -->
+
+### Request Object Validation
+
+WSO2 Open Banking Accelerator supports validation of the request object sent during the authorization request. The Accelerator includes the following common request object validations out of the box:
+
+- Request object presence validation – Ensures that a request object is included in the authorization request.
+- `aud` claim validation – Verifies that the aud (audience) claim exists in the request object.
+- `scope` claim validation – Confirms that the scope claim exists and includes openid as one of the scopes.
+
+If additional validations are required, toolkit developers can implement them using the [Validate Authorize Request](../develop/openapi-authorization-flow.md) OpenAPI Extension.
