@@ -5,8 +5,8 @@ WSO2 Open Banking Accelerator on top of the following WSO2 products.
 
 You can use any of the following base products:
 
-- WSO2 Identity Server -7.1.0,7.0.0
-- WSO2 API Manager - 4.5.0, 4.4.0
+- WSO2 Identity Server - 7.2.0, 7.1.0, 7.0.0
+- WSO2 API Manager - 4.6.0, 4.5.0, 4.4.0
 
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
@@ -40,14 +40,15 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
       <thead>
       <tr>
          <th rowspan="2" style="text-align: center">Base Product</th>
-         <th colspan="2" style="text-align: center">Compatible Versions</th>
+         <th colspan="3" style="text-align: center">Compatible Versions</th>
       </tr>
       </thead>
       <tbody>
       <tr>
          <td>WSO2 Identity Server</td>
-         <td>7.0.0</td>
-         <td>7.1.0</td>
+         <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.0.0</a></td>
+         <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.1.0</a></td>
+         <td><a href="https://wso2.com/identity-and-access-management/">7.1.0</a></td>
       </tr>
       </tbody>
    </table>
@@ -68,13 +69,18 @@ Given below is the compatible base product matrix for WSO2 Open Banking 4.0.0:
       </tr>
       <tr>
          <th>Combination 02<br></th>
-         <td><a href="https://wso2.com/identity-and-access-management/">7.1.0</a> or <a href="https://wso2.com/identity-and-access-management/previous-releases/">7.0.0</a></td>
-         <td><a href="https://wso2.com/api-manager/">4.4.0</a></td></td>
+         <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.1.0</a> or <a href="https://wso2.com/identity-and-access-management/previous-releases/">7.0.0</a></td>
+         <td><a href="https://wso2.com/api-manager/previous-releases">4.4.0</a></td></td>
       </tr>
       <tr>
          <th>Combination 02<br></th>
-         <td><a href="https://wso2.com/identity-and-access-management/">7.1.0</a></td>
-         <td><a href="https://wso2.com/api-manager/">4.5.0</a></td></td>
+         <td><a href="https://wso2.com/identity-and-access-management/previous-releases/">7.1.0</a></td>
+         <td><a href="https://wso2.com/api-manager/previous-releases">4.5.0</a></td></td>
+      </tr>
+      <tr>
+         <th>Combination 02<br></th>
+         <td><a href="https://wso2.com/identity-and-access-management/">7.2.0</a></td>
+         <td><a href="https://wso2.com/api-manager/">4.6.0</a></td></td>
       </tr>
       </tbody>
 </table>

@@ -8,10 +8,10 @@ products.
 
 1. Before setting up the accelerator, download and install the base products. You can use any of the following combinations:
 
-    | Base Product              | Combination 01                                                              | Combination 02                                                                                        |
-    |---------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-    | WSO2 Identity Server      | [7.1.0](https://wso2.com/identity-server/) | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
-    | WSO2 API Manager          | [4.5.0](https://wso2.com/api-manager/) or [4.4.0](https://wso2.com/api-management/previous-releases/)              |  [4.3.0](https://wso2.com/api-management/previous-releases/) |
+    | Base Product              | Combination 01                                                              | Combination 02                  | Combination 03                  |
+    |---------------------------|-----------------------------------------------------------------------------|-------------------------------------------------- | -----------------------------------------------------|
+    | WSO2 Identity Server      | [7.2.0](https://wso2.com/identity-server/) | [7.1.0](https://wso2.com/identity-and-access-management/previous-releases/)  | [7.0.0](https://wso2.com/identity-and-access-management/previous-releases/)                           |
+    | WSO2 API Manager          | [4.6.0](https://wso2.com/api-manager/) | [4.5.0](https://wso2.com/api-management/previous-releases/) or [4.4.0](https://wso2.com/api-management/previous-releases/)              |  [4.3.0](https://wso2.com/api-management/previous-releases/) |
 
 ## Installing WSO2 Open Banking Accelerator 
 

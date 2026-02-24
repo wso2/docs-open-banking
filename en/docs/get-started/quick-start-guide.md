@@ -34,8 +34,8 @@ can quickly set up and try out a basic flow.
 
 1. Download and extract the required base products:
 
-    - WSO2 Identity Server -7.1.0 ,7.0.0
-    - WSO2 API Manager - 4.5.0, 4.4.0
+    - WSO2 Identity Server - 7.2.0, 7.1.0, 7.0.0
+    - WSO2 API Manager - 4.6.0, 4.5.0, 4.4.0
 
 ### Installing WSO2 Open Banking IAM Accelerator
 
