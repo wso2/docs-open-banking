@@ -255,25 +255,10 @@ nav:
                       - 'Open Banking Service Activator': develop/service-activator.md
                       - 'Open Banking Authentication Worker': develop/authentication-worker.md
                       - 'Open Banking Idempotency Handling Validator': develop/idempotency-handling-validator.md
-#  - 'Toolkits' :
-#    - 'Regulatory Compliance':
-#        - 'UK Toolkit': toolkits/uk-toolkit.md
-#        - 'Berlin Toolkit': toolkits/berlin-toolkit.md
-#        - 'CDS Toolkit': toolkits/cds-toolkit.md
-    #- 'Other Toolkits':
-       # - 'Regulatory Aggregator':
-        #    - 'Introduction': toolkits/regulatory-aggregator/regulatory-aggregator-intro.md
-        #    - 'Quick Start Guide': toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md
-        #    - 'Try Out': toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md
-#  - 'Conformance':
-#    - 'FAPI - CIBA Conformance': conformance/ciba-conformance.md
   - 'References':
     - 'Accelerator Extension REST API': references/accelerator-extensions-api.md
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
-    #- 'API Manager Configuration Catalog': references/config-catalog-apim.md
-    - 'Consent REST API': references/consent-rest-api.md
-    - 'DCR REST API': references/dcr-rest-api.md
-    - 'Application Info API': references/application-info-api.md
+    - 'API Manager Configuration Catalog': references/config-catalog-apim.md
   - '': page-not-found.md
 
 # Extensions
