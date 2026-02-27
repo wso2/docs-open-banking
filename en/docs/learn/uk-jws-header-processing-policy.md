@@ -31,7 +31,7 @@ If you want to build the Financial Services APIM Mediation Policies from the sou
 
 2. Extract the zip 'fs-apim-mediation-artifacts-1.0.0.zip' and you will notice the following folder structure.
     - Policy .j2 files - The mediation policy files which need to upload in API Publisher UI and engage to APIs. Below mediation policies are available in this repository.
-    - Custom sequences- Synapse based custom sequence files which need to copy in to `<APIM_Home>/repository/deployment/synapse-cofngis/default/sequences` folder.
+    - Custom sequences- Synapse based custom sequence files which need to copy in to `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences` folder.
     - lib - This folder contains the jars need to copy in to `<APIM_Home>/repository/lib` folder. It contains jars of the class mediator implementations refer from the policies and custom synapse handler implementations.
         
 3. Restart the API Manager Server.
