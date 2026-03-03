@@ -342,8 +342,8 @@ data_source= "WSO2USER_DB"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="16" type="checkbox" id="_tab_16">
-                <label class="tab-selector" for="_tab_16"><i class="icon fa fa-code"></i></label>
+            <input name="5" type="checkbox" id="_tab_5">
+                <label class="tab-selector" for="_tab_5"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[tenant_mgt]
@@ -396,8 +396,8 @@ enable_email_domain = true</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="5" type="checkbox" id="_tab_5">
-                <label class="tab-selector" for="_tab_5"><i class="icon fa fa-code"></i></label>
+            <input name="6" type="checkbox" id="_tab_6">
+                <label class="tab-selector" for="_tab_6"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[user_store]
@@ -467,8 +467,8 @@ class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"</code></pr
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="6" type="checkbox" id="_tab_6">
-                <label class="tab-selector" for="_tab_6"><i class="icon fa fa-code"></i></label>
+            <input name="7" type="checkbox" id="_tab_7">
+                <label class="tab-selector" for="_tab_7"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[user_store.properties]
@@ -626,8 +626,8 @@ UsernameWithEmailJavaScriptRegEx = "^[\\S]{3,30}$"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="7" type="checkbox" id="_tab_7">
-                <label class="tab-selector" for="_tab_7"><i class="icon fa fa-code"></i></label>
+            <input name="8" type="checkbox" id="_tab_8">
+                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[authorization_manager]
@@ -677,8 +677,8 @@ class = "org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager"</code
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="8" type="checkbox" id="_tab_8">
-                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
+            <input name="9" type="checkbox" id="_tab_9">
+                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[authorization_manager.properties]
@@ -773,8 +773,8 @@ GetAllRolesOfUserEnabled = false</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="9" type="checkbox" id="_tab_9">
-                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
+            <input name="10" type="checkbox" id="_tab_10">
+                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.shared_db]
@@ -887,8 +887,8 @@ driver = "com.mysql.jdbc.Driver"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="10" type="checkbox" id="_tab_10">
-                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
+            <input name="11" type="checkbox" id="_tab_11">
+                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.shared_db.pool_options]
@@ -1068,8 +1068,8 @@ defaultAutoCommit=false</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="11" type="checkbox" id="_tab_11">
-                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
+            <input name="12" type="checkbox" id="_tab_12">
+                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.apim_db]
@@ -1182,8 +1182,8 @@ driver = "com.mysql.jdbc.Driver"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="12" type="checkbox" id="_tab_12">
-                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
+            <input name="13" type="checkbox" id="_tab_13">
+                <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.apim_db.pool_options]
@@ -1363,8 +1363,8 @@ defaultAutoCommit=false</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="13" type="checkbox" id="_tab_13">
-                <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
+            <input name="14" type="checkbox" id="_tab_14">
+                <label class="tab-selector" for="_tab_14"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.config]
@@ -1477,8 +1477,8 @@ driver = "com.mysql.jdbc.Driver"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="14" type="checkbox" id="_tab_14">
-                <label class="tab-selector" for="_tab_14"><i class="icon fa fa-code"></i></label>
+            <input name="15" type="checkbox" id="_tab_15">
+                <label class="tab-selector" for="_tab_15"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.config.pool_options]
@@ -1658,8 +1658,8 @@ defaultAutoCommit=false</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="13" type="checkbox" id="_tab_13">
-                <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
+            <input name="16" type="checkbox" id="_tab_16">
+                <label class="tab-selector" for="_tab_16"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.user]
@@ -1772,8 +1772,8 @@ driver = "com.mysql.jdbc.Driver"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="14" type="checkbox" id="_tab_14">
-                <label class="tab-selector" for="_tab_14"><i class="icon fa fa-code"></i></label>
+            <input name="17" type="checkbox" id="_tab_17">
+                <label class="tab-selector" for="_tab_17"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[database.user.pool_options]
@@ -1953,8 +1953,8 @@ defaultAutoCommit=false</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="17" type="checkbox" id="_tab_17">
-                <label class="tab-selector" for="_tab_17"><i class="icon fa fa-code"></i></label>
+            <input name="18" type="checkbox" id="_tab_18">
+                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[keystore.tls]
@@ -2087,8 +2087,8 @@ key_password =  "wso2carbon"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="18" type="checkbox" id="_tab_18">
-                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
+            <input name="19" type="checkbox" id="_tab_19">
+                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[keystore.primary]
@@ -2213,8 +2213,8 @@ key_password =  "wso2carbon"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="19" type="checkbox" id="_tab_19">
-                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
+            <input name="20" type="checkbox" id="_tab_20">
+                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[keystore.internal]
@@ -2338,8 +2338,8 @@ key_password =  "wso2carbon"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="20" type="checkbox" id="_tab_20">
-                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
+            <input name="21" type="checkbox" id="_tab_21">
+                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[apim.gateway.environment]]
@@ -2618,8 +2618,8 @@ websub_event_receiver_https_endpoint = "https://localhost:8021"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="21" type="checkbox" id="_tab_21">
-                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
+            <input name="22" type="checkbox" id="_tab_22">
+                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[apim.sync_runtime_artifacts.gateway]
@@ -2668,8 +2668,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="22" type="checkbox" id="_tab_22">
-                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
+            <input name="23" type="checkbox" id="_tab_23">
+                <label class="tab-selector" for="_tab_23"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.gateway_token]
@@ -2739,8 +2739,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="23" type="checkbox" id="_tab_23">
-                <label class="tab-selector" for="_tab_23"><i class="icon fa fa-code"></i></label>
+            <input name="24" type="checkbox" id="_tab_24">
+                <label class="tab-selector" for="_tab_24"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.resource]
@@ -2809,8 +2809,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="24" type="checkbox" id="_tab_24">
-                <label class="tab-selector" for="_tab_24"><i class="icon fa fa-code"></i></label>
+            <input name="25" type="checkbox" id="_tab_25">
+                <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.km_token]
@@ -2879,8 +2879,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="25" type="checkbox" id="_tab_25">
-                <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
+            <input name="26" type="checkbox" id="_tab_26">
+                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.recent_apis]
@@ -2930,8 +2930,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="27" type="checkbox" id="_tab_27">
+                <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.scopes]
@@ -2981,8 +2981,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="27" type="checkbox" id="_tab_27">
-                <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
+            <input name="28" type="checkbox" id="_tab_28">
+                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.publisher_roles]
@@ -3033,8 +3033,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="28" type="checkbox" id="_tab_28">
-                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
+            <input name="29" type="checkbox" id="_tab_29">
+                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.jwt_claim]
@@ -3103,8 +3103,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="29" type="checkbox" id="_tab_29">
-                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
+            <input name="30" type="checkbox" id="_tab_30">
+                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">#[apim.cache.tags]
@@ -3151,8 +3151,8 @@ gateway_labels =["Default"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="30" type="checkbox" id="_tab_30">
-                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
+            <input name="31" type="checkbox" id="_tab_31">
+                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[apim.analytics]
@@ -3225,8 +3225,8 @@ auth_token = ""
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="31" type="checkbox" id="_tab_31">
-                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
+            <input name="32" type="checkbox" id="_tab_32">
+                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[apim.key_manager]
@@ -4103,8 +4103,8 @@ username = "$ref{super_admin.username}@carbon.super"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="36" type="checkbox" id="_tab_36">
-                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
+            <input name="37" type="checkbox" id="_tab_37">
+                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[apim.throttling.policy_deploy]
@@ -4154,8 +4154,8 @@ username = "$ref{super_admin.username}@carbon.super"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="36" type="checkbox" id="_tab_36">
-                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
+            <input name="38" type="checkbox" id="_tab_38">
+                <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[apim.throttling.jms]

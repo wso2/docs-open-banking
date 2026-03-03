@@ -78,7 +78,7 @@ nav:
     - 'Configuring API Resources, Users and Roles': install-and-setup/configure-resources-users-and-roles.md
     - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
     - 'Advanced':
-        - 'Data purging': install-and-setup/data-purging.md
+        # - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
         - 'Configuring Active-Active Identity Server Deployment with Accelerator': install-and-setup/active-active-identity-server-deployment.md
         - 'Configuring an Accelerator Deployment with Distributed Gateway and Control Plane': install-and-setup/distributed-gateway-control-plane.md
@@ -122,9 +122,9 @@ nav:
         - 'Introduction': learn/consumer-authentication.md
         # - 'App-to-App Redirection': learn/app-to-app-redirection.md
         # - 'Identifier-first Authentication': learn/identifier-first.md
-        - 'CIBA Flow':
-            - 'Introduction': learn/ciba.md
-            - 'Set up CIBA flow': learn/ciba-set-up-flow.md
+        # - 'CIBA Flow':
+        #     - 'Introduction': learn/ciba.md
+        #     - 'Set up CIBA flow': learn/ciba-set-up-flow.md
     - 'Consent Management':
       - 'Introduction': learn/consent-management.md
       - 'Built-in Validations': learn/consent-management-validations.md

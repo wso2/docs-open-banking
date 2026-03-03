@@ -196,8 +196,8 @@ offset = 3
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="4" type="checkbox" id="_tab_4">
-                <label class="tab-selector" for="_tab_4"><i class="icon fa fa-code"></i></label>
+            <input name="3" type="checkbox" id="_tab_3">
+                <label class="tab-selector" for="_tab_3"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -253,8 +253,8 @@ enable_email_domain = true
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="5" type="checkbox" id="_tab_5">
-                <label class="tab-selector" for="_tab_5"><i class="icon fa fa-code"></i></label>
+            <input name="4" type="checkbox" id="_tab_4">
+                <label class="tab-selector" for="_tab_4"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -349,8 +349,8 @@ create_admin_account = true
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="6" type="checkbox" id="_tab_6">
-                <label class="tab-selector" for="_tab_6"><i class="icon fa fa-code"></i></label>
+            <input name="5" type="checkbox" id="_tab_5">
+                <label class="tab-selector" for="_tab_5"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -402,8 +402,8 @@ data_source= "WSO2USER_DB"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="7" type="checkbox" id="_tab_7">
-                <label class="tab-selector" for="_tab_7"><i class="icon fa fa-code"></i></label>
+            <input name="6" type="checkbox" id="_tab_6">
+                <label class="tab-selector" for="_tab_6"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -478,8 +478,8 @@ class = "org.wso2.carbon.user.core.jdbc.UniqueIDJDBCUserStoreManager"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="8" type="checkbox" id="_tab_8">
-                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
+            <input name="7" type="checkbox" id="_tab_7">
+                <label class="tab-selector" for="_tab_7"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -639,8 +639,8 @@ UsernameWithEmailJavaScriptRegEx = "^[\\S]{3,30}$"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="9" type="checkbox" id="_tab_9">
-                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
+            <input name="8" type="checkbox" id="_tab_8">
+                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -693,8 +693,8 @@ class = "org.wso2.carbon.user.core.authorization.JDBCAuthorizationManager"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="10" type="checkbox" id="_tab_10">
-                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
+            <input name="9" type="checkbox" id="_tab_9">
+                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -791,8 +791,8 @@ GetAllRolesOfUserEnabled = false</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="11" type="checkbox" id="_tab_11">
-                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
+            <input name="10" type="checkbox" id="_tab_10">
+                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -907,8 +907,8 @@ driver = "com.mysql.jdbc.Driver"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="12" type="checkbox" id="_tab_12">
-                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
+            <input name="11" type="checkbox" id="_tab_11">
+                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1090,8 +1090,8 @@ defaultAutoCommit=false</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="13" type="checkbox" id="_tab_13">
-                <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
+            <input name="12" type="checkbox" id="_tab_12">
+                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1205,8 +1205,8 @@ driver = "com.mysql.jdbc.Driver"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="14" type="checkbox" id="_tab_14">
-                <label class="tab-selector" for="_tab_14"><i class="icon fa fa-code"></i></label>
+            <input name="13" type="checkbox" id="_tab_13">
+                <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1388,8 +1388,8 @@ defaultAutoCommit=false</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="15" type="checkbox" id="_tab_15">
-                <label class="tab-selector" for="_tab_15"><i class="icon fa fa-code"></i></label>
+            <input name="14" type="checkbox" id="_tab_14">
+                <label class="tab-selector" for="_tab_14"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1504,8 +1504,8 @@ driver = "com.mysql.jdbc.Driver"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="16" type="checkbox" id="_tab_16">
-                <label class="tab-selector" for="_tab_16"><i class="icon fa fa-code"></i></label>
+            <input name="15" type="checkbox" id="_tab_15">
+                <label class="tab-selector" for="_tab_15"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1688,8 +1688,8 @@ defaultAutoCommit=false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="17" type="checkbox" id="_tab_17">
-                <label class="tab-selector" for="_tab_17"><i class="icon fa fa-code"></i></label>
+            <input name="16" type="checkbox" id="_tab_16">
+                <label class="tab-selector" for="_tab_16"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1803,8 +1803,8 @@ driver = "com.mysql.jdbc.Driver"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="18" type="checkbox" id="_tab_18">
-                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
+            <input name="17" type="checkbox" id="_tab_17">
+                <label class="tab-selector" for="_tab_17"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -1986,8 +1986,8 @@ defaultAutoCommit=false</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="19" type="checkbox" id="_tab_19">
-                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
+            <input name="18" type="checkbox" id="_tab_18">
+                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -2296,8 +2296,8 @@ pool_options.defaultAutoCommit=false</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="3" type="checkbox" id="_tab_3">
-                <label class="tab-selector" for="_tab_3"><i class="icon fa fa-code"></i></label>
+            <input name="19" type="checkbox" id="_tab_19">
+                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -2389,8 +2389,8 @@ type="PKCS12"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="3" type="checkbox" id="_tab_3">
-                <label class="tab-selector" for="_tab_3"><i class="icon fa fa-code"></i></label>
+            <input name="20" type="checkbox" id="_tab_20">
+                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -2482,8 +2482,8 @@ type="PKCS12"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="20" type="checkbox" id="_tab_20">
-                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
+            <input name="21" type="checkbox" id="_tab_21">
+                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -2555,8 +2555,8 @@ retry_url = "https://localhost:9446/authenticationendpoint/retry.do"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="21" type="checkbox" id="_tab_21">
-                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
+            <input name="22" type="checkbox" id="_tab_22">
+                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -2749,8 +2749,8 @@ TokenExpiryTime = 60
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="22" type="checkbox" id="_tab_22">
-                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
+            <input name="24" type="checkbox" id="_tab_24">
+                <label class="tab-selector" for="_tab_24"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -2823,8 +2823,8 @@ oidc_consent_page = "${carbon.protocol}://localhost:${carbon.management.port}/fs
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="25" type="checkbox" id="_tab_25">
+                <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3058,8 +3058,8 @@ read_timeout = 5</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="27" type="checkbox" id="_tab_27">
+                <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3124,8 +3124,8 @@ password = ""</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="54" type="checkbox" id="_tab_54">
-                <label class="tab-selector" for="_tab_54"><i class="icon fa fa-code"></i></label>
+            <input name="28" type="checkbox" id="_tab_28">
+                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3199,8 +3199,8 @@ display = ""</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="55" type="checkbox" id="_tab_55">
-                <label class="tab-selector" for="_tab_55"><i class="icon fa fa-code"></i></label>
+            <input name="29" type="checkbox" id="_tab_29">
+                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3320,8 +3320,8 @@ filename=""</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="55" type="checkbox" id="_tab_55">
-                <label class="tab-selector" for="_tab_55"><i class="icon fa fa-code"></i></label>
+            <input name="30" type="checkbox" id="_tab_30">
+                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3546,8 +3546,8 @@ include_in_response = false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="31" type="checkbox" id="_tab_31">
+                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3720,8 +3720,8 @@ priority = 9</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="32" type="checkbox" id="_tab_32">
+                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3770,8 +3770,8 @@ name = "OpenBanking Ltd"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="33" type="checkbox" id="_tab_33">
+                <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3820,8 +3820,8 @@ auth_flow_consent_id_source="requestObject"</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="34" type="checkbox" id="_tab_34">
+                <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3869,8 +3869,8 @@ scopes=["accounts", "payments", "fundsconfirmations"]</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="35" type="checkbox" id="_tab_35">
+                <label class="tab-selector" for="_tab_35"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -3918,8 +3918,8 @@ scopes=[]</code>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="36" type="checkbox" id="_tab_36">
+                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre>
@@ -4009,8 +4009,8 @@ json_path="/id_token/openbanking_intent_id/value"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">           
-            <input name="57" type="checkbox" id="_tab_57">
-                <label class="tab-selector" for="_tab_57"><i class="icon fa fa-code"></i></label>
+            <input name="37" type="checkbox" id="_tab_37">
+                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.manage]
@@ -4081,8 +4081,8 @@ validator="org.wso2.financial.services.accelerator.consent.mgt.extensions.manage
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">           
-            <input name="57" type="checkbox" id="_tab_57">
-                <label class="tab-selector" for="_tab_57"><i class="icon fa fa-code"></i></label>
+            <input name="38" type="checkbox" id="_tab_38">
+                <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.manage_extension]
@@ -4131,8 +4131,8 @@ allowed_headers = ["x-wso2-client-id"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="60" type="checkbox" id="_tab_60">
-                <label class="tab-selector" for="_tab_60"><i class="icon fa fa-code"></i></label>
+            <input name="39" type="checkbox" id="_tab_39">
+                <label class="tab-selector" for="_tab_39"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[financial_services.consent.authorize_steps.retrieve]]
@@ -4204,8 +4204,8 @@ priority = 2</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="61" type="checkbox" id="_tab_61">
-                <label class="tab-selector" for="_tab_61"><i class="icon fa fa-code"></i></label>
+            <input name="40" type="checkbox" id="_tab_40">
+                <label class="tab-selector" for="_tab_40"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[financial_services.consent.authorize_steps.persist]]
@@ -4273,8 +4273,8 @@ priority = 1</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="41" type="checkbox" id="_tab_41">
+                <label class="tab-selector" for="_tab_41"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.validation]
@@ -4367,8 +4367,8 @@ jwt.payload.enabled=true</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="42" type="checkbox" id="_tab_42">
+                <label class="tab-selector" for="_tab_42"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.periodical_expiration]
@@ -4483,8 +4483,8 @@ eligible_statuses="authorised"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="43" type="checkbox" id="_tab_43">
+                <label class="tab-selector" for="_tab_43"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.portal.client_credentials]
@@ -4555,8 +4555,8 @@ client_secret=""</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="44" type="checkbox" id="_tab_44">
+                <label class="tab-selector" for="_tab_44"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.portal.params]
@@ -4649,8 +4649,8 @@ application_logo_uri_param="software_logo_uri"</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="45" type="checkbox" id="_tab_45">
+                <label class="tab-selector" for="_tab_45"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.idempotency]
@@ -4787,8 +4787,8 @@ allowed_api_resources=["payment-consents"]</code></pre>
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="46" type="checkbox" id="_tab_46">
+                <label class="tab-selector" for="_tab_46"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.consent.authorize_jsp]
@@ -4838,8 +4838,8 @@ path="fs_default.jsp"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="58" type="checkbox" id="_tab_58">
-                <label class="tab-selector" for="_tab_58"><i class="icon fa fa-code"></i></label>
+            <input name="47" type="checkbox" id="_tab_47">
+                <label class="tab-selector" for="_tab_47"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.identity]
@@ -4978,8 +4978,8 @@ append_consent_id_to_token_introspect_response=false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="62" type="checkbox" id="_tab_62">
-                <label class="tab-selector" for="_tab_62"><i class="icon fa fa-code"></i></label>
+            <input name="48" type="checkbox" id="_tab_48">
+                <label class="tab-selector" for="_tab_48"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.identity.authentication_webapp]
@@ -5026,8 +5026,8 @@ servlet_extension="org.wso2.financial.services.accelerator.consent.mgt.extension
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            <input name="66" type="checkbox" id="_tab_66">
-                <label class="tab-selector" for="_tab_66"><i class="icon fa fa-code"></i></label>
+            <input name="49" type="checkbox" id="_tab_49">
+                <label class="tab-selector" for="_tab_49"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[financial_services.http_connection_pool]
