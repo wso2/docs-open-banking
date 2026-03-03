@@ -16,9 +16,9 @@ security:
   - BasicAuth: []
   - OAuth2: []
 tags:
-  - name: Client
+  - name: Dynamic Client Registration
     description: APIs for dynamically registering/updating client  related extensions
-  - name: Application
+  - name: Manual Client Registration
     description: APIs for registering/updating applications through devportal related extensions
   - name: Consent
     description: APIs for consent flow extensions
@@ -83,7 +83,7 @@ paths:
   /pre-process-client-creation:
     post:
       tags:
-        - Client
+        - Dynamic Client Registration
       summary: handle pre validations & obtain custom data to store in dynamic client registration step
       requestBody:
         content:
@@ -136,7 +136,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: bad_request
+                  errorMessage: Bad request
                   errorDescription: Request does not comply with the schema
         "500":
           description: Server Error
@@ -148,12 +148,12 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: server_error
+                  errorMessage: Internal server error
                   errorDescription: Error occurred while handling the request
   /pre-process-client-update:
     post:
       tags:
-        - Client
+        - Dynamic Client Registration
       summary: handle pre validations & obtain  custom data to store in dynamic client update step
       requestBody:
         content:
@@ -207,7 +207,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: bad_request
+                  errorMessage: Bad request
                   errorDescription: Request does not comply with the schema
         "500":
           description: Server Error
@@ -219,13 +219,13 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: server_error
+                  errorMessage: Internal server error
                   errorDescription: Error occurred while handling the request
   /pre-process-client-retrieval:
     post:
       tags:
-        - Client
-      summary: handle post client retrieval response generation
+        - Dynamic Client Registration
+      summary: handle post dynamic client retrieval response generation
       requestBody:
         content:
           application/json:
@@ -274,7 +274,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: bad_request
+                  errorMessage: Bad request
                   errorDescription: Request does not comply with the schema
         "500":
           description: Server Error
@@ -286,13 +286,13 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: server_error
+                  errorMessage: Internal server error
                   errorDescription: Error occurred while handling the request
   /pre-process-application-creation:
     post:
       tags:
-        - Application
-      summary: handle pre validations & changes to the consumer application creation
+        - Manual Client Registration
+      summary: handle pre validations & changes to the manual application creation
       requestBody:
         content:
           application/json:
@@ -342,7 +342,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: bad_request
+                  errorMessage: Bad request
                   errorDescription: Request does not comply with the schema
         "500":
           description: Server Error
@@ -354,13 +354,13 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: server_error
+                  errorMessage: Internal server error
                   errorDescription: Error occurred while handling the request
   /pre-process-application-update:
     post:
       tags:
-        - Application
-      summary: handle pre validations & changes to the consumer application update
+        - Manual Client Registration
+      summary: handle pre validations & changes to the manual application update
       requestBody:
         content:
           application/json:
@@ -411,7 +411,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: bad_request
+                  errorMessage: Bad request
                   errorDescription: Request does not comply with the schema
         "500":
           description: Server Error
@@ -423,7 +423,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: server_error
+                  errorMessage: Internal server error
                   errorDescription: Error occurred while handling the request
   /pre-process-consent-creation:
     post:
@@ -814,7 +814,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: bad_request
+                  errorMessage: Bad Request
                   errorDescription: Request does not comply with the schema
         "500":
           description: Server Error
@@ -826,7 +826,7 @@ paths:
                 responseId: Ec1wMjmiG8
                 status: ERROR
                 data:
-                  errorMessage: server_error
+                  errorMessage: Internal server error
                   errorDescription: Error occurred while handling the request
   /validate-consent-access:
     post:
@@ -859,7 +859,7 @@ paths:
                     errorCode: 401
                     data:
                       errorMessage: invalid_permissions
-                      errorDescription: "The requested permissions are invalid, unknown"
+                      erroreDescription: "The requested  permissions are invalid, unknown"
         "400":
           description: Bad Request
           content:
@@ -955,7 +955,7 @@ paths:
                     status: ERROR
                     errorCode: 401
                     errorMessage: invalid_permissions
-                    errorDescription: "The requested permissions are invalid, unknown"
+                    errorDescription: "The requested  permissions are invalid, unknown"
         "400":
           description: Bad Request
           content:
@@ -1018,7 +1018,7 @@ paths:
                     status: ERROR
                     errorCode: 400
                     data:
-                      error: invalid_request
+                      error: Invalid Request
                       errorMessage: Invalid event subscription payload
         "400":
           description: Bad Request
@@ -1075,7 +1075,7 @@ paths:
                     status: ERROR
                     errorCode: 400
                     data:
-                      error: invalid_equest
+                      error: Invalid Request
                       errorMessage: Invalid event subscription payload
         "400":
           description: Bad Request
@@ -1129,7 +1129,7 @@ paths:
                     status: ERROR
                     errorCode: 400
                     data:
-                      error: invalid_request
+                      error: Invalid Request
                       errorMessage: Invalid event creation payload
         "400":
           description: Bad Request
@@ -1184,7 +1184,7 @@ paths:
                     status: ERROR
                     errorCode: 400
                     data:
-                      error: invalid_request
+                      error: Invalid Request
                       errorMessage: Invalid event polling payload
         "400":
           description: Bad Request
@@ -1241,7 +1241,7 @@ paths:
                     status: ERROR
                     errorCode: 400
                     data:
-                      error: invalid_request
+                      error: Invalid Request
                       errorMessage: Invalid event polling payload
         "400":
           description: Bad Request
