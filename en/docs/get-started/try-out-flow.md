@@ -125,7 +125,7 @@ The API consumer application redirects the bank customer to authenticate and app
         - Given below is a sample request object in the JWT format:
         
         ``` jwt tab='Sample'
-        eyJraWQiOiJoM1pDRjBWcnpnWGduSENxYkhiS1h6emZqVGciLCJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6IlM2dTJIZTRqeXd2eXlwVDdmR1lFeExTeXBRWWEiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI4NmM4YTA4NS1hNDQ0LTQyZDUtYmU0My05NjhiMzY2YTU0NjciLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiODZjOGEwODUtYTQ0NC00MmQ1LWJlNDMtOTY4YjM2NmE1NDY3IiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3RhdGUiOiJZV2x6Y0Rvek1UUTIiLCJleHAiOjE3NTcyMzM1ODgsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiY2xpZW50X2lkIjoiUzZ1MkhlNGp5d3Z5eXBUN2ZHWUV4TFN5cFFZYSJ9.mClPy-6g0Kn3JIF8P7odd-PiWYCSDhVyQJqn9SkHAXo07saGYD-YxQcqfghRnUbYc41SyAwtkw4bfbNLpqLFnmJsBiP3XjjDE0YwKwD4UXFMAac4zW9ooQtzr_5qXkGS5nNpua7KtpvNezNBgS5-c4MjuI6nUxL63rgmZyRoDlrK_Uxgx4CSxmJQkcHP8YzNvCVxe9ftpuKUlanCCgNvGg2ocmwpRP1G1-ZBr2e3nIfGsFxSaX-4vkur4chEyjk5YogfoxjnG1UjvP_al9M07W0J-eysviGMNqzJ7LDIVCDp5ZKrOnf1p_zPLE4No3xV8cN1ZTJJ_ufUABhJTYQKEw
+        eyJhbGciOiJQUzI1NiIsImtpZCI6InNDZWtOZ1NXSWF1UTM0a2xSaERHcWZ3cGpjNCIsInR5cCI6IkpXVCJ9.eyJtYXhfYWdlIjo4NjQwMCwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJzY29wZSI6ImFjY291bnRzIG9wZW5pZCIsImlzcyI6Imx5WjV2QnpqVlNQdmRtTkZvdk5SS2I0c0JLY2EiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpzY2EiLCJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiJkMjdjYTJmMy1kMzY4LTQ3MTYtOGM4ZS1hOGRkNjU3YmIwZGYiLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiZDI3Y2EyZjMtZDM2OC00NzE2LThjOGUtYThkZDY1N2JiMGRmIiwiZXNzZW50aWFsIjp0cnVlfX19LCJyZXNwb25zZV90eXBlIjoiY29kZSBpZF90b2tlbiIsInJlZGlyZWN0X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vcmVkaXJlY3RzL3JlZGlyZWN0MSIsInN0YXRlIjoiWVdsemNEb3pNVFEyIiwibmJmIjoxNzcyMDk5NzgxLCJpYXQiOjE3NzIwOTk3ODEsImV4cCI6MTc3MjEwMzM4MSwibm9uY2UiOiJuLTBTNl9XekEyTWoiLCJjbGllbnRfaWQiOiJseVo1dkJ6alZTUHZkbU5Gb3ZOUktiNHNCS2NhIn0.fZNJx6DcN6PBIAnSj8XBuCKNuehpEbIt4zJ-Nzlx9UATtZ8dj2YMCGX-xKIWgZNtbMmaQCQkLY42UzXjNxa61F-tEolko9WB85rW1HWn9i8sBHsQjatUlKkAvG78nDbGKl_ROU-Q5MJu3f-uxQeLEg2AoeqvdKomWi3UrN7nyPunvqmoSnyvRk2uKQHXnsIGwVshGs1cwUA_delQwtOAP9P-x3qi_wB3vjfX2M2-3xwVTTSSlnNT6mYEKjvgMoTaytNMeBAJjnnxCG7trcIkB-wSOUPIrHM2JLOR-bCqRFR5QCoGoigbxZIQhKau5d9lLztMrIeRteMwXvfrM4yD7g
         ```
         
         ``` tab='Format'
@@ -163,6 +163,8 @@ The API consumer application redirects the bank customer to authenticate and app
           "response_type": "code id_token",  
           "redirect_uri": "<CLIENT_APPLICATION_REDIRECT_URI>",
           "state": "YWlzcDozMTQ2",
+          "nbf": <The not-before time of the request object in Epoch format>,
+          "iat": <The issued-at time of the request object in Epoch format>,
           "exp": <The expiration time of the request object in Epoch format>,
           "nonce": "<PREVENTS_REPLAY_ATTACKS>",
           "client_id": "<CLIENT_ID>"
