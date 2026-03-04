@@ -212,7 +212,7 @@ If the `permissions` object does not contain `initiatedAccounts`, the `Requested
 ![initiated-accounts-for-consent](../assets/img/develop/customizing-consent-page/initiated-accounts-for-consent.png)
 
 !!! note
-    If both `initiatedAccountsForConsent` and `initiatedAccounts` for a permission are defined, `initiatedAccountsForConsent` replaces the permission's `initiatedAccounts`.
+    If both `initiatedAccounts` (permission-level) and `initiatedAccountsForConsent` (consent-level) objects contain account definitions, the consent-level accounts in `initiatedAccountsForConsent` take precedence and are implicitly linked to all permissions, overriding any permission-level account assignments.
 
 #### Allow Multiple Account Selection
 
