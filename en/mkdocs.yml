@@ -120,7 +120,7 @@ nav:
             - 'Using Manual Client Registration Flow': learn/manual-client-registration-process.md
     - 'Consumer Authentication':
         - 'Introduction': learn/consumer-authentication.md
-        # - 'App-to-App Redirection': learn/app-to-app-redirection.md
+        - 'App-to-App Redirection': learn/app-to-app-redirection.md
         # - 'Identifier-first Authentication': learn/identifier-first.md
         # - 'CIBA Flow':
         #     - 'Introduction': learn/ciba.md
