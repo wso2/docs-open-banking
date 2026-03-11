@@ -50,7 +50,7 @@ The following validations are supported by the Open Banking Accelerator:
 - Redirect URL format validation to ensure redirect URLs (in both the request and SSA) use HTTPS and do not include localhost for DCR create and update requests.
 - Redirect URL subset validation to confirm that the redirect URLs in the request are a subset of those defined in the SSA for DCR create and update requests.
 - Hostname consistency validation to ensure that redirect URIs and other URIs (Logo URI, TOS URI, Policy URI, and Client URI) in the SSA share the same hostname for DCR create and update requests.
-- Token endpoint authentication validation to ensure that the signing algorithm is specified and not empty when the token endpoint authentication method is private_key_jwt for DCR create and update requests.
+- Token endpoint authentication validation to ensure that the token endpoint auth signing algorithm is specified and not empty when the token endpoint authentication method is private_key_jwt for DCR create and update requests.
 
 Toolkit developers can enable or disable these validations at the configuration level. Refer to [Configuring Dynamic Client Registration In-built Validators.](../learn/dynamic-client-registration-configuration.md#configuring-inbuilt-dcr-request-validators).
 
