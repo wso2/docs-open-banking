@@ -256,9 +256,9 @@ nav:
                       - 'Open Banking Authentication Worker': develop/authentication-worker.md
                       - 'Open Banking Idempotency Handling Validator': develop/idempotency-handling-validator.md
   - 'References':
-    - 'Accelerator Extension REST API': references/accelerator-extensions-api.md
     - 'Identity Server Configuration Catalog': references/config-catalog-is.md
     - 'API Manager Configuration Catalog': references/config-catalog-apim.md
+    - 'Accelerator Extension REST API': references/accelerator-extensions-api.md
   - '': page-not-found.md
 
 # Extensions

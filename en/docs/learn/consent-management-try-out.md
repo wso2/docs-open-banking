@@ -2,37 +2,44 @@ This document provides the instructions to try out consent initiation, retrieval
 
 !!! tip "Prerequisites" 
     - Before you try out the consent flow, you need to do the following:
+        - Configure API Resources, Users and Roles.
+        - Assign roles to the user.
         - Register an application for the API consumer.
-        - Deploy and subscribe to the relevant APIs to access banking information. For example, account and payment information.
-        
-        !!!note
-            - For testing purposes, we have included the following sample APIs in WSO2 Open Banking API Manager Accelerator. 
-                - Dynamic Client Registration API. See [Deploy DCR API](https://ob.docs.wso2.com/en/latest/get-started/dynamic-client-registration/#step-1-deploy-the-dynamic-client-registrationdcr-api) for instructions.
-                - Account Information Service API. See [Deploy and Subscribe sample Account and Transaction API](https://ob.docs.wso2.com/en/latest/get-started/try-out-flow/) for instructions.
+
+
+!!!note
+    - Replace the <AUTH_HEADER_VALUE> with Base64 encoded "admin_username:admin_password" value.
+      `Eg: Base64(admin_username:admin_password)`
+    - You can try out this sample flow with the transport certificates available [here](../../assets/attachments/transport-certs).
                 
 ### Consent Initiation
+
 - In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its 
 information from the bank. A sample consent initiation request looks as follows:
 
     ```
-    curl --location --request POST 'https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents' \
-    --header 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
-    --header 'Content-Type: application/json' \
+    curl -X POST \
+     'https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents' \
+    -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+    -H 'x-wso2-client-id: <CLIENT_ID>' \
+    -H 'x-fapi-interaction-id: <INTERACTION_ID>' \
+    -H 'Content-Type: application/json' \
     --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-    --data-raw '{
-    "Data":{
-      "Permissions": [
-        "ReadAccountsDetail",
-       "ReadTransactionsDetail",
-       "ReadBalances"
-     ],
-      "ExpirationDateTime":"2021-09-02T00:00:00+00:00",
-      "TransactionFromDateTime":"2021-01-01T00:00:00+00:00",
-      "TransactionToDateTime":"2021-03-03T00:00:00+00:00"
-    },
-    "Risk":{
-
-     }
+    --data '{
+      "Data": {
+          "TransactionToDateTime": "2026-03-19T13:46:07.270659+05:30",
+          "ExpirationDateTime": "2026-03-21T13:46:07.269894+05:30",
+          "Permissions": [
+              "ReadAccountsBasic",
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadTransactionsDetail"
+          ],
+          "TransactionFromDateTime": "2026-03-16T13:46:07.270580+05:30"
+      },
+      "Risk": {
+          
+      }
     }'
     ```
   
@@ -40,26 +47,31 @@ information from the bank. A sample consent initiation request looks as follows:
 
     ``` json
     {
-        "consentId": "3e31f726-b9ad-43a7-897d-fcdf5e6d8cd0",
-        "Risk": {},
-        "Data": {
-            "TransactionToDateTime": "2021-03-03T00:00:00+00:00",
-            "ExpirationDateTime": "2021-09-02T00:00:00+00:00",
-            "Permissions": [
-                "ReadAccountsDetail",
-                "ReadTransactionsDetail",
-                "ReadBalances"
-            ],
-            "TransactionFromDateTime": "2021-01-01T00:00:00+00:00"
-        }
-    }     
+      "Data": {
+          "StatusUpdateDateTime": "2026-03-16T13:46:08+05:30",
+          "Status": "AwaitingAuthorisation",
+          "CreationDateTime": "2026-03-16T13:46:08+05:30",
+          "TransactionToDateTime": "2026-03-19T13:46:07.270659+05:30",
+          "ExpirationDateTime": "2026-03-21T13:46:07.269894+05:30",
+          "Permissions": [
+              "ReadAccountsBasic",
+              "ReadAccountsDetail",
+              "ReadBalances",
+              "ReadTransactionsDetail"
+          ],
+          "ConsentId": "328524c0-b4a3-457e-a145-e79d92c4654e",
+          "TransactionFromDateTime": "2026-03-16T13:46:07.270580+05:30"
+      },
+      "Risk": {
+          
+      }
+    }    
     ```
 
 ### Authorize a consent
 
 The bank sends the request to the customer stating the accounts and information that the API consumer wishes to access.
     
-       
   1. Generate the request object by signing the following JSON payload using the supported algorithms. Given below is 
   a sample request object in the JWT format:
   
@@ -143,59 +155,16 @@ The bank sends the request to the customer stating the accounts and information 
       ```
  
 ### Retrieve a consent 
-- An API consumer can retrieve a consent resource that they have created to check its status. In order to make this request, 
-the API consumer must have an access token issued by the bank using the client credentials grant.
 
-??? tip "Click here to find how to generate an application access token..."
-    - Generate an application access token using the following command: 
-      ```
-      curl -X POST \
-      https://<IS_HOST>:9446/oauth2/token \
-      --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-      -d 'grant_type=client_credentials&scope=accounts%20openid&client_assertion=eyJraWQiOiJEd01LZFdNbWo3UFdpbnZvcWZReVhWe
-      nlaNlEiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OT
-      Q0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJIT1VrYVNieThEeWRuYmVJaEU3bHljYmtJSThhIiwiZXhwIjoxNjg0MDk5ODEyLCJpYXQiOjE2ODQwOTk4
-      MTMsImp0aSI6IjE2ODQwOTk4MTIifQ.EMZ2q3jciJ4MmrsH93kH_VGacrt2izbLaCBchGWiyUltdWwj3GwDMKfhpeMHtThd0DszwV8LUPKZaMT3wUS
-      oH3adY2IBC8aa2GKeb_vaQB5b0ZO6WpYQ45y_xIttAVj56d6oPli8wN4MlJoJsFPUlaxQohCLunN43BxSr-kFgeFMj7ynEsVbQvuYuEiTppwTSyXlt
-      Jmv70-nwpGU9UyuPCkXUsU53ShICrY0nC-3NUhY6oNpZclJP4MwG8mP4ZOvUIez_PSoP3AiaNithWhPCfLuKd68OLAReTBGdItqidsWWnn8lPVbM2F
-      LvehukHDCJhf9-ev1pdWIiwDSVDV7uQ&redirect_uri=www.wso2.com'
-      ```
-      - The request payload contains a client assertion in the following format:
-      ```
-      {
-      "alg": "<<The algorithm used for signing>>",
-      "kid": "<<The KID value of the signing jwk set>>",
-      "typ": "JWT"
-      }
-        
-      {
-      "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
-      "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
-      "exp": <<This is epoch time of the token expiration date/time>>,
-      "iat": <<This is epoch time of the token issuance date/time>>,
-      "jti": "<<This is an incremental unique value>>",
-      "aud": "<<This is the audience that the ID token is intended for. For example, https://<APIM_HOST>:8243/token>>"
-      }
-        
-      <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private
-      signature of the application certificate is used.>
-      ```
-      - Upon successful token generation, you obtain a token as follows:
-      ```
-      {
-         "access_token":"aa8ce78b-d81e-3385-81b1-a9fdd1e71daf",
-         "scope":"accounts payments  openid",
-         "id_token":"eyJ4NXQiOiJNell4TW1Ga09HWXdNV0kwWldObU5EY3hOR1l3WW1NNFpUQTNNV0kyTkRBelpHUXpOR00wWkdSbE5qSmtPREZrWkRSaU9URmtNV0ZoTXpVMlpHVmxOZyIsImtpZCI6Ik16WXhNbUZrT0dZd01XSTBaV05tTkRjeE5HWXdZbU00WlRBM01XSTJOREF6WkdRek5HTTBaR1JsTmpKa09ERmtaRFJpT1RGa01XRmhNelUyWkdWbE5nX1JTMjU2IiwiYWxnIjoiUlMyNTYifQ.eyJhdF9oYXNoIjoiaHVBcS1GbzB0N2pFZmtiZ1A4TkJwdyIsImF1ZCI6WyJrYkxuSkpfdVFMMlllNjh1YUNSYlBJSk9SNFVhIiwiaHR0cDpcL1wvb3JnLndzbzIuYXBpbWd0XC9nYXRld2F5Il0sInN1YiI6ImFkbWluQHdzbzIuY29tQGNhcmJvbi5zdXBlciIsIm5iZiI6MTYwMTk5MzA5OCwiYXpwIjoia2JMbkpKX3VRTDJZZTY4dWFDUmJQSUpPUjRVYSIsImFtciI6WyJjbGllbnRfY3JlZGVudGlhbHMiXSwic2NvcGUiOlsiYW1fYXBwbGljYXRpb25fc2NvcGUiLCJvcGVuaWQiXSwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo4MjQzXC90b2tlbiIsImV4cCI6MTYwMTk5NjY5OCwiaWF0IjoxNjAxOTkzMDk4fQ.cGdQ-9qK5JvKW32lK_PqhyJZyRb3r_86UPRFI2hlgiScnLYD8RsXDBNalmmnHiAbfb06e69QHQnmEKa6pcSSFWor0OAuzisBb6C5V51E9vH0eCr4hIa_lBtmjvLmsSue7puRUaYcyptwiuUkwjLFb-3_cpeuzWH29Knwne6zVD8gav_FPi1ub4vkrkX8ktLZH_JQG20fim1Ai5j2Q7jcnaMIHShYnC9sLBP5usp3thFLdQEyH8KCHJK79yNKzaruUntkq9yqqO_MQvY7VevLlDEDPllniRVih0r4TICdGrgJ0Ibr4wh_xFksVhYqa2_6x71ed_K9SX3hG-6T6pBUVA",
-         "token_type":"Bearer",
-         "expires_in":3600
-      }
-      ```
+- An API consumer can retrieve a consent resource that they have created to check its status.
+
 - A sample request to retrieve a consent looks as follows:
 ```
-curl GET \
-  https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
-  -H 'x-fapi-financial-id: open-bank' \
-  -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
+curl -X GET \
+  https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
+  -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+  -H 'x-wso2-client-id: <CLIENT_ID>' \
+  -H 'x-fapi-interaction-id: <INTERACTION_ID>' \
   -H 'Accept: application/json' \
   -H 'charset: UTF-8' \
   -H 'Content-Type: application/json; charset=UTF-8' \
@@ -204,40 +173,162 @@ curl GET \
 - A sample response looks as follows:
 ```
 {
-    "Meta": {
-        "TotalPages": 1
-    },
-    "Risk": {},
-    "Links": {
-        "Self": "https://<IS_HOST>:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID>"
-    },
-    "Data": {
-        "Status": "Authorised",
-        "StatusUpdateDateTime": "2020-10-07T12:46Z",
-        "CreationDateTime": "2020-10-07T09:29Z",
-        "TransactionToDateTime": "2020-10-09T10:28:49+05:30",
-        "ExpirationDateTime": "2020-10-11T10:28:49+05:30",
-        "Permissions": [
-            "ReadAccountsDetail",
-            "ReadBalances",
-            "ReadTransactionsDetail"
-        ],
-        "ConsentId": "41042513-fa45-4da8-93be-1513b3caffac",
-        "TransactionFromDateTime": "2020-10-06T10:28:49+05:30"
-    }
+  "Data": {
+      "StatusUpdateDateTime": "2026-03-16T13:46:08+05:30",
+      "Status": "AwaitingAuthorisation",
+      "CreationDateTime": "2026-03-16T13:46:08+05:30",
+      "TransactionToDateTime": "2026-03-19T13:46:07.270659+05:30",
+      "ExpirationDateTime": "2026-03-21T13:46:07.269894+05:30",
+      "Permissions": [
+          "ReadAccountsBasic",
+          "ReadAccountsDetail",
+          "ReadBalances",
+          "ReadTransactionsDetail"
+      ],
+      "ConsentId": "328524c0-b4a3-457e-a145-e79d92c4654e",
+      "TransactionFromDateTime": "2026-03-16T13:46:07.270580+05:30"
+  },
+  "Risk": {
+      
+  }
 }
 ```
+
+### Retrieve internal details of consent 
+
+- WSO2 Accelerator provide a consent retrieval endpoint to retrieve the internal details of the consent resource that they have created to check its authorisations. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header.
+
+- A sample request to retrieve a consent looks as follows:
+```
+curl -X GET \
+  https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
+  -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+  -H 'x-wso2-internal-request: true' \
+  -H 'x-wso2-client-id: <CLIENT_ID>' \
+  -H 'x-fapi-interaction-id: <INTERACTION_ID>' \
+  -H 'Accept: application/json' \
+  -H 'charset: UTF-8' \
+  -H 'Content-Type: application/json; charset=UTF-8' \
+  --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH>
+```
+- A sample response looks as follows:
+```
+{
+    "validityPeriod": 1774080967,
+    "consentAttributes": {
+        
+    },
+    "updatedTime": 1773648968,
+    "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
+    "clientID": "7bw8O8_7_E7s2Y6reXupdwXqGm4a",
+    "consentType": "accounts",
+    "createdTime": 1773648968,
+    "recurringIndicator": false,
+    "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\", \"ReadAccountsDetail\", \"ReadBalances\", \"ReadTransactionsDetail\"], \"ExpirationDateTime\": \"2026-03-21T13:46:07.269894+05:30\", \"TransactionToDateTime\": \"2026-03-19T13:46:07.270659+05:30\", \"TransactionFromDateTime\": \"2026-03-16T13:46:07.270580+05:30\"}, \"Risk\": {}}",
+    "authorizationResources": [
+        {
+            "authorizationID": "7b77e19b-e588-49b9-a4fb-937c66f589ce",
+            "authorizationType": "authorisation",
+            "resources": [
+                
+            ],
+            "authorizationStatus": "Created"
+        }
+    ],
+    "consentFrequency": 0,
+    "status": "AwaitingAuthorisation"
+}
+```
+
+### Update a consent
+
+- In this step, the Bank creates a request to update the consent of the customer. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header. A sample consent update request looks as follows:
+
+    ```
+    curl -X PUT \
+    https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
+    -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+    -H 'x-wso2-client-id: <CLIENT_ID>' \
+    -H 'x-wso2-internal-request: true' \
+    -H 'x-fapi-interaction-id: <INTERACTION_ID>' \
+    -H 'Content-Type: application/json' \
+    --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+    --data '{
+        "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
+        "status": "AwaitingAuthorisation",
+        "validityPeriod": 1774080967,
+        "recurringIndicator": true,
+        "consentFrequency": 0,
+        "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\",\"ReadAccountsDetail\",\"ReadBalances\"],\"ExpirationDateTime\": \"2026-03-17T15:43:35.946770+05:30\",\"TransactionFromDateTime\": \"2026-03-12T15:43:35.947399+05:30\",\"TransactionToDateTime\": \"2026-03-15T15:43:35.947514+05:30\"},\"Risk\": { }}",
+        "consentAttributes": {
+            "key1": "value1",
+            "key2": "value2"
+        },
+        "authorizationResources": [
+            {
+                "userID": "admin@wso2.com",
+                "authorizationType": "auth",
+                "authorizationStatus": "Created",
+                "resources": [
+                    {
+                        "accountID": "1962368",
+                        "permission": "account",
+                        "mappingStatus": "active"
+                    }
+                ]
+            }
+        ]
+    }'
+    ```
+  
+- A sample response looks as follows:
+
+    ``` json
+    {
+        "validityPeriod": 1774080967,
+        "consentAttributes": {
+            "key1": "value1",
+            "key2": "value2"
+        },
+        "updatedTime": 1773648968,
+        "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
+        "clientID": "7bw8O8_7_E7s2Y6reXupdwXqGm4a",
+        "consentType": "accounts",
+        "createdTime": 1773648968,
+        "recurringIndicator": true,
+        "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\", \"ReadAccountsDetail\", \"ReadBalances\"], \"ExpirationDateTime\": \"2026-03-17T15:43:35.946770+05:30\", \"TransactionToDateTime\": \"2026-03-15T15:43:35.947514+05:30\", \"TransactionFromDateTime\": \"2026-03-12T15:43:35.947399+05:30\"}, \"Risk\": {}}",
+        "authorizationResources": [
+            {
+                "authorizationID": "f562ce1f-7afc-4b6f-ac9d-2c3b1b5633d3",
+                "authorizationType": "auth",
+                "resources": [
+                    {
+                        "mappingStatus": "active",
+                        "mappingID": "eeb76808-ce1c-4cdb-b161-b5b370c5827e",
+                        "accountID": "1962368",
+                        "permission": "account"
+                    }
+                ],
+                "authorizationStatus": "Created",
+                "userID": "admin@wso2.com"
+            }
+        ],
+        "consentFrequency": 0,
+        "status": "AwaitingAuthorisation"
+    }  
+    ```
+
 ### Delete a consent
+
 - If the customer revokes a consent to data access with the API consumer, the API consumer must delete the consent resource. 
-In order to make this request, the API consumer must have an access token issued by the API consumer using the client 
-credentials grant.
 
 - A sample request to delete a consent looks as follows:
 ```
-curl DELETE \
-  https://<APIM_HOST>:8243/open-banking/v3.1/aisp/account-access-consents/<CONSENT_ID> \
-  -H 'x-fapi-financial-id: open-bank' \
-  -H 'Authorization: Bearer <APPLICATION_ACCESS_TOKEN>' \
+curl -X DELETE \
+  https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
+  -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+  -H 'x-wso2-client-id: <CLIENT_ID>' \
+  -H 'x-fapi-interaction-id: <INTERACTION_ID>' \
   -H 'Accept: application/json' \
   -H 'charset: UTF-8' \
   -H 'Content-Type: application/json; charset=UTF-8' \
