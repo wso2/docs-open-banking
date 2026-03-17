@@ -9,7 +9,7 @@ This document provides instructions for trying out consent initiation, retrieval
         - Register an application for the API consumer.
 
 
-!!!note
+!!! note
     - Replace the <AUTH_HEADER_VALUE> with Base64 encoded "admin_username:admin_password" value.
       `Eg: Base64(admin_username:admin_password)`
     - You can try out this sample flow with the transport certificates available [here](../../assets/attachments/transport-certs).
