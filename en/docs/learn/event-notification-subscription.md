@@ -6,15 +6,15 @@ You can subscribe to receive notifications using this API for particular event t
 
 - Event Subscription Creation
 
-API consumer applications can utilize this API to create event notification subscriptions tailored to their specific needs. By selecting the events they want to be notified about.
+This API can be utilized to create event notification subscriptions tailored to their specific needs. By selecting the events they want to be notified about.
 
 - Event Subscription Retrieval
 
-The API allows API consumer applications to retrieve information about specific event notification subscriptions they have previously established. This feature ensures that TPPs have easy access to their subscribed events and their respective configurations.
+The API allows to retrieve information about specific event notification subscriptions they have previously established. This feature ensures that TPPs have easy access to their subscribed events and their respective configurations.
 
 - All Event Subscriptions Retrieval
 
-API consumer applications can access a comprehensive list of all their event notification subscriptions..
+This API can access a comprehensive list of all their event notification subscriptions.
 
 - Event Subscriptions Retrieval by an Subscribed Event Type
 
@@ -22,11 +22,11 @@ The API enables the API users to retrieve event notification subscriptions that 
 
 - Event Subscription Updation
 
-API consumer applications have the flexibility to update the data and configurations of their existing event notification subscriptions. This feature allows them to adapt to changing requirements and preferences seamlessly.
+This API gives the flexibility to update the data and configurations of their existing event notification subscriptions. This feature allows them to adapt to changing requirements and preferences seamlessly.
 
 - Event Subscription Deletion
 
-The API allows API consumer applications to delete specific event notification subscriptions that are no longer required.
+The API allows to delete specific event notification subscriptions that are no longer required.
 
 You can customize the Event Subscription Flow according to your requirements. For more information, see [Customizing Event Subscription](../develop/openapi-event-subscription.md).
 

@@ -2,7 +2,7 @@
 
 The Event Polling API facilitates TPP applications to poll, acknowledge, and receive event notifications. . Event Polling API is secured with basic authentication (admin username and password) and accept base64 encoded JSON. The Event Polling API follows the **IETF Security Event Token (SET)** and the **Poll-Based Security Event Token (SET) Delivery Using HTTP** specifications to serve general-purpose event notification creation and polling.
 
-Using this endpoint the banks can send event notifications as indicated by the application's polling parameters. API consumer applications have to communicate their polling parameters and event notification acknowledgements using this endpoint.
+Using this endpoint the banks can send event notifications as indicated by the application's polling parameters. This endpoint can be used to communicate their polling parameters and event notification acknowledgements.
 
 You can customize the Event Polling Flow according to your requirements. For more information, see [Customizing Event POlling](../develop/openapi-event-polling.md).
 
@@ -26,7 +26,7 @@ A sample Event Polling request is as follows:
     The Event Polling(`/events`) endpoint supports the request payloads mentioned in the [Poll-Based Security Event Token (SET) Delivery Using HTTP](https://datatracker.ietf.org/doc/html/rfc8936) specification.
 
 !!! tip
-    The API consumer applications can send two polling parameters to indicate the polling behaviours:
+    The API expects two polling parameters to indicate the polling behaviours:
 
       - `returnImmediately`: Indicates whether a bank should return a response immediately or provide a long poll. WSO2 
          Open Banking currently does not support Long Polling. Therefore, the value of `returnImmediately` is always `true`.

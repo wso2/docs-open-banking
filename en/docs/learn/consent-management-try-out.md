@@ -1,4 +1,6 @@
-This document provides the instructions to try out consent initiation, retrieval, update, and deletion.
+This document provides instructions for trying out consent initiation, retrieval, update, and deletion flows. These endpoints are provided by the WSO2 Accelerator and can be used as backend services for the consent endpoints defined in the Open Banking specification.
+
+![IS_Consent_Management](../assets/img/learn/consent-manager/consent-management-api.png) 
 
 !!! tip "Prerequisites" 
     - Before you try out the consent flow, you need to do the following:
@@ -14,8 +16,7 @@ This document provides the instructions to try out consent initiation, retrieval
                 
 ### Consent Initiation
 
-- In this step, the API consumer creates a request to get the consent of the customer to access the accounts and its 
-information from the bank. A sample consent initiation request looks as follows:
+- In this step, a request is created to obtain the customer’s consent to access their bank accounts and related information. A sample consent initiation request is shown below:
 
     ```
     curl -X POST \
@@ -156,9 +157,8 @@ The bank sends the request to the customer stating the accounts and information 
  
 ### Retrieve a consent 
 
-- An API consumer can retrieve a consent resource that they have created to check its status.
+- Consent Retreival endpoint can be used to retrieve a consent resource that they have created to check its status. A sample request to retrieve a consent looks as follows:
 
-- A sample request to retrieve a consent looks as follows:
 ```
 curl -X GET \
   https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
@@ -196,9 +196,8 @@ curl -X GET \
 
 ### Retrieve internal details of consent 
 
-- WSO2 Accelerator provide a consent retrieval endpoint to retrieve the internal details of the consent resource that they have created to check its authorisations. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header.
+- WSO2 Accelerator provide a consent retrieval endpoint to retrieve the internal details of the consent resource that they have created to check its authorisations. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header. A sample request to retrieve a consent looks as follows:
 
-- A sample request to retrieve a consent looks as follows:
 ```
 curl -X GET \
   https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
@@ -211,7 +210,9 @@ curl -X GET \
   -H 'Content-Type: application/json; charset=UTF-8' \
   --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH>
 ```
+
 - A sample response looks as follows:
+
 ```
 {
     "validityPeriod": 1774080967,
@@ -244,83 +245,83 @@ curl -X GET \
 
 - In this step, the Bank creates a request to update the consent of the customer. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header. A sample consent update request looks as follows:
 
-    ```
-    curl -X PUT \
-    https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
-    -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
-    -H 'x-wso2-client-id: <CLIENT_ID>' \
-    -H 'x-wso2-internal-request: true' \
-    -H 'x-fapi-interaction-id: <INTERACTION_ID>' \
-    -H 'Content-Type: application/json' \
-    --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
-    --data '{
-        "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
-        "status": "AwaitingAuthorisation",
-        "validityPeriod": 1774080967,
-        "recurringIndicator": true,
-        "consentFrequency": 0,
-        "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\",\"ReadAccountsDetail\",\"ReadBalances\"],\"ExpirationDateTime\": \"2026-03-17T15:43:35.946770+05:30\",\"TransactionFromDateTime\": \"2026-03-12T15:43:35.947399+05:30\",\"TransactionToDateTime\": \"2026-03-15T15:43:35.947514+05:30\"},\"Risk\": { }}",
-        "consentAttributes": {
-            "key1": "value1",
-            "key2": "value2"
-        },
-        "authorizationResources": [
-            {
-                "userID": "admin@wso2.com",
-                "authorizationType": "auth",
-                "authorizationStatus": "Created",
-                "resources": [
-                    {
-                        "accountID": "1962368",
-                        "permission": "account",
-                        "mappingStatus": "active"
-                    }
-                ]
-            }
-        ]
-    }'
-    ```
+```
+curl -X PUT \
+https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
+-H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
+-H 'x-wso2-client-id: <CLIENT_ID>' \
+-H 'x-wso2-internal-request: true' \
+-H 'x-fapi-interaction-id: <INTERACTION_ID>' \
+-H 'Content-Type: application/json' \
+--cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+--data '{
+    "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
+    "status": "AwaitingAuthorisation",
+    "validityPeriod": 1774080967,
+    "recurringIndicator": true,
+    "consentFrequency": 0,
+    "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\",\"ReadAccountsDetail\",\"ReadBalances\"],\"ExpirationDateTime\": \"2026-03-17T15:43:35.946770+05:30\",\"TransactionFromDateTime\": \"2026-03-12T15:43:35.947399+05:30\",\"TransactionToDateTime\": \"2026-03-15T15:43:35.947514+05:30\"},\"Risk\": { }}",
+    "consentAttributes": {
+        "key1": "value1",
+        "key2": "value2"
+    },
+    "authorizationResources": [
+        {
+            "userID": "admin@wso2.com",
+            "authorizationType": "auth",
+            "authorizationStatus": "Created",
+            "resources": [
+                {
+                    "accountID": "1962368",
+                    "permission": "account",
+                    "mappingStatus": "active"
+                }
+            ]
+        }
+    ]
+}'
+```
   
 - A sample response looks as follows:
 
-    ``` json
-    {
-        "validityPeriod": 1774080967,
-        "consentAttributes": {
-            "key1": "value1",
-            "key2": "value2"
-        },
-        "updatedTime": 1773648968,
-        "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
-        "clientID": "7bw8O8_7_E7s2Y6reXupdwXqGm4a",
-        "consentType": "accounts",
-        "createdTime": 1773648968,
-        "recurringIndicator": true,
-        "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\", \"ReadAccountsDetail\", \"ReadBalances\"], \"ExpirationDateTime\": \"2026-03-17T15:43:35.946770+05:30\", \"TransactionToDateTime\": \"2026-03-15T15:43:35.947514+05:30\", \"TransactionFromDateTime\": \"2026-03-12T15:43:35.947399+05:30\"}, \"Risk\": {}}",
-        "authorizationResources": [
-            {
-                "authorizationID": "f562ce1f-7afc-4b6f-ac9d-2c3b1b5633d3",
-                "authorizationType": "auth",
-                "resources": [
-                    {
-                        "mappingStatus": "active",
-                        "mappingID": "eeb76808-ce1c-4cdb-b161-b5b370c5827e",
-                        "accountID": "1962368",
-                        "permission": "account"
-                    }
-                ],
-                "authorizationStatus": "Created",
-                "userID": "admin@wso2.com"
-            }
-        ],
-        "consentFrequency": 0,
-        "status": "AwaitingAuthorisation"
-    }  
-    ```
+``` json
+{
+    "validityPeriod": 1774080967,
+    "consentAttributes": {
+        "key1": "value1",
+        "key2": "value2"
+    },
+    "updatedTime": 1773648968,
+    "consentID": "328524c0-b4a3-457e-a145-e79d92c4654e",
+    "clientID": "7bw8O8_7_E7s2Y6reXupdwXqGm4a",
+    "consentType": "accounts",
+    "createdTime": 1773648968,
+    "recurringIndicator": true,
+    "receipt": "{\"Data\": {\"Permissions\": [\"ReadAccountsBasic\", \"ReadAccountsDetail\", \"ReadBalances\"], \"ExpirationDateTime\": \"2026-03-17T15:43:35.946770+05:30\", \"TransactionToDateTime\": \"2026-03-15T15:43:35.947514+05:30\", \"TransactionFromDateTime\": \"2026-03-12T15:43:35.947399+05:30\"}, \"Risk\": {}}",
+    "authorizationResources": [
+        {
+            "authorizationID": "f562ce1f-7afc-4b6f-ac9d-2c3b1b5633d3",
+            "authorizationType": "auth",
+            "resources": [
+                {
+                    "mappingStatus": "active",
+                    "mappingID": "eeb76808-ce1c-4cdb-b161-b5b370c5827e",
+                    "accountID": "1962368",
+                    "permission": "account"
+                }
+            ],
+            "authorizationStatus": "Created",
+            "userID": "admin@wso2.com"
+        }
+    ],
+    "consentFrequency": 0,
+    "status": "AwaitingAuthorisation"
+}  
+```
 
 ### Delete a consent
 
-- If the customer revokes a consent to data access with the API consumer, the API consumer must delete the consent resource. 
+- If the customer revokes a consent to data access, a request should be made to delete the consent resource. 
 
 - A sample request to delete a consent looks as follows:
 ```
