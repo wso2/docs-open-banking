@@ -6,27 +6,22 @@ You can subscribe to receive notifications using this API for particular event t
 
 - Event Subscription Creation
 
-This API can be utilized to create event notification subscriptions tailored to their specific needs. By selecting the events they want to be notified about.
+This API can be used to create event notification subscriptions tailored to user needs by selecting the events to be notified about.
 
 - Event Subscription Retrieval
-
-The API allows to retrieve information about specific event notification subscriptions they have previously established. This feature ensures that TPPs have easy access to their subscribed events and their respective configurations.
+This API allows users to retrieve details of specific event notification subscriptions they previously created. This feature ensures that TPPs can access subscribed events and their configurations easily.
 
 - All Event Subscriptions Retrieval
-
-This API can access a comprehensive list of all their event notification subscriptions.
+This API can be used to retrieve a comprehensive list of all event notification subscriptions.
 
 - Event Subscriptions Retrieval by an Subscribed Event Type
-
 The API enables the API users to retrieve event notification subscriptions that have subscribed to a particular event type. 
 
 - Event Subscription Updation
-
-This API gives the flexibility to update the data and configurations of their existing event notification subscriptions. This feature allows them to adapt to changing requirements and preferences seamlessly.
+This API allows users to update data and configurations of existing event notification subscriptions, enabling adaptation to changing requirements and preferences.
 
 - Event Subscription Deletion
-
-The API allows to delete specific event notification subscriptions that are no longer required.
+This API allows users to delete specific event notification subscriptions that are no longer required.
 
 You can customize the Event Subscription Flow according to your requirements. For more information, see [Customizing Event Subscription](../develop/openapi-event-subscription.md).
 

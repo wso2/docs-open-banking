@@ -2,7 +2,7 @@
 
 The Event Polling API facilitates TPP applications to poll, acknowledge, and receive event notifications. . Event Polling API is secured with basic authentication (admin username and password) and accept base64 encoded JSON. The Event Polling API follows the **IETF Security Event Token (SET)** and the **Poll-Based Security Event Token (SET) Delivery Using HTTP** specifications to serve general-purpose event notification creation and polling.
 
-Using this endpoint the banks can send event notifications as indicated by the application's polling parameters. This endpoint can be used to communicate their polling parameters and event notification acknowledgements.
+Using this endpoint, API Consumer can request for event notifications and the banks can send event notifications as indicated by the application's polling parameters. This endpoint can be used to communicate their polling parameters and event notification acknowledgements.
 
 You can customize the Event Polling Flow according to your requirements. For more information, see [Customizing Event POlling](../develop/openapi-event-polling.md).
 

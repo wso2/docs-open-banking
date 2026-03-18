@@ -18,7 +18,7 @@ This document provides instructions for trying out consent initiation, retrieval
 
 - In this step, a request is created to obtain the customer’s consent to access their bank accounts and related information. A sample consent initiation request is shown below:
 
-    ```
+    ``` bash
     curl -X POST \
      'https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents' \
     -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
@@ -157,9 +157,9 @@ The bank sends the request to the customer stating the accounts and information 
  
 ### Retrieve a consent 
 
-- Consent Retreival endpoint can be used to retrieve a consent resource that they have created to check its status. A sample request to retrieve a consent looks as follows:
+- Consent Retrieval endpoint can be used to retrieve a consent resource that they have created to check its status. A sample request to retrieve a consent looks as follows:
 
-```
+``` bash
 curl -X GET \
   https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
   -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
@@ -171,7 +171,7 @@ curl -X GET \
   --cert <PUBLIC_KEY_FILE_PATH> --key <PRIVATE_KEY_FILE_PATH>
 ```
 - A sample response looks as follows:
-```
+``` json
 {
   "Data": {
       "StatusUpdateDateTime": "2026-03-16T13:46:08+05:30",
@@ -196,9 +196,9 @@ curl -X GET \
 
 ### Retrieve internal details of consent 
 
-- WSO2 Accelerator provide a consent retrieval endpoint to retrieve the internal details of the consent resource that they have created to check its authorisations. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header. A sample request to retrieve a consent looks as follows:
+- WSO2 Accelerator provides an internal consent-retrieval endpoint to retrieve details of a consent resource and check its authorizations. This endpoint can be invoked only by banks, with the `x-wso2-internal-request` header. A sample request to retrieve a consent looks as follows:
 
-```
+``` bash
 curl -X GET \
   https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
   -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
@@ -213,7 +213,7 @@ curl -X GET \
 
 - A sample response looks as follows:
 
-```
+``` json
 {
     "validityPeriod": 1774080967,
     "consentAttributes": {
@@ -245,7 +245,7 @@ curl -X GET \
 
 - In this step, the Bank creates a request to update the consent of the customer. This endpoint is an internal endpoint which can be invoked by the banks only with WSO2 Internal header. A sample consent update request looks as follows:
 
-```
+``` bash
 curl -X PUT \
 https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
 -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
@@ -321,10 +321,9 @@ https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSEN
 
 ### Delete a consent
 
-- If the customer revokes a consent to data access, a request should be made to delete the consent resource. 
+- If the customer revokes a consent to data access, a request should be made to delete the consent resource. A sample request to delete a consent looks as follows:
 
-- A sample request to delete a consent looks as follows:
-```
+``` bash
 curl -X DELETE \
   https://<IS_HOSTNAME>:9446/api/fs/consent/manage/account-access-consents/<CONSENT_ID> \
   -H 'Authorization: Basic <AUTH_HEADER_VALUE>' \
