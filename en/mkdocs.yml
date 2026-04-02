@@ -1,4 +1,4 @@
-# Copyright (c) 2020, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+# Copyright (c) 2020-2026, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 #
 # WSO2 Inc. licenses this file to you under the Apache License,
 # Version 2.0 (the "License"); you may not use this file except
@@ -18,12 +18,12 @@
 site_name: WSO2 Open Banking Accelerator Documentation
 site_description: Documentation for WSO2 Open Banking Accelerator
 site_author: WSO2
-site_url: https://ob.docs.wso2.com/en/latest/
+site_url: https://ob.docs.wso2.com/en/3.0.0/
 
 # Repository
 repo_name: wso2/docs-open-banking
 repo_url: https://github.com/wso2/docs-open-banking
-edit_uri: https://github.com/wso2/docs-open-banking/edit/master/en/docs/
+edit_uri: https://github.com/wso2/docs-open-banking/edit/3.0.0/en/docs/
 
 # Copyright
 copyright: WSO2 Open Banking Accelerator - Documentation
