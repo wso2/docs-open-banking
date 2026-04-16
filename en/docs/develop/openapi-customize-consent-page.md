@@ -70,15 +70,40 @@ The [Populate Consent Authorization Screen extension](../develop/openapi-consent
                     {
                         "displayName": "CurrentAccount",
                         "accountId": "1234-567-987",
-                        "selected": false
+                        "selected": false,
+                        "title": null,
+                        "description": null
                     },
                     {
                         "displayName": "SavingsAccount",
                         "accountId": "6870-172-890",
-                        "selected": false
+                        "selected": false,
+                        "title": "Pre-approval enabled",
+                        "description": "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing  Account permissions"
                     }
                 ]
-            }
+            },
+            "additionalData": [
+                {
+                    "title": "Accounts Unavailable To Share:",
+                    "subtitle": "Why can't I share these accounts?",
+                    "description": "There are a range of reasons why certain accounts may not be available to share.For joint accounts, all account holders must elect to make the account available. For secondary user accounts, the account holder(s) must grant data sharing rights. Please contact your bank for more details.",
+                    "items": [
+                        {
+                            "item": "joint_account_2",
+                            "type": null
+                        },
+                        {
+                            "item": "secondary_joint_account_2",
+                            "type": null
+                        },
+                        {
+                            "item": "business_account_1",
+                            "type": "00001"
+                        }
+                    ]
+                }
+            ]
         },
         "status": "SUCCESS",
         "responseId": "request-uuid"
@@ -89,6 +114,7 @@ The response of the Populate Consent Authorization Screen extension consists of 
 
 1. Consent Data
 2. Consumer Data
+3. Additional Data
 
 ### Consent Data
 
@@ -283,6 +309,100 @@ The `consumerData` object contains all consumer-related information retrieved fr
         } 
     ]
     ```
+
+An optional `title` and `description` can also be provided for each account. When present, an info icon is displayed next to the account name. Clicking the icon opens a popover showing `title` as the header and `description` as the body text.
+
+![account-title-description](../assets/img/develop/customizing-consent-page/account-title-description.png)
+
+??? tip "Click here to see the consumer accounts object."
+    ```
+    "accounts" : [ 
+        {
+            "displayName" : "account_1",
+            "accountId" : "30080012343456",
+            "selected" : false
+            "title" : null,
+            "description" : null
+        }, 
+        {
+            "displayName" : "account_2",
+            "accountId" : "30080098763459",
+            "selected" : false
+            "title" : null,
+            "description" : null
+        }, 
+        {
+            "displayName" : "joint_account_1",
+            "accountId" : "30080098971337",
+            "selected" : false,
+            "title" : "Pre-approval enabled",
+            "description" : "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing Account permissions"
+        },
+        {
+            "displayName" : "joint_account_2",
+            "accountId" : "30080098971337",
+            "selected" : false
+            "title" : "Pre-approval enabled",
+            "description" : "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing Account permissions"
+        }, 
+        {
+            "displayName" : "secondary_account_1",
+            "accountId" : "650-000 N1232",
+            "selected" : false
+            "title" : null,
+            "description" : null
+        } 
+    ]
+    ```
+
+### Additional Data
+
+The `additionalData` object is an optional list of informational sections that can be displayed on the account selection page. Each section renders a title, an optional subtitle with a tooltip, and a flat list of display items. This is useful for surfacing supplementary information alongside the consent details — for example, accounts that exist in the banking system but could not be linked to the consent due to eligibility restrictions.
+
+#### Additional Data Items
+
+Each entry in the `additionalData` array is rendered as a titled section containing a list of items. The `subtitle` field, when provided, is displayed alongside a tooltip icon; hovering over it reveals the full `description` text.
+
+![additional-data](../assets/img/develop/customizing-consent-page/additional-data.png)
+
+??? tip "Click here to see the payload structure for the above format."
+    ```
+    "additionalData": [
+        {
+            "title": "Accounts Unavailable To Share:",
+            "subtitle": "Why can't I share these accounts?",
+            "description": "There are a range of reasons why certain accounts may not be available to share. For joint accounts, all account holders must elect to make the account available. For secondary user accounts, the account holder(s) must grant data sharing rights. Please contact your bank for more details.",
+            "items": [
+                {
+                    "item": "joint_account_2",
+                    "type": null
+                },
+                {
+                    "item": "secondary_joint_account_2",
+                    "type": null
+                },
+                {
+                    "item": "secondary_joint_account_3",
+                    "type": null
+                }
+            ]
+        }
+    ]
+    ```
+
+The table below describes the fields in each `additionalData` section object.
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `title` | String | Yes | Section heading displayed above the item list. |
+| `subtitle` | String | No | Short label shown inline with a tooltip icon. |
+| `description` | String | No | Full tooltip text revealed on hover when `subtitle` is present. |
+| `items` | Array | Yes | List of display items for this section. |
+| `items[].item` | String | Yes | The text displayed for this entry. |
+| `items[].type` | String | No | The text used to filter out the items |
+
+!!! note
+    The `type` field can be used to filter `additionalData` items in a custom `financial_services.consent.authorize_jsp` JSP file.
 
 ## Customize the theme of the consent page
 
