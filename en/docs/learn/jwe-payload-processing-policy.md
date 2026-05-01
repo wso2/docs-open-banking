@@ -11,6 +11,9 @@ This method will only proceed with the encryption if the response code is 200 or
 
 Both of the above implementations supports only `RSA-OAEP-256`, `RSA-OAEP`, `RSA-OAEP-384`, `RSA-OAEP-512` and `RSA1_5` as encryption algorithms and `A128GCM`, `A256GCM` and `A192GCM` as encryption methods.
 
+!!! warning "HSM Support Limitation"
+    When Hardware Security Module (HSM) is enabled, only **RSA1_5** algorithm is supported for JWE decryption.
+
 Before creating policies, need to build the policy artifacts from the source.
 
 ## Building from the source
