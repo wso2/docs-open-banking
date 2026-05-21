@@ -24,19 +24,31 @@ an authentication protocol where the API consumers do not need to send their pri
 MTLS handshake at the transport layer ensures that the corresponding API consumer possesses a secret key that is associated 
 with the X509 certificate issued by a trusted Certificate Authority (CA).
 
-In WSO2 Open Banking Accelerator, MTLS is enforced at the API Manager level to check if 
+In WSO2 Open Banking Accelerator, MTLS is enforced at both the API Manager gateway level and the Identity Server token 
+endpoint level.
+
+**API Manager Gateway** checks:
 
 - the message context contains the transport certificate to make sure that the MTLS handshake is successful at the gateway
 - the transport certificate bound to the application when invoking the APIs
 
-There are two scenarios to consider for the MTLS validation:
+**WSO2 Identity Server** checks:
 
-1. If the client directly initiates an MTLS connection with the WSO2 API Manager Gateway, the issuer of the certificate needs 
-to be present in the truststore of the gateway.
+- the transport certificate is present and valid at the token endpoint during client authentication
+- the certificate matches the one bound to the OAuth application (certificate-bound access tokens)
 
-2. If the MTLS terminates at the load balancer prior to the gateway, the WSO2 API Manager Gateway expects the load balancer 
-to send the client certificate as a header. In such scenarios, the WSO2 API Manager gateway expects the load balancer to 
-perform the issuer validation.
+There are two scenarios to consider for the MTLS validation at each component:
+
+1. If the client directly initiates an MTLS connection, the transport certificate is read from the TLS handshake. The issuer 
+of the certificate needs to be present in the truststore of the respective component.
+
+2. If the MTLS terminates at the load balancer prior to the gateway or Identity Server, the client certificate must be 
+forwarded as an HTTP header. Both WSO2 API Manager and WSO2 Identity Server are configured to read the transport certificate 
+from the header named **`x-wso2-mutual-auth-cert`** by default. The load balancer is expected to perform issuer validation 
+and inject the PEM-encoded client certificate into this header.
+
+The certificate header name and encoding behaviour can be customised. For configuration details, see 
+[API Security Configuration](api-security-configuration.md).
 
 ###Certificate Revocation Validation 
 
