@@ -240,7 +240,7 @@ This section explains how to set up the remaining WSO2 Identity Server and API M
     keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
     ```
    
-## Starting severs
+## Starting Servers
 
 1. Start all Identity Servers (including the ABC and DBC banks' servers). Go to the `<IS_HOME>/bin` directory using 
    a terminal and run the `wso2server` script:

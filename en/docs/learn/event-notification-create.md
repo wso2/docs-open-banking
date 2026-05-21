@@ -1,8 +1,8 @@
 #Event Creation
 
-The Event Creation API allows storing event notification information as a JSON, which can be customized according to your use case. This endpoint are secured with basic authentication (admin username and password) and accept base64 encoded JSON. The Event Creation API follows the **IETF Security Event Token (SET)** specifications to serve general-purpose event notification creation.
+The Event Creation API allows storing event notification information as a JSON, which can be customized according to your use case. This endpoint is secured with basic authentication (admin username and password) and accepts base64 encoded JSON. The Event Creation API follows the **IETF Security Event Token (SET)** specifications to serve general-purpose event notification creation.
 
-Event Creation API expects a Base64 encoded object of events as the payload and it contains the event type as the key and the event details as the value. The format of the events are not mandated from Accelerator. It is the responsibilty of the toolkit developer to ensure the accuracy of the format of the events according to the regulatory specification they follow. 
+Event Creation API expects a Base64 encoded object of events as the payload and it contains the event type as the key and the event details as the value. The format of the events are not mandated from Accelerator. It is the responsibility of the toolkit developer to ensure the accuracy of the format of the events according to the regulatory specification they follow. 
 
 You can customize the Event Creation Flow according to your requirements. For more information, see [Customizing Event Notification Creation](../develop/openapi-event-creation.md).
 

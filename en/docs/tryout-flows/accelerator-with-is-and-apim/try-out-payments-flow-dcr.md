@@ -10,7 +10,7 @@ Before trying out the flow, make sure the you have created roles and users by fo
     - [private keys](../../assets/attachments/signing-certs/obsigning.key)
 
 ### Step 1: Generate application access token
-1. Once you register the application, generate an application access token using the following commandFor the 
+1. Once you register the application, generate an application access token using the following command. For the 
 Transport Layer Security purposes in this sample flow, you can use the attached [private key](../../assets/attachments/transport-certs/obtransport.key) and
 [public certificate](../../assets/attachments/transport-certs/obtransport.pem).. 
 
@@ -109,7 +109,7 @@ curl --location --request POST 'https://localhost:8243/open-banking/v3.1/pisp/pa
 
 Add all mandatory headers:
 
-- `Authorization`: An Authorisation Token as per the OAuth 2.0 specification. User the application access token you generated from the above step.
+- `Authorization`: An Authorisation Token as per the OAuth 2.0 specification. Use the application access token you generated from the above step.
 - `x-idempotency-key`: Every request will be processed only once per x-idempotency-key. The Idempotency key will be valid for 24 hours.
 
 The response contains a Consent ID. A sample response looks as follows:

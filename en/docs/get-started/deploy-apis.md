@@ -1,6 +1,6 @@
 This page explains how to deploy an Open Banking API.
 
-Before publishing the APIs, need to create the consumer role in WSO2 API Manager. 
+Before publishing the APIs, you need to create the consumer role in WSO2 API Manager. 
 
 ## Create Consumer Role APIM Console
 
@@ -72,9 +72,9 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     ![dynamic-endpoint.png](../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
 
 15. Create and engage the required [Inbuilt Gateway Enforcements](../learn/inbuilt-policies.md)
-    - Refer the [Introduction to Policies](../learn/policies.md) for more details on Policies.
-    - Refer the [Create Policies](../learn/create-policies.md) for create new Policies.
-    - Refer the [Engage Policies](../learn/engage-policies.md) to learn how to engage policies to an API.
+    - Refer to the [Introduction to Policies](../learn/policies.md) for more details on Policies.
+    - Refer to the [Create Policies](../learn/create-policies.md) for create new Policies.
+    - Refer to the [Engage Policies](../learn/engage-policies.md) to learn how to engage policies to an API.
 
     Engage the following policies.
     - `MTLS Enforcement Policy`

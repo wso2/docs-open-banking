@@ -42,7 +42,7 @@ OBDataPublisherUtil.publishData(API_LATENCY_INPUT_STREAM, API_LATENCY_STREAM_VER
 To define the data stream and the set of attributes you want to publish, configure them as follows:
 
 1. Open `<APIM_HOME>/repository/conf/deployment.toml`. 
-2. Defining the name of the stream as follows:
+2. Define the name of the stream as follows:
     ``` toml
     [[open_banking.data_publishing.thrift.stream]]
     name="<Data Stream name>"

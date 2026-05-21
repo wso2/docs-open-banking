@@ -42,7 +42,7 @@ The **Open Innovation Concept** defined by Henry Chesbrough at Berkley promotes 
 external sources to gain a sustainable competitive advantage. This concept contradicts secrecy and siloed methods. 
 Open banking stems from this concept.  
 
-Then introduced a legal framework known as **PSD1** to promote faster, cheaper and 
+A legal framework known as **PSD1** was then introduced to promote faster, cheaper and 
 more transparent payment services within the European Union (EU) impacting how incumbents operate and promoting the 
 entry of new players. **PSD2**, which is the revised version of PSD1 introduced the concept of open banking by regulatory 
 means requiring banks across the EU to allow consumers to share their data with authorized third parties. **GDPR** 

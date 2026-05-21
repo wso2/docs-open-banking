@@ -20,5 +20,5 @@ Policies can be engaged in API level and operational level based on the function
 7. Then the policy will be added to the API as follows.
     ![added-policy.png](../assets/img/learn/policies/added-policy.png)
 
-8. Scroll to down and click **Save and Deploy** to apply the changes to the API.
+8. Scroll down and click **Save and Deploy** to apply the changes to the API.
     ![save-deploy-policy.png](../assets/img/learn/policies/save-deploy-policy.png)

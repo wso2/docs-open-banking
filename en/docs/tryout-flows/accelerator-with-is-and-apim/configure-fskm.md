@@ -44,7 +44,7 @@
     !!! note
         You can use `https://<IS_HOSTNAME>:9446/oauth2/token/.well-known/openid-configuration` as the Well-known URL, and click on Import to populate most of the fields mentioned below, Grant types, and the Certificates section. 
 
-        If the Import button is used, verify all the auto imported values with the onces mentioned below.
+        If the Import button is used, verify all the auto imported values with the ones mentioned below.
 
 
     | Configuration | Values |

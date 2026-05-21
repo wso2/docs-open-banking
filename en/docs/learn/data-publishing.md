@@ -1,7 +1,7 @@
 ###Introduction
 The Data Publishing feature gathers and monitors data in regard to the APIs invoked through WSO2 Open Banking Accelerator. 
 WSO2 Open Banking Business Intelligence Accelerator captures the data through Identity Server and API Manager servers and
-process them. You can summarize data in a way that banks can generate reports and summaries according to your open banking 
+processes them. You can summarize data in a way that banks can generate reports and summaries according to your open banking 
 requirements. See the following diagram to understand how WSO2 Open Banking Accelerator has implemented data publishing. 
 ![data-publishing-overview](../assets/img/learn/data-publishing/data-publishing-overview.png)
 

@@ -57,7 +57,7 @@ throws ConsentManagementException;
 
 This method lets you create a consent file by performing the following:
 
-- Validates the status of the consent a per the "applicableStatusToFileUpload" parameter
+- Validates the status of the consent as per the "applicableStatusToFileUpload" parameter
 - Creates the consent file
 - Updates the status of the consent
 - Creates audit records for necessary consent updates

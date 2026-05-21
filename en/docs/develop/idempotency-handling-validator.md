@@ -5,7 +5,7 @@ The idempotency validator is used to validate idempotency of the requests. It wi
     **WSO2 Open Banking API Manager Accelerator Level 3.0.0.57** onwards. For more information on updating, see 
     [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
-Idempotency Validator will use the Idempotency Key stored as a Consent Attribute to identify that the idempotency key has been replayed. Hence toolkit developers has to store idempotency key as a consent attrubute in order to this validation to work as expected.
+Idempotency Validator will use the Idempotency Key stored as a Consent Attribute to identify that the idempotency key has been replayed. Hence toolkit developers have to store idempotency key as a consent attribute in order for this validation to work as expected.
 
 To achieve the above, use the following method in [Consent Core Service](consent-core-service.md):
 ```java

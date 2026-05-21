@@ -6,7 +6,7 @@ To avail themselves of real time event notifications, TPPs are required to provi
 
 You can customize the Real Time Event Notification Flow according to your requirements. For more information, see [Customizing Event Notification](../develop/custom-event-notification.md).
 
-In order to enable Real Time Event Notification, TPPs must subscribe to receive event notifications using Event Subscription feature. TPPs must provide a callback URl which they have established to receive the event notifications. To create an Event Notification Subscription use the below request. 
+In order to enable Real Time Event Notification, TPPs must subscribe to receive event notifications using Event Subscription feature. TPPs must provide a callback URL which they have established to receive the event notifications. To create an Event Notification Subscription use the below request. 
 
 ```tab="Request"
 curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/' \
@@ -37,7 +37,7 @@ curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/
 }
 ```
 
-To verify whther Real Time EVent Notification is working for the given callback URL, send an event with subscribed event types. A sample Event Creation request and response are as follows:
+To verify whether Real Time Event Notification is working for the given callback URL, send an event with subscribed event types. A sample Event Creation request and response are as follows:
 
    ```
     curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/create-events' \

@@ -1,4 +1,4 @@
-JWE Payload Processing Policy is a policy designed to be engaged in the request flow of any request that requires decrytption and encryption of the payload. This Policy has two sections.
+JWE Payload Processing Policy is a policy designed to be engaged in the request flow of any request that requires decryption and encryption of the payload. This Policy has two sections.
 
 1. JWE Payload Decryption Mediator
    
@@ -11,7 +11,7 @@ This method will only proceed with the encryption if the response code is 200 or
 
 Both of the above implementations supports only `RSA-OAEP-256`, `RSA-OAEP`, `RSA-OAEP-384`, `RSA-OAEP-512` and `RSA1_5` as encryption algorithms and `A128GCM`, `A256GCM` and `A192GCM` as encryption methods.
 
-Before creating policies, need to build the policy artifacts from the source.
+Before creating policies, you need to build the policy artifacts from the source.
 
 ## Building from the source
 
@@ -86,6 +86,6 @@ Upload the `jwePayloadProcessingRequestPolicy.j2` policy file which resides insi
 |----------------|--------------|-------------| -------- | ------ | --------------- |
 | applicationServiceBasicAuthCredentials | Application Service Basic Auth Credentials | Base64 encoded(admin-username:admin-password) basic auth credentials required to access the application service | true     | String | aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw== |
 | identityServerBaseUrl | Identity Server Base URL | Base URL of the identity server | true | String | https://localhost:9446 |
-| jweEncryptionAlg | JWE Encrytion Algorithm | Algorithm that is supported to use in encrypting the response paylaod.  | true | String | RSA-OAEP-256, RSA-OAEP, RSA-OAEP-384, RSA-OAEP-512, RSA1_5 |                    |
-| jweEncryptionMethod | JWE Encrytion Method | Encryption Method that is supported to use in encrypting the response paylaod. | true  | String | A128GCM, A256GCM, A192GCM |
-| jweEncryptionCertAlias | JWE Encrytion Certificate Alias | Alias of the private key of the server that is supported to use in encrypting the request paylaod. | true  | String | wso2carbon |
+| jweEncryptionAlg | JWE Encryption Algorithm | Algorithm that is supported to use in encrypting the response payload.  | true | String | RSA-OAEP-256, RSA-OAEP, RSA-OAEP-384, RSA-OAEP-512, RSA1_5 |                    |
+| jweEncryptionMethod | JWE Encryption Method | Encryption Method that is supported to use in encrypting the response payload. | true  | String | A128GCM, A256GCM, A192GCM |
+| jweEncryptionCertAlias | JWE Encryption Certificate Alias | Alias of the private key of the server that is supported to use in encrypting the request payload. | true  | String | wso2carbon |

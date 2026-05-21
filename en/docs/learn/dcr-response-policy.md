@@ -1,6 +1,6 @@
 ### Dynamic Client Registration Response Policy
 
-Dynamic Client Registration Request Policy is a policy designed to enagege in the response flow of the Dynamic Client Registration Request. It will perform the below tasks.
+Dynamic Client Registration Request Policy is a policy designed to engage in the response flow of the Dynamic Client Registration Request. It will perform the below tasks.
 
 - Remove added Mandatory parameters for Identity Server DCR API for DCR create and update requests
 

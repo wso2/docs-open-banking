@@ -83,7 +83,7 @@ HashMap<String, String> additionalProperties) throws APIManagementException;
     You need to configure all additional properties as follows:
  
     1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
-    2. Follow the given format and configurate all additional properties:
+    2. Follow the given format and configure all additional properties:
         
         ``` toml tab="Format"
         [[open_banking.keymanager.application.type.attributes]]

@@ -1,6 +1,6 @@
 Open Banking Specifications require banks to notify any changes related to consent to the Third Party Application Provider (TPP). To achieve this, the specifications includes an API called the Event Notification API, including the flows and common functionality to allow a TPP to receive event notifications. 
 
-In order to receive event notifications, TPPs has to register themselves using Event Subscription API. Event Subscription API allows TPPS to subscribe to a set of event types providng a redirect URL optionally.
+In order to receive event notifications, TPPs have to register themselves using Event Subscription API. Event Subscription API allows TPPS to subscribe to a set of event types providng a redirect URL optionally.
 
 !!! note
     Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
@@ -20,7 +20,7 @@ To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
+2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
 ``` toml
 [financial_services.extensions.endpoint]

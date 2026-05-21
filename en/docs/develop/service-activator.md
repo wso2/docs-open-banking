@@ -40,8 +40,7 @@ public class CustomObserver implements OBServiceObserver {
 1. Once implemented, build a JAR file for your `OBServiceObserver` and place it in the  
    `<IS_HOME>/repository/components/dropins` and `<APIM_HOME>/repository/components/dropins` directories.
 2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-3. Add a `[open_banking.service_activator.subscribers]` tag and configure it using the Fully Qualified Name (FQN) of your custom `OBServiceObserver` implementation.
-   executor using the Fully Qualified Name (FQN) of your custom event executor class. For example:
+3. Add a `[open_banking.service_activator.subscribers]` tag and configure it using the Fully Qualified Name (FQN) of your custom `OBServiceObserver` implementation. For example:
 
     ``` toml
     [[open_banking.service_activator.subscribers]]

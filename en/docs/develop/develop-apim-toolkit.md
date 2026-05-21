@@ -14,7 +14,7 @@ With the release of Open Banking 4.0, Open Banking-specific API Manager runtime 
 
 With the release of Open Banking 4.0, it has introduced OpenAPI based extensions such that the toolkit developer can 
 implement Open Banking specification requirements in their preferred programming language. And the custom developed 
-extensions can be deployed externally and tested seperatly without restarting the WSO2 servers.The OpenAPI extension 
+extensions can be deployed externally and tested separately without restarting the WSO2 servers. The OpenAPI extension 
 can be found from [here](../references/accelerator-extensions-api.md).
 
   - [Developer Guide](openapi-extensions-developer-guide-am.md)

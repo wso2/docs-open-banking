@@ -1,4 +1,4 @@
-This section will walk you through the multiple try out flows support by the WSO2 Open Banking Accelearot 4.0.0.
+This section will walk you through the multiple try out flows supported by the WSO2 Open Banking Accelerator 4.0.0.
 
 Accelerator with WSO2 Identity Server 
 

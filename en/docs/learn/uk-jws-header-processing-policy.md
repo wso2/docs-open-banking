@@ -3,7 +3,7 @@ UK JWS Header Processing Policy is a policy designed to be engaged in the reques
 - Validates the JWS signature header as mentioned in the UK specification
 - Appends a JWS signature header in the response as mentioned in the UK specification
 
-Before creating policies, need to build the policy artifacts from the source.
+Before creating policies, you need to build the policy artifacts from the source.
 
 ## Building from the source
 

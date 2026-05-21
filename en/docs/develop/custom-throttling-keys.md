@@ -8,7 +8,7 @@ feature. For more information, see
 [WSO2 API Manager documentation](https://apim.docs.wso2.com/en/latest/design/rate-limiting/advanced-topics/custom-throttling/)
 
 WSO2 Open Banking API Manager Accelerator provides enhanced Custom Throttling capabilities that support open banking 
-requirements. Using this feature, you can use customize attributes known as Custom Throttling Keys and use them in custom 
+requirements. Using this feature, you can use customizable attributes known as Custom Throttling Keys and use them in custom 
 throttling policies.
 
 To implement Custom Throttling Keys, extend the following class:

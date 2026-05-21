@@ -135,7 +135,7 @@ This section explains how to set up the solution with a MySQL 8.0 database serve
 
 
     !!!note
-        Use the API MAnager version deploying as the APIM_VERSION.
+        Use the API Manager version deploying as the APIM_VERSION.
 
 2. Run the merge script in `<APIM_HOME>/<OB_APIM_ACCELERATOR_HOME>/bin`:
 
@@ -208,7 +208,7 @@ In order to enable secure communication, we need to install the certificates of 
 
 ## Uploading Root and Issuer certificates
 
-Upload the root and issuer certificates ofin OBIE ([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) | [Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) to the client trust stores in `<IS_HOME>/repository/resources/security/client-truststore.p12` and `<APIM_HOME>/repository/resources/security/client-truststore.jks` using the following command:
+Upload the root and issuer certificates of OBIE ([Sandbox Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox) | [Production Certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production)) to the client trust stores in `<IS_HOME>/repository/resources/security/client-truststore.p12` and `<APIM_HOME>/repository/resources/security/client-truststore.jks` using the following command:
 
     ```
     keytool -import -alias <alias> -file <certificate_location> -keystore <truststore_location> -storepass wso2carbon

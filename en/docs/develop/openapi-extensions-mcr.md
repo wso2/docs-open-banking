@@ -1,4 +1,4 @@
-WSO2 Open Banking Accelerator support manual client registration(MCR) via DevPortal. Manual Client Regitration extension allows to provide a custom value to the client id of the application and store any additional attributes against the application.
+WSO2 Open Banking Accelerator supports manual client registration (MCR) via DevPortal. Manual Client Registration extension allows to provide a custom value to the client id of the application and store any additional attributes against the application.
 
 
 !!! note
@@ -7,7 +7,7 @@ WSO2 Open Banking Accelerator support manual client registration(MCR) via DevPor
 
 ## Application Creation
 
-The OpenAPI extension for application creation  provides the extendibility to provide a custom value to the client id of the application and store any additional attributes against the application. The data setting from this extension point will be stored as client metadata
+The OpenAPI extension for application creation  provides the extendibility to provide a custom value to the client id of the application and store any additional attributes against the application. The data set from this extension point will be stored as client metadata
 
 ### OpenAPI Extensions
 | OpenAPI Extension           | Description                                                                              | OpenAPI Definition                                                                                                                                |
@@ -21,7 +21,7 @@ To enable, follow the steps below:
 
 1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 
-2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
+2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
 ``` toml
 [financial_services.extensions.endpoint]
@@ -39,7 +39,7 @@ password = ""
 
 ## Application Update
 
-The OpenAPI extension for application update provides the extendibility to store any additional attributes against the application.. The data setting from this extension point will be stored as updated client metadata
+The OpenAPI extension for application update provides the extendibility to store any additional attributes against the application.. The data set from this extension point will be stored as updated client metadata
 
 ### OpenAPI Extensions
 | OpenAPI Extension         | Description                                                                              | OpenAPI Definition                                                                                                                                           |
@@ -53,7 +53,7 @@ To enable, follow the steps below:
 
 1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 
-2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
+2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
 ``` toml
 [financial_services.extensions.endpoint]

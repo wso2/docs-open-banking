@@ -20,7 +20,7 @@ WSO2 Identity Server provides comprehensive capabilities for managing and securi
     |------------- | ---------- | ------------- | ------ |
     | API resource to acccess internal Open Banking APIs provided by WSO2 | OB-internal-api-resource | OB-internal-api-resource | ob-internal-api-access |
 
-Follow the below steps to create above API Reource.
+Follow the below steps to create the above API Resource.
 
 1. Go to the **Api Resources** tab in the left pane.
 

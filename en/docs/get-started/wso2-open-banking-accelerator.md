@@ -9,7 +9,7 @@ open banking compliance, technology, and business goals.
 
 WSO2 Open Banking Accelerator is a collection of technologies that increases the speed and reduces the complexity of 
 adopting open banking compliance. Instead of building a solution from scratch, you can use WSO2 Open Banking 
-Accelerator to meet all legislative requirements with additional benefits beyond compliance. The accelerator run on top 
+Accelerator to meet all legislative requirements with additional benefits beyond compliance. The accelerator runs on top 
 of WSO2 Identity Server and WSO2 API Manager. Given below is the model of WSO2 Open Banking Accelerator:
 
 [ ![](../assets/img/get-started/wso2-open-banking-accelerator/accelerator-toolkit-model.png) ](../assets/img/get-started/wso2-open-banking-accelerator/accelerator-toolkit-model.png)
