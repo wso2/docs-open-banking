@@ -14,10 +14,10 @@ This API allows users to retrieve details of specific event notification subscri
 - All Event Subscriptions Retrieval
 This API can be used to retrieve a comprehensive list of all event notification subscriptions.
 
-- Event Subscriptions Retrieval by an Subscribed Event Type
+- Event Subscriptions Retrieval by a Subscribed Event Type
 The API enables the API users to retrieve event notification subscriptions that have subscribed to a particular event type. 
 
-- Event Subscription Updation
+- Event Subscription Update
 This API allows users to update data and configurations of existing event notification subscriptions, enabling adaptation to changing requirements and preferences.
 
 - Event Subscription Deletion
@@ -122,7 +122,7 @@ curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/
 }
 ```
 
-- Retrieve Event Notification Subscriptions by an Subscribed Event Type
+- Retrieve Event Notification Subscriptions by a Subscribed Event Type
 
 ```tab="Request"
 curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/type/<SUBSCRIBED_EVENT_TYPE>' \

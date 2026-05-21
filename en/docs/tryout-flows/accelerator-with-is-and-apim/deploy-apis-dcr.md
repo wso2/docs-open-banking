@@ -1,6 +1,6 @@
 This page explains how to deploy an Open Banking API.
 
-Before publishing the APIs, need to create the consumer role in WSO2 API Manager. 
+Before publishing the APIs, you need to create the consumer role in WSO2 API Manager. 
 
 ## Create Consumer Role APIM Console
 
@@ -45,7 +45,7 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     | --- | ------------ |
     | Accounts |[account-info-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Accounts/account-info-swagger.yaml) | 
     | Payments |[payment-initiation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Payments/payment-initiation-openapi.yaml) | 
-    | Confimation of Funds |[funds-confirmation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/ConfirmationOfFunds/funds-confirmation-openapi.yaml) | 
+    | Confirmation of Funds |[funds-confirmation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/ConfirmationOfFunds/funds-confirmation-openapi.yaml) | 
 
 5. Click Next.
 
@@ -55,7 +55,7 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     | --- | ------------- |
     | Accounts | `/open-banking/{version}/aisp` | 
     | Payments | `/open-banking/{version}/pisp` | 
-    | Confimation of Funds | `/open-banking/{version}/cbpii` | 
+    | Confirmation of Funds | `/open-banking/{version}/cbpii` | 
 
 7. Leave the Endpoint field empty as it is, Select the Gateway Type and click Create.
     ![configure-api.png](../../assets/img/get-started/quick-start-guide/deploy-apis/configure-api.png)
@@ -87,9 +87,9 @@ Before publishing the APIs, need to create the consumer role in WSO2 API Manager
     |Authorization Code Grant  | APPLICATION_USER |
 
 15. Create and engage the required [Inbuilt Gateway Enforcements](../../learn/inbuilt-policies.md)
-    - Refer the [Introduction to Policies](../../learn/policies.md) for more details on Policies.
-    - Refer the [Create Policies](../../learn/create-policies.md) for create new Policies.
-    - Refer the [Engage Policies](../../learn/engage-policies.md) to learn how to engage policies to an API.
+    - Refer to the [Introduction to Policies](../../learn/policies.md) for more details on Policies.
+    - Refer to the [Create Policies](../../learn/create-policies.md) for create new Policies.
+    - Refer to the [Engage Policies](../../learn/engage-policies.md) to learn how to engage policies to an API.
 
     Refer to the below table and engage the required policies for each API.
 

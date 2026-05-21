@@ -1,6 +1,6 @@
 ### Dynamic Client Registration Request Policy
 
-Dynamic Client Registration Request Policy is a policy designed to enagege in the request flow of the Dynamic Client Registration Request. It will perform the below tasks.
+Dynamic Client Registration Request Policy is a policy designed to engage in the request flow of the Dynamic Client Registration Request. It will perform the below tasks.
 
 - Validate JWT signature in Dynamic Client Registration create and update requests
 - Decode JWT Payload for DCR create and update requests with JWT payloads

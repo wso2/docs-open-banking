@@ -12,7 +12,7 @@ For TPP Onboarding, the Open Banking Entities suggests the following processes:
 
 ## Manual Client Registration
 
-Manual Client Registration or Signup Workflow is the process of on boarding the TPPs through the Dev Portal Signuo process. In this method, you can configure workflows to approve TPPs who signup and the applications that are registered.
+Manual Client Registration or Signup Workflow is the process of onboarding the TPPs through the Dev Portal Signup process. In this method, you can configure workflows to approve TPPs who signup and the applications that are registered.
 
 ![signup-workfloe](../assets/img/learn/client-registration/signup-workflow.png)
 
@@ -35,7 +35,7 @@ A software statement that is signed by its issuer is referred to as an SSA. An S
 - WSO2 Open Banking supports Dynamic Client Registration (DCR) API.
 - DCR API supersedes the OpenID Connect (OIDC) Dynamic Client Registration profile.
 
-The diagram below shows the flow of the dynamically registering a client application. 
+The diagram below shows the flow of dynamically registering a client application. 
 
 ![dcr_floe](../assets/img/learn/client-registration/dcr-flow.png)
 

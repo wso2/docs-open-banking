@@ -112,4 +112,4 @@ alias="wso2carbon"
     }
     ```
     
-All header values including the bearer token is included in `header`. 
+All header values including the bearer token are included in `header`. 

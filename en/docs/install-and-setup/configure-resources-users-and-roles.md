@@ -1,4 +1,4 @@
-Now you have started the servers, let’s create the API resources, users and define their permissions and roles. This section provides a guide on creating API resources, users and roles foar each use case.
+Now you have started the servers, let’s create the API resources, users and define their permissions and roles. This section provides a guide on creating API resources, users and roles for each use case.
     - Accelerator with WSO2 Identity Server
     - Accelerator with WSO2 Identity Server and WSO2 API Manager
 
@@ -25,7 +25,7 @@ WSO2 Identity Server provides comprehensive capabilities for managing and securi
     | API Resource for access scopes attached to customer facing Open Banking APIs | User-defined-oauth2-resource | User-defined-oauth2-resource | accounts </br>payments </br>fundsconfirmations |
     | API resource to acccess internal Open Banking APIs provided by WSO2 | OB-internal-api-resource | OB-internal-api-resource | ob-internal-api-access |
 
-Follow the below steps to create above API Reources.
+Follow the below steps to create the above API Resources.
 
 1. Go to the **Api Resources** tab in the left pane.
 
@@ -160,7 +160,7 @@ WSO2 Identity Server provides comprehensive capabilities for managing and securi
     |------------- | ---------- | ------------- | ------ |
     | API resource to acccess internal Open Banking APIs provided by WSO2 | OB-internal-api-resource | OB-internal-api-resource | ob-internal-api-access |
 
-Follow the below steps to create above API Reource.
+Follow the below steps to create the above API Resource.
 
 1. Go to the **Api Resources** tab in the left pane.
 

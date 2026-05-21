@@ -27,7 +27,7 @@ This page explains how to onboard API consumers using the Manual Client Registra
     !!! note
         You can use `https://<IS_HOSTNAME>:9446/oauth2/token/.well-known/openid-configuration` as the Well-known URL, and click on Import to populate most of the fields mentioned below, Grant types, and the Certificates section. 
 
-        If the Import button is used, verify all the auto imported values with the onces mentioned below.
+        If the Import button is used, verify all the auto imported values with the ones mentioned below.
 
 
     | Configuration | Values |
@@ -60,7 +60,7 @@ This page explains how to onboard API consumers using the Manual Client Registra
     | WSO2 Identity Server 7 API Resource Management Endpoint | `https://<IS_HOSTNAME>:9446/api/server/v1/api-resources` |
     | WSO2 Identity Server 7 Roles Endpoint | `https://<IS_HOSTNAME>:9446/scim2/v2/Roles` |
 
-9. Enable the Role creation is WSO2 Identity Server 7 as by ticking as below.
+9. Enable the Role creation in WSO2 Identity Server 7 by ticking as below.
     ![enable-role-validation](../assets/img/learn/mcr/custom-km/enable-role-validation.png)
 
 10. Set **Key Manager Permission** to **Public**.

@@ -5,8 +5,8 @@ This section covers the OpenAPI based extension provided for the user authorizat
 
 ## Validate Authorize Request
 
-The OpenAPI extension for validate client sending authorize API requests to ensure request parameters are according to  the way
-allowed in the Open Banking  specificatio requirements.
+The OpenAPI extension for validating the client sending authorize API requests to ensure request parameters are according to  the way
+allowed in the Open Banking specification requirements.
 
 ### OpenAPI Extensions
 | OpenAPI Extension              | Description                                                                                    | OpenAPI Definition                                                                                                                                            |
@@ -20,7 +20,7 @@ To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
-2. Locate the following tag and enabke it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
+2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
 ``` toml
 [financial_services.extensions.endpoint]

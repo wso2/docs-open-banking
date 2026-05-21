@@ -101,7 +101,7 @@ logging_type="none"
 |-------------------|---------------|-----|-----------|
 |max_heartbeat|integer|600|Time in seconds after which the clustered member assumes the client is dead and closes its connections with the client.|
 |max_master_confirmation|integer|900|Max timeout of master confirmation from other nodes. This is calculated in seconds.|
-|merge_first_run_delay|integer|60| The inital run delay of split brain/merge process in seconds.|
+|merge_first_run_delay|integer|60| The initial run delay of split brain/merge process in seconds.|
 |merge_next_run_delay|integer|30|Run interval of split brain/merge process in seconds.|
 |logging_type|string|“none”|Specify logging framework type to send logging events. For example, `“none”, “jdk”, “log4j”, “log4j2”, “slf4j”` |
 

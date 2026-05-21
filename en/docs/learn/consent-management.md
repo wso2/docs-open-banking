@@ -50,7 +50,7 @@ as previously described.
 - consent,get consent, revoke consent and update consent. 
   
 - **Consent Authorize - `/authorize` endpoint**  
-  This endpoint uses to retrieve the consent and consumer data showing in consent grant UI and then persist the user 
+  This endpoint is used to retrieve the consent and consumer data showing in consent grant UI and then persist the user 
   granted data . You can customize the populating data to the consent grant page or persist custom data 
   after user granted.
 

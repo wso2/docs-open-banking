@@ -343,7 +343,7 @@ to the `<APIM_GW_HOME>/repository/deployment/server/synapse-configs/default/sequ
 
 
 ### Configure the Control Plane Node
-Configure the Control Plane to communicate with the Gateway.`
+Configure the Control Plane to communicate with the Gateway.
       
 1. Open the `<APIM_CP_HOME>/repository/conf/deployment.toml` file.
 2. Set the hostname of the API Manager:

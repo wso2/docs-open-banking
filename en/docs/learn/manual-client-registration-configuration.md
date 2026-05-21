@@ -1,9 +1,9 @@
 ## Configuring Additional Attributes
 
-Before creating the application, need to enable the additional fields from the DevPortal. To enable additional fields follow the below steps.
+Before creating the application, you need to enable the additional fields from the DevPortal. To enable additional fields follow the below steps.
  
 1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
-2. Follow the given format and configurate all additional properties:
+2. Follow the given format and configure all additional properties:
     
     ``` toml
     [[financial_services.keymanager.application.type.attributes]]

@@ -18,7 +18,7 @@ The sample Dockerfiles helps to build generic Docker images for deploying the re
 
 ### Docker Compose Resources
 
-Docker Compose resources are available helps to quickly evaluate the Open Banking setup by deploying:
+Docker Compose resources are available to help quickly evaluate the Open Banking setup by deploying:
 
 - WSO2 Open Banking Accelerator installed WSO2 Open Banking API Manager, together with
 - WSO2 Open Banking Accelerator installed WSO2 Open Banking Identity & Access Management
