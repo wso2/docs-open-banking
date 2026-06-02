@@ -77,7 +77,7 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
 13. Select the endpoint types; **Dynamic Endpoints** and click Save.  
     ![dynamic-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/dynamic-endpoint.png)
 
-14. Add [JWT claim based access validation](https://apim.docs.wso2.com/en/latest/design/api-policies/regular-gateway-policies/jwt-claim-based-access-validator/) as an Operational Policy.
+14. Add [JWT claim based access validation](https://apim.docs.wso2.com/en/latest/api-gateway/policies/jwt-claim-based-access-validator/) as an Operational Policy.
 
     Use aut as the Access verification claim name and value from below.
 
