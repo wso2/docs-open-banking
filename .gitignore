@@ -1,3 +1,8 @@
+.DS_Store
+en/.DS_Store
+en/docs/.DS_Storee
+en/docs/develop/.DS_Store
+
 # Compiled class file
 *.class
 
