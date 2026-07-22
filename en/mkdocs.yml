@@ -77,6 +77,7 @@ nav:
     - 'Configuring API Manager': install-and-setup/configuring-api-manager-for-ob.md
     - 'Configuring API Resources, Users and Roles': install-and-setup/configure-resources-users-and-roles.md
     - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
+    - 'Configuring HSM for Open Banking': install-and-setup/configuring-hsm-for-ob.md
     - 'Advanced':
         # - 'Data purging': install-and-setup/data-purging.md
         - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
