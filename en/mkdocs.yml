@@ -69,6 +69,12 @@ nav:
     - 'Deploy with Docker' : install-and-setup/deploy-with-docker.md
     - 'Deployment Patterns' : install-and-setup/deployment-patterns.md
     - 'Configuring Users and Roles': install-and-setup/configuring-users-and-roles.md
+    - 'Deployment Best Practises':
+        - 'Deployment Checklist': install-and-setup/deployment-checklist.md
+        - 'Security Guidelines for Production Deployment': install-and-setup/security-guidelines-for-production-deployment.md
+        - 'Performance Tuning for Production Deployment': install-and-setup/performance-tuning-for-production-deployment.md
+        - 'Exposing the Accelerator to the Internet': install-and-setup/exposing-the-accelerator-to-the-internet.md
+        - 'Configuring Accelerator': install-and-setup/configuring-accelerator.md
     - 'Troubleshooting': install-and-setup/troubleshooting.md
   - 'Learn':
     - 'Consent Management':
