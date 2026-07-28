@@ -26,6 +26,18 @@ Configurations related to the super admin user. We strongly recommend changing t
 | `username` | string | `is_admin@wso2.com` | The username of the super admin user. |
 | `password` | string | `wso2123` | The password of the super admin user. |
 
+### `[financial_services.consent.pre_initiated]` and `[financial_services.consent.scope_based]`
+
+Configure the scopes for pre_initiated and scope_based flow below. If not configured, all scopes will be considered as pre initiated. If a scopes is configured in both configs it will be condsidered as a pre-initiated consent.
+
+```
+[financial_services.consent.pre_initiated]
+scopes=["payments", "fundsconfirmations"]
+
+[financial_services.consent.scope_based]
+scopes=["accounts"]
+```
+
 ### `[financial_services.consent.validation]`
 
 Configures the consent validation component.
@@ -34,6 +46,14 @@ Configures the consent validation component.
 |---|---|---|---|
 | `jwt.payload.enabled` | boolean | `true` | Enables JWT signature validation of the consent validation payload. Required when the payload is sent as a signed payload. |
 | `signature.alias` | string | `wso2carbon` | The certificate alias in the Identity Server truststore used to verify the signed consent-validate JWT sent from the gateway. |
+
+### `[financial_services.consent.payments]`
+
+Configures the paymnet flow.
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `max_instructed_amount` | integer | `1000` | Maximum amount each payment can acoomadate | 
 
 ## API Manager
 
