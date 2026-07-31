@@ -26,9 +26,12 @@ Configurations related to the super admin user. We strongly recommend changing t
 | `username` | string | `is_admin@wso2.com` | The username of the super admin user. |
 | `password` | string | `wso2123` | The password of the super admin user. |
 
+!!!Note
+We recommend encrypting the plain-text secrets using the secure vault implementation 
+
 ### `[financial_services.consent.pre_initiated]` and `[financial_services.consent.scope_based]`
 
-Configure the scopes for pre_initiated and scope_based flow below. If not configured, all scopes will be considered as pre initiated. If a scopes is configured in both configs it will be condsidered as a pre-initiated consent.
+Configure the scopes for pre_initiated and scope_based flow below. If not configured, all scopes will be considered as pre initiated. If a scope is configured in both the configs it will be considered as a pre-initiated consent.
 
 ```
 [financial_services.consent.pre_initiated]
@@ -69,6 +72,9 @@ Configurations related to the super admin user. We strongly recommend changing t
 | `username` | string | `am_admin@wso2.com` | The username of the super admin user. |
 | `password` | string | `wso2123` | The password of the super admin user. |
 | `create_admin_account` | boolean | `TRUE` | Creates a new user with the given super admin details. |
+
+!!!Note
+We recommend encrypting the plain-text secrets using the secure vault implementation 
 
 ### `[apim.oauth_config]`
 
