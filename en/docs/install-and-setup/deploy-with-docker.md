@@ -48,9 +48,9 @@ These resources have been created based on the most common WSO2 Open Banking dep
     - Rename the `OB_SandBox_PP_Issuing.cer` as `issuer.cer`.
     - Zip the root.cer and issuer.cer in one zip archive file.
 
-2. [Keystores](https://github.com/wso2/docker-open-banking/raw/v4.0.0.3/samples/keystores) directory of wso2 server certs of WSO2 Open Banking Docker Images. 
+2. Download [Keystores](https://github.com/wso2/docker-open-banking/raw/v4.0.0.3/samples/keystores) directory of wso2 server certs of WSO2 Open Banking Docker Images. 
 
-3. DB driver file matching to the DB type and version use for the deployment.
+3. Download the DB driver file matching to the DB type and version use for the deployment.
 
 4. Host the downloaded artifacts locally or on a remote location. The hosted locations of artifacts will be passed as the build arguments when building the Docker image.
     - `OB_TRUSTED_CERTS_URL` - Zip archive location of the certificates of WSO2 Open Banking root and issuer
@@ -68,7 +68,18 @@ These resources have been created based on the most common WSO2 Open Banking dep
 This steps builds the container image for WSO2 Identity Server with WSO2 Open Banking Identity and Access Management Accelerator Module
 
 1. Navigate to `<OB_DOCKER_HOME>/samples/wso2is_with_obiam` directory.
-2. Execute `docker build` command as shown below.
+2. Log in to the WSO2 Docker registry.
+
+    ```shell
+     docker login registry.wso2.com
+    ```
+
+    ````
+    - Username: Your registered email address
+    - Password: CLI secret extracted from your User Profile at [registry.wso2.com](http://registry.wso2.com)
+   ````   
+
+3. Execute `docker build` command as shown below.
 
     ```tab='Sample'
     docker build --build-arg BASE_PRODUCT_VERSION=<IS_VERSION> --build-arg OB_TRUSTED_CERTS_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg WSO2_OB_KEYSTORES_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg RESOURCE_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> -t wso2is-ob:4.0.0 .
@@ -87,7 +98,18 @@ This steps builds the container image for WSO2 Identity Server with WSO2 Open Ba
 This step builds container image for WSO2 API Manager with WSO2 Open Banking API Management Accelerator Module
 
 1. Navigate to `<OB_DOCKER_HOME>/samples/wso2am_with_obam` directory.
-2. Execute `docker build` command as shown below.
+2. Log in to the WSO2 Docker registry.
+
+    ```shell
+     docker login registry.wso2.com
+    ```
+
+    ````
+    - Username: Your registered email address
+    - Password: CLI secret extracted from your User Profile at [registry.wso2.com](http://registry.wso2.com)
+   ````   
+
+3. Execute `docker build` command as shown below.
 
     ```tab='Sample'
     docker build --build-arg BASE_PRODUCT_VERSION=<APIM_VERSION> --build-arg OB_TRUSTED_CERTS_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg WSO2_OB_KEYSTORES_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg RESOURCE_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> -t wso2am-ob:4.0.0 .
