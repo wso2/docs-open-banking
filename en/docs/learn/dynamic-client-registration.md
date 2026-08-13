@@ -55,4 +55,4 @@ The following validations are supported by the Open Banking Accelerator:
 Toolkit developers can enable or disable these validations at the configuration level. Refer to [Configuring Dynamic Client Registration In-built Validators.](../learn/dynamic-client-registration-configuration.md#configuring-inbuilt-dcr-request-validators).
 
 You can customize the validations performed in the DCR process according to your specification and other requirements.
-For information, see [OpenAPI Extensions for DCR](../develop/openapi-extensions-dcr.md).
+For information, see [OpenAPI Extensions for DCR](../develop/openapi/openapi-extensions-dcr.md).

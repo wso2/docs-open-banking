@@ -11,7 +11,7 @@ You can use any of the following base products:
 The accelerator mainly addresses the open banking requirements such as API consumer application onboarding, consent 
 management, and access authorization among numerous other features to set up an open banking solution. You can easily 
 implement a toolkit to customize the accelerator and help you comply with any regional open banking requirements. For 
-more information on customization, see the [Develop](../develop/open-banking-gateway.md) section.
+more information on customization, see the [Develop](../develop/develop-toolkit.md) section.
 
 !!! note
     In a standalone setup, these products are deployed in a single server. However, in a typical production environment, 

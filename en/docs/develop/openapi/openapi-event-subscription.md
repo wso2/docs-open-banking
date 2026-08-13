@@ -3,7 +3,7 @@ Open Banking Specifications require banks to notify any changes related to conse
 In order to receive event notifications, TPPs have to register themselves using Event Subscription API. Event Subscription API allows TPPS to subscribe to a set of event types providng a redirect URL optionally.
 
 !!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
 
 The OpenAPI extension for event subscription provides the extendibility to validate the incoming event subscription request attributes, return any attributes to store and construct the response payload according to custom requirements.
 

@@ -4,7 +4,7 @@ The Event Polling API facilitates TPP applications to poll, acknowledge, and rec
 
 Using this endpoint, API Consumer can request for event notifications and the banks can send event notifications as indicated by the application's polling parameters. This endpoint can be used to communicate their polling parameters and event notification acknowledgements.
 
-You can customize the Event Polling Flow according to your requirements. For more information, see [Customizing Event Polling](../develop/openapi-event-polling.md).
+You can customize the Event Polling Flow according to your requirements. For more information, see [Customizing Event Polling](../develop/openapi/openapi-event-polling.md).
 
 Based on the request payloads, the Event Polling(`POST /events`) endpoint performs the following:
 

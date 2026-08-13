@@ -2,7 +2,7 @@ WSO2 Open Banking Accelerator supports manual client registration (MCR) via DevP
 
 
 !!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide-am.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide-am.md)
 
 
 ## Application Creation

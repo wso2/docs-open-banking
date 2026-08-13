@@ -23,7 +23,7 @@ This API allows users to update data and configurations of existing event notifi
 - Event Subscription Deletion
 This API allows users to delete specific event notification subscriptions that are no longer required.
 
-You can customize the Event Subscription Flow according to your requirements. For more information, see [Customizing Event Subscription](../develop/openapi-event-subscription.md).
+You can customize the Event Subscription Flow according to your requirements. For more information, see [Customizing Event Subscription](../develop/openapi/openapi-event-subscription.md).
 
 Given below are sample Event Subscription request payloads and their responses:
 

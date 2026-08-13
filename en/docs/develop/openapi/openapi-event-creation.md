@@ -1,7 +1,7 @@
 The Event Creation API allows storing event notification information as a JSON, which can be customized according to your use case.
 
 !!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
 
 The OpenAPI extension for event subscription provides the extendibility to validate the incoming event creation request.
 

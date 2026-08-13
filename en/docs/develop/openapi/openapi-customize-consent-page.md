@@ -2,7 +2,7 @@ During the [consent authorization process](../learn/consent-authorization-intro.
 
 ## Customizing the layout of the consent grant screen
 
-The [Populate Consent Authorization Screen extension](../develop/openapi-consent-management-authorize.md) provides the flexibility to customize the consent grant screen in alignment with the UX guidelines defined by Open Banking specifications. Based on the response payload returned by this extension, the Accelerator dynamically adjusts the layout of the consent grant screen. This section explains the different consent screen layouts that correspond to various response configurations.
+The [Populate Consent Authorization Screen extension](openapi-consent-management-authorize.md) provides the flexibility to customize the consent grant screen in alignment with the UX guidelines defined by Open Banking specifications. Based on the response payload returned by this extension, the Accelerator dynamically adjusts the layout of the consent grant screen. This section explains the different consent screen layouts that correspond to various response configurations.
 
 ??? tip "Click here to see the response of the Populate Consent Authorization Screen extension."
     ```

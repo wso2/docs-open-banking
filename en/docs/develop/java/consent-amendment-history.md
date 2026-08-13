@@ -2,7 +2,7 @@ Any change that is performed on an active consent is considered as an amendment.
 the Consent Amendment History feature to retrieve details related to the amendments done to a consent. With this feature, 
 you can achieve your open banking requirements related to consent amendment, which are specific to the relevant specification.
 
-The [Asynchronous Event Executor Framework](https://ob.docs.wso2.com/en/latest/develop/custom-event-executor/#writing-a-custom-event-executor)
+The [Asynchronous Event Executor Framework](https://ob.docs.wso2.com/en/latest/develop/java/custom-event-executor/#writing-a-custom-event-executor)
 is utilized for the consent amendment history persistence. The following event executor is available in the 
 accelerator to persist the consent amendment data to the database asynchronously:
 

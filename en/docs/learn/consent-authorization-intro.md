@@ -105,4 +105,4 @@ WSO2 Open Banking Accelerator supports validation of the request object sent dur
 - `aud` claim validation – Verifies that the aud (audience) claim exists in the request object.
 - `scope` claim validation – Confirms that the scope claim exists and includes openid as one of the scopes.
 
-If additional validations are required, toolkit developers can implement them using the [Validate Authorize Request](../develop/openapi-authorization-flow.md) OpenAPI Extension.
+If additional validations are required, toolkit developers can implement them using the [Validate Authorize Request](../develop/openapi/openapi-authorization-flow.md) OpenAPI Extension.
