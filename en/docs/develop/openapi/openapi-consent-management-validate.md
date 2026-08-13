@@ -3,7 +3,7 @@
 WSO2 Open Banking Accelerator consists of endpoints to handle the consent life cycle of the Open Banking flow. You can customize relevant accelerator component functionality according to your Open Banking/Open Finance specification requirements using the extension points available. This section explains the Consent Validate component and how to incorporate custom validations to the `/validate` endpoint as an OpenAPI extension implementation.
 
 !!! note
-    Make sure to refer to the Developer guide for OpenAPI-based extensions from the [documentation](../develop/openapi-extensions-developer-guide.md).
+    Make sure to refer to the Developer guide for OpenAPI-based extensions from the [documentation](openapi-extensions-developer-guide.md).
 
 
 ## OpenAPI Extensions

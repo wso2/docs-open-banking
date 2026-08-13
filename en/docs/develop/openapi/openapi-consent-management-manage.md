@@ -7,7 +7,7 @@ Generally, regional open banking specifications have different flavors of reques
 At the accelerator level, it has identified possible customization points used for specification compliances and those extension points can be implemented by the specification compliance layer as a REST API in a preferred programming language and deployed externally to WSO2 Identity Server.
 
 !!! note
-    Make sure to refer to the Developer guide for OpenAPI- based extensions from the [documentation](../develop/openapi-extensions-developer-guide.md).
+    Make sure to refer to the Developer guide for OpenAPI- based extensions from the [documentation](openapi-extensions-developer-guide.md).
 
 ## OpenAPI Extensions
 

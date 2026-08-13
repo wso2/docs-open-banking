@@ -1,7 +1,7 @@
 The Event Polling API facilitates storing and retrieving event notifications according to the above specifications without altering the information in the event information JSON.
 
 !!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](../develop/openapi-extensions-developer-guide.md)
+    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
 
 The OpenAPI extension for event polling provides the extendibility to validate the incoming event polling request attributes and construct the response payload according to custom requirements. 
 

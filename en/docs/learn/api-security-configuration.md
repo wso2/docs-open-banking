@@ -81,4 +81,4 @@ priority = 3
 ```
 
 According to the open banking standard, you can extend the validation capabilities. For more information, see [Custom API 
-Consumer Validation](../develop/custom-api-consumer-validation.md).
+Consumer Validation](../develop/java/custom-api-consumer-validation.md).

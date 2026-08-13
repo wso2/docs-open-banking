@@ -670,4 +670,4 @@ All Consent Manage endpoints perform these basic validations:
 
 ## Customization
 
-WSO2 Open Banking IAM Accelerator 4.0.0 onwards supports OpenAPI-based extensions for consent management customizations. For more information, see [Open API Based Extensions for Consent Manage Endpoints](../develop/consent-management-manage.md).
+WSO2 Open Banking IAM Accelerator 4.0.0 onwards supports OpenAPI-based extensions for consent management customizations. For more information, see [Open API Based Extensions for Consent Manage Endpoints](../develop//openapi/openapi-consent-management-manage.md).

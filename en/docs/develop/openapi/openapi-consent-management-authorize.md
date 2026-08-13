@@ -3,7 +3,7 @@
 WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant functionalities of these consent endpoints according to your specification requirements using the OpenAPI based extension points available. This section explains the Consent Authorize component and how to customize its functionalities.
 
 !!! note
-    Make sure to refer to the Developer guide for OpenAPI based extensions from the [documentation](../develop/openapi-extensions-developer-guide.md).
+    Make sure to refer to the Developer guide for OpenAPI based extensions from the [documentation](openapi-extensions-developer-guide.md).
 
 The Consent Authorize extension point relates to the loading of the consent approval page and eventually persisting the consent provided by the users. This consists of 2 endpoints. 
 

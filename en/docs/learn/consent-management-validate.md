@@ -142,4 +142,4 @@ After performing these validations, the endpoint invokes the `validate-consent-a
 
 ## Customization
 
-WSO2 Open Banking IAM Accelerator 4.0.0 onwards supports OpenAPI-based extensions for consent management customizations. For more information, see [Open API Based Extensions for Consent Validate Endpoints](../develop/consent-management-validate.md).
+WSO2 Open Banking IAM Accelerator 4.0.0 onwards supports OpenAPI-based extensions for consent management customizations. For more information, see [Open API Based Extensions for Consent Validate Endpoints](../develop/openapi/openapi-consent-management-validate.md).

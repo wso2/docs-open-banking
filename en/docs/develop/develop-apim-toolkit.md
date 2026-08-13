@@ -17,13 +17,13 @@ implement Open Banking specification requirements in their preferred programming
 extensions can be deployed externally and tested separately without restarting the WSO2 servers. The OpenAPI extension 
 can be found from [here](../references/accelerator-extensions-api.md).
 
-  - [Developer Guide](openapi-extensions-developer-guide-am.md)
-  - [OpenAPI based extensions for Manual Client Registration](openapi-extensions-mcr.md)
+  - [Developer Guide](openapi/openapi-extensions-developer-guide-am.md)
+  - [OpenAPI based extensions for Manual Client Registration](openapi/openapi-extensions-mcr.md)
 
 
 ## Java based extensions (Old approach)
 
-- [Open Banking Gateway](open-banking-gateway.md)
-- [Open Banking Event Executor](custom-event-executor.md)
-- [Data Publishing](authentication-flow-for-data-publishing.md)
+- [Open Banking Gateway](java/open-banking-gateway.md)
+- [Open Banking Event Executor](java/custom-event-executor.md)
+- [Data Publishing](java/authentication-flow-for-data-publishing.md)
 

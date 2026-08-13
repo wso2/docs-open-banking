@@ -54,4 +54,4 @@ as previously described.
   granted data . You can customize the populating data to the consent grant page or persist custom data 
   after user granted.
 
-For more information on this, refer to [Consent Management OpenAPI Extensions](../develop/openapi-consent-management-manage.md).
+For more information on this, refer to [Consent Management OpenAPI Extensions](../develop/openapi/openapi-consent-management-manage.md).

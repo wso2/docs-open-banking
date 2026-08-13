@@ -129,7 +129,7 @@ during Authorization flows:
     - When a request object is not available, support authentication mechanisms such as PKCE
 
 You can use the provided extension points and customize the authorization flows. For more information, refer to the
-[Authorization Flow Customization](../develop/keyid-provider.md) topic in the Develop section.
+[Authorization Flow Customization](../develop/java/keyid-provider.md) topic in the Develop section.
 
 ### Token Request
 
@@ -145,7 +145,7 @@ the following methods:
 - Provide verification mechanisms such as PKCE, if initiated in the authorization flow
 
 You can use the provided extension points and customize the token flows. For more information, refer to the
-[Token Flow Customization](../develop/jwt-access-tokens.md) topic in the Develop section.
+[Token Flow Customization](../develop/java/jwt-access-tokens.md) topic in the Develop section.
 
 ### Resource Request
 
@@ -167,7 +167,7 @@ see [Token Authentication](token-authentication.md#certificate-bound-access-toke
 
 Consent validation ensures that the API consumer application's resource requests adhere to the consent provided 
 by the bank customers. This is a custom implementation as the behaviour of consent is defined by an open banking 
-specification. You can use the [Consent Validate](../develop/consent-management-validate.md) endpoint and define the 
+specification. You can use the [Consent Validate](../develop/openapi/openapi-consent-management-validate.md) endpoint and define the 
 consent validations by comparing the resource requests against the user-provided consent.
 
 

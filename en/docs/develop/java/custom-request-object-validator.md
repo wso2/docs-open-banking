@@ -14,7 +14,7 @@ default, it consists of 3 validations:
    - `@ValidAudience` checks if the audience claim matches the token endpoint URL.
    - `@ValidSigningAlgorithm` checks if the correct signing algorithm is used.
 
-For more information on the validation layer in WSO2 Open Banking Accelerator, see [Validation Layer](../develop/validation-layer.md).
+For more information on the validation layer in WSO2 Open Banking Accelerator, see [Validation Layer](../develop/java/validation-layer.md).
 
 You can extend the default validations in WSO2 Open Banking Accelerator and add more validations according to your open 
 banking requirement:

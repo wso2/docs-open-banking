@@ -111,7 +111,7 @@ this JAR file.
 Once you implement your customizations, follow the instructions in the respective page to configure the extended classes. 
 
 For example, to configure a custom request object validator, see the **Configuring** section in the
-[Custom Request Object Validator](/develop/custom-request-object-validator#configuring-a-custom-request-object-validator).
+[Custom Request Object Validator](/develop/java/custom-request-object-validator#configuring-a-custom-request-object-validator).
 
 ### Test your customizations 
 

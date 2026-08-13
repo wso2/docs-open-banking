@@ -4,7 +4,7 @@ Real Time Event Notification is a method where banks will immediately notify the
 
 To avail themselves of real time event notifications, TPPs are required to provide a callback URL during the subscription process for event notifications. Once the bank activates the Real time Event Notification feature, any relevant events pertaining to the TPP's consent resources trigger an HTTP POST request, which is subsequently sent to the callback URL specified by the TPP. Consequently, the TPP must establish a listening mechanism at the provided URL to capture and process these notifications effectively. 
 
-You can customize the Real Time Event Notification Flow according to your requirements. For more information, see [Customizing Event Notification](../develop/custom-event-notification.md).
+You can customize the Real Time Event Notification Flow according to your requirements. For more information, see [Customizing Event Notification](../develop/java/custom-event-notification.md).
 
 In order to enable Real Time Event Notification, TPPs must subscribe to receive event notifications using Event Subscription feature. TPPs must provide a callback URL which they have established to receive the event notifications. To create an Event Notification Subscription use the below request. 
 
