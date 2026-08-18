@@ -12,9 +12,26 @@ priority = 1
 ###Configuring MTLS when TLS is terminated at the load balancer (APIM)
 
 When TLS is terminated at the load balancer before reaching the WSO2 API Manager Gateway, the load balancer must forward 
-the client certificate as an HTTP header. The gateway reads the certificate from this header.
+the client certificate as an HTTP header. 
 
-Configure the following in `<APIM_HOME>/repository/conf/deployment.toml`:
+By default, the WSO2 API Manager retrieves the client certificate from the X-WSO2-CLIENT-CERTIFICATE HTTP header.
+
+Follow the instructions below to change the header:
+
+1. Navigate to the <API-M_HOME>/repository/conf/deployment.toml file.
+
+2. Configure the certificate_header under the [apimgt.mutual_ssl] configuration.
+
+```
+[apimgt.mutual_ssl]
+certificate_header = "<Header Name>"
+# This property needs to be true if the MutualSSL connection is established between the load balancer and the Gateway.
+enable_client_validation = false
+#This property needs to be true if the certificate should be decoded when it is passed from the load balancer to the Gateway.
+client_certificate_encode = false
+```
+
+If the `GatewayClientAuthenticationHandler` is added, configure the following in `<APIM_HOME>/repository/conf/deployment.toml`:
 
 ```toml
 [open_banking.gateway.certificate_management]
