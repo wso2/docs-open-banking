@@ -1,3 +1,7 @@
+---
+title: "JWT Secured Authorization Response Mode (JARM) for OAuth 2.0"
+displayed_sidebar: "docsSidebar"
+---
 # JWT Secured Authorization Response Mode (JARM) for OAuth 2.0
 
 WSO2 Open Banking adheres to the [JWT Secured Authorization Response Mode for OAuth 2.0 (JARM) specification](https://bitbucket.org/openid/fapi/src/master/oauth-v2-jarm.md),
@@ -14,19 +18,19 @@ By default, JARM response modes are not enabled in WSO2 Open Banking. To enable 
     ```toml
     [oauth.jarm]
     jarm_response_jwt_validity = 7200
-    
+
     [[oauth.response_mode]]
     name = "jwt"
     class = "org.wso2.carbon.identity.oauth2.responsemode.provider.jarm.impl.JwtResponseModeProvider"
-    
+
     [[oauth.response_mode]]
     name = "query.jwt"
     class = "org.wso2.carbon.identity.oauth2.responsemode.provider.jarm.impl.QueryJwtResponseModeProvider"
-    
+
     [[oauth.response_mode]]
     name = "fragment.jwt"
     class = "org.wso2.carbon.identity.oauth2.responsemode.provider.jarm.impl.FragmentJwtResponseModeProvider"
-    
+
     [[oauth.response_mode]]
     name = "form_post.jwt"
     class = "org.wso2.carbon.identity.oauth2.responsemode.provider.jarm.impl.FormPostJwtResponseModeProvider"

@@ -1,9 +1,16 @@
+---
+title: "Tryout"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This page explains how to onboard API consumers using the Dynamic Client Registration API. 
 
-!!! tip "Before you begin:"
-    See the [Configurations](dynamic-client-registration-configuration.md) section and configure Dynamic Client
-    Registration.
-    
+:::tip[Before you begin:]
+See the [Configurations](dynamic-client-registration-configuration.md) section and configure Dynamic Client
+Registration.
+:::
+
 ## Step 1: Deploy the Dynamic Client Registration(DCR) API
 
 1. Sign in to the API Publisher Portal at [https://localhost:9443/publisher](https://localhost:9443/publisher). 
@@ -42,12 +49,12 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 13. Refer the documentation on [Creating an API Policy](../learn/create-policies.md) and create DCR policies.
 
-    - [DCR Request Mediation Policy](../../learn/dcr-request-policy.md)
-    - [DCR Response Mediation Policy](../../learn/dcr-response-policy.md)
+    - [DCR Request Mediation Policy](pathname:///learn/dcr-request-policy.md)
+    - [DCR Response Mediation Policy](pathname:///learn/dcr-response-policy.md)
 
-14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](../../learn/engage-policies.md) for more details.
+14. Add the policies created above for the resources in the applicable path (Request or Response) and click Save. Refer [Engaging Policies to APIs](pathname:///learn/engage-policies.md) for more details.
 
-15. Go to **Deployments** using the left menu pane. <br/>
+15. Go to **Deployments** using the left menu pane. <br />
     ![select-deployments](../assets/img/get-started/quick-start-guide/dcr/select-deployments.png)
 
 16. Select the API Gateway type, in this scenario, it is **Default**.
@@ -55,9 +62,9 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 17. Click **Deploy**.
 
-18. Go to **Overview** using the left menu pane. <br/>
+18. Go to **Overview** using the left menu pane. <br />
     ![dselect-overview](../assets/img/get-started/quick-start-guide/dcr/select-overview.png)
- 
+
 19. Click **Publish**. 
     ![publish-api](../assets/img/get-started/quick-start-guide/dcr/publish-api.png)
 
@@ -65,13 +72,13 @@ This page explains how to onboard API consumers using the Dynamic Client Registr
 
 ## Step 2: Configure WSO2 IS 7.x as a Key Manager
 
-1. Sign in to the Admin Portal of API Manager at <https://localhost:9443/admin>.
+1. Sign in to the Admin Portal of API Manager at [https://localhost:9443/admin](https://localhost:9443/admin).
 
 2. Go to **Key Managers** on the left main menu. 
     ![add_Key_Manager](../assets/img/get-started/quick-start-guide/dcr/add-key-manager.png)
 
 3. Configure [WSO2 IS 7.x as a keymanager](https://apim.docs.wso2.com/en/latest/administer/key-managers/configure-wso2is7-connector/).
-    
+
 4. Go to the list of Key Managers and select **Resident Key Manager**. 
     ![select_Resident_KM](../assets/img/get-started/quick-start-guide/dcr/select-resident-km.png)
 
@@ -89,9 +96,9 @@ The DCR allows the TPP to request the bank to register a new application. The pr
 
 A sample request looks as follows:
 
- For the Transport Layer Security purposes in this sample flow, you can use the attached
- [private key](../assets/attachments/transport-certs/obtransport.key) and 
- [public certificate](../assets/attachments/transport-certs/obtransport.pem). 
+For the Transport Layer Security purposes in this sample flow, you can use the attached
+[private key](pathname:///assets/attachments/transport-certs/obtransport.key) and 
+[public certificate](pathname:///assets/attachments/transport-certs/obtransport.pem). 
 
 ```
 curl -X POST https://localhost:8243/open-banking/v3.3.0/register \
@@ -103,142 +110,149 @@ curl -X POST https://localhost:8243/open-banking/v3.3.0/register \
 
 The payload is a signed JWT.
 
-??? tip "Click here to see the decoded format of the payload..."
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the decoded format of the payload...</summary>
 
-    ```
-    {
-        "kid": "sCekNgSWIauQ34klRhDGqfwpjc4",
-        "typ": "JWT",
-        "alg": "PS256"
-    }
+```
+{
+    "kid": "sCekNgSWIauQ34klRhDGqfwpjc4",
+    "typ": "JWT",
+    "alg": "PS256"
+}
 
-    {
-        "iss": "oQ4KoaavpOuoE7rvQsZEOV",
-        "iat": 1751017082,
-        "exp": 1751020682,
-        "jti": "1751017082113",
-        "aud": "https://localbank.com",
-        "scope": "accounts payments fundsconfirmations",
-        "token_endpoint_auth_method": "private_key_jwt",
-        "token_endpoint_auth_signing_alg": "PS256",
-        "grant_types": [
-            "authorization_code",
-            "client_credentials",
-            "refresh_token"
-        ],
-        "response_types": [
-            "code id_token"
-        ],
-        "id_token_signed_response_alg": "PS256",
-        "id_token_encrypted_response_alg": "RSA-OAEP",
-        "id_token_encrypted_response_enc": "A256GCM",
-        "request_object_signing_alg": "PS256",
-        "application_type": "web",
-        "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
-        "redirect_uris": [
-            "https://www.google.com/redirects/redirect1"
-        ],
-        "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6InNDZWtOZ1NXSWF1UTM0a2xSaERHcWZ3cGpjNCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE3NTA2NjEzMDUsImp0aSI6ImJhNDhhMGJiZDAwYjQyZjQiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoib1E0S29hYXZwT3VvRTdydlFzWkVPViIsInNvZnR3YXJlX2NsaWVudF9pZCI6Im9RNEtvYWF2cE91b0U3cnZRc1pFT1YiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUDIgKFNhbmRib3gpIiwic29mdHdhcmVfY2xpZW50X2Rlc2NyaXB0aW9uIjoiV1NPMiBPcGVuIEJhbmtpbmcgVFBQMiBmb3IgdGVzdGluZyIsInNvZnR3YXJlX3ZlcnNpb24iOiIxLjUiLCJzb2Z0d2FyZV9jbGllbnRfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX3JlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIiwiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QyIl0sInNvZnR3YXJlX3JvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXSwib3JnYW5pc2F0aW9uX2NvbXBldGVudF9hdXRob3JpdHlfY2xhaW1zIjp7ImF1dGhvcml0eV9pZCI6Ik9CR0JSIiwicmVnaXN0cmF0aW9uX2lkIjoiVW5rbm93bjAwMTU4MDAwMDFIUVFyWkFBWCIsInN0YXR1cyI6IkFjdGl2ZSIsImF1dGhvcmlzYXRpb25zIjpbeyJtZW1iZXJfc3RhdGUiOiJHQiIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX0seyJtZW1iZXJfc3RhdGUiOiJJRSIsInJvbGVzIjpbIlBJU1AiLCJDQlBJSSIsIkFJU1AiXX0seyJtZW1iZXJfc3RhdGUiOiJOTCIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX1dfSwic29mdHdhcmVfbG9nb191cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tIiwib3JnX3N0YXR1cyI6IkFjdGl2ZSIsIm9yZ19pZCI6IjAwMTU4MDAwMDFIUVFyWkFBWCIsIm9yZ19uYW1lIjoiV1NPMiAoVUspIExJTUlURUQiLCJvcmdfY29udGFjdHMiOlt7Im5hbWUiOiJUZWNobmljYWwiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiVGVjaG5pY2FsIn0seyJuYW1lIjoiQnVzaW5lc3MiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiQnVzaW5lc3MifV0sIm9yZ19qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsIm9yZ19qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvMDAxNTgwMDAwMUhRUXJaQUFYLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9vUTRLb2FhdnBPdW9FN3J2UXNaRU9WLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvb1E0S29hYXZwT3VvRTdydlFzWkVPVi5qd2tzIiwic29mdHdhcmVfcG9saWN5X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20iLCJzb2Z0d2FyZV90b3NfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX29uX2JlaGFsZl9vZl9vcmciOiJXU08yIE9wZW4gQmFua2luZyJ9.feh-KqLmlaTNyWZsk3EW73DEMfeafKgJnPcos4vXgdF-ydeOjMpn40eVU15pkz1bYBour5mZqEs_5pl0YkyGGiM-b1_Lr_djJc6jElX7WfzswSPq1Si2AZf1kqWlFd1v9r1GfGB4O-LIrcgHFhFJQ-0Z5S5DqLe6IIKe5TUfu1YolGYmVsgvLeXPbZCzTXRJVz0rHbQq-RrdrBLCgxZFRO-lJQSpuC9yQ23jnDs70wvSMPtiPoSutGSkh8HJ8FU2VecRFjz8RFAau1k-6ekx1T0ngTKtqzVm4nKtSekSkEsD6H6oWCBLA6f14YoZo7YEzWlVEp5ONtqcyeqy-MakLg"
-    }
-    <signature>
-    ```
+{
+    "iss": "oQ4KoaavpOuoE7rvQsZEOV",
+    "iat": 1751017082,
+    "exp": 1751020682,
+    "jti": "1751017082113",
+    "aud": "https://localbank.com",
+    "scope": "accounts payments fundsconfirmations",
+    "token_endpoint_auth_method": "private_key_jwt",
+    "token_endpoint_auth_signing_alg": "PS256",
+    "grant_types": [
+        "authorization_code",
+        "client_credentials",
+        "refresh_token"
+    ],
+    "response_types": [
+        "code id_token"
+    ],
+    "id_token_signed_response_alg": "PS256",
+    "id_token_encrypted_response_alg": "RSA-OAEP",
+    "id_token_encrypted_response_enc": "A256GCM",
+    "request_object_signing_alg": "PS256",
+    "application_type": "web",
+    "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
+    "redirect_uris": [
+        "https://www.google.com/redirects/redirect1"
+    ],
+    "software_statement": "eyJhbGciOiJQUzI1NiIsImtpZCI6InNDZWtOZ1NXSWF1UTM0a2xSaERHcWZ3cGpjNCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJPcGVuQmFua2luZyBMdGQiLCJpYXQiOjE3NTA2NjEzMDUsImp0aSI6ImJhNDhhMGJiZDAwYjQyZjQiLCJzb2Z0d2FyZV9lbnZpcm9ubWVudCI6InNhbmRib3giLCJzb2Z0d2FyZV9tb2RlIjoiVGVzdCIsInNvZnR3YXJlX2lkIjoib1E0S29hYXZwT3VvRTdydlFzWkVPViIsInNvZnR3YXJlX2NsaWVudF9pZCI6Im9RNEtvYWF2cE91b0U3cnZRc1pFT1YiLCJzb2Z0d2FyZV9jbGllbnRfbmFtZSI6IldTTzIgT3BlbiBCYW5raW5nIFRQUDIgKFNhbmRib3gpIiwic29mdHdhcmVfY2xpZW50X2Rlc2NyaXB0aW9uIjoiV1NPMiBPcGVuIEJhbmtpbmcgVFBQMiBmb3IgdGVzdGluZyIsInNvZnR3YXJlX3ZlcnNpb24iOiIxLjUiLCJzb2Z0d2FyZV9jbGllbnRfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX3JlZGlyZWN0X3VyaXMiOlsiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QxIiwiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9yZWRpcmVjdHMvcmVkaXJlY3QyIl0sInNvZnR3YXJlX3JvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXSwib3JnYW5pc2F0aW9uX2NvbXBldGVudF9hdXRob3JpdHlfY2xhaW1zIjp7ImF1dGhvcml0eV9pZCI6Ik9CR0JSIiwicmVnaXN0cmF0aW9uX2lkIjoiVW5rbm93bjAwMTU4MDAwMDFIUVFyWkFBWCIsInN0YXR1cyI6IkFjdGl2ZSIsImF1dGhvcmlzYXRpb25zIjpbeyJtZW1iZXJfc3RhdGUiOiJHQiIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX0seyJtZW1iZXJfc3RhdGUiOiJJRSIsInJvbGVzIjpbIlBJU1AiLCJDQlBJSSIsIkFJU1AiXX0seyJtZW1iZXJfc3RhdGUiOiJOTCIsInJvbGVzIjpbIlBJU1AiLCJBSVNQIiwiQ0JQSUkiXX1dfSwic29mdHdhcmVfbG9nb191cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tIiwib3JnX3N0YXR1cyI6IkFjdGl2ZSIsIm9yZ19pZCI6IjAwMTU4MDAwMDFIUVFyWkFBWCIsIm9yZ19uYW1lIjoiV1NPMiAoVUspIExJTUlURUQiLCJvcmdfY29udGFjdHMiOlt7Im5hbWUiOiJUZWNobmljYWwiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiVGVjaG5pY2FsIn0seyJuYW1lIjoiQnVzaW5lc3MiLCJlbWFpbCI6InNhY2hpbmlzQHdzbzIuY29tIiwicGhvbmUiOiIrOTQ3NzQyNzQzNzQiLCJ0eXBlIjoiQnVzaW5lc3MifV0sIm9yZ19qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC8wMDE1ODAwMDAxSFFRclpBQVguandrcyIsIm9yZ19qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvMDAxNTgwMDAwMUhRUXJaQUFYLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX2VuZHBvaW50IjoiaHR0cHM6Ly9rZXlzdG9yZS5vcGVuYmFua2luZ3Rlc3Qub3JnLnVrLzAwMTU4MDAwMDFIUVFyWkFBWC9vUTRLb2FhdnBPdW9FN3J2UXNaRU9WLmp3a3MiLCJzb2Z0d2FyZV9qd2tzX3Jldm9rZWRfZW5kcG9pbnQiOiJodHRwczovL2tleXN0b3JlLm9wZW5iYW5raW5ndGVzdC5vcmcudWsvMDAxNTgwMDAwMUhRUXJaQUFYL3Jldm9rZWQvb1E0S29hYXZwT3VvRTdydlFzWkVPVi5qd2tzIiwic29mdHdhcmVfcG9saWN5X3VyaSI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20iLCJzb2Z0d2FyZV90b3NfdXJpIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbSIsInNvZnR3YXJlX29uX2JlaGFsZl9vZl9vcmciOiJXU08yIE9wZW4gQmFua2luZyJ9.feh-KqLmlaTNyWZsk3EW73DEMfeafKgJnPcos4vXgdF-ydeOjMpn40eVU15pkz1bYBour5mZqEs_5pl0YkyGGiM-b1_Lr_djJc6jElX7WfzswSPq1Si2AZf1kqWlFd1v9r1GfGB4O-LIrcgHFhFJQ-0Z5S5DqLe6IIKe5TUfu1YolGYmVsgvLeXPbZCzTXRJVz0rHbQq-RrdrBLCgxZFRO-lJQSpuC9yQ23jnDs70wvSMPtiPoSutGSkh8HJ8FU2VecRFjz8RFAau1k-6ekx1T0ngTKtqzVm4nKtSekSkEsD6H6oWCBLA6f14YoZo7YEzWlVEp5ONtqcyeqy-MakLg"
+}
+<signature>
+```
 
-??? tip "Click here to see the decoded format of an SSA..."
+</details>
 
-    ```
-    {
-        "alg": "PS256",
-        "kid": "sCekNgSWIauQ34klRhDGqfwpjc4",
-        "typ": "JWT"
-    }
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the decoded format of an SSA...</summary>
 
-    {
-        "iss": "OpenBanking Ltd",
-        "iat": 1750661305,
-        "jti": "ba48a0bbd00b42f4",
-        "software_environment": "sandbox",
-        "software_mode": "Test",
-        "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
-        "software_client_id": "oQ4KoaavpOuoE7rvQsZEOV",
-        "software_client_name": "WSO2 Open Banking TPP2 (Sandbox)",
-        "software_client_description": "WSO2 Open Banking TPP2 for testing",
-        "software_version": "1.5",
-        "software_client_uri": "https://www.google.com",
-        "software_redirect_uris": [
-            "https://www.google.com/redirects/redirect1",
-            "https://www.google.com/redirects/redirect2"
-        ],
-        "software_roles": [
+```
+{
+    "alg": "PS256",
+    "kid": "sCekNgSWIauQ34klRhDGqfwpjc4",
+    "typ": "JWT"
+}
+
+{
+    "iss": "OpenBanking Ltd",
+    "iat": 1750661305,
+    "jti": "ba48a0bbd00b42f4",
+    "software_environment": "sandbox",
+    "software_mode": "Test",
+    "software_id": "oQ4KoaavpOuoE7rvQsZEOV",
+    "software_client_id": "oQ4KoaavpOuoE7rvQsZEOV",
+    "software_client_name": "WSO2 Open Banking TPP2 (Sandbox)",
+    "software_client_description": "WSO2 Open Banking TPP2 for testing",
+    "software_version": "1.5",
+    "software_client_uri": "https://www.google.com",
+    "software_redirect_uris": [
+        "https://www.google.com/redirects/redirect1",
+        "https://www.google.com/redirects/redirect2"
+    ],
+    "software_roles": [
+        "PISP",
+        "AISP",
+        "CBPII"
+    ],
+    "organisation_competent_authority_claims": {
+        "authority_id": "OBGBR",
+        "registration_id": "Unknown0015800001HQQrZAAX",
+        "status": "Active",
+        "authorisations": [
+        {
+            "member_state": "GB",
+            "roles": [
             "PISP",
             "AISP",
             "CBPII"
-        ],
-        "organisation_competent_authority_claims": {
-            "authority_id": "OBGBR",
-            "registration_id": "Unknown0015800001HQQrZAAX",
-            "status": "Active",
-            "authorisations": [
-            {
-                "member_state": "GB",
-                "roles": [
-                "PISP",
-                "AISP",
-                "CBPII"
-                ]
-            },
-            {
-                "member_state": "IE",
-                "roles": [
-                "PISP",
-                "CBPII",
-                "AISP"
-                ]
-            },
-            {
-                "member_state": "NL",
-                "roles": [
-                "PISP",
-                "AISP",
-                "CBPII"
-                ]
-            }
             ]
         },
-        "software_logo_uri": "https://www.google.com",
-        "org_status": "Active",
-        "org_id": "0015800001HQQrZAAX",
-        "org_name": "WSO2 (UK) LIMITED",
-        "org_contacts": [
-            {
-            "name": "Technical",
-            "email": "sachinis@wso2.com",
-            "phone": "+94774274374",
-            "type": "Technical"
-            },
-            {
-            "name": "Business",
-            "email": "sachinis@wso2.com",
-            "phone": "+94774274374",
-            "type": "Business"
-            }
-        ],
-        "org_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks",
-        "org_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/0015800001HQQrZAAX.jwks",
-        "software_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/oQ4KoaavpOuoE7rvQsZEOV.jwks",
-        "software_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/oQ4KoaavpOuoE7rvQsZEOV.jwks",
-        "software_policy_uri": "https://www.google.com",
-        "software_tos_uri": "https://www.google.com",
-        "software_on_behalf_of_org": "WSO2 Open Banking"
-    }
+        {
+            "member_state": "IE",
+            "roles": [
+            "PISP",
+            "CBPII",
+            "AISP"
+            ]
+        },
+        {
+            "member_state": "NL",
+            "roles": [
+            "PISP",
+            "AISP",
+            "CBPII"
+            ]
+        }
+        ]
+    },
+    "software_logo_uri": "https://www.google.com",
+    "org_status": "Active",
+    "org_id": "0015800001HQQrZAAX",
+    "org_name": "WSO2 (UK) LIMITED",
+    "org_contacts": [
+        {
+        "name": "Technical",
+        "email": "sachinis@wso2.com",
+        "phone": "+94774274374",
+        "type": "Technical"
+        },
+        {
+        "name": "Business",
+        "email": "sachinis@wso2.com",
+        "phone": "+94774274374",
+        "type": "Business"
+        }
+    ],
+    "org_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks",
+    "org_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/0015800001HQQrZAAX.jwks",
+    "software_jwks_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/oQ4KoaavpOuoE7rvQsZEOV.jwks",
+    "software_jwks_revoked_endpoint": "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/revoked/oQ4KoaavpOuoE7rvQsZEOV.jwks",
+    "software_policy_uri": "https://www.google.com",
+    "software_tos_uri": "https://www.google.com",
+    "software_on_behalf_of_org": "WSO2 Open Banking"
+}
 
-    <signature>
-    ```
+<signature>
+```
 
-!!! note 
-    If you change the payload, use the following certificates to sign the JWT and SSA:
-    
-    - [signing certificate](../assets/attachments/signing-certs/obsigning.pem)
-    - [private keys](../assets/attachments/signing-certs/obsigning.key)
+</details>
+
+:::note
+If you change the payload, use the following certificates to sign the JWT and SSA:
+
+- [signing certificate](pathname:///assets/attachments/signing-certs/obsigning.pem)
+- [private keys](pathname:///assets/attachments/signing-certs/obsigning.key)
+:::
 
 - The bank registers the application using the metadata sent in the SSA.
 
@@ -290,63 +304,85 @@ The API consumer can then use the identifier (`client_id`) to access customers' 
 
 Generate an application access token using Client Credentials grant. A sample command is given below. 
 
-``` tab='Format'
+<Tabs>
+<TabItem value="format" label="Format">
+
+```
 curl -X POST https://<IS_HOST>:9446/oauth2/token  \
  -H 'Content-Type: application/x-www-form-urlencoded' \
  --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
  -d 'grant_type=client_credentials&scope=accountsopenid&client_assertion=<CLIENT_ASSERTION>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&redirect_uri=<REDIRECT_URI>&client_id=<CONSUMER_KEY>’
 ```
 
-``` tab='Sample'
+</TabItem>
+<TabItem value="sample" label="Sample">
+
+```
 curl -X POST https://<IS_HOST>:9446/oauth2/token  \
  -H 'Content-Type: application/x-www-form-urlencoded' \
  --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
  -d 'grant_type=client_credentials&scope=accounts&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_id=iOBLiBmkueI1LeJ9c445ndvX3C4a&client_assertion=eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJpT0JMaUJta3VlSTFMZUo5YzQ0NW5kdlgzQzRhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJpT0JMaUJta3VlSTFMZUo5YzQ0NW5kdlgzQzRhIiwiZXhwIjoxNzU0NjE3MDg0LCJpYXQiOjE3NTEwMTcwODQsImp0aSI6IjE3NTEwMTcwODQ2MTYifQ.BgGAGYua60_7xP8rD5Cf0ndCwjXwgIhTQNkROd2TskkLqrAXmKzvo6Nz_4SBQ5Xy8bKxauxD8nwFfX2Eg-OD3Optdf2ey2Gb1FxhvaZYXum9EmRd-FMPSm8JShVe3i7KwHcZr_jzeIO3w-nthYi-yqy1vH-6UxNP00K8eWccVsd1W9k8GAoACWoeDDnDwzOF5bxuIJljdurbnHNOH93kbYRE69u6dvJgbRSLqAVsgQzhVyJp5hSzkzCIUdRuzr5AorbzHjSQUyqtosKItNne_6yE3hKwfTO6hFCnXjdSyfT_aCKyvrgYdLDWRxNr7AovuY1J09Yuv44a1_uRZZJNhw&redirect_uri=https://www.google.com/redirects/redirect1’
 ```
 
-??? example "Make sure to update the placeholders with the relevant values"
-    - The client assertion looks as follows:
-    
-        ``` xml tab="Client Assertion Format"
-        {
-        "alg": "<<The algorithm used for signing.>>",
-        "kid": "<<The thumbprint of the certificate.>>",
-        "typ": "JWT"
-        }
-         
-        {
-        "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
-        "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
-        "exp": <<This is epoch time of the token expiration date/time>>,
-        "iat": <<This is epoch time of the token issuance date/time>>,
-        "jti": "<<This is an incremental unique value>>",
-        "aud": "<<This is the audience that the ID token is intended for. For example, https:/<IS_HOST>:9446/oauth2/token"
-        }
-         
-        <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private 
-        signature of the application certificate is used.>
-        ```
-        
-        ``` xml tab="Sample"
-        eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJpT0JMaUJta3VlSTFMZUo5YzQ0NW5kdlgzQzRhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJpT0JMaUJta3VlSTFMZUo5YzQ0NW5kdlgzQzRhIiwiZXhwIjoxNzU0NjE3MDg0LCJpYXQiOjE3NTEwMTcwODQsImp0aSI6IjE3NTEwMTcwODQ2MTYifQ.BgGAGYua60_7xP8rD5Cf0ndCwjXwgIhTQNkROd2TskkLqrAXmKzvo6Nz_4SBQ5Xy8bKxauxD8nwFfX2Eg-OD3Optdf2ey2Gb1FxhvaZYXum9EmRd-FMPSm8JShVe3i7KwHcZr_jzeIO3w-nthYi-yqy1vH-6UxNP00K8eWccVsd1W9k8GAoACWoeDDnDwzOF5bxuIJljdurbnHNOH93kbYRE69u6dvJgbRSLqAVsgQzhVyJp5hSzkzCIUdRuzr5AorbzHjSQUyqtosKItNne_6yE3hKwfTO6hFCnXjdSyfT_aCKyvrgYdLDWRxNr7AovuY1J09Yuv44a1_uRZZJNhw
-        ``` 
-        
-    - Enter the value for <REDIRECT_URI> that you entered in the registration request.
-    - To locate the value for `<CONSUMER_KEY>`,
-        - Go to `https://<IS_HOST>:9446/console` and click the **Applications** tab on top.
-        - Select the application you registered and go to **Protocol** tab.
-        - You can view the unique value generated for `<CONSUMER_KEY>` under Client Id paramater: 
-        
-        ![view-values-for-application](../assets/img/learn/dcr/dcr-try-out/view-the-values-for-app.png)
+</TabItem>
+</Tabs>
 
-    
+<details className="ob-details ob-details--info">
+<summary>Make sure to update the placeholders with the relevant values</summary>
+
+- The client assertion looks as follows:
+
+    <Tabs>
+    <TabItem value="client-assertion-format" label="Client Assertion Format">
+
+    ```xml
+    {
+    "alg": "<<The algorithm used for signing.>>",
+    "kid": "<<The thumbprint of the certificate.>>",
+    "typ": "JWT"
+    }
+
+    {
+    "iss": "<<This is the issuer of the token. For example, client ID of your application>>",
+    "sub": "<<This is the subject identifier of the issuer. For example, client ID of your application>>",
+    "exp": <<This is epoch time of the token expiration date/time>>,
+    "iat": <<This is epoch time of the token issuance date/time>>,
+    "jti": "<<This is an incremental unique value>>",
+    "aud": "<<This is the audience that the ID token is intended for. For example, https:/<IS_HOST>:9446/oauth2/token"
+    }
+
+    <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise the private 
+    signature of the application certificate is used.>
+    ```
+
+    </TabItem>
+    <TabItem value="sample" label="Sample">
+
+    ```xml
+    eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJpT0JMaUJta3VlSTFMZUo5YzQ0NW5kdlgzQzRhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJpT0JMaUJta3VlSTFMZUo5YzQ0NW5kdlgzQzRhIiwiZXhwIjoxNzU0NjE3MDg0LCJpYXQiOjE3NTEwMTcwODQsImp0aSI6IjE3NTEwMTcwODQ2MTYifQ.BgGAGYua60_7xP8rD5Cf0ndCwjXwgIhTQNkROd2TskkLqrAXmKzvo6Nz_4SBQ5Xy8bKxauxD8nwFfX2Eg-OD3Optdf2ey2Gb1FxhvaZYXum9EmRd-FMPSm8JShVe3i7KwHcZr_jzeIO3w-nthYi-yqy1vH-6UxNP00K8eWccVsd1W9k8GAoACWoeDDnDwzOF5bxuIJljdurbnHNOH93kbYRE69u6dvJgbRSLqAVsgQzhVyJp5hSzkzCIUdRuzr5AorbzHjSQUyqtosKItNne_6yE3hKwfTO6hFCnXjdSyfT_aCKyvrgYdLDWRxNr7AovuY1J09Yuv44a1_uRZZJNhw
+    ```
+
+    </TabItem>
+    </Tabs>
+
+- Enter the value for \<REDIRECT_URI> that you entered in the registration request.
+- To locate the value for `<CONSUMER_KEY>`,
+    - Go to `https://<IS_HOST>:9446/console` and click the **Applications** tab on top.
+    - Select the application you registered and go to **Protocol** tab.
+    - You can view the unique value generated for `<CONSUMER_KEY>` under Client Id paramater: 
+
+    ![view-values-for-application](../assets/img/learn/dcr/dcr-try-out/view-the-values-for-app.png)
+
+</details>
+
+
 ### Retrieve an application
 
 The API allows the API consumer to retrieve the details for an application that has already been registered. 
 The request consists of one path parameter named `Client ID` that the API consumer wants to retrieve details for.
 When invoking this API, use the attached
-[private key](../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
+[private key](pathname:///assets/attachments/transport-certs/obtransport.key) and
+[public certificate](pathname:///assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
 
 See the following sample request:
 ```
@@ -357,7 +393,7 @@ curl GET \https://<APIM_HOSTNAME>:8243/open-banking/v3.3.0/register/iOBLiBmkueI1
 ```
 
 1. If the request is successful and the `Client ID` matches the application to whom the application access token was issued, 
-the bank returns details of the requested application.
+    the bank returns details of the requested application.
 2. If the `Client ID` is unknown, the bank responds with an `Unauthorized` status code.
 
 You can find a sample response below:
@@ -405,8 +441,8 @@ You can find a sample response below:
 
 The API allows the API consumer to request the bank to modify one or more attributes related to an existing application. The API consumer submits `Client ID` as a path parameter and a JWS payload that describes the characteristics of the application to be modified. This must include all the claims, including the ones that will not be modified.
 When invoking this API, use the attached
-[private key](../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
+[private key](pathname:///assets/attachments/transport-certs/obtransport.key) and
+[public certificate](pathname:///assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
 
 See the following sample request:
 ```
@@ -468,8 +504,8 @@ You can find a sample response below:
 
 The API allows the API consumer to request the bank to delete an existing application. The request consists of the 
 `Client ID` of the application, which should be deleted. When invoking this API, use the attached
-[private key](../assets/attachments/transport-certs/obtransport.key) and
-[public certificate](../assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
+[private key](pathname:///assets/attachments/transport-certs/obtransport.key) and
+[public certificate](pathname:///assets/attachments/transport-certs/obtransport.pem) for Transport Layer Security purposes.
 
 See the following sample request:
 ```
@@ -478,9 +514,8 @@ curl DELETE \https://<APIM_HOSTNAME>:8243/open-banking/v3.3.0/register/iOBLiBmku
 --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH>
 ```
 
- 1. If the request is successful and the `Client ID` matches the application, the bank deletes the application and 
- invalidates long-lived access tokens that were issued to the application.
- 2. If the `Client ID` is unknown, the bank responds with an `Unauthorized` status code.
-    
-If the deletion is successful you will get a 204 No Content response.
+1. If the request is successful and the `Client ID` matches the application, the bank deletes the application and 
+    invalidates long-lived access tokens that were issued to the application.
+2. If the `Client ID` is unknown, the bank responds with an `Unauthorized` status code.
 
+If the deletion is successful you will get a 204 No Content response.

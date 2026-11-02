@@ -1,4 +1,9 @@
---8<-- "deprecated-banner.md"
+---
+title: "JWT Access Tokens"
+---
+import DeprecatedBanner from '../../includes/_deprecated-banner.md';
+
+<DeprecatedBanner />
 
 JSON Web Token (JWT) is an open standard of transmitting information securely between two parties. As the tokens 
 are digitally signed, the information is secured. The authentication and authorization process uses JWT access tokens. 
@@ -13,24 +18,25 @@ below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 2. Add the following tags and configure the value according to your claim. For example, if the consent id is available 
-as a scope in the token, configure the name of that scope as `consent_id_claim_name` as follows: 
+    as a scope in the token, configure the name of that scope as `consent_id_claim_name` as follows: 
 
-    ``` toml
+    ```toml
     [open_banking.identity]
     consent_id_claim_name="consent_id"
     ```
-   
-   - If the scope is defined as `consent:uuid`, the value for the above configuration should be `consent:`.
-   
+
+    - If the scope is defined as `consent:uuid`, the value for the above configuration should be `consent:`.
+
 3. To enable [certificate-bound access token validation](../../learn/token-authentication.md#certificate-bound-access-tokens):
 
     1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
     2. Add the following configurations and set the value to `true`.
-    ``` toml
-    [apim.oauth_config]
-    enable_certificate_bound_access_token = true
-    ```
-   
-!!! note
-    For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/5.11.0/learn/jwt-token-generation/#jwt-token-generation) 
-    and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/5.11.0/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
+        ```toml
+        [apim.oauth_config]
+        enable_certificate_bound_access_token = true
+        ```
+
+:::note
+For more information, see the Identity Server documentation on [JWT token generation](https://is.docs.wso2.com/en/5.11.0/learn/jwt-token-generation/#jwt-token-generation) 
+and [handling custom claims with JWT Bearer Grant Type](https://is.docs.wso2.com/en/5.11.0/learn/handling-custom-claims-with-the-jwt-bearer-grant-type/#handling-custom-claims-with-the-jwt-bearer-grant-type).
+:::

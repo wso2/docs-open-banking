@@ -1,10 +1,14 @@
+---
+title: "Dynamic Client Registration"
+---
 # OpenAPI Extensions for DCR
 
 WSO2 Open Banking Accelerator supports Dynamic Client Registration (DCR). The DCR endpoint is according to OAuth2 DCR and DCRM specifications and it supports accepting custom client metadata and storage for Open Banking specification requirements. To configure DCR to accept and validate such Open Banking specification-specific data in Client-related operations (create, retrieve, update), it provides a set of OpenAPI based extension points as explained below.
 
 
-!!! note
-    Make sure to refer to the Developer guide for OpenAPI-based extensions from the [documentation](openapi-extensions-developer-guide.md).
+:::note
+Make sure to refer to the Developer guide for OpenAPI-based extensions from the [documentation](openapi-extensions-developer-guide.md).
+:::
 
 
 ## Client Creation
@@ -26,7 +30,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below. Make sure `allowed_extensions` contains the OpenAPI extensions mentioned in the above table.
 
-    ``` toml
+    ```toml
     [financial_services.extensions.endpoint]
     enabled = true
     base_url = "<BASE_URL_OF_THE_EXTENSION>"
@@ -44,14 +48,14 @@ To enable, follow the steps below:
 
 The OpenAPI extension for dynamic client update provides the extensibility to validate the incoming dynamic client update request attributes and store custom client data according to Open Banking specification requirements. The data set from this extension point will be stored as updated client metadata.
 
-### OpenAPI Extensions
+### OpenAPI Extensions \{#openapi-extensions_1\}
 
 | OpenAPI Extension         | Description                                                                               | OpenAPI Definition                                                                                                                                           |
 |---------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pre-process-client-update | Handle specification-specific custom validations and set custom client data to be updated | [pre-process-client-update/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-update/post) |
 
 
-### Configuration
+### Configuration \{#configuration_1\}
 
 To enable, follow the steps below:
 
@@ -59,7 +63,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below. Make sure `allowed_extensions` contains the OpenAPI extensions mentioned in the above table.
 
-    ``` toml
+    ```toml
     [financial_services.extensions.endpoint]
     enabled = true
     base_url = "<BASE_URL_OF_THE_EXTENSION>"
@@ -77,14 +81,14 @@ To enable, follow the steps below:
 
 The OpenAPI extension for dynamic client data retrieval provides the extensibility to validate the incoming dynamic client registration GET request attributes and send back a customized response according to Open Banking specification requirements. 
 
-### OpenAPI Extensions
+### OpenAPI Extensions \{#openapi-extensions_2\}
 
 | OpenAPI Extension            | Description                                                                     | OpenAPI Definition                                                                                                                                                 |
 |------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | pre-process-client-retrieval | Handle specification-specific custom validations and send back a custom response | [pre-process-client-retrieval/post](https://ob.docs.wso2.com/en/latest/references/accelerator-extensions-api/#tag/Client/paths/~1pre-process-client-retrieval/post) |
 
 
-### Configuration
+### Configuration \{#configuration_2\}
 
 To enable, follow the steps below:
 
@@ -92,7 +96,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below. Make sure `allowed_extensions` contains the OpenAPI extensions mentioned in the above table.
 
-    ``` toml
+    ```toml
     [financial_services.extensions.endpoint]
     enabled = true
     base_url = "<BASE_URL_OF_THE_EXTENSION>"

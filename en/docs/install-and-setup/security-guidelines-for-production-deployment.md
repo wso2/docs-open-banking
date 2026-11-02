@@ -1,3 +1,6 @@
+---
+title: "Security Guidelines for Production Deployment"
+---
 # Security Guidelines for Production Deployment
 
 When deploying WSO2 Open Banking in a production server, make sure to comply with the following security guidelines.

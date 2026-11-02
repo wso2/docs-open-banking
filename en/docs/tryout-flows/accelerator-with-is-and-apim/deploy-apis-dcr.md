@@ -1,3 +1,6 @@
+---
+title: "Deploy Open Banking APIs"
+---
 This page explains how to deploy an Open Banking API.
 
 Before publishing the APIs, you need to create the consumer role in WSO2 API Manager. 
@@ -23,13 +26,18 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
 
 6. Click on Finish.
 
-??? tip Adding Mock Banking Backend
-    Download the sample [Banking backend](../../assets/attachments/backend.zip), extract the zip file and place the `api#fs#backend.war` inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+<details className="ob-details ob-details--tip">
+<summary>Adding Mock Banking Backend</summary>
+
+Download the sample [Banking backend](pathname:///assets/attachments/backend.zip), extract the zip file and place the `api#fs#backend.war` inside `<APIM_HOME>/repository/deployment/server/webapps` folder.
+
+</details>
 
 ## Publish Open Banking APIs
 
-!!! note
-    WSO2 Open Banking Accelerator supports Accounts flow, Payments flow and Confirmation of Funds flow. Publish all three APIs before trying out the flows.
+:::note
+WSO2 Open Banking Accelerator supports Accounts flow, Payments flow and Confirmation of Funds flow. Publish all three APIs before trying out the flows.
+:::
 
 1. Sign in to the API Publisher Portal at `https://<APIM_HOSTNAME>:9443/publisher`. 
 
@@ -40,12 +48,12 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
     ![upload-swagger.png](../../assets/img/get-started/quick-start-guide/deploy-apis/upload-swagger.png)
 
 4. Click Browse File to Upload and select the required yaml file. 
-        
+
     | API | Swagger File |
     | --- | ------------ |
-    | Accounts |[account-info-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Accounts/account-info-swagger.yaml) | 
-    | Payments |[payment-initiation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Payments/payment-initiation-openapi.yaml) | 
-    | Confirmation of Funds |[funds-confirmation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/ConfirmationOfFunds/funds-confirmation-openapi.yaml) | 
+    | Accounts |[account-info-swagger.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Accounts/account-info-swagger.yaml) |
+    | Payments |[payment-initiation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/Payments/payment-initiation-openapi.yaml) |
+    | Confirmation of Funds |[funds-confirmation-openapi.yaml](https://github.com/wso2/financial-services-accelerator/blob/4.0.0/financial-services-accelerator/accelerators/fs-apim/repository/resources/apis/ConfirmationOfFunds/funds-confirmation-openapi.yaml) |
 
 5. Click Next.
 
@@ -53,9 +61,9 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
 
     | API | Context Value |
     | --- | ------------- |
-    | Accounts | `/open-banking/{version}/aisp` | 
-    | Payments | `/open-banking/{version}/pisp` | 
-    | Confirmation of Funds | `/open-banking/{version}/cbpii` | 
+    | Accounts | `/open-banking/{version}/aisp` |
+    | Payments | `/open-banking/{version}/pisp` |
+    | Confirmation of Funds | `/open-banking/{version}/cbpii` |
 
 7. Leave the Endpoint field empty as it is, Select the Gateway Type and click Create.
     ![configure-api.png](../../assets/img/get-started/quick-start-guide/deploy-apis/configure-api.png)
@@ -65,13 +73,13 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
 
 9. Click Save.
 
-10. Go to Runtime using the left menu pane. <br/>
+10. Go to Runtime using the left menu pane. <br />
     ![select-runtime.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-runtime.png)
 
 11. Toggle the Schema Validation button to enable Schema Validation for all APIs except for the Dynamic Client Registration API.
     ![schema-validation.png](../../assets/img/get-started/quick-start-guide/deploy-apis/schema-validation.png)
 
-12. Go to Endpoints using the left menu pane. <br/>
+12. Go to Endpoints using the left menu pane. <br />
     ![select-endpoint.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-endpoints.png)
 
 13. Select the endpoint types; **Dynamic Endpoints** and click Save.  
@@ -95,15 +103,15 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
 
     | API | API Level Policies | Operational Level Policies |
     | --- | ------------------ | -------------------------- |
-    | Accounts | `MTLS Enforcement Policy` | `Consent Enforcement Policy` </br> `Dynamic Endpoint Policy` |
-    | Payments | `MTLS Enforcement Policy` | `Consent Enforcement Policy` </br> `Dynamic Endpoint Policy` |
-    | Confirmation of Funds | `MTLS Enforcement Policy` | `Consent Enforcement Policy` </br> `Dynamic Endpoint Policy` |
+    | Accounts | `MTLS Enforcement Policy` | `Consent Enforcement Policy` <br /> `Dynamic Endpoint Policy` |
+    | Payments | `MTLS Enforcement Policy` | `Consent Enforcement Policy` <br /> `Dynamic Endpoint Policy` |
+    | Confirmation of Funds | `MTLS Enforcement Policy` | `Consent Enforcement Policy` <br /> `Dynamic Endpoint Policy` |
 
 16. Select the **API Gateway** type, in this scenario, it is **Default**.
 
 17. Click Deploy.
 
-18. Go to Overview using the left menu pane. <br/>
+18. Go to Overview using the left menu pane. <br />
     ![select-overview.png](../../assets/img/get-started/quick-start-guide/deploy-apis/select-overview.png)
 
 19. click Publish. 
@@ -111,5 +119,6 @@ Before publishing the APIs, you need to create the consumer role in WSO2 API Man
 
 Once you deploy the APIs an API resource will be created along with the role mentioned in the swagger on the Identity Server side.
 
-!!! note
-    If you have created the users, assign the roles created while publishing the APIs to the users.
+:::note
+If you have created the users, assign the roles created while publishing the APIs to the users.
+:::

@@ -1,3 +1,6 @@
+---
+title: "Consent Admin Endpoint"
+---
 # Consent Admin Endpoint
 
 The Consent Admin Endpoint (`/admin`) provides a REST API for managing consents from administrative portals — such as a **Self-Care Portal**. It exposes operations for searching, revoking, auditing, and inspecting consents stored in the WSO2 Financial Services Accelerator consent core service.
@@ -44,7 +47,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 200 OK
+#### Sample Response — 200 OK \{#sample-response-200-ok\}
 
 ```json
 {
@@ -99,14 +102,14 @@ Revokes an authorised consent. Optionally invokes a pre-process extension before
 
 **`DELETE /admin/revoke`**
 
-#### Query Parameters
+#### Query Parameters \{#query-parameters_1\}
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `consentId` | `string` | **Yes** | ID of the consent to revoke |
 | `userId` | `string` | **Yes*** | User ID of the consent owner. *Required for self-care portal users.* |
 
-#### Sample Request — CCO Revoking Any Consent
+#### Sample Request — CCO Revoking Any Consent \{#sample-request-cco-revoking-any-consent\}
 
 ```bash
 curl -X DELETE \
@@ -114,7 +117,7 @@ curl -X DELETE \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 204 No Content
+#### Sample Response — 204 No Content \{#sample-response-204-no-content\}
 
 ```http
 HTTP/1.1 204 No Content
@@ -126,7 +129,7 @@ Returns the status change audit trail for one or more consents.
 
 **`GET /admin/search/consent-status-audit`**
 
-#### Query Parameters
+#### Query Parameters \{#query-parameters_2\}
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -134,7 +137,7 @@ Returns the status change audit trail for one or more consents.
 | `limit` | `integer` | No | Maximum number of records to return |
 | `offset` | `integer` | No | Number of records to skip (for pagination) |
 
-#### Sample Request
+#### Sample Request \{#sample-request_1\}
 
 ```bash
 curl -X GET \
@@ -142,7 +145,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 200 OK
+#### Sample Response — 200 OK \{#sample-response-200-ok_1\}
 
 ```json
 {
@@ -181,13 +184,13 @@ Retrieves the file content uploaded as part of a file-type consent (e.g., bulk p
 
 **`GET /admin/search/consent-file`**
 
-#### Query Parameters
+#### Query Parameters \{#query-parameters_3\}
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `consentId` | `string` | **Yes** | ID of the consent whose file is to be retrieved |
 
-#### Sample Request
+#### Sample Request \{#sample-request_2\}
 
 ```bash
 curl -X GET \
@@ -195,7 +198,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 200 OK
+#### Sample Response — 200 OK \{#sample-response-200-ok_2\}
 
 ```json
 {
@@ -209,13 +212,13 @@ Retrieves the full amendment history for a consent alongside its current state. 
 
 **`GET /admin/consent-amendment-history`**
 
-#### Query Parameters
+#### Query Parameters \{#query-parameters_4\}
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `consentId` | `string` | **Yes** | ID of the consent whose amendment history is to be retrieved |
 
-#### Sample Request
+#### Sample Request \{#sample-request_3\}
 
 ```bash
 curl -X GET \
@@ -223,7 +226,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 200 OK
+#### Sample Response — 200 OK \{#sample-response-200-ok_3\}
 
 ```json
 {
@@ -277,7 +280,7 @@ Manually triggers the background job that marks expired consents as expired.
 
 **`GET /admin/expire-consents`**
 
-#### Sample Request
+#### Sample Request \{#sample-request_4\}
 
 ```bash
 curl -X GET \
@@ -285,7 +288,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 204 No Content
+#### Sample Response — 204 No Content \{#sample-response-204-no-content_1\}
 
 ```http
 HTTP/1.1 204 No Content
@@ -297,14 +300,14 @@ Searches consents by custom attribute key (and optionally by value). Useful for 
 
 **`GET /admin/search/consent-attributes`**
 
-#### Query Parameters
+#### Query Parameters \{#query-parameters_5\}
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `key` | `string` | **Yes** | Attribute key to search by |
 | `value` | `string` | No | Attribute value to narrow the search. If omitted, returns all consents with the given key |
 
-#### Sample Request — Search by Key and Value
+#### Sample Request — Search by Key and Value \{#sample-request-search-by-key-and-value\}
 
 ```bash
 curl -X GET \
@@ -312,7 +315,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 200 OK (key + value)
+#### Sample Response — 200 OK (key + value) \{#sample-response-200-ok-key-value\}
 
 ```json
 {
@@ -326,7 +329,7 @@ curl -X GET \
 }
 ```
 
-#### Sample Request — Search by Key Only
+#### Sample Request — Search by Key Only \{#sample-request-search-by-key-only\}
 
 ```bash
 curl -X GET \
@@ -334,7 +337,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9...'
 ```
 
-#### Sample Response — 200 OK (key only)
+#### Sample Response — 200 OK (key only) \{#sample-response-200-ok-key-only\}
 
 ```json
 {

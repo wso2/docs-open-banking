@@ -1,114 +1,121 @@
+---
+title: "Customize the Consent Page"
+---
 During the [consent authorization process](../../learn/consent-authorization-intro.md), an API consumer requests the banking information that the API consumer application needs to access. Then, the bank redirects the bank user to a webpage where it displays the banking information that the API consumer application needs to access. This is known as the **Consent Grant Page**. WSO2 Open Banking Accelerator contains a default consent page, which can be customized to display consent details according to your requirements. The following topics explain the page structure and extension points where you can customize the consent page furthermore.
 
 ## Customizing the layout of the consent grant screen
 
 The [Populate Consent Authorization Screen extension](openapi-consent-management-authorize.md) provides the flexibility to customize the consent grant screen in alignment with the UX guidelines defined by Open Banking specifications. Based on the response payload returned by this extension, the Accelerator dynamically adjusts the layout of the consent grant screen. This section explains the different consent screen layouts that correspond to various response configurations.
 
-??? tip "Click here to see the response of the Populate Consent Authorization Screen extension."
-    ```
-    {
-        "data": {
-            "consentData": {
-                "type": "accounts",
-                "basicConsentData": {
-                    "Expiration Date Time": ["2025-06-02T12:14:23.061411600+05:30"],
-                    "Debtor Account": [
-                        "Scheme Name : UK.OBIE.IBAN",
-                        "Identification : 1234",
-                        "Name : Account1",
-                        "Secondary Identification : Account1"
-                    ]
-                },
-                "permissions": [
-                    {
-                        "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
-                        "displayValues" : [ "Read Account Information" ],
-                        "initiatedAccounts" : [ 
-                            {
-                                "accountId" : "DE98765432109876543210",
-                                "displayName" : "iban DE98765432109876543210",
-                                "refType" : "iban"
-                            } 
-                        ]
-                    }, 
-                    {
-                        "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
-                        "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
-                        "initiatedAccounts" : [ 
-                            {
-                                "accountId" : "9876-543-210",
-                                "displayName" : "SavingsAccount",
-                                "refType" : "iban"
-                            } 
-                        ]
-                    }, 
-                    {
-                        "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
-                        "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
-                        "initiatedAccounts" : [ 
-                            {
-                                "accountId" : "7654-321-098",
-                                "displayName" : "MultiCurrencyAccount",
-                                "refType" : "iban"
-                            } 
-                        ]
-                    }
-                ],
-                "initiatedAccountsForConsent": [
-                    {
-                        "displayName": "SavingsAccount",
-                        "accountId": "1234-567-987"
-                    }
-                ],
-                "allowMultipleAccounts": true,
-                "handleAccountSelectionSeparately": false,
-                "isReauthorization": true,
-                "consentMetadata" : {}
-            },
-            "consumerData": {
-                "accounts": [
-                    {
-                        "displayName": "CurrentAccount",
-                        "accountId": "1234-567-987",
-                        "selected": false,
-                        "title": null,
-                        "description": null
-                    },
-                    {
-                        "displayName": "SavingsAccount",
-                        "accountId": "6870-172-890",
-                        "selected": false,
-                        "title": "Pre-approval enabled",
-                        "description": "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing  Account permissions"
-                    }
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the response of the Populate Consent Authorization Screen extension.</summary>
+
+```
+{
+    "data": {
+        "consentData": {
+            "type": "accounts",
+            "basicConsentData": {
+                "Expiration Date Time": ["2025-06-02T12:14:23.061411600+05:30"],
+                "Debtor Account": [
+                    "Scheme Name : UK.OBIE.IBAN",
+                    "Identification : 1234",
+                    "Name : Account1",
+                    "Secondary Identification : Account1"
                 ]
             },
-            "additionalData": [
+            "permissions": [
                 {
-                    "title": "Accounts Unavailable To Share:",
-                    "subtitle": "Why can't I share these accounts?",
-                    "description": "There are a range of reasons why certain accounts may not be available to share.For joint accounts, all account holders must elect to make the account available. For secondary user accounts, the account holder(s) must grant data sharing rights. Please contact your bank for more details.",
-                    "items": [
+                    "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
+                    "displayValues" : [ "Read Account Information" ],
+                    "initiatedAccounts" : [ 
                         {
-                            "item": "joint_account_2",
-                            "type": null
-                        },
-                        {
-                            "item": "secondary_joint_account_2",
-                            "type": null
-                        },
-                        {
-                            "item": "business_account_1",
-                            "type": "00001"
-                        }
+                            "accountId" : "DE98765432109876543210",
+                            "displayName" : "iban DE98765432109876543210",
+                            "refType" : "iban"
+                        } 
                     ]
+                }, 
+                {
+                    "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
+                    "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
+                    "initiatedAccounts" : [ 
+                        {
+                            "accountId" : "9876-543-210",
+                            "displayName" : "SavingsAccount",
+                            "refType" : "iban"
+                        } 
+                    ]
+                }, 
+                {
+                    "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
+                    "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
+                    "initiatedAccounts" : [ 
+                        {
+                            "accountId" : "7654-321-098",
+                            "displayName" : "MultiCurrencyAccount",
+                            "refType" : "iban"
+                        } 
+                    ]
+                }
+            ],
+            "initiatedAccountsForConsent": [
+                {
+                    "displayName": "SavingsAccount",
+                    "accountId": "1234-567-987"
+                }
+            ],
+            "allowMultipleAccounts": true,
+            "handleAccountSelectionSeparately": false,
+            "isReauthorization": true,
+            "consentMetadata" : {}
+        },
+        "consumerData": {
+            "accounts": [
+                {
+                    "displayName": "CurrentAccount",
+                    "accountId": "1234-567-987",
+                    "selected": false,
+                    "title": null,
+                    "description": null
+                },
+                {
+                    "displayName": "SavingsAccount",
+                    "accountId": "6870-172-890",
+                    "selected": false,
+                    "title": "Pre-approval enabled",
+                    "description": "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing  Account permissions"
                 }
             ]
         },
-        "status": "SUCCESS",
-        "responseId": "request-uuid"
-    }   
-    ```
+        "additionalData": [
+            {
+                "title": "Accounts Unavailable To Share:",
+                "subtitle": "Why can't I share these accounts?",
+                "description": "There are a range of reasons why certain accounts may not be available to share.For joint accounts, all account holders must elect to make the account available. For secondary user accounts, the account holder(s) must grant data sharing rights. Please contact your bank for more details.",
+                "items": [
+                    {
+                        "item": "joint_account_2",
+                        "type": null
+                    },
+                    {
+                        "item": "secondary_joint_account_2",
+                        "type": null
+                    },
+                    {
+                        "item": "business_account_1",
+                        "type": "00001"
+                    }
+                ]
+            }
+        ]
+    },
+    "status": "SUCCESS",
+    "responseId": "request-uuid"
+}   
+```
+
+</details>
 
 The response of the Populate Consent Authorization Screen extension consists of two main objects:
 
@@ -142,18 +149,22 @@ The table below describes the data elements included in the `consentData` object
 
 ![basic-consent-data](../../assets/img/develop/customizing-consent-page/basic-consent-data.png)
 
-??? tip "Click here to see the payload structure for the above format."
-    ```
-    "basicConsentData": {
-        "Expiration Date Time": ["2025-06-02T12:14:23.061411600+05:30"],
-        "Debtor Account": [
-            "Scheme Name : UK.OBIE.IBAN",
-            "Identification : 1234",
-            "Name : Account1",
-            "Secondary Identification : Account1"
-        ]
-    }
-    ```
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the payload structure for the above format.</summary>
+
+```
+"basicConsentData": {
+    "Expiration Date Time": ["2025-06-02T12:14:23.061411600+05:30"],
+    "Debtor Account": [
+        "Scheme Name : UK.OBIE.IBAN",
+        "Identification : 1234",
+        "Name : Account1",
+        "Secondary Identification : Account1"
+    ]
+}
+```
+
+</details>
 
 #### Requested Permissions
 
@@ -163,73 +174,82 @@ If the `permissions` object contains `initiatedAccounts`, the `RequestedPermissi
 
 ![accounts-per-persmission](../../assets/img/develop/customizing-consent-page/accounts-per-persmission.png)
 
-??? tip "Click here to see the payload structure for the above format."
-    ```
-    "permissions" : [ 
-        {
-            "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
-            "displayValues" : [ "Read Account Information" ],
-            "initiatedAccounts" : [ 
-                {
-                    "accountId" : "DE98765432109876543210",
-                    "displayName" : "iban DE98765432109876543210",
-                    "refType" : "iban"
-                } 
-            ]
-        }, 
-        {
-            "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
-            "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
-            "initiatedAccounts" : [ 
-                {
-                    "accountId" : "DE98765432109876543210",
-                    "displayName" : "iban DE98765432109876543210",
-                    "refType" : "iban"
-                } 
-            ]
-        }, 
-        {
-            "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
-            "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
-            "initiatedAccounts" : [ 
-                {
-                    "accountId" : "DE98765432109876543210",
-                    "displayName" : "iban DE98765432109876543210",
-                    "refType" : "iban"
-                } 
-            ]
-        } 
-    ]
-    ```
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the payload structure for the above format.</summary>
+
+```
+"permissions" : [ 
+    {
+        "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
+        "displayValues" : [ "Read Account Information" ],
+        "initiatedAccounts" : [ 
+            {
+                "accountId" : "DE98765432109876543210",
+                "displayName" : "iban DE98765432109876543210",
+                "refType" : "iban"
+            } 
+        ]
+    }, 
+    {
+        "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
+        "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
+        "initiatedAccounts" : [ 
+            {
+                "accountId" : "DE98765432109876543210",
+                "displayName" : "iban DE98765432109876543210",
+                "refType" : "iban"
+            } 
+        ]
+    }, 
+    {
+        "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
+        "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
+        "initiatedAccounts" : [ 
+            {
+                "accountId" : "DE98765432109876543210",
+                "displayName" : "iban DE98765432109876543210",
+                "refType" : "iban"
+            } 
+        ]
+    } 
+]
+```
+
+</details>
 
 If the `permissions` object does not contain `initiatedAccounts`, the `RequestedPermission` section would look like this:
 
 ![permissions-without-accounts](../../assets/img/develop/customizing-consent-page/permissions-without-accounts.png)
 
-??? tip "Click here to see the payload structure for the above format."
-    ```
-    "permissions" : [ 
-        {
-            "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
-            "displayValues" : [ "Read Account Information" ],
-            "initiatedAccounts" : []
-        }, 
-        {
-            "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
-            "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
-            "initiatedAccounts" : []
-        }, 
-        {
-            "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
-            "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
-            "initiatedAccounts" : []
-        } 
-    ]
-    ```
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the payload structure for the above format.</summary>
 
-!!! note
-    - If a permission has no `initiatedAccounts` and the consent has no `initiatedAccountsForConsent`, a selectable list of consumer accounts are displayed under that permission. If no consumer accounts are added to the payload either, an error would be displayed in place.
-    - All account objects (in `initiatedAccounts`, `initiatedAccountsForConsent`, and `consumer accounts`) support additional properties (in addition to the only required property `displayName`) that would not be displayed or pushed to the consent grant page. But any additional property added to this response will be returned to the `persist-authorized-consent` endpoint.
+```
+"permissions" : [ 
+    {
+        "uid": "694cc9e8-49ad-45e8-953e-1c0bac16a4e3",
+        "displayValues" : [ "Read Account Information" ],
+        "initiatedAccounts" : []
+    }, 
+    {
+        "uid": "d0e93e29-9fb9-4585-aa18-e682453a28b7",
+        "displayValues" : [ "Read Account Information", "Read Account Balance Information" ],
+        "initiatedAccounts" : []
+    }, 
+    {
+        "uid": "af8f5f53-fc3d-4611-a7d1-d0e356fdcada",
+        "displayValues" : [ "Read Account Information", "Read Account Transaction Information" ],
+        "initiatedAccounts" : []
+    } 
+]
+```
+
+</details>
+
+:::note
+- If a permission has no `initiatedAccounts` and the consent has no `initiatedAccountsForConsent`, a selectable list of consumer accounts are displayed under that permission. If no consumer accounts are added to the payload either, an error would be displayed in place.
+- All account objects (in `initiatedAccounts`, `initiatedAccountsForConsent`, and `consumer accounts`) support additional properties (in addition to the only required property `displayName`) that would not be displayed or pushed to the consent grant page. But any additional property added to this response will be returned to the `persist-authorized-consent` endpoint.
+:::
 
 #### Initiated Accounts for Consent
 
@@ -237,8 +257,9 @@ If the `permissions` object does not contain `initiatedAccounts`, the `Requested
 
 ![initiated-accounts-for-consent](../../assets/img/develop/customizing-consent-page/initiated-accounts-for-consent.png)
 
-!!! note
-    If both `initiatedAccounts` (permission-level) and `initiatedAccountsForConsent` (consent-level) objects contain account definitions, the consent-level accounts in `initiatedAccountsForConsent` take precedence and are implicitly linked to all permissions, overriding any permission-level account assignments.
+:::note
+If both `initiatedAccounts` (permission-level) and `initiatedAccountsForConsent` (consent-level) objects contain account definitions, the consent-level accounts in `initiatedAccountsForConsent` take precedence and are implicitly linked to all permissions, overriding any permission-level account assignments.
+:::
 
 #### Allow Multiple Account Selection
 
@@ -284,76 +305,84 @@ The `consumerData` object contains all consumer-related information retrieved fr
 
 ![account-selected](../../assets/img/develop/customizing-consent-page/account-selected.png)
 
-??? tip "Click here to see the consumer accounts object."
-    ```
-    "accounts" : [ 
-        {
-            "displayName" : "account_1",
-            "accountId" : "30080012343456",
-            "selected" : false
-        }, 
-        {
-            "displayName" : "account_2",
-            "accountId" : "30080098763459",
-            "selected" : true
-        }, 
-        {
-            "displayName" : "multi_auth_account",
-            "accountId" : "30080098971337",
-            "selected" : false
-        }, 
-        {
-            "displayName" : "Extra_account",
-            "accountId" : "650-000 N1232",
-            "selected" : true
-        } 
-    ]
-    ```
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the consumer accounts object.</summary>
+
+```
+"accounts" : [ 
+    {
+        "displayName" : "account_1",
+        "accountId" : "30080012343456",
+        "selected" : false
+    }, 
+    {
+        "displayName" : "account_2",
+        "accountId" : "30080098763459",
+        "selected" : true
+    }, 
+    {
+        "displayName" : "multi_auth_account",
+        "accountId" : "30080098971337",
+        "selected" : false
+    }, 
+    {
+        "displayName" : "Extra_account",
+        "accountId" : "650-000 N1232",
+        "selected" : true
+    } 
+]
+```
+
+</details>
 
 An optional `title` and `description` can also be provided for each account. When present, an info icon is displayed next to the account name. Clicking the icon opens a popover showing `title` as the header and `description` as the body text.
 
 ![account-title-description](../../assets/img/develop/customizing-consent-page/account-title-description.png)
 
-??? tip "Click here to see the consumer accounts object."
-    ```
-    "accounts" : [ 
-        {
-            "displayName" : "account_1",
-            "accountId" : "30080012343456",
-            "selected" : false
-            "title" : null,
-            "description" : null
-        }, 
-        {
-            "displayName" : "account_2",
-            "accountId" : "30080098763459",
-            "selected" : false
-            "title" : null,
-            "description" : null
-        }, 
-        {
-            "displayName" : "joint_account_1",
-            "accountId" : "30080098971337",
-            "selected" : false,
-            "title" : "Pre-approval enabled",
-            "description" : "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing Account permissions"
-        },
-        {
-            "displayName" : "joint_account_2",
-            "accountId" : "30080098971337",
-            "selected" : false
-            "title" : "Pre-approval enabled",
-            "description" : "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing Account permissions"
-        }, 
-        {
-            "displayName" : "secondary_account_1",
-            "accountId" : "650-000 N1232",
-            "selected" : false
-            "title" : null,
-            "description" : null
-        } 
-    ]
-    ```
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the consumer accounts object.</summary>
+
+```
+"accounts" : [ 
+    {
+        "displayName" : "account_1",
+        "accountId" : "30080012343456",
+        "selected" : false
+        "title" : null,
+        "description" : null
+    }, 
+    {
+        "displayName" : "account_2",
+        "accountId" : "30080098763459",
+        "selected" : false
+        "title" : null,
+        "description" : null
+    }, 
+    {
+        "displayName" : "joint_account_1",
+        "accountId" : "30080098971337",
+        "selected" : false,
+        "title" : "Pre-approval enabled",
+        "description" : "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing Account permissions"
+    },
+    {
+        "displayName" : "joint_account_2",
+        "accountId" : "30080098971337",
+        "selected" : false
+        "title" : "Pre-approval enabled",
+        "description" : "2 other account holder(s) can share this joint account data at any time, without each others permission. You can change sharing preferences for this account by going to Settings Data sharing Account permissions"
+    }, 
+    {
+        "displayName" : "secondary_account_1",
+        "accountId" : "650-000 N1232",
+        "selected" : false
+        "title" : null,
+        "description" : null
+    } 
+]
+```
+
+</details>
 
 ### Additional Data
 
@@ -365,30 +394,34 @@ Each entry in the `additionalData` array is rendered as a titled section contain
 
 ![additional-data](../../assets/img/develop/customizing-consent-page/additional-data.png)
 
-??? tip "Click here to see the payload structure for the above format."
-    ```
-    "additionalData": [
-        {
-            "title": "Accounts Unavailable To Share:",
-            "subtitle": "Why can't I share these accounts?",
-            "description": "There are a range of reasons why certain accounts may not be available to share. For joint accounts, all account holders must elect to make the account available. For secondary user accounts, the account holder(s) must grant data sharing rights. Please contact your bank for more details.",
-            "items": [
-                {
-                    "item": "joint_account_2",
-                    "type": null
-                },
-                {
-                    "item": "secondary_joint_account_2",
-                    "type": null
-                },
-                {
-                    "item": "secondary_joint_account_3",
-                    "type": null
-                }
-            ]
-        }
-    ]
-    ```
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the payload structure for the above format.</summary>
+
+```
+"additionalData": [
+    {
+        "title": "Accounts Unavailable To Share:",
+        "subtitle": "Why can't I share these accounts?",
+        "description": "There are a range of reasons why certain accounts may not be available to share. For joint accounts, all account holders must elect to make the account available. For secondary user accounts, the account holder(s) must grant data sharing rights. Please contact your bank for more details.",
+        "items": [
+            {
+                "item": "joint_account_2",
+                "type": null
+            },
+            {
+                "item": "secondary_joint_account_2",
+                "type": null
+            },
+            {
+                "item": "secondary_joint_account_3",
+                "type": null
+            }
+        ]
+    }
+]
+```
+
+</details>
 
 The table below describes the fields in each `additionalData` section object.
 
@@ -401,8 +434,9 @@ The table below describes the fields in each `additionalData` section object.
 | `items[].item` | String | Yes | The text displayed for this entry. |
 | `items[].type` | String | No | The text used to filter out the items |
 
-!!! note
-    The `type` field can be used to filter `additionalData` items in a custom `financial_services.consent.authorize_jsp` JSP file.
+:::note
+The `type` field can be used to filter `additionalData` items in a custom `financial_services.consent.authorize_jsp` JSP file.
+:::
 
 ## Customize the theme of the consent page
 

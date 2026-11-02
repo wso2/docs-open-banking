@@ -1,3 +1,9 @@
+---
+title: "Deploy with Docker"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The Docker images for WSO2 Open Banking Accelerators contain the extracted Accelerator modules with the latest update levels. These images are not standalone runtime images. Instead, they are designed to be used as base components for building container images of:
 
 - WSO2 API Manager with the Financial Services API Management Accelerator Module
@@ -25,18 +31,20 @@ Docker Compose resources are available to help quickly evaluate the Open Banking
 
 These resources have been created based on the most common WSO2 Open Banking deployment profiles, allowing users to evaluate product capabilities against their organization’s Open Banking requirements. The Compose setup utilizes the Docker images built using Dockerfiles mentioned in [Sample Dockerfiles](#sample-dockerfiles).
 
-!!! tip "Before you begin:"
-    1. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git),
-       [Docker](https://www.docker.com/products/docker-desktop/), and
-       [Docker Compose](https://docs.docker.com/compose/install/#install-compose) to get started.
+:::tip[Before you begin:]
+1. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git),
+    [Docker](https://www.docker.com/products/docker-desktop/), and
+    [Docker Compose](https://docs.docker.com/compose/install/#install-compose) to get started.
 
-    2. Clone the [wso2/docker-open-banking](https://github.com/wso2/docker-open-banking.git) repository. This document 
-       refers to the file path of the cloned directory as `<OB_DOCKER_HOME>`.
+2. Clone the [wso2/docker-open-banking](https://github.com/wso2/docker-open-banking.git) repository. This document 
+    refers to the file path of the cloned directory as `<OB_DOCKER_HOME>`.
+:::
 
-!!! note
-    In order to use WSO2 Open Banking Docker Images, you need an active WSO2 Open Banking subscription. If you don't
-    have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact)
-    for more information.
+:::note
+In order to use WSO2 Open Banking Docker Images, you need an active WSO2 Open Banking subscription. If you don't
+have a WSO2 Open Banking subscription, [contact us](https://wso2.com/solutions/financial/open-banking/#contact)
+for more information.
+:::
 
 ## Build Container Docker Images
 
@@ -77,22 +85,34 @@ This steps builds the container image for WSO2 Identity Server with WSO2 Open Ba
     ````
     - Username: Your registered email address
     - Password: CLI secret extracted from your User Profile at [registry.wso2.com](http://registry.wso2.com)
-   ````   
+    ````
 
 3. Execute `docker build` command as shown below.
 
-    ```tab='Sample'
+    <Tabs>
+    <TabItem value="sample" label="Sample">
+
+    ```
     docker build --build-arg BASE_PRODUCT_VERSION=<IS_VERSION> --build-arg OB_TRUSTED_CERTS_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg WSO2_OB_KEYSTORES_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg RESOURCE_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> -t wso2is-ob:4.0.0 .
     ```
-    
-    ```tab='Hosted locally'
+
+    </TabItem>
+    <TabItem value="hosted-locally" label="Hosted locally">
+
+    ```
     docker build --build-arg BASE_PRODUCT_VERSION=7.1.0 --build-arg OB_TRUSTED_CERTS_URL=http://localhost:8000/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://localhost:8000/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://localhost:8000 -t wso2is-ob:4.0.0 .
     ```
-    
-    ```tab='Hosted remotely'
+
+    </TabItem>
+    <TabItem value="hosted-remotely" label="Hosted remotely">
+
+    ```
     docker build --build-arg BASE_PRODUCT_VERSION=7.1.0 --build-arg OB_TRUSTED_CERTS_URL=http://<public_ip:port>/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://<public_ip:port>/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://<public_ip:port> -t wso2is-ob:4.0.0 .
     ```
-    
+
+    </TabItem>
+    </Tabs>
+
 ### Build container image for WSO2 API Manager
 
 This step builds container image for WSO2 API Manager with WSO2 Open Banking API Management Accelerator Module
@@ -107,22 +127,34 @@ This step builds container image for WSO2 API Manager with WSO2 Open Banking API
     ````
     - Username: Your registered email address
     - Password: CLI secret extracted from your User Profile at [registry.wso2.com](http://registry.wso2.com)
-   ````   
+    ````
 
 3. Execute `docker build` command as shown below.
 
-    ```tab='Sample'
+    <Tabs>
+    <TabItem value="sample" label="Sample">
+
+    ```
     docker build --build-arg BASE_PRODUCT_VERSION=<APIM_VERSION> --build-arg OB_TRUSTED_CERTS_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg WSO2_OB_KEYSTORES_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> --build-arg RESOURCE_URL=<URL_OF_THE_HOSTED_LOCATION/FILENAME> -t wso2am-ob:4.0.0 .
     ```
-    
-    ```tab='Hosted locally'
+
+    </TabItem>
+    <TabItem value="hosted-locally" label="Hosted locally">
+
+    ```
     docker build --build-arg BASE_PRODUCT_VERSION=4.5.0 --build-arg OB_TRUSTED_CERTS_URL=http://localhost:8000/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://localhost:8000/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://localhost:8000 -t wso2am-ob:4.0.0 .
     ```
-    
-    ```tab='Hosted remotely'
+
+    </TabItem>
+    <TabItem value="hosted-remotely" label="Hosted remotely">
+
+    ```
     docker build --build-arg BASE_PRODUCT_VERSION=4.5.0 --build-arg OB_TRUSTED_CERTS_URL=http://<public_ip:port>/trusted-certs.zip --build-arg WSO2_OB_KEYSTORES_URL=http://<public_ip:port>/docker-open-banking/samples/keystores/ --build-arg RESOURCE_URL=http://<public_ip:port> -t wso2am-ob:4.0.0 .
     ```
-    
+
+    </TabItem>
+    </Tabs>
+
 If you are looking for a Quick Start Guide and deploy the solution, follow 
 [Deploy WSO2 Open Banking with Docker Compose](#deploy-wso2-open-banking-with-docker-compose).
 
@@ -135,11 +167,13 @@ To learn how to download WSO2 Updates for Open Banking Images, see [Download WSO
 
 This section explains how to deploy the solution using Docker Compose. 
 
-!!! note 
-    This is a Quick Start Guide to set up the solution in your local environment.
+:::note
+This is a Quick Start Guide to set up the solution in your local environment.
+:::
 
-!!! tip "Before you begin:"
-    Build the Container docker images for WSO2 IS with WSO2 OBIAM Accelerator and WSO2 AM with WSO2 OBAM Accelerator as mentioned in [Build Container Docker Images](#build-container-docker-images) Section.
+:::tip[Before you begin:]
+Build the Container docker images for WSO2 IS with WSO2 OBIAM Accelerator and WSO2 AM with WSO2 OBAM Accelerator as mentioned in [Build Container Docker Images](#build-container-docker-images) Section.
+:::
 
 1. Go to the `samples/docker-compose/wso2am-with-wso2is` directory inside the `<OB_DOCKER_HOME>` directory.
 
@@ -160,7 +194,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 ### Set up Network
 
 - Create a network.
-    
+
     ```shell
     docker network create -d bridge ob-network
     ```
@@ -180,7 +214,7 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
     ```shell
     docker run -p 9443:9443 -p 8243:8243 -p 8280:8280 --network ob-network --name obam wso2am-ob:4.0.0
     ```
-    
+
 ## Accessing the Servers
 
 7. Add the below entry mappings into the `/etc/hosts` file of your host machine.
@@ -203,4 +237,4 @@ This section explains how to set up the solution using WSO2 Open Banking Docker 
 10. You can access the WSO2 Open Banking Identity Server using a web browser via the following URL:
 
     - `https://obiam:9446/carbon`
-
+        

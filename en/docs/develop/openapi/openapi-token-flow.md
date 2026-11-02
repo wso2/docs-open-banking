@@ -1,6 +1,11 @@
+---
+title: "Token Flow"
+---
 This section covers the OpenAPI based accelerator extension provided for the OAuth2 token generation flow. 
-!!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+
+:::note
+Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::
 
 
 ## Issue Refresh Token
@@ -21,7 +26,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
-``` toml
+```toml
 [financial_services.extensions.endpoint]
 enabled = true
 base_url = "<BASE_URL_OF THE EXTENSION>"
@@ -33,4 +38,4 @@ allowed_extensions = [ "issue_refresh_token" ]
 type = "Basic-Auth"
 username = ""
 password = ""
-``` 
+```

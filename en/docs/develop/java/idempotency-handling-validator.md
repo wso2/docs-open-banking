@@ -1,9 +1,14 @@
+---
+title: "Idempotency handling validator"
+displayed_sidebar: "docsSidebar"
+---
 The idempotency validator is used to validate idempotency of the requests. It will be a part of the key manager and will used to validate the idempotency of the  consent related requests. If the same request is repeated within the [configured allowed time](#configuring-open-banking-idempotency-validation), the response is returned from the key manager without calling the back end. 
 
-!!! info
-    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.103** and 
-    **WSO2 Open Banking API Manager Accelerator Level 3.0.0.57** onwards. For more information on updating, see 
-    [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::info
+This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.103** and 
+**WSO2 Open Banking API Manager Accelerator Level 3.0.0.57** onwards. For more information on updating, see 
+[Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::
 
 Idempotency Validator will use the Idempotency Key stored as a Consent Attribute to identify that the idempotency key has been replayed. Hence toolkit developers have to store idempotency key as a consent attribute in order for this validation to work as expected.
 
@@ -20,9 +25,9 @@ public IdempotencyValidationResult validateIdempotency(ConsentManageData consent
 
 This method will first check whether idempotency validation is [enabled](#configuring-open-banking-idempotency-validation). Then it will check the following,
 
-  - Idempotency key exists in the database as a consent attribute
-  - Payload of the already available request with the requested idempotency key and the current payload are equal
-  - The request is received within the allowed time
+- Idempotency key exists in the database as a consent attribute
+- Payload of the already available request with the requested idempotency key and the current payload are equal
+- The request is received within the allowed time
 
 If either of the above condition is false, `validateIdempotency` method will throw a `IdempotencyValidationException` with an error message.
 
@@ -46,7 +51,7 @@ com.wso2.openbanking.accelerator.consent.extensions.common.idempotency.Idempoten
 Given below are the overridable methods used in open banking idempotency validator.
 
 | Method Name | Parameter | Return Type | Purpose of the Method  |
-| ------------	|----------|------------------------ |--------------------	|
+| ------------  |----------|------------------------ |--------------------  |
 | `getIdempotencyAttributeName` | `String resourcePath`   | String | To get the Idempotency Attribute Name store in consent Attributes.|
 | `getIdempotencyHeaderName` | None | String | To get the Idempotency Header Name according to the request. |
 | `getCreatedTimeOfPreviousRequest` | `String resourcePath` , `String consentId` | String | To get created time of the previous request. |
@@ -166,8 +171,8 @@ public class IdempotencyValidatorImpl extends IdempotencyValidator {
     ```
 
     The following table explains the configurations used in open banking idempotency handling executor:
-    
-    | Configuration Name  	| Default Value     | Type 				| Description	                                                                                                                                                                            |
-    | ------------	|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------	|
+
+    | Configuration Name    | Default Value     | Type              | Description                                                                                                                                                                               |
+    | ------------  |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------  |
     | `open_banking.consent.idempotency.enabled` | `false`   | boolean | This enables the idempotency validator. Idempotency validation works only if this is set to `true`. Otherwise, the open banking idempotency validator will be disabled. |
     | `open_banking.consent.idempotency.allowed_time_duration` | `1440` | integer | The idempotency available time in minutes for the requests. This is checked in the `isRequestReceivedWithinAllowedTime` method.                                                                    |

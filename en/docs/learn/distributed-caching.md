@@ -1,9 +1,17 @@
+---
+title: "WSO2 Open Banking Distributed Cache"
+displayed_sidebar: "docsSidebar"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # WSO2 Open Banking Distributed Cache
 
-!!!info
-    This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.25** and
-    **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.48** onwards. For more information on updating, 
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::info
+This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.25** and
+**WSO2 Open Banking Identity Server Accelerator Level 3.0.0.48** onwards. For more information on updating, 
+see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::
 
 WSO2 Open Banking Distributed Cache is a caching service that creates a clustered cache among one or more 
 WSO2 API Manager or Identity Server instances. Distributed Cache is based on the Hazelcast IMDG library.
@@ -23,7 +31,7 @@ Configure the `deployment.toml` file of the instance based on your caching requi
 
 ### Common configurations
 
-``` toml
+```toml
 [open_banking.distributed_cache]
 enabled=true
 host_name="localhost"
@@ -42,7 +50,10 @@ discovery_mechanism="Multicast"
 
 If `open_banking.distributed_cache.discovery_mechanism` is set to `TCP`, and if there are 2 API Manager nodes:
 
-``` toml tab="APIM Node1"
+<Tabs>
+<TabItem value="apim-node1" label="APIM Node1">
+
+```toml
 [open_banking.distributed_cache]
 enabled=true
 host_name="localhost"
@@ -51,7 +62,10 @@ discovery_mechanism="TCP"
 members=["192.168.1.0-7", "localhost:5703"]
 ```
 
-``` toml tab="APIM Node2"
+</TabItem>
+<TabItem value="apim-node2" label="APIM Node2">
+
+```toml
 [open_banking.distributed_cache]
 enabled=true
 host_name="localhost"
@@ -59,6 +73,9 @@ port=5703
 discovery_mechanism="TCP"
 members=["192.168.1.0-7", "localhost:5701"]
 ```
+
+</TabItem>
+</Tabs>
 
 |Configuration name |Type |Default Value |Description|
 |-------------------|---------------|-----|-----------|
@@ -68,10 +85,11 @@ members=["192.168.1.0-7", "localhost:5701"]
 
 If `open_banking.distributed_cache.discovery_mechanism` is set to `Multicast`,
 
-!!! note "In a containerized deployment:"
-    You can avoid the `trusted_interfaces` configuration. 
+:::note[In a containerized deployment:]
+You can avoid the `trusted_interfaces` configuration. 
+:::
 
-``` toml
+```toml
 [open_banking.distributed_cache]
 discovery_mechanism="Multicast"
 multicast_group="224.2.2.3"
@@ -88,7 +106,7 @@ trusted_interfaces=["192.168.1.*", "192.168.1.100-110"]
 
 ### Hazelcast property Configurations
 
-``` toml
+```toml
 [open_banking.distributed_cache.properties]
 max_heartbeat=600
 max_master_confirmation=900
@@ -105,102 +123,102 @@ logging_type="none"
 |merge_next_run_delay|integer|30|Run interval of split brain/merge process in seconds.|
 |logging_type|string|“none”|Specify logging framework type to send logging events. For example, `“none”, “jdk”, “log4j”, “log4j2”, “slf4j”` |
 
-[comment]: <> (## Distributed Caching for Consent Enforcement Executor)
+{/* [comment]: <> (## Distributed Caching for Consent Enforcement Executor) */}
 
-[comment]: <> (Open Banking Distributed Cache can create a cache for the )
+{/* [comment]: <> (Open Banking Distributed Cache can create a cache for the ) */}
 
-[comment]: <> ([Consent Enforcement Executor]&#40;../develop/consent-enforcement-executor.md&#41; in the gateway using two)
+{/* [comment]: <> ([Consent Enforcement Executor]&#40;../develop/consent-enforcement-executor.md&#41; in the gateway using two) */}
 
-[comment]: <> (executors to add and retrieve data from the cache. The functionality of Distributed Cache reduces the number of consent )
+{/* [comment]: <> (executors to add and retrieve data from the cache. The functionality of Distributed Cache reduces the number of consent ) */}
 
-[comment]: <> (validation requests sent to the Identity Server for the same consent id and resource. It also stores the validation )
+{/* [comment]: <> (validation requests sent to the Identity Server for the same consent id and resource. It also stores the validation ) */}
 
-[comment]: <> (details of previously validated requests.)
+{/* [comment]: <> (details of previously validated requests.) */}
 
-[comment]: <> (You can configure the cache expiry time using the `deployment.toml` file and WSO2 Open Banking Accelerator will handle  )
+{/* [comment]: <> (You can configure the cache expiry time using the `deployment.toml` file and WSO2 Open Banking Accelerator will handle  ) */}
 
-[comment]: <> (consent expiration.)
+{/* [comment]: <> (consent expiration.) */}
 
-[comment]: <> (!!! tip "Before you begin:")
+{/* [comment]: <> (!!! tip "Before you begin:") */}
 
-[comment]: <> (    Enable Distributed Cache by following the [section above]&#40;#distributed-cache-configurations&#41;.)
+{/* [comment]: <> (    Enable Distributed Cache by following the [section above]&#40;#distributed-cache-configurations&#41;.) */}
 
-[comment]: <> (### Add Executors)
+{/* [comment]: <> (### Add Executors) */}
 
-[comment]: <> (1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file. )
+{/* [comment]: <> (1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file. ) */}
 
-[comment]: <> (2. Configure both `PreConsentEnforcementExecutor` and `PostConsentExecutor`. Configure their priority as follows:)
+{/* [comment]: <> (2. Configure both `PreConsentEnforcementExecutor` and `PostConsentExecutor`. Configure their priority as follows:) */}
 
-[comment]: <> (     - Execute `PreConsentEnforcementExecutor` just before `ConsetEnforcementExecutor`)
+{/* [comment]: <> (     - Execute `PreConsentEnforcementExecutor` just before `ConsetEnforcementExecutor`) */}
 
-[comment]: <> (     - Execute `PostConsentExecutor` just after `ConsetEnforcementExecutor`)
+{/* [comment]: <> (     - Execute `PostConsentExecutor` just after `ConsetEnforcementExecutor`) */}
 
-[comment]: <> (   For example:)
-     
-[comment]: <> (``` toml)
+{/* [comment]: <> (   For example:) */}
 
-[comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]])
+{/* [comment]: <> (``` toml) */}
 
-[comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PreConsentEnforcementExecutor")
+{/* [comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]]) */}
 
-[comment]: <> (priority = 4)
+{/* [comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PreConsentEnforcementExecutor") */}
 
-[comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]])
+{/* [comment]: <> (priority = 4) */}
 
-[comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor")
+{/* [comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]]) */}
 
-[comment]: <> (priority = 5)
+{/* [comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor") */}
 
-[comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]])
+{/* [comment]: <> (priority = 5) */}
 
-[comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PostConsentEnforcementExecutor")
+{/* [comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]]) */}
 
-[comment]: <> (priority = 6)
+{/* [comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PostConsentEnforcementExecutor") */}
 
-[comment]: <> (```)
+{/* [comment]: <> (priority = 6) */}
 
-[comment]: <> (### Configure Consent Enforcement Cache Time to live )
+{/* [comment]: <> (```) */}
 
-[comment]: <> (1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.)
+{/* [comment]: <> (### Configure Consent Enforcement Cache Time to live ) */}
 
-[comment]: <> (2. Configure the Cache Time to live &#40;TTL&#41; for the Consent Enforcement Cache.)
+{/* [comment]: <> (1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.) */}
 
-[comment]: <> (   - Configuration time is in minutes)
+{/* [comment]: <> (2. Configure the Cache Time to live &#40;TTL&#41; for the Consent Enforcement Cache.) */}
 
-[comment]: <> (   - The default value is 60 minutes)
+{/* [comment]: <> (   - Configuration time is in minutes) */}
 
-[comment]: <> (``` toml )
+{/* [comment]: <> (   - The default value is 60 minutes) */}
 
-[comment]: <> ([open_banking.gateway.cache.consent_enforcement_cache])
+{/* [comment]: <> (``` toml ) */}
 
-[comment]: <> (cache_time_to_live=60)
+{/* [comment]: <> ([open_banking.gateway.cache.consent_enforcement_cache]) */}
 
-[comment]: <> (```)
+{/* [comment]: <> (cache_time_to_live=60) */}
 
-[comment]: <> (### Disable Distributed Cache for Consent Enforcement Executor)
+{/* [comment]: <> (```) */}
 
-[comment]: <> (1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.)
+{/* [comment]: <> (### Disable Distributed Cache for Consent Enforcement Executor) */}
 
-[comment]: <> (2. Comment out the `PreConsentEnforcementExecutor` and `PostConsentExecutor` configurations as follows:)
+{/* [comment]: <> (1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.) */}
 
-[comment]: <> (``` toml)
+{/* [comment]: <> (2. Comment out the `PreConsentEnforcementExecutor` and `PostConsentExecutor` configurations as follows:) */}
 
-[comment]: <> (#[[open_banking.gateway.openbanking_gateway_executors.type.executors]])
+{/* [comment]: <> (``` toml) */}
 
-[comment]: <> (#name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PreConsentEnforcementExecutor")
+{/* [comment]: <> (#[[open_banking.gateway.openbanking_gateway_executors.type.executors]]) */}
 
-[comment]: <> (#priority = 4)
+{/* [comment]: <> (#name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PreConsentEnforcementExecutor") */}
 
-[comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]])
+{/* [comment]: <> (#priority = 4) */}
 
-[comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor")
+{/* [comment]: <> ([[open_banking.gateway.openbanking_gateway_executors.type.executors]]) */}
 
-[comment]: <> (priority = 5)
+{/* [comment]: <> (name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.ConsentEnforcementExecutor") */}
 
-[comment]: <> (#[[open_banking.gateway.openbanking_gateway_executors.type.executors]])
+{/* [comment]: <> (priority = 5) */}
 
-[comment]: <> (#name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PostConsentEnforcementExecutor")
+{/* [comment]: <> (#[[open_banking.gateway.openbanking_gateway_executors.type.executors]]) */}
 
-[comment]: <> (#priority = 6)
+{/* [comment]: <> (#name = "com.wso2.openbanking.accelerator.gateway.executor.impl.consent.PostConsentEnforcementExecutor") */}
 
-[comment]: <> (```)
+{/* [comment]: <> (#priority = 6) */}
+
+{/* [comment]: <> (```) */}

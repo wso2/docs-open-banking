@@ -1,90 +1,111 @@
-!!!tip "Prerequisites"
-    Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
-    
-    1. Copy and extract the accelerator zip file inside WSO2 Open Banking 3.0 in the root directory of WSO2 Streaming 
+---
+title: "Data publishing tryout"
+displayed_sidebar: "docsSidebar"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+::::tip[Prerequisites]
+Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
+
+1. Copy and extract the accelerator zip file inside WSO2 Open Banking 3.0 in the root directory of WSO2 Streaming 
     Integrator.
-        
-        !!!note
-            Hereafter,
-            
-            - `<SI_HOME>` refers to the root directory of WSO2 Streaming Integrator.
-            - `<OB_BI_ACCELERATOR_HOME>` refers to the root directory of WSO2 Open Banking Business Intelligence Accelerator.
 
-    2. Run the `merge.sh` script in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
-    
-        ```
-        ./merge.sh
-        ```
+    :::note
+    Hereafter,
 
-    3. If you are using WSO2 Open Banking Business Intelligence at U2 level 3.0.0.1 or above, configure the `PRODUCT_CONF_PATH` 
+    - `<SI_HOME>` refers to the root directory of WSO2 Streaming Integrator.
+    - `<OB_BI_ACCELERATOR_HOME>` refers to the root directory of WSO2 Open Banking Business Intelligence Accelerator.
+    :::
+
+2. Run the `merge.sh` script in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
+
+    ```
+    ./merge.sh
+    ```
+
+3. If you are using WSO2 Open Banking Business Intelligence at U2 level 3.0.0.1 or above, configure the `PRODUCT_CONF_PATH` 
     property according to the WSO2 Streaming Integrator version you are using.
 
-        1. Open the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
+    1. Open the `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/repository/conf/configure.properties` file.
 
-        2. Locate the `PRODUCT_CONF_PATH` property.
+    2. Locate the `PRODUCT_CONF_PATH` property.
 
-        3. Specify the `deployment.yaml` file which contains the required configurations according to the WSO2 Streaming 
+    3. Specify the `deployment.yaml` file which contains the required configurations according to the WSO2 Streaming 
         Integrator version you are using.
 
-            ```toml tab='For WSO2 Streaming Integrator 4.0.0'
-            PRODUCT_CONF_PATH=repository/resources/wso2si-4.0.0-deployment.yaml
-            ```
-            
-            ```toml tab='For WSO2 Streaming Integrator 4.2.0'
-            PRODUCT_CONF_PATH=repository/resources/wso2si-4.2.0-deployment.yaml 
-            ```
+        <Tabs>
+        <TabItem value="for-wso2-streaming-integrator-4-0-0" label="For WSO2 Streaming Integrator 4.0.0">
 
-    4. Run the configure.sh file in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
-
-        ```
-        ./configure.sh
+        ```toml
+        PRODUCT_CONF_PATH=repository/resources/wso2si-4.0.0-deployment.yaml
         ```
 
-    5. Exchange the public certificates between servers. 
-        
-        ??? "Click here to see how it is done..."
-    
-            a. Go to the `<SI_HOME>/resources/security` directory and export the public certificate of the Streaming 
-            Integrator:
-           
-            ``` shell
-            keytool -export -alias wso2carbon -keystore wso2carbon.jks -file publickeySI.pem
-            ```
-            
-            b. Go to the `<IS_HOME>/repository/resources/security` directory and import the public certificate of the 
-            Streaming Integrator to the truststore of the Identity Server:
-            
-            ``` shell
-            keytool -import -alias wso2 -file publickeySI.pem -keystore client-truststore.jks -storepass wso2carbon
-            ```
-            
-            c. Go to the `<IS_HOME>/repository/resources/security` directory and export the public certificate of the 
-            Identity Server:
-            
-            ``` shell
-            keytool -export -alias wso2carbon -keystore wso2carbon.jks -file publickeyIAM.pem
-            ```
-            
-            d. Go to the `<SI_HOME>/resources/security` directory and import the public certificate of the Identity 
-            Server to the truststore of the Streaming Integrator:
-            
-            ``` shell
-            keytool -import -alias wso2 -file publickeyIAM.pem -keystore client-truststore.jks -storepass wso2carbon
-            ```
-            
-            e. Go to the `<APIM_HOME>/repository/resources/security` directory and repeat step b,c, and d.
-            
-###Configure
+        </TabItem>
+        <TabItem value="for-wso2-streaming-integrator-4-2-0" label="For WSO2 Streaming Integrator 4.2.0">
+
+        ```toml
+        PRODUCT_CONF_PATH=repository/resources/wso2si-4.2.0-deployment.yaml 
+        ```
+
+        </TabItem>
+        </Tabs>
+
+4. Run the configure.sh file in `<SI_HOME>/<OB_BI_ACCELERATOR_HOME>/bin`:
+
+    ```
+    ./configure.sh
+    ```
+
+5. Exchange the public certificates between servers. 
+
+    <details className="ob-details ob-details--note">
+    <summary>Click here to see how it is done...</summary>
+
+    a. Go to the `<SI_HOME>/resources/security` directory and export the public certificate of the Streaming 
+    Integrator:
+
+    ```shell
+    keytool -export -alias wso2carbon -keystore wso2carbon.jks -file publickeySI.pem
+    ```
+
+    b. Go to the `<IS_HOME>/repository/resources/security` directory and import the public certificate of the 
+    Streaming Integrator to the truststore of the Identity Server:
+
+    ```shell
+    keytool -import -alias wso2 -file publickeySI.pem -keystore client-truststore.jks -storepass wso2carbon
+    ```
+
+    c. Go to the `<IS_HOME>/repository/resources/security` directory and export the public certificate of the 
+    Identity Server:
+
+    ```shell
+    keytool -export -alias wso2carbon -keystore wso2carbon.jks -file publickeyIAM.pem
+    ```
+
+    d. Go to the `<SI_HOME>/resources/security` directory and import the public certificate of the Identity 
+    Server to the truststore of the Streaming Integrator:
+
+    ```shell
+    keytool -import -alias wso2 -file publickeyIAM.pem -keystore client-truststore.jks -storepass wso2carbon
+    ```
+
+    e. Go to the `<APIM_HOME>/repository/resources/security` directory and repeat step b,c, and d.
+
+    </details>
+::::
+
+### Configure
 1. Make sure that API Manager analytics is enabled in `<APIM_HOME>/repository/conf/deployment.toml`:
-```toml
-[apim.analytics]
-enable = true
-```
+    ```toml
+    [apim.analytics]
+    enable = true
+    ```
 2. Go to `<APIM_HOME>/repository/conf/deployment.toml` and `<IS_HOME>/repository/conf/deployment.toml` to configure the 
-following attributes:
+    following attributes:
     - Enable open banking data publishing
     - Update the URLs with the hostname of WSO2 Streaming Integrator 
-    
+
 A sample looks as follows:
 ```toml
 [open_banking.data_publishing]
@@ -92,17 +113,17 @@ enable = true
 server_url = "{tcp://<SI_HOST>:7612}"
 ```
 
-###Start servers
+### Start servers
 1. Go to `<SI_HOME>/bin` and run the following command to start the Streaming Integrator server:
-```
-./server.sh
-```
+    ```
+    ./server.sh
+    ```
 2. Set up and start the Identity Server and API Manager Servers as instructed in [Setting up servers](../install-and-setup/setting-up-servers.md).
 
-###Try out
+### Try out
 1. Register an API consumer application as instructed  in [Dynamic Client Registration Tryout](dynamic-client-registration-try-out.md). 
 
 2. Try out the sample API flow using the instructions given in [Tryout Flow](../get-started/try-out-flow.md).
 
 3. Once you try out the sample API flow, you can notice that data is published to the tables of the `openbank_ob_reporting_statsdb` 
-database. 
+    database. 

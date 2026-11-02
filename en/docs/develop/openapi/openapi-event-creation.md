@@ -1,7 +1,11 @@
+---
+title: "Event Creation"
+---
 The Event Creation API allows storing event notification information as a JSON, which can be customized according to your use case.
 
-!!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::note
+Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::
 
 The OpenAPI extension for event subscription provides the extendibility to validate the incoming event creation request.
 
@@ -19,7 +23,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
-``` toml
+```toml
 [financial_services.extensions.endpoint]
 enabled = true
 base_url = "<BASE_URL_OF THE EXTENSION>"
@@ -31,4 +35,4 @@ allowed_extensions = [ "validate-event-creation" ]
 type = "Basic-Auth"
 username = ""
 password = ""
-``` 
+```

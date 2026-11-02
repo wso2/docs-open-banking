@@ -1,3 +1,6 @@
+---
+title: "Consent Manage Endpoint"
+---
 # Consent Manage Endpoint
 
 The Consent Manage Endpoint (`/manage`) provides REST APIs to create, retrieve, update, and delete consent resources. These endpoints serve as backend services for the consent endpoints defined in the Open Banking specification.
@@ -14,16 +17,20 @@ This section demonstrates how to use the `/manage` endpoint for:
 - Revoking consents
 - Uploading and retrieving files for file-based consents
 
-??? info "Click here for Prerequisites"
-    Before you try out the consent flow, ensure you have completed the following:
-    
-    - Configure API Resources, Users, and Roles
-    - Assign roles to the user
-    - Register an application for the API consumer
-    - Replace `<AUTH_HEADER_VALUE>` with Base64 encoded `admin_username:admin_password` value  
-      Example: `Base64(admin_username:admin_password)`
-    - Transport certificates are available [here](../../assets/attachments/transport-certs)
-                
+<details className="ob-details ob-details--info">
+<summary>Click here for Prerequisites</summary>
+
+Before you try out the consent flow, ensure you have completed the following:
+
+- Configure API Resources, Users, and Roles
+- Assign roles to the user
+- Register an application for the API consumer
+- Replace `<AUTH_HEADER_VALUE>` with Base64 encoded `admin_username:admin_password` value  
+    Example: `Base64(admin_username:admin_password)`
+- Transport certificates are available [here](pathname:///assets/attachments/transport-certs)
+
+</details>
+
 ## Consent Manage Creation
 
 Create a request to obtain the customer's consent to access their bank accounts and related information.
@@ -80,7 +87,7 @@ The response contains a Consent ID:
   "Risk": {}
 }
 ```
- 
+
 ## Consent Manage Retrieve
 
 Use the Consent Retrieval endpoint to retrieve a consent resource and check its status.
@@ -365,12 +372,13 @@ curl -X PUT \
 }
 ```
 
-!!! note "Update Behavior"
-    - The consent update request ignores unavailable or null values. For example, if the `frequency` field is not available or is null in the update payload, the existing value is not updated.
-    - For `consentAttributes` and `authorizationResources`:
-        - **If non-empty:** The system deletes existing data and stores the data from the update request payload.
-        - **If empty:** The system deletes the existing data.
-        - **If not available or null:** The existing value is not updated.
+:::note[Update Behavior]
+- The consent update request ignores unavailable or null values. For example, if the `frequency` field is not available or is null in the update payload, the existing value is not updated.
+- For `consentAttributes` and `authorizationResources`:
+    - **If non-empty:** The system deletes existing data and stores the data from the update request payload.
+    - **If empty:** The system deletes the existing data.
+    - **If not available or null:** The existing value is not updated.
+:::
 
 ## Consent Revocation
 
@@ -658,15 +666,16 @@ All Consent Manage endpoints perform these basic validations:
 | Endpoint | Additional Validations | OpenAPI Extension Invoked |
 |---|---|---|
 | **Create** | • Idempotency validation | `pre-process-consent-creation` |
-| **Retrieve** | • Consent ID validation<br>• Consent-bound client ID validation | `pre-process-consent-retrieval` |
-| **Revoke** | • Consent ID validation<br>• Consent-bound client ID validation | `pre-process-consent-revoke` |
-| **File Upload** | • Consent ID validation<br>• Consent-bound client ID validation<br>• Idempotency validation | `pre-process-consent-file-upload` |
-| **File Retrieval** | • Consent ID validation<br>• Consent-bound client ID validation | `pre-process-consent-file-retrieval` |
+| **Retrieve** | • Consent ID validation<br />• Consent-bound client ID validation | `pre-process-consent-retrieval` |
+| **Revoke** | • Consent ID validation<br />• Consent-bound client ID validation | `pre-process-consent-revoke` |
+| **File Upload** | • Consent ID validation<br />• Consent-bound client ID validation<br />• Idempotency validation | `pre-process-consent-file-upload` |
+| **File Retrieval** | • Consent ID validation<br />• Consent-bound client ID validation | `pre-process-consent-file-retrieval` |
 
-!!! note "Validation Details"
-    - **Consent ID validation:** Extracts and verifies the consent ID exists in the system
-    - **Consent-bound client ID validation:** Ensures the client ID matches the one associated with the consent
-    - **Idempotency validation:** Prevents duplicate operations
+:::note[Validation Details]
+- **Consent ID validation:** Extracts and verifies the consent ID exists in the system
+- **Consent-bound client ID validation:** Ensures the client ID matches the one associated with the consent
+- **Idempotency validation:** Prevents duplicate operations
+:::
 
 ## Customization
 

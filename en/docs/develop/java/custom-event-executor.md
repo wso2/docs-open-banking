@@ -1,4 +1,8 @@
-##Writing a Custom Event Executor
+---
+title: "Custom event executor"
+displayed_sidebar: "docsSidebar"
+---
+## Writing a Custom Event Executor
 
 WSO2 Open Banking Accelerator contains an event executor that processes events taken from an event queue 
 asynchronously. Relevant events are added to the event queue by WSO2 Open Banking Accelerator depending 
@@ -9,17 +13,17 @@ open banking requirements:
 
 - To implement a custom Event Executor, extend the following class:
 
-``` java
+```java
 com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor
 ```
 
 Given below is a brief explanation of the methods you need to implement.
 
-###processEvent method
+### processEvent method
 
 This method processes the events polled from the event queue. Given below is the method signature:
 
-``` java
+```java
 public void processEvent(OBEvent obEvent)
 ```
 
@@ -27,33 +31,37 @@ Input parameters
 
 - `OBEvent obEvent` - contains an OBEvent object with event related details.
 
-??? tip "Click here to see the `OBEvent` model class.."
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the `OBEvent` model class..</summary>
 
-      ``` java
-          private String eventType;
-          private Map<String, Object> eventData;
-          
-          public OBEvent(String eventType, Map<String, Object> eventData) {
-          
-             this.eventType = eventType;
-             this.eventData = eventData;
-          }
-          
-          public String getEventType() {
-          
-             return eventType;
-          }
-          
-          public Map<String, Object> getEventData() {
-          
-             return eventData;
-          }
-      
-      ```
+```java
+    private String eventType;
+    private Map<String, Object> eventData;
 
-!!! note
-      `Map<String, Object> eventData` contains the following parameters with respective key-value pairs for a **consent 
-      related state change**. 
+    public OBEvent(String eventType, Map<String, Object> eventData) {
+
+       this.eventType = eventType;
+       this.eventData = eventData;
+    }
+
+    public String getEventType() {
+
+       return eventType;
+    }
+
+    public Map<String, Object> getEventData() {
+
+       return eventData;
+    }
+
+```
+
+</details>
+
+:::note
+`Map<String, Object> eventData` contains the following parameters with respective key-value pairs for a **consent 
+related state change**. 
+:::
 
 Use the following values to perform business logic:
 
@@ -70,17 +78,17 @@ For example:
 
 - Implement the `OBEventExecutor` class and override the `processEvent` method in your class as follows:
 
-``` java
+```java
    @Override
    public void processEvent(OBEvent obEvent) {
-   
+
       Map<String, Object> eventData = obEvent.getEventData();
-   
+
       if (Boolean.parseBoolean(OpenBankingCDSConfigParser.getInstance().getConfiguration()
               .get(CDSConsentExtensionConstants.ENABLE_RECIPIENT_CONSENT_REVOCATION).toString())
               && ConsentCoreServiceConstants.CONSENT_REVOKE_FROM_DASHBOARD_REASON.equals(eventData.get(REASON))
               && REVOKED_STATE.equalsIgnoreCase(obEvent.getEventType())) {
-   
+
           // call DR's arrangement revocation endpoint
           try {
               if (eventData.get(CLIENT_ID) != null && eventData.get(CONSENT_ID) != null) {
@@ -94,66 +102,66 @@ For example:
               log.error("Something went wrong when sending the arrangement revocation request to ADR", e);
           }
       }
-   
+
    }
 
    protected void sendArrangementRevocationRequestToADR(String clientId, String consentId, String dataHolderId)
           throws OpenBankingException {
-   
+
        // implementation logic
    }
 
 ```
 
-##Configuring a Custom Event Executor
+## Configuring a Custom Event Executor
 
 1. Once implemented, build a JAR file for your Custom Event Executor and place it in either or both
-   `<IS_HOME>/repository/components/lib` directory and `<APIM_HOME>/repository/components/lib` directory based on your requirement.
+    `<IS_HOME>/repository/components/lib` directory and `<APIM_HOME>/repository/components/lib` directory based on your requirement.
 2. Open the `<IS_HOME>/repository/conf/deployment.toml` file if you have placed the JAR file in the `<IS_HOME>/repository/components/lib` directory in step 1.
 3. Find the `[open_banking.event]` tag and configure the queue size, the number of worker threads, and the event 
-   executor using the Fully Qualified Name (FQN) of your custom event executor class. For example:
+    executor using the Fully Qualified Name (FQN) of your custom event executor class. For example:
 
-       ``` toml
-       [open_banking.event]
-       queue_size=32768
-       worker_thread_count=10
-       event_executor="com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
+    ```toml
+    [open_banking.event]
+    queue_size=32768
+    worker_thread_count=10
+    event_executor="com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
 
-       ```
+    ```
 
 4. Save the above configurations and restart the Identity Server.
 5. Repeat steps 2 and 3 for API Manager using the `<APIM_HOME>/repository/conf/deployment.toml` file if you have placed the JAR file in the `<APIM_HOME>/repository/components/lib` directory in step 1. 
 6. Restart the API Manager server.
 
-!!!note "Configuring a set of Custom Event Executors"
+::::note[Configuring a set of Custom Event Executors]
 
-    You can use the `event_executor` configuration under the `[open_banking.event]` tag when there is only one custom event executor for the entire deployment. However, if you want to configure 
-    multiple custom event executors in a defined order, add the configurations as follows:
-    
-    !!!info
-        This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+You can use the `event_executor` configuration under the `[open_banking.event]` tag when there is only one custom event executor for the entire deployment. However, if you want to configure 
+multiple custom event executors in a defined order, add the configurations as follows:
 
-    1. Remove the `event_executor` configuration under the `[open_banking.event]` tag and include it under a `[[open_banking.event.event_executors]]` tag with the required priority order. For example:
+:::info
+This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::
 
-         ``` toml
-         [[open_banking.event.event_executors]]
-         name = "com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
-         priority = 1
+1. Remove the `event_executor` configuration under the `[open_banking.event]` tag and include it under a `[[open_banking.event.event_executors]]` tag with the required priority order. For example:
 
-         ```
+    ```toml
+    [[open_banking.event.event_executors]]
+    name = "com.wso2.openbanking.accelerator.common.event.executor.DefaultOBEventExecutor"
+    priority = 1
 
-    2. According to the number of custom executors you want to configure, add `[[open_banking.event.event_executors]]` tags after the `[open_banking.event]` tag. 
+    ```
 
-    3. Configure each Custom Event Executor using the Fully Qualified Name (FQN) of your custom event executor class with the decided priority order. For example:
+2. According to the number of custom executors you want to configure, add `[[open_banking.event.event_executors]]` tags after the `[open_banking.event]` tag. 
 
-         ``` toml
-         [[open_banking.event.event_executors]]
-         name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor1"
-         priority = 2
+3. Configure each Custom Event Executor using the Fully Qualified Name (FQN) of your custom event executor class with the decided priority order. For example:
 
-         [[open_banking.event.event_executors]]
-         name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor2"
-         priority = 3
-         ``` 
+    ```toml
+    [[open_banking.event.event_executors]]
+    name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor1"
+    priority = 2
 
-    
+    [[open_banking.event.event_executors]]
+    name = "com.wso2.openbanking.accelerator.common.event.executor.OBEventExecutor2"
+    priority = 3
+    ```
+::::
