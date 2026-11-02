@@ -4,10 +4,10 @@
     2. Upload the root and issuer certificates in OBIE ([Sandbox certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/252018873/OB+Root+and+Issuing+Certificates+for+Sandbox)/
     [Production certificates](https://openbanking.atlassian.net/wiki/spaces/DZ/pages/80544075/OB+Root+and+Issuing+Certificates+for+Production))
     to the client trust stores in `<APIM_HOME>/repository/resources/security/client-truststore.jks` and
-    `<IS_HOME>/repository/resources/security/client-truststore.jks` using the following command:
+    `<IS_HOME>/repository/resources/security/client-truststore.p12` using the following command:
 
            ```
-           keytool -import -alias <alias> -file <certificate_location> -storetype JKS -keystore <truststore_location> -storepass wso2carbon
+           keytool -import -alias <alias> -file <certificate_location> -keystore <truststore_location> -storepass wso2carbon
            ```
 
     3. Restart the Identity Server and API Manager instances. 
@@ -19,19 +19,19 @@
    - Create a new keystore at `<IS_HOME>/repository/resources/security` and use the IP you configured above. For example:
 
     ``` 
-    keytool -genkey -alias wso2carbon -keyalg RSA -keystore wso2carbon.jks -keysize 2048 -ext SAN="IP:192.168.8.193,DNS:localhost"
+    keytool -genkey -alias wso2carbon -keyalg RSA -keystore <keystore_path> -keysize 2048 -ext SAN="IP:192.168.8.193,DNS:localhost"
     ```
    
 2. Export the public key from the new keystore
 
     ``` 
-    keytool -exportcert -alias wso2carbon -keystore wso2carbon.jks -rfc -file wso2carbon.pem
+    keytool -exportcert -alias wso2carbon -keystore <keystore_path> -rfc -file wso2carbon.pem
     ```
 
 3. Import the above public certificate to the truststore of Identity Server and API Manager.
 
     ``` 
-    keytool -import -alias wso2is -file wso2carbon.pem -keystore client-truststore.jks -storepass wso2carbon
+    keytool -import -alias wso2is -file wso2carbon.pem -keystore <keystore_path> -storepass wso2carbon
     ```
 
 4. Deploy the [Dynamic Client Registration (DCR) API](dynamic-client-registration-try-out.md) and change the endpoint 
@@ -43,9 +43,9 @@ configuration with the IP address of the Identity Server.
     - Update the following configuration with the JWKS URL of the certificates that you will use to sign the SSA for DCR.
     
       ``` toml
-      [open_banking.dcr]
-      jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/ykNOgWd2RgnuoLRRyWBkaY.jwks"
-      jwks_url_production = "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/ykNOgWd2RgnuoLRRyWBkaY.jwks"
+      [oauth.dcr]
+      enable_fapi_enforcement=false
+      ssa_jkws= "https://keystore.openbankingtest.org.uk/0015800001HQQrZAAX/0015800001HQQrZAAX.jwks"
       ```
 ## Try out CIBA Auth WebLink Flow
 
@@ -74,7 +74,7 @@ Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry
 1. Invoke the CIBA request available in the [Postman collection](https://www.getpostman.com/collections/34a4fa4b9184ae3b4821).
 
        - `login_hint` parameter inside the request object is default set to identify the user's email.
-       - Behaviour of this value can be customised by extending the `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.CIBAWebLinkAuthenticatorExtensionImpl` class and overriding it's methods.
+       - Behaviour of this value can be customised by implementing the interface `org.wso2.financial.services.accelerator.identity.extensions.authenticator.ciba.CIBAAuthenticatorExtension` class and overriding it's methods.
        - Please refer to `Custom CIBA Weblink Extension points` section for more information.
 
 2. The response is as follows:
@@ -89,9 +89,6 @@ Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry
 
 3. At the same time, SMS notification with Auth WebLink should receive to user's mobile device. Click it and open in mobile browser.
 
-       - `com.wso2.openbanking.accelerator.consent.extensions.ciba.authenticator.weblink.notification.provider.SMSNotificationProvider` class is responsible to send the SMS service request, For customisations we can extend `SMSNotificationProvider` or create new class by implementing `NotificationProvider`.
-       - Please refer to `Custom CIBA Weblink Extension points` section for more information.
-
 4. Provide approval for the consent as guided by the application.
 
 ### Retrieving Access Token
@@ -104,8 +101,7 @@ Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry
 
 ## Assumptions
 - User's mobile number should be configured.
-- Users will receive the notification as web links to authenticate and authorize the consent.
-- For multiple users involved scenarios, Identity server will assume only one user is authenticated (ID Token will contain the details of only one user (Ex: Primary user) ) and the OB consent tables will contain the authentication status of other users. (This user's identity can be customised by extending and overriding `OBCibaResponseTypeHandler.issue()` method.)
+- User will receive the notification as a web link to authenticate and authorize the consent.
 
 ## Setting up flow
 
@@ -125,40 +121,17 @@ Please refer to the Step 1 and 2 in the [try-out-flow.md](..%2Fget-started%2Ftry
      ``` toml
      [[oauth.custom_grant_type]]
      name="urn:openid:params:grant-type:ciba"
-     grant_handler="com.wso2.openbanking.accelerator.identity.grant.type.handlers.OBCibaGrantHandler"
+     grant_handler="org.wso2.financial.services.accelerator.identity.extensions.grant.type.handlers.FSCibaGrantHandler"
      grant_validator="org.wso2.carbon.identity.oauth.ciba.grant.CibaGrantValidator"
-
-     [oauth.custom_grant_type.properties]
-     IdTokenAllowed=true
      ```
 
 - Add the following custom response type:
 
      ``` toml
      [[oauth.custom_response_type]]
+     class = "org.wso2.financial.services.accelerator.identity.extensions.auth.extensions.response.handler.FSCibaResponseTypeHandlerExtension"
+     validator = "org.wso2.financial.services.accelerator.identity.extensions.auth.extensions.response.validator.FSCibaResponseTypeValidator"
      name = "cibaAuthCode"
-     class = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.handler.OBCibaResponseTypeHandler"
-     validator = "com.wso2.openbanking.accelerator.identity.auth.extensions.response.validator.OBCibaResponseTypeValidator"
-     ```   
-
-- Add CIBA request object validator:
-
-     ``` toml
-     [oauth.oidc.extensions]
-     ciba_request_object_validator="com.wso2.openbanking.accelerator.identity.auth.extensions.request.validator.OBCIBARequestObjectValidationExtension"
-     ```
-
-- Change consent steps in `<IS_HOME>/repository/conf/deployment.toml`,
-  - Add `com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentPersistStep` , `com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAWebAuthLinkConsentPersistStep` and set its priority to 2 and 3. Update the priority of other steps accordingly.
-
-     ``` toml
-     [[open_banking.consent.authorize_steps.persist]]
-     class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAConsentPersistStep"
-     priority = 2
-   
-     [[open_banking.consent.authorize_steps.persist]]
-     class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.CIBAWebAuthLinkConsentPersistStep"
-     priority = 3
      ```
 
 - Configuring **CIBA Web Link Authenticator**
