@@ -131,7 +131,7 @@ For example:
     multiple custom event executors in a defined order, add the configurations as follows:
     
     !!!info
-        This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+        This is only available as a WSO2 Update from **WSO2 Open Banking IAM Accelerator Level 3.0.0.33** onwards. For more information on updating, see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
     1. Remove the `event_executor` configuration under the `[open_banking.event]` tag and include it under a `[[open_banking.event.event_executors]]` tag with the required priority order. For example:
 

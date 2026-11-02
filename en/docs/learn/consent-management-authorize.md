@@ -112,4 +112,4 @@ WSO2 Open Banking IAM Accelerator 4.0.0 onwards supports OpenAPI-based extension
 
 The Populate Consent Authorization Screen extension provides flexibility to customize the consent grant screen according to Open Banking specification UX guidelines. Based on the response payload returned by this extension, the Accelerator dynamically adjusts the layout of the consent grant screen. 
 
-For detailed information, refer to [Customizing Consent Grant Screen](../develop/openapi/openapi-customize-consent-page.md)
+For detailed information, refer to [Customizing Consent Grant Screen](../develop/openapi/openapi-customize-consent-page.md).

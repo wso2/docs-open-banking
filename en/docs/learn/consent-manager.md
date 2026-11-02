@@ -256,4 +256,4 @@ account numbers, and permissions that you have granted.
 **Withdrawn** tab now.
 
 <!-- !!!note
-    To learn about customizing the Consent Manager Portal, see the [Customize the Consent Manager Portal](../develop/customize-consent-manager-portal.md) documentation. -->
+    To learn about customizing the Consent Manager Portal, see the [Customize the Consent Manager Portal](../develop/java/customize-consent-manager-portal.md) documentation. -->

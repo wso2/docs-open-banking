@@ -24,7 +24,7 @@ can be found from [here](../references/accelerator-extensions-api.md).
    - [Token Flow Customization](java/jwt-access-tokens.md)
    - [Authentication Flow](java/customize-authentication-steps.md)
    - [Authorization Flow](java/keyid-provider.md)
-   - [Mobile Application for CIBA](java/mobile-application-for-ciba.md)
+   - [Mobile Application for CIBA](mobile-application-for-ciba.md)
    - [Application Property Validation](java/application-property-validation.md)
    - [Dynamic Client Registration](java/application-management-listener.md)
    - [Event Notification](java/custom-event-notification.md)

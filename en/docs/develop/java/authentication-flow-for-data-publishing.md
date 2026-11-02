@@ -8,9 +8,9 @@ in two methods:
 ###Using a script
 
 1. Sign in to the Management Console of WSO2 Identity Server.
-2. In the **Main** tab, click **Identity** -> **Service Providers** -> **List**. ![Step-1](../assets/img/develop/data-publishing/step-1.png)
-3. Select the Service Provider from the list and click **Edit**. ![Step-2](../assets/img/develop/data-publishing/step-2.png)
-4. Select **Local & Outbound Authentication Configuration**  and click **Advanced Configuration**. ![Step-3](../assets/img/develop/data-publishing/step-3.png)
+2. In the **Main** tab, click **Identity** -> **Service Providers** -> **List**. ![Step-1](../../assets/img/develop/data-publishing/step-1.png)
+3. Select the Service Provider from the list and click **Edit**. ![Step-2](../../assets/img/develop/data-publishing/step-2.png)
+4. Select **Local & Outbound Authentication Configuration**  and click **Advanced Configuration**. ![Step-3](../../assets/img/develop/data-publishing/step-3.png)
 5. Add necessary authentication steps and include a script based authentication function. See the sample function given 
 below. This function publishes data on:
     - a user attempting authentication.

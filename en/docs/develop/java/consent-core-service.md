@@ -323,7 +323,7 @@ ConsentResource updateConsentStatus(String consentId, String newConsentStatus) t
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 
     3.0.0.13** onwards. For more information on updating, 
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 This method lets you update the status of an authorization resource when you provide the authorization Id and 
 the new authorization status.
@@ -337,7 +337,7 @@ AuthorizationResource updateAuthorizationStatus(String authorizationId, String n
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.33** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 This method amends an entire detailed consent with new values passed to the method. Given below is the method signature:
 
@@ -379,7 +379,7 @@ Input parameters:
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.33** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 This method stores the details of the previous consent when a consent amendment happens. Given below is the method signature:
 
@@ -401,7 +401,7 @@ Input parameters:
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.33** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 This method retrieves the consent amendment history for a given consent. Given below is the method signature:
 

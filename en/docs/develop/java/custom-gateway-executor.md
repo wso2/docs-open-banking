@@ -153,10 +153,10 @@ implementing any method and not return anything. Once implemented, build a JAR f
     ??? tip "Click here to see the order of execution..."
         
         - If only one set of executors are configured for an API flow, the order of execution is as follows:
-         ![order of execution for executors](../assets/img/develop/custom-gateway-executor/order-of-execution.png)
+         ![order of execution for executors](../../assets/img/develop/custom-gateway-executor/order-of-execution.png)
         - If there is more than one set of executors for an API flow, given below is the order they get executed: 
           For example, if there are 3 sets:
-          ![order of execution for executors](../assets/img/develop/custom-gateway-executor/order-of-execution-multiple-executors.png)
+          ![order of execution for executors](../../assets/img/develop/custom-gateway-executor/order-of-execution-multiple-executors.png)
         - The order is: A -> E -> I -> B-> F -> J -> C -> G -> K -> D -> H -> L
     
     !!! note

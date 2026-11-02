@@ -4,7 +4,7 @@ section explains how to get started with implementing customizations and impleme
 # Implementing Accelerator Extension Points in WSO2 Identity Server
 ### Implement your customizations
 
-The OpenAPI for WSO2 OB IS Accelerators can be found from [here](../references/accelerator-extensions-api.md). You can generate the client according to your preferred programming
+The OpenAPI for WSO2 OB IS Accelerators can be found from [here](../../references/accelerator-extensions-api.md). You can generate the client according to your preferred programming
 language and implement the customizations in each of the extension points.
 You can deploy the toolkit implementation in any preferred hosting option externally to WSO2 Identity Server.
 The toolkit REST API implementation can be secured with Basic Authentication or OAuth2.

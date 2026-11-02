@@ -5,7 +5,7 @@ This page explains how the developers can plug in the required toolkit code and 
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.77** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 After setting up the required toolkit, the default Consent Manager application is overridden by the Consent Manager 
 application specific to each toolkit. Follow the instructions below to customize the application furthermore.
@@ -45,7 +45,7 @@ Follow the instructions below to set up the source code for Consent Manager for 
 
 A sample structure of the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/self-care-portal-frontend/toolkit/src` folder is shown below:
   
-![toolkit-src-sample-folder-structure](../assets/img/develop/customize-consent-manager-ui/toolkit-src-sample-folder-structure.png)
+![toolkit-src-sample-folder-structure](../../assets/img/develop/customize-consent-manager-ui/toolkit-src-sample-folder-structure.png)
 
 !!! warning "Important"
 
@@ -124,7 +124,7 @@ import { NewComponent } from '../NewComponent.jsx';
 
 A sample structure of the `<IS_HOME>/repository/deployment/server/webapps/consentmgr/self-care-portal-frontend/toolkit/src` folder is shown below after adding the `NewComponent.jsx` file:
 
-![new-component-toolkit-src-folder-structure](../assets/img/develop/customize-consent-manager-ui/new-component-toolkit-src-folder-structure.png)
+![new-component-toolkit-src-folder-structure](../../assets/img/develop/customize-consent-manager-ui/new-component-toolkit-src-folder-structure.png)
 
 Follow the steps below to add a new component:
 
@@ -178,7 +178,7 @@ Adding imports to an existing component modifies that file. Follow the [Modifyin
 
 Consider the following example. `NewPage.jsx` is a newly added component to the toolkit. You want to import the `Nav.jsx` file of the Accelerator into it.
 
-![accelerator-component-toolkit-src-folder-structure](../assets/img/develop/customize-consent-manager-ui/accelerator-component-toolkit-src-folder-structure.png)
+![accelerator-component-toolkit-src-folder-structure](../../assets/img/develop/customize-consent-manager-ui/accelerator-component-toolkit-src-folder-structure.png)
 
 You can import an existing Accelerator component as follows:
 

@@ -3,7 +3,7 @@
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.157** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 WSO2 Open Banking Accelerator and the Toolkits built based on the Accelerator use an adaptive authentication script to define 
 the authentication flow. In many Open Banking and BFSI use cases, it is required to change the authentication flow in various ways.

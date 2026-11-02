@@ -33,7 +33,7 @@ section explains how to get started with implementing customizations and impleme
             ./ merge.sh
             ```
 
-1. Download the zip file available [here](../assets/attachments/install-scripts.zip) and extract it.
+1. Download the zip file available [here](../../assets/attachments/install-scripts.zip) and extract it.
 2. According to your operating system, select and copy the relevant `install` script.
  
     The `install` script will install WSO2 Identity Server, API Manager, and Open Banking specific JAR files to your 
@@ -62,7 +62,7 @@ section explains how to get started with implementing customizations and impleme
        ```
 
 !!! note
-    When you [update](../install-and-setup/setting-up-servers.md#getting-wso2-updates) the products/accelerators with WSO2 
+    When you [update](../../install-and-setup/setting-up-servers.md#getting-wso2-updates) the products/accelerators with WSO2 
     Updates, repeat the above steps and install the latest versions of the JAR files in the Maven Repository. 
 
 ## Customize WSO2 Open Banking extensions 
@@ -104,7 +104,7 @@ this JAR file.
 
 !!! info
     You can follow the same approach and customize the extension points in WSO2 Open Banking Accelerator. For extension 
-    points and more information on customizing, see [Introduction to Toolkit](develop-toolkit.md).
+    points and more information on customizing, see [Introduction to Toolkit](../develop-toolkit.md).
 
 ### Configure your customizations 
 
@@ -115,7 +115,7 @@ For example, to configure a custom request object validator, see the **Configuri
 
 ### Test your customizations 
 
-The [sample](../assets/attachments/open-banking-sample-toolkit.zip) Maven project, referenced in the 
+The [sample](../../assets/attachments/open-banking-sample-toolkit.zip) Maven project, referenced in the 
 "Create a new Maven project" section contains a sample unit test. Refer to the sample and write your own tests for the 
 customization.
 

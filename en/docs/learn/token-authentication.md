@@ -67,7 +67,7 @@ engages the following validators:
    was registered through Dynamic Client Registration.
 
 You can add customized filter validators to the solution. For more information on customizations, see 
-[customizing Token Filters](../develop/token-filters.md). -->
+[customizing Token Filters](../develop/java/token-filters.md). -->
 
 ### Grant Handler
 
@@ -81,7 +81,7 @@ engaged when issuing tokens:
 Mutual TLS authentication is enabled by default in WSO2 Open Banking Accelerator. Regardless of the client authentication method, you need to ensure that the TLS certificate is passed with every token request. 
 
 You can customize the above Grant Handlers to modify the token response and for other open banking requirements. 
-For more information, see [OpenAPI Based extensions for Token Flow](../develop/openapi-token-flow.md).
+For more information, see [OpenAPI Based extensions for Token Flow](../develop/openapi/openapi-token-flow.md).
 
 ## Client Authentication 
 

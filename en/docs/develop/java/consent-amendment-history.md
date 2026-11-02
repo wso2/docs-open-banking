@@ -13,7 +13,7 @@ com.wso2.openbanking.accelerator.consent.extensions.event.executors.ConsentAmend
 !!! info
     This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
     3.0.0.33** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
 
 Given below is a summary of details related to this feature:
 

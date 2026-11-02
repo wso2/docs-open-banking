@@ -1,4 +1,4 @@
-During the [consent authorization process](../learn/consent-authorization-intro.md), an API consumer requests the banking information that the API consumer application needs to access. Then, the bank redirects the bank user to a webpage where it displays the banking information that the API consumer application needs to access. This is known as the **Consent Grant Page**. WSO2 Open Banking Accelerator contains a default consent page, which can be customized to display consent details according to your requirements. The following topics explain the page structure and extension points where you can customize the consent page furthermore.
+During the [consent authorization process](../../learn/consent-authorization-intro.md), an API consumer requests the banking information that the API consumer application needs to access. Then, the bank redirects the bank user to a webpage where it displays the banking information that the API consumer application needs to access. This is known as the **Consent Grant Page**. WSO2 Open Banking Accelerator contains a default consent page, which can be customized to display consent details according to your requirements. The following topics explain the page structure and extension points where you can customize the consent page furthermore.
 
 ## Customizing the layout of the consent grant screen
 
@@ -140,7 +140,7 @@ The table below describes the data elements included in the `consentData` object
 
 `basicConsentData` includes separate lists of consent-related information to display on the consent page. These details will be displayed in the following format:
 
-![basic-consent-data](../assets/img/develop/customizing-consent-page/basic-consent-data.png)
+![basic-consent-data](../../assets/img/develop/customizing-consent-page/basic-consent-data.png)
 
 ??? tip "Click here to see the payload structure for the above format."
     ```
@@ -161,7 +161,7 @@ The table below describes the data elements included in the `consentData` object
 
 If the `permissions` object contains `initiatedAccounts`, the `RequestedPermission` section would look like below:
 
-![accounts-per-persmission](../assets/img/develop/customizing-consent-page/accounts-per-persmission.png)
+![accounts-per-persmission](../../assets/img/develop/customizing-consent-page/accounts-per-persmission.png)
 
 ??? tip "Click here to see the payload structure for the above format."
     ```
@@ -204,7 +204,7 @@ If the `permissions` object contains `initiatedAccounts`, the `RequestedPermissi
 
 If the `permissions` object does not contain `initiatedAccounts`, the `RequestedPermission` section would look like this:
 
-![permissions-without-accounts](../assets/img/develop/customizing-consent-page/permissions-without-accounts.png)
+![permissions-without-accounts](../../assets/img/develop/customizing-consent-page/permissions-without-accounts.png)
 
 ??? tip "Click here to see the payload structure for the above format."
     ```
@@ -235,7 +235,7 @@ If the `permissions` object does not contain `initiatedAccounts`, the `Requested
 
 `initiatedAccountsForConsent` are accounts linked to the entire consent. If permissions are specified, these accounts are shown under each permission. If no permissions are specified, they are shown for the entire consent. Initiated accounts for consent will be displayed in the following format: 
 
-![initiated-accounts-for-consent](../assets/img/develop/customizing-consent-page/initiated-accounts-for-consent.png)
+![initiated-accounts-for-consent](../../assets/img/develop/customizing-consent-page/initiated-accounts-for-consent.png)
 
 !!! note
     If both `initiatedAccounts` (permission-level) and `initiatedAccountsForConsent` (consent-level) objects contain account definitions, the consent-level accounts in `initiatedAccountsForConsent` take precedence and are implicitly linked to all permissions, overriding any permission-level account assignments.
@@ -246,29 +246,29 @@ If the `permissions` object does not contain `initiatedAccounts`, the `Requested
 
 If `allowMultipleAccounts` is `true`, the accounts selection will be as follows:
 
-![accounts-multiple-selectable](../assets/img/develop/customizing-consent-page/accounts-multiple-selectable.png)
+![accounts-multiple-selectable](../../assets/img/develop/customizing-consent-page/accounts-multiple-selectable.png)
 
 If `allowMultipleAccounts` is `false`, the accounts selection will be as follows:
 
-![account-selection](../assets/img/develop/customizing-consent-page/account-selection.png)
+![account-selection](../../assets/img/develop/customizing-consent-page/account-selection.png)
 
 #### Should Handle Account Selection Separately
 
 `handleAccountSelectionSeparately` boolean parameter determines whether the account selection and consent details are displayed on separate pages or combined. When set to `true`, the account selection page is shown first; once the user selects their accounts and clicks "Next," a subsequent page displays the selected accounts alongside consent details for final approval. When set to `false`, both account selection and consent details are consolidated into a single page, allowing the user to approve the consent immediately.
 
 If `handleAccountSelectionSeparately` is `true`, the consent page will be as follows:
-![handle-account-selection-separately-true-page-one](../assets/img/develop/customizing-consent-page/handle-account-selection-separately-true-1.png)
+![handle-account-selection-separately-true-page-one](../../assets/img/develop/customizing-consent-page/handle-account-selection-separately-true-1.png)
 
-![handle-account-selection-separately-true-page-two](../assets/img/develop/customizing-consent-page/handle-account-selection-separately-true-2.png)
+![handle-account-selection-separately-true-page-two](../../assets/img/develop/customizing-consent-page/handle-account-selection-separately-true-2.png)
 
 If `handleAccountSelectionSeparately` is `false`, the consent page will be as follows:
-![handle-account-selection-separately-false](../assets/img/develop/customizing-consent-page/handle-account-selection-separately-false.png)
+![handle-account-selection-separately-false](../../assets/img/develop/customizing-consent-page/handle-account-selection-separately-false.png)
 
 #### Is Reauthorization
 
 `isReauthorization` indicates whether the authorization is for a consent that has already been authorized. For re-authorization requests, following content will be displayed.
 
-![account-reauth](../assets/img/develop/customizing-consent-page/account-reauth.png)
+![account-reauth](../../assets/img/develop/customizing-consent-page/account-reauth.png)
 
 #### Consent Metadata
 
@@ -282,7 +282,7 @@ The `consumerData` object contains all consumer-related information retrieved fr
 
 `accounts` object under the `consumerData` object contains the bank accounts belonging to the user. Each account is represented by a `displayName` and an `accountId`. An optional `selected` property, decides whether the account is pre-selected or not. It can be either set to `true` or `false`. If `true`, the account will be pre-selected when displayed, before any user action.
 
-![account-selected](../assets/img/develop/customizing-consent-page/account-selected.png)
+![account-selected](../../assets/img/develop/customizing-consent-page/account-selected.png)
 
 ??? tip "Click here to see the consumer accounts object."
     ```
@@ -312,7 +312,7 @@ The `consumerData` object contains all consumer-related information retrieved fr
 
 An optional `title` and `description` can also be provided for each account. When present, an info icon is displayed next to the account name. Clicking the icon opens a popover showing `title` as the header and `description` as the body text.
 
-![account-title-description](../assets/img/develop/customizing-consent-page/account-title-description.png)
+![account-title-description](../../assets/img/develop/customizing-consent-page/account-title-description.png)
 
 ??? tip "Click here to see the consumer accounts object."
     ```
@@ -363,7 +363,7 @@ The `additionalData` object is an optional list of informational sections that c
 
 Each entry in the `additionalData` array is rendered as a titled section containing a list of items. The `subtitle` field, when provided, is displayed alongside a tooltip icon; hovering over it reveals the full `description` text.
 
-![additional-data](../assets/img/develop/customizing-consent-page/additional-data.png)
+![additional-data](../../assets/img/develop/customizing-consent-page/additional-data.png)
 
 ??? tip "Click here to see the payload structure for the above format."
     ```
@@ -408,7 +408,7 @@ The table below describes the fields in each `additionalData` section object.
 
 The consent page displays the banking information that the API consumer application needs to access. Below is the consent page designed for the sample Account Information Service API available in WSO2 Open Banking Accelerator:
 
-![consent-webpage](../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
+![consent-webpage](../../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
 
 If the bank wishes to customize the theme of the existing consent page, they can modify the files in the following directories: 
 

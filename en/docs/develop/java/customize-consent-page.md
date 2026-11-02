@@ -1,6 +1,6 @@
 --8<-- "deprecated-banner.md"
 
-During the [consent authorization process](../learn/consent-authorization-intro.md), an API consumer requests the banking 
+During the [consent authorization process](../../learn/consent-authorization-intro.md), an API consumer requests the banking 
 information that the API consumer application needs to access. Then, the bank redirects the bank user to a webpage where 
 it displays the banking information that the API consumer application needs to access. This is known as the **Consent Page**. 
 WSO2 Open Banking Accelerator contains a default consent page, which can be customized to display consent details according 
@@ -9,7 +9,7 @@ to your requirements. The following topics explain the page structure and extens
 ##Customize the theme of the consent page
 The consent page displays the banking information that the API consumer application needs to access. 
 Below is the consent page designed for the sample Account Information Service API available in WSO2 Open Banking Accelerator:
-![consent-webpage](../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
+![consent-webpage](../../assets/img/develop/customizing-consent-page/information-in-the-consent-page.png)
 
 If the bank wishes to customize the theme of the existing consent page, they can modify the files in the following 
 directories: 
@@ -24,7 +24,7 @@ directories:
 ##Customize the layout of the consent page
 The consent page works with two main servlets, `OBConsentServlet` and `OBConsentConfirmServlet`.
 
-[ ![customize-the-layout-of-the-consent-page](../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png) ](../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png)
+[ ![customize-the-layout-of-the-consent-page](../../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png) ](../../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png)
 
 As shown in the above diagram, when the initial request hits `OBConsentServlet`, it retrieves the account selection details from the consent service by invoking the `updateRequestAttribute` and `updateSessionAttribute` methods. 
 
@@ -167,7 +167,7 @@ public String getJSPPath() {
 The authentication endpoint in WSO2 Open Banking Accelerator allows the bank to customize the layout of the consent page. 
 The consent page is designed in a servlet that consists of three main JSP pages as shown in the diagram below: 
 
-![consent-page-structure](../assets/img/develop/customizing-consent-page/consent-page-structure.png)
+![consent-page-structure](../../assets/img/develop/customizing-consent-page/consent-page-structure.png)
 
 You can also make changes to the relevant JSP pages and customize them according to the open banking requirement. To customize 
 the layout of the authentication endpoint, locate the JSP pages in the following locations:

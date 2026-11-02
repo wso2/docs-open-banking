@@ -169,7 +169,7 @@ public abstract int getCacheTimeToLiveMinutes();
 
 Given below is a sample usage of the cache:
 
-![sample_usage](../assets/img/develop/distributed-cache/same-cache-usage.png)
+![sample_usage](../../assets/img/develop/distributed-cache/same-cache-usage.png)
 
 ## Configuring a custom Open Banking Distributed Cache Key
 
@@ -178,4 +178,4 @@ Given below is a sample usage of the cache:
      - `<APIM_HOME>/repository/components/lib`
      - `<IS_HOME>/repository/components/lib`
 3. Configure the `deployment.toml` file of the instance based on your caching requirements.
-   For more information, see [Distributed Cache Configurations](../learn/distributed-caching.md#wso2-open-banking-distributed-cache).
+   For more information, see [Distributed Cache Configurations](../../learn/distributed-caching.md#wso2-open-banking-distributed-cache).

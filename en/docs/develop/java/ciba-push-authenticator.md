@@ -40,6 +40,6 @@ Qualified Name (FQN):
       ```
     
 4. Save the configurations and restart the Identity Server.
-5. Follow the [Set up CIBA flow](../learn/ciba-set-up-flow.md#configuring-authenticator) documentation and try out the 
+5. Follow the [Set up CIBA flow](../../learn/ciba-set-up-flow.md#configuring-authenticator) documentation and try out the 
 flow.
 
