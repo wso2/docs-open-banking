@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import {parseVersions, type VersionItem} from './parseVersions.mjs';
-
-/** Give up on the versions list after this long; the dropdown then shows only "Show all". */
-const FETCH_TIMEOUT_MS = 5000;
+import {
+  SHOW_ALL_ITEM,
+  loadDropdownItems,
+  resolveOrigin,
+  type DropdownItem,
+} from './dropdownItems.mjs';
 
 type Props = {
   /** The version this build documents (`siteVersion` in site.branch.json). */
@@ -13,68 +15,33 @@ type Props = {
 };
 
 /**
- * Fetch and parse the published versions list from the `versions` build of the site.
- *
- * @param origin Site origin, e.g. `https://ob.docs.wso2.com`.
- * @returns The version entries, in published order.
- * @throws When the request fails, times out, is not OK, or the JSON has an unexpected shape.
- */
-async function fetchVersionItems(origin: string): Promise<VersionItem[]> {
-  const controller = new AbortController();
-  const timeoutId = window.setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const response = await fetch(`${origin}/en/versions/assets/versions.json`, {
-      signal: controller.signal,
-      credentials: 'omit',
-    });
-    if (!response.ok) {
-      throw new Error(`versions.json responded with HTTP ${response.status}`);
-    }
-    return parseVersions(await response.json(), origin).items;
-  } finally {
-    window.clearTimeout(timeoutId);
-  }
-}
-
-/**
  * Navbar dropdown listing the published documentation versions (navbar type
  * `custom-obVersionDropdown`). Port of the MkDocs `theme.js` version selector: the list comes from
- * `/en/versions/assets/versions.json`, and "Show all" always links to `/en/versions/`. If the list
- * cannot be loaded, only the current version label and "Show all" are shown.
+ * `/en/versions/assets/versions.json` on the origin the page is served from (so a local preview
+ * reads its own staged copy), and "Show all" always links to `/en/versions/`. If the list cannot
+ * be loaded, only the current version label and "Show all" are shown.
  */
 export default function ObVersionDropdown({label, mobile}: Props): React.JSX.Element {
-  // The site origin is fixed by the config, so server and client render the same hrefs.
   const {siteConfig} = useDocusaurusContext();
-  const origin = siteConfig.url;
-  const [items, setItems] = useState<VersionItem[]>([]);
+  const [items, setItems] = useState<DropdownItem[]>([SHOW_ALL_ITEM]);
 
+  // Runs in the browser only, so server and first client render both show just "Show all"
+  // (no hydration mismatch). `siteConfig.url` is the fallback when there is no window.
   useEffect(() => {
     let cancelled = false;
-    fetchVersionItems(origin)
-      .then((loaded) => {
-        if (!cancelled) {
-          setItems(loaded);
-        }
-      })
-      .catch((error: Error) => {
-        console.warn(`Version list unavailable: ${error.message}`);
-      });
+    const origin = resolveOrigin(
+      typeof window === 'undefined' ? undefined : window.location.origin,
+      siteConfig.url,
+    );
+    loadDropdownItems({fetchFn: window.fetch.bind(window), origin}).then((loaded) => {
+      if (!cancelled) {
+        setItems(loaded);
+      }
+    });
     return () => {
       cancelled = true;
     };
-  }, [origin]);
+  }, [siteConfig.url]);
 
-  // Docusaurus opens absolute URLs in a new tab by default; only entries that point off this
-  // docs set (external) should, the others are other builds of the same site and open in place.
-  const dropdownItems = [
-    ...items.map((item) => ({
-      label: item.label,
-      href: item.href,
-      target: item.external ? '_blank' : '_self',
-      ...(item.external && {rel: 'noopener noreferrer'}),
-    })),
-    {label: 'Show all', href: `${origin}/en/versions/`, target: '_self'},
-  ];
-
-  return <DropdownNavbarItem label={label} items={dropdownItems} mobile={mobile} />;
+  return <DropdownNavbarItem label={label} items={items} mobile={mobile} />;
 }
