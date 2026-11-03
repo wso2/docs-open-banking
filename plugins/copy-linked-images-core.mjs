@@ -4,6 +4,7 @@
  * Markdown links to images are written in the content as `pathname:///assets/img/<path>` (MkDocs's URL);
  * the files themselves are only bundled for `<img>` tags, so the plugin copies exactly the linked ones.
  */
+import {lstatSync} from 'node:fs';
 import path from 'node:path';
 
 /** Site-relative URL prefix of linked images. */
@@ -59,4 +60,31 @@ export function resolveLinkedImage(relativePath, sourceRoot) {
     throw new Error(`linked image path escapes the image directory: ${JSON.stringify(relativePath)}`);
   }
   return resolved;
+}
+
+/**
+ * Check that a linked image's source is a regular file reached without following any symbolic
+ * link (defence in depth: the content is repo-controlled, but a symlink under the image directory
+ * would otherwise let the build copy an arbitrary file into the published site).
+ *
+ * @param {string} relativePath Normalised path relative to `sourceRoot` (see `resolveLinkedImage`).
+ * @param {string} sourceRoot Absolute `en/docs/assets/img` directory.
+ * @throws {Error} When any segment is a symlink, the target is not a regular file, or it is missing.
+ */
+export function assertRegularSourceFile(relativePath, sourceRoot) {
+  const segments = relativePath.split('/');
+  let current = path.resolve(sourceRoot);
+  segments.forEach((segment, index) => {
+    current = path.join(current, segment);
+    const stats = lstatSync(current, {throwIfNoEntry: false});
+    if (stats === undefined) {
+      throw new Error(`linked image source ${JSON.stringify(relativePath)} does not exist`);
+    }
+    if (stats.isSymbolicLink()) {
+      throw new Error(`linked image source ${JSON.stringify(relativePath)} is or passes through a symbolic link`);
+    }
+    if (index === segments.length - 1 && !stats.isFile()) {
+      throw new Error(`linked image source ${JSON.stringify(relativePath)} is not a regular file`);
+    }
+  });
 }

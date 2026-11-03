@@ -3,6 +3,7 @@ import path from 'path';
 import type {LoadContext, Plugin} from '@docusaurus/types';
 import {
   LINKED_IMAGE_URL_PREFIX,
+  assertRegularSourceFile,
   findLinkedImagePaths,
   resolveLinkedImage,
 } from './copy-linked-images-core.mjs';
@@ -39,9 +40,11 @@ export default function copyLinkedImagesPlugin(context: LoadContext): Plugin {
       }
       for (const imagePath of [...linked].sort()) {
         const source = resolveLinkedImage(imagePath, sourceRoot);
-        if (!fs.statSync(source, {throwIfNoEntry: false})?.isFile()) {
+        try {
+          assertRegularSourceFile(imagePath, sourceRoot);
+        } catch (error) {
           throw new Error(
-            `copy-linked-images: a page links to ${LINKED_IMAGE_URL_PREFIX}${imagePath} but ${source} does not exist`,
+            `copy-linked-images: a page links to ${LINKED_IMAGE_URL_PREFIX}${imagePath} but the source is unusable: ${(error as Error).message}`,
           );
         }
         const destination = resolveLinkedImage(imagePath, path.join(outDir, LINKED_IMAGE_URL_PREFIX));
