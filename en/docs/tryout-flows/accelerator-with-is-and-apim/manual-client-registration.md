@@ -33,7 +33,7 @@ This page explains how to onboard API consumers using the Manual Client Registra
 
 1. In the Developer Portal, go to the Applications tab. ![applications_tab](../../assets/img/learn/mcr/applications-tab.png)
 
-2. Click **ADD NEW APPLICATION**. [applications_tab](../../assets/img/learn/mcr/create-new-application.png)  
+2. Click **ADD NEW APPLICATION**. [applications_tab](pathname:///assets/img/learn/mcr/create-new-application.png)  
 
 3. Enter the following application details.  ![applications_details](../../assets/img/learn/mcr/enter-application-details.png)
 

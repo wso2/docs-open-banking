@@ -250,5 +250,5 @@ A successful request will generate an access token with a `200 OK`.
 - Then the request you sent is forwarded to the relevant bank (based on the bank code you used during authorization) 
     with an updated access token. See the screenshot below for Wire Logs:
 
-    [ ![](../../assets/img/toolkit/regulatory-aggregator/wirelogs-small-1.png) ](../../assets/img/toolkit/regulatory-aggregator/wirelogs-1.png)
-    [ ![](../../assets/img/toolkit/regulatory-aggregator/wirelogs-small-2.png) ](../../assets/img/toolkit/regulatory-aggregator/wirelogs-2.png)
+    [ ![](../../assets/img/toolkit/regulatory-aggregator/wirelogs-small-1.png) ](pathname:///assets/img/toolkit/regulatory-aggregator/wirelogs-1.png)
+    [ ![](../../assets/img/toolkit/regulatory-aggregator/wirelogs-small-2.png) ](pathname:///assets/img/toolkit/regulatory-aggregator/wirelogs-2.png)

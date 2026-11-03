@@ -29,7 +29,7 @@ directories:
 ## Customize the layout of the consent page
 The consent page works with two main servlets, `OBConsentServlet` and `OBConsentConfirmServlet`.
 
-[ ![customize-the-layout-of-the-consent-page](../../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png) ](../../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png)
+[ ![customize-the-layout-of-the-consent-page](../../assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png) ](pathname:///assets/img/develop/customizing-consent-page/customize-the-layout-of-the-consent-page.png)
 
 As shown in the above diagram, when the initial request hits `OBConsentServlet`, it retrieves the account selection details from the consent service by invoking the `updateRequestAttribute` and `updateSessionAttribute` methods. 
 

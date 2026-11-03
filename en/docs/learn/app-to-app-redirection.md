@@ -40,7 +40,7 @@ guidelines provided by the [Customer Experience Guidelines, Open Banking Standar
 If the API consumer application is aggregating account information on behalf of the bank user, the APP-to-APP redirection 
 flow is as follows: 
 
-[ ![](../assets/img/learn/app-to-app-redirection/ais-app-based-flow.png) ](../assets/img/learn/app-to-app-redirection/ais-app-based-flow.png)
+[ ![](../assets/img/learn/app-to-app-redirection/ais-app-based-flow.png) ](pathname:///assets/img/learn/app-to-app-redirection/ais-app-based-flow.png)
 
 According to the [Customer Experience Guidelines, Open Banking Standard - UK](https://www.openbanking.org.uk/wp-content/uploads/Customer-Experience-Guidelines-V1.3.0.pdf), 
 the following implementation steps are described explicitly:
@@ -62,7 +62,7 @@ application provides the Account Information Service, it is known as an Account 
 If the API consumer application is initiating a credit transfer on behalf of the bank customer, the App-to-App redirection 
 flow is as follows:
 
-[ ![](../assets/img/learn/app-to-app-redirection/pis-app-based-flow.png) ](../assets/img/learn/app-to-app-redirection/pis-app-based-flow.png)
+[ ![](../assets/img/learn/app-to-app-redirection/pis-app-based-flow.png) ](pathname:///assets/img/learn/app-to-app-redirection/pis-app-based-flow.png)
 
 According to the [Customer Experience Guidelines, Open Banking Standard - UK](https://www.openbanking.org.uk/wp-content/uploads/Customer-Experience-Guidelines-V1.3.0.pdf), 
 the following implementation steps are described explicitly:
@@ -83,7 +83,7 @@ application provides the Payment Initiation Service, it is known as a Payment In
 
 ## How WSO2 Open Banking supports App-to-App redirection
 
-[ ![](../assets/img/learn/app-to-app-redirection/app-to-app-redirection-sequence-flow.png) ](../assets/img/learn/app-to-app-redirection/app-to-app-redirection-sequence-flow.png)
+[ ![](../assets/img/learn/app-to-app-redirection/app-to-app-redirection-sequence-flow.png) ](pathname:///assets/img/learn/app-to-app-redirection/app-to-app-redirection-sequence-flow.png)
 
 WSO2 Open Banking supports the App-to-App redirection flow as follows: 
 
