@@ -3,6 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import fs from 'fs';
 import copyLinkedImagesPlugin from './plugins/copy-linked-images';
+import rehypeReplaceUnparsableLinks from './plugins/llms-txt-unparsable-links.mjs';
 import gtmNoscriptPlugin, {GTM_CONTAINER_ID} from './plugins/gtm-noscript';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -153,7 +154,16 @@ const config: Config = {
   },
 
   plugins: [
-    '@signalwire/docusaurus-plugin-llms-txt',
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        content: {
+          // Two pages link to the placeholder https://<APIM_HOST>:9443/devportal, which makes the
+          // plugin skip their Markdown mirrors. See plugins/llms-txt-unparsable-links.mjs.
+          beforeDefaultRehypePlugins: [rehypeReplaceUnparsableLinks],
+        },
+      },
+    ],
     [
       require.resolve('docusaurus-lunr-search'),
       {
