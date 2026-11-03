@@ -31,27 +31,90 @@
 
 /* ========================== 2. Home page cards ========================== */
 
-/* Scoped to .markdown: .card, .line, .title and .content are generic names (Infima has .card). */
-.markdown .content {
-  padding-right: 10px;
-  width: 100%;
-  margin: 0 auto;
+/*
+ * Scoped to .markdown: .card, .line, .title and .content are generic names (Infima has .card).
+ *
+ * Layout of the converted home page (index.md keeps MkDocs's markup, including inline float/width
+ * styles on the intro and video blocks, so the overrides below use !important where they must
+ * win over those inline styles):
+ *   - heading centred over the page;
+ *   - intro text on the left filling the free space, video on the right;
+ *   - the five cards wrap evenly (3 + 2, centred) with their titles and hints fully visible.
+ */
+.markdown > div:has(> .md-main) {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-@media screen and (max-width: 767px) {
-  .markdown .content {
-    flex-direction: column;
-  }
+.markdown > div:has(> .md-main) > header {
+  flex: 0 0 100%;
+  text-align: center;
+}
+
+.markdown > div:has(> .md-main) > header h1 {
+  margin-bottom: 0;
+}
+
+/* Intro text: takes the remaining width beside the video. */
+.markdown > div:has(> .md-main) > .md-main:first-of-type {
+  float: none !important;
+  flex: 1 1 320px;
+  width: auto !important;
+  min-width: 0;
+  font-size: 1.05rem;
+  text-align: justify !important;
+}
+
+.markdown > div:has(> .md-main) > .md-main:first-of-type p:last-child {
+  margin-bottom: 0;
+}
+
+/* Video: right-hand side, fluid 16:9. */
+.markdown > div:has(> .md-main) > .md-main:nth-of-type(2) {
+  float: none !important;
+  flex: 0 1 560px;
+  width: auto !important;
+  min-width: 280px !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.markdown > div:has(> .md-main) > .md-main:nth-of-type(2) iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* Cards: both .content rows share one centred, wrapping flex container. */
+.markdown > div:has(> .md-main) > div:has(> .content) {
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.markdown .content {
+  display: contents;
 }
 
 .markdown .card {
-  width: 350px;
-  height: 110px;
+  flex: 0 1 calc((100% - 2.5rem) / 3);
+  min-width: 260px;
+  min-height: 110px;
+  box-sizing: border-box;
+  padding: 0.75rem 0.75rem 0.75rem 0.5rem;
   color: #404040;
-  margin: 10px;
+  margin: 0;
   background: #f8f8f8;
   box-shadow: 0 5px 4px 0 rgba(105, 113, 120, 0.4);
   border-left: 4px solid #f8f8f8;
@@ -59,7 +122,7 @@
   font-size: 14px;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
   cursor: pointer;
@@ -80,29 +143,27 @@
 }
 
 .markdown .card .card-content {
-  justify-content: center;
-  width: 225px;
-  height: 88px;
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
-  align-items: center;
-  text-align: center;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
   flex-direction: column;
-  padding-top: 10px;
 }
 
 .markdown .card .card-icon {
+  flex: 0 0 50px;
   width: 50px;
-  height: 88px;
-  max-width: 80px;
-  border-radius: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  align-self: stretch;
   color: #ff5003;
   transition: all 0.8s ease;
 }
 
 .markdown .card .title {
-  width: 225px;
   font-family: Montserrat, sans-serif;
   font-style: normal;
   font-size: 14px;
@@ -111,15 +172,31 @@
   color: #404040;
   font-weight: 600;
   text-transform: uppercase;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .markdown .card .hint {
   display: block;
-  flex-direction: column;
   visibility: visible;
   text-align: left;
-  margin: 5px 0;
+  margin: 5px 0 0;
+}
+
+/* Dark mode: the card background above is a light grey, so the dark theme needs readable text. */
+[data-theme='dark'] .markdown .card,
+[data-theme='dark'] .markdown .card .title,
+[data-theme='dark'] .markdown .card:hover {
+  color: #404040;
+}
+
+@media screen and (max-width: 767px) {
+  .markdown > div:has(> .md-main) > .md-main:nth-of-type(2) {
+    flex-basis: 100%;
+  }
+
+  .markdown .card {
+    flex-basis: 100%;
+  }
 }
 
 /*

@@ -87,7 +87,7 @@ const config: Config = {
             '@id': `${siteUrl}/#organization`,
             name: 'WSO2 LLC',
             url: 'https://wso2.com',
-            logo: `${siteUrl}${baseUrl}img/logo.svg`,
+            logo: `${siteUrl}${baseUrl}img/wso2-pulse.svg`,
           },
           {
             '@type': 'WebSite',
@@ -229,18 +229,21 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
+      // Brand = icon + "Open Banking Accelerator", rendered by src/theme/Navbar/Logo (it links to
+      // the landing page). The "Documentation" item to its right also links to the landing page.
       logo: {
-        href: baseUrl,
-        alt: 'WSO2 Open Banking Accelerator Logo',
-        src: 'img/logo.svg',
-        srcDark: 'img/logo-dark.svg',
+        alt: 'WSO2 Open Banking Accelerator',
+        src: 'img/wso2-pulse.svg',
+        srcDark: 'img/wso2-pulse-dark.svg',
+        height: 32,
+        width: 32,
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
+          to: '/',
           position: 'left',
           label: 'Documentation',
+          className: 'ob-navbar-docs-link',
         },
         {
           // Custom item, see src/theme/NavbarItem/ObVersionDropdown.
@@ -257,37 +260,13 @@ const config: Config = {
       ],
     },
     footer: {
+      // Grey footer ('dark' style) with MkDocs's two-line text and no link columns.
+      // `copyright` is rendered as HTML by Docusaurus; this is a static literal with no
+      // interpolated or user-supplied content.
       style: 'dark',
-      links: [
-        {
-          title: 'Documentation',
-          items: [
-            {label: 'Get Started', to: '/get-started/open-banking/'},
-            {label: 'Quick Start Guide', to: '/get-started/quick-start-guide-with-is/'},
-            {label: 'Install and Setup', to: '/install-and-setup/prerequisites/'},
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {label: 'Docs on GitHub', href: docsRepoUrl},
-            {label: 'Report an issue', href: `${docsRepoUrl}/issues`},
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {label: 'WSO2', href: 'https://wso2.com'},
-            {label: 'Content license: CC BY 4.0', href: 'https://creativecommons.org/licenses/by/4.0'},
-            {label: 'Sample code license: Apache 2.0', href: 'https://www.apache.org/licenses/'},
-          ],
-        },
-      ],
-      // MkDocs's wording (copyright setting plus the theme footer). Plain text: the license
-      // links live in the "More" column above.
       copyright:
-        'WSO2 Open Banking Accelerator - Documentation | Copyright © WSO2 LLC 2025 | ' +
-        'Content licensed under CC BY 4.0 | Sample code licensed under Apache 2.0',
+        'WSO2 Open Banking Accelerator - Documentation<br />' +
+        'Copyright © WSO2 LLC 2025 | Content licensed under CC By 4.0 | Sample code licensed under Apache 2.0',
     },
     prism: {
       theme: prismThemes.github,

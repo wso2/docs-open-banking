@@ -462,3 +462,18 @@
 .markdown > h4 {
   --ifm-h4-font-size: 1rem;
 }
+
+/* Navbar brand (src/theme/Navbar/Logo): icon, then "Open Banking Accelerator" with a bold "Open". */
+.ob-navbar-brand {
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ob-navbar-title {
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+.ob-navbar-title strong {
+  font-weight: 700;
+}
