@@ -1,0 +1,117 @@
+name: Deploy Documentation Site
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+# Default to read-only; only the deploy job below is granted write access.
+permissions:
+  contents: read
+
+# Two deploys racing would publish whichever finishes last, which may be the older content.
+# Serialise them, and never cancel a run that may be mid-publish. The group name is shared with
+# the 3.0.0 and versions branches, which publish into other folders of the same gh-pages branch.
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build ${{ matrix.folder }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - base_url: /en/latest/
+            folder: en/latest
+            artifact: site-latest
+          - base_url: /en/4.0.0/
+            folder: en/4.0.0
+            artifact: site-4.0.0
+    steps:
+      # The full history is needed for the last-updated author and time on each page.
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Security audit
+        run: npm run audit
+
+      - name: Build documentation
+        run: npm run build
+        env:
+          BASE_URL: ${{ matrix.base_url }}
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ${{ matrix.artifact }}
+          path: build
+          if-no-files-found: error
+          retention-days: 1
+
+  # Artifact actions: upload-artifact and download-artifact are both pinned to the v7 major (v4+
+  # artifact backend), so the pair is on the same major.
+
+  # Why one deploy job and not one publish step per matrix leg:
+  #  - Dependencies (npm ci runs third-party install scripts) are installed only in the read-only
+  #    build job; the write token is never present where that code runs.
+  #  - Both folders go out from a single job, one after the other. With a matrix, the legs would
+  #    contend for the shared `gh-pages` concurrency group, and GitHub drops a queued job when a
+  #    newer one arrives, which could silently skip one folder.
+  #  - `clean: true` removes files from the target folder that are not in the new build. It is
+  #    scoped to that folder by `target-folder`, so each publish step can only prune its own folder
+  #    and never touches the other version or the root files owned by the versions branch.
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    if: github.repository == 'wso2/docs-open-banking'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Download latest build
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: site-latest
+          path: site/latest
+
+      - name: Download 4.0.0 build
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: site-4.0.0
+          path: site/4.0.0
+
+      - name: Publish /en/latest/
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          branch: gh-pages
+          folder: site/latest
+          target-folder: en/latest
+          clean: true
+
+      - name: Publish /en/4.0.0/
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          branch: gh-pages
+          folder: site/4.0.0
+          target-folder: en/4.0.0
+          clean: true
