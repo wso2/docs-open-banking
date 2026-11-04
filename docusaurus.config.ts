@@ -170,6 +170,14 @@ const config: Config = {
         excludeRoutes: [],
       },
     ],
+    // The page that used to be served at /get-started/wso2-open-banking-accelerator/ is now the landing
+    // page (slug: /). Keep the old URL working.
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [{from: '/get-started/wso2-open-banking-accelerator', to: '/'}],
+      },
+    ],
     gtmNoscriptPlugin,
     copyLinkedImagesPlugin,
   ],

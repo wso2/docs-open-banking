@@ -1,203 +1,13 @@
 /*
  * Page-content styles carried over from the MkDocs site (en/docs/assets/css/theme.css and the
- * Material theme), for the markup the converted pages use. The home page keeps its own inline
- * <style> in index.md; it is deliberately not ported here.
+ * Material theme), for the markup the converted pages use.
  *
- *   1. Material Icons font (home cards)
- *   2. Home page cards
- *   3. Collapsible blocks (<details className="ob-details ob-details--<type>">)
- *   4. Configuration catalogs (checkbox-hack "View Sample" toggle, CSS only)
+ *   1. Screenshots and the embedded video
+ *   2. Collapsible blocks (<details className="ob-details ob-details--<type>">)
+ *   3. Configuration catalogs (checkbox-hack "View Sample" toggle, CSS only)
  */
 
-/* ========================= 1. Material Icons ============================ */
-
-/*
- * Self-hosted copy of the Material Icons woff2 that the MkDocs home page loaded from
- * wso2.cachefly.net (Apache License 2.0, Google). Referenced relative to this file so webpack
- * emits it under the site base URL.
- */
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url('../../static/assets/fonts/material-icons.woff2') format('woff2');
-}
-
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-
-/* ========================== 2. Home page cards ========================== */
-
-/*
- * Scoped to .markdown: .card, .line, .title and .content are generic names (Infima has .card).
- *
- * Layout of the converted home page (index.md keeps MkDocs's markup, including inline float/width
- * styles on the intro and video blocks, so the overrides below use !important where they must
- * win over those inline styles):
- *   - heading centred over the page;
- *   - intro text on the left filling the free space, video on the right;
- *   - the five cards wrap evenly (3 + 2, centred) with their titles and hints fully visible.
- */
-.markdown > div:has(> .md-main) {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem 2rem;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.markdown > div:has(> .md-main) > header {
-  flex: 0 0 100%;
-  text-align: center;
-}
-
-.markdown > div:has(> .md-main) > header h1 {
-  margin-bottom: 0;
-}
-
-/* Intro text: takes the remaining width beside the video. */
-.markdown > div:has(> .md-main) > .md-main:first-of-type {
-  float: none !important;
-  flex: 1 1 320px;
-  width: auto !important;
-  min-width: 0;
-  font-size: 1.05rem;
-  text-align: justify !important;
-}
-
-.markdown > div:has(> .md-main) > .md-main:first-of-type p:last-child {
-  margin-bottom: 0;
-}
-
-/* Video: right-hand side, fluid 16:9. */
-.markdown > div:has(> .md-main) > .md-main:nth-of-type(2) {
-  float: none !important;
-  flex: 0 1 560px;
-  width: auto !important;
-  min-width: 280px !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-}
-
-.markdown > div:has(> .md-main) > .md-main:nth-of-type(2) iframe {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  border: 0;
-}
-
-/* Cards: both .content rows share one centred, wrapping flex container. */
-.markdown > div:has(> .md-main) > div:has(> .content) {
-  display: flex;
-  flex: 0 0 100%;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-.markdown .content {
-  display: contents;
-}
-
-.markdown .card {
-  flex: 0 1 calc((100% - 2.5rem) / 3);
-  min-width: 260px;
-  min-height: 110px;
-  box-sizing: border-box;
-  padding: 0.75rem 0.75rem 0.75rem 0.5rem;
-  color: #404040;
-  margin: 0;
-  background: #f8f8f8;
-  box-shadow: 0 5px 4px 0 rgba(105, 113, 120, 0.4);
-  border-left: 4px solid #f8f8f8;
-  border-radius: 0;
-  font-size: 14px;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
-  cursor: pointer;
-  transition: all 0.6s ease;
-}
-
-.markdown .card:hover {
-  border-left: 4px solid #ff5003;
-  color: #404040;
-  text-decoration: none;
-}
-
-.markdown .card .line {
-  background: #ff5003;
-  width: 5px;
-  height: 88px;
-  display: none;
-}
-
-.markdown .card .card-content {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  flex-direction: column;
-}
-
-.markdown .card .card-icon {
-  flex: 0 0 50px;
-  width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  color: #ff5003;
-  transition: all 0.8s ease;
-}
-
-.markdown .card .title {
-  font-family: Montserrat, sans-serif;
-  font-style: normal;
-  font-size: 14px;
-  margin: 0;
-  text-align: left;
-  color: #404040;
-  font-weight: 600;
-  text-transform: uppercase;
-  overflow-wrap: anywhere;
-}
-
-.markdown .card .hint {
-  display: block;
-  visibility: visible;
-  text-align: left;
-  margin: 5px 0 0;
-}
-
-/* Dark mode: the card background above is a light grey, so the dark theme needs readable text. */
-[data-theme='dark'] .markdown .card,
-[data-theme='dark'] .markdown .card .title,
-[data-theme='dark'] .markdown .card:hover {
-  color: #404040;
-}
-
-@media screen and (max-width: 767px) {
-  .markdown > div:has(> .md-main) > .md-main:nth-of-type(2) {
-    flex-basis: 100%;
-  }
-
-  .markdown .card {
-    flex-basis: 100%;
-  }
-}
+/* ===================== 1. Screenshots and embedded video ===================== */
 
 /*
  * Screenshots that end a paragraph ("Select the gateway type.\n![shot](shot.png)") sit below their text.
@@ -210,7 +20,20 @@
   display: block;
 }
 
-/* ========================= 3. Collapsible blocks ======================== */
+/* The YouTube embed on the landing page: full column width, 16:9. */
+.ob-video {
+  margin: 1.25rem 0;
+}
+
+.ob-video iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* ========================= 2. Collapsible blocks ======================== */
 
 /*
  * Docusaurus renders MDX <details> through its own Details component, which adds the
@@ -273,7 +96,7 @@ details.ob-details[open] > summary::before {
   transform: rotate(90deg);
 }
 
-/* ====================== 4. Configuration catalogs ======================= */
+/* ====================== 3. Configuration catalogs ======================= */
 
 /*
  * The catalogs (references/config-catalog-*.md) toggle each sample with a hidden checkbox and a
