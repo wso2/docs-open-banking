@@ -2,10 +2,6 @@
 
 End-user apps in WSO2 Open Banking
 
-|  Branch | Build Status |
-| :------------ |:------------- 
-| master      | [![Build Status](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-ob/badge/icon)](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-open-banking/) |
-
 ## Prerequisites
 
 The site is built with [Docusaurus](https://docusaurus.io/) 3. You need [Node.js](https://nodejs.org/) 20 or later and npm.

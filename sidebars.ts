@@ -1,6 +1,5 @@
-// GENERATED FILE - DO NOT EDIT.
-// Generated from the `nav:` of en/mkdocs.yml by tools/migration. Reproduce with:
-//   node tools/migration/convert.mjs --docs en/docs --mkdocs en/mkdocs.yml --fixups tools/migration/fixups/master.json --sidebars sidebars.ts
+// Generated once from the `nav:` of the pre-migration en/mkdocs.yml (commit b9cdd8c, since deleted).
+// The migration tooling is not part of this repository: edit this file by hand from now on.
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
