@@ -1,0 +1,6 @@
+{
+  // Fail the build on high (and critical) severity advisories in production
+  // dependencies, matching the previous `npm audit --audit-level=high --omit=dev`.
+  "high": true,
+  "skip-dev": true
+}
