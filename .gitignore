@@ -24,3 +24,12 @@ hs_err_pid*
 
 # IDE config files
 *.idea
+
+# macOS Finder metadata
+.DS_Store
+
+# Docusaurus site
+node_modules/
+build/
+.docusaurus/
+.preview/
