@@ -1,10 +1,12 @@
 /**
  * Pure helpers of the copy-linked-images plugin (kept free of Docusaurus so they can be unit tested).
  *
- * Markdown links to images are written in the content as `pathname:///assets/img/<path>` (MkDocs's URL);
- * the files themselves are only bundled for `<img>` tags, so the plugin copies exactly the linked ones.
+ * MkDocs served every documentation image at `<baseUrl>assets/img/<path>`. Docusaurus only bundles
+ * the images used as `<img>` (under hashed names), so the plugin publishes the image files at the
+ * MkDocs URL as well, which keeps old direct links to an image (and the linked, click-to-enlarge
+ * images, written as `pathname:///assets/img/<path>`) working.
  */
-import {lstatSync} from 'node:fs';
+import {lstatSync, readdirSync} from 'node:fs';
 import path from 'node:path';
 
 /** Site-relative URL prefix of linked images. */
@@ -87,4 +89,36 @@ export function assertRegularSourceFile(relativePath, sourceRoot) {
       throw new Error(`linked image source ${JSON.stringify(relativePath)} is not a regular file`);
     }
   });
+}
+
+/** Image file types published at their MkDocs URL. */
+const IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp']);
+
+/**
+ * List every image file below the source directory, as normalised POSIX paths relative to it.
+ * Symbolic links are refused (the build must not copy a file from outside the image directory);
+ * other kinds of files are ignored.
+ *
+ * @param {string} sourceRoot Absolute `en/docs/assets/img` directory.
+ * @returns {string[]} Sorted relative paths.
+ * @throws {Error} When a symbolic link is found below the directory.
+ */
+export function listImageFiles(sourceRoot) {
+  const found = [];
+  const walk = (relativeDir) => {
+    const directory = relativeDir === '' ? sourceRoot : path.join(sourceRoot, ...relativeDir.split('/'));
+    for (const entry of readdirSync(directory, {withFileTypes: true})) {
+      const relative = relativeDir === '' ? entry.name : `${relativeDir}/${entry.name}`;
+      if (entry.isSymbolicLink()) {
+        throw new Error(`image source ${JSON.stringify(relative)} is a symbolic link`);
+      }
+      if (entry.isDirectory()) {
+        walk(relative);
+      } else if (entry.isFile() && IMAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+        found.push(relative);
+      }
+    }
+  };
+  walk('');
+  return found.sort();
 }
