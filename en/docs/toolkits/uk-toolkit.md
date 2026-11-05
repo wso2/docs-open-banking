@@ -1,4 +1,7 @@
-#WSO2 Open Banking UK Toolkit
+---
+title: "UK Toolkit"
+---
+# WSO2 Open Banking UK Toolkit
 
 WSO2 Open Banking UK Toolkit is based on the WSO2 Open Banking Accelerator. The toolkit is a purpose-built solution for 
 regulatory compliance and supports PSD2 and Open Banking Standard UK. It helps align banking and regulatory needs with 

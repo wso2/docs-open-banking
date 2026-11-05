@@ -1,3 +1,6 @@
+---
+title: "Exposing the Accelerator to the Internet"
+---
 # Exposing the Accelerator to the Internet
 
 When deploying WSO2 Open Banking, you have the capability to isolate administrative operations from runtime traffic. By segregating administrative operations, you reduce the attack surface and prevent high-privilege operations from being exposed to the public.

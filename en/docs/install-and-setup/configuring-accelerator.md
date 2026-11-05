@@ -1,3 +1,6 @@
+---
+title: "Configuring Accelerator"
+---
 # Configuring the Accelerator
 
 WSO2 Open Banking Accelerator configurations are applied through the `deployment.toml` file of the Identity Server and 
@@ -7,13 +10,14 @@ addition to the settings that **must** be configured for the accelerator to func
 This page consolidates only the **Required** configurations, i.e., the configurations marked `Required` in the full 
 configuration catalogs, into a single checklist you can use when setting up or reviewing an accelerator deployment.
 
-!!! tip
-    - For the complete list of configurations, including optional and feature-specific parameters, see the 
+:::tip
+- For the complete list of configurations, including optional and feature-specific parameters, see the 
     [Identity Server Configuration Catalog for open banking](../references/config-catalog-is.md) and the 
     [API Manager Configuration Catalog for open banking](../references/config-catalog-apim.md).
-    - For a guided, step-by-step walkthrough of setting up the `deployment.toml` files, see 
+- For a guided, step-by-step walkthrough of setting up the `deployment.toml` files, see 
     [Configuring Identity Server](configuring-identity-server-for-ob.md) and 
     [Configuring API Manager](configuring-api-manager-for-ob.md).
+:::
 
 ## Identity Server
 
@@ -40,8 +44,9 @@ Configurations related to the super admin user.
 | `password` | string | `wso2123` | The password of the super admin user. |
 | `create_admin_account` | boolean | `TRUE` | Creates a new user with the given super admin details. |
 
-!!! note
-    We strongly recommend changing the default super admin credentials in production deployments.
+:::note
+We strongly recommend changing the default super admin credentials in production deployments.
+:::
 
 ### `[open_banking.identity]` (signing certificate)
 
@@ -82,7 +87,7 @@ Configures the certificate used to verify the consent-validation JWT signature s
 The following are the configuration sections and parameters marked `Required` in the 
 [API Manager Configuration Catalog](../references/config-catalog-apim.md).
 
-### `[server]`
+### `[server]` \{#server_1\}
 
 Configurations required for deploying an API Manager server node.
 
@@ -91,7 +96,7 @@ Configurations required for deploying an API Manager server node.
 | `hostname` | string | `"localhost"` | The hostname of the machine hosting the API Manager instance. |
 | `node_ip` | string | `127.0.0.1` | The IP address of the machine hosting the API Manager instance. |
 
-### `[super_admin]`
+### `[super_admin]` \{#super_admin_1\}
 
 Configurations related to the super admin user.
 
@@ -101,8 +106,9 @@ Configurations related to the super admin user.
 | `password` | string | `wso2123` | The password of the super admin user. |
 | `create_admin_account` | boolean | `TRUE` | Creates a new user with the given super admin details. |
 
-!!! note
-    We strongly recommend changing the default super admin credentials in production deployments.
+:::note
+We strongly recommend changing the default super admin credentials in production deployments.
+:::
 
 ### `[apim.oauth_config]`
 
@@ -121,7 +127,7 @@ Configures the Consent Validation service endpoint.
 |---|---|---|---|
 | `endpoint` | string | `https://localhost:9446/api/openbanking/consent/validate` | The custom Consent Validation service endpoint. |
 
-### `[open_banking.dcr]`
+### `[open_banking.dcr]` \{#open_bankingdcr_1\}
 
 Configurations related to Dynamic Client Registration.
 
