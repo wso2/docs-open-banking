@@ -84,16 +84,32 @@ details.ob-details > summary {
   cursor: pointer;
 }
 
+/*
+ * One clean chevron per collapsible. Docusaurus draws its own arrow on the summary as a CSS border
+ * triangle (border-width/style/color, top, transform-origin), so those are reset here before the
+ * chevron is drawn with two borders: it points right when closed and down when open. The open state is
+ * the `open` attribute (no JavaScript) or Docusaurus' `data-collapsed` (while JavaScript animates).
+ */
 details.ob-details > summary::before {
-  content: '\25B8';
+  content: '';
   position: absolute;
-  left: 0.8rem;
-  color: var(--ob-details-color);
+  top: 50%;
+  left: 0.95rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.3rem;
+  border: 0;
+  border-right: 0.15rem solid var(--ob-details-color);
+  border-bottom: 0.15rem solid var(--ob-details-color);
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
   transition: transform 0.2s ease;
 }
 
-details.ob-details[open] > summary::before {
-  transform: rotate(90deg);
+/* The doubled class raises the specificity above Docusaurus' own open-state rotation of its triangle. */
+details.ob-details.ob-details[open] > summary::before,
+details.ob-details.ob-details[data-collapsed='false'] > summary::before {
+  transform: rotate(45deg);
 }
 
 /* ====================== 3. Configuration catalogs ======================= */
