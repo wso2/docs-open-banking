@@ -5,6 +5,7 @@ import {
   LINKED_IMAGE_URL_PREFIX,
   assertRegularSourceFile,
   findLinkedImagePaths,
+  listImageFiles,
   resolveLinkedImage,
 } from './copy-linked-images-core.mjs';
 
@@ -23,10 +24,11 @@ function listHtmlFiles(directory: string): string[] {
 }
 
 /**
- * Publish the images that pages link to (click-to-enlarge `[![alt](x.png)](x.png)`) at MkDocs's URL
- * `<baseUrl>assets/img/<path>`. Docusaurus only bundles images used as `<img>` (hashed under
- * `assets/images/`), so after the build this copies exactly the linked files from `en/docs/assets/img/`
- * to `<outDir>/assets/img/<same path>`. A missing source file fails the build.
+ * Publish the documentation images at MkDocs's URL `<baseUrl>assets/img/<path>`. Docusaurus only
+ * bundles images used as `<img>` (hashed under `assets/images/`), so after the build this copies every
+ * image file of `en/docs/assets/img/` to `<outDir>/assets/img/<same path>`. Old direct links to an
+ * image, and the click-to-enlarge links `[![alt](x.png)](x.png)`, keep working. A page that links to an
+ * image whose source file is missing or unusable fails the build.
  */
 export default function copyLinkedImagesPlugin(context: LoadContext): Plugin {
   return {
@@ -38,7 +40,8 @@ export default function copyLinkedImagesPlugin(context: LoadContext): Plugin {
         const html = fs.readFileSync(htmlFile, 'utf-8');
         findLinkedImagePaths(html, context.baseUrl).forEach((imagePath) => linked.add(imagePath));
       }
-      for (const imagePath of [...linked].sort()) {
+      const published = new Set([...linked, ...listImageFiles(sourceRoot)]);
+      for (const imagePath of [...published].sort()) {
         const source = resolveLinkedImage(imagePath, sourceRoot);
         try {
           assertRegularSourceFile(imagePath, sourceRoot);
@@ -51,7 +54,7 @@ export default function copyLinkedImagesPlugin(context: LoadContext): Plugin {
         fs.mkdirSync(path.dirname(destination), {recursive: true});
         fs.copyFileSync(source, destination);
       }
-      console.log(`[copy-linked-images] published ${linked.size} linked image(s)`);
+      console.log(`[copy-linked-images] published ${published.size} image(s) at ${LINKED_IMAGE_URL_PREFIX} (${linked.size} linked from pages)`);
     },
   };
 }
