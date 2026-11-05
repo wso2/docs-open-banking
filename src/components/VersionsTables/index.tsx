@@ -28,7 +28,7 @@ function Row({row}: {row: VersionRow}): React.JSX.Element {
 }
 
 /**
- * The two tables of the versions page ("Current version (Stable)" and "Past Versions"). The rows are
+ * The tables of the versions page ("Current version (Stable)" and, when there are older versions, "Past Versions"). The rows are
  * rendered at build time from versions.json, so the page works without JavaScript; the old MkDocs page
  * filled them in with a script.
  */
@@ -42,14 +42,18 @@ export default function VersionsTables({versions}: Props): React.JSX.Element {
       </table>
       <p>This is the current stable version of the project.</p>
       <hr />
-      <h3 id="past-versions">Past Versions</h3>
-      <table>
-        <tbody>
-          {past.map((row) => (
-            <Row key={row.version} row={row} />
-          ))}
-        </tbody>
-      </table>
+      {past.length > 0 && (
+        <>
+          <h3 id="past-versions">Past Versions</h3>
+          <table>
+            <tbody>
+              {past.map((row) => (
+                <Row key={row.version} row={row} />
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 }
