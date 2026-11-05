@@ -1,0 +1,41 @@
+name: Documentation PR Checks
+
+on:
+  pull_request:
+    branches:
+      - versions
+
+# Checks only read the repository. Nothing here needs a write token.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and Check Documentation Site
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Security audit
+        run: npm run audit
+
+      - name: Type check
+        run: npm run typecheck
+
+      # onBrokenLinks, onBrokenAnchors and onBrokenMarkdownLinks are 'warn' (pre-existing breakage
+      # was kept as it was in the MkDocs site), so the build reports but does not fail on dead links.
+      - name: Build documentation
+        run: npm run build
+        env:
+          BASE_URL: /en/versions/
