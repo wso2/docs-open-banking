@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import {useColorMode} from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 /** Only specs published under static/internal-apis/ may be rendered. */
@@ -25,6 +26,50 @@ declare global {
   interface Window {
     Redoc?: RedocApi;
   }
+}
+
+/** Accent colour shared with the site theme (--ifm-color-primary). */
+const ACCENT = {light: '#fa7b3f', dark: '#fb8c55'};
+
+/**
+ * Redoc renders its own panels with its own default (light) palette, so the site's colour mode has to be
+ * passed in. Light mode keeps Redoc's defaults apart from the accent; dark mode sets every text, border,
+ * code and panel colour that would otherwise stay dark-on-dark.
+ *
+ * @param colorMode The site's current colour mode.
+ * @returns The Redoc `theme` option.
+ */
+function redocTheme(colorMode: 'light' | 'dark'): Record<string, unknown> {
+  if (colorMode === 'light') {
+    return {colors: {primary: {main: ACCENT.light}}};
+  }
+  return {
+    colors: {
+      primary: {main: ACCENT.dark},
+      text: {primary: '#e6e6e6', secondary: '#b8b8b8'},
+      border: {dark: '#555555', light: '#3a3a3a'},
+      responses: {
+        success: {color: '#5fd38a', backgroundColor: 'rgba(95, 211, 138, 0.12)'},
+        error: {color: '#ff7b72', backgroundColor: 'rgba(255, 123, 114, 0.12)'},
+        redirect: {color: '#e3b341', backgroundColor: 'rgba(227, 179, 65, 0.12)'},
+        info: {color: '#79c0ff', backgroundColor: 'rgba(121, 192, 255, 0.12)'},
+      },
+    },
+    typography: {
+      links: {color: ACCENT.dark, visited: ACCENT.dark, hover: '#ffb48a'},
+      code: {color: '#ffb48a', backgroundColor: 'rgba(255, 255, 255, 0.08)'},
+    },
+    sidebar: {backgroundColor: '#1f2124', textColor: '#e6e6e6', arrow: {color: '#e6e6e6'}},
+    rightPanel: {backgroundColor: '#14171a', textColor: '#e6e6e6'},
+    codeBlock: {backgroundColor: '#0d1013'},
+    schema: {
+      nestedBackground: '#25282c',
+      typeNameColor: '#b8b8b8',
+      typeTitleColor: '#e6e6e6',
+      requireLabelColor: '#ff7b72',
+    },
+    fab: {backgroundColor: '#2b2f33', color: '#e6e6e6'},
+  };
 }
 
 let bundleLoad: Promise<RedocApi> | undefined;
@@ -63,6 +108,7 @@ function RedocViewer({specPath}: {specPath: string}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const specUrl = useBaseUrl(specPath);
   const bundleUrl = useBaseUrl(REDOC_BUNDLE_PATH);
+  const {colorMode} = useColorMode();
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -74,7 +120,7 @@ function RedocViewer({specPath}: {specPath: string}) {
     loadRedoc(bundleUrl)
       .then((redoc) => {
         if (!cancelled) {
-          redoc.init(specUrl, {scrollYOffset: '.navbar'}, container);
+          redoc.init(specUrl, {scrollYOffset: '.navbar', theme: redocTheme(colorMode)}, container);
         }
       })
       .catch((error: Error) => {
@@ -87,7 +133,7 @@ function RedocViewer({specPath}: {specPath: string}) {
       cancelled = true;
       window.Redoc?.destroy?.(container);
     };
-  }, [bundleUrl, specUrl]);
+  }, [bundleUrl, specUrl, colorMode]);
 
   if (failed) {
     return <p role="alert">The API reference could not be loaded. Please try again later.</p>;

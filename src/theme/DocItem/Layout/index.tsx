@@ -92,7 +92,7 @@ export default function DocItemLayout({ children }: { children: React.ReactNode 
   const hideMarkdownActions = isWide || customFrontMatter.hide_markdown_actions === true;
 
   return (
-    <div className="row">
+    <div className={clsx('row', isWide && 'ob-wide-doc')}>
       <div className={clsx('col', !isWide && styles.docItemCol)}>
         <DocStructuredData />
         <ContentVisibility metadata={metadata} />
