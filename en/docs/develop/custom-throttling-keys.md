@@ -1,4 +1,7 @@
-##  Writing Custom Throttling Keys
+---
+title: "Custom Throttling Keys"
+---
+## Writing Custom Throttling Keys
 
 Custom throttling allows system administrators to define dynamic rules for specific use cases. When a custom throttling 
 policy is created, it is possible to define any policy you like. WSO2 API Manager provides the Custom Throttling 
@@ -11,7 +14,7 @@ throttling policies.
 
 To implement Custom Throttling Keys, extend the following class:
 
-``` java
+```java
 com.wso2.openbanking.accelerator.gateway.throttling.ThrottleDataPublisher
 ```
 
@@ -21,6 +24,6 @@ Given below is the method you need to implement:
 
 This method lets you define Custom Throttling Keys.
 
-``` java
+```java
 public Map<String, Object> getCustomProperties(RequestContextDTO requestContextDTO);
 ```

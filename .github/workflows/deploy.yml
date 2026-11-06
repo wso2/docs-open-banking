@@ -1,0 +1,86 @@
+name: Deploy Documentation Site
+
+on:
+  push:
+    branches:
+      - 3.0.0
+  workflow_dispatch:
+
+# Default to read-only; only the deploy job below is granted write access.
+permissions:
+  contents: read
+
+# Two deploys racing would publish whichever finishes last, which may be the older content.
+# Serialise them, and never cancel a run that may be mid-publish. The group name is shared with
+# the master and versions branches, which publish into other folders of the same gh-pages branch.
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build /en/3.0.0/
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # The full history is needed for the last-updated author and time on each page.
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Security audit
+        run: npm run audit
+
+      - name: Build documentation
+        run: npm run build
+        env:
+          BASE_URL: /en/3.0.0/
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: site-3.0.0
+          path: build
+          if-no-files-found: error
+          retention-days: 1
+
+  # Dependencies (npm ci runs third-party install scripts) are installed only in the read-only build
+  # job; the write token is never present where that code runs. `clean: true` removes files from
+  # the target folder that are not in the new build. It is scoped to that folder by
+  # `target-folder`, so this publish can only prune en/3.0.0 and never touches the other versions
+  # or the root files owned by the versions branch.
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    if: github.repository == 'wso2/docs-open-banking'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+
+      - name: Download 3.0.0 build
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: site-3.0.0
+          path: site/3.0.0
+
+      - name: Publish /en/3.0.0/
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          branch: gh-pages
+          folder: site/3.0.0
+          target-folder: en/3.0.0
+          clean: true

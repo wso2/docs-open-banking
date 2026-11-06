@@ -1,3 +1,6 @@
+---
+title: "Open Banking"
+---
 ## What is Open Banking?
 
 Open banking is a concept that enables banks, customers, and third parties to use and benefit more from the vast silos 
@@ -42,28 +45,28 @@ of them.
 ![before and after open banking](../assets/img/get-started/open-banking/before-after-ob.png)
 
 ## Stakeholders in Open Banking
-   
+
 The open banking ecosystem comprises 4 main stakeholders.
-   
-   * **Customer** - The owner of a bank account who can grant access to the API consumer applications to retrieve 
-   account information or initiate payments on their behalf. With open banking in the picture, the owner can use a 
-   single application to manage the accounts and initiate a payment on behalf of them. The customers have more control 
-   over their data as they can manage and revoke the API consumer applications’ access to the financial information.
-   
-   * **API consumer application** - An authorized third-party financial service provider that uses standard APIs to 
-   access customer’s accounts. API consumer applications play several roles such as retrieving account information, 
-   initiating payments on behalf of the customers, and checking available funds.  
-   
-   * **Financial institution** - An entity such as a bank that provides and maintains a payment account for a customer. 
-   With customer consent, they share account and transaction data via API endpoints and let API consumer applications 
-   make payments on behalf of the customer. 
-   
-   * **Merchant** - A vendor who accepts online payments in exchange for their products or services. A merchant can 
-   use a single API consumer application to accept payments easily from multiple banks. Unless the customer wants to 
-   make a payment from their bank account, the role of a merchant is not available in all open banking use cases.
-   
- There are other stakeholders such as the government, technology providers, and consultancy service providers that 
- are involved in open banking.
+
+* **Customer** - The owner of a bank account who can grant access to the API consumer applications to retrieve 
+    account information or initiate payments on their behalf. With open banking in the picture, the owner can use a 
+    single application to manage the accounts and initiate a payment on behalf of them. The customers have more control 
+    over their data as they can manage and revoke the API consumer applications’ access to the financial information.
+
+* **API consumer application** - An authorized third-party financial service provider that uses standard APIs to 
+    access customer’s accounts. API consumer applications play several roles such as retrieving account information, 
+    initiating payments on behalf of the customers, and checking available funds.  
+
+* **Financial institution** - An entity such as a bank that provides and maintains a payment account for a customer. 
+    With customer consent, they share account and transaction data via API endpoints and let API consumer applications 
+    make payments on behalf of the customer. 
+
+* **Merchant** - A vendor who accepts online payments in exchange for their products or services. A merchant can 
+    use a single API consumer application to accept payments easily from multiple banks. Unless the customer wants to 
+    make a payment from their bank account, the role of a merchant is not available in all open banking use cases.
+
+There are other stakeholders such as the government, technology providers, and consultancy service providers that 
+are involved in open banking.
 
 ## Customer Stories and Use Cases
 WSO2 Open Banking Accelerator delivers comprehensive technology and strategic consultancy to help you execute 
