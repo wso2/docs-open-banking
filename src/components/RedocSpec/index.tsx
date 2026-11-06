@@ -29,7 +29,7 @@ declare global {
 }
 
 /** Accent colour shared with the site theme (--ifm-color-primary). */
-const ACCENT = {light: '#fa7b3f', dark: '#fb8c55'};
+const ACCENT = {light: '#e46700', dark: '#ff7300'};
 
 /**
  * Redoc renders its own panels with its own default (light) palette, so the site's colour mode has to be
@@ -56,11 +56,11 @@ function redocTheme(colorMode: 'light' | 'dark'): Record<string, unknown> {
       },
     },
     typography: {
-      links: {color: ACCENT.dark, visited: ACCENT.dark, hover: '#ffb48a'},
+      links: {color: ACCENT.dark, visited: ACCENT.dark, hover: '#ffb27a'},
       code: {color: '#ffb48a', backgroundColor: 'rgba(255, 255, 255, 0.08)'},
     },
-    sidebar: {backgroundColor: '#1f2124', textColor: '#e6e6e6', arrow: {color: '#e6e6e6'}},
-    rightPanel: {backgroundColor: '#14171a', textColor: '#e6e6e6'},
+    sidebar: {backgroundColor: '#1f2024', textColor: '#e6e6e6', arrow: {color: '#e6e6e6'}},
+    rightPanel: {backgroundColor: '#161618', textColor: '#e6e6e6'},
     codeBlock: {backgroundColor: '#0d1013'},
     schema: {
       nestedBackground: '#25282c',

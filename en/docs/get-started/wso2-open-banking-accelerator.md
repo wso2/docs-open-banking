@@ -1,31 +1,6 @@
 ---
-title: "Welcome to the WSO2 Open Banking Accelerator Documentation!"
-slug: /
+title: "WSO2 Open Banking Accelerator"
 ---
-WSO2 Open Banking Accelerator is a collection of technologies that increases the speed and reduces the complexity
-of adopting open banking compliance. Instead of building a solution from scratch, you can use WSO2 Open Banking
-Accelerator to meet all legislative requirements with additional benefits beyond compliance.
-
-Get a head start with our Quick Start Guide or dive straight into the documentation to understand what we offer
-and to discover the extensibility.
-
-<div className="ob-video">
-  <iframe
-    src="https://www.youtube.com/embed/k9mGnuwQdao"
-    title="What is WSO2 Open Banking"
-    frameBorder="0"
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    referrerPolicy="strict-origin-when-cross-origin"
-    allowFullScreen
-  ></iframe>
-</div>
-
-- [Quick Start Guide](quick-start-guide.md): Set up and try out in your local environment
-- [Consent Management](../learn/consent-management.md): Create, view, revoke, and manage consents
-- [Dynamic Client Registration](../learn/dynamic-client-registration.md): A thorough verification before onboarding
-- [Secured API Invocation](../learn/api-security.md): Comprehensive support of FAPI and eIDAS certificate validation
-- [Develop toolkit](../develop/develop-toolkit.md): Customize features according to your open banking requirements
-
 ## What is an open banking accelerator?
 
 An open banking accelerator provides the base technology for financial institutions to meet open banking compliance. 
