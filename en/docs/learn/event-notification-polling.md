@@ -1,4 +1,10 @@
-#Event Polling
+---
+title: "Event Polling"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Event Polling
 
 The Event Polling API facilitates TPP applications to poll, acknowledge, and receive event notifications. . Event Polling API is secured with basic authentication (admin username and password) and accepts base64 encoded JSON. The Event Polling API follows the **IETF Security Event Token (SET)** and the **Poll-Based Security Event Token (SET) Delivery Using HTTP** specifications to serve general-purpose event notification creation and polling.
 
@@ -15,31 +21,36 @@ Based on the request payloads, the Event Polling(`POST /events`) endpoint perfor
 
 A sample Event Polling request is as follows:
 
-   ``` 
-    curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/events' \
-    --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'request=eyAKICJyZXR1cm5JbW1lZGlhdGVseSI6IHRydWUsCiAibWF4RXZlbnRzIjogMCAKIH0='
-   ```
+```
+ curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/events' \
+ --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
+ --header 'Content-Type: application/x-www-form-urlencoded' \
+ --data-urlencode 'request=eyAKICJyZXR1cm5JbW1lZGlhdGVseSI6IHRydWUsCiAibWF4RXZlbnRzIjogMCAKIH0='
+```
 
-!!! note
-    The Event Polling(`/events`) endpoint supports the request payloads mentioned in the [Poll-Based Security Event Token (SET) Delivery Using HTTP](https://datatracker.ietf.org/doc/html/rfc8936) specification.
+:::note
+The Event Polling(`/events`) endpoint supports the request payloads mentioned in the [Poll-Based Security Event Token (SET) Delivery Using HTTP](https://datatracker.ietf.org/doc/html/rfc8936) specification.
+:::
 
-!!! tip
-    The API expects two polling parameters to indicate the polling behaviours:
+:::tip
+The API expects two polling parameters to indicate the polling behaviours:
 
-      - `returnImmediately`: Indicates whether a bank should return a response immediately or provide a long poll. WSO2 
-         Open Banking currently does not support Long Polling. Therefore, the value of `returnImmediately` is always `true`.
-      - `maxEvents`: The maximum number of events to be returned. A value of 0 indicates the bank should not return events
-         even if available. The upper bound value of the parameter depends on the size of the payload and the connection. 
-         If the `maxEvents` value is not defined in the payload, the value will be set according to the `number_of_sets_to_return` 
-         configuration in `<IS_HOME>/repository/conf/deployment.toml`.
+- `returnImmediately`: Indicates whether a bank should return a response immediately or provide a long poll. WSO2 
+    Open Banking currently does not support Long Polling. Therefore, the value of `returnImmediately` is always `true`.
+- `maxEvents`: The maximum number of events to be returned. A value of 0 indicates the bank should not return events
+    even if available. The upper bound value of the parameter depends on the size of the payload and the connection. 
+    If the `maxEvents` value is not defined in the payload, the value will be set according to the `number_of_sets_to_return` 
+    configuration in `<IS_HOME>/repository/conf/deployment.toml`.
+:::
 
 Given below are sample Event Polling request payloads (in the decoded format) and their responses:
 
 - When requesting a response immediately, only to make sure there are events available:
 
-    ```json tab="Request"
+    <Tabs>
+    <TabItem value="request" label="Request">
+
+    ```json
     {
        "setErrs":{
           "65ac7453-13b0-4d2f-9946-dff6e6089a4f":{
@@ -52,23 +63,35 @@ Given below are sample Event Polling request payloads (in the decoded format) an
     }
     ```
 
-    ```json tab="Response"
+    </TabItem>
+    <TabItem value="response" label="Response">
+
+    ```json
     {
         "moreAvailable":true,
         "sets":{ }
     }
     ```
 
+    </TabItem>
+    </Tabs>
+
 - When confirming that there are events. If there are 5 events available with the bank and the application wants to receive only 3 events:
 
-    ```json tab="Request"
+    <Tabs>
+    <TabItem value="request" label="Request">
+
+    ```json
     {
        "returnImmediately":true,
        "maxEvents":3
     }
     ```
 
-    ```json tab="Response"
+    </TabItem>
+    <TabItem value="response" label="Response">
+
+    ```json
     {
        "moreAvailable":true,
        "sets":{
@@ -79,9 +102,12 @@ Given below are sample Event Polling request payloads (in the decoded format) an
     }    
     ```
 
+    </TabItem>
+    </Tabs>
+
 - To acknowledge the received events (both positive and negative acknowledgments) while accepting more events. If there are more events available with the bank. The application continues requesting events until there are no more events.
 
-    ```json  
+    ```json
     {
        "ack":[
           "1256db1c-8fda-4457-a755-bb5113dba717"

@@ -1,3 +1,6 @@
+---
+title: "Tryout WSO2 Open Banking Accelerator"
+---
 This section will walk you through the multiple try out flows supported by the WSO2 Open Banking Accelerator 4.0.0.
 
 Accelerator with WSO2 Identity Server 

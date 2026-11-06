@@ -1,4 +1,9 @@
---8<-- "deprecated-banner.md"
+---
+title: "ID Token Builder"
+---
+import DeprecatedBanner from '../../includes/_deprecated-banner.md';
+
+<DeprecatedBanner />
 
 ## Writing a custom ID Token Builder
 
@@ -10,7 +15,7 @@ performed using the **sector identifier URI**. Otherwise, the calculation is per
 
 Given below is the Fully Qualified Name (FQN) of the default ID Token Builder: 
 
-``` java
+```java
 com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder
 ```
 
@@ -21,7 +26,7 @@ You can implement a custom ID Token Builder for the **Authorization flow** by ov
 This method contains the pairwise subject calculation logic. You can customize it according to your requirements. Given 
 below is the method signature:
 
-``` java
+```java
 getSubjectClaim(OAuthAuthzReqMessageContext authzReqMessageContext,
                                 OAuth2AuthorizeRespDTO authorizeRespDTO,
                                 String clientId,
@@ -37,11 +42,12 @@ To configure the custom ID Token Builder, follow the steps below:
 
 2. Add the following tags and configure your custom ID Token Builder using its FQN:
 
-   ``` toml
-   [oauth.oidc.extensions]
-   id_token_builder = "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder"
-   ```
-   
-!!! note
-    If `id_token_builder` is not configured, the default ID Token Builder `DefaultIDTokenBuilder` is used for the 
-    `subject` claim calculation. 
+```toml
+[oauth.oidc.extensions]
+id_token_builder = "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder"
+```
+
+:::note
+If `id_token_builder` is not configured, the default ID Token Builder `DefaultIDTokenBuilder` is used for the 
+`subject` claim calculation. 
+:::

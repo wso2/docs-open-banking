@@ -1,3 +1,9 @@
+---
+title: "Configuring API Manager"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the 
 API Manager instance can be applied using a single configuration file, which is the `deployment.toml` file. 
 
@@ -6,18 +12,19 @@ API Manager instance can be applied using a single configuration file, which is 
 Follow the steps below to configure the `deployment.toml` file and set up the default open banking flow for WSO2 API 
 Manager.
 
-!!! tip
-    If you want to customize and learn more about TOML configurations, see 
-    [API Manager Configuration Catalog for open banking](../references/config-catalog-apim.md).
+:::tip
+If you want to customize and learn more about TOML configurations, see 
+[API Manager Configuration Catalog for open banking](../references/config-catalog-apim.md).
+:::
 
 1. Replace the `deployment.toml` file as explained in the 
-[Setting up the servers](setting-up-servers.md#copying-the-deploymenttoml) section.
- 
+    [Setting up the servers](setting-up-servers.md#copying-the-deploymenttoml) section.
+
 2. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 
 3. Set the hostname of the API Manager:
 
-    ``` toml
+    ```toml
     [server]
     hostname = "<APIM_HOST>" 
     ```
@@ -31,7 +38,7 @@ Manager.
     ```
 
 5. Configure the following configs to enable email as username.
-    ``` toml
+    ```toml
     [tenant_mgt]
     enable_email_domain = true
 
@@ -44,36 +51,48 @@ Manager.
     ```
 
 6. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
-database server, and the JDBC driver. 
+    database server, and the JDBC driver. 
 
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, 
-    see [Setting up databases](setting-up-databases.md).
-   
-    ```toml tab='shared_db'
+        see [Setting up databases](setting-up-databases.md).
+
+    <Tabs>
+    <TabItem value="shared-db" label="shared_db">
+
+    ```toml
     [database.shared_db]
     url = "jdbc:mysql://localhost:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-    
-    ```toml tab='apim_db'
+
+    </TabItem>
+    <TabItem value="apim-db" label="apim_db">
+
+    ```toml
     [database.apim_db]
     url = "jdbc:mysql://localhost:3306/apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-    
-    ```toml tab='config'
+
+    </TabItem>
+    <TabItem value="config" label="config">
+
+    ```toml
     [database.config]
     url = "jdbc:mysql://localhost:3306/am_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-    
-    ```toml tab='user'
+
+    </TabItem>
+    <TabItem value="user" label="user">
+
+    ```toml
     [database.user]
     url = "jdbc:mysql://localhost:3306/userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
@@ -81,9 +100,12 @@ database server, and the JDBC driver.
     driver = "com.mysql.jdbc.Driver"
     ```
 
+    </TabItem>
+    </Tabs>
+
 7. Update the following configurations with the hostname of the Identity Server.  
-   
-    ``` toml
+
+    ```toml
     [apim.key_manager]
     service_url = "https://<IS_HOSTNAME>:9446/services/"
     username = "<IS_SUPER_ADMIN_USERNAME>"
@@ -91,23 +113,23 @@ database server, and the JDBC driver.
     ```
 
 8. Disable subscription validation as follows.
-    
-    ``` toml
+
+    ```toml
     [apim.key_manager]
     allow_subscription_validation_disabling = true
     ```
 
 9. Configure the following to skip dropping the AUTH header from gateway and to configure allowed scopes.
-    
-    ``` toml
+
+    ```toml
     [apim.oauth_config]
     enable_outbound_auth_header = true
     white_listed_scopes = ["^device_.*", "openid", "^FS_.*", "^TIME_.*"]
     ```
 
 10. Configure the admin username for following features as follows.
-    
-    ``` toml
+
+    ```toml
     [apim.throttling]
     username = "$ref{super_admin.username}@carbon.super"
 
@@ -120,8 +142,8 @@ database server, and the JDBC driver.
     ```
 
 11. Add the following config to support JWT content type.
-    
-    ``` toml
+
+    ```toml
     [[blocking.custom_message_formatters]]
     class = "org.apache.axis2.format.PlainTextFormatter"
     content_type = "application/jwt"
@@ -140,8 +162,8 @@ database server, and the JDBC driver.
     ```
 
 12. Add following to configure transport layer configs.
-    
-    ``` toml
+
+    ```toml
     [transport.passthru_https.sender.parameters]
     HostnameVerifier = "AllowAll"
 
@@ -154,14 +176,14 @@ database server, and the JDBC driver.
     ```
 
 13. Enable certificate chain validation as the following.
-    
-    ``` toml
+
+    ```toml
     [apimgt.mutual_ssl]
     enable_certificate_chain_validation = true
     ```
 
-<!-- 14. Enable certificate revocation validation as follows.
-    
+{/* 14. Enable certificate revocation validation as follows.
+
     ``` toml
     [transport.passthru_https.listener.cert_revocation_validation]
     enable = true
@@ -169,11 +191,11 @@ database server, and the JDBC driver.
     allow_full_cert_chain_validation = false
     cache_delay = 1000
     cache_size = 1024
-    ``` -->
+    ``` */}
 
 14. Add the following configurations to enable the external service extension.
 
-    ``` toml
+    ```toml
     [financial_services.extensions.endpoint]
     enabled = true
     allowed_extensions = ["pre-process-application-creation", "pre-process-application-update"]
@@ -189,13 +211,13 @@ database server, and the JDBC driver.
     username = "<EXTERNAL_SERVICE_USERNAME>"
     password = "<EXTERNAL_SERVICE_PASSWORD>"
     ```
-   
+
 ## Starting servers
 
 1. Go to the `<APIM_HOME>/bin` directory using a terminal.
 
 2. Run the `api-manager.sh` script as follows:
 
-    ``` bash
+    ```bash
     ./api-manager.sh
-    ``` 
+    ```

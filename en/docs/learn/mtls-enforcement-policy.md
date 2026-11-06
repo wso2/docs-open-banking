@@ -1,3 +1,6 @@
+---
+title: "MTLS Enforcement Policy"
+---
 ### MTLS Enforcement Policy
 
 MTLS Enforcement Policy is a policy designed to be engaged in the request flow of any request that requires MTLS to be mandatory. It will perform the below tasks.
@@ -28,4 +31,3 @@ Upload the mtlsEnforcementPolicy.j2 policy file which resides inside the  `<APIM
 | transportCertAsHeaderEnabled | Is the Transport Certificate Present as a Header in the Request?    | Switch to determine if the transport certificate is sent as a header in the request                | false    | Boolean |                                |
 | transportCertHeaderName     | Transport Certificate Header Name                                   | The name of the transport certificate header                                                       | false    | String  | x-wso2-client-certificate       |
 | isClientCertificateEncoded  | Is the Transport Certificate Present as a Header in the Request Encoded? | Switch to determine if the transport certificate sent as a header in the request is encoded | false    | Boolean |                                |
-

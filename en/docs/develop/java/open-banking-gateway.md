@@ -1,4 +1,9 @@
---8<-- "deprecated-banner.md"
+---
+title: "Introduction"
+---
+import DeprecatedBanner from '../../includes/_deprecated-banner.md';
+
+<DeprecatedBanner />
 
 The Open Banking API Manager Accelerator contains Open Banking Gateway, which is built on top of WSO2 API Gateway. 
 WSO2 API Gateway intercepts API requests and applies policies such as throttling and security using handlers. 

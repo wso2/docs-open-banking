@@ -1,11 +1,14 @@
+---
+title: "Set up WSO2 Open Banking APIM Artifacts"
+---
 ## Configuring Additional Attributes
 
 Before creating the application, need to enable the additional fields from the DevPortal. To enable additional fields follow the below steps.
- 
+
 1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 2. Follow the given format and configure all additional properties:
-    
-    ``` toml
+
+    ```toml
     [[financial_services.keymanager.application.type.attributes]]
     name="regulatory"
     label="Regulatory Application"

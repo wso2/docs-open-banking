@@ -1,3 +1,6 @@
+---
+title: "Consent Authorize Endpoint"
+---
 # Consent Authorize Endpoint
 
 The Consent Authorize Endpoint is responsible for loading the consent approval page and persisting the consent provided by users. It provides two main operations: retrieving consent information to display on the approval page and persisting the user's consent decision.
@@ -12,8 +15,9 @@ The retrieve endpoint fetches consent details to display on the approval page. Y
 - Meeting data reporting requirements
 - Adding specification-specific information
 
-!!! note 
-    The information sent and displayed on the consent page depends on the Open Banking specification you are implementing. 
+:::note
+The information sent and displayed on the consent page depends on the Open Banking specification you are implementing. 
+:::
 
 ![Consent_Authorize_Retrieve](../assets/img/learn/consent-management/Consent-Authorize-Retrieve.png)
 
@@ -28,7 +32,7 @@ https://<IS_HOSTNAME>:9446/api/fs/consent/authorize/retrieve/<SESSION_DATA_KEY> 
 
 **Sample Response:**
 
-``` json
+```json
  {
   "consentData" : {
     "permissions" : [ {
@@ -99,8 +103,9 @@ The persist endpoint responds with a `302 Redirect` with the following `Location
 Location: https://www.google.com/redirects/redirect1#id_token=eyJraWQiOiJxR1NxMjZJZXpjbDhPdVNEVjg5SmlLQVlEdVkiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ...&code=c4cffad8-f67b-3bd0-b911-1decc073243f&session_state=7515fc1b4d9c9a251df6aacac2863f015fc206765552bcfda6ff0c913923ad66.awV7EVsj6zpBDJId1sXI1Q&state=94a33f31-b50a-4793-b20f-a282b7599880
 ```
 
-!!! note "Required Parameter"
-    The `approval` parameter is mandatory in the request payload. It is a boolean value that specifies whether the customer has authorized the consent. 
+:::note[Required Parameter]
+The `approval` parameter is mandatory in the request payload. It is a boolean value that specifies whether the customer has authorized the consent. 
+:::
 
 ## Customization
 

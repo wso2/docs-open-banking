@@ -1,3 +1,6 @@
+---
+title: "Deployment Checklist"
+---
 # Deployment Checklist
 
 When deploying WSO2 Open Banking in a production server, make sure to go through the following checklists to guide you in setting up your production environment.

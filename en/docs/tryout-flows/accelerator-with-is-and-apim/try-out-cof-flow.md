@@ -1,14 +1,21 @@
+---
+title: "Tryout Confirmation Of Funds Flow"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 This document provides step by step instructions to deploy, subscribe, and invoke the Confirmation of Funds API. 
 
 Before trying out the flow, make sure the you have created roles and users by following [Create User and Roles](../../install-and-setup/configure-resources-users-and-roles.md).
 
-!!! note
-    In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
+:::note
+In the following steps, there are JWTs that's needed to be created where the payload has to be changed. Hence, use the following certificates to sign the JWT in following steps:
 
-    - [signing certificate](../../assets/attachments/signing-certs/obsigning.pem)
-    - [private keys](../../assets/attachments/signing-certs/obsigning.key)
+- [signing certificate](pathname:///assets/attachments/signing-certs/obsigning.pem)
+- [private keys](pathname:///assets/attachments/signing-certs/obsigning.key)
 
-    For transport layer also use the same certificates.
+For transport layer also use the same certificates.
+:::
 
 ## Invoking Confirmation of Funds API
 
@@ -17,16 +24,19 @@ Before trying out the flow, make sure the you have created roles and users by fo
 Once you register the application, generate an application access token.
 
 1. Generate the client assertion by signing the following JSON payload using supported algorithms. For the 
-Transport Layer Security purposes in this sample flow, you can use the certificates mentioned above.
+    Transport Layer Security purposes in this sample flow, you can use the certificates mentioned above.
 
-    ``` tab='Format'
-    
+    <Tabs>
+    <TabItem value="format" label="Format">
+
+    ```
+
     {
     "alg": "<The algorithm used for signing.>",
     "kid": "<The thumbprint of the certificate.>",
     "typ": "JWT"
     }
-     
+
     {
     "iss": "<This is the issuer of the token. For example, client ID of your application>",
     "sub": "<This is the subject identifier of the issuer. For example, client ID of your application>",
@@ -35,38 +45,44 @@ Transport Layer Security purposes in this sample flow, you can use the certifica
     "jti": "<This is an incremental unique value>",
     "aud": "<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>"
     }
-     
+
     <signature: For DCR, the client assertion is signed by the private key of the signing certificate. For other scenarios, use the private signature of the application certificate.>
     ```
-    
-    ``` tab='Sample'
+
+    </TabItem>
+    <TabItem value="sample" label="Sample">
+
+    ```
     eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwiZXhwIjoxNzU2NDEyNDI3LCJpYXQiOjE3NTI4MTI0MjcsImp0aSI6IjE3NTI4MTI0MjcxODUifQ.DAlsJG3Qj5uIUzzAVgFflsVYlN1uN8FyoBE-q_rbz-b39vTVzUhTEvUUVulIkoG5WHPGRSDG8S70_ycZLP0bdmfqmyU8l42Ze6nKSCuQkfgBGuMaIlzDnY5K3D7fvRcGGtq9f-M0vrRVVhgB8dQuhEnX4KeXKr2vTWU_qtLn6algRtAbKxU5_U5nJZhuFNW4Q8gsYKOIE51yidykvR68L2zuhQZSVbkLRFlu0FV4dBVbrY8noQBbnMNwssmr5sU-LCsSYHvUOjRBmN2tOVyZfcMK-97mqqxvkDeiRpRFgwH5qhu3CsNXeTKYlnDji4GNnLQLbkSddba6_APU_zCTFQ
     ```
 
+    </TabItem>
+    </Tabs>
+
 2. Run the following cURL command in a command prompt to generate the access token. Update the placeholders with relevant values.
-``` curl
-curl -X POST \
-https://<IS_HOST>:9446/oauth2/token \
---cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
--d 'grant_type=client_credentials&scope=fundsconfirmation%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=<REDIRECT_URI>&client_id=<CLIENT_ID>'
-```
+    ```curl
+    curl -X POST \
+    https://<IS_HOST>:9446/oauth2/token \
+    --cert <TRANSPORT_PUBLIC_KEY_FILE_PATH> --key <TRANSPORT_PRIVATE_KEY_FILE_PATH> \
+    -d 'grant_type=client_credentials&scope=fundsconfirmation%20openid&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<CLIENT_ASSERTION_JWT>&redirect_uri=<REDIRECT_URI>&client_id=<CLIENT_ID>'
+    ```
 
 3. Upon successful token generation, you can obtain a token as follows:
-``` json
-{
-    "access_token": "eyJ4NXQiOiJ2b05uSEROb3ZLMF9IclNxd1BsOEJBWkVxRlUiLCJraWQiOiJPR1ZqWTJOa1pqQTVObVJtTXpFME9HUTJPRE16TlRaaU5XVm1NV0UwTWpka1pUWXhOVGc1Tm1WaE1qYzNaRGd4WlRKaVlqWXpZMkk1WWpRMU5qRTRPQV9SUzI1NiIsInR5cCI6ImF0K2p3dCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwiYXV0IjoiQVBQTElDQVRJT04iLCJiaW5kaW5nX3R5cGUiOiJjZXJ0aWZpY2F0ZSIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0Nlwvb2F1dGgyXC90b2tlbiIsImNsaWVudF9pZCI6Im5pSUhXTVVFbWZNTUhRa2dJX1Z1VElYdlJ6SWEiLCJhdWQiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwibmJmIjoxNzUyODEyNDI3LCJhenAiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwib3JnX2lkIjoiMTAwODRhOGQtMTEzZi00MjExLWEwZDUtZWZlMzZiMDgyMjExIiwic2NvcGUiOiJmdW5kc2NvbmZpcm1hdGlvbnMiLCJjbmYiOnsieDV0I1MyNTYiOiIyRWdvcEhGNmNiYlh0OTVJNThFNjlWRVdCVFpZZ0ZpckJVOXVnZDZEOURBIn0sImV4cCI6MTc1MjgxNjAyNywib3JnX25hbWUiOiJTdXBlciIsImlhdCI6MTc1MjgxMjQyNywiYmluZGluZ19yZWYiOiI2YmRhMWFlMTQ4MDk5NDA0MjY5ZTY3MmE0Y2JlOGJhZSIsImp0aSI6IjRhN2IxZDhiLWFkYzMtNDFkZC1iMDg1LTAyNTFlOTIxN2VkZCJ9.ZhPolC0xpnshtIM3kyBMfIrkdZpP8j12rdodnoYoM2EmZBNdVj824_zEGHMcEvlfSkQGhmutuCpuDt6l83dqvPz6BU9mMgmRerFK8P7Gaxhl9ZLfzpNkjzIc8O_CmTSOv7Lx36WCdc_lwmN-DtiWGXR2aENggsFvVBvU-W-KWtbsafnluJdSNjzrRYH8zoS_F4uHuNNqPLWkd_uXV2027uU8LtD1btaAlfyXYS3qgxm8bCR5O8UxdYiBDlmdPv_32GUeMiqrwLOplxmnnwXD8Ol1BTfGkGK6PH4M-9J885OFV0WgRcU3eP_k7iupo0LhYqU4oUeMG0Y9CsmeQk5JsQ",
-    "scope": "fundsconfirmations",
-    "token_type": "Bearer",
-    "expires_in": 3600
-}
-```
+    ```json
+    {
+        "access_token": "eyJ4NXQiOiJ2b05uSEROb3ZLMF9IclNxd1BsOEJBWkVxRlUiLCJraWQiOiJPR1ZqWTJOa1pqQTVObVJtTXpFME9HUTJPRE16TlRaaU5XVm1NV0UwTWpka1pUWXhOVGc1Tm1WaE1qYzNaRGd4WlRKaVlqWXpZMkk1WWpRMU5qRTRPQV9SUzI1NiIsInR5cCI6ImF0K2p3dCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwiYXV0IjoiQVBQTElDQVRJT04iLCJiaW5kaW5nX3R5cGUiOiJjZXJ0aWZpY2F0ZSIsImlzcyI6Imh0dHBzOlwvXC9sb2NhbGhvc3Q6OTQ0Nlwvb2F1dGgyXC90b2tlbiIsImNsaWVudF9pZCI6Im5pSUhXTVVFbWZNTUhRa2dJX1Z1VElYdlJ6SWEiLCJhdWQiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwibmJmIjoxNzUyODEyNDI3LCJhenAiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwib3JnX2lkIjoiMTAwODRhOGQtMTEzZi00MjExLWEwZDUtZWZlMzZiMDgyMjExIiwic2NvcGUiOiJmdW5kc2NvbmZpcm1hdGlvbnMiLCJjbmYiOnsieDV0I1MyNTYiOiIyRWdvcEhGNmNiYlh0OTVJNThFNjlWRVdCVFpZZ0ZpckJVOXVnZDZEOURBIn0sImV4cCI6MTc1MjgxNjAyNywib3JnX25hbWUiOiJTdXBlciIsImlhdCI6MTc1MjgxMjQyNywiYmluZGluZ19yZWYiOiI2YmRhMWFlMTQ4MDk5NDA0MjY5ZTY3MmE0Y2JlOGJhZSIsImp0aSI6IjRhN2IxZDhiLWFkYzMtNDFkZC1iMDg1LTAyNTFlOTIxN2VkZCJ9.ZhPolC0xpnshtIM3kyBMfIrkdZpP8j12rdodnoYoM2EmZBNdVj824_zEGHMcEvlfSkQGhmutuCpuDt6l83dqvPz6BU9mMgmRerFK8P7Gaxhl9ZLfzpNkjzIc8O_CmTSOv7Lx36WCdc_lwmN-DtiWGXR2aENggsFvVBvU-W-KWtbsafnluJdSNjzrRYH8zoS_F4uHuNNqPLWkd_uXV2027uU8LtD1btaAlfyXYS3qgxm8bCR5O8UxdYiBDlmdPv_32GUeMiqrwLOplxmnnwXD8Ol1BTfGkGK6PH4M-9J885OFV0WgRcU3eP_k7iupo0LhYqU4oUeMG0Y9CsmeQk5JsQ",
+        "scope": "fundsconfirmations",
+        "token_type": "Bearer",
+        "expires_in": 3600
+    }
+    ```
 
 ### Initiating a funds-confirmation consent
 
 In this step, the TPP generates a request to get the consent of the user to confirm the funds available in the bank account. 
 
 1. Create a funds-confirmation consent using the following request format:
-    
+
     ```
     curl -X POST \
     https://localhost:8243/open-banking/v3.1/cbpii/funds-confirmation-consents \
@@ -87,7 +103,7 @@ In this step, the TPP generates a request to get the consent of the user to conf
         }
     }'
     ```
-   
+
 2. The response contains a Consent Id. A sample response is as follows:
 
     ```
@@ -114,7 +130,10 @@ The TPP application redirects the bank customer to authenticate and approve/deny
 
 1. Generate the request object by signing the following JSON payload using supported algorithms.
 
-    ``` tab="Format"
+    <Tabs>
+    <TabItem value="format" label="Format">
+
+    ```
     {
       "kid": "<CERTIFICATE_FINGERPRINT>",
       "alg": "<SUPPORTED_ALGORITHM>",
@@ -154,16 +173,22 @@ The TPP application redirects the bank customer to authenticate and approve/deny
       "client_id": "<APPLICATION_ID>"
     }
     ```
-    
-    ``` tab="Sample"
+
+    </TabItem>
+    <TabItem value="sample" label="Sample">
+
+    ```
     eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo5NDQ2L29hdXRoMi90b2tlbiIsIm5iZiI6MTc1MjgxMjQyOCwiY3JpdCI6e30sInNjb3BlIjoib3BlbmlkIGZ1bmRzY29uZmlybWF0aW9ucyBvcGVuaWQiLCJjbGFpbXMiOnsiaWRfdG9rZW4iOnsiYWNyIjp7InZhbHVlcyI6WyJ1cm46b3BlbmJhbmtpbmc6cHNkMjpjYSIsInVybjpvcGVuYmFua2luZzpwc2QyOnNjYSJdLCJlc3NlbnRpYWwiOnRydWV9LCJvcGVuYmFua2luZ19pbnRlbnRfaWQiOnsidmFsdWUiOiI3YzkyZjMxMy0yY2YwLTQ2YjctYjRhMS1iNzI2MGE0OTQ3OGYiLCJlc3NlbnRpYWwiOnRydWV9fSwidXNlcmluZm8iOnsib3BlbmJhbmtpbmdfaW50ZW50X2lkIjp7InZhbHVlIjoiN2M5MmYzMTMtMmNmMC00NmI3LWI0YTEtYjcyNjBhNDk0NzhmIiwiZXNzZW50aWFsIjp0cnVlfX19LCJpc3MiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwicmVzcG9uc2VfdHlwZSI6ImNvZGUgaWRfdG9rZW4iLCJyZWRpcmVjdF91cmkiOiJodHRwczovL3d3dy5nb29nbGUuY29tL3JlZGlyZWN0cy9yZWRpcmVjdDEiLCJzdGF0ZSI6IjAxZjFjZDc0LTkwYWItNDVhOS04ZjYyLWNmZjcwMTA1NDZkMCIsImV4cCI6MTc1MjgxNTkwOCwibm9uY2UiOiIxOTY0ODZmOS1hOTJkLTQ3OWQtODdmNS0zZjdjOWRjMmYyMmIiLCJjbGllbnRfaWQiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIn0.OEpfruJB5-XsFqK8ldFmzr9w6pVnr9-aSwXIWSTLyb6SBo684vp55kp91BzBCcara2IkyBcwWvaHvIQIXj_cp3Tl6mdLp-shgvwu-Vpu_1OCUclbu1MVIKRukeX3ATHVgyWbXUPEF0ukCT8h9_uehzLEUaizTfgUF8k8ipaqLYnyLm4prywf3_O7_dFe9stwyvlJjgWNtx6uDI0OIrsimj0gsRnCBghMzzSrXmUxeTJdjXglHRSZdHN6Ze-AqdpkWnPP8pL2Atah9lWJvTGmvJIQYYDZHYiEQQgtBzGO2TbTbcWrolJBvn-AJMGNqioJGJdcJ9kWCojb61KnIpYEWg
     ```
 
+    </TabItem>
+    </Tabs>
+
 2. The bank sends the request to the customer stating the accounts and information that the API consumer wishes to access. 
-This request is in the format of a URL as follows. 
+    This request is in the format of a URL as follows. 
 
     Update the placeholders with relevant values and run the following in a browser to prompt the invocation of the authorize API. 
-    
+
     ```
     https://<IS_HOST>:9446/oauth2/authorize?response_type=code%20id_token&client_id=<CLIENT_ID>&scope=fundsconfirmation%20op
     enid&redirect_uri=<APPLICATION_REDIRECT_URI>&state=YWlzcDozMTQ2&request=<REQUEST_OBJECT>&prompt=login&nonce=<REQUEST_OBJECT_NONCE>
@@ -171,7 +196,7 @@ This request is in the format of a URL as follows.
 
 3. Upon successful authentication, the user is redirected to the consent authorize page. Use the login credentials of a user that has relevant role. 
 
-   ![login-screen-in-tryout-flow.png](../../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
+![login-screen-in-tryout-flow.png](../../assets/img/get-started/quick-start-guide/login-screen-in-tryout-flow.png)
 
 4. The page displays the data requested by the consent such as debtor account and expiration date. ![select accounts](../../assets/img/try-out/cof-consent.png)  
 
@@ -183,23 +208,26 @@ This request is in the format of a URL as follows.
     https://www.google.com/redirects/redirect1#id_token=eyJraWQiOiJxR1NxMjZJZXpjbDhPdVNEVjg5SmlLQVlEdVkiLCJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.qYgjp9znXgubkc2hDtvQmXrtlsY0LSM4mTl5mHaUlzTZ18E5vuDSbfKW9Kk5si26Fb8W60bC6bsBmoFy2E_BFRvaos05g3pUTfgt4xQoMO62jpJRXQ_QXAbI8_1tIXSJk8JHeDUjbcjztmd8CHz0HYV2dG1VeIUEBfptp1fWeiUxCRDajD4MgR6LkKDi2VpjRNLIaoaxexfNemPheRHic_sTYOMuTE8f4SXUfLAT7oeIYWDsXu-RwnkJtXBjdsvlmhiadfO2KiEd98fHqmL5Vor41uHXApJRVmt9duNDgzNNxQJopMQgN8k61yU4POdAYMZEEYZfXDV9zpBbyorlbw.E-WfrWDI92xCUAzf.NyRWc8dYUR9kxFZzM8aGUeHeyamthFQvevxktI05YNRRLjJk6FM667tV8HGaNKvpsZ64HHwqW78jymW6YhK5WyZpz3Q1lajENMfs2HuXA6arpYFSm3Zg1QDPrSoX-fnQOzfvHt9M0DlK9-ZAktxh97BHyv4D2fxP4riAjDyvgGqNviok3jjnmPBv65CAYS2DzTq6sFFJ1VDC9yWgJUGxHDehHMVV5HxKaHBvNEsmE_mqZT4rqooKYruCJ7Al1R7VAMEDk7ucW4LbrPlCzoVWfVW9S_FgOnDDOWM5eaM5-ckb1NyzN2WOqfg0Y48ADiLRKJaZf6d-vQ3RgIb7TQTkp1-pRS6rBD4KLPr22m7y-pf22pHmA05e0H1nFb61XD1eNW8WefjvIglJtk2nuY_yBixlDM2PUOGDDAdC9zqc2Csw3YAQtr428pqeFrZjzsk867f24fa_r3FaN2C5ynfoRGjdYs4V5JS-FX4ygHdkihYrCVOFs1m_HDbAkgQhhMcCvDosGbs05FRucSbDP74FDW3bTPI6Lv2IH6X-FMNNrOx2ImBQVvoDlWf1ANT7BkPFrnQu5AdyPza436m76kCyYezXVd29qU6SzaoWiuP4pU9ccEn86kd1uxw17QC30j6Ij7cD_omwWh3yMLZrGngC9gnZXfEPUApPVVXfe5dC8OpYDoA4Csr_LPYDeQHJQCzsyG8BMtKvdhz3D81QdBzA8iyDII1_283zGPumqcBKLD9-SKb2KwBIU1elOvpclzHWnVlhF8T42yTxNbUmq8mwNgCUh7hQ9id8gJP98mLRXGmEJ72KouV-lRhcxcde73tS00d-5POaTmYKlk31rGuXORYayzZ2osbRgvIIonb9ZcHz-pAAInYPex009RLlZdHyU1fJen82JK0q61JKbGMZkwRvB8pCJZOTRcVx_UmYpdo9gePiHPy_-l_yhaDs-RDQjN8AELldO3_3rb80Kj7FRX6mmWh_y8K0bT_Um-BL5IV93WT8DCztUYPUDXJaHvXryfAZHR2pjMPmRwbZZo7cX5Fz6j6bHUVpG_n-iZ61VJ87iZWeJLG2a6CKGPNUD9BvUZhUgyxzTI35awJgZroKNKM511cKzo45_oOwVCfg7DM3LNSQtS_NTFZSOTTCY2LT9X2HE00CkS5ORlStLo_WBy_8c0hMlwewNIO5JeJBvSKwE2s1MOy2rZpiSqJrrF7qyJIsQ0YVWbyS4_z7qyZGvlIaLzsLy2Syyk7PnadI8d2TD1xrPfyWsFT8BPwhGT8qut3Tn47gGiK7m3OHt_gdxucLqTNGrRq8HEViLElzT6n0_khfYcJNBYlvplp-APx9edapxPyeAiqXxMSGHpDZVn4_MUnKkBdyQO4Deoxthg8I5VEC1OX4wYFb1zoSdszrYiMah6lh4n_WCIKv00ndc4yTw3DnnbhpvG9gU5KBRO0xeda3b3VQN4ZnboRiBYfQhv_lNxRRkz5MtsYWTt_DDouSFr66eGfgVo_f-6HkXoGJzPCTJfuKonkMf_pLCfz69waMB4t5WlAZK9Hx07zO4qssj4AQfMTHmFYmntKjDdOBoK2z1a2X_LMHAjcaMNbnCOBHmgs8PDqnprJina2nFy68Oa3tXkAFxmSkmJdyG_CgoJvTTAWD3AM3WK4AUVv6W9xQOIlPzWA2r3ZUKJueBDZG3oZgK6WVmJ3UkMwrTTIeKvkCKiHLjao1rLci2JILHoab3KtCd5dS4m9CDBHIioMOw0p5IsmncKi2wZ8fkaW7HYI_8fln0EBl5nQ6TKjVoB5gKdRhkxePA0pJ-yD8FxqABMxKKyNaf1sC3RXe7_8t6M6QI6X6aJ3QG3OMJ2KHh1Ef6PYW7Km21kWDXJxosQXwnOb7ZdoKAWSi6d8A4BLOYiiaBaqWlVpvDs-Tsgbtbx9-2y1PGh3LVoUZb6bcXdISusJsZwWJHk9OJ_mM54wgYXKrG5O_4vSuOH6QqLV60u1FUxKQMUGXzURizny7SX0Sex70YDSh24zauLOl.EiYnRO7I9CZnJmhgAVHylQ&code=1c954d3c-bf10-3108-841b-7cd2ed27bcdc&session_state=729e2eb652bd4a886d19baffba03e122212a64d16858fee62b490fb8549536a0.YhcwGttgmn1zsxzGvsgYuw&state=01f1cd74-90ab-45a9-8f62-cff7010546d0
     ```
 
-   The authorization code from the below URL is in the code parameter (code=`1c954d3c-bf10-3108-841b-7cd2ed27bcdc`).
-   
-### Generating user access token   
+The authorization code from the below URL is in the code parameter (code=`1c954d3c-bf10-3108-841b-7cd2ed27bcdc`).
+
+### Generating user access token
 
 In this section, you will be generating an access token using the authorization code generated in the section [above](#authorizing-a-consent).
 
 1. Generate the client assertion by signing the following JSON payload using supported algorithms. 
 
 
-    ``` tab="Format"
+    <Tabs>
+    <TabItem value="format" label="Format">
+
+    ```
     Format:
     {
     "alg": "<The algorithm used for signing.>",
     "kid": "<The thumbprint of the certificate.>",
     "typ": "JWT"
     }
-     
+
     {
     "iss": "<This is the issuer of the token. For example, client ID of your application>",
     "sub": "<This is the subject identifier of the issuer. For example, client ID of your application>",
@@ -208,16 +236,22 @@ In this section, you will be generating an access token using the authorization 
     "jti": "<This is an incremental unique value>",
     "aud": "<This is the audience that the ID token is intended for. For example, https://<IS_HOST>:9446/oauth2/token>"
     }
-     
+
     <signature: For DCR, the client assertion is signed by the private key of the signing certificate. Otherwise, the private signature of the application certificate is used.>
     ```
-    
-    ``` tab="Sample"
+
+    </TabItem>
+    <TabItem value="sample" label="Sample">
+
+    ```
     eyJraWQiOiJzQ2VrTmdTV0lhdVEzNGtsUmhER3Fmd3BqYzQiLCJ0eXAiOiJKV1QiLCJhbGciOiJQUzI1NiJ9.eyJzdWIiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6OTQ0Ni9vYXV0aDIvdG9rZW4iLCJpc3MiOiJuaUlIV01VRW1mTU1IUWtnSV9WdVRJWHZSeklhIiwiZXhwIjoxNzU2NDEyNTE2LCJpYXQiOjE3NTI4MTI1MTYsImp0aSI6IjE3NTI4MTI1MTYzNzIifQ.JyuaSrGHiC83vkcPjlvDmDhyWl_nlZslHI4TTXaWThaVRSv4ACyv17Eg3_Bhshp5oQhuHTkxj7yDH6TDOqY9zIQEV4PH_Lih-Ftdawlb-SGKVa16G-w7JXWWXZdONjxhSxnFYO7omoxDetzj4NUlA6T078-gYKrnrTPwcoOBIg95f2kJQbg_oPPHR0UWv1qW6uoxtVHcfEWzfCVN7CZhlvemUsa9JKRA2ImosRgks8U22V52eOj1GfBDMJixLDSj6FTRyE6flgcSaqwR7xxCI27pmPG2C0Gvk-6ql9cBRXrh8e2cSI9FoNACuSxaZY7I49OPTI2ZVRDQCnylGYJwew
     ```
 
+    </TabItem>
+    </Tabs>
+
 2. Run the following cURL command in a command prompt to generate the access token. Update the placeholders with relevant values.
-    
+
     ```
     curl -X POST \
     https://<IS_HOST>:9446/oauth2/token \
@@ -229,7 +263,7 @@ In this section, you will be generating an access token using the authorization 
 
 3. Upon successful token generation, you can obtain a token as follows:
 
-    ``` json
+    ```json
     {
         "access_token": "eyJ4NXQiOiJ2b05uSEROb3ZLMF9IclNxd1BsOEJBWkVxRlUiLCJraWQiOiJPR1ZqWTJOa1pqQTVObVJtTXpFME9HUTJPRE16TlRaaU5XVm1NV0UwTWpka1pUWXhOVGc1Tm1WaE1qYzNaRGd4WlRKaVlqWXpZMkk1WWpRMU5qRTRPQV9SUzI1NiIsInR5cCI6ImF0K2p3dCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIxMmM5NTI3MC1iNDUxLTQ3OGQtYTMyOS02NTQ1MjM4OWQwZTRAY2FyYm9uLnN1cGVyIiwiYXV0IjoiQVBQTElDQVRJT05fVVNFUiIsImJpbmRpbmdfdHlwZSI6ImNlcnRpZmljYXRlIiwiaXNzIjoiaHR0cHM6XC9cL2xvY2FsaG9zdDo5NDQ2XC9vYXV0aDJcL3Rva2VuIiwiY2xpZW50X2lkIjoibmlJSFdNVUVtZk1NSFFrZ0lfVnVUSVh2UnpJYSIsImF1ZCI6Im5pSUhXTVVFbWZNTUhRa2dJX1Z1VElYdlJ6SWEiLCJuYmYiOjE3NTI4MTI1MTYsImF6cCI6Im5pSUhXTVVFbWZNTUhRa2dJX1Z1VElYdlJ6SWEiLCJvcmdfaWQiOiIxMDA4NGE4ZC0xMTNmLTQyMTEtYTBkNS1lZmUzNmIwODIyMTEiLCJzY29wZSI6ImZ1bmRzY29uZmlybWF0aW9ucyBvcGVuaWQiLCJjbmYiOnsieDV0I1MyNTYiOiIyRWdvcEhGNmNiYlh0OTVJNThFNjlWRVdCVFpZZ0ZpckJVOXVnZDZEOURBIn0sImV4cCI6MTc1MjgxNjExNiwib3JnX25hbWUiOiJTdXBlciIsImlhdCI6MTc1MjgxMjUxNiwiYmluZGluZ19yZWYiOiI2YmRhMWFlMTQ4MDk5NDA0MjY5ZTY3MmE0Y2JlOGJhZSIsImp0aSI6IjEyZGQ0MDM5LTEwMzItNGRkYS04N2NkLWMwNzBkODI5ZDY1OSIsImNvbnNlbnRfaWQiOiI3YzkyZjMxMy0yY2YwLTQ2YjctYjRhMS1iNzI2MGE0OTQ3OGYifQ.Yx3XoTM3KXIe4XRCKLjV4S3z8UjafTNbrmDdX5HHhS6BpEJbmgfjsFw2HIan3Ym4TaKa4u0DRhRAEZ1_CU7VSn2SDNjPMEN347oxnmTS2K7PY9DPqKSB5CmiKWIWRNUxrI50Zmoii0NUjO8hh0XGq4jaZqKkk0Ck6ZoF5HphRonzkGv8siKqHyzz8fZp2GMUdiBPWSXnfLjLF4d7aYE660_qJbb2MWM8jc51_zxOCxTg2r8Hhu86HuRo68XxcnL2ieSX8VmrMip6hRl794Ndy9QBSqsq4hWb2EoJ8SX48FdmYYAPVWr-_9zvLjLug6-Q35j-YHrL9Wooa4JgUeXIKA",
         "refresh_token": "48d9ce8e-69b7-30e6-98e3-5273afd7c2b6",
@@ -239,12 +273,15 @@ In this section, you will be generating an access token using the authorization 
         "expires_in": 3600
     }
     ```
-   
-### Invoking Confirmation of Funds API
+
+### Invoking Confirmation of Funds API \{#invoking-confirmation-of-funds-api_1\}
 
 Once the user approves the funds-confirmation consent, the TPP should create a new funds-confirmation resource. The TPP needs to check the `FundsAvailable` flag in the response.
 
-``` tab="Request"
+<Tabs>
+<TabItem value="request" label="Request">
+
+```
 curl -X POST \
 https://localhost:8243/open-banking/v3.1/cbpii/funds-confirmations \
 -H 'x-fapi-financial-id: open-bank' \
@@ -266,7 +303,10 @@ https://localhost:8243/open-banking/v3.1/cbpii/funds-confirmations \
 }`
 ```
 
-``` tab="Response"
+</TabItem>
+<TabItem value="response" label="Response">
+
+```
 {
     "Data": {
         "FundsConfirmationId": "836403",
@@ -283,7 +323,10 @@ https://localhost:8243/open-banking/v3.1/cbpii/funds-confirmations \
         "Self": "https://api.alphabank.com/open-banking/v4.0/funds-confirmations/836403"
     },
     "Meta": {
-        
+
     }
 }
 ```
+
+</TabItem>
+</Tabs>

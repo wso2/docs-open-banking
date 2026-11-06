@@ -1,3 +1,6 @@
+---
+title: "Configure WSO2 Financial Service Key Manager"
+---
 ## Configure IS as Key Manager
 
 ### Configure WSO2 Identity Server 7.1.0
@@ -41,10 +44,11 @@
 
 5. Under the **Key Manager Endpoints** section, provide the following values:
 
-    !!! note
-        You can use `https://<IS_HOSTNAME>:9446/oauth2/token/.well-known/openid-configuration` as the Well-known URL, and click on Import to populate most of the fields mentioned below, Grant types, and the Certificates section. 
+    :::note
+    You can use `https://<IS_HOSTNAME>:9446/oauth2/token/.well-known/openid-configuration` as the Well-known URL, and click on Import to populate most of the fields mentioned below, Grant types, and the Certificates section. 
 
-        If the Import button is used, verify all the auto imported values with the ones mentioned below.
+    If the Import button is used, verify all the auto imported values with the ones mentioned below.
+    :::
 
 
     | Configuration | Values |
@@ -65,14 +69,14 @@
     - Refresh_token
     - Authorization_code
     - urn:ietf:params:oauth:grant-type:jwt-bearer
-    
+
 7. Under the **Certificates** section, select JWKS. Enter `https://<IS_HOSTNAME>:9446/oauth2/jwks` as the URL.
 
 8. Under **Connector Configurations**, provide the following values:
 
     | Configuration | Values |
     | ------------- | ------ |
-    | Username | Authorization server admin username |  
+    | Username | Authorization server admin username |
     | Password | Authorization server admin password |
     | WSO2 Identity Server 7 API Resource Management Endpoint | `https://<IS_HOSTNAME>:9446/api/server/v1/api-resources` |
     | WSO2 Identity Server 7 Roles Endpoint | `https://<IS_HOSTNAME>:9446/scim2/v2/Roles` |
@@ -88,7 +92,7 @@
     | Configuration | Values |
     | ------------- | ------ |
     | Token Generation | Tick (Mandatory) |
-    | Out Of Band Provisioning | Tick (Mandatory) |     
+    | Out Of Band Provisioning | Tick (Mandatory) |
     | Oauth App Creation | Tick (Mandatory)
     | Token Validation Method | Self Validate JWT |
     | Token Handling Options (Optional) | JWT |

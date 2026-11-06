@@ -1,3 +1,6 @@
+---
+title: "Consent Manage"
+---
 # OpenAPI Extensions for Consent Management
 
 WSO2 Open Banking IAM Accelerator v4.0.0 onwards supports OpenAPI based extensions for consent management customizations.
@@ -6,8 +9,9 @@ Generally, regional open banking specifications have different flavors of reques
 
 At the accelerator level, it has identified possible customization points used for specification compliances and those extension points can be implemented by the specification compliance layer as a REST API in a preferred programming language and deployed externally to WSO2 Identity Server.
 
-!!! note
-    Make sure to refer to the Developer guide for OpenAPI- based extensions from the [documentation](openapi-extensions-developer-guide.md).
+:::note
+Make sure to refer to the Developer guide for OpenAPI- based extensions from the [documentation](openapi-extensions-developer-guide.md).
+:::
 
 ## OpenAPI Extensions
 
@@ -26,10 +30,10 @@ At the accelerator level, it has identified possible customization points used f
 To enable, follow the steps below:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
-    
+
 2. Locate the following tag and enable it as below. Make sure `allowed_extensions` contains the OpenAPI extensions mentioned in the above table.
 
-    ``` toml
+    ```toml
     [financial_services.extensions.endpoint]
     enabled = true
     base_url = "<BASE_URL_OF_THE_EXTENSION>"

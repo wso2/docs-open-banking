@@ -1,7 +1,11 @@
+---
+title: "Event Polling"
+---
 The Event Polling API facilitates storing and retrieving event notifications according to the above specifications without altering the information in the event information JSON.
 
-!!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::note
+Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::
 
 The OpenAPI extension for event polling provides the extendibility to validate the incoming event polling request attributes and construct the response payload according to custom requirements. 
 
@@ -20,7 +24,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
-``` toml
+```toml
 [financial_services.extensions.endpoint]
 enabled = true
 base_url = "<BASE_URL_OF THE EXTENSION>"
@@ -32,4 +36,4 @@ allowed_extensions = [ "validate-event-polling", "enrich-event-polling-response"
 type = "Basic-Auth"
 username = ""
 password = ""
-``` 
+```

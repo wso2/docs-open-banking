@@ -1,10 +1,17 @@
---8<-- "deprecated-banner.md"
+---
+title: "Additional Application Property Validation"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DeprecatedBanner from '../../includes/_deprecated-banner.md';
+
+<DeprecatedBanner />
 
 When onboarding API consumer/TPP applications **via WSO2 API Manager Developer Portal**, you can request additional 
 application properties. To do this, implement the following interface and extend the default capabilities of 
 application creation in Key Manager:
 
-``` java
+```java
 com.wso2.openbanking.accelerator.keymanager.OBKeyManagerExtensionInterface
 ```
 
@@ -14,7 +21,7 @@ Given below is a brief explanation of the methods you need to implement.
 
 This method lets you write validations for the additional properties. 
 
-``` java
+```java
 /**
 * Validate additional properties
 *
@@ -29,7 +36,7 @@ void validateAdditionalProperties(Map<String, ConfigurationDto> obAdditionalProp
 
 This method lets you change the `oAuthAppRequest` before the application creation.
 
-``` java
+```java
 /**
 * Do changes to app request before creating the app at toolkit level
 *
@@ -45,7 +52,7 @@ void doPreCreateApplication(OAuthAppRequest oAuthAppRequest, HashMap<String, Str
 
 This method lets you update the `oAuthAppRequest` before updating the application.
 
-``` java
+```java
 /**
 * Do changes to app request before updating the app at toolkit level
 *
@@ -63,7 +70,7 @@ void doPreUpdateApplication(OAuthAppRequest oAuthAppRequest, HashMap<String, Str
 A service provider is created on behalf of the application. This method lets you perform changes to the service provider
 before updating its properties.
 
-``` java
+```java
 /**
 * Do changes to service provider before updating the service provider properties
 *
@@ -77,43 +84,53 @@ HashMap<String, String> additionalProperties) throws APIManagementException;
 }
 ```
 
-##Configuring the extended OBKeyManagerExtensionInterface
+## Configuring the extended OBKeyManagerExtensionInterface
 
-!!! tip "Prerequisites"
-    You need to configure all additional properties as follows:
- 
-    1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
-    2. Follow the given format and configure all additional properties:
-        
-        ``` toml tab="Format"
-        [[open_banking.keymanager.application.type.attributes]]
-        name="<Name>" - The application property will be saved in SP_METADATA table with this name
-        label="<Lable>" - The UI will show this label 
-        type="<input,select>" - Define whether the field is a input field or a dropdown
-        tooltip="<Placeholder>"
-        values="<allowed values>" - If it is a dropdown, add comma separated values to the list
-        default="" - The default selected value
-        required="true" - Whether this is mandatory property
-        mask="false"
-        multiple="false"
-        priority="1"
-        ```
-       
-        ``` toml tab="Sample"
-        [[open_banking.keymanager.application.type.attributes]]
-        name="REGULATORY"
-        label="Regulatory Application"
-        type="select"
-        tooltip="Is this a Regulatory Application?"
-        values="true,false"
-        default=""
-        required="true"
-        mask="false"
-        multiple="false"
-        priority="1"
-        ```
+:::tip[Prerequisites]
+You need to configure all additional properties as follows:
 
-    3. The configured properties will be available to fill in the Developer Portal when creating an API consumer/TPP application.
+1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+2. Follow the given format and configure all additional properties:
+
+    <Tabs>
+    <TabItem value="format" label="Format">
+
+    ```toml
+    [[open_banking.keymanager.application.type.attributes]]
+    name="<Name>" - The application property will be saved in SP_METADATA table with this name
+    label="<Lable>" - The UI will show this label 
+    type="<input,select>" - Define whether the field is a input field or a dropdown
+    tooltip="<Placeholder>"
+    values="<allowed values>" - If it is a dropdown, add comma separated values to the list
+    default="" - The default selected value
+    required="true" - Whether this is mandatory property
+    mask="false"
+    multiple="false"
+    priority="1"
+    ```
+
+    </TabItem>
+    <TabItem value="sample" label="Sample">
+
+    ```toml
+    [[open_banking.keymanager.application.type.attributes]]
+    name="REGULATORY"
+    label="Regulatory Application"
+    type="select"
+    tooltip="Is this a Regulatory Application?"
+    values="true,false"
+    default=""
+    required="true"
+    mask="false"
+    multiple="false"
+    priority="1"
+    ```
+
+    </TabItem>
+    </Tabs>
+
+3. The configured properties will be available to fill in the Developer Portal when creating an API consumer/TPP application.
+:::
 
 Once implemented, build a JAR file for your OBKeyManagerExtensionInterface:
 
@@ -121,9 +138,9 @@ Once implemented, build a JAR file for your OBKeyManagerExtensionInterface:
 2. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
 3. Add the following tags and configure the customization using its Fully Qualified Name (FQN):
 
-    ``` toml
+    ```toml
     [open_banking.keymanager.extension.impl]
     class = "com.wso2.openbanking.berlin.keymanager.BerlinKeyManagerExtensionImpl"
     ```
-   
+
 4. Restart the API Manager server.

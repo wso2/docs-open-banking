@@ -1,3 +1,6 @@
+---
+title: "Consent Enforcement Policy"
+---
 ### Consent Enforcement Policy
 
 Consent Enforcement Policy is a policy designed to be engaged in the request flow of any request that requires the consent to be validated prior to an API resource call. It will perform the below tasks.
@@ -30,4 +33,3 @@ Upload the consentEnforcementPolicy.j2 policy file which resides inside the `<AP
 | consentIdClaimName                | Consent ID Claim Name          | The name of the claim that represents the consent ID on the user access token                      | true     | String | consent_id                                |
 | consentServiceBasicAuthCredentials | Consent Service Basic Auth Credentials | Base64 encoded(admin-username:admin-password) basic auth credentials required to access the consent service | true     | String | aXNfYWRtaW5Ad3NvMi5jb206d3NvMjEyMw==      |
 | consentServiceBaseUrl             | Consent Service Base URL       | Base URL of the consent service                                                                      | true     | String | https://localhost:9446                    |
-

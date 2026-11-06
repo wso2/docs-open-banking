@@ -1,3 +1,7 @@
+---
+title: "Distributed cache"
+displayed_sidebar: "docsSidebar"
+---
 ## Writing a custom Open Banking Distributed Cache Key
 
 WSO2 Open Banking Distributed Cache is a caching service that creates a clustered cache among one or more WSO2 API 
@@ -6,7 +10,7 @@ According to your requirements, you can extend and override the methods in the `
 to implement a distributed cache according to your open banking requirements.
 
 To achieve the above, extend the following class.
-``` java
+```java
 com.wso2.openbanking.accelerator.common.distributed.caching.OpenBankingDistributedCacheKey
 ```
 
@@ -16,7 +20,7 @@ Given below is a brief description of each method.
 ### OpenBankingDistributedCacheKey method
 This method is the public constructor for this class.
 
-``` java
+```java
 public OpenBankingDistributedCacheKey(String cacheKey) {
     setCacheKey(cacheKey);
 }
@@ -26,7 +30,7 @@ public OpenBankingDistributedCacheKey(String cacheKey) {
 
 This method lets you retrieve an instance of an `OpenBankingDistributedCacheKey`.
 
-``` java
+```java
 public static OpenBankingDistributedCacheKey of(String cacheKey) {
     return new OpenBankingDistributedCacheKey(cacheKey);
 }
@@ -37,7 +41,7 @@ public static OpenBankingDistributedCacheKey of(String cacheKey) {
 This method lets you assign a value to (setter) the cache key string.
 
 
-``` java
+```java
 public void setCacheKey(String cacheKey) {
     this.cacheKey = cacheKey;
 }
@@ -47,7 +51,7 @@ public void setCacheKey(String cacheKey) {
 
 This method lets you retrieve (getter) the cache key string.
 
-``` java
+```java
 public String getCacheKey() {
     return this.cacheKey;
 }
@@ -58,7 +62,7 @@ public String getCacheKey() {
 This method checks if the passed object is an `OpenBankingDistributedCacheKey` object. 
 Given below is the method signature:
 
-``` java
+```java
 public boolean equals(Object o) {
 }
 ```
@@ -66,7 +70,7 @@ public boolean equals(Object o) {
 
 This method returns the hashcode value for the `OpenBankingDistributedCacheKey` object.
 
-``` java
+```java
 public int hashCode() {
     return Objects.hash(getCacheKey());
 }
@@ -77,7 +81,7 @@ public int hashCode() {
 In order to create a custom distribute cache, you need to extend the `OpenBankingDistributedCache` class as well.
 The Fully Qualified Name (FQN) of this class is as follows:
 
-``` java
+```java
 com.wso2.openbanking.accelerator.common.distributed.caching.OpenBankingDistributedCache
 ```
 
@@ -88,7 +92,7 @@ Given below is a brief description of each method.
 
 This method lets you initialize a unique name for the cache.
 
-``` java
+```java
 public OpenBankingDistributedCache(String cacheName) {
 }
 ```
@@ -97,7 +101,7 @@ public OpenBankingDistributedCache(String cacheName) {
 
 This method lets you retrieve a cache based on the cache key.
 
-``` java
+```java
 public V getFromCache(K key) {
 }
 ```
@@ -107,7 +111,7 @@ public V getFromCache(K key) {
 This method lets you add an object to the cache in key-value format. Use the `key` parameter to set the cache key
 and the `value` parameter to set the object that needs to be cached.
 
-``` java
+```java
 public void addToCache(K key, V value) {
 }
 ```
@@ -116,7 +120,7 @@ public void addToCache(K key, V value) {
 
 This method lets you remove a cache based on the cache key.
 
-``` java
+```java
 public void removeFromCache(K key) {
 }
 ```
@@ -126,7 +130,7 @@ public void removeFromCache(K key) {
 This method lets you check whether the cache is empty. If the cache is empty, the return value is `true`, otherwise,
 the boolean value `false` is returned.
 
-``` java
+```java
 public boolean isEmpty() {
 }
 ```
@@ -135,20 +139,20 @@ public boolean isEmpty() {
 
 This method lets you retrieve the cache expiry time in minutes upon modification.
 
-``` java
+```java
 public abstract int getCacheTimeToLiveMinutes();
 ```
 
 ## Creating cache
 
- 1. Extend the `OpenBankingDistributedCache` class.
- 2. Generify the extended `OpenBankingDistributedCache` class with the previously
+1. Extend the `OpenBankingDistributedCache` class.
+2. Generify the extended `OpenBankingDistributedCache` class with the previously
     created `OpenBankingDistributedCacheKey` class and preferred object for the cache value.
- 3. Implement abstract methods from the super class.
- 4. Create a constructor with the super constructor.
- 5. Create the `int cacheTimeToLiveMinutes` variable.
- 6. Override the getter method and create a setter method. Initialize the `cacheTimeToLive`  in the constructor.
- 
+3. Implement abstract methods from the super class.
+4. Create a constructor with the super constructor.
+5. Create the `int cacheTimeToLiveMinutes` variable.
+6. Override the getter method and create a setter method. Initialize the `cacheTimeToLive`  in the constructor.
+
 ## Using custom cache
 
 1. Creating a cache object 
@@ -175,7 +179,7 @@ Given below is a sample usage of the cache:
 
 1. Once implemented, build JAR files for your projects.
 2. Place the above-created JAR files in the relevant `lib` directory of the base product:
-     - `<APIM_HOME>/repository/components/lib`
-     - `<IS_HOME>/repository/components/lib`
+    - `<APIM_HOME>/repository/components/lib`
+    - `<IS_HOME>/repository/components/lib`
 3. Configure the `deployment.toml` file of the instance based on your caching requirements.
-   For more information, see [Distributed Cache Configurations](../../learn/distributed-caching.md#wso2-open-banking-distributed-cache).
+    For more information, see [Distributed Cache Configurations](../../learn/distributed-caching.md#wso2-open-banking-distributed-cache).

@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 WSO2 Open Banking provides a set of mediation policies and the other utility synapse artifacts required for APIM runtime enforcements specific to financial services specific use-cases like Open Banking/ Open Finance. There are mediation artifacts common for financial services use-cases and some are specific to regional specification compliance requirements set for Open Banking. At a high level, it contains:
 
 - APIM Policy .j2 files
@@ -13,5 +16,3 @@ WSO2 Open Banking provides a set of mediation policies and the other utility syn
 - [Dynamic Endpoint Policy](../learn/dynamic-endpoint-policy.md)
 - [MTLS Enforcement Policy](../learn/mtls-enforcement-policy.md)
 - [UK JWS Header Processing Policy](../learn/uk-jws-header-processing-policy.md)
-
-

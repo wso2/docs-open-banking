@@ -1,16 +1,20 @@
+---
+title: "Configuring Accelerator"
+---
 # Configuring the Accelerator
 
 WSO2 Open Banking Accelerator configurations are applied through the `deployment.toml` file of the Identity Server and 
 the API Manager. Both configuration catalogs contain a large number of optional, feature-specific parameters in 
 addition to the settings that **must** be configured for the accelerator to function correctly.
 
-!!! tip
-    - For the complete list of configurations, including optional and feature-specific parameters, see the 
+:::tip
+- For the complete list of configurations, including optional and feature-specific parameters, see the 
     [Identity Server Configuration Catalog for open banking](../references/config-catalog-is.md) and the 
     [API Manager Configuration Catalog for open banking](../references/config-catalog-apim.md).
-    - For a guided, step-by-step walkthrough of setting up the `deployment.toml` files, see 
+- For a guided, step-by-step walkthrough of setting up the `deployment.toml` files, see 
     [Configuring Identity Server](configuring-identity-server-for-ob.md) and 
     [Configuring API Manager](configuring-api-manager-for-ob.md).
+:::
 
 ## Identity Server
 
@@ -26,8 +30,9 @@ Configurations related to the super admin user. We strongly recommend changing t
 | `username` | string | `is_admin@wso2.com` | The username of the super admin user. |
 | `password` | string | `wso2123` | The password of the super admin user. |
 
-!!!Note
+:::note
 We recommend encrypting the plain-text secrets using the secure vault implementation 
+:::
 
 ### `[financial_services.consent.pre_initiated]` and `[financial_services.consent.scope_based]`
 
@@ -56,14 +61,14 @@ Configures the paymnet flow.
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
-| `max_instructed_amount` | integer | `1000` | Maximum amount each payment can acoomadate | 
+| `max_instructed_amount` | integer | `1000` | Maximum amount each payment can acoomadate |
 
 ## API Manager
 
 Given below are some of the key configuration sections and parameters marked `Required` in the 
 [API Manager Configuration Catalog](../references/config-catalog-apim.md).
 
-### `[super_admin]`
+### `[super_admin]` \{#super_admin_1\}
 
 Configurations related to the super admin user. We strongly recommend changing the default super admin credentials in production deployments.
 
@@ -73,8 +78,9 @@ Configurations related to the super admin user. We strongly recommend changing t
 | `password` | string | `wso2123` | The password of the super admin user. |
 | `create_admin_account` | boolean | `TRUE` | Creates a new user with the given super admin details. |
 
-!!!Note
+:::note
 We recommend encrypting the plain-text secrets using the secure vault implementation 
+:::
 
 ### `[apim.oauth_config]`
 

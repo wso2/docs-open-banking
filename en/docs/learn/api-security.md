@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 # API Security
 
 Open Banking allows API consumers to access financial data through open APIs, which requires greater API security. Therefore, 
@@ -14,7 +17,7 @@ While some open banking specifications, such as the Open Banking Standard - UK a
 mandated FAPI, others do not. However, regardless of your regional specification, WSO2 Open Banking Accelerator provides 
 FAPI security standards because of the robust security standards offered by FAPI.
 
-###MTLS enforcement
+### MTLS enforcement
 
 Authentication is a  crucial requirement in open banking to verify the authenticity of an API consumer before sharing the 
 customer’s banking information. When an  API consumer invokes APIs, their private credentials can be shared in the requests, 
@@ -32,13 +35,13 @@ In WSO2 Open Banking Accelerator, MTLS is enforced at the API Manager level to c
 There are two scenarios to consider for the MTLS validation:
 
 1. If the client directly initiates an MTLS connection with the WSO2 API Manager Gateway, the issuer of the certificate needs 
-to be present in the truststore of the gateway.
+    to be present in the truststore of the gateway.
 
 2. If the MTLS terminates at the load balancer prior to the gateway, the WSO2 API Manager Gateway expects the load balancer 
-to send the client certificate as a header. In such scenarios, the WSO2 API Manager gateway expects the load balancer to 
-perform the issuer validation.
+    to send the client certificate as a header. In such scenarios, the WSO2 API Manager gateway expects the load balancer to 
+    perform the issuer validation.
 
-###Certificate Revocation Validation 
+### Certificate Revocation Validation
 
 A certificate is issued by a trusted organization commonly known as a CA. It is also known as 
 a Trust Service Provider (TSP). These certificates are expected to be in use for their entire validity period. However, 
@@ -53,12 +56,12 @@ There are circumstances where the issuing CA needs to revoke the certificate pri
 certificate would no longer be trusted. Therefore, it is required to check whether a given certificate is revoked by its 
 issuer. That can be done through two protocols:
 
-####Certificate Revocation List (CRL)
- 
+#### Certificate Revocation List (CRL)
+
 CRL is a list of digital certificates that have been revoked by the issuing CA.
 
-####Online Certificate Status Protocol (OCSP)
- 
+#### Online Certificate Status Protocol (OCSP)
+
 OCSP is an internet protocol used for obtaining the revocation status of a digital certificate based on the certificate 
 serial number. The OCSP validation is faster compared to the CRL validation.
 
@@ -66,12 +69,12 @@ By default, WSO2 Open Banking Accelerator verifies the revocation status of a ce
 OCSP validation is unsuccessful, the revocation status is verified using the CRL information. The certificate is rejected 
 if none of these protocols is successful or if the required revocation information is not found on the certificate.
 
-###Validate external API consumers
+### Validate external API consumers
 
 This validation allows banks to validate API consumers from the NCAs. This is done by 
 validating the transport layer certificate an API consumer has obtained. 
 
-###Role validation 
+### Role validation
 According to the [Open Banking Standard - UK](https://www.openbanking.org.uk/about-us/glossary/), API consumers have roles 
 for the services they provide. The API consumer’s role is defined in the API consumer’s transport certificate (QWAC certificate 
 that they obtain from an NCA), which WSO2 Open Banking Accelerator checks in the API and Dynamic Client Registration flows. 
@@ -79,24 +82,25 @@ If the role exists in the transport certificate, WSO2 Open Banking Accelerator a
 
 Following are the roles that an API consumer can have:
 
- | Role | Description  |
- |---------|---------    |
- |Account Information Service Provider|Provides an online service by sharing information on payment accounts held by a payment service user with payment service providers.|
- |Payment Initiation Services Provider|Provides an online service to initiate a payment order at the request of the payment service user with respect to a payment account held at another payment service provider.|
- |Card-Based Payment Instrument Issuer|Issues card-based payment instruments that can be used to initiate a payment transaction from a payment account held with another payment service provider.|
+| Role | Description  |
+|---------|---------    |
+|Account Information Service Provider|Provides an online service by sharing information on payment accounts held by a payment service user with payment service providers.|
+|Payment Initiation Services Provider|Provides an online service to initiate a payment order at the request of the payment service user with respect to a payment account held at another payment service provider.|
+|Card-Based Payment Instrument Issuer|Issues card-based payment instruments that can be used to initiate a payment transaction from a payment account held with another payment service provider.|
 
-!!!tip
-    An API consumer can have one or more roles. For example, if an API consumer provides an application to view account 
-    information as well as to initiate payments, the roles of the API consumer are **Account Information Service Provider** 
-    and **Payment Initiation Services Provider**.
-     
-###eIDAS 
+:::tip
+An API consumer can have one or more roles. For example, if an API consumer provides an application to view account 
+information as well as to initiate payments, the roles of the API consumer are **Account Information Service Provider** 
+and **Payment Initiation Services Provider**.
+:::
+
+### eIDAS
 The **electronic IDentification, Authentication and trust Services (eIDAS)** regulation provides unique identity schemas for individuals and businesses to access the publicly available online 
 services in Europe. Among electronic Identification (eID) solutions, PSD2 recommends Qualified Website Authentication 
 Certificate (QWAC) and Qualified Certificates for Electronic Seals (QSealC) to secure the transport layer and application 
 layer with the API consumer.
 
-####Qualified Web Authentication Certificate (QWAC)
+#### Qualified Web Authentication Certificate (QWAC)
 QWAC validates the identity and the role of the [API consumer](#role-validation). During API invocations, API consumers can use their eIDAS 
 QWAC to establish a secure TLS channel and protect the transport layer communication from potential attackers on the network. 
 
@@ -106,12 +110,12 @@ WSO2 Open Banking Accelerator validates the following aspects of the QWAC if it 
 - The PSD2 information in the certificate such as PSD2 roles, Authorization Number matches with the API being invoked.
 - The certificate is not revoked using CRL or Online OCSP validations.
 
-####Qualified e-Seal Certificate (QSealC) 
+#### Qualified e-Seal Certificate (QSealC)
 QSealC seals application data and sensitive information to ensure that the origin of the document is trusted. WSO2 Open 
 Banking Accelerator allows using QSealC as the signing certificates in application layer security to ensure protecting the 
 data or messages from potential attackers during or after the communication.
 
-<hr>
+<hr />
 
 Generally, open banking flows always consist of 3 different types of API requests by the client applications.
 The following section lists the different security measures taken at each of the request types.
@@ -121,11 +125,11 @@ The following section lists the different security measures taken at each of the
 WSO2 Open Banking Accelerator supports the following security features and fulfil FAPI requirements 
 during Authorization flows:
 
-  - OIDC Hybrid Flow
+- OIDC Hybrid Flow
     - Request object verification
     - Pushed Authorization Request validation
     - Pairwise Identifier support for ID tokens
-  - Authorization Code Flow
+- Authorization Code Flow
     - When a request object is not available, support authentication mechanisms such as PKCE
 
 You can use the provided extension points and customize the authorization flows. For more information, refer to the
@@ -137,7 +141,7 @@ API consumer applications use the Token Endpoint to obtain access tokens, id tok
 Following security features are available in WSO2 Open Banking during Token flows.
 
 - The API consumer application can authenticate the authorization server when accessing the token endpoint using any of 
-the following methods:
+    the following methods:
     - Private key JWT authentication (Auth code grant)
     - MTLS authentication (Auth code grant)
     - Client Assertion (Client Credentials Grant)
@@ -169,5 +173,3 @@ Consent validation ensures that the API consumer application's resource requests
 by the bank customers. This is a custom implementation as the behaviour of consent is defined by an open banking 
 specification. You can use the [Consent Validate](../develop/openapi/openapi-consent-management-validate.md) endpoint and define the 
 consent validations by comparing the resource requests against the user-provided consent.
-
-

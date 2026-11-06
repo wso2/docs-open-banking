@@ -1,3 +1,6 @@
+---
+title: "Create Policies"
+---
 ## Creating a Common Policy
 
 1. Sign in to the API Publisher Portal at `https://<APIM_HOSTNAME>:9443/publisher`. 

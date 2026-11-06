@@ -1,3 +1,6 @@
+---
+title: "Financial grade API (FAPI) Security"
+---
 # Financial -grade API (FAPI) Security
 
 Financial-grade API (FAPI), a specification that extends the OAuth and OIDC frameworks, 
@@ -8,9 +11,10 @@ it is appropriate for any critical API whose security is the highest priority.
 For Open Banking/ Open Finance use cases, since robust API and data security is a must, most of the emerging
 technical specifications for Open Banking/ Open Finance have mandated **FAPI Security** for 
 exposing financial APIs such as:
- - Open Banking UK
- - Consumer Data Standards (CDS), Australia
- - The Financial Data Exchange (FDX), USA
+
+- Open Banking UK
+- Consumer Data Standards (CDS), Australia
+- The Financial Data Exchange (FDX), USA
 
 The following diagram illustrates how FAPI-compliant features combine to secure applications 
 
