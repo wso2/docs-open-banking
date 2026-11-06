@@ -1,74 +1,61 @@
-# WSO2 Open Banking Documentation
+# WSO2 Open Banking Documentation - versions
 
-End-user apps in WSO2 Open Banking
+This branch builds the "Versions" page of the WSO2 Open Banking documentation, which is published at
+`https://ob.docs.wso2.com/en/versions/` (the "Show all" entry of the version dropdown), and the file the
+dropdown of the documentation sites reads: `https://ob.docs.wso2.com/en/versions/assets/versions.json`.
 
-|  Branch | Build Status |
-| :------------ |:------------- 
-| master      | [![Build Status](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-ob/badge/icon)](https://wso2.org/jenkins/view/Dashboard/job/docs/job/docs-open-banking/) |
+The documentation itself is on the `master` branch (4.0.0, published at `/en/latest/` and `/en/4.0.0/`) and the
+`3.0.0` branch (published at `/en/3.0.0/`). Versions older than 3.0.0 are not in this repository; they are linked to
+their own pages from the Past Versions table.
 
 ## Prerequisites
 
-To run the project locally, it requires [python](https://www.python.org/downloads/) & [pip](https://pypi.org/project/pip/).
-
-### Install Python
-
-Check if you already have Python installed by running the following command.
-
-```bash
-$ python --version
-Python 2.7.10
-```
-
-If you receive a response similar to the one shown above, `Python 2.7.10` is your default version.
-
-You should also check if you have Python 3 installed. 
-
-```bash
-$ python3 --version
-Python 3.8.0
-```
-
-If you don't seem to have `Python` installed, grab the latest release from the [official downloads page](https://www.python.org/downloads/).
-
-### Install pip
-
-pip is already installed if you are using Python 2 >=2.7.9 or Python 3 >=3.4 downloaded from [python.org](https://www.python.org/) or if you are working in a [Virtual Environment](https://packaging.python.org/tutorials/installing-packages/#creating-and-using-virtual-environments) created by [virtualenv](https://packaging.python.org/key_projects/#virtualenv) or [pyvenv](https://packaging.python.org/key_projects/#venv). Just make sure to [upgrade pip](https://pip.pypa.io/en/stable/installing/#upgrading-pip).
-
-#### Installing with get-pip.py
-
-To install pip with `curl`, execute the following command. Alternatively you can download `get-pip.py` by clicking [here](https://bootstrap.pypa.io/get-pip.py). 
-
-```bash
-$ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-```
-
-Then run the following command in the folder where you have downloaded get-pip.py
-
-```bash
-$ python get-pip.py
-```
+The site is built with [Docusaurus](https://docusaurus.io/) 3. You need [Node.js](https://nodejs.org/) 20 or later and npm.
 
 ## Run project locally (Dev Mode)
 
-**Clone the repo**
-
 ```bash
 $ git clone https://github.com/wso2/docs-open-banking.git
+$ cd docs-open-banking && git checkout versions && npm ci
+$ npm run start
 ```
 
-**Install the dependencies**
+The page is served at `http://localhost:3000/en/versions/`.
 
-```bash
-$ cd docs-open-banking && pip install -r requirements.txt
-```
+## Commands
 
-**Run mkdocs**
+| Command | What it does |
+| :------ | :----------- |
+| `npm run start` | Dev server with hot reload on port 3000. |
+| `npm run build` | Production build into `build/`. `BASE_URL` selects where the site is mounted (default `/en/versions/`, must look like `/en/<name>/`). |
+| `npm run typecheck` | TypeScript check (`tsc`). |
+| `npm run audit` | Dependency security audit (`audit-ci`), also run in CI. |
 
-Execute the following command from inside the `<Lang folder>`.
+## Search
 
-```bash
-$ cd en && mkdocs serve
-```
+The search box uses the Algolia index of the documentation (`wso2_ob`, filters `language:en` and `version:<searchFacetVersion>` from
+`site.branch.json`). Its results are pages of the documentation sites, so they open with a full page load.
+
+## Adding or changing a version
+
+Edit `static/assets/versions.json`; it is the only place that lists versions. The same file is the data of the Versions page
+(`src/pages/index.tsx`, built at publish time) and is published unchanged at `/en/versions/assets/versions.json`.
+
+| Key | Meaning |
+| :-- | :------ |
+| `current` | The stable version: shown in the "Current version (Stable)" table. |
+| `list` | The versions shown in the dropdown, in order. |
+| `all` | For each version, `doc` (documentation) and `notes` (release notes). A relative value is published under `/en/` (for example `4.0.0` is `/en/4.0.0`); a value starting with `https://` or `http://` opens in a new tab. |
+| `staging`, `latest`, and the version keys | Which branch each version is built from. They are not read by this site. |
+
+Past Versions lists every key of `all` except `current` (and a `pre-release` key, if there is one), in the order of `all`.
+
+## Deploy
+
+Pushes to `versions` run `.github/workflows/deploy.yml`, which builds the site with `BASE_URL=/en/versions/` and publishes it to the
+`gh-pages` branch folder `en/versions` using `JamesIves/github-pages-deploy-action`. It can also be started manually
+(`workflow_dispatch`). Pull requests against `versions` run `.github/workflows/pr-checks.yml`: `npm ci`, audit, typecheck and
+build. Workflow actions are pinned by commit SHA.
 
 ## License
 

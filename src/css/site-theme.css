@@ -1,0 +1,1006 @@
+/*
+ * Theme layer for the WSO2 Open Banking Accelerator documentation.
+ *
+ * Loaded AFTER src/css/custom.css (see docusaurus.config.ts), so it wins on
+ * equal specificity without that file needing to change. custom.css owns the
+ * DocSearch and announcement-bar styling and is deliberately left alone.
+ *
+ * Section order matters — tokens are defined before anything consumes them:
+ *   2.  Primary ramp      7a. Sidebar chrome          9.  Code blocks
+ *   4.  Typography        7b. Sidebar section headers 9b. Docs landing page
+ *   5.  Page background   8.  Navbar and TOC          10. Responsive
+ *   6.  Layout
+ *
+ * Numbering is not contiguous: sections 1 (@font-face) and 3 were removed when
+ * the bundled webfonts were dropped. The remaining numbers are left as they are
+ * so existing references to "section 7b" or "section 9" stay valid.
+ */
+
+/* =========================== 2. Primary ramp ============================ */
+/*
+ * custom.css sets all seven --ifm-color-primary-* shades to the same #fa7b3f,
+ * which flattens every hover and active state Infima derives from the ramp.
+ * The ported chrome depends on light/dark actually differing, so define a real
+ * ramp here. Loading second means this wins without editing custom.css.
+ */
+
+:root {
+  --ifm-color-primary-darkest: #b8480f;
+  --ifm-color-primary-darker: #d15518;
+  --ifm-color-primary-dark: #e35f20;
+  --ifm-color-primary: #fa7b3f;
+  --ifm-color-primary-light: #fb9263;
+  --ifm-color-primary-lighter: #fca985;
+  --ifm-color-primary-lightest: #fdc7ae;
+}
+
+[data-theme='dark'] {
+  /* Lift the ramp slightly so orange stays legible on a dark ground. */
+  --ifm-color-primary-darkest: #d15518;
+  --ifm-color-primary-darker: #e35f20;
+  --ifm-color-primary-dark: #fa7b3f;
+  --ifm-color-primary: #fb8c55;
+  --ifm-color-primary-light: #fca17a;
+  --ifm-color-primary-lighter: #fdb897;
+  --ifm-color-primary-lightest: #fed3bd;
+}
+
+/* ============================ 4. Typography ============================= */
+
+:root {
+  --ifm-font-family-base: system-ui, -apple-system, 'Segoe UI', Roboto,
+    Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --ifm-font-size-base: 16px;
+  --ifm-heading-color: var(--ifm-font-color-base);
+  --ifm-heading-font-weight: 700;
+  --ifm-code-font-size: 95%;
+
+  /* Rhythm — this is where the "airy" feel comes from, not the sizes. */
+  --ifm-line-height-base: 1.75;
+  /*
+   * These two do NOT govern direct-child `.markdown` rhythm (paragraphs,
+   * lists, headings, code blocks right under a doc's root) — Infima pins
+   * that at higher specificity against --ifm-leading instead; see the
+   * `.markdown > *` direct-child override block further down in this
+   * section, which restates the same values there (selectors may change;
+   * don't enumerate them here). What these variables still
+   * control: paragraphs NESTED inside `.markdown` content (blockquote
+   * body copy, admonition body copy, table cells, list-item paragraphs —
+   * none of which are direct children), and headings outside `.markdown`
+   * entirely, e.g. `.footer__title`.
+   */
+  --ifm-paragraph-margin-bottom: 1.1rem;
+  --ifm-heading-margin-bottom: 0.65rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
+}
+
+/* Section separation inside doc content. */
+.markdown h2 {
+  margin-top: 2.5rem;
+}
+
+.markdown h3 {
+  margin-top: 1.75rem;
+}
+
+/* Infima defaults prose to 0.875rem; 1rem reads better at this measure. */
+.markdown {
+  font-size: 1rem;
+}
+
+/*
+ * Heading SIZES are deliberately NOT changed — custom.css pins them to the
+ * WSO2 Integrator scale (h1 28px / h2 22px / h3 18px / h4 16px) and that
+ * cross-product alignment is intentional. Only rhythm is adopted here.
+ */
+
+/*
+ * Infima declares direct-child rhythm at `.markdown > *` specificity (0,1,1)
+ * against --ifm-leading, which out-ranks the :root --ifm-paragraph-margin-bottom
+ * and --ifm-heading-margin-bottom defaults above (see the comment there for
+ * what those variables still do control). Restate the same values at matching
+ * specificity so the intended rhythm actually applies to `p` and `ul` direct
+ * children — Infima's own rule covers those (plus `pre`) here; `ol` is
+ * deliberately added even though Infima omits it, so ordered and unordered
+ * lists get the same spacing.
+ *
+ * `pre` is included, but is near-inert: Docusaurus's CodeBlock wraps almost
+ * every `<pre>` in a `.theme-code-block` container div, so `.markdown > pre`
+ * matches almost nothing (verified across all 62 built v1.0.0 pages: 416
+ * code blocks wrapped). There is exactly one exception — a raw, unwrapped
+ * `<pre>` written directly in the MDX on guides/on-your-environment, with no
+ * class attribute, that IS a direct child of `.theme-doc-markdown.markdown`.
+ * This rule exists so that one element shares the same rhythm as the rest of
+ * the page. The gap after a normal, wrapped code block is controlled by the
+ * container div instead, which a later task's code-block styling sets to
+ * match this rhythm.
+ */
+.markdown > p,
+.markdown > ul,
+.markdown > ol,
+.markdown > pre {
+  margin-bottom: 1.1rem;
+}
+
+.markdown > h2,
+.markdown > h3,
+.markdown > h4,
+.markdown > h5,
+.markdown > h6 {
+  margin-bottom: 0.65rem;
+}
+
+/* ========================= 5. Page background =========================== */
+/*
+ * The reference design's gradients are blue; these are the same geometry re-tinted to
+ * WSO2 orange per the spec's palette decision.
+ */
+
+:root {
+  --site-background-attachment: fixed;
+  --site-background:
+    radial-gradient(circle at 65% 30%, rgb(250 123 63 / 6%) 10%, rgba(0, 0, 0, 0) 60% 40%),
+    radial-gradient(circle at 15% 50%, rgb(251 146 99 / 9%) 1%, rgb(0 0 0 / 0%) 40% 70%),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.6) 0%, var(--ifm-background-color) 100%);
+}
+
+[data-theme='dark'] {
+  --site-background:
+    radial-gradient(circle at 15% 50%, rgb(250 123 63 / 10%) 0%, rgb(26 13 6 / 0%) 40% 70%),
+    radial-gradient(circle at 65% 30%, rgb(227 95 32 / 16%) 10%, rgba(26, 13, 6, 0%) 60% 40%),
+    radial-gradient(circle at center, rgba(0, 0, 0, 0.6) 0%, var(--ifm-background-color) 100%);
+}
+
+html #__docusaurus {
+  background-color: var(--ifm-background-color);
+  background-attachment: var(--site-background-attachment);
+  background-image: var(--site-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*
+ * The gradient lives on #__docusaurus, so every wrapper above the content must
+ * be transparent or it paints over the gradient and produces a hard seam.
+ * Missing one of these is the most common way this section breaks.
+ *
+ * This list covers the wrappers present in the current markup at the
+ * sidebar/content split (#__docusaurus > .main-wrapper > [docsWrapper] >
+ * [docRoot] > [docSidebarContainer] | [docMainContainer]) — it is not a
+ * guarantee against every future wrapper. The upstream `[class*='docPage_']`
+ * wrapper was dropped: current @docusaurus/theme-classic renamed that
+ * wrapper (it now uses `docRoot`/`docsWrapper`), so `docPage_` matches zero
+ * elements here. Do not restore it from the reference CSS. Recheck this list
+ * after any @docusaurus/theme-classic upgrade, since class names here
+ * (`docRoot`, `docsWrapper`, `docMainContainer`) are internal, not the
+ * stable `theme-*` public API.
+ */
+html[data-theme='dark'] .main-wrapper,
+html[data-theme='dark'] .container,
+html[data-theme='dark'] [class*='docsWrapper'],
+html[data-theme='dark'] [class*='docRoot'],
+html[data-theme='dark'] [class*='docMainContainer'] {
+  background: transparent;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* ============================== 6. Layout =============================== */
+
+:root {
+  --ifm-container-width: 1600px;
+  --ifm-container-width-xl: 1600px;
+  /*
+   * `--ifm-spacing-horizontal` is deliberately NOT overridden. The reference design sets
+   * it to 2rem, and doing so here caused a horizontal overflow: Infima uses it
+   * for `.container` padding AND for `.row`'s negative margin
+   * (`margin: 0 calc(var(--ifm-spacing-horizontal) * -1)`). Those two cancel
+   * only where a `.row` sits inside a padded ancestor. Docusaurus nests bare
+   * `.row`s that do not — `theme-doc-footer-edit-meta-row` inside
+   * <footer>/<article>, and DocCardList's category rows — and those were
+   * covered only by coincidence, because `docItemCol`'s hand-picked
+   * `padding-right: 1rem` happened to equal Infima's stock gutter. Raising the
+   * variable broke the coincidence and leaked the difference, measured at up to
+   * 61px between 997px and ~1250px. Leaving Infima's default in place restores
+   * the cancellation at every width. Do not re-add this override.
+   */
+}
+
+/*
+ * @docusaurus/theme-classic's Sidebar component CSS declares its own
+ * `:root { --doc-sidebar-width: 300px }` later in the compiled bundle than
+ * this file. A plain `:root` here has identical (0,1,0) specificity, so
+ * source order decides and theirs — being later — silently wins, leaving
+ * the sidebar at 300px no matter what value is written above. Doubling the
+ * selector to `:root:root` raises specificity to (0,2,0), which beats their
+ * plain `:root` regardless of load order. Do not "simplify" this back to a
+ * single `:root` — that reintroduces the 300px regression.
+ */
+:root:root {
+  --doc-sidebar-width: 360px;
+}
+
+.theme-doc-markdown.markdown {
+  max-width: 820px;
+  overflow: visible;
+  position: relative;
+}
+
+/*
+ * A list item is the containing block for its direct children, so a
+ * break-out element (table/pre/code block/tabs/admonition/image) placed
+ * directly inside an <li> would otherwise resolve its `max-width: 100%`
+ * below against the <li>'s own 720px cap instead of .markdown's 820px
+ * column — rendering ~100px narrower than the same element at the top
+ * level. Reset the <li>'s own max-width back to 100% whenever it directly
+ * contains one of those element types, so the break-out rule below has the
+ * full column to resolve against. Checked via exact class-token counts
+ * against the built HTML: only two of the six are confirmed as direct `<li>`
+ * children today — `table` (7 occurrences across 4 pages) and
+ * `[class*='codeBlockContainer']` (11 across 5 pages). `pre`,
+ * `.tabs-container`, `.theme-admonition` and `img` currently count 0 as
+ * direct `<li>` children; they are kept defensively for plausible future
+ * content, not because today's markup exercises them.
+ */
+.theme-doc-markdown.markdown li:has(> table),
+.theme-doc-markdown.markdown li:has(> pre),
+.theme-doc-markdown.markdown li:has(> [class*='codeBlockContainer']),
+.theme-doc-markdown.markdown li:has(> .tabs-container),
+.theme-doc-markdown.markdown li:has(> .theme-admonition),
+.theme-doc-markdown.markdown li:has(> img) {
+  max-width: 100%;
+}
+
+/*
+ * This selector list was checked against this Docusaurus version's rendered
+ * markup using exact class-token counts (not substring grep — a substring
+ * check previously produced a false positive for `.admonition`, which
+ * matched zero elements because the real class is `theme-admonition`; the
+ * substring `admonition` only ever appears inside longer tokens like
+ * `theme-admonition` and hashed `admonition_xJq3`). `theme-admonition` is
+ * Docusaurus's stable public class for this component, unlike the hashed
+ * CSS-module classes, which change between builds. The upstream
+ * `[class*='card']` entry was dropped: no page in this site currently
+ * renders a `@theme/Card`-family component inside doc markdown, so it
+ * matches zero elements here. Do not restore it from the reference CSS.
+ */
+.theme-doc-markdown.markdown table,
+.theme-doc-markdown.markdown pre,
+.theme-doc-markdown.markdown [class*='codeBlockContainer'],
+.theme-doc-markdown.markdown .tabs-container,
+.theme-doc-markdown.markdown .theme-admonition,
+.theme-doc-markdown.markdown img {
+  max-width: 100%;
+}
+
+
+[class*='docItemCol'] {
+  padding-left: 3rem;
+  padding-right: 1rem;
+}
+
+
+@media (min-width: 997px) {
+  [class*='docItemCol'][class*='docItemCol'] {
+    max-width: min(75%, calc(820px + 3rem + 1rem)) !important;
+  }
+}
+
+@media (min-width: 997px) {
+  [class*='docsWrapper'] main[class*='docMainContainer'] > .container {
+    padding-top: 3.5rem;
+  }
+}
+
+/* =========================== 7a. Sidebar chrome ========================= */
+
+:root {
+  --ifm-menu-color-background-hover: none;
+}
+
+.theme-doc-sidebar-container {
+  background: transparent;
+  padding-left: 0;
+  padding-right: 2rem;
+}
+
+/*
+ * The left padding aligns the sidebar with the rest of the page chrome. The
+ * navbar sets 40px of its own, so its brand mark starts there; at 0 the rail
+ * sat 40px to the left of everything above it and read as though it had
+ * fallen off the edge of the page. 1.75rem here plus the 0.75rem each
+ * `.menu__link` carries puts a section label's icon at exactly 40px, under
+ * the brand.
+ *
+ * The reference design uses 5rem of right padding. Open banking has long
+ * sidebar labels, so 2rem is used instead to keep them from wrapping three
+ * deep. 360 - 28 - 32 leaves 300px of usable width; longer labels wrap to two
+ * lines by design, because a wider rail costs the content column width on
+ * every page.
+ */
+.theme-doc-sidebar-container .menu {
+  padding: 0.5rem 2rem 1rem 1.75rem;
+}
+
+.theme-doc-sidebar-container .menu > .menu__list {
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-menu {
+  margin-top: 2rem;
+}
+
+/* Drop the divider rule between sidebar and content. */
+[class*='docSidebarContainer'],
+aside.theme-doc-sidebar-container {
+  border-right: none;
+  border-right-width: 0;
+}
+
+/* ---- Item styling ---- */
+
+.theme-doc-sidebar-container .menu__list {
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-container .menu__link {
+  border-radius: 6px;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.45rem 0.75rem;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+/*
+ * Without some exclusion of the active link, this rule's specificity
+ * ([data-theme='light'] + 2 classes = (0,3,0)) beats `.menu__link--active`
+ * (0,2,0) below, and silently overrides the active link's orange text with
+ * this grey in light mode, leaving only the pill background orange
+ * (verified via headless Chrome: the active link's text rendered grey, not
+ * orange, in light mode).
+ *
+ * A bare `:not(.menu__link--active)` would fix that but breaks something
+ * else: `:not()` contributes the specificity of its own argument, so
+ * `:not(.menu__link--active)` adds a THIRD class, raising this rule to
+ * (0,4,0) — which then beats `.menu__link:hover` at (0,3,0) below, and
+ * hovering any ordinary (non-active) sidebar link in light mode would stop
+ * changing its text color at all (the hover pill background still shows,
+ * so this fails silently — confirmed by testing light-mode hover directly:
+ * with a bare `:not()`, hovering "Environment" left `color` unchanged
+ * before/after; only the dark-mode hover path was exercised the first time
+ * this was verified, which is why this regression wasn't caught then).
+ *
+ * `:where(:not(.menu__link--active))` keeps the same exclusion but
+ * contributes ZERO specificity, so this rule stays at its true (0,3,0),
+ * ties with `.menu__link:hover` (0,3,0), and the hover rule — declared
+ * later in this file — wins that tie by source order as intended. Do not
+ * "simplify" this back to a bare `:not()`; that reintroduces the light-mode
+ * hover regression.
+ */
+[data-theme='light'] .theme-doc-sidebar-container .menu__link:where(:not(.menu__link--active)) {
+  color: var(--ifm-color-emphasis-800);
+}
+
+.theme-doc-sidebar-container .menu__link:hover {
+  background: color-mix(in srgb, var(--ifm-color-emphasis-200) 40%, transparent);
+  color: var(--ifm-color-emphasis-900);
+}
+
+.theme-doc-sidebar-container .menu__link--active {
+  background: color-mix(in srgb, var(--ifm-color-primary) 10%, transparent);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* ---- Collapsible rows ---- */
+
+.theme-doc-sidebar-container .menu__list-item-collapsible {
+  align-items: center;
+  border-radius: 6px;
+  display: flex;
+  transition: background 0.15s ease;
+}
+
+.theme-doc-sidebar-container .menu__list-item-collapsible:hover {
+  background: color-mix(in srgb, var(--ifm-color-emphasis-200) 40%, transparent);
+}
+
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__link {
+  background: transparent;
+  border-radius: 0;
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__link:hover {
+  background: transparent;
+}
+
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__link--active {
+  background: transparent;
+  color: var(--ifm-color-primary);
+}
+
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__caret {
+  flex-shrink: 0;
+  opacity: 1;
+  padding: 0.25rem 0.4rem;
+  transition: transform 0.2s ease;
+}
+
+/* ---- Nesting indentation ---- */
+
+/*
+ * Indent each level under its parent. At 0 the first nested level sat flush
+ * with the section header above it, so a category's children read as more
+ * section headers rather than as its contents -- most visible under a section
+ * whose children are themselves collapsible.
+ *
+ * The value is the section header's icon box -- its 17px width plus the
+ * 0.5rem flex gap -- so a child's label starts exactly under its parent's
+ * label rather than under the parent's icon. The two rules compound, putting
+ * level 3 a further 0.75rem in.
+ *
+ * Don't raise it much further. The 360px rail leaves 300px once the menu's
+ * own padding is taken out, and the longest labels already use all of it
+ * across two lines; more indent here starts a third.
+ */
+.theme-doc-sidebar-container .theme-doc-sidebar-item-category > .menu__list {
+  padding-left: calc(17px + 0.5rem);
+}
+
+.theme-doc-sidebar-container .theme-doc-sidebar-item-category > .menu__list .menu__list {
+  padding-left: 0.75rem;
+}
+
+/* ======================= 7b. Sidebar section headers ==================== */
+
+/*
+ * Style each TOP-LEVEL sidebar entry as a section header with a masked icon.
+ * The `> .menu__list >` direct-child chain keeps nested categories
+ * (for example Install and Setup > Quick Start Guide) out of this.
+ *
+ * The label keeps the sidebar's own font and reads in the case it is written
+ * in; weight, size and the icon carry the hierarchy on their own. It was set
+ * in caps with 0.08em of tracking, which at this weight read as shouted rather
+ * than structural. Tracking went with the caps: it exists to keep uppercase
+ * legible and only loosens normal-case text.
+ *
+ * Two selector groups because a top-level type:'doc' or ref entry has no
+ * .menu__list-item-collapsible wrapper, unlike a category.
+ *
+ * `[class*='sidebar-section-icon-']` gates every rule in this section on the
+ * className the sidebar data files add. Without it, the structural
+ * `> .menu__list >` position alone is enough to match — including a top-level
+ * entry that has no icon class. The icon `::before` (below) would then paint
+ * a solid background-colored 17x17 square — width, height and
+ * background-color still apply even though `mask-image:
+ * var(--sidebar-section-icon)` resolves to `none` with the variable unset —
+ * the "solid-block icon" failure mode. Every rule below therefore requires
+ * the class.
+ */
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link {
+  align-items: center;
+  background: none;
+  color: var(--ifm-font-color-base);
+  display: flex;
+  font-size: 0.95rem;
+  font-weight: 700;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem 0.6rem;
+}
+
+[data-theme='dark']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link,
+[data-theme='dark']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link {
+  color: #ffffff;
+}
+
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible:hover
+  > .menu__link,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link:hover {
+  background: none;
+  color: var(--ifm-color-primary);
+}
+
+/* Space between one section and the next. */
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-'],
+.theme-doc-sidebar-container .menu > .menu__list > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-'] {
+  margin-top: 1.25rem;
+}
+
+/* The icon itself, painted from --sidebar-section-icon via a mask. */
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link::before,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link::before {
+  background-color: var(--ifm-color-emphasis-700);
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  height: 17px;
+  width: 17px;
+  mask-image: var(--sidebar-section-icon);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-image: var(--sidebar-section-icon);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+/*
+ * Restore the orange active accent on a top-level entry. The header color
+ * rule above — including the `[class*='sidebar-section-icon-']` gate added
+ * alongside every selector in this section — is (0,7,0) for the category
+ * branch / (0,6,0) for the doc-link branch, both of which out-specify
+ * section 7a's `.menu__link--active` (0,2,0/0,3,0) — so without this, a
+ * top-level entry that is itself the current page (a type:'doc' entry) or an
+ * ancestor of it (e.g. Get Started while viewing Quick Start Guide)
+ * silently loses its orange text and reads as an ordinary, unvisited
+ * header. Confirmed via headless Chrome before adding this rule: both cases
+ * rendered in the plain header color, not orange.
+ *
+ * This rule mirrors the header rule's exact ancestor chain and gate, just
+ * swapping `.menu__link` for `.menu__link--active`, so it lands at the same
+ * specificity — (0,7,0)/(0,6,0) here — and wins the tie by source order
+ * (declared after the header rule). The dark-mode variant below is needed
+ * separately because `[data-theme='dark'] ... > .menu__link` above is
+ * (0,8,0)/(0,7,0), one level higher than this rule alone, for the same
+ * reason: matching selector shape, one more `[data-theme='dark']`
+ * attribute.
+ */
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link--active,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link--active {
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link--active,
+[data-theme='dark']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link--active {
+  color: var(--ifm-color-primary);
+}
+
+/* ---- Per-section icons ---- */
+
+
+.sidebar-section-icon-get-started {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E");
+}
+
+.sidebar-section-icon-install-and-setup {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' x2='12' y1='15' y2='3'/%3E%3C/svg%3E");
+}
+
+.sidebar-section-icon-tryout-flows {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2'/%3E%3Cpath d='M8.5 2h7'/%3E%3Cpath d='M7 16h10'/%3E%3C/svg%3E");
+}
+
+.sidebar-section-icon-learn {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 10v6'/%3E%3Cpath d='m2 10 10-5 10 5-10 5z'/%3E%3Cpath d='M6 12v5c3 3 9 3 12 0v-5'/%3E%3C/svg%3E");
+}
+
+.sidebar-section-icon-develop {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+}
+
+.sidebar-section-icon-references {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m16 6 4 14'/%3E%3Cpath d='M12 6v14'/%3E%3Cpath d='M8 8v12'/%3E%3Cpath d='M4 4v16'/%3E%3C/svg%3E");
+}
+
+/* ========================= 8. Navbar and TOC ============================ */
+
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: none;
+  padding: 0 2.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+html[data-theme='dark'] .navbar {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.navbar__item,
+.menu__link {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.navbar__items--right {
+  gap: 0.25rem;
+}
+
+@media (min-width: 997px) {
+  .navbar .navbar__brand {
+    margin-left: 0;
+  }
+}
+
+/* ---- Dropdown chevron ---- */
+
+.dropdown > .navbar__link {
+  align-items: center;
+  display: flex;
+}
+
+.dropdown > .navbar__link::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z' fill='%23888888'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 12px;
+  border: none;
+  content: '';
+  height: 12px;
+  position: static;
+  top: auto;
+  transform: none;
+  width: 12px;
+}
+
+html[data-theme='dark'] .dropdown > .navbar__link::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z' fill='%23ffffff'/%3E%3C/svg%3E");
+}
+
+.dropdown:hover > .navbar__link::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z' fill='%23fa7b3f'/%3E%3C/svg%3E");
+}
+
+/*
+ * Without this, dark mode's default-state rule above silently wins over the
+ * hover rule regardless of :hover being active: `html[data-theme='dark']
+ * .dropdown > .navbar__link::after` is one html type selector, one
+ * [data-theme] attribute, two classes and one ::after pseudo-element — (0,3,2)
+ * — which outranks the plain `.dropdown:hover > .navbar__link::after` above
+ * (two classes, one :hover pseudo-class, one ::after — (0,3,1)), so the
+ * chevron stayed white on hover in dark mode. Verified via headless Chrome:
+ * hovering the version-dropdown link in dark mode kept the white chevron
+ * until this rule was added. This selector — html + [data-theme] + two
+ * classes + :hover + ::after — is (0,4,2), which beats both unconditionally.
+ */
+html[data-theme='dark'] .dropdown:hover > .navbar__link::after {
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z' fill='%23fa7b3f'/%3E%3C/svg%3E");
+}
+
+/* ---- Table of contents ---- */
+
+:root {
+  --ifm-toc-border-color: var(--ifm-color-emphasis-200);
+  --ifm-toc-padding-vertical: 0.8rem;
+}
+
+.table-of-contents,
+[class*='tocCollapsible'],
+div[class*='tableOfContents'] {
+  padding-left: 1rem;
+}
+
+/*
+ * The TOC's 220px floor is gated to >=1250px, and that number is not arbitrary.
+ * The desktop TOC lives in a `col--3` (25% of the row). With the 360px sidebar
+ * this port widens to, a 997px viewport leaves ~637px of row, so a quarter of
+ * it is ~159px — forcing 220px there pushes the whole page 61px wider than the
+ * viewport and produces a horizontal scrollbar. The excess tapers as the
+ * viewport grows and reaches zero at ~1250px, which is where 25% of the row
+ * first genuinely accommodates 220px. Below that the TOC simply flexes
+ * narrower, which is the correct behaviour. Measured at 997/1024/1100/1200/1250
+ * before and after; do not remove this media gate.
+ */
+@media (min-width: 1250px) {
+  .table-of-contents,
+  [class*='tocCollapsible'],
+  div[class*='tableOfContents'] {
+    min-width: 220px;
+  }
+}
+
+/*
+ * The existing src/theme/DocItem/Layout swizzle renders the desktop TOC in a
+ * `col col--3`. Pull it inward so it does not crowd the content column.
+ */
+div[class*='col--3'] {
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 2rem;
+}
+
+/* ================== 9. Code blocks, inline code, admonitions ============ */
+
+/* ---- Code block filename tab ---- */
+
+/*
+ * `codeBlockTitle` currently matches nothing: no doc in this repo uses a code
+ * block `title=` yet. That is fine — this is forward-looking, not dead code,
+ * and it will apply the moment a page adds one. Do not delete it as unmatched.
+ */
+[class*='codeBlockTitle'] {
+  background: color-mix(in srgb, var(--ifm-color-primary) 5%, var(--ifm-color-emphasis-100));
+  border-bottom: 1px solid color-mix(in srgb, var(--ifm-color-primary) 15%, var(--ifm-color-emphasis-200));
+  color: var(--ifm-color-content-secondary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 0.45rem var(--ifm-pre-padding);
+}
+
+[data-theme='dark'] [class*='codeBlockTitle'] {
+  background: color-mix(in srgb, var(--ifm-color-primary) 8%, rgba(255, 255, 255, 0.04));
+  border-bottom-color: color-mix(in srgb, var(--ifm-color-primary) 20%, rgba(255, 255, 255, 0.06));
+  color: color-mix(in srgb, var(--ifm-color-primary) 40%, var(--ifm-color-emphasis-600));
+}
+
+/* ---- Inline code pills ---- */
+
+/*
+ * The reference design colors this text with --ifm-color-primary-light unconditionally.
+ * Measured (WCAG relative-luminance formula) against this pill's own
+ * background — 8% #fa7b3f mixed into white, ≈ #fff4f0 in light mode — that
+ * gives only 2.07:1, far under AA's 4.5:1 for normal text. Checked the whole
+ * light ramp against the same background: darkest 4.90:1 (passes), darker
+ * 3.87:1, dark 3.28:1, base 2.44:1, light 2.07:1 — only darkest clears AA, so
+ * that is the default (light-mode) color below. Dark mode does not have this
+ * problem: against its own pill background (8% dark-ramp base #fb8c55 mixed
+ * into #1b1b1d, ≈ #2d2421), --ifm-color-primary-light (#fca17a) measures
+ * 7.59:1, so dark mode keeps that original choice via the override
+ * that follows.
+ */
+.markdown code:not([class*='language-']):not(pre code) {
+  background-color: color-mix(in srgb, var(--ifm-color-primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 18%, transparent);
+  border-radius: 4px;
+  color: var(--ifm-color-primary-darkest);
+  font-size: 0.875em;
+  padding: 0.1em 0.4em;
+}
+
+[data-theme='dark'] .markdown code:not([class*='language-']):not(pre code) {
+  color: var(--ifm-color-primary-light);
+}
+
+.markdown strong,
+.markdown b {
+  color: var(--ifm-font-color-base);
+  font-weight: 700;
+}
+
+/* ---- Code blocks: the <pre> is the sole visual layer ---- */
+
+/*
+ * Verified via CDP CSS.getMatchedStylesForNode against the live page: the
+ * container div carries BOTH classes on the SAME element — rendered markup
+ * is `<div class="... codeBlockContainer_<hash> theme-code-block">` — not
+ * `.theme-code-block` as an ancestor of a separate codeBlockContainer
+ * element. A descendant-combinator selector here (`.theme-code-block
+ * [class*='codeBlockContainer']`, with a space) therefore matches nothing,
+ * leaving only the bare `[class*='codeBlockContainer_']` alternative, which
+ * is a single attribute selector at (0,1,0) — the exact same specificity as
+ * Docusaurus's own compiled `.codeBlockContainer_<hash> { margin-bottom:
+ * var(--ifm-leading); background: var(--prism-background-color); box-shadow:
+ * var(--ifm-global-shadow-lw); border-radius: var(--ifm-code-border-radius);
+ * }` rule. The tie is broken by plain, deterministic build-time CSS bundling
+ * order: webpack concatenates this file and Docusaurus's compiled theme-classic
+ * CSS into one stylesheet, and that rule's selector lands at a later byte
+ * offset than this file's (125623 vs 78116 in the built bundle) — nothing
+ * about client-side mounting is involved. (CodeBlock's copy/word-wrap buttons
+ * ARE `BrowserOnly` — genuinely client-rendered — but that fact is about those
+ * buttons, not about when this CSS rule is bundled or ordered, and does not
+ * explain the tie.) So on the (0,1,0) tie, source order broke in its favor and
+ * every property below (margin-bottom included, the very 1.1rem rhythm value
+ * this section exists for) was silently losing. Fixed by making the first
+ * selector a compound match on the one real element — `.theme-code-block`
+ * plus the attribute selector, no space — which raises specificity to
+ * (0,2,0) and wins outright regardless of stylesheet order.
+ */
+.theme-code-block[class*='codeBlockContainer'],
+[class*='codeBlockContainer_'] {
+  background: transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  /*
+   * 1.1rem, not the reference design's 1rem, to match the paragraph rhythm above.
+   * Docusaurus wraps every <pre> in this container div, so `.markdown > pre`
+   * never matches and this rule is the ONLY thing controlling the gap between a
+   * code block and the prose after it. At 1rem that gap would be visibly tighter
+   * than the 1.1rem between paragraphs, on the code-heavy pages this theme is
+   * most often read on.
+   */
+  margin-bottom: 1.1rem;
+  overflow: hidden;
+}
+
+.theme-code-block[class*='codeBlockContainer'] pre.prism-code,
+[class*='codeBlockContainer_'] pre.prism-code {
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem 1.25rem;
+}
+
+.theme-code-block [class*='codeBlockContent'],
+[class*='codeBlockContent_'] {
+  background: transparent;
+}
+
+[class*='codeBlockContainer'] [class*='buttonGroup'] {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+.tabs-container > .margin-top--md {
+  margin-top: 1.5rem;
+}
+
+/* ---- Admonitions ---- */
+
+/*
+ * Selector note, verified against built markup: this Docusaurus version emits
+ * `theme-admonition ... admonition_<hash> alert alert--<kind>` with
+ * `admonitionHeading_<hash>` and `admonitionContent_<hash>` inside. The bare
+ * classes `.admonition`, `.admonition-heading` and `.admonition-content` that
+ * the reference stylesheet uses match ZERO elements here (exact-token counts: 0,
+ * 0, 0 across all v1.0.0 pages, vs 161 each for the hashed forms). Use the
+ * stable `theme-` class and attribute-substring matches for the hashed ones.
+ */
+.theme-admonition {
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.875rem 1rem;
+}
+
+/*
+ * Another Docusaurus version renders the admonition title inside a
+ * nested <h5>; this repo's version does not. Its compiled Admonition/Layout
+ * component (node_modules/@docusaurus/theme-classic) renders the heading as
+ * a plain `<div className={styles.admonitionHeading}><span
+ * className={styles.admonitionIcon}>{icon}</span>{title}</div>` — no
+ * heading tag at all. `[class*='admonitionHeading'] h5` therefore matches
+ * ZERO elements (confirmed: 0 occurrences of an h5 inside
+ * admonitionHeading_<hash> across all built v1.0.0 pages) — genuinely dead,
+ * not forward-looking, since no Docusaurus config here will ever add that
+ * tag back. Style the heading div itself instead.
+ *
+ * Docusaurus's own compiled rule for this element,
+ * `.admonitionHeading_<hash> { font: ...; text-transform: uppercase; }`, is
+ * a single class selector at specificity (0,1,0). A bare
+ * `[class*='admonitionHeading']` here would tie it. `.theme-admonition
+ * [class*='admonitionHeading']` is a genuine ancestor-descendant selector
+ * (the heading div is nested inside the admonition container div) adding
+ * `.theme-admonition`'s class specificity, for (0,2,0) total — which beats
+ * (0,1,0) unconditionally, independent of stylesheet order.
+ */
+.theme-admonition [class*='admonitionHeading'] {
+  align-items: center;
+  display: flex;
+  font-size: 0.7rem;
+  font-weight: 700;
+  gap: 0.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[class*='admonitionContent'] p {
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+/* Uniform translucent fill tinted to match the admonition's own border. */
+.theme-admonition.alert {
+  background-color: color-mix(in srgb, var(--ifm-alert-border-color) 10%, transparent);
+  background-image: none;
+}
+
+/* =========================== 10. Responsive ============================= */
+
+/*
+ * The wide container and 3rem content padding from section 6 (Layout) and the
+ * 2.5rem navbar padding from section 8 are desktop-only choices tuned for the
+ * 360px sidebar rail; both are unwound below 997px, the breakpoint at which
+ * Infima swaps the fixed sidebar for the mobile drawer. Without the unwind the
+ * content sits 48px from the left edge and 16px from the right on a phone.
+ */
+@media (max-width: 996px) {
+  [class*='docItemCol'] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  /* Let breadcrumbs wrap rather than overflow on narrow screens. */
+  nav.theme-doc-breadcrumbs .breadcrumbs {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    row-gap: 0.35rem;
+  }
+
+  nav.theme-doc-breadcrumbs .breadcrumbs__item,
+  nav.theme-doc-breadcrumbs .breadcrumbs__link {
+    align-items: center;
+    display: inline-flex;
+    max-width: 100%;
+  }
+
+  /* The mobile drawer reuses .menu__link; keep it tappable. */
+  .navbar-sidebar .menu__link {
+    font-size: 0.95rem;
+  }
+}
