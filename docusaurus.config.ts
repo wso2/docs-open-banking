@@ -88,6 +88,7 @@ const config: Config = {
             './src/css/custom.css',
             './src/css/site-theme.css',
             './src/css/ob-content.css',
+            './src/css/site-look.css',
           ],
         },
       } satisfies Preset.Options,

@@ -1,0 +1,721 @@
+/**
+ * Site look: palette, Gilmer font, flat light and dark backgrounds, side menu, code blocks, navbar, footer,
+ * the Home page and the narrow-screen header, applied on top of the existing site styles.
+ *
+ * This file loads after custom.css, site-theme.css and ob-content.css (see docusaurus.config.ts), so it
+ * wins on equal specificity. To go back to the previous look, remove it from `customCss`.
+ */
+
+/* ================================ Font =================================== */
+
+@font-face {
+  font-family: 'Gilmer';
+  src: url('./fonts/gilmer/gilmer-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilmer';
+  src: url('./fonts/gilmer/gilmer-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilmer';
+  src: url('./fonts/gilmer/gilmer-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================================ Tokens ================================= */
+
+:root {
+  --theme-font: 'Gilmer', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+
+  /* Orange ramp built on the primary (#ff7300) and the accent (#e46700). */
+  --ifm-color-primary: #ff7300;
+  --ifm-color-primary-dark: #e46700;
+  --ifm-color-primary-darker: #cc5c00;
+  --ifm-color-primary-darkest: #a34a00;
+  --ifm-color-primary-light: #ff8a26;
+  --ifm-color-primary-lighter: #ffa04d;
+  --ifm-color-primary-lightest: #ffc794;
+
+  /* Orange as text on white is 2.9:1, so text links use a darker shade (4.9:1) and keep the brand orange for
+     buttons, active states and accents. */
+  --ifm-link-color: #b85300;
+  --ifm-link-hover-color: #8f4100;
+
+  --ifm-font-family-base: var(--theme-font);
+  --ifm-heading-font-family: var(--theme-font);
+  --ifm-global-radius: 8px;
+  --ifm-code-border-radius: 0.25rem;
+  --ifm-pre-border-radius: 0.4rem;
+  --ifm-card-border-radius: 12px;
+  --ifm-button-border-radius: 8px;
+
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-color-emphasis-200: #e9ecf3;
+  --ifm-color-emphasis-300: #d8dde8;
+  --ifm-toc-border-color: #d8dde8;
+  --ifm-table-border-color: #d8dde8;
+
+  --ifm-navbar-height: 62px;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-footer-background-color: #f9f9f9;
+  --ifm-footer-color: #1f2024;
+  --ifm-footer-link-color: #1f2024;
+
+  --theme-divider: #d8dde8;
+  --theme-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --site-background: none;
+}
+
+html[data-theme='dark'] {
+  --ifm-color-primary: #ff7300;
+  --ifm-color-primary-dark: #e46700;
+  --ifm-color-primary-darker: #cc5c00;
+  --ifm-color-primary-darkest: #a34a00;
+  --ifm-color-primary-light: #ff8a26;
+  --ifm-color-primary-lighter: #ffa04d;
+  --ifm-color-primary-lightest: #ffc794;
+
+  --ifm-link-color: #ff9440;
+  --ifm-link-hover-color: #ffb27a;
+
+  --ifm-background-color: #232327;
+  --ifm-background-surface-color: #1f2024;
+  --ifm-color-emphasis-200: rgba(255, 255, 255, 0.1);
+  --ifm-color-emphasis-300: rgba(255, 255, 255, 0.14);
+  --ifm-toc-border-color: rgba(255, 255, 255, 0.1);
+  --ifm-table-border-color: rgba(255, 255, 255, 0.1);
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.03);
+
+  --ifm-navbar-background-color: #232327;
+  --ifm-footer-background-color: #1f2024;
+  --ifm-footer-color: #d9d9de;
+  --ifm-footer-link-color: #d9d9de;
+
+  --theme-divider: rgba(255, 255, 255, 0.1);
+  --site-background: none;
+}
+
+html {
+  letter-spacing: 0.1px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar,
+.menu,
+.theme-doc-markdown {
+  font-family: var(--theme-font);
+}
+
+/* Headings and strong text use the Gilmer bold weight; navigation uses medium. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+  font-weight: 700;
+}
+
+/* Keep monospace content in a monospace stack, as the Gilmer rule above targets prose only. */
+code,
+kbd,
+pre {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+/* =============================== Navbar ================================== */
+
+.navbar {
+  background-color: var(--ifm-navbar-background-color);
+  border-bottom: 1px solid var(--theme-divider);
+  box-shadow: none;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+/* ============================== Sidebar ================================== */
+
+/*
+ * Plain navigation: small 14px items with no pill behind the active page (it is just coloured),
+ * medium-weight section labels with grey icons, and a thin vertical line beside the open sub-list.
+ * The previous sidebar used rounded hover and active backgrounds.
+ */
+
+.theme-doc-sidebar-container .menu__link {
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  padding: 0.4rem 0.5rem 0.4rem 0.75rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container .menu__link:where(:not(.menu__link--active)) {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.theme-doc-sidebar-container .menu__link:hover,
+.theme-doc-sidebar-container .menu__list-item-collapsible:hover,
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__link:hover {
+  background: none;
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='light'] .theme-doc-sidebar-container .menu__link:hover {
+  color: var(--ifm-link-color);
+}
+
+.theme-doc-sidebar-container .menu__link--active,
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__link--active {
+  background: none;
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+[data-theme='light'] .theme-doc-sidebar-container .menu__link--active {
+  color: var(--ifm-link-color);
+}
+
+.theme-doc-sidebar-container .menu__list-item {
+  margin-top: 0.3rem;
+}
+
+/* Open sub-list: thin vertical line on the left, items indented from it. */
+.theme-doc-sidebar-container .theme-doc-sidebar-item-category > .menu__list {
+  border-left: 1px solid var(--theme-divider);
+  margin: 0.4rem 0 0.4rem 0.5rem;
+  padding-left: 1rem;
+}
+
+.theme-doc-sidebar-container .theme-doc-sidebar-item-category > .menu__list .menu__list {
+  padding-left: 0.75rem;
+}
+
+.theme-doc-sidebar-container .menu__list-item-collapsible > .menu__caret {
+  padding: 0.25rem 0.3rem;
+}
+
+/* Section labels (top level): medium weight, grey icon, primary colour when the section is open. */
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+}
+
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link::before,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link::before {
+  background-color: #848484;
+}
+
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link--active::before,
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link--active::before {
+  background-color: var(--ifm-color-primary);
+}
+
+.theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-'],
+.theme-doc-sidebar-container .menu > .menu__list > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-'] {
+  margin-top: 0.9rem;
+}
+
+/* ============================ Code blocks ================================ */
+
+/*
+ * One dark code block in both colour modes (#161618). The colours of the
+ * tokens come from src/prismTheme.ts.
+ */
+.theme-code-block,
+[class*='codeBlockContainer'] {
+  border-radius: 0.4rem;
+  box-shadow: none;
+}
+
+.theme-code-block pre,
+pre.prism-code {
+  background-color: #161618;
+}
+
+[data-theme='light'] .markdown :not(pre) > code,
+[data-theme='light'] .markdown li > code,
+[data-theme='light'] .markdown td > code {
+  background-color: #eef0f6;
+  border: 1px solid #e1e4ee;
+  color: #1f2024;
+}
+
+[data-theme='dark'] .markdown :not(pre) > code {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e9e9ee;
+}
+
+/* ============================ Admonitions ================================ */
+
+.theme-admonition {
+  font-size: 14px;
+  border-radius: var(--ifm-global-radius);
+}
+
+[data-theme='dark'] .theme-admonition {
+  background-color: rgba(0, 0, 0, 0.17);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ================================ Buttons ================================ */
+
+.button--primary,
+.button.button--primary {
+  background: linear-gradient(77.74deg, #eb4f63 11.16%, #ff7300 99.55%);
+  border: 0;
+  color: #ffffff;
+}
+
+.button--primary:hover {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* ================================ Cards ================================== */
+
+.card,
+.theme-doc-markdown .card {
+  border: 1px solid var(--theme-divider);
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: var(--theme-shadow);
+  background-color: var(--ifm-background-surface-color);
+}
+
+/* ================================ Footer ================================= */
+
+.footer {
+  border-top: 1px solid var(--theme-divider);
+  background-color: var(--ifm-footer-background-color);
+  color: var(--ifm-footer-color);
+}
+
+.footer a:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* ================================ Tables ================================= */
+
+.markdown table {
+  border-radius: var(--ifm-global-radius);
+}
+
+.markdown table th {
+  font-weight: 700;
+}
+
+/* ======================= Landing page background glow ==================== */
+
+/*
+ * The Home page has a large blurred glow (blue, gold, orange; 15% opacity) behind its top; all other pages
+ * are flat. The glow is scoped to the Home page by the class Docusaurus puts on <html>.
+ */
+html[class~='docs-doc-id-home'] #__docusaurus {
+  position: relative;
+  overflow-x: clip;
+}
+
+html[class~='docs-doc-id-home'] #__docusaurus::before {
+  content: '';
+  position: absolute;
+  top: -500px;
+  left: 50%;
+  width: 1000px;
+  height: 1000px;
+  max-width: 100%;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #d9a300 180deg, #ff7300 1turn);
+  filter: blur(75px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+html[class~='docs-doc-id-home'][data-theme='dark'] #__docusaurus::before {
+  opacity: 0.22;
+}
+
+html[class~='docs-doc-id-home'] .main-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+@media print {
+  html[class~='docs-doc-id-home'] #__docusaurus::before {
+    display: none;
+  }
+}
+
+/* ============================== Home page ================================ */
+
+/*
+ * Layout of the Home page (en/docs/home.md, components in src/components/HomePage): a hero, feature tiles,
+ * and a grid of section summaries with link lists.
+ */
+
+.ob-home {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 4rem;
+}
+
+.ob-home__top {
+  align-items: center;
+  display: grid;
+  gap: 2rem 3rem;
+  grid-template-columns: 1fr;
+  margin: 1.5rem 0 2rem;
+}
+
+@media (min-width: 1100px) {
+  .ob-home__top {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.ob-home__hero {
+  margin: 0;
+}
+
+.ob-home__hero h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.ob-home__hero p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.ob-home__heading {
+  margin: 3rem 0 1.5rem;
+  font-size: 1.6rem;
+}
+
+/* Icon circle used by tiles and section headers. */
+.ob-home__icon {
+  align-items: center;
+  background: color-mix(in srgb, var(--ifm-color-primary) 12%, transparent);
+  border-radius: 12px;
+  color: var(--ifm-color-primary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 2.75rem;
+  justify-content: center;
+  width: 2.75rem;
+}
+
+.ob-home__icon--round {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+}
+
+.ob-home__icon-svg {
+  height: 1.35rem;
+  width: 1.35rem;
+}
+
+.ob-home__icon--round .ob-home__icon-svg {
+  height: 1.05rem;
+  width: 1.05rem;
+}
+
+/* Feature tiles. */
+.ob-home__tiles {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin-top: 2.5rem;
+}
+
+.ob-home__tile {
+  align-items: flex-start;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--theme-divider);
+  border-radius: var(--ifm-card-border-radius);
+  color: var(--ifm-font-color-base);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.ob-home__tile:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: var(--theme-shadow);
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.ob-home__tile-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ob-home__tile-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.ob-home__tile-hint {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Section summaries: one column per section with a header and a divided link list. */
+.ob-home__sections {
+  display: grid;
+  gap: 2rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.ob-home__section-header {
+  align-items: center;
+  color: var(--ifm-font-color-base);
+  display: flex;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.ob-home__section-header:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.ob-home__section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.ob-home__section-description {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.ob-home__section-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ob-home__section-links li {
+  border-bottom: 1px solid var(--theme-divider);
+  margin: 0;
+}
+
+.ob-home__section-links li:last-child {
+  border-bottom: none;
+}
+
+.ob-home__section-links a {
+  display: block;
+  font-size: 0.92rem;
+  padding: 0.6rem 0;
+}
+
+/* Sidebar icon for the Home entry (house). */
+.sidebar-section-icon-home {
+  --sidebar-section-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z'/%3E%3C/svg%3E");
+}
+
+/* ===================== Light mode: legible orange text =================== */
+
+/*
+ * #ff7300 on white is only 2.9:1, too faint for text. In light mode every place that coloured text with the
+ * brand orange (active and hovered menu entries, the current breadcrumb, the table of contents) uses the
+ * darker text orange (--ifm-link-color, 4.9:1) instead. Buttons, icons and other non-text accents keep #ff7300.
+ */
+html[data-theme='light'] .navbar__link:hover,
+html[data-theme='light'] .navbar__link--active,
+html[data-theme='light'] .navbar__item.dropdown:hover > .navbar__link,
+html[data-theme='light'] .breadcrumbs__item--active .breadcrumbs__link,
+html[data-theme='light'] .table-of-contents__link--active,
+html[data-theme='light'] .table-of-contents__link:hover,
+html[data-theme='light'] .theme-doc-sidebar-container .menu__link:hover,
+html[data-theme='light'] .theme-doc-sidebar-container .menu__link--active,
+html[data-theme='light'] .theme-doc-sidebar-container .menu__list-item-collapsible:hover > .menu__link,
+html[data-theme='light'] .theme-doc-sidebar-container .menu__list-item-collapsible > .menu__link--active,
+html[data-theme='light']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible
+  > .menu__link--active,
+html[data-theme='light']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link--active,
+html[data-theme='light']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-category[class*='sidebar-section-icon-']
+  > .menu__list-item-collapsible:hover
+  > .menu__link,
+html[data-theme='light']
+  .theme-doc-sidebar-container
+  .menu
+  > .menu__list
+  > .theme-doc-sidebar-item-link[class*='sidebar-section-icon-']
+  > .menu__link:hover {
+  color: var(--ifm-link-color);
+}
+
+html[data-theme='light'] .ob-home__tile:hover {
+  border-color: var(--ifm-link-color);
+}
+
+/* Menu text that is not highlighted: a clearly dark grey in light mode. */
+html[data-theme='light'] .theme-doc-sidebar-container .menu__link:not(.menu__link--active) {
+  color: #2b2e34;
+}
+
+html[data-theme='light'] .navbar__title {
+  color: #1f2024;
+}
+
+/* =========================== Narrow screens ============================== */
+
+/*
+ * The wider Gilmer font made "Open Banking Accelerator" run into the search button on narrow phones. Let the
+ * brand shrink and end with an ellipsis, and keep the search button at its natural size.
+ */
+@media (max-width: 996px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .navbar__inner {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  .navbar__items {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .navbar__brand {
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    margin-right: 0;
+  }
+
+  .navbar__title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .navbar__items--right {
+    flex: 0 0 auto;
+    min-width: auto;
+  }
+
+  /* Docusaurus positions the search container absolutely on small screens, which takes it out of the flex row,
+     so the brand ran underneath it. Put it back in the row. */
+  .navbar [class*='navbarSearchContainer'] {
+    position: static;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar__title {
+    font-size: 0.95rem;
+  }
+
+  .navbar__toggle {
+    margin-right: 0.5rem;
+  }
+}
+
+/* Links inside page content use the darker text orange in light mode as well. */
+html[data-theme='light'] .theme-doc-markdown a:not([class*='button']):not([class*='card']):not([class*='tile']) {
+  color: var(--ifm-link-color);
+}
+
+html[data-theme='light'] .theme-doc-markdown a:not([class*='button']):not([class*='card']):not([class*='tile']):hover {
+  color: var(--ifm-link-hover-color);
+}
+
+/* Version tables: square corners (rounded corners clip the collapsed borders) and tighter cells on phones. */
+.markdown table {
+  border-radius: 0;
+}
+
+@media (max-width: 420px) {
+  .markdown table th,
+  .markdown table td {
+    padding: 0.5rem 0.6rem;
+  }
+}
