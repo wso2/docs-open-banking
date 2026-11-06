@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import prismTheme from './src/prismTheme';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import fs from 'fs';
@@ -170,14 +170,6 @@ const config: Config = {
         excludeRoutes: [],
       },
     ],
-    // The page that used to be served at /get-started/wso2-open-banking-accelerator/ is now the landing
-    // page (slug: /). Keep the old URL working.
-    [
-      '@docusaurus/plugin-client-redirects',
-      {
-        redirects: [{from: '/get-started/wso2-open-banking-accelerator', to: '/'}],
-      },
-    ],
     gtmNoscriptPlugin,
     copyLinkedImagesPlugin,
   ],
@@ -205,12 +197,13 @@ const config: Config = {
         theme: {
           // Order matters: site-theme.css layers the site theme over
           // custom.css and relies on loading second to win on equal
-          // specificity. ob-content.css (page content styles) loads last.
+          // specificity. ob-content.css (page content styles) loads next to last; site-look.css (the site look) loads last.
           // Do not reorder.
           customCss: [
             './src/css/custom.css',
             './src/css/site-theme.css',
             './src/css/ob-content.css',
+            './src/css/site-look.css',
           ],
         },
       } satisfies Preset.Options,
@@ -277,8 +270,8 @@ const config: Config = {
         'Copyright © WSO2 LLC 2025 | Content licensed under CC By 4.0 | Sample code licensed under Apache 2.0',
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismTheme,
+      darkTheme: prismTheme,
     },
   } satisfies Preset.ThemeConfig,
 };
