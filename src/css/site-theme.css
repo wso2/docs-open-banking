@@ -1004,3 +1004,39 @@ div[class*='col--3'] {
     font-size: 0.95rem;
   }
 }
+
+/*
+ * Wide pages (front matter `wide: true`, the Redoc API reference pages) use the whole content area.
+ * Without this the 820px reading width of `.markdown` leaves the three-panel Redoc layout squeezed
+ * into the left half of the page.
+ */
+.ob-wide-doc .theme-doc-markdown.markdown {
+  max-width: none;
+}
+
+/*
+ * Redoc computes a few text colours (the "Authorizations:" / "Request body schema:" labels and some
+ * descriptions) from its built-in dark-grey default instead of from the theme passed in by RedocSpec, so
+ * in dark mode they stay dark on a dark page. Redoc is self-hosted and pinned (redoc@2.5.4), so these
+ * element selectors are stable.
+ */
+html[data-theme='dark'] .redoc-wrap h5,
+html[data-theme='dark'] .redoc-wrap h5 span {
+  color: #b8b8b8;
+}
+
+html[data-theme='dark'] .redoc-wrap p {
+  color: #e6e6e6;
+}
+
+/* The selected tab of the right-hand samples panel keeps Redoc's white background, so give it dark chrome. */
+html[data-theme='dark'] .redoc-wrap .react-tabs__tab {
+  background: #2b2f33;
+  color: #e6e6e6;
+  border-color: #555555;
+}
+
+html[data-theme='dark'] .redoc-wrap .react-tabs__tab--selected {
+  background: #3a3f44;
+  color: #ffffff;
+}
