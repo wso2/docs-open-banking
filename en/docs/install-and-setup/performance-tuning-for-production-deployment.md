@@ -1,3 +1,6 @@
+---
+title: "Performance Tuning for Production Deployment"
+---
 # Performance Tuning for Production Deployment
 
 When deploying WSO2 Open Banking in a production server, make sure to go through the following performance tuning recommendations to optimize your production environment.

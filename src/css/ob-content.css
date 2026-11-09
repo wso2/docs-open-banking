@@ -1,0 +1,395 @@
+/*
+ * Page-content styles carried over from the MkDocs site (en/docs/assets/css/theme.css and the
+ * Material theme), for the markup the converted pages use.
+ *
+ *   1. Screenshots and the embedded video
+ *   2. Collapsible blocks (<details className="ob-details ob-details--<type>">)
+ *   3. Configuration catalogs (checkbox-hack "View Sample" toggle, CSS only)
+ */
+
+/* ===================== 1. Screenshots and embedded video ===================== */
+
+/*
+ * Screenshots that end a paragraph ("Select the gateway type.\n![shot](shot.png)") sit below their text.
+ * The source has no line break before many of them, so as an inline image such a screenshot lands to the
+ * right of the text whenever the content column is wide enough to fit both, and left-aligned otherwise.
+ * Making it a block starts it on its own line, left-aligned, at any width. In the built pages every such
+ * image is a full-size screenshot; none is an inline icon.
+ */
+.theme-doc-markdown.markdown p > img:last-child {
+  display: block;
+}
+
+/* The YouTube embed on the landing page: full column width, 16:9. */
+.ob-video {
+  margin: 1.25rem 0;
+}
+
+.ob-video iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+/* ========================= 2. Collapsible blocks ======================== */
+
+/*
+ * Docusaurus renders MDX <details> through its own Details component, which adds the
+ * .alert .alert--info classes; the colours are set through the Infima alert variables so the
+ * per-type colour wins over that default. Palette and shape follow the Material admonitions.
+ */
+details.ob-details {
+  --ob-details-color: #448aff;
+  --ob-details-tint: rgba(68, 138, 255, 0.1);
+  --ifm-alert-background-color: var(--ob-details-tint);
+  --ifm-alert-border-color: var(--ob-details-color);
+  --ifm-alert-foreground-color: var(--ifm-font-color-base);
+  margin: 1.5625em 0;
+  padding: 0 0.8rem;
+  border: 0;
+  border-left: 0.4rem solid var(--ob-details-color);
+  border-radius: 0.2rem;
+  background-color: var(--ifm-background-color);
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.1), 0 0 0.05rem rgba(0, 0, 0, 0.1);
+}
+
+details.ob-details--note {
+  --ob-details-color: #448aff;
+  --ob-details-tint: rgba(68, 138, 255, 0.1);
+}
+
+details.ob-details--tip {
+  --ob-details-color: #00bfa5;
+  --ob-details-tint: rgba(0, 191, 165, 0.1);
+}
+
+details.ob-details--info {
+  --ob-details-color: #00b8d4;
+  --ob-details-tint: rgba(0, 184, 212, 0.1);
+}
+
+details.ob-details--warning {
+  --ob-details-color: #ff9100;
+  --ob-details-tint: rgba(255, 145, 0, 0.1);
+}
+
+details.ob-details > summary {
+  position: relative;
+  margin: 0 -0.8rem 0 -0.8rem;
+  padding: 0.6rem 0.8rem 0.6rem 2rem;
+  background-color: var(--ob-details-tint);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/*
+ * One clean chevron per collapsible. Docusaurus draws its own arrow on the summary as a CSS border
+ * triangle (border-width/style/color, top, transform-origin), so those are reset here before the
+ * chevron is drawn with two borders: it points right when closed and down when open. The open state is
+ * the `open` attribute (no JavaScript) or Docusaurus' `data-collapsed` (while JavaScript animates).
+ */
+details.ob-details > summary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0.95rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.3rem;
+  border: 0;
+  border-right: 0.15rem solid var(--ob-details-color);
+  border-bottom: 0.15rem solid var(--ob-details-color);
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+  transition: transform 0.2s ease;
+}
+
+/* The doubled class raises the specificity above Docusaurus' own open-state rotation of its triangle. */
+details.ob-details.ob-details[open] > summary::before,
+details.ob-details.ob-details[data-collapsed='false'] > summary::before {
+  transform: rotate(45deg);
+}
+
+/* ====================== 3. Configuration catalogs ======================= */
+
+/*
+ * The catalogs (references/config-catalog-*.md) toggle each sample with a hidden checkbox and a
+ * sibling label, so no JavaScript is needed. The input stays focusable (visually hidden rather
+ * than display:none) and its label shows the focus ring.
+ */
+.mb-config-catalog .superfences-tabs {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 1em 0;
+  border: 0.1rem solid rgba(0, 0, 0, 0.07);
+  border-radius: 0.2em;
+}
+
+.mb-config-catalog .superfences-tabs > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mb-config-catalog .superfences-tabs > input:focus-visible + label {
+  outline: 2px solid #ff7043;
+  outline-offset: -2px;
+}
+
+.mb-config-catalog .superfences-tabs > label {
+  width: auto;
+  padding: 0.6rem 1rem;
+  color: #ff7043;
+  font-weight: normal;
+  cursor: pointer;
+  transition: color 0.125s;
+}
+
+.mb-config-catalog .superfences-tabs > label:hover,
+.mb-config-catalog .superfences-tabs > input:checked + label {
+  font-weight: bold;
+}
+
+.mb-config-catalog .superfences-tabs > input + label::after {
+  content: 'View Sample';
+}
+
+.mb-config-catalog .superfences-tabs > input:checked + label::after {
+  content: 'Hide Sample';
+}
+
+.mb-config-catalog .superfences-content {
+  display: none;
+  flex-direction: column;
+  order: 0;
+  width: 100%;
+}
+
+.mb-config-catalog .superfences-tabs > input:checked + label + .superfences-content {
+  display: block;
+}
+
+/* The </> glyph (Font Awesome fa-code in MkDocs) as a CSS-mask SVG (Lucide "code", ISC license). */
+.mb-config-catalog .tab-selector .icon.fa-code::before {
+  content: '';
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.2em;
+  background-color: currentColor;
+  -webkit-mask: var(--ob-code-icon) center / contain no-repeat;
+  mask: var(--ob-code-icon) center / contain no-repeat;
+  --ob-code-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='16 18 22 12 16 6'/%3E%3Cpolyline points='8 6 2 12 8 18'/%3E%3C/svg%3E");
+}
+
+.mb-config-catalog {
+    display: table;
+    width: 100%;
+    max-width: 770px;
+}
+
+.mb-config-catalog .superfences-tabs .tab-selector {
+    text-align: right;
+}
+
+.mb-config-catalog .superfences-tabs .tab-selector > .icon {
+    margin-right: 5px;
+}
+
+.mb-config-catalog .superfences-tabs .doc-wrapper {
+    padding: .525rem;
+}
+
+.mb-config-catalog > section {
+    display: table-row;
+}
+
+.mb-config-catalog > section > .mb-config-options,
+.mb-config-catalog > section > .mb-config-example {
+    display: table-cell;
+    flex-direction: column;
+    max-width: 770px;
+}
+
+.mb-config-catalog > section > .mb-config-example > .example-config-wrap {
+    margin-right: 1em;
+}
+
+.mb-config-catalog .mb-config > .params-wrap {
+    display: table;
+    width: 100%;
+}
+
+.mb-config-catalog > section > .mb-config-example > code {
+    font-weight: bold;
+    font-size: 105%;
+}
+
+
+.mb-config-catalog > section:not(.title) > .mb-config-options {
+    border-bottom: 1px solid #f5f5f5;
+    padding-top: 1em;
+}
+
+.mb-config-catalog > section:last-child > .mb-config-options {
+    border-bottom: none;
+}
+
+.mb-config-catalog > section:not(.title) > .mb-config-example {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.mb-config-catalog > section.title > .mb-config-example {
+    display: none;
+}
+
+.mb-config-catalog .mb-config-example code,
+.mb-config-catalog .mb-config-example pre {
+    margin: 0;
+}
+
+.mb-config-catalog > section.title > .mb-config-options > h2 {
+    margin-bottom: 1rem;
+}
+
+.mb-config-catalog > section > .mb-config-example {
+    background: #f5f5f5;
+    width: 35%;
+    padding: .5em;
+    vertical-align: top;
+}
+
+.mb-config-catalog > section > .mb-config-example code {
+    background: transparent;
+    box-shadow: none;
+    white-space: pre-line;
+}
+
+.mb-config-catalog .badge-required {
+    margin: 0 .29412em;
+    padding: .07353em .3em;
+    border-radius: .2rem;
+    background-color: #ff7043;
+    color: #fff;
+    font-size: 75%;
+}
+
+.mb-config-catalog .mb-config > .config-wrap {
+    margin-right: 1em;
+}
+
+.mb-config-catalog .mb-config > .params-wrap {
+    display: table;
+    width: 100%;
+}
+
+.mb-config-catalog .mb-config > .config-wrap > code {
+    font-weight: bold;
+    font-size: 105%;
+}
+
+.mb-config-catalog .mb-config .param {
+    display: table-row;
+}
+
+.mb-config-catalog .mb-config .param > .param-name {
+    display: table-cell;
+    vertical-align: top;
+    border-left: 2px solid #ff7043;
+    box-sizing: border-box;
+    position: relative;
+    padding: 1.7em 0;
+    vertical-align: top;
+    line-height: 20px;
+    white-space: nowrap;
+    font-size: .929em;
+    font-weight: 400;
+}
+
+.mb-config-catalog .mb-config .param .param-name-wrap {
+    display: inline-block;
+    padding-right: 25px;
+    font-family: Montserrat, sans-serif;
+}
+
+.mb-config-catalog .mb-config .param > .param-name > span::before {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 8px;
+    background-color: #ff7043;
+    margin: -4px 10px 0;
+    vertical-align: middle;
+}
+
+.mb-config-catalog .mb-config .param > .param-name > span::after {
+    content: '';
+    position: absolute;
+    border-top: 2px solid #ff7043;
+    width: 10px;
+    left: 0;
+    top: 2.3em;
+}
+
+.mb-config-catalog .mb-config .param:first-of-type > .param-name::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2px;
+    top: 0;
+    border-left: 3px solid var(--ifm-background-color);
+    height: 34px;
+}
+
+.mb-config-catalog .mb-config .param:last-of-type > .param-name,
+.mb-config-catalog .mb-config .param.last > .param-name {
+    position: relative;
+}
+
+.mb-config-catalog .mb-config .param:last-of-type > .param-name::after,
+.mb-config-catalog .mb-config .param.last > .param-name::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: -2px;
+    border-left: 3px solid var(--ifm-background-color);
+    top: 36px;
+    background-color: var(--ifm-background-color);
+    bottom: 0;
+}
+
+.mb-config-catalog .mb-config .param > .param-info {
+    display: table-cell;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 10px 10px 10px 0;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+.mb-config-catalog .mb-config .param-default {
+    font-size: .95em;
+}
+
+.mb-config-catalog .mb-config .param-type {
+    color: #b5b5b5;
+}
+
+@media only screen and (min-width: 100em) {
+    .mb-config-catalog .mb-config .param > .param-name > span::before {
+        margin: 0 10px;
+    }
+
+    .mb-config-catalog .mb-config .param:first-of-type > .param-name::before {
+        height: 38px;
+    }
+
+    .mb-config-catalog .mb-config .param:last-of-type > .param-name::after,
+    .mb-config-catalog .mb-config .param.last > .param-name::after {
+        top: 40px;
+    }
+}

@@ -1,3 +1,9 @@
+---
+title: "Configuring Identity Server"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the Identity 
 Server instance can be applied using a single configuration file, which is the `deployment.toml` file. 
 
@@ -6,61 +12,77 @@ Server instance can be applied using a single configuration file, which is the `
 Follow the steps below to configure the `deployment.toml` file and set up the default open banking flow for WSO2 
 Identity Server.
 
-!!! tip
-    If you want to customize and learn more about TOML configurations, see 
-    [Identity Server Configuration Catalog for open banking](../references/config-catalog-is.md).
+:::tip
+If you want to customize and learn more about TOML configurations, see 
+[Identity Server Configuration Catalog for open banking](../references/config-catalog-is.md).
+:::
 
 1. Replace the `deployment.toml` file as explained in the 
-[Setting up the servers](setting-up-servers.md#copying-the-deploymenttoml) section.
- 
+    [Setting up the servers](setting-up-servers.md#copying-the-deploymenttoml) section.
+
 2. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
 3. Set the hostname of the Identity Server:
 
-    ``` toml
-    [server]	
-    hostname = "<IS_HOST>"	 
+    ```toml
+    [server]    
+    hostname = "<IS_HOST>"   
     ```
-   
+
 4. Update the datasource configurations with your database properties, such as the username, password, JDBC URL for the 
-database server, and the JDBC driver. 
+    database server, and the JDBC driver. 
 
     - Given below are sample configurations for a MySQL database. For other DBMS types and more information, 
-    see [Setting up databases](setting-up-databases.md).
+        see [Setting up databases](setting-up-databases.md).
 
-    ```toml tab='shared_db'
+    <Tabs>
+    <TabItem value="shared-db" label="shared_db">
+
+    ```toml
     [database.shared_db]
     url = "jdbc:mysql://localhost:3306/openbank_govdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-   
-    ```toml tab='identity_db'
+
+    </TabItem>
+    <TabItem value="identity-db" label="identity_db">
+
+    ```toml
     [database.identity_db]
     url = "jdbc:mysql://localhost:3306/openbank_apimgtdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-     
-    ```toml tab='config'
+
+    </TabItem>
+    <TabItem value="config" label="config">
+
+    ```toml
     [database.config]
     url = "jdbc:mysql://localhost:3306/openbank_iskm_configdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-    
-    ```toml tab='user'
+
+    </TabItem>
+    <TabItem value="user" label="user">
+
+    ```toml
     [database.user]
     url = "jdbc:mysql://localhost:3306/openbank_userdb?autoReconnect=true&amp;useSSL=false"
     username = "root"
     password = "root"
     driver = "com.mysql.jdbc.Driver"
     ```
-    
-    ```toml tab='WSO2OB_DB'
+
+    </TabItem>
+    <TabItem value="wso2ob-db" label="WSO2OB_DB">
+
+    ```toml
     [[datasource]]
     id="WSO2OB_DB"
     url = "jdbc:mysql://localhost:3306/openbank_openbankingdb?autoReconnect=true&amp;useSSL=false"
@@ -69,40 +91,43 @@ database server, and the JDBC driver.
     driver = "com.mysql.jdbc.Driver"
     ```
 
+    </TabItem>
+    </Tabs>
+
 5. Configure the authentication endpoints with the hostname of the Identity Server.
 
-    ``` toml
-    [authentication.endpoints]	
-    login_url = "https://<IS_HOST>:9446/authenticationendpoint/login.do"	
+    ```toml
+    [authentication.endpoints]  
+    login_url = "https://<IS_HOST>:9446/authenticationendpoint/login.do"    
     retry_url = "https://<IS_HOST>:9446/authenticationendpoint/retry.do"
     ```
-   
-    ``` toml
-    [oauth.endpoints]	
-    oauth2_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"	
+
+    ```toml
+    [oauth.endpoints]   
+    oauth2_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/ob/authenticationendpoint/oauth2_authz.do"  
     oidc_consent_page = "${carbon.protocol}://<IS_HOST>:${carbon.management.port}/ob/authenticationendpoint/oauth2_consent.do"
     ```
-   
+
 6. Configure the following endpoints for the `token_revocation` event listener:
- 
+
     - Configure `TokenEndpointAlias` with the hostname of the Identity Server.
     - Configure `notification_endpoint` with the hostname of the API Manager.  
 
-    ``` toml
-    [[event_listener]]	
-    id = "token_revocation"	
+    ```toml
+    [[event_listener]]  
+    id = "token_revocation" 
     ...
     [event_listener.properties]
-    TokenEndpointAlias= "https://<IS_HOST>:9446/oauth2/token"	
-    notification_endpoint = "https://<APIM_HOST>:9443/internal/data/v1/notify"	
+    TokenEndpointAlias= "https://<IS_HOST>:9446/oauth2/token"   
+    notification_endpoint = "https://<APIM_HOST>:9443/internal/data/v1/notify"  
     ```
 
 7. Add and configure the following tags:
     - `signing_certificate_kid`: Configure the `kid` value for the signing certificate of the bank. The same value is 
-    configured as `kid` of the ID Token.
+        configured as `kid` of the ID Token.
     - `client_transport_cert_as_header_enabled`: To send the client certificate as a transport header, set this to `true`.
 
-    ``` toml
+    ```toml
     [open_banking.identity]
     signing_certificate_kid="123"
     client_transport_cert_as_header_enabled = true
@@ -110,28 +135,29 @@ database server, and the JDBC driver.
 
 8. Configure the event publisher URL for adaptive authentication with the hostname of the Identity Server.
 
-    ``` toml
-    [authentication.adaptive.event_publisher]	
+    ```toml
+    [authentication.adaptive.event_publisher]   
     url = "http://<IS_HOST>:8006/"
     ```
 
 9. Update access control configurations for the `consentmgr` resource as follows: 
 
-    ``` toml
+    ```toml
     [[resource.access_control]]
     context = "(.*)/consentmgr(.*)"
     secure="false"
     http_method="GET,DELETE"
     ```
-   
+
 10. Configure a periodical consent expiration job as follows:
 
-    !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.8** and 
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.11** onwards.
-        For more information on updating, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+    :::info
+    This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.8** and 
+    **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.11** onwards.
+    For more information on updating, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+    :::
 
-    ``` toml
+    ```toml
     [open_banking.consent.periodical_expiration]
     # This property needs to be true in order to run the consent expiration periodical updater.
     enabled=true
@@ -141,103 +167,121 @@ database server, and the JDBC driver.
     expired_consent_status_value="Expired"
     # These consent statuses will only be consider when checking for expired consents. (Comma separated value list)
     eligible_statuses="authorised"
-    ```   
-    
+    ```
+
     - In order to identify the consent expiration time, relevant consents need to maintain the `ExpirationDateTime` 
-    attribute which contains a UTC timestamp. A consent is not eligible for periodical consent expiration if 
-    the `ExpirationDateTime` attribute is not available for that particular consent.
-    
-    ??? info "Click here to see the configurations for periodical consent expiration in a clustered setup."
-       
-        - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the
-          datasources according to the
-          [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
-        - Create a new database and use the database scripts available 
-          [here](https://github.com/quartz-scheduler/quartz/tree/quartz-2.3.x/quartz-core/src/main/resources/org/quartz/impl/jdbcjobstore)
-          to create the quartz cluster tables.
-        - Add following jars to the `<IS_HOME>/repository/component/lib` directory.
-            - [mchange-commons-java-0.2.20.jar](https://repo1.maven.org/maven2/com/mchange/mchange-commons-java/0.2.20/mchange-commons-java-0.2.20.jar)
-            - [c3p0-0.9.5.4.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar)
-        - Copy the same `quartz.properties` file to each instance in the cluster and update the `instanceId`. 
-        - Click [here](../assets/attachments/quartz.properties) to download a sample `quartz.properties` configuration file.
+        attribute which contains a UTC timestamp. A consent is not eligible for periodical consent expiration if 
+        the `ExpirationDateTime` attribute is not available for that particular consent.
 
-    !!! note
-        To stop the execution of the consent expiration periodical updater and trigger the expiration job, add the configuration as follows: 
+    <details className="ob-details ob-details--info">
+    <summary>Click here to see the configurations for periodical consent expiration in a clustered setup.</summary>
 
-        !!! info
-            This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.62** onwards. 
-            For more information on updating WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+    - Add the `quartz.properties` file to `<IS_HOME>/repository/conf` and enable clustering by configuring the
+        datasources according to the
+        [Quartz Configuration Reference](http://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/).
+    - Create a new database and use the database scripts available 
+        [here](https://github.com/quartz-scheduler/quartz/tree/quartz-2.3.x/quartz-core/src/main/resources/org/quartz/impl/jdbcjobstore)
+        to create the quartz cluster tables.
+    - Add following jars to the `<IS_HOME>/repository/component/lib` directory.
+        - [mchange-commons-java-0.2.20.jar](https://repo1.maven.org/maven2/com/mchange/mchange-commons-java/0.2.20/mchange-commons-java-0.2.20.jar)
+        - [c3p0-0.9.5.4.jar](https://repo1.maven.org/maven2/com/mchange/c3p0/0.9.5.4/c3p0-0.9.5.4.jar)
+    - Copy the same `quartz.properties` file to each instance in the cluster and update the `instanceId`. 
+    - Click [here](pathname:///assets/attachments/quartz.properties) to download a sample `quartz.properties` configuration file.
 
-        ```toml
-        [open_banking.consent.periodical_expiration]
-        # This property needs to be false in order to stop the execution of the consent expiration periodical updater.
-        enabled=false
-        # This value is to be updated for expired consents.
-        expired_consent_status_value="Expired"
-        # These consent statuses will only be considered when checking for expired consents. (Comma separated value list)
-        eligible_statuses="authorised"
-        ```
-        Given below is the custom endpoint provided to trigger the consent expiration job:         
-        ```
-        https://<IS_HOST>:9446/api/openbanking/consent/admin/expire-consents
-        ```
-        Refer to the [Consent REST API documentation](../references/consent-rest-api.md) for more information.
-       
+    </details>
+
+    ::::note
+    To stop the execution of the consent expiration periodical updater and trigger the expiration job, add the configuration as follows: 
+
+    :::info
+    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.62** onwards. 
+    For more information on updating WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+    :::
+
+    ```toml
+    [open_banking.consent.periodical_expiration]
+    # This property needs to be false in order to stop the execution of the consent expiration periodical updater.
+    enabled=false
+    # This value is to be updated for expired consents.
+    expired_consent_status_value="Expired"
+    # These consent statuses will only be considered when checking for expired consents. (Comma separated value list)
+    eligible_statuses="authorised"
+    ```
+    Given below is the custom endpoint provided to trigger the consent expiration job:         
+    ```
+    https://<IS_HOST>:9446/api/openbanking/consent/admin/expire-consents
+    ```
+    Refer to the [Consent REST API documentation](../references/consent-rest-api.md) for more information.
+    ::::
+
 11. Add the following tags and configure the HTTP connection pool:
 
-    !!! info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.10** onwards. For more information on updating 
-        WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+    :::info
+    This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
+    **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.10** onwards. For more information on updating 
+    WSO2 Open Banking, see [Getting WSO2 Updates](setting-up-servers.md#getting-wso2-updates).
+    :::
 
-    ``` toml
+    ```toml
     [open_banking.http_connection_pool]
     max_connections = 2000
-    max_connections_per_route = 1500	
+    max_connections_per_route = 1500    
     ```
-    
+
 12. If you want to use the [Data publishing](../learn/data-publishing.md) feature:
 
     - Enable the feature and configure the `server_url` and `auth_url` properties with the hostname of WSO2 Streaming 
-    Integrator.
+        Integrator.
 
-    ``` toml
-    [open_banking.data_publishing]	
-    enable = true	
-    username="$ref{super_admin.username}@carbon.super"	
-    password="$ref{super_admin.password}"	
-    server_url = "{tcp://<SI_HOST>:7612}"	
-    ```   
-    
+    ```toml
+    [open_banking.data_publishing]  
+    enable = true   
+    username="$ref{super_admin.username}@carbon.super"  
+    password="$ref{super_admin.password}"   
+    server_url = "{tcp://<SI_HOST>:7612}"   
+    ```
+
 13. If you are using **WSO2 Identity Server 6.0.0** and **above**, add below configuration to enable application role validation:
-        ```toml
-        [application_mgt]
-        enable_role_validation = true
-        ```
-   
+    ```toml
+    [application_mgt]
+    enable_role_validation = true
+    ```
+
 ## Starting servers
 
-??? warning "If you are using JDK 17 with WSO2 Identity Server 6.0.0, you need to enable adaptive authentication. Click here to see how it is done..."
+<details className="ob-details ob-details--warning">
+<summary>If you are using JDK 17 with WSO2 Identity Server 6.0.0, you need to enable adaptive authentication. Click here to see how it is done...</summary>
 
-     For JDK 17 runtime, adaptive authentication is disabled by default and it is required to enable adaptive authentication. To enable adaptive authentication: 
+For JDK 17 runtime, adaptive authentication is disabled by default and it is required to enable adaptive authentication. To enable adaptive authentication: 
 
-     1. Go to `<IS_HOME>/bin`. 
-     2. Run the following command:
+1. Go to `<IS_HOME>/bin`. 
+2. Run the following command:
 
-         ```toml tab='On Mac'
-         ./adaptive.sh
-         ```
-         
-         ```toml tab='On Windows'
-         ./adaptive.bat
-         ```
+    <Tabs>
+    <TabItem value="on-mac" label="On Mac">
 
-     See [Adaptive Authentication - Prerequisites](https://is.docs.wso2.com/en/6.0.0/guides/adaptive-auth/configure-adaptive-auth/#prerequisites) for more information.
+    ```toml
+    ./adaptive.sh
+    ```
+
+    </TabItem>
+    <TabItem value="on-windows" label="On Windows">
+
+    ```toml
+    ./adaptive.bat
+    ```
+
+    </TabItem>
+    </Tabs>
+
+See [Adaptive Authentication - Prerequisites](https://is.docs.wso2.com/en/6.0.0/guides/adaptive-auth/configure-adaptive-auth/#prerequisites) for more information.
+
+</details>
 
 1. Go to the `<IS_HOME>/bin` directory using a terminal.
 
 2. Run the `wso2server.sh` script as follows:
 
-    ``` bash
+    ```bash
     ./wso2server.sh
-    ``` 
+    ```

@@ -1,6 +1,10 @@
 ---
-template: templates/redoc.html
+title: "Application Info API"
+hide_title: true
+hide_markdown_actions: true
+wide: true
 ---
 
-<redoc spec-url="../../internal-apis/application-info-300.yaml"></redoc>
-<script src="../../assets/lib/redoc/redoc.standalone.js"> </script>
+import RedocSpec from '@site/src/components/RedocSpec';
+
+<RedocSpec specPath="/internal-apis/application-info-300.yaml" />

@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 The Open Banking API Manager Accelerator contains Open Banking Gateway, which is built on top of WSO2 API Gateway. 
 WSO2 API Gateway intercepts API requests and applies policies such as throttling and security using handlers. 
 By default, it supports policies such as API authentication, rate-limiting, schema validation, and Transport Layer 

@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 Open banking is a concept that lets third-party financial service providers access customer’s financial data and 
 services with their consent. Consent management is the process of prompting, collecting, and managing bank customer’s 
 consent before a third-party provider collects or shares the customer's financial information. 
@@ -31,25 +34,25 @@ consumer application may or may not have access to the data.
 
 With the [Consent Manager](consent-manager.md) application in WSO2 Open Banking Accelerator you can use one of the 
 following methods to revoke these consents granted to API consumer applications.
- 
- - A customer can revoke a consent using the Consent Manager portal 
- - A Customer Care Representative from the bank can revoke a consent on behalf of a user
- 
+
+- A customer can revoke a consent using the Consent Manager portal 
+- A Customer Care Representative from the bank can revoke a consent on behalf of a user
+
 WSO2 Open Banking Accelerator uses the following [API endpoints](../references/consent-rest-api.md) to manage consents 
 as previously described. 
 
 - **Consent Validation - `/validate` endpoint**  
-  The accelerator gathers all consent details and invokes validators via this API. Once the validations are performed, 
-  the flow will proceed. You can write your own validators and customize the process.  
-  
+    The accelerator gathers all consent details and invokes validators via this API. Once the validations are performed, 
+    the flow will proceed. You can write your own validators and customize the process.  
+
 - **Consent Portal - `/admin` endpoint**  
-   The Consent Management portal and the Customer Care portal invoke this API to search consents and revoke consents.
-    
+    The Consent Management portal and the Customer Care portal invoke this API to search consents and revoke consents.
+
 - **Consent Management - `/manage` endpoint**  
-  This component processes requests based on specification requirements. The requests are routed here and a handler 
-  processes them. You can make changes to HTTPServletResponse using the same handler.
-  
+    This component processes requests based on specification requirements. The requests are routed here and a handler 
+    processes them. You can make changes to HTTPServletResponse using the same handler.
+
 - **Consent Authorize - `/authorize` endpoint**  
-  This endpoint can retrieve and persist consents. You can add your own steps to retrieve or persist.
+    This endpoint can retrieve and persist consents. You can add your own steps to retrieve or persist.
 
 For more information on this, refer to [Consent Management Extensions](../develop/consent-management-manage.md).

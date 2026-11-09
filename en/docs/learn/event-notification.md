@@ -1,4 +1,7 @@
-#Event Notification
+---
+title: "Introduction"
+---
+# Event Notification
 
 Open Banking Specifications require banks to notify any changes related to consent to the Third Party Application Provider (TPP). To achieve this, the specifications includes an API called the Event Notification API, including the flows and common functionality to allow a TPP to receive event notifications. 
 
