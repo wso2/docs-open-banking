@@ -3,57 +3,51 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page Not Found | WSO2 Open Banking Documentation</title>
-    <style>
-      /* Self-contained: this page is served for any missing path, so it uses only absolute URLs and no scripts. */
-      @font-face { font-family: Gilmer; font-weight: 400; font-display: swap; src: url('/not-found/fonts/gilmer-regular.woff2') format('woff2'); }
-      @font-face { font-family: Gilmer; font-weight: 500; font-display: swap; src: url('/not-found/fonts/gilmer-medium.woff2') format('woff2'); }
-      @font-face { font-family: Gilmer; font-weight: 700; font-display: swap; src: url('/not-found/fonts/gilmer-bold.woff2') format('woff2'); }
-      :root { color-scheme: light dark; --bg: #ffffff; --fg: #1f2024; --muted: #4b5060; --link: #b85300; --line: #d8dde8; }
-      @media (prefers-color-scheme: dark) {
-        :root { --bg: #232327; --fg: #f5f6f7; --muted: #c3c8d4; --link: #ff7300; --line: rgba(255, 255, 255, 0.1); }
-      }
-      * { box-sizing: border-box; }
-      body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--fg);
-        font-family: Gilmer, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 1.125rem; line-height: 1.7; }
-      a { color: var(--link); }
-      .bar { height: 60px; flex: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 16px; border-bottom: 1px solid var(--line); }
-      .brand { display: flex; align-items: center; gap: 12px; min-width: 0; color: var(--fg); text-decoration: none; font-size: 1rem; line-height: 1.5; }
-      .brand picture { display: flex; flex: none; }
-      .brand img { display: block; width: 32px; height: 32px; }
-      .brand span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 400; }
-      .brand strong { font-weight: 700; }
-      .repo { flex: none; display: flex; color: var(--fg); }
-      .repo svg { width: 24px; height: 24px; fill: currentColor; }
-      main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
-      .content { display: flex; align-items: center; justify-content: center; gap: 64px; width: 100%; max-width: 1180px; }
-      .text { flex: 1 1 520px; max-width: 700px; }
-      h1 { margin: 0 0 1.5rem; font-size: 2.75rem; font-weight: 400; line-height: 1.2; }
-      p { margin: 0 0 1.25rem; color: var(--muted); }
-      .art { flex: 0 1 480px; }
-      .art img { display: block; width: 100%; height: auto; }
-      @media (max-width: 479px) {
-        .bar { padding: 0 16px; }
-        main { padding: 32px 16px; }
-        .art { display: none; }
-        h1 { font-size: 2.25rem; }
-      }
-      @media (max-width: 860px) { .content { flex-direction: column; gap: 32px; } .text { flex-basis: auto; } }
-    </style>
+    <title>Page Not Found | WSO2 Open Banking Accelerator Documentation</title>
+    <script src="/not-found/theme-init.js"></script>
+    <link rel="stylesheet" href="/not-found/not-found.css" />
+    <script src="/not-found/not-found.js" defer></script>
   </head>
   <body>
     <header class="bar">
-      <a class="brand" href="/en/latest/" aria-label="WSO2 Open Banking Documentation home">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="/not-found/wso2-pulse-dark.svg" />
-          <img src="/not-found/wso2-pulse.svg" alt="" width="32" height="32" />
-        </picture>
-        <span><strong>Open Banking</strong> Documentation</span>
+      <a class="brand" href="/en/latest/" aria-label="Open Banking Accelerator documentation home">
+        <span class="logo logo-light"><img src="/not-found/wso2-pulse.svg" alt="" width="32" height="32" /></span>
+        <span class="logo logo-dark"><img src="/not-found/wso2-pulse-dark.svg" alt="" width="32" height="32" /></span>
+        <span><strong>Open Banking</strong> Accelerator</span>
       </a>
-      <a class="repo" href="https://github.com/wso2/docs-open-banking" aria-label="GitHub repository" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-      </a>
+      <div class="actions">
+        <div class="dropdown" id="version-dropdown">
+          <button class="version-btn" id="version-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="version-menu">
+            <span id="version-label">Versions</span>
+            <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4l4 4 4-4" /></svg>
+          </button>
+          <ul class="menu" id="version-menu" hidden>
+            <li id="version-show-all"><a href="/en/versions/">Show all</a></li>
+          </ul>
+        </div>
+        <a class="icon-btn" href="https://github.com/wso2/docs-open-banking" aria-label="GitHub repository" rel="noopener">
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        </a>
+        <button class="icon-btn theme" id="theme-toggle" type="button" aria-label="Switch colour mode">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" /></svg>
+        </button>
+        <button class="search-btn" id="search-button" type="button" aria-label="Search" aria-haspopup="dialog"
+          data-app-id="F7OGP603KZ" data-api-key="97c88ae4377595fa7469504c35067f8f" data-index="wso2_ob" data-version="3.0.0">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+          <span class="label">Search</span>
+          <span class="keys" aria-hidden="true"><kbd id="search-key-1">Ctrl</kbd><kbd>K</kbd></span>
+        </button>
+      </div>
     </header>
+    <dialog class="search" id="search-dialog" aria-label="Search the documentation">
+      <div class="search-head">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+        <input id="search-input" type="search" placeholder="Search docs" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search docs" />
+        <button class="search-esc" id="search-close" type="button">Esc</button>
+      </div>
+      <p class="search-status" id="search-status" role="status" aria-live="polite"></p>
+      <ul class="results" id="search-results"></ul>
+    </dialog>
     <main>
       <div class="content">
         <div class="text">
