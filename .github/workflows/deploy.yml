@@ -82,3 +82,14 @@ jobs:
           folder: site/versions
           target-folder: en/versions
           clean: true
+
+      # Root files of the site: .nojekyll, the / redirect and the 404 page. GitHub Pages reads
+      # .nojekyll and 404.html only from the root of the branch. `clean: false` is required: the
+      # default (true) with no target-folder would delete every other folder on gh-pages. Files
+      # already at the root (for example CNAME) are left alone.
+      - name: Publish root files
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          branch: gh-pages
+          folder: root-files
+          clean: false

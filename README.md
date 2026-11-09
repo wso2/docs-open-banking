@@ -53,7 +53,8 @@ Past Versions lists every key of `all` except `current` (and a `pre-release` key
 ## Deploy
 
 Pushes to `versions` run `.github/workflows/deploy.yml`, which builds the site with `BASE_URL=/en/versions/` and publishes it to the
-`gh-pages` branch folder `en/versions` using `JamesIves/github-pages-deploy-action`. It can also be started manually
+`gh-pages` branch folder `en/versions` using `JamesIves/github-pages-deploy-action`. The same workflow publishes the files in
+`root-files/` (`.nojekyll`, the `/` redirect to `/en/latest/` and `404.html`) to the root of `gh-pages`. It can also be started manually
 (`workflow_dispatch`). Pull requests against `versions` run `.github/workflows/pr-checks.yml`: `npm ci`, audit, typecheck and
 build. Workflow actions are pinned by commit SHA.
 
