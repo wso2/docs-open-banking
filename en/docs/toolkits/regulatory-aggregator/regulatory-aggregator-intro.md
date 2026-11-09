@@ -1,4 +1,8 @@
-#Regulatory Aggregator
+---
+title: "Regulatory aggregator intro"
+displayed_sidebar: "docsSidebar"
+---
+# Regulatory Aggregator
 
 A regulatory entity enforces regulations for open banking and open finance in a country or 
 a region. For example, ACCC in Australia and FCA in the UK. Apart from enforcing policies, some entities implement open 
@@ -10,7 +14,7 @@ This type of aggregator is known as a Regulatory Aggregator.
 In simple terms, a regulatory aggregator is an authoritative entity in a region that acts as the sole open banking 
 interface and the gateway for all open banking services provided by financial institutions in that particular area.
 
-### Regulatory Aggregator Ecosystem 
+### Regulatory Aggregator Ecosystem
 
 ![regulatory_aggregator_ecosystem](../../assets/img/toolkit/regulatory-aggregator/regulatory-aggregator-ecosystem.png)
 

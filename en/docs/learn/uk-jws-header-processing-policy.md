@@ -1,3 +1,6 @@
+---
+title: "UK JWS Header Processing Policy"
+---
 UK JWS Header Processing Policy is a policy designed to be engaged in the request flow of any request that requires the JWS signature header to be validated prior to an API resource call and to be appended a JWS signature header in the response. This is a Open Banking UK specific implementation and can be used as a reference to develop custom JWS requirements. It will perform the below tasks.
 
 - Validates the JWS signature header as mentioned in the UK specification
@@ -15,9 +18,9 @@ If you want to build the Financial Services APIM Mediation Policies from the sou
 
 3. Get the Financial Services APIM Mediation Policies from [this repository](https://github.com/wso2/financial-services-apim-mediation-policies.git) by **cloning** or **downloading** the repository as a zip.
     * To **clone the solution**, copy the URL and execute the following command in a command prompt.
-      `git clone <the copiedURL>`. After cloning, checkout to the **main** branch.
+        `git clone <the copiedURL>`. After cloning, checkout to the **main** branch.
     * To **download the repository**, select the **main** branch first, then click **Download ZIP** and unzip the downloaded file.
-    
+
 4. Navigate to the cloned/downloaded repository using a command prompt and run the relevant Maven command:
 
 | Command | Description      |
@@ -25,7 +28,7 @@ If you want to build the Financial Services APIM Mediation Policies from the sou
 | ```mvn install```  | This starts building the repository without cleaning the folders. |
 | ```mvn clean install``` | This cleans the folders and starts building the repository from scratch.  |
 
-### How to use mediation artifacts 
+### How to use mediation artifacts
 
 1. Once the maven build is successful, navigate to the **fs-apim-mediation-artifacts/target** folder to get the zip file containing all the mediation policies,custom sequences and class mediators & handlers to copy in to WSO2 API Manager.
 
@@ -33,10 +36,10 @@ If you want to build the Financial Services APIM Mediation Policies from the sou
     - Policy .j2 files - The mediation policy files which need to upload in API Publisher UI and engage to APIs. Below mediation policies are available in this repository.
     - Custom sequences- Synapse based custom sequence files which need to copy in to `<APIM_HOME>/repository/deployment/server/synapse-configs/default/sequences` folder.
     - lib - This folder contains the jars need to copy in to `<APIM_Home>/repository/components/lib` folder. It contains jars of the class mediator implementations refer from the policies and custom synapse handler implementations.
-        
+
 3. Add the following configuration to `deployment.toml` file inside the `<APIM_Home>/repository/conf` folder.
 
-``` toml
+```toml
 [synapse_handlers.jws_response_signature_handler]
 enabled = true
 class = "org.wso2.financial.services.apim.mediation.policies.jws.header.processing.handlerJwsResponseHeaderHandler"

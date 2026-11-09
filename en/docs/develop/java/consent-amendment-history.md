@@ -1,3 +1,7 @@
+---
+title: "Consent amendment history"
+displayed_sidebar: "docsSidebar"
+---
 Any change that is performed on an active consent is considered as an amendment. WSO2 Open Banking provides 
 the Consent Amendment History feature to retrieve details related to the amendments done to a consent. With this feature, 
 you can achieve your open banking requirements related to consent amendment, which are specific to the relevant specification.
@@ -10,10 +14,11 @@ accelerator to persist the consent amendment data to the database asynchronously
 com.wso2.openbanking.accelerator.consent.extensions.event.executors.ConsentAmendmentHistoryEventExecutor
 ```
 
-!!! info
-    This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
-    3.0.0.33** onwards. For more information on updating,
-    see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::info
+This is only available as a WSO2 Update from **WSO2 Open Banking Identity Server Accelerator Level
+3.0.0.33** onwards. For more information on updating,
+see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::
 
 Given below is a summary of details related to this feature:
 
@@ -35,14 +40,15 @@ You can override the `handleConsentAmendmentHistoryRetrieval` method to generate
 
 Given below is a brief explanation of the Consent Core Service methods you can use or override in your toolkits to achieve Consent Amendment and Consent Amendment History requirements according to the specification:
 
-!!! note
-    Following methods can be accessible from [Consent Core Service](../consent-core-service/).
+:::note
+Following methods can be accessible from [Consent Core Service](consent-core-service.md).
+:::
 
 ### amendDetailedConsent method
 
 This method amends an entire detailed consent with new values passed to the method. Given below is the method signature:
 
-``` java
+```java
 DetailedConsentResource amendDetailedConsent(
     String consentID,
     String consentReceipt,
@@ -79,7 +85,7 @@ Input parameters:
 
 This method stores the details of the previous consent when a consent amendment happens. Given below is the method signature:
 
-``` java
+```java
 boolean storeConsentAmendmentHistory(
     String consentID,
     ConsentHistoryResource consentHistoryResource,
@@ -96,7 +102,7 @@ Input parameters:
 
 This method retrieves the consent amendment history for a given consent. Given below is the method signature:
 
-``` java
+```java
 Map < String, ConsentHistoryResource > getConsentAmendmentHistoryData(
     String consentID)
 throws ConsentManagementException
@@ -109,14 +115,17 @@ Input parameter:
 
 The following table explains the data model associated with `ConsentHistoryResource`.
 
-??? tip "Click here to see the data model associated with `ConsentHistoryResource`."
-            
-    | Parameter      | Type   | Description  | 
-    | ---------|-------| -----------|
-    |consentID | String | The consent ID of the consent to which the history belongs |
-    |timestamp | long | The timestamp that the amendment occurred|
-    |reason | String | The reason caused the amendment on the consent |
-    |detailedConsentResource | DetailedConsentResource | The detailed consent data of the consent which existed prior to the amendment |
+<details className="ob-details ob-details--tip">
+<summary>Click here to see the data model associated with `ConsentHistoryResource`.</summary>
+
+| Parameter      | Type   | Description  |
+| ---------|-------| -----------|
+|consentID | String | The consent ID of the consent to which the history belongs |
+|timestamp | long | The timestamp that the amendment occurred|
+|reason | String | The reason caused the amendment on the consent |
+|detailedConsentResource | DetailedConsentResource | The detailed consent data of the consent which existed prior to the amendment |
+
+</details>
 
 ### Configuring the Consent Amendment History feature
 
@@ -124,9 +133,9 @@ The following table explains the data model associated with `ConsentHistoryResou
 
 2. To configure the database tables related to the Consent Amendment History feature:
 
-       1. Go to the `<IS_HOME>/carbon-home/dbscripts/open-banking/consent-history` directory.
+    1. Go to the `<IS_HOME>/carbon-home/dbscripts/open-banking/consent-history` directory.
 
-       2. Execute the relevant script according to your database type against the `OB_CONSENT_HISTORY` database.
+    2. Execute the relevant script according to your database type against the `OB_CONSENT_HISTORY` database.
 
 3. Place the above-created custom JAR file in the `<IS_HOME>/repository/components/lib` directory.
 

@@ -1,12 +1,20 @@
---8<-- "deprecated-banner.md"
+---
+title: "Consent Authorize"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import DeprecatedBanner from '../../includes/_deprecated-banner.md';
+
+<DeprecatedBanner />
 
 WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant components 
 according to your requirements using the extension points available. This section explains the 
 Consent Authorize component and how to customize its endpoints.
 
-!!! note 
-    When the Consent web application is deployed in a distributed manner with a load balancer, this extension requires 
-    the implementation of session affinity.
+:::note
+When the Consent web application is deployed in a distributed manner with a load balancer, this extension requires 
+the implementation of session affinity.
+:::
 
 The Consent Authorize extension point relates to the loading of the consent approval page and eventually persisting 
 the consent provided by the users. This consists of 2 endpoints. 
@@ -17,24 +25,25 @@ The Retrieval Steps extension provides the ability to add extensions to the `jso
 page to display to the user. Additionally, you can use these steps for reasons such as data reporting requirements and 
 customizing data for the consent page.
 
-!!! note 
-    This information that is sent and displayed on the consent page depends on the specification that you adhere to. 
+:::note
+This information that is sent and displayed on the consent page depends on the specification that you adhere to. 
+:::
 
 The data provided to Retrieval Steps and the changes that can be done are as follows:
 
 ### Endpoint
-``` xml
+```xml
 https://<IS_HOST>:9446/api/openbanking/consent/authorize/retrieve/{session-data-key}
 ```
 
 ### Interface
-``` java
+```java
 com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentRetrievalStep
 ```
 
 ### Method
 The following method is available in the interface.
-``` java
+```java
 void execute(ConsentData consentData, JSONObject jsonObject) throws ConsentException;
 ```
 
@@ -42,7 +51,7 @@ void execute(ConsentData consentData, JSONObject jsonObject) throws ConsentExcep
 In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
 a `ConsentException`.
 
-### Data 
+### Data
 The following table explains the data available in `ConsentRetrieveData`.
 
 | Name      | Type                  | Description  |
@@ -53,24 +62,25 @@ The following table explains the data available in `ConsentRetrieveData`.
 | scopeString   | String    | The scopes that the user is being authorized for. |
 | application   | String    | The application that is requesting consent from the user to make requests on behalf of them. |
 | consentId     | String    | The consent ID of the currently requested consent. This has to be set in the retrieval steps. |
-| requestHeaders| Map<String, String>   | Any request headers sent from the client UI during the consent flow. |
+| requestHeaders| Map\<String, String>   | Any request headers sent from the client UI during the consent flow. |
 | consentResource   | ConsentResource   | The consent resource object of the consent that is currently requested. |
 | authResource  | AuthorizationResource | The authorization resource object of the current authorization. |
 
-### Configuration 
+### Configuration
 
 To configure the customized Retrieval Steps, follow the given instructions:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
 2. Add the following tags to configure the steps and their order. The steps are invoked based on the configured priority 
-order. 
+    order. 
 
-!!! tip 
-    In the retrieval steps, there is a non-regulatory step configured as the priority order 1001. Make sure to configure 
-    any custom step before this step.
+:::tip
+In the retrieval steps, there is a non-regulatory step configured as the priority order 1001. Make sure to configure 
+any custom step before this step.
+:::
 
-``` xml
+```xml
 [[open_banking.consent.authorize_steps.retrieve]]
 class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentRetrievalStep1"
 priority = 1
@@ -88,70 +98,82 @@ The second endpoint of the Consent Authorize component is the Persist Flow. The 
 user approves/denies the consent via an API invocation made from the consent page. When the `/persist` endpoint is 
 invoked, the steps to persist are also invoked and the data required for persistence will be provided to these steps. 
 
-### Endpoint
-``` xml
+### Endpoint \{#endpoint_1\}
+```xml
 https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}
 ```
 
-!!!note
-    It is mandatory to send the `approval` parameter in the payload of this request. The `approval` parameter is a 
-    boolean value that specifies whether the customer has authorized the consent or not. 
+:::note
+It is mandatory to send the `approval` parameter in the payload of this request. The `approval` parameter is a 
+boolean value that specifies whether the customer has authorized the consent or not. 
+:::
 
-!!!note "New persist query parameter to Consent Authorize endpoint"
-    !!!info
-        This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
-        **WSO2 Open Banking Identity Server Accelerator Level 3.0.0.28** onwards. For more information on updating, see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+::::note[New persist query parameter to Consent Authorize endpoint]
+:::info
+This is only available as a WSO2 Update from **WSO2 Open Banking API Manager Accelerator Level 3.0.0.7** and
+**WSO2 Open Banking Identity Server Accelerator Level 3.0.0.28** onwards. For more information on updating, see [Getting WSO2 Updates](../../install-and-setup/setting-up-servers.md#getting-wso2-updates).
+:::
 
-    Customers can dynamically skip the authorization redirection flow from the persist endpoint with the `authorize` query parameter.
-    The `authorize` query parameter is a boolean value, and if it is set to `false`, the 
-    authorization redirection is skipped.
-    
-    For example:
+Customers can dynamically skip the authorization redirection flow from the persist endpoint with the `authorize` query parameter.
+The `authorize` query parameter is a boolean value, and if it is set to `false`, the 
+authorization redirection is skipped.
 
-    ``` tab="Format"
-    https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}?authorize={boolean}
-    ```
+For example:
 
-    ``` tab="Sample"
-    https://localhost:9446/api/openbanking/consent/authorize/persist/563d373b-4933-4209-b866-3d52620a2745?authorize=false
-    ```
+<Tabs>
+<TabItem value="format" label="Format">
 
-### Interface
-``` java
+```
+https://<IS_HOST>:9446/api/openbanking/consent/authorize/persist/{session-data-key}?authorize={boolean}
+```
+
+</TabItem>
+<TabItem value="sample" label="Sample">
+
+```
+https://localhost:9446/api/openbanking/consent/authorize/persist/563d373b-4933-4209-b866-3d52620a2745?authorize=false
+```
+
+</TabItem>
+</Tabs>
+::::
+
+### Interface \{#interface_1\}
+```java
 com.wso2.openbanking.accelerator.consent.extensions.authorize.model.ConsentPersistStep
 ```
 
-### Method 
+### Method \{#method_1\}
 The following method is available in the interface.
-``` java
+```java
 void execute(ConsentPersistData consentPersistData) throws ConsentException;
 ```
 
-### Error Handling
+### Error Handling \{#error-handling_1\}
 In any of the consent extensions, if an error scenario occurs and you need to send an error response make sure to throw 
 a `ConsentException`.
 
-### Data 
+### Data \{#data_1\}
 The following table explains the data available in `ConsentPersistData`.
 
 | Name      | Type                  | Description  |
 | ----------|-----------------------| -------------|
 | payload   | JSONObject            | The payload of the persistent request. |
-| headers   | Map<String, String>   | The request headers of the persistent request. |
+| headers   | Map\<String, String>   | The request headers of the persistent request. |
 | consentData | ConsentData | The consent data object used in the retrieval flow, which is populated via cache. |
 | approval | boolean                | A boolean value that represents whether the approval was granted by the user.|
-| metadata | Map<String, Object>    | Additional metadata sent to the steps. |
+| metadata | Map\<String, Object>    | Additional metadata sent to the steps. |
 
-### Configuration 
+### Configuration \{#configuration_1\}
 
 To configure the customized Persistent Steps Manage component, follow the given instructions:
 
 1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
 
 2. Add the following tags to configure the steps and their order. The steps are invoked based on the configured priority 
-order. 
+    order. 
 
-``` xml
+```xml
 [[open_banking.consent.authorize_steps.persist]]
 class = "com.wso2.openbanking.accelerator.consent.extensions.authorize.impl.ConsentPersistStep1"
 priority = 1

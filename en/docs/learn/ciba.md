@@ -1,4 +1,8 @@
-#Client-Initiated Backchannel Authentication (CIBA) Flow
+---
+title: "Ciba"
+displayed_sidebar: "docsSidebar"
+---
+# Client-Initiated Backchannel Authentication (CIBA) Flow
 
 WSO2 Open Banking Accelerator provides support for the
 [OpenID Connect Client-Initiated Backchannel Authentication Flow](https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html). 
@@ -20,4 +24,3 @@ but authenticates and grants consent on the Authentication Device. This makes th
 CIBA flow increases the security by involving a second device, which is similar to Two-Factor Authentication. Customers 
 simply receive a mobile notification to authenticate themselves and grant access to their accounts. This also
 improves the user experience as the customers are not redirected between websites. 
-

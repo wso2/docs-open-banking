@@ -1,3 +1,7 @@
+---
+title: "Id token builder token flow"
+displayed_sidebar: "docsSidebar"
+---
 ## Writing a custom ID Token Builder
 
 The default ID Token Builder in WSO2 Open Banking provides the pairwise subject calculation for authorization and token 
@@ -8,7 +12,7 @@ performed using the **sector identifier URI**. Otherwise, the calculation is per
 
 Given below is the Fully Qualified Name (FQN) of the default ID Token Builder: 
 
-``` java
+```java
 com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder
 ```
 
@@ -19,7 +23,7 @@ You can implement a custom ID Token Builder for the **Token flow** by overriding
 This method contains the pairwise subject calculation logic. You can customize it according to your requirements. Given 
 below is the method signature:
 
-``` java
+```java
 getSubjectClaim(OAuthTokenReqMessageContext tokenReqMessageContext,
                                 OAuth2AccessTokenRespDTO tokenRespDTO,
                                 String clientId,
@@ -35,18 +39,19 @@ To configure the custom ID Token Builder, follow the steps below:
 
 2. Add the following tags and configure your custom ID Token Builder using its FQN:
 
-    ``` toml
+    ```toml
     [oauth.oidc.extensions]
     id_token_builder = "com.wso2.openbanking.accelerator.identity.idtoken.OBIDTokenBuilder"
     ```
-   
-    !!! note
-        If `id_token_builder` is not configured, the default ID Token Builder `DefaultIDTokenBuilder` is used for 
-        `subject` claim calculation. 
+
+    :::note
+    If `id_token_builder` is not configured, the default ID Token Builder `DefaultIDTokenBuilder` is used for 
+    `subject` claim calculation. 
+    :::
 
 3. If you need to return the subject claim of the id token as a PPID, add the following configurations and set the value to `true`.
 
-    ``` toml
+    ```toml
     [open_banking.identity] 
     enable_PPID = true
     ```

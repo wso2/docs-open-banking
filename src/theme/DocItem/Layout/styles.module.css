@@ -1,0 +1,21 @@
+/*
+ * Breadcrumbs on the left, "Copy page" pinned to the right on the same row. The breadcrumbs shrink
+ * and wrap inside their own space, so a long trail never pushes the button onto a row of its own;
+ * margin-left: auto also keeps the button right when a page has no breadcrumbs.
+ */
+.breadcrumbRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.breadcrumbRow > nav {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.inlineActions {
+  margin: 0 0 0 auto;
+  flex: 0 0 auto;
+}

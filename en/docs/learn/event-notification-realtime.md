@@ -1,4 +1,10 @@
-#Real Time Event Notification
+---
+title: "Real Time Event Notification"
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Real Time Event Notification
 
 Real Time Event Notification is a method where banks will immediately notify the TPP about any events that occur, without waiting for a request from the TPP. This functionality ensures that TPPs stay informed about relevant events in real-time, enhancing their ability to effectively manage and utilize the consents.
 
@@ -8,7 +14,10 @@ You can customize the Real Time Event Notification Flow according to your requir
 
 In order to enable Real Time Event Notification, TPPs must subscribe to receive event notifications using Event Subscription feature. TPPs must provide a callback URL which they have established to receive the event notifications. To create an Event Notification Subscription use the below request. 
 
-```tab="Request"
+<Tabs>
+<TabItem value="request" label="Request">
+
+```
 curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/' \
 --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
 --header 'x-wso2-client_id: L5Ao9g7ZgzBifPSDKyr8vDZlllca' \
@@ -24,7 +33,10 @@ curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/
 }'
 ```
 
-```json tab="Response"
+</TabItem>
+<TabItem value="response" label="Response">
+
+```json
 {
         "callbackUrl": "https://tpp.com/open-banking/v3.1/event-notifications",
         "subscriptionId": "77654c28-3c0f-4406-8ff3-7aa04efcbd33",
@@ -37,20 +49,23 @@ curl --location 'https://localhost:9446/api/fs/event-notifications/subscription/
 }
 ```
 
+</TabItem>
+</Tabs>
+
 To verify whether Real Time Event Notification is working for the given callback URL, send an event with subscribed event types. A sample Event Creation request and response are as follows:
 
-   ```
-    curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/create-events' \
-    --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
-    --header 'x-wso2-client_id: cli342efefvsgdsfv' \
-    --header 'x-wso2-resource_id: vfjskenfksdnvfkkfdfd' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'request=ewogICAidXJuX3VrX29yZ19vcGVuYmFua2luZ19ldmVudHNfcmVzb3VyY2UtdXBkYXRlIjp7CiAgICAgICJrZXkxIjoidmFsdWUiLAogICAgICAia2V5MiI6InZhbHVlIiwKICAgICAgImtleTMiOiJ2YWx1ZSIKICAgfSwKICAgInVybl91a19vcmdfb3BlbmJhbmtpbmdfZXZlbnRzX2NvbnNlbnQtYXV0aG9yaXphdGlvbi1yZXZva2VkIjp7CiAgICAgICJrZXkxIjoidmFsdWUiLAogICAgICAia2V5MiI6InZhbHVlIiwKICAgICAgImtleTMiOiJ2YWx1ZSIKICAgfQp9'
-   ```
-   
+```
+ curl --location --request POST 'https://localhost:9446/api/fs/event-notifications/create-events' \
+ --header 'Authorization: Basic YWRtaW5Ad3NvMi5jb206d3NvMjEyMw==' \
+ --header 'x-wso2-client_id: cli342efefvsgdsfv' \
+ --header 'x-wso2-resource_id: vfjskenfksdnvfkkfdfd' \
+ --header 'Content-Type: application/x-www-form-urlencoded' \
+ --data-urlencode 'request=ewogICAidXJuX3VrX29yZ19vcGVuYmFua2luZ19ldmVudHNfcmVzb3VyY2UtdXBkYXRlIjp7CiAgICAgICJrZXkxIjoidmFsdWUiLAogICAgICAia2V5MiI6InZhbHVlIiwKICAgICAgImtleTMiOiJ2YWx1ZSIKICAgfSwKICAgInVybl91a19vcmdfb3BlbmJhbmtpbmdfZXZlbnRzX2NvbnNlbnQtYXV0aG9yaXphdGlvbi1yZXZva2VkIjp7CiAgICAgICJrZXkxIjoidmFsdWUiLAogICAgICAia2V5MiI6InZhbHVlIiwKICAgICAgImtleTMiOiJ2YWx1ZSIKICAgfQp9'
+```
+
 Given below is the decoded format of a sample request payload:
 
-``` 
+```
 {
    "urn_uk_org_openbanking_events_resource-update":{
       "resourceID":"vfjskenfksdnvfkkfdfd'",

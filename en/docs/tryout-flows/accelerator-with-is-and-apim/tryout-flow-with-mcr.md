@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 This document provides step by step instructions to tryout the flow with Manual Client Registration. This includes
 
 - Setting up WSO2 Financial Services Key Manager

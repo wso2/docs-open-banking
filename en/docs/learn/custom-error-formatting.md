@@ -1,3 +1,6 @@
+---
+title: "Custom Error Formatting"
+---
 The [customErrorFormatter.xml](https://github.com/wso2/financial-services-apim-mediation-policies/blob/main/common/custom-error-formatter/customErrorFormatter.xml) file  is used to format error responses in a consistent JSON structure. This sequence processes error properties set by various policies and generates a standardized error response.
 
 ## Configuration Steps
@@ -29,10 +32,10 @@ Place the `customErrorFormatter.xml` file in the following location:
 The following variables are used in the `customErrorFormatter.xml` file to construct the error response. These variables should be set in the message context by the policies:
 
 - **ERROR_CODE**: The textual representation of HTTP status codes.  
-  Example: `401 = "Unauthorized"`
+    Example: `401 = "Unauthorized"`
 
 - **ERROR_TITLE**: Indicates the policy that returned the error.  
-  Example: `"MTLS Enforcement Error"` if the error is returned from the MTLS enforcement policy.
+    Example: `"MTLS Enforcement Error"` if the error is returned from the MTLS enforcement policy.
 
 - **ERROR_DESCRIPTION**: A descriptive message about the error.
 

@@ -1,8 +1,11 @@
 ---
-template: templates/single-column.html
+title: "WSO2 Open Banking Accelerator Documentation"
+displayed_sidebar: null
+hide_table_of_contents: true
+hide_markdown_actions: true
 ---
 
-<!--
+{/*
  * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
@@ -18,7 +21,7 @@ template: templates/single-column.html
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations
  * under the License.
--->
+*/}
 
 ## Page not found
 
@@ -27,4 +30,3 @@ Sorry, but the page you are looking for does not exist, has been removed, rename
 Try one of the navigation links above or use the search engine in the top right corner.
 
 Alternatively, you can also report an issue [here](https://github.com/wso2/docs-open-banking/issues). 
-

@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 The WSO2 Financial Services AM Component supports two approaches for extending and implementing its functionalities, as illustrated in the image below.
 
 ![AM_Accelerator_Extensions](../assets/img/develop/openapi-extensions/OB_Flows_with_OpenAPI_Extensions_AM.png) 
@@ -17,8 +20,8 @@ implement Open Banking specification requirements in their preferred programming
 extensions can be deployed externally and tested separately without restarting the WSO2 servers. The OpenAPI extension 
 can be found from [here](../references/accelerator-extensions-api.md).
 
-  - [Developer Guide](openapi/openapi-extensions-developer-guide-am.md)
-  - [OpenAPI based extensions for Manual Client Registration](openapi/openapi-extensions-mcr.md)
+- [Developer Guide](openapi/openapi-extensions-developer-guide-am.md)
+- [OpenAPI based extensions for Manual Client Registration](openapi/openapi-extensions-mcr.md)
 
 
 ## Java based extensions (Old approach)
@@ -26,4 +29,4 @@ can be found from [here](../references/accelerator-extensions-api.md).
 - [Open Banking Gateway](java/open-banking-gateway.md)
 - [Open Banking Event Executor](java/custom-event-executor.md)
 - [Data Publishing](java/authentication-flow-for-data-publishing.md)
-
+    

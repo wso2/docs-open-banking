@@ -1,3 +1,6 @@
+---
+title: "Developer Guide"
+---
 According to your open banking requirements, you can customize the capabilities of WSO2 Open Banking Accelerator. This
 section explains how to get started with implementing customizations and implementing your own toolkit.
 
@@ -11,9 +14,9 @@ The toolkit REST API implementation can be secured with Basic Authentication or 
 ### Configure your customizations
 
 Once you implement your customizations, you have to enable OpenAPI based extensions from the WSO2 Open Banking APIM Accelerator.
-Find the following configuration in the deployment.toml file which resides in <APIM_HOME>/repository/conf folder and enable it to configure the external service extension.
+Find the following configuration in the deployment.toml file which resides in \<APIM_HOME>/repository/conf folder and enable it to configure the external service extension.
 
-``` toml
+```toml
 [financial_services.extensions.endpoint]
 enabled = true
 base_url = "<base_url>"
@@ -31,4 +34,3 @@ password = ""
 
 You can use specification compliance related testing cases to verify the Open Banking flows are working as expected with the implemented
 customizations
-

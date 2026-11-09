@@ -1,3 +1,6 @@
+---
+title: "Introduction"
+---
 TPP onboarding is the process of registering a TPP with an ASPSP. The TPPs go through an in-depth verification during this process to make sure that the financial data and the applications are secured. This can be a manual or an automated process. The bank/ASPSP decides the TPP onboarding method.
 
 The bank has to implement a proper TPP Onboarding process in its banking system. This registration process:

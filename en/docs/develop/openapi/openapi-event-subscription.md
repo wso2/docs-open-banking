@@ -1,9 +1,13 @@
+---
+title: "Event Subscription"
+---
 Open Banking Specifications require banks to notify any changes related to consent to the Third Party Application Provider (TPP). To achieve this, the specifications includes an API called the Event Notification API, including the flows and common functionality to allow a TPP to receive event notifications. 
 
 In order to receive event notifications, TPPs have to register themselves using Event Subscription API. Event Subscription API allows TPPS to subscribe to a set of event types providng a redirect URL optionally.
 
-!!! note
-    Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::note
+Make sure to refer  Developer guide for OpenAPI based extensions from [documentation](openapi-extensions-developer-guide.md)
+:::
 
 The OpenAPI extension for event subscription provides the extendibility to validate the incoming event subscription request attributes, return any attributes to store and construct the response payload according to custom requirements.
 
@@ -22,7 +26,7 @@ To enable, follow the steps below:
 
 2. Locate the following tag and enable it as below and make sure allowed_extensions contains above table mentioned OpenAPI extensions.
 
-``` toml
+```toml
 [financial_services.extensions.endpoint]
 enabled = true
 base_url = "<BASE_URL_OF THE EXTENSION>"
@@ -34,4 +38,4 @@ allowed_extensions = [ "validate-event-subscription", "enrich-event-subscription
 type = "Basic-Auth"
 username = ""
 password = ""
-``` 
+```
