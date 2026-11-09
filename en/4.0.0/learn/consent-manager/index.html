@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-learn/consent-manager" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Consent Manager | WSO2 Open Banking Accelerator Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:site_name" content="WSO2 Open Banking Accelerator Documentation"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:version" content="3.0.0"><meta data-rh="true" property="og:title" content="Consent Manager | WSO2 Open Banking Accelerator Documentation"><meta data-rh="true" name="description" content="After a certain period, bank customers may need to view, update, or revoke consents they have granted to API consumer"><meta data-rh="true" property="og:description" content="After a certain period, bank customers may need to view, update, or revoke consents they have granted to API consumer"><meta data-rh="true" property="og:type" content="article"><link data-rh="true" rel="icon" href="/en/4.0.0/img/favicon.png"><link data-rh="true" rel="canonical" href="https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager/"><link data-rh="true" rel="alternate" href="https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager/" hreflang="en"><link data-rh="true" rel="alternate" href="https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://F7OGP603KZ-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Consent Manager","description":"After a certain period, bank customers may need to view, update, or revoke consents they have granted to API consumer","url":"https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager/","mainEntityOfPage":"https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager/","inLanguage":"en","version":"Next","dateModified":"2026-11-04T05:05:26.000Z","isPartOf":{"@id":"https://ob.docs.wso2.com/en/4.0.0/#website"},"publisher":{"@id":"https://ob.docs.wso2.com/#organization"}}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Consent Manager","item":"https://ob.docs.wso2.com/en/4.0.0/learn/consent-manager"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="WSO2 Open Banking Accelerator Documentation" href="/en/4.0.0/opensearch.xml">
+
+
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://ob.docs.wso2.com/#organization","name":"WSO2 LLC","url":"https://wso2.com","logo":"https://ob.docs.wso2.com/en/4.0.0/img/wso2-pulse.svg"},{"@type":"WebSite","@id":"https://ob.docs.wso2.com/en/4.0.0/#website","name":"WSO2 Open Banking Accelerator Documentation","url":"https://ob.docs.wso2.com/en/4.0.0/","inLanguage":"en","publisher":{"@id":"https://ob.docs.wso2.com/#organization"}}]}</script>
+<script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-TSWTP6",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
+<script>!function(t,h,e,j,s,n){t.hj=t.hj||function(){(t.hj.q=t.hj.q||[]).push(arguments)},t._hjSettings={hjid:1000689,hjsv:6},s=h.getElementsByTagName("head")[0],(n=h.createElement("script")).async=1,n.src="https://static.hotjar.com/c/hotjar-"+t._hjSettings.hjid+".js?sv="+t._hjSettings.hjsv,s.appendChild(n)}(window,document)</script><link rel="stylesheet" href="/en/4.0.0/assets/css/styles.d75e84e7.css">
+<script src="/en/4.0.0/assets/js/runtime~main.ee5e10ea.js" defer="defer"></script>
+<script src="/en/4.0.0/assets/js/main.e2473437.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSWTP6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="__docusaurus"><link rel="preload" as="image" href="/en/4.0.0/img/wso2-pulse.svg"><link rel="preload" as="image" href="/en/4.0.0/img/wso2-pulse-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand ob-navbar-brand" aria-label="Open Banking Accelerator documentation home" href="/en/4.0.0/"><img src="/en/4.0.0/img/wso2-pulse.svg" alt="" class="navbar__logo themedComponent_mlkZ themedComponent--light_NVdE" aria-hidden="true" height="32" width="32"><img src="/en/4.0.0/img/wso2-pulse-dark.svg" alt="" class="navbar__logo themedComponent_mlkZ themedComponent--dark_xIcU" aria-hidden="true" height="32" width="32"><span class="navbar__title ob-navbar-title text--truncate"><strong>Open Banking</strong> Accelerator</span></a><a aria-current="page" class="navbar__item navbar__link ob-navbar-docs-link navbar__link--active" href="/en/4.0.0/">Documentation</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">4.0.0</a><ul class="dropdown__menu"><li><a href="/en/versions/" class="dropdown__link" target="_top">Show all</a></li></ul></div><a href="https://github.com/wso2/docs-open-banking" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub repository"></a><div class="toggle_vylO colorModeToggle_x44X"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearch_Abe8 navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item sidebar-section-icon-home"><a class="menu__link" href="/en/4.0.0/"><span class="linkLabel_WmDU">Home</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-get-started"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/4.0.0/get-started/wso2-open-banking-accelerator/"><span class="categoryLinkLabel_W154">Get Started</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-install-and-setup"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/4.0.0/install-and-setup/prerequisites/"><span class="categoryLinkLabel_W154">Install and Setup</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-tryout-flows"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/4.0.0/tryout-flows/introduction/"><span class="categoryLinkLabel_W154">Tryout Flows</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-section-icon-learn"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/en/4.0.0/learn/client-registration/"><span class="categoryLinkLabel_W154">Learn</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/4.0.0/learn/client-registration/"><span class="categoryLinkLabel_W154">Client Registration</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/4.0.0/learn/consumer-authentication/"><span class="categoryLinkLabel_W154">Consumer Authentication</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/en/4.0.0/learn/consent-management/"><span class="categoryLinkLabel_W154">Consent Management</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/4.0.0/learn/consent-management/"><span class="linkLabel_WmDU">Introduction</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/4.0.0/learn/consent-management-try-out/"><span class="linkLabel_WmDU">Tryout a Basic Consent Flow</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/4.0.0/learn/consent-management-endpoint/"><span class="categoryLinkLabel_W154">Consent Management Endpoints</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/en/4.0.0/learn/consent-manager/"><span class="linkLabel_WmDU">Consent Manager</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/4.0.0/learn/consent-authorization-intro/"><span class="linkLabel_WmDU">Consent Authorization</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/4.0.0/learn/api-security/"><span class="categoryLinkLabel_W154">API Security</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/4.0.0/learn/event-notification/"><span class="categoryLinkLabel_W154">Event Notification</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/4.0.0/learn/policies/"><span class="categoryLinkLabel_W154">Gateway Enforcements</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-develop"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/4.0.0/develop/develop-toolkit/"><span class="categoryLinkLabel_W154">Develop</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-references"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/4.0.0/references/config-catalog-is/"><span class="categoryLinkLabel_W154">References</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="breadcrumbRow_OQ0u"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/4.0.0/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Learn</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Consent Management</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Consent Manager</span></li></ul></nav><div class="container_Dpq9 inlineActions_IH7m"><details class="dropdown_j3nG"><summary class="summary_Mz6o" aria-label="Copy page"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy page</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down chevron_JtVp" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><div class="menu_GT4p" role="menu"><button class="item_ZDNC" type="button" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span><strong>Copy page</strong><small>Copy page as Markdown for LLMs</small></span></button><a class="item_ZDNC" href="/en/4.0.0/learn/consent-manager.md" target="_blank" rel="noopener noreferrer" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><span><strong>View as Markdown</strong><small>View this page as plain text</small></span></a><div class="separator_hkQ6" role="separator"></div></div></details></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Consent Manager</h1></header><p>After a certain period, bank customers may need to view, update, or revoke consents they have granted to API consumer
+applications to access account data. <strong>Consent Manager</strong> is an application in WSO2 Open Banking that supports all these
+requirements and manages consents.</p>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>You can use the <a class="" href="/en/4.0.0/references/consent-rest-api/#/Admin">/admin endpoint in Consent REST API</a>
+to retrieve consent details and customize Consent Manager. For example,</p><div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#d9d9de;--prism-background-color:#161618"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#d9d9de;background-color:#161618"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#d9d9de"><span class="token plain">curl -X GET &quot;https://localhost:9446/api/fs/consent/admin/search?consentIDs=12345&amp;clientIDs=5678&amp;consentTypes=accounts&amp;consentStatuses=authorized&amp;userIDs=user1&amp;fromTime=12012020&amp;toTime=12012021&amp;limit=10&amp;offset=0&quot; -H &quot;accept: application/json&quot; -H &quot;Authorization Basic &lt;TOKEN&gt;&gt;&quot;</span><br></div></code></pre></div></div></div></div>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><ul>
+<li class="">Bank officers with the <code>CustomerCareOfficerRole</code> role and bank customers can access the Consent Manager.</li>
+<li class="">Customer Care Officers have privileges such as Advanced Search options and the ability to view the consents of all bank customers.</li>
+</ul></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="setting-up-consent-manager-app">Setting up Consent manager app<a href="#setting-up-consent-manager-app" class="hash-link" aria-label="Direct link to Setting up Consent manager app" title="Direct link to Setting up Consent manager app" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-api-resource">Create API Resource<a href="#create-api-resource" class="hash-link" aria-label="Direct link to Create API Resource" title="Direct link to Create API Resource" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Go to IS admin console <code>https://&lt;IS_HOST&gt;:9446/console</code></p>
+</li>
+<li class="">
+<p>Log into the IS admin console using IS admin credentials.</p>
+</li>
+<li class="">
+<p>Go to the <strong>Api Resources</strong> tab in the left pane.</p>
+</li>
+<li class="">
+<p>Create a new API Resource. Eg: consent-manager-resource</p>
+</li>
+<li class="">
+<p>Fill Identifier and Display Names. <br>
+<img decoding="async" loading="lazy" alt="create-api-resource-step1" src="/en/4.0.0/assets/images/create-api-resource-step1-7ed3afef7eb602577de0f637e946a15d.png" width="1808" height="1354" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click the Next button.</p>
+</li>
+<li class="">
+<p>Add the scopes <strong>consents<!-- -->:read_self</strong> and <strong>consents<!-- -->:read_all</strong> one by one. Enter scope and Display name as below.<br>
+<img decoding="async" loading="lazy" alt="create-api-resource-step2" src="/en/4.0.0/assets/images/create-api-resource-step2-8f808e44b4721c775283a501024f2b8c.png" width="1278" height="1028" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click the Next button.</p>
+</li>
+<li class="">
+<p>Scopes will be displayed as below once you add all the scopes. <br>
+<img decoding="async" loading="lazy" alt="created-scopes" src="/en/4.0.0/assets/images/created-scopes-638300991876c4f9db2b84886f18580d.png" width="1796" height="1388" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click the <strong>Next</strong> button and Click on <strong>Create</strong> button.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="configure-users-and-roles">Configure Users and Roles<a href="#configure-users-and-roles" class="hash-link" aria-label="Direct link to Configure Users and Roles" title="Direct link to Configure Users and Roles" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-customercareofficerrole-role">Add CustomerCareOfficerRole Role<a href="#add-customercareofficerrole-role" class="hash-link" aria-label="Direct link to Add CustomerCareOfficerRole Role" title="Direct link to Add CustomerCareOfficerRole Role" translate="no">​</a></h4>
+<p>CustomerCareOfficerRole is required for bank users to log into the Consent Manager Portal and search for the consents granted by any user.</p>
+<ol>
+<li class="">
+<p>Go to <strong>Roles</strong> under the <strong>User Management</strong> tab in the left pane.</p>
+</li>
+<li class="">
+<p>Click on <strong>+ New Role</strong>.<br>
+<img decoding="async" loading="lazy" alt="roles" src="/en/4.0.0/assets/images/roles-ac2b926b2e1ec34c59ffe569aa3bb044.png" width="1999" height="859" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Enter following details and click on Next button.</p>
+<ul>
+<li class="">Role Name: CustomerCareOfficerRole</li>
+<li class="">Role audience: Organization<br>
+<img decoding="async" loading="lazy" alt="create-cc-role" src="/en/4.0.0/assets/images/create-cc-role-c80a94672f6b7bdae12cd02396b90a82.png" width="1330" height="1056" class="img_ev3q"></li>
+</ul>
+</li>
+<li class="">
+<p>Select the created <strong>API Resource</strong> under the <strong>Permission Selection</strong> section.</p>
+</li>
+<li class="">
+<p>Add the <strong>consents<!-- -->:read_all</strong> permission from the API resource separately.<br>
+<img decoding="async" loading="lazy" alt="create-role-step2" src="/en/4.0.0/assets/images/create-role-step2-32d559e5ae87242869d73cbe850013fb.png" width="1308" height="1080" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on the <strong>Finish</strong> button.</p>
+</li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-consentportalrole-role">Add ConsentPortalRole Role<a href="#add-consentportalrole-role" class="hash-link" aria-label="Direct link to Add ConsentPortalRole Role" title="Direct link to Add ConsentPortalRole Role" translate="no">​</a></h4>
+<p>ConsentPortalRole is required for users to log into the Consent Manager Portal and search for the consents granted by them.</p>
+<p>Similarly create another role named as <strong>ConsentPortalRole</strong> and assign <strong>consents<!-- -->:read_self</strong> scope to the role.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="add-new-user">Add New User<a href="#add-new-user" class="hash-link" aria-label="Direct link to Add New User" title="Direct link to Add New User" translate="no">​</a></h4>
+<ol>
+<li class="">
+<p>Go to <strong>Users</strong> under the <strong>User Management</strong> tab in the left pane.<br>
+<img decoding="async" loading="lazy" alt="users" src="/en/4.0.0/assets/images/users-c36eb66a6b2d953e53296a9b1399f899.png" width="1960" height="886" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on <strong>Add User</strong> → <strong>Single User</strong>.</p>
+</li>
+<li class="">
+<p>Create the user by providing necessary details.<br>
+<img decoding="async" loading="lazy" alt="create-user" src="/en/4.0.0/assets/images/create-user-c7f8cbeb23c41075172a6883544e532a.png" width="1148" height="1218" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on the Next button.</p>
+</li>
+</ol>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>Select the admin group, If you want to add the user to the admin group. Otherwise proceed the step without selecting the admin group.</p></div></div>
+<ol start="5">
+<li class="">
+<p>Then click on the Close button.</p>
+</li>
+<li class="">
+<p>Go to the <strong>Roles</strong> under the <strong>User Management</strong> tab in the left pane.</p>
+</li>
+<li class="">
+<p>Select <strong>CustomerCareOfficerRole</strong> role.</p>
+</li>
+<li class="">
+<p>Go to <strong>Users</strong> tab and assign the created user to the <strong>CustomerCareOfficerRole</strong> role.</p>
+</li>
+</ol>
+<p>Similarly assign the <strong>ConsentPortalRole</strong> to the users who have a consumer role.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-an-application">Create an Application<a href="#create-an-application" class="hash-link" aria-label="Direct link to Create an Application" title="Direct link to Create an Application" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Go to IS admin console <code>https://&lt;IS_HOST&gt;:9446/console</code></p>
+</li>
+<li class="">
+<p>Log into the IS admin console using IS admin credentials.</p>
+</li>
+<li class="">
+<p>Go to <strong>Applications</strong> from the left sidebar.<br>
+<img decoding="async" loading="lazy" alt="is-home" src="/en/4.0.0/assets/images/is-home-5663866d486b60812f04fb1624931dac.png" width="1999" height="958" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on  <strong>+ New Application</strong>.<br>
+<img decoding="async" loading="lazy" alt="create-application" src="/en/4.0.0/assets/images/create-application-771802d3d5f3d0be6a1056ebd5319635.png" width="1999" height="796" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Select Standard Base Application.<br>
+<img decoding="async" loading="lazy" alt="application-view" src="/en/4.0.0/assets/images/applications-view-3619e106aa9c7ddd7c72e618905761ef.png" width="1999" height="960" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Create an application providing the following details.<br>
+<img decoding="async" loading="lazy" alt="create-application-details" src="/en/4.0.0/assets/images/create-application-details-c1aa874d3ee1cc37b40192cc2e1daf5a.png" width="1408" height="1288" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Create</strong>, and the service provider will be created.</p>
+</li>
+<li class="">
+<p>Once the application is created, do the following modifications to the application <strong>Protocol</strong> tab. Configure the below details under the <strong>OAuth2.0/OpenID Connect</strong> section.</p>
+<table><thead><tr><th>Section</th><th>Configuration</th><th>Value</th></tr></thead><tbody><tr><td>OAuth2.0/OpenID</td><td>Allowed grant types</td><td>Select code, refresh token</td></tr><tr><td>Authorized redirect URLs</td><td>Add a redirect url</td><td>Value should be <code>https://&lt;IS_HOST&gt;:9446/consentmgr/scp_oauth2_callback</code></td></tr><tr><td>Access Token</td><td>Token type</td><td>JWT</td></tr><tr><td>Access Token</td><td>Token binding type</td><td>None</td></tr><tr><td>Certificate</td><td>Type</td><td>None</td></tr></tbody></table>
+</li>
+<li class="">
+<p>Then goto the <strong>Advance</strong> tab. Un- tick <strong>Skip Login Consent</strong> and click update.<br>
+<img decoding="async" loading="lazy" alt="advanced" src="/en/4.0.0/assets/images/advanced-e5e5665d8e46ffed51b1cb3fb38b9a3c.png" width="1328" height="648" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Go to the <strong>Roles</strong> tab and select <strong>Organization</strong> as the <strong>Role Audience</strong>.<br>
+<img decoding="async" loading="lazy" alt="set-role-audience" src="/en/4.0.0/assets/images/set-role-audience-9544b9be74392d8b4db7acfd0c3bd0fd.png" width="1094" height="788" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on <strong>Update</strong> Button.</p>
+</li>
+<li class="">
+<p>Go to the <strong>API Authorization</strong> tab.</p>
+</li>
+<li class="">
+<p>Click on the <strong>Authorize an API Resource</strong> button.<br>
+<img decoding="async" loading="lazy" alt="api-resources1" src="/en/4.0.0/assets/images/api-resources-ea3acaeb0b11f55507ea898b1f418137.png" width="1999" height="1044" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Select the API resource created in <a class="" href="/en/4.0.0/learn/consent-manager/#create-api-resource">earlier</a> from the API Resource drop down.</p>
+</li>
+<li class="">
+<p>Add <strong>consents<!-- -->:read_self</strong> and <strong>consents<!-- -->:read_all</strong> scopes to the Authorized Scopes.<br>
+<img decoding="async" loading="lazy" alt="authorize-api-resources" src="/en/4.0.0/assets/images/authorize-api-resources-a5d9921cce606a841064f824a8ac5b12.png" width="1018" height="868" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on <strong>Finish</strong> Button.</p>
+</li>
+<li class="">
+<p>Go to the <strong>User Attributes</strong> tab under the application.<br>
+<img decoding="async" loading="lazy" alt="user-attributes" src="/en/4.0.0/assets/images/user-attributes-c2c0f678cb43ff09dddec26f8ded1aec.png" width="1664" height="1296" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Expand the <strong>Profile</strong> attribute and tick the <strong>Username</strong> attribute under it as a Requested attribute.<br>
+<img decoding="async" loading="lazy" alt="set-claims" src="/en/4.0.0/assets/images/set-claims-ac13ba169a63bf5ed3b280144b6ad7b4.png" width="1006" height="1308" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Go to <strong>Subject</strong> section and tick on <strong>Assign alternate subject identifier</strong>.<br>
+<img decoding="async" loading="lazy" alt="set-subject-identifier" src="/en/4.0.0/assets/images/set-subject-identifier-b35affb8a33ced55fb6c4d7f02a0b8da.png" width="1328" height="266" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Select the <strong>Username</strong> as the <strong>Subject</strong> attribute.<br>
+<img decoding="async" loading="lazy" alt="set-subject" src="/en/4.0.0/assets/images/set-subject-5190563ad29a96c95871550a71f6aadf.png" width="1600" height="602" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Update</strong>.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configuring-consent-manager">Configuring Consent Manager<a href="#configuring-consent-manager" class="hash-link" aria-label="Direct link to Configuring Consent Manager" title="Direct link to Configuring Consent Manager" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>Open the <code>&lt;IS_HOME&gt;/repository/deployment/server/webapps/consentmgr/runtime-config.js</code> file.</p>
+</li>
+<li class="">
+<p>Follow the below instructions.</p>
+<ul>
+<li class="">
+<p>If the Consent Manager Portal is deployed on the WSO2 Identity Server, use the default configuration given below.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#d9d9de;--prism-background-color:#161618"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#d9d9de;background-color:#161618"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#d9d9de"><span class="token plain">window.env = {</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">    `USE_DEFAULT_CONFIGS: true,</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">    SERVER_URL: &#x27;https://localhost:9446&#x27;,</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">    SPEC: &#x27;Default&#x27;,</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">    TENANT_DOMAIN: &#x27;carbon.super&#x27;,</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">    NUMBER_OF_CONSENTS: 20,</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">    VERS`ION: &#x27;3.0.0&#x27;</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">};</span><br></div></code></pre></div></div>
+</li>
+<li class="">
+<p>If you are using a different server instance for the Identity Server, update the above configurations as follows.
+a. Set the <code>USE_DEFAULT_CONFIGS</code> parameter to false.
+b. Update the <code>SERVER_URL</code> parameter with the URL of the Identity Server.</p>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Open the <code>&lt;IS_HOME&gt;/repository/conf/deployment.toml</code> file and update the configurations.</p>
+<table><thead><tr><th>Configuration</th><th>Description</th></tr></thead><tbody><tr><td>client_id</td><td>The Consumer Key of the application created.</td></tr><tr><td>client_secret</td><td>The Consumer Secret of the application created.</td></tr><tr><td>identity_server_base_url</td><td>The hostname of the Identity Server.</td></tr><tr><td>application_name_param</td><td>This is the parameter name to extract the consumer application name to display in the consent manager portal. The value should be stored during application creation to retrieve here.</td></tr><tr><td>application_logo_uri_param</td><td>This is the parameter name to extract the consumer application logo to display in the consent manager portal. The value should be stored during application creation to retrieve here.</td></tr></tbody></table>
+<p>For example,</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#d9d9de;--prism-background-color:#161618"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#d9d9de;background-color:#161618"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#d9d9de"><span class="token plain">[financial_services.consent.portal.client_credentials]</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">client_id=&quot;2zB5s9wGHWVwmlrvHdWa6Mwc4vsa&quot;</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">client_secret=&quot;cqblprasAniVfi02IXGFvp8VREAa&quot;</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">[financial_services.consent.portal.params]</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">identity_server_base_url=&quot;https://localhost:9446&quot;</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">application_name_param=&quot;client_name&quot;</span><br></div><div class="token-line" style="color:#d9d9de"><span class="token plain">application_logo_uri_param=&quot;software_logo_uri&quot;</span><br></div></code></pre></div></div>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="using-consent-manager">Using Consent Manager<a href="#using-consent-manager" class="hash-link" aria-label="Direct link to Using Consent Manager" title="Direct link to Using Consent Manager" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>Go to the Consent Manager application at <code>https://&lt;IS_HOST&gt;:9446/consentmgr</code>.</p>
+</li>
+<li class="">
+<p>Sign in with the credentials of the users created in <a class="" href="/en/4.0.0/learn/consent-manager/#add-new-user">Create Users</a> section.</p>
+</li>
+<li class="">
+<p>The <strong>consentmgr</strong> application requests access to your profile. To grant access, click <strong>Continue</strong>.<br>
+<img decoding="async" loading="lazy" alt="consent-approval" src="/en/4.0.0/assets/images/consent-approval-687018883117c76a0063fbc4fca4135b.png" width="1204" height="615" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>You are redirected to the homepage of the Consent Manager portal.</p>
+</li>
+</ol>
+<p>The three tabs are as follows:</p>
+<ul>
+<li class=""><strong>Active</strong>: Lists active consents that can access your account/payment information.</li>
+<li class=""><strong>Expired</strong>: Lists expired consent that cannot access your account/payment information anymore.</li>
+<li class=""><strong>Withdrawn</strong>: Lists the consents that you have revoked.</li>
+</ul>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Use the <strong>Search</strong> button to search consents.</p></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="viewing-consent-details">Viewing consent details<a href="#viewing-consent-details" class="hash-link" aria-label="Direct link to Viewing consent details" title="Direct link to Viewing consent details" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>To view consent details, click the respective <code>Action</code> button.</p>
+<p><img decoding="async" loading="lazy" alt="view consent" src="/en/4.0.0/assets/images/view-consent-b57497cabab5089e58e11eabb3c53119.png" width="1799" height="899" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>You can view the details such as the associated API consumer application, consent granted date, consent expiry date,
+account numbers, and permissions that you have granted.</p>
+<p><img decoding="async" loading="lazy" alt="consent details" src="/en/4.0.0/assets/images/consent-details-f59562ea62f2fc277dca94cfe6e5648f.png" width="1823" height="880" class="img_ev3q"></p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="revoking-a-consent">Revoking a consent<a href="#revoking-a-consent" class="hash-link" aria-label="Direct link to Revoking a consent" title="Direct link to Revoking a consent" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>To revoke a consent, review the details and click <strong>Stop Sharing</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="consent details" src="/en/4.0.0/assets/images/stop-sharing-3472093a5c32995921419857f38b3ea6.png" width="311" height="381" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Revoking a consent consists of 2 steps:</p>
+<ul>
+<li class="">
+<p>Step 1: The first step shows the impact of withdrawing the consent.</p>
+<p><img decoding="async" loading="lazy" alt="stop sharing step 1" src="/en/4.0.0/assets/images/stop-sharing-step1-6ce819aad546201a4f4969f77827fd7b.png" width="398" height="472" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Step 2: Displays the information the consent has access to.</p>
+<p><img decoding="async" loading="lazy" alt="stop sharing step 2" src="/en/4.0.0/assets/images/stop-sharing-step2-ca70097855cf07460b23ed9001b4019f.png" width="419" height="478" class="img_ev3q"></p>
+</li>
+</ul>
+</li>
+<li class="">
+<p>Once you click <strong>Stop Sharing</strong>, the status of the consent changes to <code>withdrawn</code>. You can find this consent in the
+<strong>Withdrawn</strong> tab now.</p>
+</li>
+</ul>
+</div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/wso2/docs-open-banking/edit/master/en/docs/learn/consent-manager.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2026-11-04T05:05:26.000Z" itemprop="dateModified">Nov 4, 2026</time></b> by <b>akila94</b></span></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/4.0.0/learn/consent-management-admin/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Consent Admin Endpoint</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/4.0.0/learn/consent-authorization-intro/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Consent Authorization</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#setting-up-consent-manager-app" class="table-of-contents__link toc-highlight">Setting up Consent manager app</a><ul><li><a href="#create-api-resource" class="table-of-contents__link toc-highlight">Create API Resource</a></li><li><a href="#configure-users-and-roles" class="table-of-contents__link toc-highlight">Configure Users and Roles</a></li><li><a href="#create-an-application" class="table-of-contents__link toc-highlight">Create an Application</a></li></ul></li><li><a href="#configuring-consent-manager" class="table-of-contents__link toc-highlight">Configuring Consent Manager</a></li><li><a href="#using-consent-manager" class="table-of-contents__link toc-highlight">Using Consent Manager</a><ul><li><a href="#viewing-consent-details" class="table-of-contents__link toc-highlight">Viewing consent details</a></li><li><a href="#revoking-a-consent" class="table-of-contents__link toc-highlight">Revoking a consent</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">WSO2 Open Banking Accelerator - Documentation<br>Copyright © WSO2 LLC 2025 | Content licensed under CC By 4.0 | Sample code licensed under Apache 2.0</div></div></div></footer></div>
+</body>
+</html>
