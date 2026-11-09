@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocs_open_banking||=[]).push([[957],{40936(a){a.exports=JSON.parse('{"name":"docusaurus-theme-search-algolia","id":"default"}')}}]);

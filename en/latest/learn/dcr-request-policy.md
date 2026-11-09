@@ -1,0 +1,36 @@
+# Dynamic Client Registration Request Policy
+
+### Dynamic Client Registration Request Policy[​](#dynamic-client-registration-request-policy "Direct link to Dynamic Client Registration Request Policy")
+
+Dynamic Client Registration Request Policy is a policy designed to engage in the request flow of the Dynamic Client Registration Request. It will perform the below tasks.
+
+* Validate JWT signature in Dynamic Client Registration create and update requests
+* Decode JWT Payload for DCR create and update requests with JWT payloads
+* Add Mandatory parameters for Identity Server DCR API for DCR create and update requests
+* Check whether the token is bound to the correct client id for DCR retrieval, update and delete requests
+
+Create an API Level Policy by following the [Creating API Level Policy](/en/latest/learn/create-policies/.md) and add to all API resources. Find the details to create the policy below.
+
+#### General Details[​](#general-details "Direct link to General Details")
+
+| Field               | Description                                |
+| ------------------- | ------------------------------------------ |
+| Name                | Dynamic Client Registration Request Policy |
+| Version             | 1 (can be any)                             |
+| Description         | Policy to validate and modify DCR Request  |
+| Applicable Flows    | Request                                    |
+| Supported API Types | HTTP                                       |
+
+#### Policy File[​](#policy-file "Direct link to Policy File")
+
+Upload the dynamicClientRegistrationRequestPolicy.j2 policy file which resides inside the `<APIM_HOME>/<OB_APIM_ACCELERATOR _HOME>/repository/resources/mediation-policies` folder.
+
+#### Policy Attributes[​](#policy-attributes "Direct link to Policy Attributes")
+
+| Attribute name          | Display name                | Description                                                                                                                                        | Required | Type    | Example Values           |
+| ----------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------------------ |
+| validateRequestJWT      | Validate Request JWT        | Determine whether the request JWT signature should be validated                                                                                    | true     | Boolean | true/false               |
+| jwksEndpointName        | JWKS Endpoint Name          | JWKS Endpoint field name in the request.                                                                                                           | true     | String  | software\_jwks\_endpoint |
+| clientNameAttributeName | client Name Attribute Name  | The field name of the attribute that should be used as the name of the application. This value will be used if useSoftwareIdAsAppName is disabled. | true     | String  | software\_client\_name   |
+| useSoftwareIdAsAppName  | Use Software Id As App Name | Determine whether the software Id should be used as application name                                                                               | true     | Boolean | true/false               |
+| jwksEndpointTimeout     | jwksEndpointTimeout         | Timeout for the JWKS Endpoint                                                                                                                      | true     | Integer | 3000                     |

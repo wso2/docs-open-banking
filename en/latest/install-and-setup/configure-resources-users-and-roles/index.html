@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-install-and-setup/configure-resources-users-and-roles" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Configuring API Resources, Users and Roles | WSO2 Open Banking Accelerator Documentation</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:site_name" content="WSO2 Open Banking Accelerator Documentation"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:version" content="3.0.0"><meta data-rh="true" property="og:title" content="Configuring API Resources, Users and Roles | WSO2 Open Banking Accelerator Documentation"><meta data-rh="true" name="description" content="Now you have started the servers, let’s create the API resources, users and define their permissions and roles. This section provides a guide on creating API resources, users and roles for each use case."><meta data-rh="true" property="og:description" content="Now you have started the servers, let’s create the API resources, users and define their permissions and roles. This section provides a guide on creating API resources, users and roles for each use case."><meta data-rh="true" property="og:type" content="article"><link data-rh="true" rel="icon" href="/en/latest/img/favicon.png"><link data-rh="true" rel="canonical" href="https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles/"><link data-rh="true" rel="alternate" href="https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles/" hreflang="en"><link data-rh="true" rel="alternate" href="https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://F7OGP603KZ-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Configuring API Resources, Users and Roles","description":"Now you have started the servers, let’s create the API resources, users and define their permissions and roles. This section provides a guide on creating API resources, users and roles for each use case.","url":"https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles/","mainEntityOfPage":"https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles/","inLanguage":"en","version":"Next","dateModified":"2026-11-04T05:05:26.000Z","isPartOf":{"@id":"https://ob.docs.wso2.com/en/latest/#website"},"publisher":{"@id":"https://ob.docs.wso2.com/#organization"}}</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Configuring API Resources, Users and Roles","item":"https://ob.docs.wso2.com/en/latest/install-and-setup/configure-resources-users-and-roles"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="WSO2 Open Banking Accelerator Documentation" href="/en/latest/opensearch.xml">
+
+
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://ob.docs.wso2.com/#organization","name":"WSO2 LLC","url":"https://wso2.com","logo":"https://ob.docs.wso2.com/en/latest/img/wso2-pulse.svg"},{"@type":"WebSite","@id":"https://ob.docs.wso2.com/en/latest/#website","name":"WSO2 Open Banking Accelerator Documentation","url":"https://ob.docs.wso2.com/en/latest/","inLanguage":"en","publisher":{"@id":"https://ob.docs.wso2.com/#organization"}}]}</script>
+<script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-TSWTP6",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer")</script>
+<script>!function(t,h,e,j,s,n){t.hj=t.hj||function(){(t.hj.q=t.hj.q||[]).push(arguments)},t._hjSettings={hjid:1000689,hjsv:6},s=h.getElementsByTagName("head")[0],(n=h.createElement("script")).async=1,n.src="https://static.hotjar.com/c/hotjar-"+t._hjSettings.hjid+".js?sv="+t._hjSettings.hjsv,s.appendChild(n)}(window,document)</script><link rel="stylesheet" href="/en/latest/assets/css/styles.aa63217e.css">
+<script src="/en/latest/assets/js/runtime~main.7634bea6.js" defer="defer"></script>
+<script src="/en/latest/assets/js/main.28e35919.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script>
+
+
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSWTP6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="__docusaurus"><link rel="preload" as="image" href="/en/latest/img/wso2-pulse.svg"><link rel="preload" as="image" href="/en/latest/img/wso2-pulse-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand ob-navbar-brand" aria-label="Open Banking Accelerator documentation home" href="/en/latest/"><img src="/en/latest/img/wso2-pulse.svg" alt="" class="navbar__logo themedComponent_mlkZ themedComponent--light_NVdE" aria-hidden="true" height="32" width="32"><img src="/en/latest/img/wso2-pulse-dark.svg" alt="" class="navbar__logo themedComponent_mlkZ themedComponent--dark_xIcU" aria-hidden="true" height="32" width="32"><span class="navbar__title ob-navbar-title text--truncate"><strong>Open Banking</strong> Accelerator</span></a><a aria-current="page" class="navbar__item navbar__link ob-navbar-docs-link navbar__link--active" href="/en/latest/">Documentation</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">4.0.0</a><ul class="dropdown__menu"><li><a href="/en/versions/" class="dropdown__link" target="_top">Show all</a></li></ul></div><a href="https://github.com/wso2/docs-open-banking" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub repository"></a><div class="toggle_vylO colorModeToggle_x44X"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearch_Abe8 navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item sidebar-section-icon-home"><a class="menu__link" href="/en/latest/"><span class="linkLabel_WmDU">Home</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-get-started"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/latest/get-started/wso2-open-banking-accelerator/"><span class="categoryLinkLabel_W154">Get Started</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item sidebar-section-icon-install-and-setup"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/en/latest/install-and-setup/prerequisites/"><span class="categoryLinkLabel_W154">Install and Setup</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/latest/install-and-setup/prerequisites/"><span class="linkLabel_WmDU">Prerequisites</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/latest/install-and-setup/setting-up-servers-with-is/"><span class="categoryLinkLabel_W154">Setting up servers</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/latest/install-and-setup/setting-up-databases/"><span class="linkLabel_WmDU">Setting up databases</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/latest/install-and-setup/configuring-identity-server-for-ob/"><span class="linkLabel_WmDU">Configuring Identity Server</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/latest/install-and-setup/configuring-api-manager-for-ob/"><span class="linkLabel_WmDU">Configuring API Manager</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/en/latest/install-and-setup/configure-resources-users-and-roles/"><span class="linkLabel_WmDU">Configuring API Resources, Users and Roles</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/latest/install-and-setup/deploy-with-docker/"><span class="linkLabel_WmDU">Deploy with Docker</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/latest/install-and-setup/deployment-checklist/"><span class="categoryLinkLabel_W154">Deployment Best Practises</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/en/latest/install-and-setup/deployment-patterns/"><span class="categoryLinkLabel_W154">Advanced</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-tryout-flows"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/latest/tryout-flows/introduction/"><span class="categoryLinkLabel_W154">Tryout Flows</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-learn"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/latest/learn/client-registration/"><span class="categoryLinkLabel_W154">Learn</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-develop"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/latest/develop/develop-toolkit/"><span class="categoryLinkLabel_W154">Develop</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed sidebar-section-icon-references"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/en/latest/references/config-catalog-is/"><span class="categoryLinkLabel_W154">References</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="breadcrumbRow_OQ0u"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/latest/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Install and Setup</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Configuring API Resources, Users and Roles</span></li></ul></nav><div class="container_Dpq9 inlineActions_IH7m"><details class="dropdown_j3nG"><summary class="summary_Mz6o" aria-label="Copy page"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy page</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down chevron_JtVp" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary><div class="menu_GT4p" role="menu"><button class="item_ZDNC" type="button" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span><strong>Copy page</strong><small>Copy page as Markdown for LLMs</small></span></button><a class="item_ZDNC" href="/en/latest/install-and-setup/configure-resources-users-and-roles.md" target="_blank" rel="noopener noreferrer" role="menuitem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg><span><strong>View as Markdown</strong><small>View this page as plain text</small></span></a><div class="separator_hkQ6" role="separator"></div></div></details></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Configuring API Resources, Users and Roles</h1></header><p>Now you have started the servers, let’s create the API resources, users and define their permissions and roles. This section provides a guide on creating API resources, users and roles for each use case.</p>
+<ul>
+<li class="">Accelerator with WSO2 Identity Server</li>
+<li class="">Accelerator with WSO2 Identity Server and WSO2 API Manager</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="accelerator-with-wso2-identity-server">Accelerator with WSO2 Identity Server<a href="#accelerator-with-wso2-identity-server" class="hash-link" aria-label="Direct link to Accelerator with WSO2 Identity Server" title="Direct link to Accelerator with WSO2 Identity Server" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sign-in-to-the-identity-server">Sign in to the Identity Server<a href="#sign-in-to-the-identity-server" class="hash-link" aria-label="Direct link to Sign in to the Identity Server" title="Direct link to Sign in to the Identity Server" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Sign in to the Management Console of WSO2 Identity Server at <a href="https://localhost:9446/console" target="_blank" rel="noopener noreferrer" class="">https://localhost:9446/console</a></p>
+</li>
+<li class="">
+<p>Use the default super admin credentials as follows:</p>
+<ul>
+<li class="">Username: <a href="mailto:is_admin@wso2.com" target="_blank" rel="noopener noreferrer" class="">is_admin@wso2.com</a></li>
+<li class="">Password: wso2123</li>
+</ul>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>The above login credentials are for testing purposes only. It is recommended to change the login credentials in
+a production environment.</p></div></div>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-api-resources">Create API resources<a href="#create-api-resources" class="hash-link" aria-label="Direct link to Create API resources" title="Direct link to Create API resources" translate="no">​</a></h3>
+<p>WSO2 Identity Server provides comprehensive capabilities for managing and securing API resources, particularly in the context of authorization and access control. You need to create below API resources in order to successfully invoke Open Banking APIs.</p>
+<table><thead><tr><th>API Resource</th><th>Identifier</th><th>Display Names</th><th>Scopes</th></tr></thead><tbody><tr><td>API Resource for access scopes attached to customer facing Open Banking APIs</td><td>User-defined-oauth2-resource</td><td>User-defined-oauth2-resource</td><td>accounts, payments ,fundsconfirmations</td></tr><tr><td>API resource to acccess internal Open Banking APIs provided by WSO2</td><td>OB-internal-api-resource</td><td>OB-internal-api-resource</td><td>ob-internal-api-access</td></tr></tbody></table>
+<p>Follow the below steps to create the above API Resources.</p>
+<ol>
+<li class="">
+<p>Go to the <strong>Api Resources</strong> tab in the left pane.</p>
+</li>
+<li class="">
+<p>Click <strong>New API Resource</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="create-api-resource.png" src="/en/latest/assets/images/create-api-resource-a7ab742324c02f04cb7afcbc1cd0d7ea.png" width="3434" height="1738" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Enter <strong>Identifier</strong> and <strong>Display Names</strong>.</p>
+<table><thead><tr><th>Text Field</th><th>Value</th></tr></thead><tbody><tr><td>Identifier</td><td>User-defined-oauth2-resource</td></tr><tr><td>Display Names</td><td>User-defined-oauth2-resource</td></tr></tbody></table>
+<p><img decoding="async" loading="lazy" alt="api_resource_basic_detail_page.png" src="/en/latest/assets/images/api_resource_basic_detail_page-a8fceca7e0dc2531dffa630d783695c5.png" width="1800" height="1528" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Add the following scopes one at a time: <strong>accounts</strong>, <strong>payments</strong>, and <strong>fundsconfirmations</strong>.
+For each scope, enter the Scope and Display Name as shown below.
+<img decoding="async" loading="lazy" alt="api_resource_scopes_page.png" src="/en/latest/assets/images/api_resource_scopes_page-56b16e4fd05a2d03483518263ad7f229.png" width="1794" height="1534" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Once all scopes have been added, they will be displayed as shown below.
+<img decoding="async" loading="lazy" alt="api_resource_scopes_added_page.png" src="/en/latest/assets/images/api_resource_scopes_added_page-78aadffb7099935866cb74371bf232bc.png" width="1776" height="1534" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Click <strong>Create</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="api_resource_authorisation_page.png" src="/en/latest/assets/images/api_resource_authorisation_page-9130d5243d93257959d7ebe65ac864f6.png" width="1765" height="1514" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Create <strong>OB-internal-api-resource</strong> by flowing the above steps.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-new-user-roles">Create new user roles<a href="#create-new-user-roles" class="hash-link" aria-label="Direct link to Create new user roles" title="Direct link to Create new user roles" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Go to the <strong>User Management</strong> tab in the left pane and select <strong>Roles</strong>.
+<img decoding="async" loading="lazy" alt="add_user_roles" src="/en/latest/assets/images/go-to-add-user-roles-7e18ecccbc641e2e76fd59e482794d78.png" width="3434" height="1316" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>+ New Role</strong>.</p>
+</li>
+<li class="">
+<p>Create the following user role:</p>
+<table><thead><tr><th>Role Name</th><th>Role audience</th><th>Permissions</th><th>Description</th></tr></thead><tbody><tr><td>consumer</td><td>Organization</td><td>User-defined-oauth2-resource</td><td>Users must have the Consumer role to proceed with the authorization flow.</td></tr></tbody></table>
+<p>i. Creating <strong>consumer role</strong>:</p>
+<ul>
+<li class="">
+<p>Enter the role name as <strong>consumer</strong> and select the role audience as <strong>Organization</strong>:</p>
+<p><img decoding="async" loading="lazy" alt="enter_basic_role_details_for_consumer.png" src="/en/latest/assets/images/enter_basic_role_details_for_consumer-e805295478be4c7a42e5ec893a1c62d0.png" width="2676" height="1388" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Select the API Resource &#x27;User-defined-oauth2-resource&#x27; created in <a href="#create-api-resources" class="">Create API resources</a>.</p>
+</li>
+<li class="">
+<p>Select all three permissions of the &#x27;User-defined-oauth2-resource&#x27; resource.</p>
+<p><img decoding="async" loading="lazy" alt="select-permissions.png" src="/en/latest/assets/images/select-permissions-6d711b9eb5cfe30f2c07750d8a3a3348.png" width="2698" height="1546" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Finish</strong>.</p>
+</li>
+</ul>
+<p>ii. Creating <strong>OBInternalApiAccessRole role</strong>:</p>
+<ul>
+<li class="">Enter the role name as <strong>OBInternalApiAccessRole</strong> and select the role audience as <strong>Organization</strong>:</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="enter_basic_role_details_for_consumer.png" src="/en/latest/assets/images/enter_basic_role_details_for_internal_api-1deaab3d2528090453dc065595bef38b.png" width="2180" height="1180" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Select the API Resource <code>OB-internal-api-resource</code> created in <a href="#create-api-resources" class="">Create API resources</a>.</p>
+</li>
+<li class="">
+<p>Select all permissions of the <code>OB-internal-api-resource</code> resource.</p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="select-permissions.png" src="/en/latest/assets/images/select-permissions_for_internal_api-1f3327408047aff7d4c2159adf2f6109.png" width="1504" height="982" class="img_ev3q"></p>
+<ul>
+<li class="">Click <strong>Finish</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-new-users">Create new users<a href="#create-new-users" class="hash-link" aria-label="Direct link to Create new users" title="Direct link to Create new users" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Go to the <strong>User Management</strong> tab in the left pane and select <strong>Users</strong>.
+<img decoding="async" loading="lazy" alt="create_user_navigation_page.png" src="/en/latest/assets/images/create_user_navigation_page-edf1dab19ca1c6bb9dfc04398b383279.png" width="3426" height="1108" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Add User</strong> → <strong>Single User</strong>.</p>
+</li>
+<li class="">
+<p>Enter the basic details of the user and set a password. Select <code>PRIMARY</code> user store.</p>
+<p><img decoding="async" loading="lazy" alt="create_consumer_user_basic_details.png" src="/en/latest/assets/images/create_consumer_user_basic_details-8fdd60e12e1b7a5e008349ebe867a099.png" width="1424" height="1512" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>Select the admin group, If you want to add the user to the admin group. Otherwise, continue without selecting the Admin group.</p></div></div>
+</li>
+<li class="">
+<p>Click <strong>Save and Continue</strong>.
+<img decoding="async" loading="lazy" alt="create_consumer_user_group.png" src="/en/latest/assets/images/create_consumer_user_group-1519d9ee0fa4dee8e97ce59c1bcd1303.png" width="1434" height="1526" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Close</strong>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="assign-roles-to-the-user">Assign roles to the user<a href="#assign-roles-to-the-user" class="hash-link" aria-label="Direct link to Assign roles to the user" title="Direct link to Assign roles to the user" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Go to the <strong>User Management</strong> tab in the left pane and select <strong>Roles</strong>.
+<img decoding="async" loading="lazy" alt="add_user_roles" src="/en/latest/assets/images/go-to-add-user-roles-7e18ecccbc641e2e76fd59e482794d78.png" width="3434" height="1316" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on the <strong>consumer</strong> role created in <a href="#create-new-user-roles" class="">Create new user roles</a>
+<img decoding="async" loading="lazy" alt="navigate_to_consumer_role_edit_page.png" src="/en/latest/assets/images/navigate_to_consumer_role_edit_page-95b00c35cbb5a15e276e20493bdcc25b.png" width="3434" height="1358" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Go to <strong>Users</strong> tab.</p>
+</li>
+<li class="">
+<p>Click <strong>Assign Users</strong>.
+<img decoding="async" loading="lazy" alt="assign_users_to_consumer_role.png" src="/en/latest/assets/images/assign_users_to_consumer_role-6782c73305d8a6b1889810eab9fd0cfe.png" width="2702" height="1634" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Assign User</strong> drop-down → select user from the drop-down.
+<img decoding="async" loading="lazy" alt="assign_user_to_consumer_role.png" src="/en/latest/assets/images/assign_user_to_consumer_role-0b5aa10dc1f3de2f4b4f2fbc93f529ba.png" width="2722" height="1072" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Update</strong>.</p>
+</li>
+<li class="">
+<p>Similarly assign <strong>OBInternalApiAccessRole</strong> to the admin user in your system.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="accelerator-with-wso2-identity-server-and-wso2-api-manager">Accelerator with WSO2 Identity Server and WSO2 API Manager<a href="#accelerator-with-wso2-identity-server-and-wso2-api-manager" class="hash-link" aria-label="Direct link to Accelerator with WSO2 Identity Server and WSO2 API Manager" title="Direct link to Accelerator with WSO2 Identity Server and WSO2 API Manager" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sign-in-to-the-identity-server_1">Sign in to the Identity Server<a href="#sign-in-to-the-identity-server_1" class="hash-link" aria-label="Direct link to Sign in to the Identity Server" title="Direct link to Sign in to the Identity Server" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Sign in to the Management Console of WSO2 Identity Server at <a href="https://localhost:9446/console" target="_blank" rel="noopener noreferrer" class="">https://localhost:9446/console</a></p>
+</li>
+<li class="">
+<p>Use the default super admin credentials as follows:</p>
+<ul>
+<li class="">Username: <a href="mailto:is_admin@wso2.com" target="_blank" rel="noopener noreferrer" class="">is_admin@wso2.com</a></li>
+<li class="">Password: wso2123</li>
+</ul>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>The above login credentials are for testing purposes only. It is recommended to change the login credentials in
+a production environment.</p></div></div>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-api-resources_1">Create API resources<a href="#create-api-resources_1" class="hash-link" aria-label="Direct link to Create API resources" title="Direct link to Create API resources" translate="no">​</a></h2>
+<p>WSO2 Identity Server provides comprehensive capabilities for managing and securing API resources, particularly in the context of authorization and access control. You need to create below API resources in order to successfully invoke Internal Open Banking APIs provided by WSO2.</p>
+<table><thead><tr><th>API Resource</th><th>Identifier</th><th>Display Names</th><th>Scopes</th></tr></thead><tbody><tr><td>API resource to acccess internal Open Banking APIs provided by WSO2</td><td>OB-internal-api-resource</td><td>OB-internal-api-resource</td><td>ob-internal-api-access</td></tr></tbody></table>
+<p>Follow the below steps to create the above API Resource.</p>
+<ol>
+<li class="">
+<p>Go to the <strong>Api Resources</strong> tab in the left pane.</p>
+</li>
+<li class="">
+<p>Click <strong>New API Resource</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="create-api-resource.png" src="/en/latest/assets/images/api_resource_basic_detail_page_internal_api-a0dc14e22a922c4da2cd3ed5a65bc01b.png" width="1300" height="1050" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Enter <strong>Identifier</strong> and <strong>Display Names</strong>.</p>
+<table><thead><tr><th>Text Field</th><th>Value</th></tr></thead><tbody><tr><td>Identifier</td><td>OB-internal-api-resource</td></tr><tr><td>Display Names</td><td>OB-internal-api-resource</td></tr></tbody></table>
+<p><img decoding="async" loading="lazy" alt="api_resource_basic_detail_page.png" src="/en/latest/assets/images/api_resource_basic_detail_page-a8fceca7e0dc2531dffa630d783695c5.png" width="1800" height="1528" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Add the following scope: <strong>ob-internal-api-access</strong>.
+For each scope, enter the Scope and Display Name as shown below.
+<img decoding="async" loading="lazy" alt="api_resource_scopes_page.png" src="/en/latest/assets/images/api_resource_scopes_page_internal_api-8290f95096f1803df35b742cbdc073d1.png" width="1302" height="1048" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Once all scopes have been added, they will be displayed as shown below.
+<img decoding="async" loading="lazy" alt="api_resource_scopes_added_page.png" src="/en/latest/assets/images/api_resource_scopes_added_page_internal_api-d54c885fe07f39db7a1422c973ab57fd.png" width="1298" height="1056" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Click <strong>Create</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="api_resource_authorisation_page.png" src="/en/latest/assets/images/api_resource_authorisation_page-9130d5243d93257959d7ebe65ac864f6.png" width="1765" height="1514" class="img_ev3q"></p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-new-user-roles_1">Create new user roles<a href="#create-new-user-roles_1" class="hash-link" aria-label="Direct link to Create new user roles" title="Direct link to Create new user roles" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>Go to the <strong>User Management</strong> tab in the left pane and select <strong>Roles</strong>.
+<img decoding="async" loading="lazy" alt="add_user_roles" src="/en/latest/assets/images/go-to-add-user-roles-7e18ecccbc641e2e76fd59e482794d78.png" width="3434" height="1316" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>+ New Role</strong>.</p>
+</li>
+<li class="">
+<p>Create the following user role:</p>
+<table><thead><tr><th>Role Name</th><th>Role audience</th><th>Permissions</th><th>Description</th></tr></thead><tbody><tr><td>OBInternalApiAccessRole</td><td>Organization</td><td>OB-internal-api-resource</td><td>Users must have the <code>OBInternalApiAccessRole</code> role to access internal OB APIs provided by WSO2.</td></tr></tbody></table>
+<p>i. Creating <strong>OBInternalApiAccessRole role</strong>:</p>
+<ul>
+<li class="">
+<p>Enter the role name as <strong>OBInternalApiAccessRole</strong> and select the role audience as <strong>Organization</strong>:</p>
+<p><img decoding="async" loading="lazy" alt="enter_basic_role_details_for_consumer.png" src="/en/latest/assets/images/enter_basic_role_details_for_internal_api-1deaab3d2528090453dc065595bef38b.png" width="2180" height="1180" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li class="">
+<p>Select the API Resource <code>OB-internal-api-resource</code> created in <a href="#create-api-resources" class="">Create API resources</a>.</p>
+</li>
+<li class="">
+<p>Select all permissions of the <code>OB-internal-api-resource</code> resource.</p>
+<p><img decoding="async" loading="lazy" alt="select-permissions.png" src="/en/latest/assets/images/select-permissions_for_internal_api-1f3327408047aff7d4c2159adf2f6109.png" width="1504" height="982" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Finish</strong>.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-new-users_1">Create new users<a href="#create-new-users_1" class="hash-link" aria-label="Direct link to Create new users" title="Direct link to Create new users" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>Go to the <strong>User Management</strong> tab in the left pane and select <strong>Users</strong>.
+<img decoding="async" loading="lazy" alt="create_user_navigation_page.png" src="/en/latest/assets/images/create_user_navigation_page-edf1dab19ca1c6bb9dfc04398b383279.png" width="3426" height="1108" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Add User</strong> → <strong>Single User</strong>.</p>
+</li>
+<li class="">
+<p>Enter the basic details of the user and set a password. Select <code>PRIMARY</code> user store.</p>
+<p><img decoding="async" loading="lazy" alt="create_consumer_user_basic_details.png" src="/en/latest/assets/images/create_consumer_user_basic_details-8fdd60e12e1b7a5e008349ebe867a099.png" width="1424" height="1512" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Next</strong>.</p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>Select the admin group, If you want to add the user to the admin group. Otherwise, continue without selecting the Admin group.</p></div></div>
+</li>
+<li class="">
+<p>Click <strong>Save and Continue</strong>.
+<img decoding="async" loading="lazy" alt="create_consumer_user_group.png" src="/en/latest/assets/images/create_consumer_user_group-1519d9ee0fa4dee8e97ce59c1bcd1303.png" width="1434" height="1526" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Close</strong>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="assign-roles-to-the-user_1">Assign roles to the user<a href="#assign-roles-to-the-user_1" class="hash-link" aria-label="Direct link to Assign roles to the user" title="Direct link to Assign roles to the user" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p>Go to the <strong>User Management</strong> tab in the left pane and select <strong>Roles</strong>.
+<img decoding="async" loading="lazy" alt="add_user_roles" src="/en/latest/assets/images/go-to-add-user-roles-7e18ecccbc641e2e76fd59e482794d78.png" width="3434" height="1316" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click on the <strong>consumer</strong> role created in <a href="#create-new-user-roles" class="">Create new user roles</a>
+<img decoding="async" loading="lazy" alt="navigate_to_consumer_role_edit_page.png" src="/en/latest/assets/images/navigate_to_consumer_role_edit_page-95b00c35cbb5a15e276e20493bdcc25b.png" width="3434" height="1358" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Go to <strong>Users</strong> tab.</p>
+</li>
+<li class="">
+<p>Click <strong>Assign Users</strong>.
+<img decoding="async" loading="lazy" alt="assign_users_to_consumer_role.png" src="/en/latest/assets/images/assign_users_to_consumer_role-6782c73305d8a6b1889810eab9fd0cfe.png" width="2702" height="1634" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Assign User</strong> drop-down → select user from the drop-down.
+<img decoding="async" loading="lazy" alt="assign_user_to_consumer_role.png" src="/en/latest/assets/images/assign_user_to_consumer_role-0b5aa10dc1f3de2f4b4f2fbc93f529ba.png" width="2722" height="1072" class="img_ev3q"></p>
+</li>
+<li class="">
+<p>Click <strong>Update</strong>.</p>
+</li>
+<li class="">
+<p>Similarly assign <strong>OBInternalApiAccessRole</strong> to the admin user in your system.</p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/wso2/docs-open-banking/edit/master/en/docs/install-and-setup/configure-resources-users-and-roles.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2026-11-04T05:05:26.000Z" itemprop="dateModified">Nov 4, 2026</time></b> by <b>akila94</b></span></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/latest/install-and-setup/configuring-api-manager-for-ob/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Configuring API Manager</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/latest/install-and-setup/deploy-with-docker/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Deploy with Docker</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#accelerator-with-wso2-identity-server" class="table-of-contents__link toc-highlight">Accelerator with WSO2 Identity Server</a><ul><li><a href="#sign-in-to-the-identity-server" class="table-of-contents__link toc-highlight">Sign in to the Identity Server</a></li><li><a href="#create-api-resources" class="table-of-contents__link toc-highlight">Create API resources</a></li><li><a href="#create-new-user-roles" class="table-of-contents__link toc-highlight">Create new user roles</a></li><li><a href="#create-new-users" class="table-of-contents__link toc-highlight">Create new users</a></li><li><a href="#assign-roles-to-the-user" class="table-of-contents__link toc-highlight">Assign roles to the user</a></li></ul></li><li><a href="#accelerator-with-wso2-identity-server-and-wso2-api-manager" class="table-of-contents__link toc-highlight">Accelerator with WSO2 Identity Server and WSO2 API Manager</a><ul><li><a href="#sign-in-to-the-identity-server_1" class="table-of-contents__link toc-highlight">Sign in to the Identity Server</a></li></ul></li><li><a href="#create-api-resources_1" class="table-of-contents__link toc-highlight">Create API resources</a></li><li><a href="#create-new-user-roles_1" class="table-of-contents__link toc-highlight">Create new user roles</a></li><li><a href="#create-new-users_1" class="table-of-contents__link toc-highlight">Create new users</a><ul><li><a href="#assign-roles-to-the-user_1" class="table-of-contents__link toc-highlight">Assign roles to the user</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">WSO2 Open Banking Accelerator - Documentation<br>Copyright © WSO2 LLC 2025 | Content licensed under CC By 4.0 | Sample code licensed under Apache 2.0</div></div></div></footer></div>
+</body>
+</html>
