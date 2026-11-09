@@ -1,0 +1,1 @@
+(globalThis.webpackChunkdocs_open_banking||=[]).push([[8577],{549(s,n,a){"use strict";var c=a(8291);const o=c;a.d(n,["A",0,o])},5741(){}}]);

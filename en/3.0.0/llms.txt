@@ -1,0 +1,123 @@
+# WSO2 Open Banking Accelerator Documentation
+
+
+## en
+
+- [Search the documentation](/search.md): Documentation for WSO2 Open Banking Accelerator
+- [Running FAPI - CIBA Conformance Suite](/conformance/ciba-conformance.md): WSO2 Open Banking 3.0.0 supports OpenID Conformance Suite v5.2.0.
+- [Application Management Listener](/develop/application-management-listener.md): Writing a custom Application Management Listener
+- [Additional Application Property Validation](/develop/application-property-validation.md): When onboarding API consumer/TPP applications via WSO2 API Manager Developer Portal, you can request additional
+- [Authentication Flow](/develop/authentication-flow-for-data-publishing.md): WSO2 Open Banking Intelligence captures data elements in the authentication flow for data publishing. This document explains
+- [Open Banking Authentication Worker](/develop/authentication-worker.md): Writing a Custom AuthenticationWorker
+- [CIBA Consent Updater](/develop/ciba-consent-updater.md): When a user approves/rejects the consent via the mobile device, the response is sent to the Identity server from the
+- [CIBA Push Authenticator](/develop/ciba-push-authenticator.md): The Client-Initiated Backchannel Authentication (CIBA) Push Authenticator in WSO2 Open Banking currently supports
+- [Consent Amendment History](/develop/consent-amendment-history.md): Any change that is performed on an active consent is considered as an amendment. WSO2 Open Banking provides
+- [Consent Core Service](/develop/consent-core-service.md): Using Consent Core Service
+- [Consent Enforcement Executor](/develop/consent-enforcement-executor.md): The Consent Enforcement executor ensures that the API consumer application is performing an action on the requested
+- [Consent Authorize](/develop/consent-management-authorize.md): WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant components
+- [Consent Manage](/develop/consent-management-manage.md): WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant components
+- [Consent Validate](/develop/consent-management-validate.md): WSO2 Open Banking Accelerator consists of endpoints to manage consents. You can customize relevant components
+- [Custom API Consumer Validation Executor](/develop/custom-api-consumer-validation.md): The API Consumer Validation service in WSO2 Open Banking allows banks to validate API consumers from the National
+- [Custom Claim Provider](/develop/custom-claim-provider.md): Writing a custom claim provider
+- [Custom Data Publishing](/develop/custom-data-publishing.md): WSO2 Open Banking Accelerator supports publishing data in the API gateway and authentication components. Additionally,
+- [Custom DCR Validator](/develop/custom-dcr-validator.md): Writing a custom DCR validator
+- [Custom Event Executor](/develop/custom-event-executor.md): Writing a Custom Event Executor
+- [Event Notification](/develop/custom-event-notification.md): Open Banking Specifications require banks to notify any changes related to consent to the Third Party Application Provider (TPP). To achieve this, the specifications includes an API called the Event Notification API, including the flows and common functionality to allow a TPP to receive event notifications.
+- [Custom Gateway Executor](/develop/custom-gateway-executor.md): Writing a custom Gateway Executor
+- [Custom Pushed Auth Request Validator](/develop/custom-pushed-auth-request-validator.md): A pushed authorization request contains authentication and authorization
+- [Custom Request Object Validator](/develop/custom-request-object-validator.md): Writing a Custom Request Object Validator
+- [Custom Request Router](/develop/custom-request-router.md): Writing a custom Request Router
+- [Custom Throttling Keys](/develop/custom-throttling-keys.md): Writing Custom Throttling Keys
+- [Customize Authentication Steps](/develop/customize-authentication-steps.md): This section explains how to customize the default authentication steps according to your requirements.
+- [Customize the Consent Manager Portal](/develop/customize-consent-manager-portal.md): This page explains how the developers can plug in the required toolkit code and customize the Consent Manager Portal by modifying or adding files.
+- [Customize the Consent Page](/develop/customize-consent-page.md): During the consent authorization process, an API consumer requests the banking
+- [Dynamic Client Registration](/develop/dcr-for-data-publishing.md): You can enable data publishing for Dynamic Client Registration (DCR) by following the steps given below:
+- [Toolkit Introduction](/develop/develop-toolkit.md): You can use WSO2 Open Banking Accelerator capabilities and customize them according to your open banking requirements.
+- [Developer Guide](/develop/developer-guide.md): According to your open banking requirements, you can customize the capabilities of WSO2 Open Banking Accelerator. This
+- [Distributed cache](/develop/distributed-cache.md): Writing a custom Open Banking Distributed Cache Key
+- [Error handling in API Gateway](/develop/gateway-error-handling.md): The WSO2 API Gateway acts as a proxy between the API consumer applications and the bank back-end servers. The API
+- [Grant Handlers](/develop/grant-handlers.md): The WSO2 Identity Server provides OAuth Grant Handlers that are useful when you want to support an OAuth flow that is
+- [ID Token Builder](/develop/id-token-builder-auth-flow.md): Writing a custom ID Token Builder
+- [ID Token Builder](/develop/id-token-builder-token-flow.md): Writing a custom ID Token Builder
+- [Open Banking Idempotency Handling Validator](/develop/idempotency-handling-validator.md): The idempotency validator is used to validate idempotency of the requests. It will be a part of the key manager and will used to validate the idempotency of the  consent related requests. If the same request is repeated within the configured allowed time, the response is returned from the key manager without calling the back end.
+- [Introspection Data Provider](/develop/introspection-data-provider.md): WSO2 Open Banking Accelerator contains a default introspection data provider implementation in the
+- [JWS Response Signing](/develop/jws-response-signing.md): The WSO2 Open Banking Accelerator provides the JWS Response Signing executor if you want to sign the API responses
+- [JWS Signature Validation](/develop/jws-signature-validation.md): The WSO2 Open Banking Accelerator provides the JWS Signature Validation executor if you want to validate the
+- [JWT Access Tokens](/develop/jwt-access-tokens.md): JSON Web Token (JWT) is an open standard of transmitting information securely between two parties. As the tokens
+- [KeyID Provider](/develop/keyid-provider.md): The key ID (kid) parameter is used to identify a unique key. This value allows identity providers such as WSO2 Identity
+- [Mobile Application for CIBA](/develop/mobile-application-for-ciba.md): Client-Initiated Backchannel Authentication (CIBA) requires a mobile application that is running on the bank customer’s
+- [Introduction](/develop/open-banking-gateway.md): The Open Banking API Manager Accelerator contains Open Banking Gateway, which is built on top of WSO2 API Gateway.
+- [Response Type Handler](/develop/response-type-handler.md): Writing a Custom Response Type Handler
+- [Open Banking Service Activator](/develop/service-activator.md): Writing a Custom OBServiceObserver
+- [Token Data Publishing](/develop/token-data-publishing.md): The WSO2 Identity Server provides OAuth Grant Handlers that let you define a data publishing logic for token related
+- [Token Filters](/develop/token-filters.md): The Token Filters perform the validations that happen in the token authentication flow. You can customize these filters
+- [Using Hibernate Validator](/develop/validation-layer.md): You can use the validation layer in WSO2 Open Banking Accelerator to perform your business use case validations, for any
+- [About this Release](/get-started/about-this-release.md): WSO2 Open Banking 3.0 is the successor of WSO2 Open Banking 2.0. It is a collection of technologies that increases the
+- [Configure Users and Roles](/get-started/configure-users-and-roles.md): Now you have started the servers, let’s create the users and define their permissions and  roles.
+- [Data Publishing](/get-started/data-publishing-try-out.md): Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
+- [Dynamic Client Registration](/get-started/dynamic-client-registration.md): This page explains how to onboard API consumers using the Dynamic Client Registration API.
+- [Open Banking Requirements](/get-started/open-banking-requirements.md): When you implement an open banking architecture, it is not entirely about securely exposing banking APIs to
+- [Open Banking](/get-started/open-banking.md): What is Open Banking?
+- [Get Started](/get-started/quick-start-guide.md): WSO2 Open Banking Accelerator is a technology stack catered to speed up the implementation of an open banking solution.
+- [Regulations and Standards](/get-started/regulations-and-standards.md): Regulations and specifications are enforced by the authorities to standardise the open banking requirements and
+- [Set Up Accelerators](/get-started/set-up-accelerators.md): This section guides you to set up and prepare your servers to run WSO2 Open Banking Accelerator.
+- [Tryout Flow](/get-started/try-out-flow.md): This document provides step by step instructions to invoke the Accounts Information Service API.
+- [WSO2 Open Banking Accelerator](/get-started/wso2-open-banking-accelerator.md): What is an open banking accelerator?
+- [Configuring the Accelerator](/install-and-setup/configuring-accelerator.md): WSO2 Open Banking Accelerator configurations are applied through the deployment.toml file of the Identity Server and
+- [Configuring API Manager](/install-and-setup/configuring-api-manager-for-ob.md): WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the
+- [Configuring Identity Server](/install-and-setup/configuring-identity-server-for-ob.md): WSO2 Open Banking Accelerator contains TOML-based configurations. All the server-level configurations of the Identity
+- [Configuring Users and Roles](/install-and-setup/configuring-users-and-roles.md): Now you have started the servers, let’s create the users and define their permissions and roles.
+- [Data purging](/install-and-setup/data-purging.md): WSO2 Open Banking databases store data for different open banking requirements. As the volume of the data stored
+- [Deploy with Docker](/install-and-setup/deploy-with-docker.md): This page explains two methods of deploying the solution in Docker containers.
+- [Deployment Checklist](/install-and-setup/deployment-checklist.md): When deploying WSO2 Open Banking in a production server, make sure to go through the following checklists to guide you in setting up your production environment.
+- [Deployment Patterns](/install-and-setup/deployment-patterns.md): The base products for WSO2 Open Banking Accelerator are WSO2 API Manager and WSO2 Identity Server.
+- [Exposing the Accelerator to the Internet](/install-and-setup/exposing-the-accelerator-to-the-internet.md): When deploying WSO2 Open Banking, you have the capability to isolate administrative operations from runtime traffic. By segregating administrative operations, you reduce the attack surface and prevent high-privilege operations from being exposed to the public.
+- [Performance Tuning for Production Deployment](/install-and-setup/performance-tuning-for-production-deployment.md): When deploying WSO2 Open Banking in a production server, make sure to go through the following performance tuning recommendations to optimize your production environment.
+- [Prerequisites](/install-and-setup/prerequisites.md): WSO2 Open Banking Accelerator is a collection of technologies that increases the speed and reduces the complexity of
+- [Security Guidelines for Production Deployment](/install-and-setup/security-guidelines-for-production-deployment.md): When deploying WSO2 Open Banking in a production server, make sure to comply with the following common security guidelines for production deployment.
+- [Setting up databases](/install-and-setup/setting-up-databases.md): Once you have successfully prepared the environment for the deployment, you can configure the databases.
+- [Setting up servers](/install-and-setup/setting-up-servers.md): This section guides you to set up and prepare the servers to run WSO2 Open Banking Accelerator.
+- [Troubleshooting](/install-and-setup/troubleshooting.md): To enable debugging in WSO2 Open Banking, you have to configure product observability in WSO2 Identity Server and WSO2 API
+- [Configuration](/learn/api-security-configuration.md): Configuring MTLS Enforcement Executor
+- [API Security](/learn/api-security.md): Open Banking allows API consumers to access financial data through open APIs, which requires greater API security. Therefore,
+- [App-to-App Redirection](/learn/app-to-app-redirection.md): Based on user redirection, Consumer Authentication/Strong Customer Authentication (SCA) can happen in two different
+- [Set up CIBA flow](/learn/ciba-set-up-flow.md): 1. Follow the Quick Start Guide and set up the base products and accelerators.
+- [Client-Initiated Backchannel Authentication (CIBA) Flow](/learn/ciba.md): WSO2 Open Banking Accelerator provides support for the
+- [Client Registration](/learn/client-registration.md): TPP onboarding is the process of registering a TPP with an ASPSP. The TPPs go through an in-depth verification during this process to make sure that the financial data and the applications are secured. This can be a manual or an automated process. The bank/ASPSP decides the TPP onboarding method.
+- [Consent Authorization](/learn/consent-authorization-intro.md): During the consent authorization process, the banks redirect customers to provide consent for API consumers to access
+- [Tryout](/learn/consent-management-try-out.md): This document provides the instructions to try out consent initiation, retrieval, update, and deletion.
+- [Introduction](/learn/consent-management.md): Open banking is a concept that lets third-party financial service providers access customer’s financial data and
+- [Consent Manager](/learn/consent-manager.md): After a certain period, bank customers may need to view, update, or revoke consents they have granted to API consumer
+- [Introduction](/learn/consumer-authentication.md): Consumer Authentication is a mechanism used to authenticate a user that initiates a payment or accesses banking
+- [Tryout](/learn/data-publishing-tryout.md): Set up WSO2 Open Banking Business Intelligence Accelerator as follows:
+- [Introduction](/learn/data-publishing.md): Introduction
+- [WSO2 Open Banking Distributed Cache](/learn/distributed-caching.md): This is only available as a WSO2 Update from WSO2 Open Banking API Manager Accelerator Level 3.0.0.25 and
+- [Configuration](/learn/dynamic-client-registration-configuration.md): Configuring DCR in WSO2 Identity Server
+- [Tryout](/learn/dynamic-client-registration-try-out.md): This page explains how to onboard API consumers using the Dynamic Client Registration API.
+- [Introduction](/learn/dynamic-client-registration.md): The Dynamic Client Registration (DCR) API provides a mechanism to dynamically register OAuth 2.0 clients with
+- [Event Notification Configurations](/learn/event-notification-configuration.md): To enable the Event Notification feature in WSO2 Open Banking:
+- [Event Creation](/learn/event-notification-create.md): The Event Creation API allows storing event notification information as a JSON, which can be customized according to your use case. This endpoint are secured with basic authentication (admin username and password) and accept base64 encoded JSON. The Event Creation API follows the IETF Security Event Token (SET) specifications to serve general-purpose event notification creation.
+- [Event Polling](/learn/event-notification-polling.md): The Event Polling API facilitates storing and retrieving event notifications according to the above specifications without altering the information in the event information JSON. Event Polling API is secured with basic authentication (admin username and password) and accept base64 encoded JSON. The Event Polling API follows the IETF Security Event Token (SET) and the Poll-Based Security Event Token (SET) Delivery Using HTTP specifications to serve general-purpose event notification creation and polling.
+- [Real Time Event Notification](/learn/event-notification-realtime.md): Real Time Event Notification is a method where banks will immediately notify the TPP about any events that occur, without waiting for a request from the TPP. This functionality ensures that TPPs stay informed about relevant events in real-time, enhancing their ability to effectively manage and utilize the consents.
+- [Event Subscription](/learn/event-notification-subscription.md): The Event Subscription API facilitates the ability to subscribe to receive notifications about particular events of interest. Event Subscription endpoints are secured with basic authentication (admin username and password) and accept a JSON payload.
+- [Event Notification](/learn/event-notification.md): Open Banking Specifications require banks to notify any changes related to consent to the Third Party Application Provider (TPP). To achieve this, the specifications includes an API called the Event Notification API, including the flows and common functionality to allow a TPP to receive event notifications.
+- [Identifier-first Authentication](/learn/identifier-first.md): Identifier-first authentication allows identifying the individuals prior to authenticating them. It retrieves the identity
+- [Integration](/learn/integration.md): WSO2 Open Banking can be easily integrated into your current banking system.
+- [JWT Secured Authorization Response Mode (JARM) for OAuth 2.0](/learn/jarm-for-oauth2.md): WSO2 Open Banking adheres to the JWT Secured Authorization Response Mode for OAuth 2.0 (JARM) specification,
+- [Configuration](/learn/manual-client-registration-configuration.md): Configuring Additional Attributes
+- [Using Manual Client Registration Flow](/learn/manual-client-registration-process.md): Step 1: Sign up as a TPP
+- [Introduction](/learn/manual-client-registration.md): The TPPs can create OAuth 2.0 client applications to facilitate banking services exposed via Bank APIs. WSO2 Open Banking provides the Client Registration feature to register the applications in the bank's back end. The TPP applications go through an in-depth verification during this process to make sure the application is authorized and secured before sharing customers’ financial data.
+- [Token Authentication](/learn/token-authentication.md): When an API consumer registers an application, a consumer-key and a consumer-secret is given for that application.
+- [WSO2 Open Banking Accelerator Documentation](/page-not-found.md): {/*
+- [Application Info API](/references/application-info-api.md): Documentation for WSO2 Open Banking Accelerator
+- [Configuration Catalog for API Manager](/references/config-catalog-apim.md): The configuration model of WSO2 API Manager is based on the toml format. The /repository/conf/deployment.toml
+- [Configuration Catalog for Identity Server](/references/config-catalog-is.md): The configuration model of WSO2 Identity Server is based on the toml format. The /repository/conf/deployment.toml
+- [Consent REST API](/references/consent-rest-api.md): Documentation for WSO2 Open Banking Accelerator
+- [DCR REST API](/references/dcr-rest-api.md): Documentation for WSO2 Open Banking Accelerator
+- [WSO2 Open Banking Berlin Toolkit](/toolkits/berlin-toolkit.md): WSO2 Open Banking Berlin Toolkit is based on the WSO2 Open Banking Accelerator. The toolkit is a purpose-built solution
+- [WSO2 Open Banking CDS Toolkit](/toolkits/cds-toolkit.md): WSO2 Open Banking CDS Toolkit is based on the WSO2 Open Banking Accelerator. The toolkit is a purpose-built solution for
+- [Regulatory Aggregator](/toolkits/regulatory-aggregator/regulatory-aggregator-intro.md): A regulatory entity enforces regulations for open banking and open finance in a country or
+- [Regulatory Aggregator - Quick Start Guide](/toolkits/regulatory-aggregator/regulatory-aggregator-qsg.md): This section guides you to set up WSO2 Open Banking Accelerator as a Regulatory Aggregator.
+- [Try Out Open Banking Regulatory Aggregator](/toolkits/regulatory-aggregator/regulatory-aggregator-try-out.md): This document explains how to try out WSO2 Open Banking Regulatory Aggregator.
+- [WSO2 Open Banking UK Toolkit](/toolkits/uk-toolkit.md): WSO2 Open Banking UK Toolkit is based on the WSO2 Open Banking Accelerator. The toolkit is a purpose-built solution for
+- [Welcome to the WSO2 Open Banking Accelerator Documentation!](/index.md): Welcome to the WSO2 Open Banking Accelerator Documentation!

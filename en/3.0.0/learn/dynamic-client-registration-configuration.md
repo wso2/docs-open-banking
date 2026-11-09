@@ -1,0 +1,338 @@
+# Configuration
+
+## Configuring DCR in WSO2 Identity Server[​](#configuring-dcr-in-wso2-identity-server "Direct link to Configuring DCR in WSO2 Identity Server")
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+
+2. Configure the issuer (iss) of the SSA in the following tag. If not specified, the application is considered a non-regulatory application.
+
+   ```
+   [[open_banking.dcr.regulatory_issuers.iss]]
+
+   name = "OpenBanking Ltd"
+   ```
+
+3. If you have modified the Application Listener interface, for example, adding OAuth 2.0 properties or for data publishing requirements, the Application Listener invokes methods that are overridden from a class. Configure the following tag with the name of the class that is extended to do so.
+
+   ```
+   [open_banking.dcr]
+
+   applicationupdater = "com.wso2.openbanking.accelerator.identity.listener.application.ApplicationUpdaterImpl"
+   ```
+
+4. The following configuration sets the software id as the name of the application. By default, this configuration is set to `true`.
+
+   ```
+   [open_banking.dcr]
+
+   use_softwareIdForAppName = true
+   ```
+
+5. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA for this value. For example, the `software_jwks_endpoint` claim.
+
+   ```
+   [open_banking.dcr] 
+
+   jwks_endpoint_name = "software_jwks_endpoint" 
+   ```
+
+6. Configure the names of the primary authenticator to be engaged in the authentication flow and the identity provider if SMS OTP is used as the secondary authentication method.
+
+   ```
+   [open_banking.sca.primaryauth]
+
+   name = "BasicAuthenticator"
+
+   display = "basic"
+
+
+
+   [open_banking.sca.idp]
+
+   name = "SMSAuthentication"
+   ```
+
+## Configuring DCR in WSO2 API Manager[​](#configuring-dcr-in-wso2-api-manager "Direct link to Configuring DCR in WSO2 API Manager")
+
+1. Open the `<APIM_HOME>/repository/conf/deployment.toml` file.
+
+2. If you want to change the internal REST API endpoints of the API Manager configure the following tags. By default, the API Manager 4.1 endpoints are configured. For API Manager 4.2, use v3 instead of v2.
+
+   ```
+   [[open_banking.dcr.apim_rest_endpoints]]
+
+   app_creation = "api/am/devportal/v2/applications"
+
+   key_generation = "api/am/devportal/v2/applications/application-id/map-keys"
+
+   api_retrieve = "api/am/devportal/v2/apis"
+
+   api_subscribe = "api/am/devportal/v2/subscriptions/multiple"
+   ```
+
+3. Configure the hostname of the API Manager server for the token endpoint.
+
+   ```
+   [open_banking.dcr]
+
+   token_endpoint = https://<APIM_HOST>:9443/oauth2/token
+   ```
+
+4. The following configuration sets the software id as the name of the application. By default, this configuration is set to `true`.
+
+   ```
+   [open_banking.dcr]
+
+   use_softwareIdForAppName = true
+   ```
+
+5. Configure the claim name in the SSA that mentions the software. If the `use_softwareIdForAppName` configuration is set to `false`, the name of the application is set using the value of the given claim.
+
+   ```
+   [open_banking.dcr]
+
+   app_name_claim = "software_client_name"
+   ```
+
+6. Configure the name of the claim regarding the jwks endpoint that is issued for the SSA. You can refer to the SSA for this value. For example, the `software_jwks_endpoint` claim.
+
+   ```
+   [open_banking.dcr]
+
+   jwks_endpoint_name = "software_jwks_endpoint"
+   ```
+
+7. By default, a JWT is expected at the DCR endpoint. If you want to **send a json payload**, add the following configurations and set the value to `false`.
+
+   ```
+   [open_banking.dcr]
+
+   isRequestJWT = false
+   ```
+
+8. Configure the names of all regulatory applications. By default, the DCR API is configured.
+
+   ```
+   [[open_banking.dcr.regulatory_api]]
+
+   api_name = "CDR-DynamicClientRegistration"
+   ```
+
+9. Configure the timeout values when validating the signature of the request.
+
+   ```
+   [open_banking.dcr.jwks_retriever]
+
+   connection_timeout = 3000
+
+   read_timeout = 3000
+   ```
+
+10. If you are using an **API Manager at U2 level 4.0.0.102 or above**, disable the Resident Key Manager:
+
+    1. Open the `<APIM-HOME>/repository/conf/deployment.toml` file.
+
+    2. Disable `[apim.key_manager]` configurations by commenting them out:
+
+       ```
+       #[apim.key_manager]
+
+       #service_url = "https://localhost:9446${carbon.context}services/"
+
+       #type = "WSO2-IS"
+
+       #key_manager_client_impl = "org.wso2.carbon.apimgt.impl.AMDefaultKeyManagerImpl"
+
+       #username = "$ref{super_admin.username}"
+
+       #password = "$ref{super_admin.password}"
+
+       #pool.init_idle_capacity = 50
+
+       #pool.max_idle = 100
+
+       #key_validation_handler_type = "default"
+
+       #key_validation_handler_type = "custom"
+
+       #key_validation_handler_impl = "org.wso2.carbon.apimgt.keymgt.handlers.DefaultKeyValidationHandler"
+       ```
+
+    3. Restart the API Manager.
+
+## Configuring a custom DCR validator[​](#configuring-a-custom-dcr-validator "Direct link to Configuring a custom DCR validator")
+
+1. Open the `<IS_HOME>/repository/conf/deployment.toml` file.
+2. Find the following configuration and replace that with your extended class. By default, the `DefaultRegistrationValidatorImpl` class is configured as follows:
+   <!-- -->
+   ```
+   [open_banking.dcr]
+
+   validator = "com.wso2.openbanking.accelerator.identity.dcr.validation.DefaultRegistrationValidatorImpl"
+   ```
+3. Configure the jwks endpoint that is used for validating the SSA signature.
+   <!-- -->
+   ```
+   [open_banking.dcr]
+
+   jwks_url_sandbox = "https://keystore.openbankingtest.org.uk/keystore/openbanking.jwks"
+
+   jwks_url_production = "https://keystore.openbankingtest.org.uk/keystore/openbanking.jwks"
+   ```
+4. Configure the algorithms that are allowed during signature validation. These algorithms are used for token endpoint authentication assertion signature, request object signature, and id token signature validations.
+   <!-- -->
+   ```
+   [[open_banking.signature_validation.allowed_algorithms]]
+
+   name = "PS256"
+   ```
+
+Configuring DCR request parameters
+
+* According to your specification different types of values are allowed in the registration request. WSO2 Open Banking Accelerator provides the capability to configure the parameters and the values they allow.
+
+  * By default, the following values are configured as mandatory parameters. To configure the allowed values for them, open the `<IS_HOME>/repository/conf/deployment.toml` file and add the following tags.
+
+    ```
+    [open_banking.dcr.registration.issuer] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.audience] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.token_endpoint_authentication] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.id_token_signed_response_alg] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.software_statement] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.grant_types] 
+
+    allowed_values = ["value1, value2, value3”]
+    ```
+
+    * If you want to make any of the above parameters optional, add the `required` tag and set it to `false`. For example:
+      <!-- -->
+      ```
+      [open_banking.dcr.registration.issuer]
+
+      required = false
+
+      allowed_values = ["accounts", "payments"]
+      ```
+
+* By default, the following values are configured as optional parameters. To configure the allowed values for them:
+
+  * Open the `<IS_HOME>/repository/conf/deployment.toml` file, add the relevant tags and configure the values allowed.
+
+    ```
+    [open_banking.dcr.registration.scope]
+
+    allowed_values = ["accounts", "payments"]
+
+
+
+    [open_banking.dcr.registration.application_type] 
+
+    allowed_values = ["web"]
+
+
+
+    [open_banking.dcr.registration.response_types]  
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.callback_uris]  
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.token_endpoint_auth_signing_alg] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.software_id] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.id_token_encryption_response_alg] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.id_token_encryption_response_enc] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.request_object_signing_algorithm] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.tls_client_auth_subject_dn] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.backchannel_token_delivery_mode] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.backchannel_authentication_request_signing_alg] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.backchannel_client_notification_endpoint] 
+
+    allowed_values = ["value1, value2, value3”]
+
+
+
+    [open_banking.dcr.registration.backchannel_user_code_parameter_supported] 
+
+    allowed_values = ["value1, value2, value3”]
+    ```
+
+    * If you want to make any of the above parameters mandatory, add the `required` tag and set it to `true`. For example:
+      <!-- -->
+      ```
+      [open_banking.dcr.registration.scope]
+
+      required = true
+
+      allowed_values = ["accounts", "payments"]
+      ```
